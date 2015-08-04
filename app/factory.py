@@ -9,6 +9,7 @@ from flask.ext.uploads import configure_uploads
 
 from app import (csrf, cache, mail, bcrypt, security, photos, s3, assets)
 from app.models import db
+from app.views import views
 
 from ordbok.flask_helper import FlaskOrdbok
 
@@ -22,6 +23,8 @@ def create_app(config=None):
     app.config.update(ordbok)
     app.config.update(config or {})
 
+    app.register_blueprint(views)
+
     cache.init_app(app)
     csrf.init_app(app)
     mail.init_app(app)
@@ -32,3 +35,5 @@ def create_app(config=None):
     db.init_app(app)
     #login_manager.init_app(app)
     assets.init_app(app)
+
+    return app
