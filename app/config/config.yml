@@ -9,12 +9,22 @@ COMMON: &common
   SECRET_KEY: '\xd0\xb9U\xff\x96\x9dG\x89\x17\x1e\x8d\xb0\xac[\xdc*\x0ejV\xea2(\x0f\xf3'
   AES_KEY: '61ec0dfd-3007-431e-b20c-7d5d44e89e7a'
 
+  SQLALCHEMY_DATABASE_URI: 'postgres://postgres:@db:5432/postgres'
+
+  SECURITY_REGISTERABLE: True
+  SECURITY_RECOVERABLE: True
+  SECURITY_TRACKABLE: True
+  SECURITY_CHANGEABLE: True
+  SECURITY_PASSWORD_HASH: bcrypt
+  SECURITY_PASSWORD_SALT: 'bb83d6fa8d0a4adc'
+
+  #SECURITY_CONFIRMABLE: True
+  SECURITY_SEND_REGISTER_EMAIL: False
+
 DEVELOPMENT: &development
   <<: *common
   DEBUG: True
-  #SQLALCHEMY_DATABASE_URL: 'ordbok_local_config'
 
 PRODUCTION:
   <<: *common
   SECRET_KEY: 'ordbok_env_config'
-  SQLALCHEMY_DATABASE_URL: 'postgres://db:5432/noi'

@@ -4,12 +4,23 @@ NoI Models
 Creates the app
 '''
 
+from flask import current_app
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.security import UserMixin #, RoleMixin
+from flask.ext.security import UserMixin, RoleMixin
+
+from werkzeug.local import LocalProxy
 
 import datetime
 
 db = SQLAlchemy()
+
+
+#_security = LocalProxy(lambda: current_app.extensions['security'])
+
+
+roles_users = db.Table('roles_users',
+                       db.Column('users_id', db.Integer(), db.ForeignKey('users.id')),
+                       db.Column('roles_id', db.Integer(), db.ForeignKey('roles.id')))
 
 
 class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
@@ -21,6 +32,14 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     last_name = db.Column(db.Text)
 
     email = db.Column(db.Text, unique=True)
+    password = db.Column(db.Text)
+    active = db.Column(db.Boolean)
+    last_login_at = db.Column(db.DateTime())
+    current_login_at = db.Column(db.DateTime())
+    last_login_ip = db.Column(db.Text)
+    current_login_ip = db.Column(db.Text)
+    login_count = db.Column(db.Integer)
+
 
     country = db.Column(db.Text)
     country_code = db.Column(db.Text)
@@ -48,6 +67,22 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     # langs json,
     # domains json,
+
+    roles = db.relationship('Role', secondary=roles_users,
+                            backref=db.backref('users', lazy='dynamic'))
+
+    #def check_password(self, password):
+    #    correct = _security.check_password_hash(self.pw_method_salt,
+    #                                            self.password,
+    #                                            password)
+
+
+class Role(db.Model, RoleMixin):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.Text, unique=True)
+    description = db.Column(db.Text)
 
 
 class Skill(db.Model): #pylint: disable=no-init,too-few-public-methods
