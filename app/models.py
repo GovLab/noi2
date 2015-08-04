@@ -85,6 +85,7 @@ class Skill(db.Model): #pylint: disable=no-init,too-few-public-methods
     id = db.Column(db.Integer, primary_key=True)
 
     name = db.Column(db.Text)
+    level = db.Column(db.Integer)
     created_at = db.Column(db.DateTime(), default=datetime.datetime.now)
     updated_at = db.Column(db.DateTime(), default=datetime.datetime.now,
                            onupdate=datetime.datetime.now)

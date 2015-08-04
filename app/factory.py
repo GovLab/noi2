@@ -46,7 +46,7 @@ def create_app():
     #login_manager.init_app(app)
     assets.init_app(app)
 
-    app.jinja_env.filters['slug'] = lambda x: slugify(x, to_lower=True)
+    app.jinja_env.filters['slug'] = lambda x: slugify(x).lower()
     app.jinja_env.filters['noop'] = lambda x: ''
 
     # Constant that should be available for all templates.

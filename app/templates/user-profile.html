@@ -41,7 +41,7 @@
 			<center><span class="flag-icon flag-icon-squared flag-icon-{{user['country_code']|lower}}"></center>
 		</div>
 		<div class="debug col-xs-4 col-md-4">
-			<center><img class="profile-img" src="{{user|avatar}}"/><center>
+      {#<center><img class="profile-img" src="{{user|avatar}}"/><center>#}
 			</div>
 		<div class="debug col-xs-4 col-md-4">
 			<center>
@@ -128,8 +128,25 @@
 </div>
 <div class="col-md-4">
 <ul class="noi-expertise-list-profile">
-{% for skill in user['skills']|skills_by_area(area) %}
-<li><span class="noi-expertise-level-profile">{{user['skills'][skill]|expertise_level_icon|safe}}</span>&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{area['id']}}">{{skill.split('/')[-1]|replace('-', ' ')}}</span>
+{% for skill in user.skills if skill.startswith(area.id) %}
+<li>
+<span class="noi-expertise-level-profile">
+  {% with  %}
+    {% set level = user['skills'][skill].level %}
+    {% if level == -1 %}
+      <i class="fa-fw fa fa-question"></i>
+    {% elif level == 1 %}
+      <i class="fa-fw fa fa-mail-forward"></i>
+    {% elif level == 2 %}
+      <i class="fa-fw fa fa-book"></i>
+    {% elif level == 5 %}
+      <i class="fa-fw fa fa-cogs"></i>
+    {% else %}
+      <i class="fa fa-question"></i>
+    {% endif %}
+  {% endwith %}
+</span>
+&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{area['id']}}">{{skill.split('/')[-1]|replace('-', ' ')}}</span>
 </li>
 {% endfor %}
 </ul>

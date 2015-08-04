@@ -166,20 +166,20 @@ def dashboard():
 
 @views.route('/user/<userid>')
 def get_user(userid):
-    user = db.getUser(userid)
+    user = User.query.get(userid)
     if user:
-        if 'social-login' in session:
-            my_userid = session['social-login']['userid']
-        else:
-            my_userid = 'anonymous'
-        query_info = {'user-agent': request.headers.get('User-Agent'),
-                      'type': '/user', 'userid': my_userid}
-        db.logQuery(my_userid, query_info)
+        #if 'social-login' in session:
+        #    my_userid = session['social-login']['userid']
+        #else:
+        #    my_userid = 'anonymous'
+        #query_info = {'user-agent': request.headers.get('User-Agent'),
+        #              'type': '/user', 'userid': my_userid}
+        #db.logQuery(my_userid, query_info)
         return render_template('user-profile.html',
                                **{'user': user, 'userid': userid, 'SKILLS': []})
     else:
         flash('This is does not correspond to a valid user.')
-        return redirect(url_for('search'))
+        return redirect(url_for('views.search'))
 
 
 @views.route('/search', methods=['GET', 'POST'])
