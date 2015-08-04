@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Test Hello.js</title>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="/static/hello.min.js"></script>
+	</head>
+	<body>
+
+		<button onclick="hello('linkedin').login()">linkedin</button>
+		<button onclick="hello('facebook').login()">facebook</button>
+		<button onclick="hello('twitter').login()">twitter</button>
+		<button onclick="hello('google').login()">google</button>
+		<button onclick="hello('windows').login()">Windows</button>
+		<button onclick="hello('instagram').login()">Instagram</button>
+
+
+		<div id="profile_facebook"/>
+		<div id="profile_twitter"/>
+		<div id="profile_google"/>
+		<div id="profile_linkedin"/>
+		<div id="profile_windows"/>
+		<div id="profile_instagram"/>
+
+
+		<script type="text/javascript">
+		hello.on('auth.login', function(auth) {
+			console.log('Inside hello');
+	// Call user information, for the given network
+	hello(auth.network).api('/me').then(function(r) {
+		// Inject it into the container
+		console.log('It worked ....');
+		console.log(r);
+		var label = document.getElementById('profile_' + auth.network);
+		if (!label) {
+			label = document.createElement('div');
+			label.id = 'profile_' + auth.network;
+			document.getElementById('profile').appendChild(label);
+		}
+		label.innerHTML = auth.network + ' <img src="' + r.thumbnail + '" /> Hey ' + r.name;
+	}, function(e) {
+	alert('Signin error: ' + e.error.message);
+});
+});
+
+	hello.init({
+	'facebook': '428426510668680',
+	'google': '873276900396-ji0fg53so0ef21fekmf89sgqthii4fqe.apps.googleusercontent.com',
+	'twitter': '5HkInUY29QwZpGiakpkmliMuV',
+	'linkedin': '771v6fab8f1cvg',
+	'windows': '000000004414E1C0',
+	'instagram': '1ac7d9c698e44cb29f644cde32e5fd33'
+	 } , {redirect_uri: 'http://localhost:8000/test-hello'});
+
+		</script>
+
+	</body>
+</html>

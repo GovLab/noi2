@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default b-navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Network of Innovators <em>(beta)</em></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/about">About</a></li>
+        <li><a href="/feedback">Feedback</a></li>
+        <li><a href="/search">Search</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Explore&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/users/recent">Recently joined</a></li>
+            <li><a href="/match">Find innovators with answers</a></li>
+            <li><a href="/match-knn">Find innovators like you</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            {% if 'social-login' in session %}
+            <img class="profile-img-nav" src="{{session['social-login']['picture']}}"/>
+            {% else %}
+            My Profile
+            {% endif %}
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            {% if 'social-login' in session %}
+            <li><a href="/me">Edit My Profile</a></li>
+            <li><a href="/my-expertise">Edit My Expertise</a></li>
+            {% if session['social-login'] %}
+              <li><a href="/user/{{session['social-login']['userid']}}">See My Public Profile</a></li>
+            {% endif %}
+            <li><a href="/logout">Logout</a></li>
+            {% else %}
+            <li><a href="/login">Login</a></li>
+            {% endif %}
+          </ul>
+        </li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,259 @@
+{% extends "__base__.html" %}
+
+{% block title %}My Profile{% endblock %}
+{% block page_style_post %}
+<style>
+.profile-img { width: 60px; height: 60px; border-radius: 30px;}
+div.btn-group {
+    margin: 0 auto; 
+    text-align: center;
+    width: inherit;
+    display: inline-block;
+}
+.btn-group-wrap {
+    text-align: center;
+}
+.btn { font-size: 12px; opacity:0.6; }
+.q { margin: 10px; line-height: 2em;}
+
+.noi-expertise-progress { font-size: 10px ;}
+.noi-expertise-progress-topic { font-size: 10px ;}
+
+.noi-i-know { text-align: center; font-size: 20px; text-transform: uppercase;}
+
+.noi-and-i-can { font-size: 20px;
+  text-transform: uppercase;
+  }
+
+.noi-question { margin: 10px;
+    font-style: italic;
+}
+.noi-q-even { background-color: #FCF8E3;}
+.noi-q-odd { background-color: #D9EDF7;}
+
+span.noi-expertise-icon-name {
+font-size: 10px; }
+
+.noi-topic-name { font-size: 24px;}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+{# We define a macro for buttons; buttons are prefixed by the question name. #}
+
+
+{% macro noi_buttons(question, area, topic, index) -%}
+	<div class="btn-group-wrap b-question-answers">
+      <span class="noi-and-i-can">and</span> 
+		<div id="q-{{question|make_question(area, topic)}}" class="btn-group btn-group-vertical">
+      {% for k, v in LEVELS|dictsort %}
+      {% if k == 'LEVEL_I_WANT_TO_LEARN' %}
+      OR
+      {% endif %}
+      <button type="button" class="q e-answer" data-value="{{v['score']}}">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
+      {% endfor %}
+    </div>
+		</div>
+{%- endmacro %}
+
+{% macro noi_question(question, area, topic, index) -%}
+<li class="list-group-item {{'noi-q-even' if (index % 2) else 'noi-q-odd'}}">
+    <div class="noi-i-know">I know</div>
+		<div style="font-size: 1.5em;" class="noi-question">
+		&laquo; {{question['question']}} &raquo;
+		</div>
+		{{ noi_buttons(question, area, topic) }}
+    <br/>
+			</li>
+{%- endmacro %}
+
+
+<h1>My expertise</h1>
+
+<div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        
+<p>Tell us what you know about various key topics by answering some of the following questions.</p>
+
+<p>For each question, you can choose from
+  {% for k,v in LEVELS|dictsort %}
+  <button style="font-size: 14px;" type="button" class="e-answer">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
+  {% endfor %}
+</p>
+</div>
+
+<ul class="nav nav-tabs __nav-justified__" id="expertise-tab">
+  {% for area in AREAS[0:3] %}
+    <li role="presentation" class="text-center {{'noi-expertise-not-yet' if not area.topics}}"><a href="#{{area.id}}-tab">
+      <img alt="{{area.name}}" class="noi-expertise-icon" src="/static/img/expertise-icons/{{area.icon}}">
+      <br/><span class="noi-expertise-icon-name">{{area['name']}}</span>
+      <br/><span id="{{area.id}}" class="noi-expertise-progress"></span></a>
+    </li>
+  {% endfor %}
+  <li role="presentation" style="vertical-align: bottom;">More to come</li> 
+</ul>
+
+<div id="expertise-tab-content" class="tab-content">
+  <br/>
+
+{% for area in AREAS %}
+
+  <div class="tab-pane fade {{'active in' if loop.index == 1}}" id="{{area.id}}-tab">
+
+    <div class="accordion" id="accordion-{{area.id}}">
+
+      <!-- Area description -->
+      <h3>{{area['name']}}</h3>
+    <div class="noi-area-description">{{area['description']|safe}}</div>
+
+  {% for topic in area['topics'] %}
+
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a id="collapse-btn-{{topic['topic']|slug}}"class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-{{area.id}}" href="#collapse-{{topic.topic|slug}}">
+          <i class="fa fa-plus-square-o"></i>
+          <span class="noi-topic-name">{{topic['topic']}}</span></a>&nbsp;<span class="noi-expertise-progress-topic" id="{{topic.topic|slug}}"></span>
+          <div style="margin-bottom: 20px;">What you can share about {{topic['description']}}.</div>
+        </div>
+
+        <div id="collapse-{{topic.topic|slug}}" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <ul class="list-group">
+            {% for question in topic['questions'] %}
+              {{ noi_question(question, area, topic, loop.index) }}
+           {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div> <!-- Accordion group -->
+
+    {% endfor %}  
+
+  </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+  <div class="row">
+    <div class="col-md-12 col-xs-12 text-center">
+    <form id="expertise-form" method="POST" action="/my-expertise">
+      <input type="hidden" id="my-expertise-as-json" name="my-expertise-as-json"/>
+      <button id="save-expertise" type="button">Save</button>
+    </form>
+</div>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block page_script %}
+<script>
+
+// For each tab, computes #(questions answered) / #(total questions)
+function computeExpertiseProgress() {
+  $('span.noi-expertise-progress').map(function(i, v) {
+    var span = $(v);
+    var id = span.attr('id');
+    console.log("compute progress for " + id);
+    var tab = $('#' + id + '-tab');
+    var answers = tab.find('.q[checked="checked"]').length;
+    var all_questions = tab.find('.q').length / 4;
+    span.text(answers + " / " + all_questions);
+  })
+}
+
+function computeExpertiseProgressByTopic() {
+  $('span.noi-expertise-progress-topic').map(function(i, v) {
+    var span = $(v);
+    var id = span.attr('id');
+    var tab = $('#collapse-' + id);
+    var answers = tab.find('.q[checked="checked"]').length;
+    var all_questions = tab.find('.q').length / 4;
+    span.text(answers + " / " + all_questions);
+  })
+}
+
+
+// Essential to make the tab work.
+$('#expertise-tab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
+
+// Logic for the buttons.
+$('.q').click(function() {
+	if ($(this).attr('checked') == 'checked') {
+		// We click on an option that is already checked; ==> uncheck.
+		$(this).parent().find('.q').css('text-decoration', '').attr('checked', false);
+		$(this).parent().find('.q').css('opacity', '0.6');
+	} else {
+	$(this).parent().find('.q').css('text-decoration', '').attr('checked', false);
+	$(this).parent().find('.q').css('opacity', '0.6');
+	$(this).css('text-decoration', 'underline').attr('checked', true);
+	$(this).css('opacity', '1.0');
+	};
+  // TODO: recompute only for this area.
+  computeExpertiseProgress();
+  computeExpertiseProgressByTopic();
+});
+
+function getExpertise() {
+  var expertiseSet = {'_': 0};
+  var arr = $('[id*="q-"]');
+  for(var i=0; i<arr.length; i++) {
+    var question = $(arr[i]).attr('id').slice(2);  // We remove the "q-" prefix.
+    var answer = $(arr[i]).find('button[checked="checked"]').attr('data-value');
+    if (answer) {
+      expertiseSet[question] = answer;
+    }
+  }
+  console.log(JSON.stringify(expertiseSet));
+  return expertiseSet;
+}
+
+$('#save-expertise').click(function() {
+  var expertiseData = getExpertise();
+  $('#my-expertise-as-json').attr('value', JSON.stringify(expertiseData));
+  console.log('Saving expertise.')
+  $('#expertise-form').submit();
+});
+
+
+{% if userExpertise %}
+var userExpertise = {{userExpertise|tojson}};
+{% else %}
+var userExpertise = null;
+{% endif %}
+
+if (userExpertise) {
+  console.log('Populating your expertise ...');
+  setExpertise(userExpertise);
+}
+
+function setExpertise(userExpertise) {
+  var keys = Object.keys(userExpertise);
+  $('.q').css('opacity', '0.6');
+  for(var i in keys)
+  {
+    var key = keys[i];
+    var value = userExpertise[key];
+    var button = $('[id="q-' + key + '"]').find('button[data-value="' + value + '"]');
+    button.attr('checked', true);
+    button.css('text-decoration', 'underline').attr('checked', true);
+    button.css('opacity', '1.0');
+  }
+  computeExpertiseProgress();
+  computeExpertiseProgressByTopic();
+
+}
+
+</script>
+{% endblock %}

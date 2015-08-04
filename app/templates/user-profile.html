@@ -1,0 +1,201 @@
+{% extends "__base__.html" %}
+
+{% block title %}{{user['first_name']}} {{user['last_name']}}'s Profile{% endblock %}
+{% block page_style_post %}
+<style>
+.profile-img { width: 100px; height: 100px; border-radius: 50px;}
+.profile-map { width: 300px; height: 100px; border-radius: 5px;}
+
+.debug { border-style: none; }
+.flag-icon { font-size: 100px; text-align: center; vertical-align: middle; border-radius: 50px;} 
+
+.row { margin-bottom: 20px;}
+
+.noi-expertise-tag-profile { border: solid grey 1px;
+	padding: 1px 2px 1px 2px;
+	border-radius2: 5px;
+	list-style-type: none;
+	font-size: 12px;
+	opacity: 0.8;
+}
+
+.noi-expertise-list-profile {
+	line-height: 1.5em;
+	list-style-type: none;
+}
+
+{% for area in CONTENT['areas'] %}
+.noi-color-{{area['id']}} { background-color: {{area['icon-color']}}; }
+{% endfor %}
+
+</style>
+
+<link href="/static/styles/flag-icon.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="row">
+	<div class="debug col-xs-4 col-md-4">
+			<center><span class="flag-icon flag-icon-squared flag-icon-{{user['country_code']|lower}}"></center>
+		</div>
+		<div class="debug col-xs-4 col-md-4">
+			<center><img class="profile-img" src="{{user|avatar}}"/><center>
+			</div>
+		<div class="debug col-xs-4 col-md-4">
+			<center>
+			<img class="profile-map" src="https://maps.googleapis.com/maps/api/staticmap?center={{user['latlng']}}&size=300x100&zoom=5&markers=color:blue%7Clabel:%7C{{user['latlng']}}" alt="location">
+		</center>
+		</div>
+	</div>
+<div class="row">
+	<div class="debug col-md-12 text-center">
+		<h2>{{user['first_name']}} {{user['last_name']}}</h2>
+	</div>
+	<div class="debug col-md-12 text-center">
+		{{user['org'] or ''}} | {{user['title'] or ''}}
+	</div>
+</div>
+
+<div class="row">
+	<div class="debug col-xs-2 col-md-2 text-center"></div>
+	<div class="debug col-xs-2 col-md-2 text-center">
+		{# <i class="fa fa-star-o fa-2x"></i> #}
+	</div>
+	<div class="debug col-xs-2 col-md-2 text-center">
+		{% if user['email'] is defined and user['email'] != '' and user['email'] != None %}
+		<a href="mailto:{{user['email']}}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user['first_name']}}"><i class="fa fa-at fa-2x"></i> E-Mail</a>
+		{% endif %}
+	</div>
+	<div class="debug col-xs-2 col-md-2 text-center">
+		<i class="fa fa-phone-square fa-2x"></i> Phone
+	</div>
+	<div class="debug col-xs-2 col-md-2 text-center">
+		<a href="/vcard/{{userid}}">
+			<i class="fa fa-download fa-2x"></i></i> vCard
+		</a>
+	</div>
+		<div class="debug col-xs-2 col-md-2 text-center"></div>
+</div>
+<br/>
+
+{% if DEBUG %}
+<pre>{{user}}</pre>
+{% endif %}
+
+<div class="row">
+	<div class="col-xs-12 col-md-4">
+		<h3>Languages:</h3>
+		{% if user['langs'] %}
+		<ul>
+			{% for lang in user['langs'] %}
+			<li>{{lang}}</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		No language information available.
+		{% endif %}
+	</div>
+	<div class="col-xs-12 col-md-4">
+		<h3>Domain(s) of expertise:</h3>
+		{% if user['domains'] %}
+		<ul>
+			{% for domain in user['domains'] %}
+			<li>{{domain}}</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		No domain information available.
+		{% endif %}
+	</div>
+	<div class="col-xs-12 col-md-4">
+		<h3>Projects I have done</h3>
+		{% if user['projects'] %}
+		<pre>{{user['projects']}}</pre>
+		{% else %}
+		No project information provided.
+		{% endif %}
+	</div>
+</div>
+
+
+<div class="row">
+{% if user['skills'] %}
+{% for area in CONTENT['areas'] %}
+	<div class="col-md-2 text-center {{'noi-expertise-not-yet' if not area.topics}}">
+<img class="noi-expertise-icon" src="/static/img/expertise-icons/{{area['icon']}}"><br/>{{area['name']}}
+</div>
+<div class="col-md-4">
+<ul class="noi-expertise-list-profile">
+{% for skill in user['skills']|skills_by_area(area) %}
+<li><span class="noi-expertise-level-profile">{{user['skills'][skill]|expertise_level_icon|safe}}</span>&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{area['id']}}">{{skill.split('/')[-1]|replace('-', ' ')}}</span>
+</li>
+{% endfor %}
+</ul>
+</div>
+{% if loop.index % 2 == 0 %}
+	</div>
+	<div class="row">
+{% endif %}
+{% endfor %}
+
+{% endif %}
+
+</div>
+
+<div class="text-center">
+{% for k, v in LEVELS|dictsort %}
+      <span style="border: solid 1px black; padding: 3px;">{{v['icon']|safe}}&nbsp;{{v['label']}}</span>
+      {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block page_script %}
+<script src="/static/chart.js"></script>
+<script>
+	var all_skills = {{ SKILLS|tojson }};
+  var user_skills = {{user.skills|tojson}};
+
+  var labels = [];
+  var data = [];
+  for(var key in all_skills['opendata'].sort()) {
+  	labels.push(all_skills['opendata'][key]);
+  	if (all_skills['opendata'][key] in user_skills['opendata']) {
+  		data.push(user_skills['opendata'][all_skills['opendata'][key]]);
+  	} else {
+  		data.push(0);
+  	};
+  }
+
+
+	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+	var randomColorFactor = function(){ return Math.round(Math.random()*255)};
+	var radarChartData = {
+		labels: labels.slice(0,12),
+		datasets: [
+			{
+				label: "My Second dataset",
+				fillColor: "rgba(151,187,205,0.2)",
+				strokeColor: "rgba(151,187,205,1)",
+				pointColor: "rgba(151,187,205,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(151,187,205,1)",
+				data : data.slice(0,12),
+			}
+		]
+	};
+	
+	var myRadarOpendata = new Chart(document.getElementById("canvas-opendata").getContext("2d")).Radar(radarChartData, {
+			responsive: false
+		});
+	var myRadarPrizes = new Chart(document.getElementById("canvas-prizes").getContext("2d")).Radar(radarChartData, {
+			responsive: false
+		});
+	var myRadarCrowdsourcing = new Chart(document.getElementById("canvas-crowdsourcing").getContext("2d")).Radar(radarChartData, {
+			responsive: false
+		});
+	</script>
+{% endblock %}

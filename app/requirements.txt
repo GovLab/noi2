@@ -27,3 +27,4 @@ ordbok==0.1.8
 psycopg2==2.6.1
 python-dateutil==2.4.2
 simple-crypt==4.1.7
+python-slugify==1.1.3

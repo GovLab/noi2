@@ -1,0 +1,15 @@
+{% extends '__base__.html' %}
+
+
+{% block content %}
+Just a test.
+
+{{'Arnaud is great'|slug}}
+
+{% set the_results = results|email_recipients -%}
+
+{{ the_results }}
+
+{{'world '|hello('1','2','3)}}
+
+{% endblock %}

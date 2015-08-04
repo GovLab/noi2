@@ -1,0 +1,139 @@
+{#
+/*
+// Code to populate the form based on the JSON data coming from the server.
+{% if session['user'] %}
+// We have some profile info.
+{#var userProfile = {{session['user-profile']|tojson}};#}
+var userProfile = {{session['user']|tojson}};
+$('input[id*="q-"]').map(function() { $(this).attr('value', userProfile[$(this).attr('id').substring(2)]) } );
+$('textarea[id*="q-"]').map(function() { $(this).text(userProfile[$(this).attr('id').substring(2)]) } );
+$('select[id="q-langs"]').children('option').map(function()
+  {
+    if ($.inArray($(this).attr('value'), userProfile.langs) > -1) {
+      $(this).attr('selected', '');
+    } else {
+      $(this).removeAttr('selected');
+    }
+  });
+{% else %}
+// We don't have profile info.
+var userProfile = null;
+{% endif %}
+*/
+#}
+
+	
+</ul>
+
+<div id="expertise-tab-content" class="tab-content">
+	<br/>
+
+  
+  <div class="tab-pane fade active in" id="{{sname}}-tab">
+
+  	<div class="accordion" id="accordion-{{sname}}">
+
+      {% for item in ['Open Data Strategy', 'Implementing Open Data', 'Measuring Impact'] %}
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+    			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-{{item|slug}" href="#collapse-strategy-policy">
+    				<h3>item['name'] ({{item['questions']|length}})</h3></a>
+    		</div>
+
+				<div id="collapse-strategy-policy" class="accordion-body collapse">
+      		<div class="accordion-inner">
+      			<ul class="list-group">
+              {% for question in item['questions'] %}
+						{{ noi_question('core-mission',		'How to identify what data will help my organization achieve its core mission') }}
+						{{ noi_question('sensitive-data', 'How to distinguish between potentially sensitive data and non-sensitive data') }}
+						{{ noi_question('write-a-policy', 'How to craft a clear policy explaining what data to open and how') }}
+						{{ noi_question('open-policy', 		'How to do public consultation on an open data policy') }}
+						{{ noi_question('buy-in', 				'How to get organizational approval for opening data') }}
+					</ul>
+      		</div>
+    		</div>
+  		</div> <!-- END OF accordion-group -->
+
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+    			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-open-data" href="#implementing">
+    				<h3>Implementing an Open Data Program</h3></a>
+    		</div>
+
+				<div id="implementing" class="accordion-body collapse">
+      		<div class="accordion-inner">
+      			<ul class="list-group">
+						{{ noi_question('core-mission-2',		'How to identify what data will help my organization achieve its core mission') }}
+						{{ noi_question('sensitive-data-2', 'How to distinguish between potentially sensitive data and non-sensitive data') }}
+						{{ noi_question('write-a-policy-2', 'How to craft a clear policy explaining what data to open and how') }}
+						{{ noi_question('open-policy-2', 		'How to do public consultation on an open data policy') }}
+						{{ noi_question('buy-in-2', 				'How to get organizational approval for opening data') }}
+					</ul>
+      		</div>
+    		</div>
+  		</div> <!-- END OF accordion-group -->
+
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+    			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-open-data" href="#impact">
+    				<h3>Measuring Impact</h3></a>
+    		</div>
+
+				<div id="impact" class="accordion-body collapse">
+      		<div class="accordion-inner">
+      			<ul class="list-group">
+						{{ noi_question('monitoring',			'How to monitor how my data is being used') }}
+						{{ noi_question('impact', 'How to measure the economic and/or social impact of opening up data') }}
+					</ul>
+      		</div>
+    		</div>
+  		</div> <!-- END OF accordion-group -->
+
+  	</div>
+
+	</div>
+
+ 
+  
+  <div class="tab-pane fade" id="prizes-tab">
+
+  	<div class="accordion" id="accordion-open-data">
+
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+    			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-prizes" href="#collapse-scoping">
+    				<h3>Scoping the problem</h3></a>
+    		</div>
+
+				<div id="collapse-scoping" class="accordion-body collapse">
+      		<div class="accordion-inner">
+      			<ul class="list-group">
+						{{ noi_question('problem-definition',		'How to define and express the problem addressed by the prize') }}
+						{{ noi_question('partnerships', 				'How to identify whom to engage to help test assumptions') }}
+					</ul>
+      		</div>
+    		</div>
+  		</div> <!-- END OF accordion-group -->
+
+  		<div class="accordion-group">
+    		<div class="accordion-heading">
+    			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-open-data" href="#collapse-design">
+    				<h3>Designing for a Successful Prize</h3></a>
+    		</div>
+
+				<div id="collapse-design" class="accordion-body collapse">
+      		<div class="accordion-inner">
+      			<ul class="list-group">
+						{{ noi_question('design',		'How to decide when to use a prize-backed challenge rather than other options like conventional crowdsourcing') }}
+						{{ noi_question('when-to-use', 'How to develop a process for answering when to use a prize') }}
+					</ul>
+      		</div>
+    		</div>
+  		</div> <!-- END OF accordion-group -->
+
+  </div>
+</div>
+  
+  <div class="tab-pane fade" id="crowdsourcing-tab">
+    Nothing here for now.
+  </div>

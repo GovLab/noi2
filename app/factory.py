@@ -7,11 +7,15 @@ Creates the app
 from flask import Flask
 from flask.ext.uploads import configure_uploads
 
-from app import (csrf, cache, mail, bcrypt, security, photos, s3, assets)
+from app import (csrf, cache, mail, bcrypt, security, photos, s3, assets,
+                 CONTENT, COUNTRIES, LANGS, NOI_COLORS, LEVELS, ORG_TYPES,
+                 DOMAINS)
 from app.models import db
 from app.views import views
 
 from ordbok.flask_helper import FlaskOrdbok
+from slugify import slugify
+
 
 
 def create_app(config=None):
@@ -35,5 +39,17 @@ def create_app(config=None):
     db.init_app(app)
     #login_manager.init_app(app)
     assets.init_app(app)
+
+    app.jinja_env.filters['slug'] = lambda x: slugify(x, to_lower=True)
+    app.jinja_env.filters['noop'] = lambda x: ''
+
+    # Constant that should be available for all templates.
+    app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
+    app.jinja_env.globals['CONTENT'] = CONTENT
+    app.jinja_env.globals['COUNTRIES'] = COUNTRIES
+    app.jinja_env.globals['LANGS'] = LANGS
+    app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
+    app.jinja_env.globals['LEVELS'] = LEVELS
+    app.jinja_env.globals['DOMAINS'] = DOMAINS
 
     return app

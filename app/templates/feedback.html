@@ -1,0 +1,33 @@
+{% extends "__base__.html" %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block page_style_post %}
+<link href="//d3q1ytufopwvkq.cloudfront.net/0/formrenderer.css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+
+<!-- Stick these two lines in your <head> if possible: -->
+
+<h1>Share your feedback about the Network of Innovators</h1>
+
+
+<form data-formrenderer>This form requires JavaScript to complete.</form>
+
+{% endblock %}
+
+
+{% block page_script %}
+<script src="//d3q1ytufopwvkq.cloudfront.net/0/formrenderer.js"></script>
+<script>
+  new FormRenderer({
+    "project_id": 1246,
+    "afterSubmit": {
+      "method": "page",
+      "html": "<p>Thanks for submitting our form!</p>"
+    }
+  });
+</script>
+{% endblock %}
