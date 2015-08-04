@@ -8,7 +8,9 @@ from flask import (Blueprint, render_template, session, request, flash,
                    redirect, url_for)
 
 from app import CONTENT, COUNTRIES, LANGS
-from app.models import db
+from app.models import db, User
+
+from sqlalchemy import func, desc
 
 import copy
 import json
@@ -134,16 +136,21 @@ def my_expertise():
 
 @views.route('/dashboard')
 def dashboard():
-    top_countries = db.top_countries()
-    ALL_USERS = db.getAllUsers()
-    OCCUPATIONS = db.getUserOccupations()
-    return render_template('dashboard.html', **{'top_countries': top_countries,
-                                                'ALL_USERS': ALL_USERS, 'OCCUPATIONS': OCCUPATIONS})
+    top_countries = db.session.query(func.count(User.id)) \
+            .group_by(User.country) \
+            .order_by(desc(func.count(User.id))).all()
+    users = User.query.all()
+    occupations = db.session.query(func.count(User.id)) \
+            .group_by(User.org_type) \
+            .order_by(desc(func.count(User.id))).all()
 
-@views.route('/dashboard-2')
-def dashboard2():
-    top_countries = db.top_countries()
-    return render_template('dashboard-2.html', **{'top_countries': top_countries})
+    return render_template('dashboard.html', **{'top_countries': top_countries,
+                                                'ALL_USERS': users,
+                                                'OCCUPATIONS': occupations})
+
+#@views.route('/dashboard-2')
+#def dashboard2():
+#    return render_template('dashboard-2.html', **{'top_countries': top_countries})
 
 #@views.route('/vcard/<userid>')
 #def vcard(userid):

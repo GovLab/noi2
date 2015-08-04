@@ -4,18 +4,12 @@ NoI Models
 Creates the app
 '''
 
-from flask import current_app
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.security import UserMixin, RoleMixin
-
-from werkzeug.local import LocalProxy
 
 import datetime
 
 db = SQLAlchemy()
-
-
-#_security = LocalProxy(lambda: current_app.extensions['security'])
 
 
 roles_users = db.Table('roles_users',
