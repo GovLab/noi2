@@ -6,6 +6,7 @@ All views in the app, as a blueprint
 
 from flask import (Blueprint, render_template, session, request, flash,
                    redirect, url_for)
+from flask.ext.login import login_required, current_user
 
 from app import CONTENT, COUNTRIES, LANGS
 from app.models import db, User
@@ -20,8 +21,6 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def main_page():
-    print session
-
     return render_template('main.html', **{'SKIP_NAV_BAR': False})
 
 
@@ -75,23 +74,25 @@ def edit_user(userid):
         userProfile = db.getUser(userid)  # We get some stuff from the DB.
         return render_template('my-profile.html',
                                **{'userProfile': userProfile})
-    if request.method == 'POST':
-        userProfile = json.loads(request.form.get('me'))
-        session['user-profile'] = userProfile
-        db.updateCoreProfile(userProfile)
-        flash('Your profile has been saved.')
-        return render_template('my-profile.html', **{'userProfile': userProfile})
+
+    if current_user.id:
+        if request.method == 'POST' and userid == current_user.id:
+            userProfile = json.loads(request.form.get('me'))
+            session['user-profile'] = userProfile
+            db.updateCoreProfile(userProfile)
+            flash('Your profile has been saved.')
+            return render_template('my-profile.html', **{'userProfile': userProfile})
 
 
+@login_required
 @views.route('/me', methods=['GET', 'POST'])
 def my_profile():
     if request.method == 'GET':
-        social_login = session['social-login']
-        print "Looking up %s" % social_login['userid']
-        userProfile = db.getUser(social_login['userid'])  # We get some stuff from the DB.
-        print userProfile
-        return render_template('my-profile.html',
-                               **{'userProfile': userProfile})
+        #social_login = session['social-login']
+        #print "Looking up %s" % social_login['userid']
+        #userProfile = db.getUser(social_login['userid'])  # We get some stuff from the DB.
+        #print userProfile
+        return render_template('my-profile.html')
     if request.method == 'POST':
         userProfile = json.loads(request.form.get('me'))
         session['user-profile'] = userProfile
@@ -103,7 +104,7 @@ def my_profile():
         return redirect(url_for('main_page'))
 
 
-
+@login_required
 @views.route('/my-expertise', methods=['GET', 'POST'])
 def my_expertise():
     if 'social-login' not in session:
