@@ -6,7 +6,7 @@ All views in the app, as a blueprint
 
 from flask import (Blueprint, render_template, session, request, flash,
                    redirect, url_for)
-from flask.ext.login import login_required, current_user
+from flask_login import login_required, current_user
 
 from app import CONTENT, COUNTRIES, LANGS
 from app.models import db, User
@@ -24,19 +24,9 @@ def main_page():
     return render_template('main.html', **{'SKIP_NAV_BAR': False})
 
 
-@views.route('/test-template')
-def test_template():
-    return render_template('test.html', **{'SKIP_NAV_BAR': False})
-
-
 @views.route('/about')
 def about_page():
     return render_template('about.html', **{})
-
-
-@views.route('/test-hello')
-def test_hello():
-    return render_template('test-hello.html', **{})
 
 
 #@views.route('/login', methods=['GET', 'POST'])
@@ -84,8 +74,8 @@ def edit_user(userid):
             return render_template('my-profile.html', **{'userProfile': userProfile})
 
 
-@login_required
 @views.route('/me', methods=['GET', 'POST'])
+@login_required
 def my_profile():
     if request.method == 'GET':
         #social_login = session['social-login']
@@ -104,8 +94,8 @@ def my_profile():
         return redirect(url_for('main_page'))
 
 
-@login_required
 @views.route('/my-expertise', methods=['GET', 'POST'])
+@login_required
 def my_expertise():
     if 'social-login' not in session:
         flash('You need to be authenticated in order to fill your expertise.', 'error')

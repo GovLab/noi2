@@ -7,16 +7,11 @@ Creates the app
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 
-from sqlalchemy import types, orm, Column, Table, ForeignKey
+from sqlalchemy import types, orm, Column, ForeignKey
 
 import datetime
 
 db = SQLAlchemy()  #pylint: disable=invalid-name
-
-
-roles_users = Table('roles_users',  #pylint: disable=invalid-name
-                    Column('users_id', types.Integer(), ForeignKey('users.id')),
-                    Column('roles_id', types.Integer(), ForeignKey('roles.id')))
 
 
 class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
@@ -67,7 +62,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     # langs json,
     # domains json,
 
-    roles = orm.relationship('Role', secondary=roles_users,
+    roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
 
     #def check_password(self, password):
@@ -100,6 +95,18 @@ class Skill(db.Model): #pylint: disable=no-init,too-few-public-methods
     created_at = Column(types.DateTime(), default=datetime.datetime.now)
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
+
+
+class RoleUser(db.Model): #pylint: disable=no-init,too-few-public-methods
+    '''
+    Join table between a user and her roles.
+    '''
+    __tablename__ = 'role_users'
+
+    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
+
+    users_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
+    roles_id = Column(types.Integer(), ForeignKey('roles.id'), nullable=False)
 
 
 class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods

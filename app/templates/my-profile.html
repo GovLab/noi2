@@ -262,11 +262,12 @@ $( document ).ready(function() {
 </script>
 
 <script>
+{#
 {% if userProfile %}
 var userProfile = {{userProfile|tojson}};
 {% else %}
 var userProfile = null;
-{% endif %} 
+{% endif %}
 
 if (userProfile == null) {
   // We populate some fields using the social-login.
@@ -340,6 +341,7 @@ $('#save-profile').click(function() {
   $('#me-as-json').attr('value', JSON.stringify(profileData));
   $('#me-form').submit();
 });
+#}
 
 </script>
 {% endblock %}
