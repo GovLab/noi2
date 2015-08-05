@@ -4,66 +4,71 @@ NoI Models
 Creates the app
 '''
 
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.security import UserMixin, RoleMixin
+from flask_sqlalchemy import SQLAlchemy
+from flask_security import UserMixin, RoleMixin
+
+from sqlalchemy import types, orm, Column, Table, ForeignKey
 
 import datetime
 
-db = SQLAlchemy()
+db = SQLAlchemy()  #pylint: disable=invalid-name
 
 
-roles_users = db.Table('roles_users',
-                       db.Column('users_id', db.Integer(), db.ForeignKey('users.id')),
-                       db.Column('roles_id', db.Integer(), db.ForeignKey('roles.id')))
+roles_users = Table('roles_users',  #pylint: disable=invalid-name
+                    Column('users_id', types.Integer(), ForeignKey('users.id')),
+                    Column('roles_id', types.Integer(), ForeignKey('roles.id')))
 
 
 class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
+    '''
+    User
+    '''
     __tablename__ = 'users'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
 
-    first_name = db.Column(db.Text)
-    last_name = db.Column(db.Text)
+    first_name = Column(types.Text, nullable=False)
+    last_name = Column(types.Text, nullable=False)
 
-    email = db.Column(db.Text, unique=True)
-    password = db.Column(db.Text)
-    active = db.Column(db.Boolean)
-    last_login_at = db.Column(db.DateTime())
-    current_login_at = db.Column(db.DateTime())
-    last_login_ip = db.Column(db.Text)
-    current_login_ip = db.Column(db.Text)
-    login_count = db.Column(db.Integer)
+    email = Column(types.Text, unique=True, nullable=False)
+    password = Column(types.Text, nullable=False)
+    active = Column(types.Boolean, nullable=False)
 
+    last_login_at = Column(types.DateTime())
+    current_login_at = Column(types.DateTime())
+    last_login_ip = Column(types.Text)
+    current_login_ip = Column(types.Text)
+    login_count = Column(types.Integer)
 
-    country = db.Column(db.Text)
-    country_code = db.Column(db.Text)
-    city = db.Column(db.Text)
+    country = Column(types.Text)
+    country_code = Column(types.Text)
+    city = Column(types.Text)
 
-    latlng = db.Column(db.Text)
+    latlng = Column(types.Text)
 
-    org = db.Column(db.Text)
-    org_type = db.Column(db.Text)
+    org = Column(types.Text)
+    org_type = Column(types.Text)
 
     #picture text,
-    title = db.Column(db.Text)
+    title = Column(types.Text)
 
-    domain_expertise = db.Column(db.Text)
+    domain_expertise = Column(types.Text)
 
-    projects = db.Column(db.Text)
+    projects = Column(types.Text)
 
-    created_at = db.Column(db.DateTime(), default=datetime.datetime.now)
-    updated_at = db.Column(db.DateTime(), default=datetime.datetime.now,
-                           onupdate=datetime.datetime.now)
+    created_at = Column(types.DateTime(), default=datetime.datetime.now)
+    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
+                        onupdate=datetime.datetime.now)
 
     # skills json,
-    skills = db.relationship('Skill', secondary='user_skills',
-                             backref=db.backref('users', lazy='dynamic'))
+    skills = orm.relationship('Skill', secondary='user_skills',
+                              backref=orm.backref('users', lazy='dynamic'))
 
     # langs json,
     # domains json,
 
-    roles = db.relationship('Role', secondary=roles_users,
-                            backref=db.backref('users', lazy='dynamic'))
+    roles = orm.relationship('Role', secondary=roles_users,
+                             backref=orm.backref('users', lazy='dynamic'))
 
     #def check_password(self, password):
     #    correct = _security.check_password_hash(self.pw_method_salt,
@@ -71,34 +76,46 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     #                                            password)
 
 
-class Role(db.Model, RoleMixin):
+class Role(db.Model, RoleMixin): #pylint: disable=no-init,too-few-public-methods
+    '''
+    User role for permissioning
+    '''
     __tablename__ = 'roles'
 
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.Text, unique=True)
-    description = db.Column(db.Text)
+    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
+    name = Column(types.Text, unique=True)
+    description = Column(types.Text)
+
 
 
 class Skill(db.Model): #pylint: disable=no-init,too-few-public-methods
+    '''
+    Skills that we match upon
+    '''
     __tablename__ = 'skills'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
 
-    name = db.Column(db.Text)
-    level = db.Column(db.Integer)
-    created_at = db.Column(db.DateTime(), default=datetime.datetime.now)
-    updated_at = db.Column(db.DateTime(), default=datetime.datetime.now,
-                           onupdate=datetime.datetime.now)
+    name = Column(types.Text)
+    created_at = Column(types.DateTime(), default=datetime.datetime.now)
+    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
+                        onupdate=datetime.datetime.now)
 
 
 class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
+    '''
+    Join table between users and their skills, which includes their level of
+    knowledge for that skill (level).
+    '''
     __tablename__ = 'user_skills'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
 
-    created_at = db.Column(db.DateTime(), default=datetime.datetime.now)
-    updated_at = db.Column(db.DateTime(), default=datetime.datetime.now,
-                           onupdate=datetime.datetime.now)
+    created_at = Column(types.DateTime(), default=datetime.datetime.now)
+    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
+                        onupdate=datetime.datetime.now)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    skill_id = db.Column(db.Integer, db.ForeignKey('skills.id'))
+    level = Column(types.Integer, nullable=False)
+
+    user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+    skill_id = Column(types.Integer, ForeignKey('skills.id'), nullable=False)
