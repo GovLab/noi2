@@ -35,7 +35,7 @@
             {#{% endif %}#}
             <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            {% if current_user %}
+            {% if current_user.is_authenticated() %}
             <li><a href="/me">Edit My Profile</a></li>
             <li><a href="/my-expertise">Edit My Expertise</a></li>
             {#{% if session['social-login'] %}
