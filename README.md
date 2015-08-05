@@ -39,3 +39,12 @@ permissions.
 To get everything running:
 
     docker-compose up
+
+### Viewing pages on Mac
+
+Since boot2docker doesn't expose containers to `localhost` or `127.0.0.1`, you
+will need to go to the IP address you get from
+
+    boot2docker ip
+
+The server should be running on port 5000.
