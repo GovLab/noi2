@@ -1,3 +1,4 @@
 .env
 *.pyc
 app/config/local_config.yml
+*.mo

@@ -10,6 +10,7 @@ from flask_login import login_required, current_user
 
 from app import CONTENT, COUNTRIES, LANGS
 from app.models import db, User
+from app.forms import UserForm
 
 from sqlalchemy import func, desc
 
@@ -77,21 +78,17 @@ def edit_user(userid):
 @views.route('/me', methods=['GET', 'POST'])
 @login_required
 def my_profile():
+    form = UserForm(obj=current_user)
     if request.method == 'GET':
-        #social_login = session['social-login']
-        #print "Looking up %s" % social_login['userid']
-        #userProfile = db.getUser(social_login['userid'])  # We get some stuff from the DB.
-        #print userProfile
-        return render_template('my-profile.html')
-    if request.method == 'POST':
-        userProfile = json.loads(request.form.get('me'))
-        session['user-profile'] = userProfile
-        db.updateCoreProfile(userProfile)
-        flash('Your profile has been saved. <br/>You may also want to <a'
-              'href="/my-expertise">tell us what you know</a>.')
-        session['has_created_profile'] = True
-        #return render_template('my-profile.html', **{'userProfile': userProfile})
-        return redirect(url_for('main_page'))
+        return render_template('my-profile.html', form=form)
+    elif request.method == 'POST':
+        #userProfile = json.loads(request.form.get('me'))
+        #session['user-profile'] = userProfile
+        #db.updateCoreProfile(userProfile)
+        #flash('Your profile has been saved. <br/>You may also want to <a'
+        #      'href="/my-expertise">tell us what you know</a>.')
+        #session['has_created_profile'] = True
+        return render_template('my-profile.html', form=form)
 
 
 @views.route('/my-expertise', methods=['GET', 'POST'])

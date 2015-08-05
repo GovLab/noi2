@@ -4,10 +4,14 @@ NoI Models
 Creates the app
 '''
 
+from app import ORG_TYPES
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
+from flask_babel import lazy_gettext
 
-from sqlalchemy import types, orm, Column, ForeignKey
+from sqlalchemy import orm, types, Column, ForeignKey
+from sqlalchemy_utils import EmailType, CountryType
 
 import datetime
 
@@ -22,11 +26,19 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
 
-    first_name = Column(types.Text, nullable=False)
-    last_name = Column(types.Text, nullable=False)
+    first_name = Column(types.String, info={
+        'label': lazy_gettext('First Name'),
+    })
+    last_name = Column(types.String, info={
+        'label': lazy_gettext('Last Name'),
+    })
 
-    email = Column(types.Text, unique=True, nullable=False)
-    password = Column(types.Text, nullable=False)
+    email = Column(EmailType, unique=True, nullable=False, info={
+        'label': lazy_gettext('Email'),
+    })
+    password = Column(types.String, nullable=False, info={
+        'label': lazy_gettext('Password'),
+    })
     active = Column(types.Boolean, nullable=False)
 
     last_login_at = Column(types.DateTime())
@@ -35,19 +47,27 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     current_login_ip = Column(types.Text)
     login_count = Column(types.Integer)
 
-    country = Column(types.Text)
-    country_code = Column(types.Text)
-    city = Column(types.Text)
+    position = Column(types.String, info={
+        'label': lazy_gettext('Position'),
+    })
+    organization = Column(types.String, info={
+        'label': lazy_gettext('Organization'),
+    })
+    organization_type = Column(types.String, info={
+        'label': lazy_gettext('Type of Organization'),
+        'placeholder': lazy_gettext('The type of organization you work for'),
+        'choices': [(k, v) for k, v in ORG_TYPES.iteritems()]
+    })
+    country = Column(CountryType, info={
+        'label': lazy_gettext('Country'),
+    })
 
-    latlng = Column(types.Text)
+    country_code = Column(types.String)
+    city = Column(types.String)
 
-    org = Column(types.Text)
-    org_type = Column(types.Text)
+    latlng = Column(types.String)
 
-    #picture text,
-    title = Column(types.Text)
-
-    domain_expertise = Column(types.Text)
+    #domain_expertise = Column(types.String)
 
     projects = Column(types.Text)
 

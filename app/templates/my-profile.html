@@ -38,48 +38,54 @@ ul li {
 <!-- Form Name -->
 <legend></legend>
 
+
 <!-- Given Name -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">First Name</label>  
+  {{ form.first_name.label(class="col-md-4 control-label") }}
   <div class="col-md-4">
-  <input id="q-first_name" name="first_name" type="text" placeholder="placeholder" class="form-control input-md">
+  {{ form.first_name(class="input-md form-control", placeholder=form.first_name.label.text) }}
   </div>
 </div>
 
 <!-- Family Name -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Last Name</label>  
+  {{ form.last_name.label(class="col-md-4 control-label") }}
   <div class="col-md-4">
-  <input id="q-last_name" name="last_name" type="text" placeholder="placeholder" class="form-control input-md">
+  {{ form.last_name(class="input-md form-control", placeholder=form.last_name.label.text) }}
   </div>
 </div>
 
 <!-- Email-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Email</label>  
+  {{ form.email.label(class="col-md-4 control-label") }}
   <div class="col-md-4">
-  <input id="q-email" name="email" type="text" placeholder="placeholder" class="form-control input-md">
+  {{ form.email(class="input-md form-control", placeholder=form.email.label.text) }}
   </div>
 </div>
 </fieldset>
 
 <!-- Position -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Position</label>  
+  {{ form.position.label(class="col-md-4 control-label") }}
   <div class="col-md-4">
-  <input id="q-title" name="title" type="text" placeholder="placeholder" class="form-control input-md">
+  {{ form.position(class="input-md form-control", placeholder=form.position.label.text) }}
   </div>
 </div>
 
 <!-- Org -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Organization</label>  
+  {{ form.organization.label(class="col-md-4 control-label") }}
   <div class="col-md-4">
-  <input id="q-org" name="org" type="text" placeholder="placeholder" class="form-control input-md">
+  {{ form.organization(class="input-md form-control", placeholder=form.organization.label.text) }}
   </div>
 </div>
 
 <div class="form-group">
+  {{ form.organization_type.label(class="col-md-4 control-label") }}
+  <div class="col-md-4">
+  {{ form.organization_type(class="input-md form-control", placeholder=form.organization_type.label.text) }}
+  </div>
+  {#
   <label class="col-md-4 control-label" for="textinput">Type of Organization</label>  
   <div class="col-md-4">
   <select id="q-org_type" name="org_type" type="text" placeholder="The type of organization your work for" class="form-control input-md">
@@ -88,6 +94,7 @@ ul li {
   {% endfor %}
 </select>
   </div>
+  #}
 </div>
 
 

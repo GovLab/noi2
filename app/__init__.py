@@ -4,10 +4,11 @@ NoI __init__
 Creates globals
 '''
 
-from flask.ext.assets import Bundle, Environment
-from flask.ext.security import Security
-from flask.ext.cache import Cache
-from flask.ext.bcrypt import Bcrypt
+from flask_assets import Bundle, Environment
+from flask_security import Security
+from flask_cache import Cache
+from flask_babel import Babel
+from flask_bcrypt import Bcrypt
 from flask.ext.uploads import UploadSet, IMAGES
 from celery import Celery
 from flask_mail import Mail
@@ -20,6 +21,7 @@ s3 = FlaskS3()
 mail = Mail()
 security = Security()
 csrf = CsrfProtect()
+babel = Babel()
 bcrypt = Bcrypt()
 
 celery = Celery(

@@ -31,6 +31,16 @@ def _make_context():
 
 
 @manager.command
+def translate():
+    """
+    Extract translation
+    """
+    subprocess.check_call('pybabel extract -F app/babel.cfg -k lazy_gettext -o app/messages.pot app/',
+                          shell=True)
+    return 0
+
+
+@manager.command
 @manager.option('-v', '--verbose', dest='verbose', default=False)
 def drop_and_create_db(verbose=False):
     """

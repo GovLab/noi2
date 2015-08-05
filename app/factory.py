@@ -6,9 +6,10 @@ Creates the app
 
 from flask import Flask
 from flask.ext.uploads import configure_uploads
-from flask.ext.security import SQLAlchemyUserDatastore
+from flask_security import SQLAlchemyUserDatastore
 
 from app import (csrf, cache, mail, bcrypt, photos, s3, assets, security,
+                 babel,
                  CONTENT, COUNTRIES, LANGS, NOI_COLORS, LEVELS, ORG_TYPES,
                  DOMAINS)
 from app.models import db, User, Role
@@ -20,6 +21,9 @@ from slugify import slugify
 
 
 def create_app():
+    '''
+    Create an instance of the app.
+    '''
     app = Flask(__name__, template_folder="templates")
 
     ordbok = FlaskOrdbok(app)
@@ -30,6 +34,7 @@ def create_app():
 
     app.register_blueprint(views)
 
+    babel.init_app(app)
     cache.init_app(app)
     csrf.init_app(app)
     mail.init_app(app)
