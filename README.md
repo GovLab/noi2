@@ -6,6 +6,7 @@ To develop, install the pip requirements into a virtualenv.  You will need
 Docker.
 
     virtualenv .env
+    source .env/bin/activate
     pip install -r requirements.txt
 
 If you're using `pylint` (which you should) you'll also want to install the
