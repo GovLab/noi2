@@ -4,7 +4,7 @@ NoI Models
 Creates the app
 '''
 
-from app import ORG_TYPES
+from app import ORG_TYPES, VALID_SKILL_LEVELS, VALID_SKILL_NAMES
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
@@ -72,8 +72,6 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         'placeholder': lazy_gettext('Enter your location')
     })
 
-    #domain_expertise = Column(types.String)
-
     projects = Column(types.Text, info={
         'label': lazy_gettext('Projects'),
         'placeholder': lazy_gettext(
@@ -84,8 +82,27 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
 
-    skills = orm.relationship('Skill', secondary='user_skills',
-                              backref=orm.backref('users', lazy='dynamic'))
+    @property
+    def skills(self):
+        return dict([(skill.name, skill.level) for skill in self._skills])
+
+    def set_skill(self, skill_name, skill_level):
+        if skill_name not in VALID_SKILL_NAMES:
+            return
+        try:
+            if int(skill_level) not in VALID_SKILL_LEVELS:
+                return
+        except ValueError:
+            return
+        skills = self._skills
+        for skill in skills:
+            if skill_name == skill.name:
+                skill.level = skill_level
+                db.session.add(skill)
+                return
+        db.session.add(UserSkill(user_id=self.id,
+                                 name=skill_name,
+                                 level=skill_level))
 
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
@@ -96,9 +113,9 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     @expertise_domains.setter
     def _expertise_domains_setter(self, values):
-        for v in values:
-            if v not in self.expertise_domains:
-                db.session.add(UserExpertiseDomain(name=v,
+        for val in values:
+            if val not in self.expertise_domains:
+                db.session.add(UserExpertiseDomain(name=val,
                                                    user_id=self.id))
         db.session.commit()
 
@@ -108,9 +125,9 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     @languages.setter
     def _languages_setter(self, values):
-        for v in values:
-            if v not in self.languages:
-                db.session.add(UserLanguage(name=v,
+        for val in values:
+            if val not in self.languages:
+                db.session.add(UserLanguage(name=val,
                                             user_id=self.id))
 
 
@@ -151,21 +168,6 @@ class Role(db.Model, RoleMixin): #pylint: disable=no-init,too-few-public-methods
     description = Column(types.Text)
 
 
-
-class Skill(db.Model): #pylint: disable=no-init,too-few-public-methods
-    '''
-    Skills that we match upon
-    '''
-    __tablename__ = 'skills'
-
-    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
-
-    name = Column(types.Text)
-    created_at = Column(types.DateTime(), default=datetime.datetime.now)
-    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
-                        onupdate=datetime.datetime.now)
-
-
 class RoleUser(db.Model): #pylint: disable=no-init,too-few-public-methods
     '''
     Join table between a user and her roles.
@@ -192,6 +194,7 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
                         onupdate=datetime.datetime.now)
 
     level = Column(types.Integer, nullable=False)
+    name = Column(types.String, nullable=False)
 
     user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
-    skill_id = Column(types.Integer, ForeignKey('skills.id'), nullable=False)
+    user = orm.relationship(User, backref="_skills")

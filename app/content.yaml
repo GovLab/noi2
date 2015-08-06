@@ -53,7 +53,7 @@ areas:
         description: responding to what users need and want
         questions:
           - question: how to create incentives for users or the public to make productive use of the data
-            label: incentives
+            label: open-data-incentives
           - question: how to identify and combine other sources of open data to achieve a goal
             label: mashing-up open data
           - question: how to design a data collaborative
@@ -102,7 +102,7 @@ areas:
           - question: how to determine whether a prize or a grand challenge is optimal
             label: grand challenge
           - question: how to decide whether to use financial or non-financial incentives
-            label: incentives
+            label: prizes-incentives
           - question: how to set the value of a prize
             label: prize amount
 

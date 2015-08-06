@@ -1,6 +1,6 @@
 {% extends "__base__.html" %}
 
-{% block title %}My Profile{% endblock %}
+{% block title %}My Expertise{% endblock %}
 {% block page_style_post %}
 <style>
 .profile-img { width: 60px; height: 60px; border-radius: 30px;}
@@ -36,6 +36,10 @@ font-size: 10px; }
 
 .noi-topic-name { font-size: 24px;}
 
+label {
+  cursor: pointer;
+}
+
 </style>
 {% endblock %}
 
@@ -45,15 +49,18 @@ font-size: 10px; }
 {# We define a macro for buttons; buttons are prefixed by the question name. #}
 
 
-{% macro noi_buttons(question, area, topic, index) -%}
+{% macro noi_buttons(question_label) -%}
 	<div class="btn-group-wrap b-question-answers">
       <span class="noi-and-i-can">and</span> 
-		<div id="q-{{question|make_question(area, topic)}}" class="btn-group btn-group-vertical">
+		<div id="q-" class="btn-group btn-group-vertical">
+		<div class="btn-group btn-group-vertical answers">
       {% for k, v in LEVELS|dictsort %}
       {% if k == 'LEVEL_I_WANT_TO_LEARN' %}
       OR
       {% endif %}
-      <button type="button" class="q e-answer" data-value="{{v['score']}}">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
+        {% set radio_id = question_label + '-' + v['score']|string %}
+        <input {% if current_user.skills.get(question_label)|string == v['score']|string %}checked{% endif %} class="radio-selection" id="{{ radio_id }}" type="radio" name="{{ question_label }}" value="{{v['score']}}" />
+        <label for="{{ radio_id }}">{{v['icon']|safe}}&nbsp;{{v['label']}}</label>
       {% endfor %}
     </div>
 		</div>
@@ -65,7 +72,7 @@ font-size: 10px; }
 		<div style="font-size: 1.5em;" class="noi-question">
 		&laquo; {{question['question']}} &raquo;
 		</div>
-		{{ noi_buttons(question, area, topic) }}
+		{{ noi_buttons(question['label']) }}
     <br/>
 			</li>
 {%- endmacro %}
@@ -96,7 +103,9 @@ font-size: 10px; }
   <li role="presentation" style="vertical-align: bottom;">More to come</li> 
 </ul>
 
+<form action="#" method="POST">
 <div id="expertise-tab-content" class="tab-content">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
   <br/>
 
 {% for area in AREAS %}
@@ -130,7 +139,7 @@ font-size: 10px; }
         </div>
       </div> <!-- Accordion group -->
 
-    {% endfor %}  
+    {% endfor %}
 
   </div>
 
@@ -143,13 +152,12 @@ font-size: 10px; }
 
   <div class="row">
     <div class="col-md-12 col-xs-12 text-center">
-    <form id="expertise-form" method="POST" action="/my-expertise">
-      <input type="hidden" id="my-expertise-as-json" name="my-expertise-as-json"/>
-      <button id="save-expertise" type="button">Save</button>
-    </form>
+      <button id="save-expertise" type="submit">Save</button>
+
 </div>
 </div>
 
+</form>
 </div>
 
 {% endblock %}
@@ -164,8 +172,8 @@ function computeExpertiseProgress() {
     var id = span.attr('id');
     console.log("compute progress for " + id);
     var tab = $('#' + id + '-tab');
-    var answers = tab.find('.q[checked="checked"]').length;
-    var all_questions = tab.find('.q').length / 4;
+    var answers = tab.find('.radio-selection[checked="checked"]').length;
+    var all_questions = tab.find('.answer').length / 4;
     span.text(answers + " / " + all_questions);
   })
 }
@@ -175,8 +183,8 @@ function computeExpertiseProgressByTopic() {
     var span = $(v);
     var id = span.attr('id');
     var tab = $('#collapse-' + id);
-    var answers = tab.find('.q[checked="checked"]').length;
-    var all_questions = tab.find('.q').length / 4;
+    var answers = tab.find('.radio-selection[checked="checked"]').length;
+    var all_questions = tab.find('.answer').length / 4;
     span.text(answers + " / " + all_questions);
   })
 }
@@ -189,71 +197,11 @@ $('#expertise-tab a').click(function (e) {
 });
 
 // Logic for the buttons.
-$('.q').click(function() {
-	if ($(this).attr('checked') == 'checked') {
-		// We click on an option that is already checked; ==> uncheck.
-		$(this).parent().find('.q').css('text-decoration', '').attr('checked', false);
-		$(this).parent().find('.q').css('opacity', '0.6');
-	} else {
-	$(this).parent().find('.q').css('text-decoration', '').attr('checked', false);
-	$(this).parent().find('.q').css('opacity', '0.6');
-	$(this).css('text-decoration', 'underline').attr('checked', true);
-	$(this).css('opacity', '1.0');
-	};
-  // TODO: recompute only for this area.
+$('.answer').click(function(evt) {
   computeExpertiseProgress();
   computeExpertiseProgressByTopic();
 });
 
-function getExpertise() {
-  var expertiseSet = {'_': 0};
-  var arr = $('[id*="q-"]');
-  for(var i=0; i<arr.length; i++) {
-    var question = $(arr[i]).attr('id').slice(2);  // We remove the "q-" prefix.
-    var answer = $(arr[i]).find('button[checked="checked"]').attr('data-value');
-    if (answer) {
-      expertiseSet[question] = answer;
-    }
-  }
-  console.log(JSON.stringify(expertiseSet));
-  return expertiseSet;
-}
-
-$('#save-expertise').click(function() {
-  var expertiseData = getExpertise();
-  $('#my-expertise-as-json').attr('value', JSON.stringify(expertiseData));
-  console.log('Saving expertise.')
-  $('#expertise-form').submit();
-});
-
-
-{% if userExpertise %}
-var userExpertise = {{userExpertise|tojson}};
-{% else %}
-var userExpertise = null;
-{% endif %}
-
-if (userExpertise) {
-  console.log('Populating your expertise ...');
-  setExpertise(userExpertise);
-}
-
-function setExpertise(userExpertise) {
-  var keys = Object.keys(userExpertise);
-  $('.q').css('opacity', '0.6');
-  for(var i in keys)
-  {
-    var key = keys[i];
-    var value = userExpertise[key];
-    var button = $('[id="q-' + key + '"]').find('button[data-value="' + value + '"]');
-    button.attr('checked', true);
-    button.css('text-decoration', 'underline').attr('checked', true);
-    button.css('opacity', '1.0');
-  }
-  computeExpertiseProgress();
-  computeExpertiseProgressByTopic();
-
-}
 
 </script>
 {% endblock %}

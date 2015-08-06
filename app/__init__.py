@@ -58,6 +58,8 @@ LEVELS = {'LEVEL_I_CAN_EXPLAIN': {'score': 2,
                                     'icon': '<i class="fa-fw fa fa-question"></i>',
                                     'label': 'I want to learn'}}
 
+VALID_SKILL_LEVELS = [v['score'] for k, v in LEVELS.iteritems()]
+
 NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray'.split(',')
 
 DOMAINS = """Business Licensing and Regulation
@@ -92,3 +94,12 @@ LANGS = 'Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bulgarian|Catalan|Cam
 ORG_TYPES = { 'edu': 'Academia', 'com': 'Private Sector', 'org': 'Non Profit', 'gov': 'Government', 'other': 'Other' }
 
 CONTENT = yaml.load(open('/noi/app/content.yaml'))
+VALID_SKILL_NAMES = set()
+for area in CONTENT['areas']:
+    for topic in area.get('topics', []):
+        for question in topic['questions']:
+            label = question['label']
+            if label in VALID_SKILL_NAMES:
+                raise Exception("Duplicate skill label {}".format(label))
+            else:
+                VALID_SKILL_NAMES.add(label)

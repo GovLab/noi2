@@ -93,6 +93,8 @@ def my_profile():
         if form.validate():
             db.session.add(current_user)
             db.session.commit()
+            flash(lazy_gettext('Your profile has been saved. <br/>You may also want to <a'
+                               'href="/my-expertise">tell us what you know</a>.'))
         else:
             flash(lazy_gettext(u'Could not save, please correct errors below: {}'.format(
                 form.errors)))
@@ -103,32 +105,26 @@ def my_profile():
 @views.route('/my-expertise', methods=['GET', 'POST'])
 @login_required
 def my_expertise():
-    if 'social-login' not in session:
-        flash('You need to be authenticated in order to fill your expertise.', 'error')
-        return redirect(url_for('login'))
-    social_login = session['social-login']
-    userid = social_login['userid']
+    #if 'social-login' not in session:
+    #    flash('You need to be authenticated in order to fill your expertise.', 'error')
+    #    return redirect(url_for('login'))
+    #social_login = session['social-login']
+    #userid = social_login['userid']
     if request.method == 'GET':
-        userProfile = db.getUser(userid)
-        print userProfile
-        userExpertise = userProfile['skills']
-        return render_template('my-expertise.html', **{'AREAS': CONTENT['areas'],
-                                                       'userExpertise': userExpertise})
-    if request.method == 'POST':
-        userExpertise = json.loads(request.form.get('my-expertise-as-json'))
-        session['user-expertise'] = userExpertise
-        db.updateExpertise(userid, userExpertise)
-        flash("""Your expertise has been updated.<br/>
+        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
+    elif request.method == 'POST':
+        for k, v in request.form.iteritems():
+            current_user.set_skill(k, v)
+        db.session.add(current_user)
+        db.session.commit()
+        flash(lazy_gettext("""Your expertise has been updated.<br/>
         What you can do next:
         <ul>
         <li><a href="/search">Search for innovators</a></li>
         <li>Fill another expertise questionnaire below</li>
-        <li>View your <a href="/user/%s">public profile</a></li>
-        """ % social_login['userid'])
-        session['has_filled_expertise'] = True
-        #return render_template('my-expertise.html', **{'userExpertise':
-        #    userExpertise, 'AREAS': CONTENT['areas']})
-        return redirect(url_for('main_page'))
+        <li>View your <a href="/user/{}">public profile</a></li>
+        """).format(current_user.id))
+        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
 
 
 @views.route('/dashboard')
