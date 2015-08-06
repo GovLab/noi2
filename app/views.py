@@ -6,6 +6,7 @@ All views in the app, as a blueprint
 
 from flask import (Blueprint, render_template, session, request, flash,
                    redirect, url_for)
+from flask_babel import lazy_gettext
 from flask_login import login_required, current_user
 
 from app import CONTENT, COUNTRIES, LANGS
@@ -88,6 +89,14 @@ def my_profile():
         #flash('Your profile has been saved. <br/>You may also want to <a'
         #      'href="/my-expertise">tell us what you know</a>.')
         #session['has_created_profile'] = True
+        form.populate_obj(current_user)
+        if form.validate():
+            db.session.add(current_user)
+            db.session.commit()
+        else:
+            flash(lazy_gettext(u'Could not save, please correct errors below: {}'.format(
+                form.errors)))
+
         return render_template('my-profile.html', form=form)
 
 

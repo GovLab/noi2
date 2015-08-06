@@ -26,8 +26,26 @@ ul li {
 
 {% block content %}
 
+<form action="#" method="post">
+{{ form.csrf_token }}
+
 <div class="form-horizontal">
 
+{% macro input(name) -%}
+<div class="form-group">
+  {{ form[name].label(class="col-md-4 control-label") }}
+  <div class="col-md-4">
+  {{ form[name](class="input-md form-control") }}
+  {% if form[name].errors %}
+    <ul class="error">
+    {% for error in form[name].errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </div>
+</div>
+{%- endmacro %}
 {#
 <input id="q-userid" name="userid" type="hidden" value="{{session['social-login']['userid']}}">
 <input id="q-picture" name="picture" type="hidden" value="{{session['social-login']['picture']}}">
@@ -39,93 +57,46 @@ ul li {
 <legend></legend>
 
 
-<!-- Given Name -->
-<div class="form-group">
-  {{ form.first_name.label(class="col-md-4 control-label") }}
-  <div class="col-md-4">
-  {{ form.first_name(class="input-md form-control", placeholder=form.first_name.label.text) }}
-  </div>
-</div>
-
-<!-- Family Name -->
-<div class="form-group">
-  {{ form.last_name.label(class="col-md-4 control-label") }}
-  <div class="col-md-4">
-  {{ form.last_name(class="input-md form-control", placeholder=form.last_name.label.text) }}
-  </div>
-</div>
-
-<!-- Email-->
-<div class="form-group">
-  {{ form.email.label(class="col-md-4 control-label") }}
-  <div class="col-md-4">
-  {{ form.email(class="input-md form-control", placeholder=form.email.label.text) }}
-  </div>
-</div>
-</fieldset>
-
-<!-- Position -->
-<div class="form-group">
-  {{ form.position.label(class="col-md-4 control-label") }}
-  <div class="col-md-4">
-  {{ form.position(class="input-md form-control", placeholder=form.position.label.text) }}
-  </div>
-</div>
-
-<!-- Org -->
-<div class="form-group">
-  {{ form.organization.label(class="col-md-4 control-label") }}
-  <div class="col-md-4">
-  {{ form.organization(class="input-md form-control", placeholder=form.organization.label.text) }}
-  </div>
-</div>
-
-<div class="form-group">
-  {{ form.organization_type.label(class="col-md-4 control-label") }}
-  <div class="col-md-4">
-  {{ form.organization_type(class="input-md form-control", placeholder=form.organization_type.label.text) }}
-  </div>
-  {#
-  <label class="col-md-4 control-label" for="textinput">Type of Organization</label>  
-  <div class="col-md-4">
-  <select id="q-org_type" name="org_type" type="text" placeholder="The type of organization your work for" class="form-control input-md">
-  {% for item in  ORG_TYPES %}
-        <option value="{{item}}">{{ORG_TYPES[item]}}</option>
-  {% endfor %}
-</select>
-  </div>
-  #}
-</div>
-
+{{ input("first_name") }}
+{{ input("last_name") }}
+{{ input("email") }}
+{{ input("position") }}
+{{ input("organization") }}
+{{ input("organization_type") }}
 
 <!-- Location -->
-<div class="form-group">
+{# <div class="form-group">
 <label class="col-md-4 control-label" for="textinput">Location</label>  
 <div id="locationField" class="col-md-4">
       <input id="autocomplete" size="50" placeholder="Enter your location" class="form-control input-md" type="text" autocomplete="off">
       <input id="q-latlng" name="latlng" type="hidden">
     </div>
 </div>
+#}
+{{ input("latlng") }}
 
 <!-- Location > City -->
-<div class="form-group">
+{#<div class="form-group">
   <label class="col-md-4 control-label" for="textinput">City</label>  
   <div class="col-md-4">
   <input id="q-city" name="city" type="text" placeholder="placeholder" disabled class="form-control input-md">
   </div>
-</div>
+</div>#}
+{{ input("city") }}
 
 <!-- Location > Country -->
-<div class="form-group">
+{#<div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Country</label>  
   <div class="col-md-4">
   <input id="q-country" name="country" type="text" placeholder="placeholder" disabled class="form-control input-md">
   <input id="q-country_code" name="country_code" type="hidden">
   </div>
-</div>
+</div>#}
+{{ input("country") }}
 
 
 <!-- Domains -->
+{#
 <div class="form-group">
   <label class="col-md-4 control-label" for="selectmultiple">Domains of expertise</label>
   <div class="col-md-4 selector">
@@ -136,8 +107,11 @@ ul li {
     </select>
   </div>
 </div>
+#}
+{{ input("expertise_domains") }}
 
 <!-- Langs -->
+{#
 <div class="form-group">
   <label class="col-md-4 control-label" for="selectmultiple">Language(s)</label>
   <div class="col-md-4 selector">
@@ -148,22 +122,32 @@ ul li {
     </select>
   </div>
 </div>
+#}
+{{ input("languages") }}
 
 <!-- Projets -->
+{#
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Projects</label>  
   <div class="col-md-4">
   <textarea id="q-projects" name="projects" type="text" placeholder="Details about projects you have been involved with ..." class="form-control"></textarea>
   </div>
 </div>
+#}
+{{ input("projects") }}
 
 
+{#
 <center>
   <form id="me-form" class="form-horizontal" method="POST" action="/me">
   <button id="save-profile" type="button">Save</button>
   <input id="me-as-json" type="hidden" name="me"/>
   </form>  
 </center>
+#}
+<button type="submit">Save</button>
+
+</form>
 
 {% endblock %}
 
