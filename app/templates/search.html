@@ -34,6 +34,7 @@ ul li {
     <div class="col-xs-4 col-md-4">
     	<form class="b-form" action="/search" method="POST">
 
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
         <label class="col-md-4 control-label" for="textarea">By country</label>
     		<div class="selector">
     			<select name="country" data-placeholder="Choose a Country..." class="chosen-select" tabindex="2">

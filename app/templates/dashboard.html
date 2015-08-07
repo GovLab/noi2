@@ -81,7 +81,7 @@
 </div>
 
 <script>
-var userOccupations = {{OCCUPATIONS|tojson}};  
+{#var userOccupations = {{OCCUPATIONS|tojson}};  #}
 var attendeesOccupationData = [
   {% for item in OCCUPATIONS %}
     { 'value': {{item['cnt']}}, 'color': '{{NOI_COLORS[loop.index-1]}}' },

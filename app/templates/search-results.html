@@ -3,7 +3,7 @@
 {% block content %}
 
 <div id="new-search">
-<a target="__email__" role="button" class="btn btn-primary" href="mailto:{{results|email_recipients|join(',')}}?subject=Contact+request+from+the+Network+of+Innovators">Contact all these people</a>
+<a target="__email__" role="button" class="btn btn-primary" href="mailto:{{results|map(attribute='email')|join(',')}}?subject=Contact+request+from+the+Network+of+Innovators">Contact all these people</a>
 </div>
 
 <div class="b-results">
@@ -15,10 +15,10 @@
 			{% for r in results %}
 			<li class="noi b-result-item">
 				<!-- <div style="" class="noi-index">{{loop.index}}{% if DEBUG %}<br/><a href="edit/{{r.userid}}">edit</a>{% endif %}</div> -->
-				<img class="icon" src="{{r|avatar}}">
+        {# TODO <img class="icon" src="{{r|avatar}}"> #}
 				<div class="e-info">
-					<a class="e-name" href="/user/{{r.userid}}">{{r.first_name|title}} {{r.last_name|title}}</a>
-					<div class="e-job">{{r.title or ''}} &nbsp; {{r.org or ''}}</div> <!-- This should be limited to 76char -->
+					<a class="e-name" href="/user/{{r.id}}">{{r.first_name|title}} {{r.last_name|title}}</a>
+					<div class="e-job">{{r.title or ''}} &nbsp; {{r.organization or ''}}</div> <!-- This should be limited to 76char -->
 					<div class="e-place"><i class="fa fa-map-marker"></i>{{r.city or ''}} &nbsp; {{r.country or ''}}</div>
 					<div class="e-bottom-info">
 
@@ -26,7 +26,7 @@
 							<i class="fa fa-star"></i>{{r.score}}
 						</div>
 #}
-						<div class="e-lang">{{r.lang}}</div>
+{#<div class="e-lang">{{ r.languages }}</div>#}
 					</div>
 				</div>
 				

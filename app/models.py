@@ -4,13 +4,13 @@ NoI Models
 Creates the app
 '''
 
-from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID
+from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
-from sqlalchemy import orm, types, Column, ForeignKey, UniqueConstraint
+from sqlalchemy import orm, types, Column, ForeignKey, UniqueConstraint, func
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -81,6 +81,19 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     created_at = Column(types.DateTime(), default=datetime.datetime.now)
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
+
+    @property
+    def helpful_users(self):
+        '''
+        Returns a list of users with matching positive skills, ordered by the
+        most helpful.
+        '''
+        learn_level = LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
+        skills_needing_help = [s.name for s in self.skills if s.level == learn_level]
+        return db.session.query(UserSkill.user_id, func.sum(UserSkill.level)).\
+                filter(UserSkill.name in skills_needing_help).\
+                filter(UserSkill.level > learn_level).\
+                group_by(UserSkill.user_id).all()
 
     @property
     def skill_levels(self):

@@ -6,7 +6,7 @@ All views in the app, as a blueprint
 
 from flask import (Blueprint, render_template, session, request, flash,
                    redirect, url_for)
-from flask_babel import lazy_gettext
+from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import CONTENT
@@ -16,7 +16,6 @@ from app.forms import UserForm
 from sqlalchemy import func, desc
 
 import copy
-import json
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
@@ -148,9 +147,11 @@ def dashboard():
     top_countries = db.session.query(func.count(User.id)) \
             .group_by(User.country) \
             .order_by(desc(func.count(User.id))).all()
-    users = User.query.all()
+    users = [{'latlng': u.latlng,
+              'first_name': u.first_name,
+              'last_name': u.last_name} for u in User.query.all()]
     occupations = db.session.query(func.count(User.id)) \
-            .group_by(User.org_type) \
+            .group_by(User.organization_type) \
             .order_by(desc(func.count(User.id))).all()
 
     return render_template('dashboard.html', **{'top_countries': top_countries,
@@ -222,35 +223,28 @@ def search():
 
 
 @views.route('/match')
+@login_required
 def match():
-    if 'user-expertise' not in session:
-        flash('Before we can match you with fellow innovators, you need to <a'
-              'href="/my-expertise">enter your expertise</a> first.', 'error')
-        return redirect(url_for('main_page'))
-    social_login = session['social-login']
-    userid = social_login['userid']
+    '''
+    Find innovators with answers
+    '''
+    if not current_user.skill_levels:
+        flash(gettext('Before we can match you with fellow innovators, you need to '
+                           'enter your expertise below first.'), 'error')
+        return redirect(url_for('views.my_expertise'))
     query = {'location': '', 'langs': [], 'skills': [], 'fulltext': ''}
-    if 'skills' not in session['user-expertise']:
-        userProfile = db.getUser(userid)
-        userExpertise = userProfile['skills']
-        session['user-expertise'] = userExpertise
-    print "user expertise: ", json.dumps(session['user-expertise'])
-    skills = session['user-expertise']
-    my_needs = [k for k, v in skills.iteritems() if int(v) == -1]
-    print my_needs
-    experts = db.findMatchAsJSON(my_needs)
-    session['has_done_search'] = True
     return render_template('search-results.html',
                            **{'title': 'People Who Know what I do not',
-                              'results': experts, 'query': query})
+                              'results': current_user.helpful_users, 'query': query})
 
 
 @views.route('/match-knn')
+@login_required
 def knn():
     if 'user-expertise' not in session:
         flash('Before we can find innovators like you, you need to '
               '<a href="/my-expertise">fill your expertise</a> first.', 'error')
-        return redirect(url_for('main_page'))
+        return redirect(url_for('views.my_expertise'))
     query = {}
     if 'user-expertise' not in session:
         print "User expertise not in session"
@@ -267,7 +261,7 @@ def knn():
 
 @views.route('/users/recent')
 def recent_users():
-    users = db.getRecentUsers()
+    users = User.query.order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
                            **{'title': 'Our Ten most recent members', 'results': users,
                               'query': ''})
