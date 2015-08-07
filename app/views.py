@@ -230,12 +230,11 @@ def match():
     '''
     if not current_user.skill_levels:
         flash(gettext('Before we can match you with fellow innovators, you need to '
-                           'enter your expertise below first.'), 'error')
+                      'enter your expertise below first.'), 'error')
         return redirect(url_for('views.my_expertise'))
-    query = {'location': '', 'langs': [], 'skills': [], 'fulltext': ''}
     return render_template('search-results.html',
-                           **{'title': 'People Who Know what I do not',
-                              'results': current_user.helpful_users, 'query': query})
+                           title='People Who Know what I do not',
+                           results=current_user.helpful_users)
 
 
 @views.route('/match-knn')

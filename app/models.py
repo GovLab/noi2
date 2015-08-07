@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
-from sqlalchemy import orm, types, Column, ForeignKey, UniqueConstraint, func
+from sqlalchemy import orm, types, Column, ForeignKey, UniqueConstraint, func, desc
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -83,17 +83,24 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                         onupdate=datetime.datetime.now)
 
     @property
-    def helpful_users(self):
+    def helpful_users(self, limit=10):
         '''
         Returns a list of users with matching positive skills, ordered by the
-        most helpful.
+        most helpful (highest score) descending.
         '''
         learn_level = LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
         skills_needing_help = [s.name for s in self.skills if s.level == learn_level]
-        return db.session.query(UserSkill.user_id, func.sum(UserSkill.level)).\
-                filter(UserSkill.name in skills_needing_help).\
-                filter(UserSkill.level > learn_level).\
-                group_by(UserSkill.user_id).all()
+        user_id_scores = dict(db.session.query(UserSkill.user_id, func.sum(UserSkill.level)).\
+                              filter(UserSkill.name.in_(skills_needing_help)).\
+                              filter(UserSkill.level > learn_level).\
+                              group_by(UserSkill.user_id).\
+                              order_by(desc(func.sum(UserSkill.level))).\
+                              limit(limit).all())
+        users = db.session.query(User).\
+                filter(User.id.in_(user_id_scores.keys())).all()
+        for user in users:
+            user.score = user_id_scores[user.id]
+        return sorted(users, key=lambda x: x.score, reverse=True)
 
     @property
     def skill_levels(self):

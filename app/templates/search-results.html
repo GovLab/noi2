@@ -14,7 +14,7 @@
 		<ol>
 			{% for r in results %}
 			<li class="noi b-result-item">
-				<!-- <div style="" class="noi-index">{{loop.index}}{% if DEBUG %}<br/><a href="edit/{{r.userid}}">edit</a>{% endif %}</div> -->
+				<!-- <div style="" class="noi-index">{{loop.index}}{% if DEBUG %}<br/><a href="edit/{{r.id}}">edit</a>{% endif %}</div> -->
         {# TODO <img class="icon" src="{{r|avatar}}"> #}
 				<div class="e-info">
 					<a class="e-name" href="/user/{{r.id}}">{{r.first_name|title}} {{r.last_name|title}}</a>
@@ -22,10 +22,12 @@
 					<div class="e-place"><i class="fa fa-map-marker"></i>{{r.city or ''}} &nbsp; {{r.country or ''}}</div>
 					<div class="e-bottom-info">
 
-{#						<div class="e-score">
+					{% if r.score and r.score > 0 %}
+						<div class="e-score">
 							<i class="fa fa-star"></i>{{r.score}}
 						</div>
-#}
+					{% endif %}
+
 {#<div class="e-lang">{{ r.languages }}</div>#}
 					</div>
 				</div>
