@@ -95,57 +95,14 @@ ul li {
 {{ input("country") }}
 
 
-<!-- Domains -->
-{#
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectmultiple">Domains of expertise</label>
-  <div class="col-md-4 selector">
-    <select id="q-domains" name="domains" multiple class=" chosen-select form-control">
-      {% for item in DOMAINS %}
-      <option value="{{item}}">{{item}}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
-#}
 {{ input("expertise_domains") }}
-
-<!-- Langs -->
-{#
-<div class="form-group">
-  <label class="col-md-4 control-label" for="selectmultiple">Language(s)</label>
-  <div class="col-md-4 selector">
-    <select id="q-langs" name="langs" multiple class=" chosen-select form-control">
-      {% for item in LANGS %}
-      <option value="{{item}}">{{item}}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
-#}
 {{ input("languages") }}
-
-<!-- Projets -->
-{#
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Projects</label>  
-  <div class="col-md-4">
-  <textarea id="q-projects" name="projects" type="text" placeholder="Details about projects you have been involved with ..." class="form-control"></textarea>
-  </div>
-</div>
-#}
 {{ input("projects") }}
 
 
-{#
-<center>
-  <form id="me-form" class="form-horizontal" method="POST" action="/me">
-  <button id="save-profile" type="button">Save</button>
-  <input id="me-as-json" type="hidden" name="me"/>
-  </form>  
-</center>
-#}
-<button type="submit">Save</button>
+<div class="text-center">
+  <button type="submit">Save</button>
+</div>
 
 </form>
 
