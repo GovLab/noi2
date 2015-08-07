@@ -20,4 +20,3 @@ msgstr ""
 #: app/models.py:28 app/models.py:29
 msgid "First Name"
 msgstr "Vorname"
-

@@ -9,7 +9,7 @@ from flask import (Blueprint, render_template, session, request, flash,
 from flask_babel import lazy_gettext
 from flask_login import login_required, current_user
 
-from app import CONTENT, COUNTRIES, LANGS
+from app import CONTENT
 from app.models import db, User
 from app.forms import UserForm
 
@@ -18,16 +18,23 @@ from sqlalchemy import func, desc
 import copy
 import json
 
-views = Blueprint('views', __name__)
+views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
 
 @views.route('/')
 def main_page():
+    '''
+    Main NoI page
+    '''
     return render_template('main.html', **{'SKIP_NAV_BAR': False})
 
 
 @views.route('/about')
 def about_page():
+    '''
+    NoI about page.
+    '''
+    #TODO this should vary based off of deployment
     return render_template('about.html', **{})
 
 
@@ -60,25 +67,28 @@ def about_page():
 #    return redirect(url_for('main_page', **{'logout': idp}))
 
 
-@views.route('/edit/<userid>', methods=['GET', 'POST'])
-def edit_user(userid):
-    if request.method == 'GET':
-        userProfile = db.getUser(userid)  # We get some stuff from the DB.
-        return render_template('my-profile.html',
-                               **{'userProfile': userProfile})
-
-    if current_user.id:
-        if request.method == 'POST' and userid == current_user.id:
-            userProfile = json.loads(request.form.get('me'))
-            session['user-profile'] = userProfile
-            db.updateCoreProfile(userProfile)
-            flash('Your profile has been saved.')
-            return render_template('my-profile.html', **{'userProfile': userProfile})
+#@views.route('/edit/<userid>', methods=['GET', 'POST'])
+#def edit_user(userid):
+#    if request.method == 'GET':
+#        userProfile = db.getUser(userid)  # We get some stuff from the DB.
+#        return render_template('my-profile.html',
+#                               **{'userProfile': userProfile})
+#
+#    if current_user.id:
+#        if request.method == 'POST' and userid == current_user.id:
+#            userProfile = json.loads(request.form.get('me'))
+#            session['user-profile'] = userProfile
+#            db.updateCoreProfile(userProfile)
+#            flash('Your profile has been saved.')
+#            return render_template('my-profile.html', **{'userProfile': userProfile})
 
 
 @views.route('/me', methods=['GET', 'POST'])
 @login_required
 def my_profile():
+    '''
+    Show user their profile, let them edit it
+    '''
     form = UserForm(obj=current_user)
     if request.method == 'GET':
         return render_template('my-profile.html', form=form)
@@ -105,6 +115,9 @@ def my_profile():
 @views.route('/my-expertise', methods=['GET', 'POST'])
 @login_required
 def my_expertise():
+    '''
+    Allow user to edit their expertise
+    '''
     #if 'social-login' not in session:
     #    flash('You need to be authenticated in order to fill your expertise.', 'error')
     #    return redirect(url_for('login'))
@@ -113,8 +126,8 @@ def my_expertise():
     if request.method == 'GET':
         return render_template('my-expertise.html', AREAS=CONTENT['areas'])
     elif request.method == 'POST':
-        for k, v in request.form.iteritems():
-            current_user.set_skill(k, v)
+        for k, val in request.form.iteritems():
+            current_user.set_skill(k, val)
         db.session.add(current_user)
         db.session.commit()
         flash(lazy_gettext("""Your expertise has been updated.<br/>
@@ -129,6 +142,9 @@ def my_expertise():
 
 @views.route('/dashboard')
 def dashboard():
+    '''
+    Dashboard of what's happening on the platform.
+    '''
     top_countries = db.session.query(func.count(User.id)) \
             .group_by(User.country) \
             .order_by(desc(func.count(User.id))).all()
@@ -159,6 +175,9 @@ def dashboard():
 
 @views.route('/user/<userid>')
 def get_user(userid):
+    '''
+    Public-facing profile view
+    '''
     user = User.query.get(userid)
     if user:
         #if 'social-login' in session:
@@ -168,8 +187,7 @@ def get_user(userid):
         #query_info = {'user-agent': request.headers.get('User-Agent'),
         #              'type': '/user', 'userid': my_userid}
         #db.logQuery(my_userid, query_info)
-        return render_template('user-profile.html',
-                               **{'user': user, 'userid': userid, 'SKILLS': []})
+        return render_template('user-profile.html', user=user)
     else:
         flash('This is does not correspond to a valid user.')
         return redirect(url_for('views.search'))
@@ -178,9 +196,7 @@ def get_user(userid):
 @views.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'GET':
-        return render_template('search.html', **{'LANGS': LANGS, 'COUNTRIES':
-                                                 COUNTRIES, 'AREAS':
-                                                 CONTENT['areas']})
+        return render_template('search.html', **{'AREAS': CONTENT['areas']})
     if request.method == 'POST':
         print request
         country = request.values.get('country', '')

@@ -6,12 +6,14 @@ Creates the app
 
 from app import ORG_TYPES, VALID_SKILL_LEVELS, VALID_SKILL_NAMES
 
+#from babel import Locale
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
-from sqlalchemy import orm, types, Column, ForeignKey
-from sqlalchemy_utils import EmailType, CountryType
+from sqlalchemy import orm, types, Column, ForeignKey, UniqueConstraint
+from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 
 import datetime
@@ -25,7 +27,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     '''
     __tablename__ = 'users'
 
-    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
 
     first_name = Column(types.String, info={
         'label': lazy_gettext('First Name'),
@@ -107,28 +109,45 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
 
+    _expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan')
+    _languages = orm.relationship('UserLanguage', cascade='all,delete-orphan')
+    _skills = orm.relationship('UserSkill', cascade='all,delete-orphan')
+
     @hybrid_property
     def expertise_domains(self):
         return [ed.name for ed in self._expertise_domains]
 
     @expertise_domains.setter
     def _expertise_domains_setter(self, values):
+        # Only add new expertise
         for val in values:
             if val not in self.expertise_domains:
                 db.session.add(UserExpertiseDomain(name=val,
                                                    user_id=self.id))
-        db.session.commit()
+
+        # delete expertise no longer found
+        for exp in self._expertise_domains:
+            if exp.name not in values:
+                self._expertise_domains.remove(exp)
 
     @hybrid_property
     def languages(self):
-        return [l.name for l in self._languages]
+        return [l.locale for l in self._languages]
 
     @languages.setter
     def _languages_setter(self, values):
+        locale_codes = [l.language for l in self.languages]
+        # only add new languages
         for val in values:
-            if val not in self.languages:
-                db.session.add(UserLanguage(name=val,
+            if val not in locale_codes:
+                db.session.add(UserLanguage(locale=val,
                                             user_id=self.id))
+
+        # delete languages no longer found
+        for lan in self._languages:
+            if lan.locale.language not in values:
+                self._languages.remove(lan)
+                #db.session.delete(lan)
 
 
 class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-methods
@@ -137,11 +156,12 @@ class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-me
     '''
     __tablename__ = 'user_expertise_domains'
 
-    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
     name = Column(types.String, nullable=False)
 
     user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
-    user = orm.relationship(User, backref='_expertise_domains')
+
+    constraint = UniqueConstraint('user_id', 'name')
 
 
 class UserLanguage(db.Model):  #pylint: disable=no-init,too-few-public-methods
@@ -150,11 +170,12 @@ class UserLanguage(db.Model):  #pylint: disable=no-init,too-few-public-methods
     '''
     __tablename__ = 'user_languages'
 
-    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
-    name = Column(types.String, nullable=False)
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
+    locale = Column(LocaleType, nullable=False)
 
     user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
-    user = orm.relationship(User, backref='_languages')
+
+    constraint = UniqueConstraint('user_id', 'locale')
 
 
 class Role(db.Model, RoleMixin): #pylint: disable=no-init,too-few-public-methods
@@ -163,7 +184,7 @@ class Role(db.Model, RoleMixin): #pylint: disable=no-init,too-few-public-methods
     '''
     __tablename__ = 'roles'
 
-    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
     name = Column(types.Text, unique=True)
     description = Column(types.Text)
 
@@ -174,10 +195,12 @@ class RoleUser(db.Model): #pylint: disable=no-init,too-few-public-methods
     '''
     __tablename__ = 'role_users'
 
-    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
 
-    users_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
-    roles_id = Column(types.Integer(), ForeignKey('roles.id'), nullable=False)
+    user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
+    role_id = Column(types.Integer(), ForeignKey('roles.id'), nullable=False)
+
+    constraint = UniqueConstraint('user_id', 'role_id')
 
 
 class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
@@ -187,7 +210,7 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
     '''
     __tablename__ = 'user_skills'
 
-    id = Column(types.Integer, primary_key=True)  #pylint: disable=invalid-name
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
 
     created_at = Column(types.DateTime(), default=datetime.datetime.now)
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
@@ -197,4 +220,5 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
     name = Column(types.String, nullable=False)
 
     user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
-    user = orm.relationship(User, backref="_skills")
+
+    constraint = UniqueConstraint('user_id', 'name')

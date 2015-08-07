@@ -2,14 +2,16 @@
 NoI forms
 '''
 
-from app import LANGS, DOMAINS
+from app import DOMAINS, LOCALES
 from app.models import User
+
+from flask_wtf import Form
+from flask_babel import lazy_gettext
 from wtforms_alchemy import model_form_factory
 from wtforms.fields import SelectMultipleField
 from wtforms.widgets import Select
 
-from flask_wtf import Form
-from flask_babel import lazy_gettext
+
 # The variable db here is a SQLAlchemy object instance from
 # Flask-SQLAlchemy package
 #from app.models import db
@@ -40,7 +42,7 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
 
     languages = SelectMultipleField(label=lazy_gettext('Languages'),
                                     widget=ChosenSelect(multiple=True),
-                                    choices=[(v, v) for v in LANGS])
+                                    choices=[(l.language, l.display_name) for l in LOCALES])
     expertise_domains = SelectMultipleField(label=lazy_gettext('Domains of Expertise'),
                                             widget=ChosenSelect(multiple=True),
                                             choices=[(v, v) for v in DOMAINS])
