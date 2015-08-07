@@ -10,7 +10,7 @@ from flask_security import SQLAlchemyUserDatastore
 
 from app import (csrf, cache, mail, bcrypt, photos, s3, assets, security,
                  babel,
-                 CONTENT, NOI_COLORS, LEVELS, ORG_TYPES,
+                 CONTENT, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID,
                  DOMAINS)
 from app.models import db, User, Role
 from app.views import views
@@ -60,5 +60,6 @@ def create_app():
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
     app.jinja_env.globals['LEVELS'] = LEVELS
     app.jinja_env.globals['DOMAINS'] = DOMAINS
+    app.jinja_env.globals['QUESTIONS_BY_ID'] = QUESTIONS_BY_ID
 
     return app

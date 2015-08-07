@@ -56,7 +56,7 @@
 		{% endif %}
 	</div>
 	<div class="debug col-md-12 text-center">
-		{{ user.organization or '' }} | {{ user.title or '' }}
+		{{ user.organization or '' }} | {{ user.position or '' }}
 	</div>
 </div>
 
@@ -126,12 +126,14 @@
 </div>
 <div class="col-md-4">
 <ul class="noi-expertise-list-profile">
-{#
-{% for skill in user.skills if skill.startswith(area.id) %}
+
+{% for skill in user.skills %}
+{% with %}
+{% set question = QUESTIONS_BY_ID[skill.name] %}
+{% if question.area_id == area.id %}
 <li>
 <span class="noi-expertise-level-profile">
-  {% with  %}
-    {% set level = user['skills'][skill].level %}
+    {% set level = skill.level %}
     {% if level == -1 %}
       <i class="fa-fw fa fa-question"></i>
     {% elif level == 1 %}
@@ -143,12 +145,13 @@
     {% else %}
       <i class="fa fa-question"></i>
     {% endif %}
-  {% endwith %}
 </span>
-&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{area['id']}}">{{skill.split('/')[-1]|replace('-', ' ')}}</span>
+&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{area['id']}}">{{ question.label|replace('-', ' ') }}</span>
 </li>
+{% endif %}
+{% endwith %}
 {% endfor %}
-#}
+
 </ul>
 </div>
 {% if loop.index % 2 == 0 %}

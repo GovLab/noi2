@@ -15,6 +15,7 @@ from flask_mail import Mail
 from flask_s3 import FlaskS3
 from flask_wtf.csrf import CsrfProtect
 
+from slugify import slugify
 from babel import Locale, UnknownLocaleError
 import yaml
 import locale
@@ -101,15 +102,23 @@ for l in sorted(_LOCALE_CODES):
     except UnknownLocaleError:
         pass
 
-ORG_TYPES = { 'edu': 'Academia', 'com': 'Private Sector', 'org': 'Non Profit', 'gov': 'Government', 'other': 'Other' }
+ORG_TYPES = {'edu': 'Academia',
+             'com': 'Private Sector',
+             'org': 'Non Profit',
+             'gov': 'Government',
+             'other': 'Other'}
 
+# Process YAML file
 CONTENT = yaml.load(open('/noi/app/content.yaml'))
-VALID_SKILL_NAMES = set()
+QUESTIONS_BY_ID = {}
 for area in CONTENT['areas']:
     for topic in area.get('topics', []):
         for question in topic['questions']:
-            label = question['label']
-            if label in VALID_SKILL_NAMES:
-                raise Exception("Duplicate skill label {}".format(label))
+            question_id = slugify('_'.join([area['id'], topic['topic'], question['label']]))
+            question['id'] = question_id
+            question['area_id'] = area['id']
+            question['topic'] = topic['topic']
+            if question_id in QUESTIONS_BY_ID:
+                raise Exception("Duplicate skill id {}".format(question_id))
             else:
-                VALID_SKILL_NAMES.add(label)
+                QUESTIONS_BY_ID[question_id] = question

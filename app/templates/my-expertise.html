@@ -49,7 +49,7 @@ label {
 {# We define a macro for buttons; buttons are prefixed by the question name. #}
 
 
-{% macro noi_buttons(question_label) -%}
+{% macro noi_buttons(question_id) -%}
 	<div class="btn-group-wrap b-question-answers">
       <span class="noi-and-i-can">and</span> 
 		<div id="q-" class="btn-group btn-group-vertical">
@@ -58,8 +58,8 @@ label {
       {% if k == 'LEVEL_I_WANT_TO_LEARN' %}
       OR
       {% endif %}
-        {% set radio_id = question_label + '-' + v['score']|string %}
-        <input {% if current_user.skills.get(question_label)|string == v['score']|string %}checked{% endif %} class="radio-selection" id="{{ radio_id }}" type="radio" name="{{ question_label }}" value="{{v['score']}}" />
+        {% set radio_id = question_id + '-' + v['score']|string %}
+        <input {% if current_user.skill_levels.get(question_id)|string == v['score']|string %}checked{% endif %} class="radio-selection" id="{{ radio_id }}" type="radio" name="{{ question_id }}" value="{{v['score']}}" />
         <label for="{{ radio_id }}">{{v['icon']|safe}}&nbsp;{{v['label']}}</label>
       {% endfor %}
     </div>
@@ -72,7 +72,7 @@ label {
 		<div style="font-size: 1.5em;" class="noi-question">
 		&laquo; {{question['question']}} &raquo;
 		</div>
-		{{ noi_buttons(question['label']) }}
+		{{ noi_buttons(question['id']) }}
     <br/>
 			</li>
 {%- endmacro %}

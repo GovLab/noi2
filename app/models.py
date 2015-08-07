@@ -4,9 +4,7 @@ NoI Models
 Creates the app
 '''
 
-from app import ORG_TYPES, VALID_SKILL_LEVELS, VALID_SKILL_NAMES
-
-#from babel import Locale
+from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
@@ -85,19 +83,24 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                         onupdate=datetime.datetime.now)
 
     @property
-    def skills(self):
-        return dict([(skill.name, skill.level) for skill in self._skills])
+    def skill_levels(self):
+        '''
+        Dictionary of this user's entered skills, keyed by the id of the skill.
+        '''
+        return dict([(skill.name, skill.level) for skill in self.skills])
 
     def set_skill(self, skill_name, skill_level):
-        if skill_name not in VALID_SKILL_NAMES:
+        '''
+        Set the level of a single skill by name.
+        '''
+        if skill_name not in QUESTIONS_BY_ID:
             return
         try:
             if int(skill_level) not in VALID_SKILL_LEVELS:
                 return
         except ValueError:
             return
-        skills = self._skills
-        for skill in skills:
+        for skill in self.skills:
             if skill_name == skill.name:
                 skill.level = skill_level
                 db.session.add(skill)
@@ -111,14 +114,20 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     _expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan')
     _languages = orm.relationship('UserLanguage', cascade='all,delete-orphan')
-    _skills = orm.relationship('UserSkill', cascade='all,delete-orphan')
+    skills = orm.relationship('UserSkill', cascade='all,delete-orphan')
 
     @hybrid_property
     def expertise_domains(self):
+        '''
+        Convenient list of expertise domains by name.
+        '''
         return [ed.name for ed in self._expertise_domains]
 
     @expertise_domains.setter
     def _expertise_domains_setter(self, values):
+        '''
+        Update expertise domains in bulk.  Values are array of names.
+        '''
         # Only add new expertise
         for val in values:
             if val not in self.expertise_domains:
@@ -132,10 +141,17 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     @hybrid_property
     def languages(self):
+        '''
+        Convenient list of locales for this user.
+        '''
         return [l.locale for l in self._languages]
 
     @languages.setter
     def _languages_setter(self, values):
+        '''
+        Update locales for this user in bulk.  Values are an array of language
+        codes.
+        '''
         locale_codes = [l.language for l in self.languages]
         # only add new languages
         for val in values:
