@@ -245,7 +245,10 @@ def match():
 @views.route('/match-knn')
 @login_required
 def knn():
-    if 'user-expertise' not in session:
+    '''
+    Find nearest neighbor (innovators most like you)
+    '''
+    if not current_user.skill_levels:
         flash('Before we can find innovators like you, you need to '
               '<a href="/my-expertise">fill your expertise</a> first.', 'error')
         return redirect(url_for('views.my_expertise'))
@@ -265,6 +268,9 @@ def knn():
 
 @views.route('/users/recent')
 def recent_users():
+    '''
+    Most recent users.
+    '''
     users = User.query.order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
                            **{'title': 'Our Ten most recent members', 'results': users,
@@ -273,15 +279,7 @@ def recent_users():
 
 @views.route('/feedback')
 def feedback():
+    '''
+    Feedback page.
+    '''
     return render_template('feedback.html', **{})
-
-
-@views.route('/match-test')
-def match_test():
-    print session
-    query = {'location': '', 'langs': [], 'skills': [], 'fulltext': 'NYU'}
-    if 'user-expertise' not in session:
-        session['user-expertise'] = {}
-    experts = db.findMatchAsJSON(session['user-expertise'])
-    return render_template('test.html',
-                           **{'title': 'Matching search', 'results': experts, 'query': query})

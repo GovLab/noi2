@@ -176,8 +176,8 @@ areas:
      <p><b>These forty four questions help you describe what you know and can share 
      about open data and what you want to learn from others. 
      Click on a link below to create an expertise profile.</b></p>
+
     topics:
-  
       - topic: Tasks and Goals
         description: defining the goals of a citizen science initiative and the tasks to be completed in order to achieve them
         questions:
@@ -202,7 +202,7 @@ areas:
           - question: how to identify funding opportunities for a project
             label: funding opportunities
 
-     -  topic: Incentives and Motivation
+      - topic: Incentives and Motivation
         description: developing incentives to motivate participation
         questions:
           - question: how to engage with and/or create a community for participants.
@@ -259,7 +259,7 @@ areas:
         questions:
           - question: how to identify the societal relevance of your project
             label: societal relevance
-          - question: how to translate the outcomes of the project into desired changes: (government, institutional, societal)
+          - question: 'how to translate the outcomes of the project into desired changes: (government, institutional, societal)'
             label: translate outcomes
 
       - topic: Legal Questions
