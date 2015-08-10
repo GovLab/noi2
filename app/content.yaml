@@ -305,3 +305,156 @@ areas:
     id: partnerships
     icon: partnerships.svg
     description: Coming soon
+
+  - name: Citizen Engagement
+    id: citizenengagement
+    icon: opendata.svg
+    icon-color: "#E86B5F"
+    description: >
+     <p>As technological advances give individuals greater ability to share their opinions and ideas with the world,citizens are increasingly expecting government to consult with them and factor their input into the policy-making process.Moving away from the representative democracy system created in a less connected time, e-petitions; participatory budgeting (PB), a collaborative, community-based system for budget allocation; open innovation initiatives; and a diversity of other citizen engagement initiatives are allowing citizens to make their voices heard between trips to the ballot box.</p>
+     <p><b> Click on a link below to create an expertise profile.</b></p>
+    topics:
+
+      - topic:  Designing a citizen engagement strategy
+        description: What you can share about creating a citizen engagement plan to achieve key goals
+        questions:
+          - question: How to set rationale, purpose and objectives for citizen engagement
+            label: core mission
+          - question: How to identify and seek agreement of engagement decision/negotiables
+            label: engagement agreement
+          - question: How to involve key stakeholders in problem identification and clarity of engagement
+            label: stakeholder involvement
+          - question: How to conduct appropriate background research and analysis
+            label: background research
+          - question: How to find and interpret relevant legislative and/or policy requirements
+            label: requirements
+          - question: How to determine the broader parameters and limitations that will impact the engagement 
+            label: limitations
+          - question: How to identify engagement risks and opportunities
+            label: risks opportunities
+          - question: How to develop mitigation strategies to address risks
+            label: mitigate risks
+          - question: How to incorporate activities to leverage opportunities
+            label: leverage opportunities
+           - question: How to set realistic timeframes and be flexible with my approach
+            label: timeframes         
+          - question: How to determine which methods and tools to use to design an inclusive strategy
+            label: design strategy           
+          - question: How to review which digital and online tools are appropriate for use
+            label: choose tools             
+            
+      - topic: Identifying and analysing stakeholders
+        description: What you can share about engaging with and determining the needs of stakeholders
+        questions:
+          - question: How to identify all stakeholders affected, impacted or interested in the engagement
+            label: identify stakeholders 
+          - question: How to assess who needs to be involved, their level of influence and expectations
+            label: assess stakeholders
+          - question: How to discover any previous or planned engagement activities and relevant data related to specific stakeholder groups
+            label: stakeholder data
+          - question: How to engage stakeholders early in the process
+            label:  stakeholder engagement
+
+      - topic: Communicating your citizen engagement
+        description: What you can share about communicating with the public about a citizen engagement project
+        questions:
+          - question: How to develop an overall communication strategy, tailored to each stakeholder group
+            label: communication strategy
+          - question: How to communicate what the engagement means for different stakeholders
+            label: communicate engagement
+          - question: How to communicate the benefits of engagement and participation clearly
+            label: communicate benefits 
+          - question: How to communicate how stakeholder participation will influence the decision-outcomes
+            label: communicate influence
+          - question: How to use common language to communicate complex and technical aspects
+            label: common language
+          - question: How to identify the methods and communication tools used by various stakeholders
+            label: identify tools 
+
+      - topic: Implementing a citizen engagement strategy
+        description: What you can share about operationalizing a citizen engagement program in practice
+        questions:
+          - question: How to develop an action/project plan to implement the engagement
+            label: project plan
+          - question: How to recruit participants for each stage and level of the engagement
+            label: recruit participants
+          - question: How to equip and empower my team to deliver authentic and genuine engagement
+            label: prepare team
+          - question: How to ensure accessibility of the engagement activity
+            label: accessible engagement
+          - question: How to use multiple methods and tools to engage stakeholders
+            label: several tools
+          - question: How to recognise when it is important to have a neutrality factor
+            label: neutrality factor
+
+      - topic: Using online and digital channels to engage stakeholders
+        description: What you can share about effectively using tools to gain input from diverse stakeholders
+        questions:
+          - question: How to use digital and online tools to research and identify stakeholders
+            label: digital tool use
+          - question: How to develop engagement strategies using digital and online tools
+            label: digital engagement
+          - question: How to identify issues using digital and online tools such as social media
+            label: identify issues
+          - question: How to use digital and online tools to amplify engagement efforts and increase reach
+            label: increase reach
+          - question: How to provide feedback to stakeholders using digital and online tools
+            label: digital feedback
+
+      - topic: Using deliberative engagement tools and techniques
+        description: What you can share about using different engagement tools to reach target audiences
+        questions:
+          - question: How to plan and deliver deliberative Citizen Jury’s/Deliberative Democracy tools
+            label: deliberative democracy tools
+          - question: How to plan and deliver deliberative Participatory Budgeting tools
+            label: participatory budgeting tools
+          - question: How to plan and deliver deliberative Charettes tools
+            label: charettes tools
+          - question: How to plan and deliver deliberative Open Space Technology tools
+            label: open space tools
+          - question: How to plan and deliver deliberative Choicework Dialogue/Citizen’s Dialogue tools
+            label: dialogue tools
+           - question: How to plan and deliver deliberative 21st Century Town Meeting tools
+            label: town meeting tools
+          - question: How to plan and deliver deliberative Asset Based Community Development tools
+            label: community development tools
+          - question: How to plan and deliver deliberative E-Deliberation/Online Development tools
+            label: online development tools
+          - question: How to plan and deliver deliberative National Issues Forum tools
+            label: forum tools
+          - question: How to plan and deliver deliberative World Café tools
+            label: world cafe tools           
+  
+        - topic: Measuring, evaluating and providing feedback
+        description: What you can share about assessing effectiveness and sharing targeted feedback
+        questions:
+          - question: How to  capture and utilise relevant data related to all aspects of engagement
+            label: using data
+          - question: How to undertake qualitative and quantitative analysis to support evidence based decision making
+            label: analyze data
+          - question: How to present data and engagement outcomes in a clear and concise way
+            label: present data
+          - question: How to provide avenues for feedback to all stakeholders throughout the entire engagement process
+            label: process feedback
+          - question: How to create tools for providing feedback to participants and decision makers
+            label: provide feedback
+           - question: How to clearly and regularly report outcomes to participants and stakeholders
+            label: report outcomes
+
+        - topic: Transforming my organisation
+        description: What you can share about increasing the organizational use of citizen engagement
+        questions:
+          - question: How to create an engagement model/framework specific for my organisation
+            label: engagement framework
+          - question: How to develop an evaluation framework that supports continuous improvement
+            label: evaluation framework
+          - question: How to increase organisational awareness of the value of citizen engagement
+            label: awareness of value
+          - question: How to assess current and future requirements required for cultural change
+            label: cultural change
+          - question: How to develop and deliver appropriate training for staff across my organisation
+            label: staff training
+           - question: How to develop resources, templates and toolkits to support best practice engagement
+            label: best practices 
+          - question: How to identify and empower internal staff who will advocate and drive change
+            label: motivate champions
