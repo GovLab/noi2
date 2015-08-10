@@ -252,18 +252,9 @@ def knn():
         flash('Before we can find innovators like you, you need to '
               '<a href="/my-expertise">fill your expertise</a> first.', 'error')
         return redirect(url_for('views.my_expertise'))
-    query = {}
-    if 'user-expertise' not in session:
-        print "User expertise not in session"
-        #my_needs = []
-    else:
-        skills = session['user-expertise']
-    print skills
-    experts = db.findMatchKnnAsJSON(skills)
-    session['has_done_search'] = True
-    return render_template('search-results.html',
-                           **{'title': 'People most like me',
-                              'results': experts, 'query': query})
+    experts = current_user.nearest_neighbors
+    return render_template('search-results.html', title='People most like me',
+                           results=experts)
 
 
 @views.route('/users/recent')

@@ -10,7 +10,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
-from sqlalchemy import orm, types, Column, ForeignKey, UniqueConstraint, func, desc
+from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
+                        desc)
+from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -101,6 +103,28 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         for user in users:
             user.score = user_id_scores[user.id]
         return sorted(users, key=lambda x: x.score, reverse=True)
+
+    @property
+    def nearest_neighbors(self, limit=10):
+        '''
+        Returns a list of users with the closest matching skills.  If they
+        haven't answered the equivalent skill question, we consider that a very
+        big difference (10).
+        '''
+        # TODO optimize, this would get unwieldy with a few thousand answers
+
+        #skills = [s.name for s in self.skills]
+
+        alias = aliased(UserSkill)
+        query = db.session.query(alias, UserSkill, isouter=True).\
+                filter(alias.user_id != UserSkill.user_id).\
+                filter(alias.name.in_([UserSkill.name, None])).\
+                filter(alias.user_id == self.id)
+
+                #outerjoin(UserSkill, alias.user_id != UserSkill.user_id).\
+        #crash
+        return query.limit(limit).all()
+
 
     @property
     def skill_levels(self):
