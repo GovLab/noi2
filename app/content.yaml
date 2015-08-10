@@ -279,11 +279,53 @@ areas:
             label: deliberative democracy tools
           - question: How to plan and deliver deliberative Participatory Budgeting tools
             label: participatory budgeting tools
-          - question: How to identify issues using digital and online tools such as social media
-            label: identify issues
-          - question: How to use digital and online tools to amplify engagement efforts and increase reach
-            label: increase reach
-          - question: How to provide feedback to stakeholders using digital and online tools
-            label: digital feedback
-            
-            
+          - question: How to plan and deliver deliberative Charettes tools
+            label: charettes tools
+          - question: How to plan and deliver deliberative Open Space Technology tools
+            label: open space tools
+          - question: How to plan and deliver deliberative Choicework Dialogue/Citizen’s Dialogue tools
+            label: dialogue tools
+           - question: How to plan and deliver deliberative 21st Century Town Meeting tools
+            label: town meeting tools
+          - question: How to plan and deliver deliberative Asset Based Community Development tools
+            label: community development tools
+          - question: How to plan and deliver deliberative E-Deliberation/Online Development tools
+            label: online development tools
+          - question: How to plan and deliver deliberative National Issues Forum tools
+            label: forum tools
+          - question: How to plan and deliver deliberative World Café tools
+            label: world cafe tools           
+  
+        - topic: Measuring, evaluating and providing feedback
+        description: What you can share about assessing effectiveness and sharing targeted feedback
+        questions:
+          - question: How to  capture and utilise relevant data related to all aspects of engagement
+            label: using data
+          - question: How to undertake qualitative and quantitative analysis to support evidence based decision making
+            label: analyze data
+          - question: How to present data and engagement outcomes in a clear and concise way
+            label: present data
+          - question: How to provide avenues for feedback to all stakeholders throughout the entire engagement process
+            label: process feedback
+          - question: How to create tools for providing feedback to participants and decision makers
+            label: provide feedback
+           - question: How to clearly and regularly report outcomes to participants and stakeholders
+            label: report outcomes
+
+        - topic: Transforming my organisation
+        description: What you can share about increasing the organizational use of citizen engagement
+        questions:
+          - question: How to create an engagement model/framework specific for my organisation
+            label: engagement framework
+          - question: How to develop an evaluation framework that supports continuous improvement
+            label: evaluation framework
+          - question: How to increase organisational awareness of the value of citizen engagement
+            label: awareness of value
+          - question: How to assess current and future requirements required for cultural change
+            label: cultural change
+          - question: How to develop and deliver appropriate training for staff across my organisation
+            label: staff training
+           - question: How to develop resources, templates and toolkits to support best practice engagement
+            label: best practices 
+          - question: How to identify and empower internal staff who will advocate and drive change
+            label: motivate champions
