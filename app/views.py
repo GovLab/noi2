@@ -10,12 +10,11 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import CONTENT
-from app.models import db, User
-from app.forms import UserForm
+from app.models import db, User, UserLanguage, UserExpertiseDomain
+from app.forms import UserForm, SearchForm
 
 from sqlalchemy import func, desc
-
-import copy
+from sqlalchemy.dialects.postgres import array
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
@@ -196,30 +195,36 @@ def get_user(userid):
 
 @views.route('/search', methods=['GET', 'POST'])
 def search():
+    '''
+    Generic search page
+    '''
+    form = SearchForm()
     if request.method == 'GET':
-        return render_template('search.html', **{'AREAS': CONTENT['areas']})
+        return render_template('search.html', form=form, AREAS=CONTENT['areas'])
     if request.method == 'POST':
-        print request
-        country = request.values.get('country', '')
-        langs = request.values.getlist('langs')
-        skills = request.values.getlist('skills')
-        domains = request.values.getlist('domains')
-        fulltext = request.values.get('fulltext', '')
-        query = {'location': country, 'langs': langs, 'skills': skills,
-                 'fulltext': fulltext, 'domains': domains}
-        print query
-        if 'social-login' in session:
-            my_userid = session['social-login']['userid']
-        else:
-            my_userid = 'anonymous'
-        query_info = copy.deepcopy(query)
-        query_info['type'] = '/search'
-        query_info['user-agent'] = request.headers.get('User-Agent')
-        db.logQuery(my_userid, query_info)
-        experts = db.findExpertsAsJSON(**query)
-        session['has_done_search'] = True
+        query = User.query  #pylint: disable=no-member
+
+        if form.country.data and form.country.data != 'ZZ':
+            query = query.filter(User.country == form.country.data)
+
+        if form.locales.data:
+            query = query.join(User.languages).filter(UserLanguage.locale.in_(
+                form.locales.data))
+
+        if form.expertise_domain_names.data:
+            query = query.join(User.expertise_domains).filter(UserExpertiseDomain.name.in_(
+                form.expertise_domain_names.data))
+
+        if form.fulltext.data:
+            query = query.filter(func.to_tsvector(func.array_to_string(array([
+                User.first_name, User.last_name, User.organization, User.position,
+                User.projects]), ' ')).op('@@')(func.plainto_tsquery(form.fulltext.data)))
+
+        # TODO ordering by relevance
         return render_template('search-results.html',
-                               **{'title': 'Expertise search', 'results': experts, 'query': query})
+                               title='Expertise search',
+                               form=form,
+                               results=query.limit(20).all())
 
 
 @views.route('/match')

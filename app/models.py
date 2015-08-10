@@ -132,57 +132,56 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
 
-    _expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan')
-    _languages = orm.relationship('UserLanguage', cascade='all,delete-orphan')
+    expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan')
+    languages = orm.relationship('UserLanguage', cascade='all,delete-orphan')
     skills = orm.relationship('UserSkill', cascade='all,delete-orphan')
 
     @hybrid_property
-    def expertise_domains(self):
+    def expertise_domain_names(self):
         '''
         Convenient list of expertise domains by name.
         '''
-        return [ed.name for ed in self._expertise_domains]
+        return [ed.name for ed in self.expertise_domains]
 
-    @expertise_domains.setter
+    @expertise_domain_names.setter
     def _expertise_domains_setter(self, values):
         '''
         Update expertise domains in bulk.  Values are array of names.
         '''
         # Only add new expertise
         for val in values:
-            if val not in self.expertise_domains:
+            if val not in self.expertise_domain_names:
                 db.session.add(UserExpertiseDomain(name=val,
                                                    user_id=self.id))
 
         # delete expertise no longer found
-        for exp in self._expertise_domains:
+        for exp in self.expertise_domains:
             if exp.name not in values:
-                self._expertise_domains.remove(exp)
+                self.expertise_domains.remove(exp)
 
     @hybrid_property
-    def languages(self):
+    def locales(self):
         '''
         Convenient list of locales for this user.
         '''
-        return [l.locale for l in self._languages]
+        return [l.locale for l in self.languages]
 
-    @languages.setter
+    @locales.setter
     def _languages_setter(self, values):
         '''
         Update locales for this user in bulk.  Values are an array of language
         codes.
         '''
-        locale_codes = [l.language for l in self.languages]
+        locale_codes = [l.language for l in self.locales]
         # only add new languages
         for val in values:
             if val not in locale_codes:
-                db.session.add(UserLanguage(locale=val,
-                                            user_id=self.id))
+                db.session.add(UserLanguage(locale=val, user_id=self.id))
 
         # delete languages no longer found
-        for lan in self._languages:
+        for lan in self.languages:
             if lan.locale.language not in values:
-                self._languages.remove(lan)
+                self.languages.remove(lan)
                 #db.session.delete(lan)
 
 

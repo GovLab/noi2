@@ -85,9 +85,9 @@
 <div class="row">
 	<div class="col-xs-12 col-md-4">
 		<h3>Languages:</h3>
-		{% if user.languages %}
+		{% if user.locales %}
 		<ul>
-			{% for locale in user.languages %}
+			{% for locale in user.locales %}
 				<li>{{ locale.display_name }}</li>
 			{% endfor %}
 		</ul>
@@ -97,9 +97,9 @@
 	</div>
 	<div class="col-xs-12 col-md-4">
 		<h3>{{ gettext("Domain(s) of expertise:") }}</h3>
-		{% if user.expertise_domains %}
+		{% if user.expertise_domain_names %}
 		<ul>
-			{% for domain in user.expertise_domains %}
+			{% for domain in user.expertise_domain_names %}
 			<li>{{ domain }}</li>
 			{% endfor %}
 		</ul>
