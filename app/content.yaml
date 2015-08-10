@@ -221,7 +221,7 @@ areas:
             label: identify competition 
           - question: how to attribute contributions to the relevant parties
             label: attribute contribution
-            
+
       - topic: Training
         description: giving participants the skills and information needed to participate well
         questions:
@@ -281,7 +281,7 @@ areas:
             label: draft privacy policy
           - question: how to draft other liability policies and educate potential participants about privacy issues
             label: draft liability policies
-  
+
       - topic: Communicating Results and Sustaining Projects
         description: communicating project results to participants and the public, and ensuring that projects continue after initial the engagement
         questions:
@@ -313,8 +313,8 @@ areas:
     description: >
      <p>As technological advances give individuals greater ability to share their opinions and ideas with the world,citizens are increasingly expecting government to consult with them and factor their input into the policy-making process.Moving away from the representative democracy system created in a less connected time, e-petitions; participatory budgeting (PB), a collaborative, community-based system for budget allocation; open innovation initiatives; and a diversity of other citizen engagement initiatives are allowing citizens to make their voices heard between trips to the ballot box.</p>
      <p><b> Click on a link below to create an expertise profile.</b></p>
-    topics:
 
+    topics:
       - topic:  Designing a citizen engagement strategy
         description: What you can share about creating a citizen engagement plan to achieve key goals
         questions:
@@ -336,13 +336,13 @@ areas:
             label: mitigate risks
           - question: How to incorporate activities to leverage opportunities
             label: leverage opportunities
-           - question: How to set realistic timeframes and be flexible with my approach
+          - question: How to set realistic timeframes and be flexible with my approach
             label: timeframes         
           - question: How to determine which methods and tools to use to design an inclusive strategy
             label: design strategy           
           - question: How to review which digital and online tools are appropriate for use
             label: choose tools             
-            
+
       - topic: Identifying and analysing stakeholders
         description: What you can share about engaging with and determining the needs of stakeholders
         questions:
@@ -414,7 +414,7 @@ areas:
             label: open space tools
           - question: How to plan and deliver deliberative Choicework Dialogue/Citizen’s Dialogue tools
             label: dialogue tools
-           - question: How to plan and deliver deliberative 21st Century Town Meeting tools
+          - question: How to plan and deliver deliberative 21st Century Town Meeting tools
             label: town meeting tools
           - question: How to plan and deliver deliberative Asset Based Community Development tools
             label: community development tools
@@ -423,9 +423,9 @@ areas:
           - question: How to plan and deliver deliberative National Issues Forum tools
             label: forum tools
           - question: How to plan and deliver deliberative World Café tools
-            label: world cafe tools           
-  
-        - topic: Measuring, evaluating and providing feedback
+            label: world cafe tools
+
+      - topic: Measuring, evaluating and providing feedback
         description: What you can share about assessing effectiveness and sharing targeted feedback
         questions:
           - question: How to  capture and utilise relevant data related to all aspects of engagement
@@ -438,10 +438,10 @@ areas:
             label: process feedback
           - question: How to create tools for providing feedback to participants and decision makers
             label: provide feedback
-           - question: How to clearly and regularly report outcomes to participants and stakeholders
+          - question: How to clearly and regularly report outcomes to participants and stakeholders
             label: report outcomes
 
-        - topic: Transforming my organisation
+      - topic: Transforming my organisation
         description: What you can share about increasing the organizational use of citizen engagement
         questions:
           - question: How to create an engagement model/framework specific for my organisation
@@ -454,7 +454,7 @@ areas:
             label: cultural change
           - question: How to develop and deliver appropriate training for staff across my organisation
             label: staff training
-           - question: How to develop resources, templates and toolkits to support best practice engagement
-            label: best practices 
+          - question: How to develop resources, templates and toolkits to support best practice engagement
+            label: best practices
           - question: How to identify and empower internal staff who will advocate and drive change
             label: motivate champions
