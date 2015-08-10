@@ -62,4 +62,8 @@ def create_app():
     app.jinja_env.globals['DOMAINS'] = DOMAINS
     app.jinja_env.globals['QUESTIONS_BY_ID'] = QUESTIONS_BY_ID
 
+    if not app.config.get('MAIL_USERNAME') or not app.config.get('MAIL_PASSWORD'):
+        app.logger.warn('No MAIL_SERVER found in config, password reset will '
+                        'not work.')
+
     return app
