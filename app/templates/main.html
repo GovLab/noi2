@@ -50,8 +50,8 @@
     <div class="row">
         <div class="col-md-12">
               <div class="text-center">
-{% for area in CONTENT['areas'] %}
-    <img class="noi-mainpage-icon" src="/static/img/expertise-icons/{{area['icon']}}"/>
+{% for questionnaire in QUESTIONNAIRES %}
+    <img class="noi-mainpage-icon" src="/static/img/expertise-icons/{{questionnaire['icon']}}"/>
 {% endfor %}
 </div>
             <div class="b-welcome-message">
@@ -91,8 +91,8 @@
                 <p><a href="/my-expertise">Tell us what you know</a><br/>
                     Edit your expertise</p>
                 <div class="text-center">
-                {% for area in CONTENT['areas'] %}
-    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/{{area['icon']}}"/>
+                {% for questionnaire in QUESTIONNAIRES %}
+    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/{{ questionnaire['icon'] }}"/>
 {% endfor %}</div>
             </div>
         </div>

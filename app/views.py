@@ -4,12 +4,11 @@ NoI Views
 All views in the app, as a blueprint
 '''
 
-from flask import (Blueprint, render_template, session, request, flash,
+from flask import (Blueprint, render_template, request, flash,
                    redirect, url_for)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import CONTENT
 from app.models import db, User, UserLanguage, UserExpertiseDomain
 from app.forms import UserForm, SearchForm
 
@@ -122,7 +121,7 @@ def my_expertise():
     #social_login = session['social-login']
     #userid = social_login['userid']
     if request.method == 'GET':
-        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
+        return render_template('my-expertise.html')
     elif request.method == 'POST':
         for k, val in request.form.iteritems():
             current_user.set_skill(k, val)
@@ -135,7 +134,7 @@ def my_expertise():
         <li>Fill another expertise questionnaire below</li>
         <li>View your <a href="/user/{}">public profile</a></li>
         """).format(current_user.id))
-        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
+        return render_template('my-expertise.html')
 
 
 @views.route('/dashboard')
@@ -200,7 +199,7 @@ def search():
     '''
     form = SearchForm()
     if request.method == 'GET':
-        return render_template('search.html', form=form, AREAS=CONTENT['areas'])
+        return render_template('search.html', form=form)
     if request.method == 'POST':
         query = User.query  #pylint: disable=no-member
 

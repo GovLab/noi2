@@ -10,7 +10,7 @@ from flask_security import SQLAlchemyUserDatastore
 
 from app import (csrf, cache, mail, bcrypt, photos, s3, assets, security,
                  babel,
-                 CONTENT, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID,
+                 QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID,
                  DOMAINS)
 from app.models import db, User, Role
 from app.views import views
@@ -56,7 +56,7 @@ def create_app():
 
     # Constant that should be available for all templates.
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
-    app.jinja_env.globals['CONTENT'] = CONTENT
+    app.jinja_env.globals['QUESTIONNAIRES'] = QUESTIONNAIRES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
     app.jinja_env.globals['LEVELS'] = LEVELS
     app.jinja_env.globals['DOMAINS'] = DOMAINS
