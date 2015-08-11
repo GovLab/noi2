@@ -130,7 +130,7 @@
 {% for skill in user.skills %}
 {% with %}
 {% set question = QUESTIONS_BY_ID[skill.name] %}
-{% if question.area_id == area.id %}
+{% if question.area_id == questionnaire.id %}
 <li>
 <span class="noi-expertise-level-profile">
     {% set level = skill.level %}
