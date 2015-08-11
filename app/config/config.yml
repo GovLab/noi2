@@ -17,11 +17,16 @@ COMMON: &common
   SECURITY_CHANGEABLE: True
   SECURITY_PASSWORD_HASH: bcrypt
   SECURITY_PASSWORD_SALT: 'bb83d6fa8d0a4adc'
+  SECURITY_CONFIRMABLE: True
 
-  #SECURITY_CONFIRMABLE: True
-  SECURITY_SEND_REGISTER_EMAIL: False
   SECURITY_EMAIL_SENDER: noreply@networkofinnovators.org
   SECURITY_POST_REGISTER_VIEW: 'views.my_profile'
+  SECURITY_POST_CONFIRM_VIEW: 'views.my_profile'
+  SECURITY_EMAIL_SUBJECT_REGISTER: 'Welcome to the Network of Innovators!'
+  SECURITY_EMAIL_SUBJECT_PASSWORD_NOTICE: 'Your Network of Innovators password has been reset'
+  SECURITY_EMAIL_SUBJECT_PASSWORD_CHANGE_NOTICE: 'Your Network of Innovators password has been changed'
+  SECURITY_EMAIL_SUBJECT_PASSWORD_RESET: 'Network of Innovators password reset instructions'
+  SECURITY_EMAIL_SUBJECT_CONFIRM: 'Please confirm your email for Network of Innovators'
 
   MAIL_SERVER: 'smtp.gmail.com'
   MAIL_PORT: 587

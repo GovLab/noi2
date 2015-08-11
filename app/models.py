@@ -46,6 +46,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     email = Column(EmailType, unique=True, nullable=False, info={
         'label': lazy_gettext('Email'),
     })
+
     password = Column(types.String, nullable=False, info={
         'label': lazy_gettext('Password'),
     })
@@ -53,6 +54,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     last_login_at = Column(types.DateTime())
     current_login_at = Column(types.DateTime())
+    confirmed_at = Column(types.DateTime())
     last_login_ip = Column(types.Text)
     current_login_ip = Column(types.Text)
     login_count = Column(types.Integer)

@@ -2,6 +2,7 @@
     "first_name": "sly",
     "last_name": "stone",
     "email": "sly@stone.com",
+    "confirmed_at": "2010-01-01",
     "skills": {
         "opendata-open-data-policy-core-mission": -1,
         "opendata-open-data-policy-sensitive-vs-non-sensitive": -1,
@@ -21,6 +22,7 @@
     "first_name": "paul",
     "last_name": "lennon",
     "email": "paul@lennon.com",
+    "confirmed_at": "2010-01-01",
     "skills": {
         "opendata-open-data-policy-core-mission": 5,
         "opendata-open-data-policy-sensitive-vs-non-sensitive": 5,
@@ -40,6 +42,7 @@
     "first_name": "dubya",
     "last_name": "shrub",
     "email": "dubya@shrub.com",
+    "confirmed_at": "2010-01-01",
     "skills": {
         "opendata-open-data-policy-core-mission": 1,
         "opendata-open-data-policy-sensitive-vs-non-sensitive": 1,
