@@ -11,6 +11,7 @@ from flask_security import SQLAlchemyUserDatastore
 from app import (csrf, cache, mail, bcrypt, photos, s3, assets, security,
                  babel,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
+from app.forms import RegisterForm
 from app.models import db, User, Role
 from app.views import views
 
@@ -44,7 +45,8 @@ def create_app():
 
     # Setup Flask-Security
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-    security.init_app(app, datastore=user_datastore)
+    security.init_app(app, datastore=user_datastore,
+                      register_form=RegisterForm)
 
     db.init_app(app)
     #login_manager.init_app(app)

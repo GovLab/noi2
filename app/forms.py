@@ -5,11 +5,18 @@ NoI forms
 from app import LOCALES, DOMAINS
 from app.models import User
 
+from flask import current_app
 from flask_wtf import Form
+from flask_wtf.file import FileField, FileAllowed
+from flask_security.forms import RegisterForm as FlaskSecurityRegisterForm
+
 from flask_babel import lazy_gettext
 from wtforms_alchemy import model_form_factory, CountryField
 from wtforms.fields import SelectMultipleField, TextField
 from wtforms.widgets import Select
+from wtforms.validators import ValidationError
+
+import re
 
 
 # The variable db here is a SQLAlchemy object instance from
@@ -51,6 +58,14 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         model = User
         exclude = ['password', 'active']
 
+    picture = FileField(
+        label='User Picture',
+        description='Optional',
+        validators=[FileAllowed(
+            ('jpg', 'jpeg', 'png'),
+            lazy_gettext('Only jpeg, jpg, and png images are allowed.'))]
+    )
+
     locales = SelectMultipleField(label=lazy_gettext('Languages'),
                                   widget=ChosenSelect(multiple=True),
                                   choices=[(l.language, l.display_name) for l in LOCALES])
@@ -71,3 +86,26 @@ class SearchForm(Form):
                                                  widget=ChosenSelect(multiple=True),
                                                  choices=[(v, v) for v in DOMAINS])
     fulltext = TextField()
+
+
+class RegisterForm(FlaskSecurityRegisterForm):
+    '''
+    Custom registration form that limits emails to a certain domain.
+    '''
+    def validate_email(self, field):
+        '''
+        Validate email is OK for this domain
+        '''
+        value = field.data
+        email_regex = current_app.config.get('EMAIL_REGEX')
+        if email_regex:
+            if re.match(email_regex, value):
+                return value
+
+        email_whitelist = current_app.config.get('EMAIL_WHITELIST')
+        if email_whitelist:
+            if value in email_whitelist:
+                return value
+
+        raise ValidationError('{value} is not a valid email address: {explanation}'.format(
+            value=value, explanation=current_app.config.get('EMAIL_EXPLANATION')))
