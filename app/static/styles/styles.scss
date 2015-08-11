@@ -1,0 +1,112 @@
+body { background-color: #fff; }
+
+
+.navbar-default .navbar-brand:before {
+    background: url(../img/noi-logo-neg.png) no-repeat;
+    background-size: contain;
+    height: 30px;
+    top: 12px;
+}
+
+.navbar-brand {
+    font-size: 16px;
+}
+
+.navbar>.container .navbar-brand, 
+.navbar>.container-fluid .navbar-brand {
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+
+
+.govlab-logo-footer {
+    width: 200px;
+}
+
+#footer {
+    background: #472b74;
+
+    a {
+        color: rgba(255,255,255,0.6);
+        font-style: italic;
+    }
+
+    .e-license {
+        p { color: rgba(255,255,255,0.6); }
+    }
+
+    .right-part {
+        span {
+            display: block;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.6);
+        }
+    }
+}
+
+@media (max-width: 960px) {
+
+body.homepage .bg {
+    background-image: url("../img/homepage-bg-mobile.jpg");
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    padding-bottom: 181%;
+    margin-top: -100px;
+}
+
+body.homepage {
+
+    .container { padding-bottom: 110px; }
+    #footer {
+        .right-part {text-align: center;}
+    }
+}
+
+}
+
+
+@media (min-width: 992px) {
+
+body.homepage .bg {
+    background-image: url("../img/homepage-bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    padding-bottom: 47%;
+    margin-top: -50px;
+}
+
+#footer {
+    text-align: left;
+    background: #472b74;
+
+    a {
+        color: rgba(255,255,255,0.6);
+        font-style: italic;
+    }
+
+    .e-license {
+        p { color: rgba(255,255,255,0.6); }
+
+
+    }
+    .e-ccimage {
+        float: left;
+        margin-right: 10px;
+    }
+
+    .right-part {
+        text-align: right;
+        span {
+            color: rgba(255,255,255,0.6);
+        }
+    }
+}
+
+}

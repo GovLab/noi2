@@ -1,0 +1,13 @@
+.link-disabled { pointer-events:none; }
+.caret { vertical-align: top;}
+.noi-expertise-icon { height: 50px; }
+.noi-expertise-not-yet {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* msie */
+}
+.profile-img-nav { 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 20px; 
+    vertical-align: initial;
+}
