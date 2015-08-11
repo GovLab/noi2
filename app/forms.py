@@ -56,7 +56,7 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
 
     class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
         model = User
-        exclude = ['password', 'active']
+        exclude = ['password', 'active', 'email']
 
     picture = FileField(
         label='User Picture',
