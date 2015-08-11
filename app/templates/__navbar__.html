@@ -37,9 +37,7 @@
             {% if current_user.is_authenticated() %}
             <li><a href="/me">Edit My Profile</a></li>
             <li><a href="/my-expertise">Edit My Expertise</a></li>
-            {#{% if session['social-login'] %}#}
             <li><a href="/user/{{ current_user.id }}">See My Public Profile</a></li>
-            {#{% endif %}#}
             <li><a href="/logout">Logout</a></li>
             {% else %}
             <li><a href="/register">Register</a></li>
