@@ -49,29 +49,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-              <div class="text-center">
-{% for questionnaire in QUESTIONNAIRES %}
-    <img class="noi-mainpage-icon" src="/static/img/expertise-icons/{{questionnaire['icon']}}"/>
-{% endfor %}
-</div>
-            <div class="b-welcome-message">
-                <p>Welcome to the <br/><b>Network of Innovators</b>, a GovLab experiment</p>
-
-                <p>Find collaborators. Create alliances. <br/>Learn from other governance innovators.</p>
-            </div>
-
-{% if request.MOBILE == False %}
+            {% if request.MOBILE == False %}
             <div class="text-center">
                 <p>Want to find innovators from around the world?</p>
-<p>Want to get matched with those who know what you don't?</p>
-<p>Want to meet those confronting similar opportunities and challenges?</p>
-<p>Sign up for the network of innovators and find your open government soulmate.</p>
+                <p>Want to get matched with those who know what you don't?</p>
+                <p>Want to meet those confronting similar opportunities and challenges?</p>
+                <p>Sign up for the network of innovators and find your open government soulmate.</p>
             </div>
-{% endif %}
-
-            <div class="b-instructions">
-                <h2>Follow the steps to join the network</h2>
-            </div>
+            {% endif %}
         </div>
     </div>
     <div class="row b-signup">
