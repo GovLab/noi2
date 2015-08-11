@@ -66,7 +66,6 @@ body.homepage {
         .right-part {text-align: center;}
     }
 }
-
 }
 
 .b-login {
@@ -84,13 +83,11 @@ body.homepage {
 
     input[type='text'], input[type='password']  { width: 70%; }
     input[type='submit'] { 
-        width: 59%;
-        margin-left: 20%;
+        width: 100%;
     }
 
     label {
-        width: 29%;
-        font-weight: 300;
+        width: 100%;
     }
 
     h2 {
@@ -150,6 +147,18 @@ body.homepage .bg {
         span {
             color: rgba(255,255,255,0.6);
         }
+    }
+}
+
+.b-login {
+    input[type='text'], input[type='password']  { width: 70%; }
+    input[type='submit'] { 
+        width: 39%;
+        margin-left: 30%;
+    }
+
+    label {
+        width: 29%;
     }
 }
 
