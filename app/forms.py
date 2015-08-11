@@ -2,7 +2,7 @@
 NoI forms
 '''
 
-from app import DOMAINS, LOCALES
+from app import LOCALES, DOMAINS
 from app.models import User
 
 from flask_wtf import Form

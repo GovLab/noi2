@@ -32,54 +32,29 @@ ul li {
   
   <div class="row">
     <div class="col-xs-4 col-md-4">
-    	<form class="b-form" action="/search" method="POST">
+      <form class="b-form" action="/search" method="POST">
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
         <label class="col-md-4 control-label" for="textarea">By country</label>
-    		<div class="selector">
+        <div class="selector">
           {{ form.country() }}
-          {#<select name="country" data-placeholder="Choose a Country..." class="chosen-select" tabindex="2">
-    	      <option value=""></option>
-    	      {% for country in COUNTRIES %}
-    	      <option value="{{country}}">{{country}}</option>
-    	      {% endfor %}
-          </select> #}
-    		</div>
+        </div>
 
         <label class="col-md-4 control-label" for="textarea">By language(s)</label>
-    		<div class="selector">
+        <div class="selector">
           {{ form.locales() }}
-          {#<select name="langs" data-placeholder="Choose a language..."
-    							multiple class="chosen-select"
-    							tabindex="2">
-    		    <option value=""></option>
-    		    {% for item in LANGS %}
-          		<option value="{{item}}">{{item}}</option>
-          	{% endfor %}
-          </select>#}
-    		</div>
+        </div>
 
-        
         <label class="col-md-4 control-label" for="textarea">By domain(s)</label>
         <div class="selector">
           {{ form.expertise_domain_names() }}
-          {#
-          <select name="domains" data-placeholder="Choose a domain..."
-                  multiple class="chosen-select"
-                  tabindex="2">
-            <option value=""></option>
-            {% for d in DOMAINS %}
-                <option value="{{d}}">{{d|slug}}</option>
-                {% endfor %}
-          </select>
-          #}
         </div>
 
     <label class="col-md-4 control-label" for="textarea">By keyword(s)</label>
-		<div class="selector">
+    <div class="selector">
       {{ form.fulltext() }}
       {#<input placeholder="Search for anything ..." type="text" id="fulltext" name="fulltext">#}
-		</div>
+    </div>
 
 		<div>
 			<input type="submit" value="Find experts">

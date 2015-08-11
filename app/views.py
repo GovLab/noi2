@@ -5,7 +5,7 @@ All views in the app, as a blueprint
 '''
 
 from flask import (Blueprint, render_template, request, flash,
-                   redirect, url_for)
+                   redirect, url_for, current_app)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
@@ -23,7 +23,7 @@ def main_page():
     '''
     Main NoI page
     '''
-    return render_template('main.html', **{'SKIP_NAV_BAR': False})
+    return render_template('main.html', SKIP_NAV_BAR=False)
 
 
 @views.route('/about')
@@ -31,8 +31,7 @@ def about_page():
     '''
     NoI about page.
     '''
-    #TODO this should vary based off of deployment
-    return render_template('about.html', **{})
+    return render_template('about.html')
 
 
 #@views.route('/login', methods=['GET', 'POST'])

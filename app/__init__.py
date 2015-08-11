@@ -65,31 +65,8 @@ VALID_SKILL_LEVELS = [v['score'] for k, v in LEVELS.iteritems()]
 
 NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray'.split(',')
 
-DOMAINS = """Business Licensing and Regulation
-Civil Society
-Corporate Social Responsibility
-Defense and Security
-Economic Development
-Education
-Emergency Services
-Environment
-Extractives Industries
-Governance
-Health
-Human Rights
-Immigration and Citizenship Services
-Judiciary
-Labor
-Legislature
-Media and Telecommunications
-Public Safety
-Research
-Sanitation
-Social Care
-Sub-National Governance
-Talent Services
-Transportation
-Water and Electricity""".split('\n')
+with open('/noi/app/data/domains.yaml') as domains_yaml:
+    DOMAINS = yaml.load(domains_yaml)
 
 LOCALES = []
 _LOCALE_CODES = set()
@@ -108,7 +85,7 @@ ORG_TYPES = {'edu': 'Academia',
              'gov': 'Government',
              'other': 'Other'}
 
-# Process YAML file
+# Process YAML files
 QUESTIONNAIRES = yaml.load(open('/noi/app/data/questions.yaml'))
 QUESTIONS_BY_ID = {}
 for questionnaire in QUESTIONNAIRES:
