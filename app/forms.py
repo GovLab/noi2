@@ -6,6 +6,8 @@ from app import LOCALES, DOMAINS
 from app.models import User
 
 from flask_wtf import Form
+from flask_wtf.file import FileField, FileAllowed
+
 from flask_babel import lazy_gettext
 from wtforms_alchemy import model_form_factory, CountryField
 from wtforms.fields import SelectMultipleField, TextField
@@ -50,6 +52,14 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
         model = User
         exclude = ['password', 'active']
+
+    picture = FileField(
+        label='User Picture',
+        description='Optional',
+        validators=[FileAllowed(
+            ('jpg', 'jpeg', 'png'),
+            lazy_gettext('Only jpeg, jpg, and png images are allowed.'))]
+    )
 
     locales = SelectMultipleField(label=lazy_gettext('Languages'),
                                   widget=ChosenSelect(multiple=True),

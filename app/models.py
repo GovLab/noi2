@@ -16,7 +16,9 @@ from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 
+import base64
 import datetime
+import os
 
 db = SQLAlchemy()  #pylint: disable=invalid-name
 
@@ -28,6 +30,9 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     __tablename__ = 'users'
 
     id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
+
+    picture_id = Column(types.String,
+                        default=lambda: base64.urlsafe_b64encode(os.urandom(20))[0:-2])
 
     first_name = Column(types.String, info={
         'label': lazy_gettext('First Name'),
@@ -83,6 +88,13 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     created_at = Column(types.DateTime(), default=datetime.datetime.now)
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
+
+    @property
+    def picture_path(self):
+        '''
+        URL where picture would be found (hosted on S3).
+        '''
+        return "static/pictures/{}/{}".format(self.id, self.picture_id)
 
     @property
     def helpful_users(self, limit=10):

@@ -15,6 +15,11 @@ from app.forms import UserForm, SearchForm
 from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
 
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+
+import mimetypes
+
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
 
@@ -97,6 +102,20 @@ def my_profile():
         #session['has_created_profile'] = True
         form.populate_obj(current_user)
         if form.validate():
+
+            if form.picture.has_file():
+                conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
+                                    current_app.config['S3_SECRET_ACCESS_KEY'])
+                bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
+                bucket.make_public(recursive=False)
+
+                mimetype = mimetypes.guess_type(form.picture.data.filename)[0]
+
+                k = bucket.new_key(current_user.picture_path)
+                k.set_metadata('Content-Type', mimetype)
+                k.set_contents_from_file(form.picture.data)
+                k.make_public()
+
             db.session.add(current_user)
             db.session.commit()
             flash(lazy_gettext('Your profile has been saved. <br/>You may also want to <a'
@@ -256,6 +275,7 @@ def knn():
 
 
 @views.route('/users/recent')
+@login_required
 def recent_users():
     '''
     Most recent users.

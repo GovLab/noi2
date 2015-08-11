@@ -27,11 +27,7 @@
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            {#{% if 'social-login' in session %}
-            <img class="profile-img-nav" src="{{session['social-login']['picture']}}"/>
-            {% else %}#}
-            My Profile
-            {#{% endif %}#}
+            <img class="profile-img-nav" src="https://s3.amazonaws.com/network-of-innovators/{{ current_user.picture_path }}"/>
             <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             {% if current_user.is_authenticated() %}

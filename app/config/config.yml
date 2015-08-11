@@ -27,6 +27,8 @@ COMMON: &common
   MAIL_USE_SSL: False
   MAIL_USE_TLS: True
 
+  S3_BUCKET_NAME: 'network-of-innovators'
+
 DEVELOPMENT: &development
   <<: *common
   DEBUG: True

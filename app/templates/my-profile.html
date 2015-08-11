@@ -26,7 +26,7 @@ ul li {
 
 {% block content %}
 
-<form action="#" method="post">
+<form action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
 
 <div class="form-horizontal">
@@ -46,17 +46,13 @@ ul li {
   </div>
 </div>
 {%- endmacro %}
-{#
-<input id="q-userid" name="userid" type="hidden" value="{{session['social-login']['userid']}}">
-<input id="q-picture" name="picture" type="hidden" value="{{session['social-login']['picture']}}">
-#}
 
 <fieldset>
 
 <!-- Form Name -->
 <legend></legend>
 
-
+{{ input("picture") }}
 {{ input("first_name") }}
 {{ input("last_name") }}
 {{ input("email") }}
@@ -73,7 +69,7 @@ ul li {
     </div>
 </div>
 #}
-{{ input("latlng") }}
+{#{{ input("latlng") }}#}
 
 <!-- Location > City -->
 {#<div class="form-group">
@@ -113,6 +109,7 @@ ul li {
 <script src="/static/chosen_v1.4.2/chosen.jquery.js" type="text/javascript"></script>
 <script src="/static/chosen_v1.4.2/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
 
+{#
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 
 <script>
@@ -190,6 +187,7 @@ $( document ).ready(function() {
 });
 
 </script>
+#}
 
 
 <script type="text/javascript">
@@ -209,87 +207,4 @@ $( document ).ready(function() {
 
 </script>
 
-<script>
-{#
-{% if userProfile %}
-var userProfile = {{userProfile|tojson}};
-{% else %}
-var userProfile = null;
-{% endif %}
-
-if (userProfile == null) {
-  // We populate some fields using the social-login.
-  var user = {{session['social-login']|tojson}};
-  $.each(['first_name', 'last_name'], function(i, v) {
-	 $('#q-' + v).val(user[v]);
-  });
-} else {
-  console.log('userProfile is not null.');
-  // We populate the form based on the data.
-  $('input[id*="q-"]').map(function() { $(this).attr('value', userProfile[$(this).attr('id').substring(2)]) } );
-  $('textarea[id*="q-"]').map(function() { $(this).text(userProfile[$(this).attr('id').substring(2)]) } );
-
-// <select org_type>
-  $('select[id="q-org_type"]').children('option').map(function() {
-    if ($(this).attr('value') == userProfile.org_type) {
-      console.log('Match for ' + $(this).attr('value'));
-      $(this).prop('selected', 'true');
-  } else {
-    $(this).removeAttr('selected');
-  }
-  });
-
-// <select langs>
-  $('select[id="q-langs"]').children('option').map(function() {
-    if ($.inArray($(this).attr('value'), userProfile.langs) > -1) {
-      console.log('Match for ' + $(this).attr('value'));
-      $(this).prop('selected', 'true');
-  } else {
-    $(this).removeAttr('selected');
-  }
-  });
-  $('#q-langs').trigger("chosen:updated");  // We need to update the UI.
-
-// <select domains>
-  $('select[id="q-domains"]').children('option').map(function() {
-    if ($.inArray($(this).attr('value'), userProfile.domains) > -1) {
-      console.log('Match for ' + $(this).attr('value'));
-      $(this).prop('selected', 'true');
-  } else {
-    $(this).removeAttr('selected');
-  }
-  });
-  $('#q-domains').trigger("chosen:updated");  // We need to update the UI.
-
-
-}
-
-$('#save-profile').click(function() {
-  // We build a JSON object for the form.
-  var profileData = {};
-  
-  // <input> attributes
-  $.each($('input[id*="q-"]'), function(i, v) {
-    profileData[$(v).attr('id').substring(2)] = $(v).val();
-  });
-  
-  // <textarea attributes
-  $.each($('textarea[id*="q-"]'), function(i, v) {
-    profileData[$(v).attr('id').substring(2)] = $(v).val();
-  });
-
-  // orgtype
-  profileData['org_type'] = $('select[id="q-org_type"]').children(':checked').val();  
-  // langs
-  profileData['langs'] = $('select[id="q-langs"]').children(':checked').toArray().map(function(v, i) { return v['value']; });
-
-  profileData['domains'] = $('select[id="q-domains"]').children(':checked').toArray().map(function(v, i) { return v['value']; });
-
-  console.log(profileData);
-  $('#me-as-json').attr('value', JSON.stringify(profileData));
-  $('#me-form').submit();
-});
-#}
-
-</script>
 {% endblock %}
