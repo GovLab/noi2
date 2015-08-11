@@ -16,7 +16,6 @@ from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
 
 from boto.s3.connection import S3Connection
-from boto.s3.key import Key
 
 import mimetypes
 
@@ -115,6 +114,8 @@ def my_profile():
                 k.set_metadata('Content-Type', mimetype)
                 k.set_contents_from_file(form.picture.data)
                 k.make_public()
+
+                current_user.has_picture = True
 
             db.session.add(current_user)
             db.session.commit()

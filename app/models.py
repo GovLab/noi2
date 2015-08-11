@@ -34,6 +34,8 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     picture_id = Column(types.String,
                         default=lambda: base64.urlsafe_b64encode(os.urandom(20))[0:-2])
 
+    has_picture = Column(types.Boolean)
+
     first_name = Column(types.String, info={
         'label': lazy_gettext('First Name'),
     })
