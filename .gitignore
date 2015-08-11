@@ -2,3 +2,4 @@
 *.pyc
 app/config/local_config.yml
 *.mo
+.keys

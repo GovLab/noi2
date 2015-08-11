@@ -20,6 +20,12 @@ COMMON: &common
 
   #SECURITY_CONFIRMABLE: True
   SECURITY_SEND_REGISTER_EMAIL: False
+  SECURITY_EMAIL_SENDER: noreply@networkofinnovators.org
+
+  MAIL_SERVER: 'smtp.gmail.com'
+  MAIL_PORT: 587
+  MAIL_USE_SSL: False
+  MAIL_USE_TLS: True
 
 DEVELOPMENT: &development
   <<: *common

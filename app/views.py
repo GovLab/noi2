@@ -4,18 +4,16 @@ NoI Views
 All views in the app, as a blueprint
 '''
 
-from flask import (Blueprint, render_template, session, request, flash,
-                   redirect, url_for)
+from flask import (Blueprint, render_template, request, flash,
+                   redirect, url_for, current_app)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import CONTENT
-from app.models import db, User
-from app.forms import UserForm
+from app.models import db, User, UserLanguage, UserExpertiseDomain
+from app.forms import UserForm, SearchForm
 
 from sqlalchemy import func, desc
-
-import copy
+from sqlalchemy.dialects.postgres import array
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
@@ -25,7 +23,7 @@ def main_page():
     '''
     Main NoI page
     '''
-    return render_template('main.html', **{'SKIP_NAV_BAR': False})
+    return render_template('main.html', SKIP_NAV_BAR=False)
 
 
 @views.route('/about')
@@ -33,8 +31,7 @@ def about_page():
     '''
     NoI about page.
     '''
-    #TODO this should vary based off of deployment
-    return render_template('about.html', **{})
+    return render_template('about.html')
 
 
 #@views.route('/login', methods=['GET', 'POST'])
@@ -123,7 +120,7 @@ def my_expertise():
     #social_login = session['social-login']
     #userid = social_login['userid']
     if request.method == 'GET':
-        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
+        return render_template('my-expertise.html')
     elif request.method == 'POST':
         for k, val in request.form.iteritems():
             current_user.set_skill(k, val)
@@ -136,7 +133,7 @@ def my_expertise():
         <li>Fill another expertise questionnaire below</li>
         <li>View your <a href="/user/{}">public profile</a></li>
         """).format(current_user.id))
-        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
+        return render_template('my-expertise.html')
 
 
 @views.route('/dashboard')
@@ -196,30 +193,36 @@ def get_user(userid):
 
 @views.route('/search', methods=['GET', 'POST'])
 def search():
+    '''
+    Generic search page
+    '''
+    form = SearchForm()
     if request.method == 'GET':
-        return render_template('search.html', **{'AREAS': CONTENT['areas']})
+        return render_template('search.html', form=form)
     if request.method == 'POST':
-        print request
-        country = request.values.get('country', '')
-        langs = request.values.getlist('langs')
-        skills = request.values.getlist('skills')
-        domains = request.values.getlist('domains')
-        fulltext = request.values.get('fulltext', '')
-        query = {'location': country, 'langs': langs, 'skills': skills,
-                 'fulltext': fulltext, 'domains': domains}
-        print query
-        if 'social-login' in session:
-            my_userid = session['social-login']['userid']
-        else:
-            my_userid = 'anonymous'
-        query_info = copy.deepcopy(query)
-        query_info['type'] = '/search'
-        query_info['user-agent'] = request.headers.get('User-Agent')
-        db.logQuery(my_userid, query_info)
-        experts = db.findExpertsAsJSON(**query)
-        session['has_done_search'] = True
+        query = User.query  #pylint: disable=no-member
+
+        if form.country.data and form.country.data != 'ZZ':
+            query = query.filter(User.country == form.country.data)
+
+        if form.locales.data:
+            query = query.join(User.languages).filter(UserLanguage.locale.in_(
+                form.locales.data))
+
+        if form.expertise_domain_names.data:
+            query = query.join(User.expertise_domains).filter(UserExpertiseDomain.name.in_(
+                form.expertise_domain_names.data))
+
+        if form.fulltext.data:
+            query = query.filter(func.to_tsvector(func.array_to_string(array([
+                User.first_name, User.last_name, User.organization, User.position,
+                User.projects]), ' ')).op('@@')(func.plainto_tsquery(form.fulltext.data)))
+
+        # TODO ordering by relevance
         return render_template('search-results.html',
-                               **{'title': 'Expertise search', 'results': experts, 'query': query})
+                               title='Expertise search',
+                               form=form,
+                               results=query.limit(20).all())
 
 
 @views.route('/match')
@@ -240,26 +243,23 @@ def match():
 @views.route('/match-knn')
 @login_required
 def knn():
-    if 'user-expertise' not in session:
+    '''
+    Find nearest neighbor (innovators most like you)
+    '''
+    if not current_user.skill_levels:
         flash('Before we can find innovators like you, you need to '
               '<a href="/my-expertise">fill your expertise</a> first.', 'error')
         return redirect(url_for('views.my_expertise'))
-    query = {}
-    if 'user-expertise' not in session:
-        print "User expertise not in session"
-        #my_needs = []
-    else:
-        skills = session['user-expertise']
-    print skills
-    experts = db.findMatchKnnAsJSON(skills)
-    session['has_done_search'] = True
-    return render_template('search-results.html',
-                           **{'title': 'People most like me',
-                              'results': experts, 'query': query})
+    experts = current_user.nearest_neighbors
+    return render_template('search-results.html', title='People most like me',
+                           results=experts)
 
 
 @views.route('/users/recent')
 def recent_users():
+    '''
+    Most recent users.
+    '''
     users = User.query.order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
                            **{'title': 'Our Ten most recent members', 'results': users,
@@ -268,15 +268,7 @@ def recent_users():
 
 @views.route('/feedback')
 def feedback():
+    '''
+    Feedback page.
+    '''
     return render_template('feedback.html', **{})
-
-
-@views.route('/match-test')
-def match_test():
-    print session
-    query = {'location': '', 'langs': [], 'skills': [], 'fulltext': 'NYU'}
-    if 'user-expertise' not in session:
-        session['user-expertise'] = {}
-    experts = db.findMatchAsJSON(session['user-expertise'])
-    return render_template('test.html',
-                           **{'title': 'Matching search', 'results': experts, 'query': query})
