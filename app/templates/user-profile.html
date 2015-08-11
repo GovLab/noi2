@@ -25,7 +25,7 @@
 }
 
 {% for questionnaire in QUESTIONNAIRES %}
-.noi-color-{{area['id']}} { background-color: {{ questionnaire['icon-color'] }}; }
+.noi-color-{{questionnaire['id']}} { background-color: {{ questionnaire['icon-color'] }}; }
 {% endfor %}
 
 </style>
@@ -146,7 +146,7 @@
       <i class="fa fa-question"></i>
     {% endif %}
 </span>
-&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{area['id']}}">{{ question.label|replace('-', ' ') }}</span>
+&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{questionnaire['id']}}">{{ question.label|replace('-', ' ') }}</span>
 </li>
 {% endif %}
 {% endwith %}
