@@ -119,7 +119,7 @@ def my_profile():
 
             db.session.add(current_user)
             db.session.commit()
-            flash(lazy_gettext('Your profile has been saved. <br/>You may also want to <a'
+            flash(lazy_gettext('Your profile has been saved. <br/>You may also want to <a '
                                'href="/my-expertise">tell us what you know</a>.'))
         else:
             flash(lazy_gettext(u'Could not save, please correct errors below: {}'.format(
@@ -157,6 +157,7 @@ def my_expertise():
 
 
 @views.route('/dashboard')
+@login_required
 def dashboard():
     '''
     Dashboard of what's happening on the platform.
@@ -192,6 +193,7 @@ def dashboard():
 
 
 @views.route('/user/<userid>')
+@login_required
 def get_user(userid):
     '''
     Public-facing profile view
@@ -212,6 +214,7 @@ def get_user(userid):
 
 
 @views.route('/search', methods=['GET', 'POST'])
+@login_required
 def search():
     '''
     Generic search page
