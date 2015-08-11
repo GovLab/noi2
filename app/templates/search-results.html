@@ -22,11 +22,13 @@
 					<div class="e-place"><i class="fa fa-map-marker"></i>{{r.city or ''}} &nbsp; {{r.country or ''}}</div>
 					<div class="e-bottom-info">
 
+            {#
 					{% if r.score and r.score > 0 %}
 						<div class="e-score">
 							<i class="fa fa-star"></i>{{r.score}}
 						</div>
 					{% endif %}
+          #}
 
 {#<div class="e-lang">{{ r.languages }}</div>#}
 					</div>
