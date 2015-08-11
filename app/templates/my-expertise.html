@@ -84,11 +84,10 @@ label {
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         
 <p>Tell us what you know about various key topics by answering some of the following questions.</p>
-
 <p>For each question, you can choose from
   {% for k,v in LEVELS|dictsort %}
   <button style="font-size: 14px;" type="button" class="e-answer">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
-  {% endfor %}
+  {% endfor %}, or skip it entirely.
 </p>
 </div>
 

@@ -30,6 +30,22 @@ body {
     margin-top: 20px;
     color: rgba(255, 255, 255, 0.6); }
 
+.b-question-answers .radio-selection {
+  display: none; }
+.b-question-answers label {
+  border: 1px solid #ddd;
+  padding: 4px 10px;
+  margin: 10px; }
+  .b-question-answers label:hover {
+    background-color: #eee; }
+.b-question-answers input:checked + label {
+  background-color: #472b74;
+  color: #fff; }
+
+.noi-q-even, .noi-q-odd {
+  background-color: #FFF !important;
+  padding: 30px 0; }
+
 @media (max-width: 960px) {
   body.homepage .bg {
     background-image: url("../img/homepage-bg-mobile.jpg");

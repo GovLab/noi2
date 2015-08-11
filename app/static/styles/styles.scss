@@ -45,6 +45,33 @@ body { background-color: #fff; }
     }
 }
 
+.b-question-answers {
+    .radio-selection {
+        display: none;
+    }
+
+    label {
+        border: 1px solid #ddd;
+        padding: 4px 10px;
+        margin: 10px;
+
+        &:hover {
+            background-color: #eee;
+        }
+    }
+
+    input:checked + label {
+        background-color: #472b74;   
+        color: #fff;
+    }
+}
+
+.noi-q-even, .noi-q-odd { 
+    background-color: #FFF !important; 
+    padding: 30px 0;
+}
+
+
 @media (max-width: 960px) {
 
 body.homepage .bg {
