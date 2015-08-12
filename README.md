@@ -47,4 +47,4 @@ will need to go to the IP address you get from
 
     boot2docker ip
 
-The server should be running on port 5000.
+The server should be running on port 80.
