@@ -65,7 +65,7 @@ LEVELS = {'LEVEL_I_CAN_EXPLAIN': {'score': 2,
 
 VALID_SKILL_LEVELS = [v['score'] for k, v in LEVELS.iteritems()]
 
-NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray'.split(',')
+NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray,#a3abd1'.split(',')
 
 with open('/noi/app/data/domains.yaml') as domains_yaml:
     DOMAINS = yaml.load(domains_yaml)

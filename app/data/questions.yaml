@@ -306,8 +306,8 @@
 
 - name: Citizen Engagement
   id: citizenengagement
-  icon: opendata.svg
-  icon-color: "#E86B5F"
+  icon: crowdsourcing2.png
+  icon-color: "#A3ABD1"
   description: >
    <p>As technological advances give individuals greater ability to share their opinions and ideas with the world,citizens are increasingly expecting government to consult with them and factor their input into the policy-making process.Moving away from the representative democracy system created in a less connected time, e-petitions; participatory budgeting (PB), a collaborative, community-based system for budget allocation; open innovation initiatives; and a diversity of other citizen engagement initiatives are allowing citizens to make their voices heard between trips to the ballot box.</p>
    <p><b> Click on a link below to create an expertise profile.</b></p>
