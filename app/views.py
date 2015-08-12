@@ -286,7 +286,7 @@ def recent_users():
     '''
     users = User.query.order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
-                           **{'title': 'Our Ten most recent members', 'results': users,
+                           **{'title': 'Our most recent members', 'results': users,
                               'query': ''})
 
 

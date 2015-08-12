@@ -7,3 +7,5 @@ backups
 celerybeat-schedule
 celerybeat.pid
 alchemydumps
+*.log
+
