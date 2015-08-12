@@ -74,4 +74,8 @@ def create_app():
         app.logger.warn('No MAIL_SERVER found in config, password reset will '
                         'not work.')
 
+    if not app.config.get('GA_TRACKING_CODE'):
+        app.logger.warn('No GA_TRACKING_CODE found in config, analytics will'
+                        ' not work.')
+
     return app
