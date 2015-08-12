@@ -44,7 +44,7 @@ main_js = Bundle('js/plugins.js',
                  output='gen/main_packed.%(version)s.js')
 assets.register('main_js', main_js)
 
-photos = UploadSet('photos', IMAGES)
+#photos = UploadSet('photos', IMAGES)
 
 cache = Cache()
 

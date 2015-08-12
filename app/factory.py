@@ -5,10 +5,10 @@ Creates the app
 '''
 
 from flask import Flask
-from flask.ext.uploads import configure_uploads
+#from flask.ext.uploads import configure_uploads
 from flask_security import SQLAlchemyUserDatastore
 
-from app import (csrf, cache, mail, bcrypt, photos, s3, assets, security,
+from app import (csrf, cache, mail, bcrypt, s3, assets, security,
                  babel,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
 from app.forms import RegisterForm
@@ -41,7 +41,7 @@ def create_app():
     bcrypt.init_app(app)
     #security.init_app(app, bcrypt)
     s3.init_app(app)
-    configure_uploads(app, (photos))
+    #configure_uploads(app, (photos))
 
     # Setup Flask-Security
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
