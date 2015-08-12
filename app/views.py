@@ -263,19 +263,19 @@ def match():
                            results=current_user.helpful_users)
 
 
-@views.route('/match-knn')
-@login_required
-def knn():
-    '''
-    Find nearest neighbor (innovators most like you)
-    '''
-    if not current_user.skill_levels:
-        flash('Before we can find innovators like you, you need to '
-              '<a href="/my-expertise">fill your expertise</a> first.', 'error')
-        return redirect(url_for('views.my_expertise'))
-    experts = current_user.nearest_neighbors
-    return render_template('search-results.html', title='People most like me',
-                           results=experts)
+# @views.route('/match-knn')
+# @login_required
+# def knn():
+#     '''
+#     Find nearest neighbor (innovators most like you)
+#     '''
+#     if not current_user.skill_levels:
+#         flash('Before we can find innovators like you, you need to '
+#               '<a href="/my-expertise">fill your expertise</a> first.', 'error')
+#         return redirect(url_for('views.my_expertise'))
+#     experts = current_user.nearest_neighbors
+#     return render_template('search-results.html', title='People most like me',
+#                            results=experts)
 
 
 @views.route('/users/recent')
