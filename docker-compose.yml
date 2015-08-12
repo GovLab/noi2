@@ -3,6 +3,7 @@ app:
     command: /noi/run.sh
     links:
         - db
+        - redis
     volumes:
         - .:/noi
         - migrations:/migrations
@@ -21,3 +22,18 @@ web:
     ports:
         - "80:80"
         - "443:443"
+worker:
+    build: app/
+    command: /noi/run.sh
+    links:
+        - redis
+        - db
+    volumes:
+        - .:/noi
+        - migrations:/migrations
+        - backups:/alchemydumps
+    environment:
+        - NOI_ENVIRONMENT=celery
+        - C_FORCE_ROOT=True
+redis:
+    image: redis

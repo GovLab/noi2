@@ -9,12 +9,14 @@ from flask import Flask
 from flask_security import SQLAlchemyUserDatastore
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security,
-                 babel,
+                 babel, celery, alchemydumps,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
+from app.config.schedule import CELERYBEAT_SCHEDULE
 from app.forms import RegisterForm
 from app.models import db, User, Role
 from app.views import views
 
+from celery import Task
 from slugify import slugify
 import yaml
 
@@ -28,8 +30,11 @@ def create_app():
     with open('/noi/app/config/config.yml', 'r') as config_file:
         app.config.update(yaml.load(config_file))
 
+    app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
+
     with open('/noi/app/config/local_config.yml', 'r') as config_file:
         app.config.update(yaml.load(config_file))
+
 
     app.register_blueprint(views)
 
@@ -48,6 +53,7 @@ def create_app():
                       register_form=RegisterForm)
 
     db.init_app(app)
+    alchemydumps.init_app(app, db)
     #login_manager.init_app(app)
     assets.init_app(app)
 
@@ -78,3 +84,24 @@ def create_app():
                         ' not work.')
 
     return app
+
+
+def create_celery(app=None):
+
+    app = app or create_app()
+
+    class ContextTask(Task):
+        '''
+        Run tasks within app context.
+        '''
+        abstract = True
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return Task.__call__(self, *args, **kwargs)
+
+
+    celery.conf.update(app.config)
+    celery.Task = ContextTask
+
+    return celery
+

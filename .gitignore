@@ -3,3 +3,7 @@
 app/config/local_config.yml
 *.mo
 .keys
+backups
+celerybeat-schedule
+celerybeat.pid
+alchemydumps

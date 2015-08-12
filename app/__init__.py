@@ -4,6 +4,7 @@ NoI __init__
 Creates globals
 '''
 
+from flask_alchemydumps import AlchemyDumps
 from flask_assets import Bundle, Environment
 from flask_security import Security
 from flask_cache import Cache
@@ -22,6 +23,7 @@ import locale
 
 s3 = FlaskS3()
 mail = Mail()
+alchemydumps = AlchemyDumps()
 security = Security()
 csrf = CsrfProtect()
 babel = Babel()
@@ -29,8 +31,8 @@ bcrypt = Bcrypt()
 
 celery = Celery(
     __name__,
-    #broker=os.environ.get('REDISGREEN_URL', None),
-    include=[]
+    broker='redis://redis', #TODO this should be from config
+    include=['app.tasks']
 )
 
 assets = Environment()
