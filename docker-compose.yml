@@ -5,6 +5,7 @@ app:
         - db
     volumes:
         - .:/noi
+        - migrations:/migrations
     environment:
         - NOI_ENVIRONMENT # unless production, assumed "development"
 db:

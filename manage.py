@@ -8,7 +8,8 @@ from app import mail, models
 from app.factory import create_app
 from app.models import db, User, UserSkill
 
-from flask_migrate import Migrate
+from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
+from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_security.utils import encrypt_password
 
@@ -20,8 +21,11 @@ migrate = Migrate(app, db) #pylint: disable=invalid-name
 
 manager = Manager(app) #pylint: disable=invalid-name
 
-#manager.add_command('db', MigrateCommand)
+manager.add_command('db', MigrateCommand)
 #manager.add_command("assets", ManageAssets)
+
+alchemydumps = AlchemyDumps(app, db)
+manager.add_command('alchemydumps', AlchemyDumpsCommand)
 
 
 @manager.shell
@@ -44,15 +48,21 @@ def translate():
 
 @manager.command
 @manager.option('-v', '--verbose', dest='verbose', default=False)
-def drop_and_create_db(verbose=False):
+def drop_db(verbose=False):
     """
-    Drops database and creates a new one
+    Drops database
     """
-    if not verbose:
+    if verbose:
         db.engine.echo = False
+    else:
+        db.engine.echo = True
+
+    db.session.commit()
     db.reflect()
     db.drop_all()
-    db.create_all()
+    #db.engine.execute("drop schema if exists public cascade;")
+    #db.engine.execute("create schema public;")
+    #db.create_all()
     return 0
 
 
@@ -70,6 +80,7 @@ def populate_db():
         db.session.add(user)
     db.session.commit()
     return 0
+
 
 
 if __name__ == '__main__':
