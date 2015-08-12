@@ -1,3 +1,3 @@
 #!/bin/bash -e
 
-docker-compose run web $@
+docker-compose run app python /noi/manage.py $@
