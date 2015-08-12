@@ -28,6 +28,7 @@ ul li {
 
 <form action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
+<input type="hidden" name="has_picture" value="{{ form.has_picture.data }}" />
 
 <div class="form-horizontal">
 
