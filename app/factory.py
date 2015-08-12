@@ -24,9 +24,9 @@ def create_app():
     '''
     Create an instance of the app.
     '''
-    app = Flask(__name__, template_folder="templates")
+    app = Flask(__name__)
 
-    ordbok = FlaskOrdbok(app)
+    ordbok = FlaskOrdbok(app, namespace='noi')
     ordbok.load()
 
     app.config.update(ordbok)

@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
-#python /noi/manage.py drop_and_create_db -v
-#python /noi/manage.py populate_db
-python /noi/manage.py runserver --host 0.0.0.0
+if [ "$NOI_ENVIRONMENT" == production ]; then
+    cd /noi && gunicorn wsgi:application -b 0.0.0.0:5000
+else
+    python /noi/manage.py runserver --host 0.0.0.0
+fi

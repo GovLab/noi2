@@ -1,11 +1,21 @@
-web:
+app:
     build: app/
     command: /noi/run.sh
     links:
         - db
     volumes:
         - .:/noi
-    ports:
-        - "5000:5000"
+    environment:
+        - NOI_ENVIRONMENT # unless production, assumed "development"
 db:
     image: postgres:9.4
+web:
+    image: nginx
+    volumes:
+        - conf/:/etc/nginx/conf.d/
+        - ./app/static:/noi/app/static
+        - /etc/ssl/certs:/etc/ssl/certs
+    links:
+        - app
+    ports:
+        - "80:80"
