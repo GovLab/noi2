@@ -12,7 +12,7 @@ from app import (csrf, cache, mail, bcrypt, s3, assets, security,
                  babel, celery, alchemydumps,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
 from app.config.schedule import CELERYBEAT_SCHEDULE
-from app.forms import RegisterForm
+from app.forms import EmailRestrictRegisterForm
 from app.models import db, User, Role
 from app.views import views
 
@@ -50,7 +50,7 @@ def create_app():
     # Setup Flask-Security
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
-                      register_form=RegisterForm)
+                      confirm_register_form=EmailRestrictRegisterForm)
 
     db.init_app(app)
     alchemydumps.init_app(app, db)

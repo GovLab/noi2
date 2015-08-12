@@ -8,7 +8,7 @@ from app.models import User
 from flask import current_app
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed
-from flask_security.forms import RegisterForm as FlaskSecurityRegisterForm
+from flask_security.forms import ConfirmRegisterForm
 
 from flask_babel import lazy_gettext
 from wtforms_alchemy import model_form_factory, CountryField
@@ -88,10 +88,11 @@ class SearchForm(Form):
     fulltext = TextField()
 
 
-class RegisterForm(FlaskSecurityRegisterForm):
+class EmailRestrictRegisterForm(ConfirmRegisterForm):
     '''
     Custom registration form that limits emails to a certain domain.
     '''
+
     def validate_email(self, field):
         '''
         Validate email is OK for this domain
