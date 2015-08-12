@@ -41,12 +41,16 @@
 			<center><span class="flag-icon flag-icon-squared flag-icon-{{ user.country.code }}"></center>
 		</div>
 		<div class="debug col-xs-4 col-md-4">
-      {#<center><img class="profile-img" src="{{user|avatar}}"/><center>#}
+      {% if current_user.has_picture %}
+      <center><img class="profile-img" src="{{ user.picture_url }}"/><center>
+      {% endif %}
 			</div>
 		<div class="debug col-xs-4 col-md-4">
+      {#
 			<center>
 			<img class="profile-map" src="https://maps.googleapis.com/maps/api/staticmap?center={{ user.latlng }}&size=300x100&zoom=5&markers=color:blue%7Clabel:%7C{{ user.latlng }}" alt="location">
 		</center>
+    #}
 		</div>
 	</div>
 <div class="row">

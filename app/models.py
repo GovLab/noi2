@@ -1,11 +1,12 @@
 '''
 NoI Models
 
-Creates the app
+SQLAlchemy models for the app
 '''
 
 from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS
 
+from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
@@ -34,7 +35,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     picture_id = Column(types.String,
                         default=lambda: base64.urlsafe_b64encode(os.urandom(20))[0:-2])
 
-    has_picture = Column(types.Boolean)
+    has_picture = Column(types.Boolean, default=False)
 
     first_name = Column(types.String, info={
         'label': lazy_gettext('First Name'),
@@ -94,11 +95,29 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                         onupdate=datetime.datetime.now)
 
     @property
+    def display_in_search(self):
+        '''
+        Determine whether user has filled out bare minimum to display in search
+        results.
+        '''
+        return self.first_name is not None and self.last_name is not None
+
+    @property
     def picture_path(self):
         '''
-        URL where picture would be found (hosted on S3).
+        Path where picture would be found (hosted on S3).
         '''
         return "static/pictures/{}/{}".format(self.id, self.picture_id)
+
+    @property
+    def picture_url(self):
+        '''
+        Full path to picture.
+        '''
+        return 'https://s3.amazonaws.com/{bucket}/{path}'.format(
+            bucket=current_app.config['S3_BUCKET_NAME'],
+            path=self.picture_path
+        )
 
     @property
     def helpful_users(self, limit=10):
