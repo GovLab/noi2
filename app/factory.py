@@ -15,7 +15,6 @@ from app.forms import RegisterForm
 from app.models import db, User, Role
 from app.views import views
 
-from ordbok.flask_helper import FlaskOrdbok
 from slugify import slugify
 import yaml
 
@@ -26,11 +25,11 @@ def create_app():
     '''
     app = Flask(__name__)
 
-    ordbok = FlaskOrdbok(app, namespace='noi')
-    ordbok.load()
+    with open('/noi/app/config/config.yml', 'r') as config_file:
+        app.config.update(yaml.load(config_file))
 
-    app.config.update(ordbok)
-    #app.config.update(config or {})
+    with open('/noi/app/config/local_config.yml', 'r') as config_file:
+        app.config.update(yaml.load(config_file))
 
     app.register_blueprint(views)
 
