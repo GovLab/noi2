@@ -1,5 +1,25 @@
 # Network of Innovators
 
+## Quick install
+
+To get an deployment of NOI running quickly on a Linux box with Docker
+installed (for example, a DigitalOcean droplet), run the following in terminal:
+
+    curl -L https://github.com/docker/compose/releases/download/1.3.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    git clone https://github.com/GovLab/noi2.git
+    cd noi2
+
+In order to enable full site functionality, you will need to specify the
+following in `noi/app/config/local_config.yml`:
+
+    TODO
+
+The site should then come online on port 80.  You will need to specify
+additional
+
+    docker-compose up
+
 ## Development
 
 To develop, install the pip requirements into a virtualenv.  You will need
