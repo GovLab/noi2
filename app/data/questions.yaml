@@ -456,3 +456,195 @@
           label: best practices
         - question: How to identify and empower internal staff who will advocate and drive change
           label: motivate champions
+
+ - name: Lab Design
+  id: citizenscience
+  icon: citizenscience.svg
+  description: >
+   <p>Across the world, governments are seeking to become more experimental 
+   and evidence-based through the creation of internal innovation labs. The growing 
+   movement of labs – which often focus on innovative tools and strategies, human-centered
+   design, or both – is helping to uncover what works in practice in addressing public problems. </p>
+   <p><b>Click on a link below to create an expertise profile.</b></p>
+
+  topics:
+    - topic: Lab Creation and Vision
+      description: What you can share about launching a government innovation lab.
+      questions:
+        - question: how to articulate the value proposition of my Lab and the need for experimentation.
+          label: articulating value proposition
+        - question: how to develop a plan for my Lab 
+          label: plan development
+        - question: how to clearly articulate the problems that my Lab is supposed to solve, and the assumptions it is going to test 
+          label: articulating problems and assumptions
+        - question: how to define the service lines for my Lab
+          label: defining service lines
+        - question: how to articulate a clear theory of change for my Lab
+          label: articulating theory of change
+
+    - topic: Lab Operations
+      description: What you can share about the organizational mechanics of running a government innovation lab.
+      questions:
+        - question: how to define an engagement model for my Lab vis a vis other parts of my organisation
+          label: defining unique engagement model
+        - question: how to define a handover protocol between my Lab and other parts of the organisation
+          label: defining handover protocol
+        - question: how to define the roles and Terms of Reference staff need for the success of my Lab
+          label: defining staff roles
+        - question: how to cost the services for my Lab and define a business model that guarantees long term sustainability
+          label: Defining sustainable business model
+        - question: how to effectively argue for the most effective reporting lines and organisational placement for my Lab
+          label: arguing effective reporting lines and placement
+
+    - topic: Lab Experimentation and Methodology
+      description: What you can share about developing and implementing an experimental methodology for lab work. 
+      questions:
+        - question: how to define metrics for my Lab to demonstrate its impact
+          label: defining metrics of impact 
+        - question: how to select and implement the methodologies that my Lab will promote
+          label: selection and implementation of methodologies
+        - question: how to train others in Lab methodologies and tools
+          label: training others in operations
+        - question: how to manage a Lab project using an agile development approach
+          label: managing projects
+        - question: how to track, evidence and iterate our programmes to ensure relevance and generate timely results
+          label: program tracking and result generation
+
+    - topic: Staffing and Resources
+      description: What you can share about managing lab staff and budgets
+      questions:
+        - question: how to effectively recruit a group of early champions to support the Lab
+          label: recruiting support
+        - question: how to manage resources, including people, time and budget to ensure value for money
+          label: resource management
+
+    - topic: Capturing, Leveraging and Communicating Results
+      description: What you can share about making use of lab results internally and communicating impacts externally.
+      questions:
+        - question: how to develop a portfolio of demonstration projects that can demonstrate tangible results even in the face of skepticism
+          label: demonstrating results
+        - question: how to research, pilot and test new programmes based on the insights and knowhow gathered from previous ones
+          label: new program development
+        - question: how to capture, articulate and share the narrative around the impact and outcomes of lab programmes, i.e. through case studies
+          label: communicating narrative of impact
+
+ - name: Crowdsourcing
+  id: citizenscience
+  icon: citizenscience.svg
+  description: >
+   <p>Crowdsourcing uses communications technologies to enable institutions 
+   to leverage the wisdom of the crowd. With crowdsourcing, organizations can get
+   help, for example, with performing tasks, obtaining ideas and opinions, 
+   gathering data, soliciting funds, or administering programs. By enabling institutions
+   to get more distributed and diverse collaboration in ways never before possible, 
+   they can improve a project’s efficiency, legitimacy and diversity. </p>
+   <p><b>These questions help you describe what you know and can share about crowdsourcing
+   and what you want to learn from others. Click on a link below to create an expertise 
+   profile.</b></p>
+
+  topics:
+    - topic: Determining the Crowd
+      description: What can you share about identifying, enrolling, and developing a crowd
+      questions:
+        - question: How to identify the crowd I want to participate (e.g. general public, informed experts, participants with a particular skill)
+          label: identifying crowd
+        - question: How to enable members of the crowd to participate (e.g. creating profiles, defining roles, sharing supporting materials)
+          label: enable participation
+        - question:  How to encourage ongoing participation 
+          label: encourage participation
+
+    - topic: Determining the Activity
+      description:  What can you share about the type of activities the crowd could perform
+      questions:
+        - question:  How to ask the crowd to perform a specific task (e.g. design a product, tag photos, classify information, analyse information)
+          label: asking for specific task
+        - question: How to ask the crowd to collect and share data (e.g. report a water leak, a case of corruption, quality of the air in their city)
+          label: asking to collect and share data
+        - question: How to ask the crowd for their opinion (e.g. vote on a design contest, opine on a policy recommendation)
+          label: asking for opinion
+        - question: How to ask the crowd for new ideas (e.g. solve a public problem, generate ideas to reduce unnecessary government spending)
+          label: asking for new ideas
+        - question:  How to ask the crowd for funds (e.g. donate money to help build a park, funding a municipal bond)
+          label: asking for funds
+        - question:  How to ask the crowd for referrals (e.g. share information with their personal or professional networks, provide recommendations of other members of the crowd to include in an initiative) 
+          label: asking for referrals
+
+    - topic: Determining a Successful Crowdsourcing Strategy
+      description: What can you share about defining if crowdsourcing is the right process for a given situation
+      questions:
+        - question: How to decide when to use crowdsourcing rather than other options like the conventional top-down process of decision-making
+          label: when to crowdsource
+        - question: How to identify the gaps in expertise that can be minimised through the participation of the crowd
+          label: identify gaps in expertise
+        - question: How to design a crowdsourcing strategy that provides value to the participants either through the outcome or the participation itself 
+          label: strategy that provides value
+        - question: How to connect the efforts of the crowd to enable them to aggregate and build off each other’s work
+          label: connect crowd efforts
+        - question: How to determine the institutional resources required to implement a successful crowdsourcing initiative
+          label: determine requisite institutional resources
+        - question: How to assess the potential time and resources required from the crowd in order to participate
+          label: assess time and resources required
+        - question: How to assess the effectiveness of using crowdsourcing
+          label: assess effectiveness
+
+    - topic: Providing the Right Incentives
+      description: What can you share about providing the right incentives for participation
+      questions:
+        - question: How to define the scope of the crowd’s participation
+          label: defining scope
+        - question: How to provide feedback for participation 
+          label: providing feedback
+        - question: How to decide whether to use financial or non-financial incentives (or a mix of incentives)
+          label: Financial vs non-financial incentives
+        - question: How to determine whether the use of a competition is beneficial 
+          label: determine benefits of competition
+        - question: How to determine whether the use of reputation systems is beneficial 
+          label: determine benefits of reputation systems
+        - question: How to use altruistic or community building incentives
+          label: Altruistic incentives
+        - question: How to design recreational incentives (i.e. gamification)
+          label: design recreational incentives
+        - question: How to identify which particular incentive is working and why
+          label: Indentify effective incentives
+        - question: How to monitor and adapt the incentives at the individual or crowd levels  
+          label: Monitor and adapt incentives
+        - question: How to tackle the possible credibility and authenticity issues involved in the input received from the crowd
+          label: credibility and authenticity issues
+
+    - topic: Implementation and Tools
+      description: What can you share about setting up, running and managing a crowdsourcing effort
+      questions:
+        - question: How to create a plan for running the crowdsourcing project with defined milestones
+          label: defined milestones
+        - question: How to target the right audience to attract the desired crowd and participation
+          label: target right audience
+        - question: How to choose a platform to do the crowdsourcing project
+          label: choosing platform
+        - question: How to access outside contractors and/or intermediaries to support the design and implementation of the desired crowdsourcing platform 
+          label: accessing outside support
+        - question: How to build a team within an institution that supports the project from initial idea through implementation 
+          label: team-building
+        - question: How to develop a communication strategy to target the right audience
+          label: developing communication strategy
+        - question: How to connect members of the crowd to each other when appropriate
+          label: connecting members of crowd
+        - question: How to prepare to utilize or implement the output of the crowd 
+          label: preparing for output
+
+    - topic: Quality Control Mechanisms
+      description: What can you share about defining the right mechanism of quality control
+      questions:
+        - question: How to ensure high-quality and accurate participation from the crowd
+          label: ensuring high-quality participation
+        - question: How to leverage crowd participants to evaluate crowd contributions (through voting, rating or peer-review)
+          label: leverage crowd evaluation
+
+      - topic: Ethical and Legal Concerns
+      description: What can you share about addressing potential legal and ethical tensions
+      questions:
+        - question: How to determine ownership and copyright of crowd contributions
+          label: determining ownership
+        - question: How to navigate governmental endorsement and privacy concerns
+          label: governmental endorsement and privacy
+        - question: How to navigate potential tensions regarding free speech and public record laws
+          label: free speech and public record tensions
