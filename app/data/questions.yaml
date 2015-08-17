@@ -150,11 +150,6 @@
         - question: how to translate winning entries into well-developed solutions
           label: after the challenge
 
-- name: Crowdsourcing
-  id: crowdsourcing
-  icon: crowdsourcing.svg
-  description: Coming soon
-
 - name: Agile
   id: agile
   icon: agile.svg
@@ -457,9 +452,9 @@
         - question: How to identify and empower internal staff who will advocate and drive change
           label: motivate champions
 
- - name: Lab Design
-  id: citizenscience
-  icon: citizenscience.svg
+- name: Lab Design
+  id: lab-design
+  icon: labdesign.svg
   description: >
    <p>Across the world, governments are seeking to become more experimental 
    and evidence-based through the creation of internal innovation labs. The growing 
@@ -528,9 +523,9 @@
         - question: how to capture, articulate and share the narrative around the impact and outcomes of lab programmes, i.e. through case studies
           label: communicating narrative of impact
 
- - name: Crowdsourcing
-  id: citizenscience
-  icon: citizenscience.svg
+- name: Crowdsourcing
+  id: crowdsourcing
+  icon: crowdsourcing.svg
   description: >
    <p>Crowdsourcing uses communications technologies to enable institutions 
    to leverage the wisdom of the crowd. With crowdsourcing, organizations can get
@@ -639,7 +634,7 @@
         - question: How to leverage crowd participants to evaluate crowd contributions (through voting, rating or peer-review)
           label: leverage crowd evaluation
 
-      - topic: Ethical and Legal Concerns
+    - topic: Ethical and Legal Concerns
       description: What can you share about addressing potential legal and ethical tensions
       questions:
         - question: How to determine ownership and copyright of crowd contributions
