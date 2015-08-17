@@ -108,5 +108,6 @@ class EmailRestrictRegisterForm(ConfirmRegisterForm):
             if value in email_whitelist:
                 return value
 
-        raise ValidationError('{value} is not a valid email address: {explanation}'.format(
-            value=value, explanation=current_app.config.get('EMAIL_EXPLANATION')))
+        if email_regex:
+            raise ValidationError('{value} is not a valid email address: {explanation}'.format(
+                value=value, explanation=current_app.config.get('EMAIL_EXPLANATION')))
