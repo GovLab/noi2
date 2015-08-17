@@ -179,119 +179,119 @@
     - topic: Tasks and Goals
       description: defining the goals of a citizen science initiative and the tasks to be completed in order to achieve them
       questions:
-        - question: how to identify a compelling goal for a citizen science project.
+        - question: How to identify a compelling goal for a citizen science project
           label: compelling goal
-        - question: how to identify and define the tasks for participants to do
+        - question: How to identify and define the tasks for participants to do
           label: define tasks
-        - question: how to decide the types of tasks to be considered when developing a citizen science project
+        - question: How to decide the types of tasks to be considered when developing a citizen science project
           label: types of tasks
-        - question: how to articulate intended outcomes of a project
+        - question: How to articulate intended outcomes of a project
           label: intended outcomes
-        - question: how to articulate how the tasks will advance a research field
+        - question: How to articulate how the tasks will advance a research field
           label: advance research field
-        - question: how to define the success of a project
+        - question: How to define the success of a project
           label: define success
-        - question: how to measure and evaluate the success of a project
+        - question: How to measure and evaluate the success of a project
           label: measure success
-        - question: how to define and validate a protocol for an experiment and required data collection
+        - question: How to define and validate a protocol for an experiment and required data collection
           label: validate protocol
-        - question: how to define a project in terms of time required and geographic range
+        - question: How to define a project in terms of time required and geographic range
           label: time and geographic range
-        - question: how to identify funding opportunities for a project
+        - question: How to identify funding opportunities for a project
           label: funding opportunities
 
     - topic: Incentives and Motivation
       description: developing incentives to motivate participation
       questions:
-        - question: how to engage with and/or create a community for participants.
+        - question: How to engage with and/or create a community for participants.
           label: community of participants
-        - question: how to retain participants
+        - question: How to retain participants
           label: retain participants
-        - question: how to address variations and skew in participation
+        - question: How to address variations and skew in participation
           label: variations and skew
-        - question: how to scale up participation
+        - question: How to scale up participation
           label: scale participation
-        - question: how to identify collaborators around the project
+        - question: How to identify collaborators around the project
           label: identify collaborators
-        - question: how to define and develop gamification in projects
+        - question: How to define and develop gamification in projects
           label: develop gamification 
-        - question: how to identify what people are competing to do (e.g. quantity, frequency, quality of participation)
+        - question: How to identify what people are competing to do (e.g. quantity, frequency, quality of participation)
           label: identify competition 
-        - question: how to attribute contributions to the relevant parties
+        - question: How to attribute contributions to the relevant parties
           label: attribute contribution
 
     - topic: Training
       description: giving participants the skills and information needed to participate well
       questions:
-        - question: how to prepare individuals to participate in a project.
+        - question: How to prepare individuals to participate in a project
           label: prepare participants 
-        - question: how to develop an FAQ for participants to reference throughout the process
+        - question: How to develop an FAQ for participants to reference throughout the process
           label: develop faq
-        - question: how to prepare people within my institution to make use of citizen scientists’ input
+        - question: How to prepare people within my institution to make use of citizen scientists’ input
           label: prepare within institution
-        - question: how to assess data quality
+        - question: How to assess data quality
           label: data quality 
-        - question: how to design/adapt protocols to assure high quality data
+        - question: How to design/adapt protocols to assure high quality data
           label: protocols high quality data
-        - question: how to identify, choose and recruit participants capable of contributing high quality data.
+        - question: How to identify, choose and recruit participants capable of contributing high quality data
           label: high quality participants
 
     - topic: Platforms and Tools
       description: deciding upon and using citizen science platforms and tools
       questions:
-        - question: how to identify and decide on the optimal platform for sharing data submitted by participants, in a way that helps them interpret the data.
+        - question: How to identify and decide on the optimal platform for sharing data submitted by participants, in a way that helps them interpret the data
           label: platform interpret data
-        - question: how to Identify and decide on the optimal platform for sharing data submitted by participants, with other researchers or data hubs
+        - question: How to identify and decide on the optimal platform for sharing data submitted by participants, with other researchers or data hubs
           label: platform for researchers
-        - question: how to evaluate and implement the appropriate use of technology for collecting and reporting data given the task I am asking people to do
+        - question: How to evaluate and implement the appropriate use of technology for collecting and reporting data given the task I am asking people to do
           label: technology for collecting and reporting data
-        - question: how to interpret data being collected before the project has been completed
+        - question: How to interpret data being collected before the project has been completed
           label: interpret data before
-        - question: how to interpret data collected when the project has been completed
+        - question: How to interpret data collected when the project has been completed
           label: interpret data after
-        - question: how to archive data
+        - question: How to archive data
           label: archive data
 
     - topic: Decision Making
       description: using input gained through citizen science to drive decision making
       questions:
-        - question: how to identify the societal relevance of your project
+        - question: How to identify the societal relevance of your project
           label: societal relevance
-        - question: 'how to translate the outcomes of the project into desired changes: (government, institutional, societal)'
+        - question: 'How to translate the outcomes of the project into desired changes: (government, institutional, societal)'
           label: translate outcomes
 
     - topic: Legal Questions
       description: legal concerns and barriers related to citizen science initiatives
       questions:
-        - question: how to identify and mitigate privacy concerns relating to data collected
+        - question: How to identify and mitigate privacy concerns relating to data collected
           label: privacy concerns
-        - question: how to ensure COPPA compliance in projects featuring minors
+        - question: How to ensure COPPA compliance in projects featuring minors
           label: coppa compliance
-        - question: how to identify considerations related to participants sharing their locations
+        - question: How to identify considerations related to participants sharing their locations
           label: considerations locations
-        - question: how to ask people to license their contributions
+        - question: How to ask people to license their contributions
           label: license contributions
-        - question: how to license data that is going to be published
+        - question: How to license data that is going to be published
           label: license published data
-        - question: how to draft a data policy
+        - question: How to draft a data policy
           label: draft data policy
-        - question: how to draft a privacy policy.
+        - question: How to draft a privacy policy
           label: draft privacy policy
-        - question: how to draft other liability policies and educate potential participants about privacy issues
+        - question: How to draft other liability policies and educate potential participants about privacy issues
           label: draft liability policies
 
     - topic: Communicating Results and Sustaining Projects
       description: communicating project results to participants and the public, and ensuring that projects continue after initial the engagement
       questions:
-        - question: how to communicate results and milestones to participants
+        - question: How to communicate results and milestones to participants
           label: results and milestones
-        - question: how to identify avenues for publishing results
+        - question: How to identify avenues for publishing results
           label: avenues publishing results
-        - question: how to determine when to publish results
+        - question: How to determine when to publish results
           label: when publish results
-        - question: how to ensure sustainability of project management
+        - question: How to ensure sustainability of project management
           label: sustainability of project management
-        - question: how to identify funding opportunities to sustain a project
+        - question: How to identify funding opportunities to sustain a project
           label: funding opportunities
 
 - name: Nudges
