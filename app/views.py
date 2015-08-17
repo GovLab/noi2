@@ -90,6 +90,8 @@ def my_profile():
     Show user their profile, let them edit it
     '''
     form = UserForm(obj=current_user)
+    if 'X-Upload-Too-Big' in request.headers:
+        form.picture.errors = ('Sorry, the picture you tried to upload was too large',)
     if request.method == 'GET':
         return render_template('my-profile.html', form=form)
     elif request.method == 'POST':
@@ -122,8 +124,7 @@ def my_profile():
             flash(lazy_gettext('Your profile has been saved. <br/>You may also want to <a '
                                'href="/my-expertise">tell us what you know</a>.'))
         else:
-            flash(lazy_gettext(u'Could not save, please correct errors below: {}'.format(
-                form.errors)))
+            flash(lazy_gettext(u'Could not save, please correct errors below'))
 
         return render_template('my-profile.html', form=form)
 

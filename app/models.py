@@ -107,7 +107,9 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         '''
         Path where picture would be found (hosted on S3).
         '''
-        return "static/pictures/{}/{}".format(self.id, self.picture_id)
+        return "{}/static/pictures/{}/{}".format(
+            current_app.config['NOI_DEPLOY'],
+            self.id, self.picture_id)
 
     @property
     def picture_url(self):
