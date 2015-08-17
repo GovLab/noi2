@@ -13,12 +13,27 @@ installed (for example, a DigitalOcean droplet), run the following in terminal:
 In order to enable full site functionality, you will need to specify the
 following in `noi/app/config/local_config.yml`:
 
-    TODO
+    MAIL_USERNAME:
+    MAIL_PASSWORD:
+    NOI_DEPLOY:
+    S3_ACCESS_KEY_ID:
+    S3_SECRET_ACCESS_KEY:
+    DEBUG: False
+    SERVER_NAME:
+    GA_TRACKING_CODE:
+    SECRET_KEY:
 
-The site should then come online on port 80.  You will need to specify
-additional
+If you want SSL to work, you'll need to uncomment the lines in
+`/conf/ssl/ssl.conf`, and add the secret key and certificate of the same name
+to the `.keys` directory.
 
-    docker-compose up
+Then, get the database ready:
+
+    ./manage.sh db upgrade
+
+To run the site in deploy mode:
+
+    ./deploy.sh
 
 ## Development
 

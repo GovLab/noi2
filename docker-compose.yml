@@ -16,7 +16,7 @@ web:
     volumes:
         - conf/:/etc/nginx/conf.d/
         - ./app/static:/noi/app/static
-        - /etc/ssl/certs:/etc/ssl/certs
+        - ./keys:/etc/ssl/certs
     links:
         - app
     ports:
