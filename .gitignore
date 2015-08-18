@@ -8,4 +8,4 @@ celerybeat-schedule
 celerybeat.pid
 alchemydumps
 *.log
-
+tmp
