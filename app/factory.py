@@ -58,7 +58,6 @@ def create_app():
     assets.init_app(app)
 
     app.jinja_env.filters['slug'] = lambda x: slugify(x).lower()
-    app.jinja_env.filters['noop'] = lambda x: ''
 
     noi_deploy = app.config.get('NOI_DEPLOY')
     if not noi_deploy:
@@ -68,7 +67,6 @@ def create_app():
 
     # Constant that should be available for all templates.
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
-    app.jinja_env.globals['QUESTIONNAIRES'] = QUESTIONNAIRES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
     app.jinja_env.globals['LEVELS'] = LEVELS
     app.jinja_env.globals['QUESTIONS_BY_ID'] = QUESTIONS_BY_ID
@@ -82,6 +80,20 @@ def create_app():
     if not app.config.get('GA_TRACKING_CODE'):
         app.logger.warn('No GA_TRACKING_CODE found in config, analytics will'
                         ' not work.')
+
+    # Order questionnaires for deployments that want custom order.
+    questionnaire_order = app.config.get('QUESTIONNAIRE_ORDER')
+    if questionnaire_order:
+        new_order = []
+        for q_id in questionnaire_order:
+            try:
+                new_order.append(filter(lambda q: q['id'] == q_id, QUESTIONNAIRES)[0])
+            except IndexError:
+                raise Exception('Cannot find questionairre ID "{}", aborting'.format(
+                    q_id))
+        app.jinja_env.globals['QUESTIONNAIRES'] = new_order
+    else:
+        app.jinja_env.globals['QUESTIONNAIRES'] = QUESTIONNAIRES
 
     return app
 
