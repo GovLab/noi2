@@ -35,6 +35,11 @@ def create_app():
     with open('/noi/app/config/local_config.yml', 'r') as config_file:
         app.config.update(yaml.load(config_file))
 
+    # If we control emails with a Regex, we have to confirm email.
+    if 'EMAIL_REGEX' in app.config:
+        app.config['SECURITY_CONFIRMABLE'] = True
+    else:
+        app.config['SECURITY_CONFIRMABLE'] = False
 
     app.register_blueprint(views)
 
