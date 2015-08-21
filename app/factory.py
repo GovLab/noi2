@@ -64,13 +64,14 @@ def create_app():
 
     app.jinja_env.filters['slug'] = lambda x: slugify(x).lower()
 
-    noi_deploy = app.config.get('NOI_DEPLOY')
+    noi_deploy = app.config.get('NOI_DEPLOY', '')
     if not noi_deploy:
         app.logger.warn('No NOI_DEPLOY found in config, deploy-specific '
                         'attributes like the About page and logos will be '
                         'missing.')
 
     # Constant that should be available for all templates.
+    app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
     app.jinja_env.globals['LEVELS'] = LEVELS
