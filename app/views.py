@@ -101,8 +101,9 @@ def my_profile():
         #flash('Your profile has been saved. <br/>You may also want to <a'
         #      'href="/my-expertise">tell us what you know</a>.')
         #session['has_created_profile'] = True
-        form.populate_obj(current_user)
+
         if form.validate():
+            form.populate_obj(current_user)
 
             if form.picture.has_file():
                 conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
@@ -121,8 +122,8 @@ def my_profile():
 
             db.session.add(current_user)
             db.session.commit()
-            flash(lazy_gettext('Your profile has been saved. <br/>You may also want to <a '
-                               'href="/my-expertise">tell us what you know</a>.'))
+            flash(lazy_gettext('Your profile has been saved. <br/>Please tell '
+                               'us about your expertise below.'))
         else:
             flash(lazy_gettext(u'Could not save, please correct errors below'))
 

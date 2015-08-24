@@ -41,6 +41,10 @@ def create_app():
     else:
         app.config['SECURITY_CONFIRMABLE'] = False
 
+
+    with open('/noi/app/data/domains.yaml') as domains_yaml:
+        all_domains = yaml.load(domains_yaml)
+
     app.register_blueprint(views)
 
     babel.init_app(app)
@@ -67,8 +71,12 @@ def create_app():
     noi_deploy = app.config.get('NOI_DEPLOY', '')
     if not noi_deploy:
         app.logger.warn('No NOI_DEPLOY found in config, deploy-specific '
-                        'attributes like the About page and logos will be '
-                        'missing.')
+                        'attributes like the About page, custom domains and '
+                        'logos will be missing.')
+
+    app.config['DOMAINS'] = all_domains.get('_default')
+    if noi_deploy in all_domains:
+        app.config['DOMAINS'] = all_domains[noi_deploy]
 
     # Constant that should be available for all templates.
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
