@@ -299,6 +299,12 @@
   icon: partnerships.svg
   description: Coming soon
 
+- name: Data Science
+  id: datascience
+  icon: datascience.svg
+  description: Coming soon
+  icon-color: "#FF8E00"
+
 - name: Citizen Engagement
   id: citizenengagement
   icon: crowdsourcing2.png
@@ -455,6 +461,7 @@
 - name: Lab Design
   id: lab-design
   icon: labdesign.svg
+  icon-color: "#50E3C2"
   description: >
    <p>Across the world, governments are seeking to become more experimental 
    and evidence-based through the creation of internal innovation labs. The growing 
