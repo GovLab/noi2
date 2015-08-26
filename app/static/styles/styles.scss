@@ -251,8 +251,16 @@ body.homepage .bg {
     .button {
         display: inline-block;
         color: #fff;
-        padding: 12px 40px;
+        padding: 16px 50px;
         background-color: #472b74;
+        margin: 5px;
+        transition: all 0.3s ease;
+        opacity: .8;
+
+        &:hover {
+            opacity: 1;            
+            transition: all 0.3s ease;
+        }
     }
 
     .small-print {
