@@ -1,113 +1,29 @@
 {% extends '__base__.html' %}
 
 {% block title %}Network of Innovators{% endblock %}
-{% block page_style_post %}
-<style>
-.row { margin-top: 30px}
-.numberCircle {
-    border-radius: 50%;
 
-    width: 48px;
-    height: 48px;
-    padding: 5px;
-    
-    background: #fff;
-    border: 2px solid #666;
-    color: #666;
-    text-align: center;
-    vertical-align: middle;
-    font: 32px Arial, sans-serif;
-    margin-bottom: 5px;
-}
-
-.noi-oboarding-call-to-action { text-transform: uppercase; }
-.noi-onboarding { text-align: center;
-    text-transform: uppercase;
-    border: solid 1px black;
-    padding: 10px;
-    background-color: lightgray;
-    border-radius: 10px;}
-
-.noi-achievement-unlocked { float: right; font-size: 300%;
-    vertical-align: text-top;
-    text-align: center;
-    margin-top: -15px;
-    margin-right: 10px;
-}
-
-.noi-green { color: green;}
-.noi-red { color: red;}
-.noi-mainpage-icon { width: 75px; }
-.noi-mainpage-icon-small { width: 40px;}
-
-</style>
-{% endblock %}
 {% block body_class %}homepage{% endblock %}
 {% block content %}
 
 <div id="homepage">
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            {% if request.MOBILE == False %}
-            <div class="text-center">
-                <p>Want to find innovators from around the world?</p>
-                <p>Want to get matched with those who know what you don't?</p>
-                <p>Want to meet those confronting similar opportunities and challenges?</p>
-                <p>Sign up for the network of innovators and find your open government soulmate.</p>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-    <div class="row b-signup">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="b-instructions-box {{ 'm-unlocked' if session['social-login'] else 'm-locked'}}" data-step="1">
-            {#<div class="b-instructions-box m-unlocked" data-step="1">#}
-                <p><a href="/register">Register with your email</a></p>
-            </div>
-        </div>
-    </div>
+    <div class="modal-overlay">
+        <div class="modal-content onboarding">
+            <div class="logo"><span></span></div>
+            <div>
+                <h2>Network of Innovators Matching Platform</h2>
+                <h3>A GovLab experiment in partnership with NHS England</h3>
+                
+                <p>Tell Us What You Know <br>
+                and What You Want to Learn<br>
+                about Innovation and Data Science Practices<br>
+                and Let Us Match You to</p>
 
+                <div class="action"><a href="#" class="button">Get Started</a></div>
 
-<div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="b-instructions-box {{ 'm-unlocked' if session['has_filled_expertise'] else 'm-locked'}}" data-step="2">
-                <p><a href="/my-expertise">Tell us what you know</a><br/>
-                    Edit your expertise</p>
-                <div class="text-center">
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/opendata.png"/>
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/prizes.png"/>
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/crowdsourcing.png"/>
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/agile.png"/>
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/citizenscience.png"/>
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/nudges.png"/>
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/partnerships.png"/>
-                    <img class="noi-mainpage-icon-small" src="/static/img/expertise-icons/crowdsourcing2.png"/>
-                </div>
+                <p class="small-print">Network of Innovators (NoI) is an experimental platform designed and managed by the GovLab to identify people and search for expertise across organizations, institutions, and communities. NHS England is collaborating with the GovLab to test this platform at the NHS Expo to enable conference attendees to test their knowledge of innovation practices and be matched with others who share similar interests and skills.</p>
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="b-instructions-box {{ 'm-unlocked' if session['has_created_profile'] else 'm-locked'}}" data-step="3">
-            {#<div class="b-instructions-box m-unlocked" data-step="2">#}
-                <p><a href="/me">Complete your profile</a></p>
-            </div>
-        </div>
-    </div>
-
-    
-    <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="b-instructions-box {{ 'm-unlocked' if session['has_done_search'] else 'm-locked'}}" data-step="4">
-                <p><a href="/match">Find innovators with answers</a></p>
-                <p><a href="/match-knn">Find innovators like you</a></p>
-                <p><a href="/search">Search the network</a></p>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 {% endblock %}
 
