@@ -27,7 +27,7 @@ def main_page():
     '''
     Main NoI page: forward to match page if logged in already.
     '''
-    if current_user.id:
+    if current_user.is_authenticated():
         return redirect(url_for('views.match'))
     else:
         return render_template('main.html', SKIP_NAV_BAR=False)
