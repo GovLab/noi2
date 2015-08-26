@@ -2,7 +2,7 @@
 NoI forms
 '''
 
-from app import LOCALES, DOMAINS
+from app import LOCALES
 from app.models import User
 
 from flask import current_app
@@ -24,6 +24,18 @@ import re
 #from app.models import db
 
 ModelForm = model_form_factory(Form)
+
+
+class CallableChoicesSelectMultipleField(SelectMultipleField):
+    '''
+    Subclass of SelectMultipleField that can take a callable for `choices`.
+
+    The function is only executed at instantiatino.
+    '''
+    def __init__(self, *args, **kwargs):
+        if 'choices' in kwargs and hasattr(kwargs['choices'], '__call__'):
+            kwargs['choices'] = kwargs['choices']()
+        super(CallableChoicesSelectMultipleField, self).__init__(*args, **kwargs)
 
 
 class ChosenSelect(Select):  #pylint: disable=no-init,too-few-public-methods
@@ -68,10 +80,13 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
 
     locales = SelectMultipleField(label=lazy_gettext('Languages'),
                                   widget=ChosenSelect(multiple=True),
-                                  choices=[(l.language, l.display_name) for l in LOCALES])
-    expertise_domain_names = SelectMultipleField(label=lazy_gettext('Domains of Expertise'),
-                                                 widget=ChosenSelect(multiple=True),
-                                                 choices=[(v, v) for v in DOMAINS])
+                                  # in native language
+                                  #choices=[(l.language, l.display_name) for l in LOCALES])
+                                  choices=[(l.language, l.english_name) for l in LOCALES])
+    expertise_domain_names = CallableChoicesSelectMultipleField(
+        label=lazy_gettext('Domains of Expertise'),
+        widget=ChosenSelect(multiple=True),
+        choices=lambda: [(v, v) for v in current_app.config['DOMAINS']])
 
 
 class SearchForm(Form):
@@ -82,9 +97,10 @@ class SearchForm(Form):
     locales = SelectMultipleField(label=lazy_gettext('Languages'),
                                   widget=ChosenSelect(multiple=True),
                                   choices=[(l.language, l.display_name) for l in LOCALES])
-    expertise_domain_names = SelectMultipleField(label=lazy_gettext('Domains of Expertise'),
-                                                 widget=ChosenSelect(multiple=True),
-                                                 choices=[(v, v) for v in DOMAINS])
+    expertise_domain_names = CallableChoicesSelectMultipleField(
+        label=lazy_gettext('Domains of Expertise'),
+        widget=ChosenSelect(multiple=True),
+        choices=lambda: [(v, v) for v in current_app.config['DOMAINS']])
     fulltext = TextField()
 
 

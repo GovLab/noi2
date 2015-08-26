@@ -159,7 +159,6 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                 filter(alias.user_id == self.id)
 
                 #outerjoin(UserSkill, alias.user_id != UserSkill.user_id).\
-        #crash
         return query.limit(limit).all()
 
 
@@ -214,11 +213,15 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
             if val not in self.expertise_domain_names:
                 db.session.add(UserExpertiseDomain(name=val,
                                                    user_id=self.id))
-
         # delete expertise no longer found
+        expertise_to_remove = []
         for exp in self.expertise_domains:
             if exp.name not in values:
-                self.expertise_domains.remove(exp)
+                expertise_to_remove.append(exp)
+
+        for exp in expertise_to_remove:
+            self.expertise_domains.remove(exp)
+
 
     @hybrid_property
     def locales(self):
@@ -240,10 +243,13 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                 db.session.add(UserLanguage(locale=val, user_id=self.id))
 
         # delete languages no longer found
+        languages_to_remove = []
         for lan in self.languages:
             if lan.locale.language not in values:
-                self.languages.remove(lan)
-                #db.session.delete(lan)
+                languages_to_remove.append(lan)
+
+        for lan in languages_to_remove:
+            self.languages.remove(lan)
 
 
 class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-methods

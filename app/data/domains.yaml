@@ -1,27 +1,35 @@
-- Agriculture
-- Arts and culture
-- Business Licensing and Regulation
-- Consumer rights and issues
-- Defense and Armed Forces
-- Education
-- Energy
-- Environment
-- Foreign affairs
-- Government efficiency, transparency and accountability
-- Health
-- Housing
-- Human Rights
-- Immigration and Citizenship Services
-- International Aid and Development
-- Labor
-- Law and Justice System
-- Media and Communications
-- National Security
-- Public safety and Emergencies
-- Sanitation
-- Science and Innovation
-- Social care
-- Tax and Revenue
-- Trade and Investment
-- Transportation
-- Water and Electricity
+_default:
+  - Agriculture
+  - Arts and culture
+  - Business Licensing and Regulation
+  - Consumer rights and issues
+  - Defense and Armed Forces
+  - Education
+  - Energy
+  - Environment
+  - Foreign affairs
+  - Government efficiency, transparency and accountability
+  - Health
+  - Housing - Human Rights - Immigration and Citizenship Services
+  - International Aid and Development
+  - Labor
+  - Law and Justice System
+  - Media and Communications
+  - National Security
+  - Public safety and Emergencies
+  - Sanitation
+  - Science and Innovation
+  - Social care
+  - Tax and Revenue
+  - Trade and Investment
+  - Transportation
+  - Water and Electricity
+
+nhs.networkofinnovators.org:
+  - Mental Health
+  - Primary Care
+  - Community Care
+  - Public Health and Population Health
+  - Acute Health
+  - Health Policy
+  - Commissioning
