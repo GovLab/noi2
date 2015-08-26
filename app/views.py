@@ -25,9 +25,12 @@ views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 @views.route('/')
 def main_page():
     '''
-    Main NoI page
+    Main NoI page: forward to match page if logged in already.
     '''
-    return render_template('main.html', SKIP_NAV_BAR=False)
+    if current_user.id:
+        return redirect(url_for('views.match'))
+    else:
+        return render_template('main.html', SKIP_NAV_BAR=False)
 
 
 @views.route('/about')
@@ -122,8 +125,9 @@ def my_profile():
 
             db.session.add(current_user)
             db.session.commit()
-            flash(lazy_gettext('Your profile has been saved. <br/>Please tell '
-                               'us about your expertise below.'))
+            flash('Your profile has been saved. <br/>Please tell '
+                               'us about your expertise below.')
+            return redirect(url_for('views.my_expertise'))
         else:
             flash(lazy_gettext(u'Could not save, please correct errors below'))
 

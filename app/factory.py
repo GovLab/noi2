@@ -45,6 +45,9 @@ def create_app():
     with open('/noi/app/data/domains.yaml') as domains_yaml:
         all_domains = yaml.load(domains_yaml)
 
+    with open('/noi/app/data/about.yaml') as about_yaml:
+        all_abouts = yaml.load(about_yaml)
+
     app.register_blueprint(views)
 
     babel.init_app(app)
@@ -84,8 +87,10 @@ def create_app():
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
     app.jinja_env.globals['LEVELS'] = LEVELS
     app.jinja_env.globals['QUESTIONS_BY_ID'] = QUESTIONS_BY_ID
-    with open('/noi/app/data/about.yaml') as about_yaml:
-        app.jinja_env.globals['ABOUT'] = yaml.load(about_yaml).get(noi_deploy)
+
+    app.jinja_env.globals['ABOUT'] = all_abouts.get('_default')
+    if noi_deploy in all_abouts:
+        app.jinja_env.globals['ABOUT'] = all_abouts[noi_deploy]
 
     if not app.config.get('MAIL_USERNAME') or not app.config.get('MAIL_PASSWORD'):
         app.logger.warn('No MAIL_SERVER found in config, password reset will '
