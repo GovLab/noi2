@@ -41,12 +41,8 @@ def create_app():
     else:
         app.config['SECURITY_CONFIRMABLE'] = False
 
-
-    with open('/noi/app/data/domains.yaml') as domains_yaml:
-        all_domains = yaml.load(domains_yaml)
-
-    with open('/noi/app/data/about.yaml') as about_yaml:
-        all_abouts = yaml.load(about_yaml)
+    with open('/noi/app/data/deployments.yaml') as deployments_yaml:
+        deployments = yaml.load(deployments_yaml)
 
     app.register_blueprint(views)
 
@@ -71,15 +67,16 @@ def create_app():
 
     app.jinja_env.filters['slug'] = lambda x: slugify(x).lower()
 
-    noi_deploy = app.config.get('NOI_DEPLOY', '')
-    if not noi_deploy:
+    noi_deploy = app.config.get('NOI_DEPLOY', '_default')
+    if noi_deploy == '_default':
         app.logger.warn('No NOI_DEPLOY found in config, deploy-specific '
                         'attributes like the About page, custom domains and '
                         'logos will be missing.')
+    this_deployment = deployments.get(noi_deploy, deployments['_default'])
+    default_deployment = deployments['_default']
 
-    app.config['DOMAINS'] = all_domains.get('_default')
-    if noi_deploy in all_domains:
-        app.config['DOMAINS'] = all_domains[noi_deploy]
+    app.config['DOMAINS'] = this_deployment.get('domains',
+                                                default_deployment['domains'])
 
     # Constant that should be available for all templates.
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
@@ -88,9 +85,8 @@ def create_app():
     app.jinja_env.globals['LEVELS'] = LEVELS
     app.jinja_env.globals['QUESTIONS_BY_ID'] = QUESTIONS_BY_ID
 
-    app.jinja_env.globals['ABOUT'] = all_abouts.get('_default')
-    if noi_deploy in all_abouts:
-        app.jinja_env.globals['ABOUT'] = all_abouts[noi_deploy]
+    app.jinja_env.globals['ABOUT'] = this_deployment.get('about',
+                                                         default_deployment['about'])
 
     if not app.config.get('MAIL_USERNAME') or not app.config.get('MAIL_PASSWORD'):
         app.logger.warn('No MAIL_SERVER found in config, password reset will '
@@ -101,12 +97,14 @@ def create_app():
                         ' not work.')
 
     # Order questionnaires for deployments that want custom order.
-    questionnaire_order = app.config.get('QUESTIONNAIRE_ORDER')
+    questionnaire_order = this_deployment.get('questions',
+                                              default_deployment['questions'])
     if questionnaire_order:
         new_order = []
         for q_id in questionnaire_order:
             try:
-                new_order.append(filter(lambda q: q['id'] == q_id, QUESTIONNAIRES)[0])
+                new_order.append([q for q in QUESTIONNAIRES if q['id'] == q_id][0])
+                #new_order.append(filter(lambda q: q['id'] == q_id, QUESTIONNAIRES)[0])
             except IndexError:
                 raise Exception('Cannot find questionairre ID "{}", aborting'.format(
                     q_id))
