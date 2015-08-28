@@ -109,13 +109,28 @@ nhs.networkofinnovators.org:
     - datascience:
         description: >
             <p>Better use of data has the potential to improve the quality of healthcare for all, reduce costs, and promote innovation.</p>
-            <p>Access to high quality, relevant data is essential, but to make use of that data, NHS England also needs to build the capacity for using data to improve people’s lives.</p>
+            <p>Access to high quality, relevant data is essential, but to make use of that data, the NHS in England also needs to build the capacity for using data to improve people’s lives.</p>
             <p>These questions help you describe what you know about using data and what you want to learn from others. By answering some or all of these questions, you can then get matched with those with complementary expertise. When you are finished, you can also complete questionnaires about other areas of governance innovation.</p>
-    - opendata
-    - prizes
-    - citizenscience
-    - communityengagement
-    - crowdsourcing
+    - opendata:
+        description: >
+            <p>The NHS has committed to opening up and making more accessible the data it collects consistent with personal privacy. When organizations open their data for research, analysis and reuse, it can be a powerful tool for improvement. With more open data those inside and outside of NHS in England can create useful policies, tools, visualizations, maps, and apps. Open data can provide the raw material to convene informed conversations about what’s broken and the empirical foundation for developing solutions. But knowing how to make data more accessible consistent with the demands of privacy and security isn’t easy.</p>
+            <p>The questions below are designed to help you describe what you know, can share and what want to learn from others about open data.</p>
+    - crowdsourcing:
+        description: >
+            <p>Crowdsourcing is the process of outsourcing work typically done inside an organization to a distribution group outside of it, often using new technology. Crowdsourcing is a valuable tool that could help the NHS in England get help on a variety of tasks. These might include asking the “crowd” (e.g. clinicians, administrators, patients, professors, students, and other stakeholders) to collect and share data, contribute ideas and opinions, or undertake tasks. Crowdsourcing methods enable more distributed and diverse collaboration in ways that can improve the efficiency, legitimacy and diversity of important projects that need stakeholder engagement.</p>
+            <p>How much do you know about leveraging the wisdom of the crowd? </p>
+    - prizes:
+        description: >
+            <p>Prize-Backed Challenges offer an incentive to encourage, recognise and reward innovation. The NHS’ own innovation challenge prizes have sought to solve big problems by creating an impetus for those inside and outside NHS to innovate. When successfully executed, prize-backed challenges and competitions can also drive the adoption of innovations across an institution. Competitions like these offer a range of advantages for government agencies, especially in an era of tightening budgets. But knowing when and how to design a successful prize-backed challenge is hard.</p>
+            <p>How much do you know about designing an innovation challenge?</p>
+    - communityengagement:
+        description:
+            <p>NHS in England works best when its diverse stakeholders -- whether patients, front line staff, CCGs, and others -- are directly engaged in decision-making and service delivery. Engagement can build trust and increase the legitimacy of decision-making. It can also help the NHS in England solve problems more effectively by developing solutions that are designed in consultation with their stakeholders. But knowing when and how to engage members of a community and under what conditions is hard. </p>
+            <p>Share what you know and what you would like to learn about how to formulate, implement and measure a community engagement strategy.</p>
+    - citizenscience:
+        description: >
+            <p>Citizen science typically refers to scientific or research tasks, such as data collection, measurement, and classification, that are undertaken collaboratively either online or off by volunteer members of the general public and professional scientists or researchers. It can also refer to laypeople undertaking their own community-based science initiatives. As institutions like the NHS in England seek to do more with less, citizen science could provide an innovative method for engaging with communities of patients and providers to help do better research, understand on-the-ground-conditions and accomplish difficult, time-consuming objectives more effectively and efficiency.</p>
+            <p>What do you know about how to design a citizen science initiative?</p>
   domains:
     - Mental Health
     - Primary Care
