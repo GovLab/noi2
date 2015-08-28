@@ -142,17 +142,12 @@
   text-align: center; }
   .onboarding > div {
     padding: 40px; }
-  .onboarding .logo {
-    padding: 10px;
+  .onboarding .top-bar {
+    padding: 3px;
     background-color: #472b74; }
-    .onboarding .logo span {
-      background: url(../img/noi-logo-neg.png) no-repeat;
-      background-size: 8%;
-      background-position: center;
-      height: 30px;
-      top: 12px;
-      display: block;
-      padding: 20px; }
+  .onboarding .logo {
+    max-width: 200px;
+    margin-left: -15px; }
   .onboarding h3 {
     margin-bottom: 60px;
     color: #472b74; }
@@ -169,6 +164,8 @@
     .onboarding .button:hover {
       opacity: 1;
       transition: all 0.3s ease; }
+    .onboarding .button.light {
+      background-color: #aaa; }
   .onboarding .small-print {
     text-align: left;
     font-size: 14px;

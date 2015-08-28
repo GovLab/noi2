@@ -221,22 +221,14 @@ body.homepage .bg {
         padding: 40px;
     }
 
-    .logo {
-        padding: 10px;
+    .top-bar {
+        padding: 3px;
         background-color: #472b74;
-        
-        span {
-            background: url(../img/noi-logo-neg.png) no-repeat;
-            background-size: 8%;
-            background-position: center;
-            height: 30px;
-            top: 12px;    
-            display: block;
-            padding: 20px;
-        }
-        
-        
+    }
 
+    .logo {
+        max-width: 200px;
+        margin-left: -15px;
     }
 
     h3 {
@@ -260,6 +252,10 @@ body.homepage .bg {
         &:hover {
             opacity: 1;            
             transition: all 0.3s ease;
+        }
+
+        &.light {
+            background-color: #aaa;
         }
     }
 
