@@ -37,7 +37,6 @@ _default:
     - nudges
     - partnerships
     - communityengagement
-    - lab-design
     - crowdsourcing
 
 sa.networkofinnovators.org:
@@ -116,7 +115,6 @@ nhs.networkofinnovators.org:
     - prizes
     - citizenscience
     - communityengagement
-    - lab-design
     - crowdsourcing
   domains:
     - Mental Health
