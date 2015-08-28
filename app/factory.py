@@ -21,7 +21,7 @@ from slugify import slugify
 import yaml
 
 
-def create_app():
+def create_app(): #pylint: disable=too-many-statements
     '''
     Create an instance of the app.
     '''
@@ -101,9 +101,19 @@ def create_app():
                                               default_deployment['questions'])
     if questionnaire_order:
         new_order = []
-        for q_id in questionnaire_order:
+        for topic in questionnaire_order:
+            if isinstance(topic, basestring):
+                q_id = topic
+                custom_description = None
+            else:
+                q_id = topic.keys()[0]
+                custom_description = topic[q_id].get('description')
+
             try:
-                new_order.append([q for q in QUESTIONNAIRES if q['id'] == q_id][0])
+                questionnaire = [q for q in QUESTIONNAIRES if q['id'] == q_id][0]
+                if custom_description:
+                    questionnaire['description'] = custom_description
+                new_order.append(questionnaire)
                 #new_order.append(filter(lambda q: q['id'] == q_id, QUESTIONNAIRES)[0])
             except IndexError:
                 raise Exception('Cannot find questionairre ID "{}", aborting'.format(
@@ -116,10 +126,13 @@ def create_app():
 
 
 def create_celery(app=None):
+    '''
+    Create celery tasks
+    '''
 
     app = app or create_app()
 
-    class ContextTask(Task):
+    class ContextTask(Task): #pylint: disable=abstract-method
         '''
         Run tasks within app context.
         '''
