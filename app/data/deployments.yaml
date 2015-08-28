@@ -36,7 +36,7 @@ _default:
     - citizenscience
     - nudges
     - partnerships
-    - citizenengagement
+    - communityengagement
     - lab-design
     - crowdsourcing
 
@@ -115,7 +115,7 @@ nhs.networkofinnovators.org:
     - opendata
     - prizes
     - citizenscience
-    - citizenengagement
+    - communityengagement
     - lab-design
     - crowdsourcing
   domains:
