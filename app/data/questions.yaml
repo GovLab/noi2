@@ -302,12 +302,48 @@
 - name: Data Science
   id: datascience
   icon: datascience.svg
-  description: Coming soon
   icon-color: "#FF8E00"
+  description: TODO
+  topics:
+    - topic: Data Collection
+      description: data collection
+      questions:
+        - question: How to create incentives for people to provide data.
+          label: create incentives
+        - question: How to use new methods (e.g. crowdsourcing) for collecting data from new sources.
+          label: new methods
+        - question: How to make sure that data is accurate, timely, and clean. (Data processing and conditioning) 
+          label: data processing
+    - topic: Data Governance
+      description: data governance
+      questions:
+        - question: How to store data securely.
+          label: store securely
+        - question: How to transmit data securely so that when data is shared, the quality and integrity of the data is maintained. 
+          label: transmit securely
+        - question: How to share data appropriately within my institution and with third parties in a way that does not violate privacy and confidentiality.    (Information Governance) 
+          label: share privately
+        - question: How to craft an information governance policy.
+          label: craft policy
+    - topic: Drawing Insights from Data
+      description: drawing insights from data
+      questions:
+        - question: How to spot patterns and predict trends from existing data (predictive analytics).
+          label: predictive analytics
+        - question: How to formulate and test a hypothesis using data.
+          label: hypothesis
+        - question: How to design an experiment to test a data-driven hypothesis. 
+          label: design experiment
+        - question: How to plot and visualize data in order to derive and communicate insight.  
+          label: visualization
+        - question: How to interpret and communicate what data says. 
+          label: interpretation
 
-- name: Citizen Engagement
-  id: citizenengagement
-  icon: crowdsourcing2.png
+
+
+- name: Community Engagement
+  id: communityengagement
+  icon: communityengagement.png
   icon-color: "#A3ABD1"
   description: >
    <p>As technological advances give individuals greater ability to share their opinions and ideas with the world,citizens are increasingly expecting government to consult with them and factor their input into the policy-making process.Moving away from the representative democracy system created in a less connected time, e-petitions; participatory budgeting (PB), a collaborative, community-based system for budget allocation; open innovation initiatives; and a diversity of other citizen engagement initiatives are allowing citizens to make their voices heard between trips to the ballot box.</p>

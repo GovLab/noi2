@@ -36,7 +36,6 @@ _default:
     - citizenscience
     - nudges
     - partnerships
-    - datascience
     - citizenengagement
     - lab-design
     - crowdsourcing
@@ -109,7 +108,10 @@ nhs.networkofinnovators.org:
     collaborators & learn from others.</p>
   questions:
     - datascience:
-        description: custom description
+        description: >
+            <p>Better use of data has the potential to improve the quality of healthcare for all, reduce costs, and promote innovation.</p>
+            <p>Access to high quality, relevant data is essential, but to make use of that data, NHS England also needs to build the capacity for using data to improve people’s lives.</p>
+            <p>These questions help you describe what you know about using data and what you want to learn from others. By answering some or all of these questions, you can then get matched with those with complementary expertise. When you are finished, you can also complete questionnaires about other areas of governance innovation.</p>
     - opendata
     - prizes
     - citizenscience
