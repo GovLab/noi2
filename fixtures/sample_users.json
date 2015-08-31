@@ -19,6 +19,37 @@
         "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
     }
 },{
+    "first_name": "sly",
+    "last_name": "stone-more-knowledgeable",
+    "email": "sly@stone-more.com",
+    "confirmed_at": "2010-01-01",
+    "skills": {
+        "opendata-open-data-policy-core-mission": 2,
+        "opendata-open-data-policy-sensitive-vs-non-sensitive": 2,
+        "opendata-open-data-policy-crafting-an-open-data-policy": 2,
+        "opendata-open-data-policy-getting-public-input": 2,
+        "opendata-open-data-policy-getting-org-approval": 2,
+        "opendata-implementing-an-open-data-program-scraping-open-data": -1,
+        "opendata-implementing-an-open-data-program-making-machine-readable": -1,
+        "opendata-implementing-an-open-data-program-open-data-formats": -1,
+        "opendata-implementing-an-open-data-program-open-data-license": -1,
+        "opendata-implementing-an-open-data-program-open-data-standards": -1,
+        "opendata-implementing-an-open-data-program-managing-open-data": -1,
+        "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+        "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+    }
+},{
+    "first_name": "sly",
+    "last_name": "stone-less-knowledgeable",
+    "email": "sly@stone-less-knowledgeable.com",
+    "confirmed_at": "2010-01-01",
+    "skills": {
+        "opendata-implementing-an-open-data-program-open-data-standards": -1,
+        "opendata-implementing-an-open-data-program-managing-open-data": -1,
+        "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+        "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+    }
+},{
     "first_name": "paul",
     "last_name": "lennon",
     "email": "paul@lennon.com",

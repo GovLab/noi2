@@ -125,9 +125,15 @@ def populate_db():
         skills = user_data.pop('skills')
         user = User(password=encrypt_password('foobar'), active=True, **user_data)
         for name, level in skills.iteritems():
-            db.session.add(UserSkill(user_id=i+1, name=name, level=level))
+            skill = UserSkill(name=name, level=level)
+            user.skills.append(skill)
+            db.session.add(skill)
         db.session.add(user)
-    db.session.commit()
+        try:
+            db.session.commit()
+        except IntegrityError:
+            app.logger.debug("Could not add user %s", user_data['email'])
+            db.session.rollback()
     return 0
 
 
