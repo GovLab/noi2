@@ -68,7 +68,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     })
     organization_type = Column(types.String, info={
         'label': lazy_gettext('Type of Organization'),
-        'placeholder': lazy_gettext('The type of organization you work for'),
+        'description': lazy_gettext('The type of organization you work for'),
         'choices': [(k, v) for k, v in ORG_TYPES.iteritems()]
     })
     country = Column(CountryType, info={
@@ -81,13 +81,13 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     latlng = Column(types.String, info={
         'label': lazy_gettext('Location'),
-        'placeholder': lazy_gettext('Enter your location')
+        'description': lazy_gettext('Enter your location')
     })
 
     projects = Column(types.Text, info={
         'label': lazy_gettext('Projects'),
-        'placeholder': lazy_gettext(
-            'Details about projects you have been involved with...')
+        'description': lazy_gettext(
+            'Add name and url or short description of any current work projects.')
     })
 
     created_at = Column(types.DateTime(), default=datetime.datetime.now)

@@ -36,7 +36,7 @@ ul li {
 <div class="form-group">
   {{ form[name].label(class="col-md-4 control-label") }}
   <div class="col-md-4">
-  {{ form[name](class="input-md form-control") }}
+  {{ form[name](class="input-md form-control",placeholder=form[name].description) }}
   {% if form[name].errors %}
     <ul class="error">
     {% for error in form[name].errors %}
