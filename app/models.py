@@ -133,7 +133,6 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                               filter(UserSkill.name.in_(skills_needing_help)).\
                               filter(UserSkill.level > learn_level).\
                               group_by(UserSkill.user_id).\
-                              order_by(desc(func.sum(UserSkill.level))).\
                               limit(limit).all())
         users = db.session.query(User).\
                 filter(User.id.in_(user_id_scores.keys())).all()
@@ -149,17 +148,24 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         big difference (10).
         '''
         # TODO optimize, this would get unwieldy with a few thousand answers
+        # TODO use outerjoin, right now the coalesce does nothing
 
         #skills = [s.name for s in self.skills]
 
-        alias = aliased(UserSkill)
-        query = db.session.query(alias, UserSkill, isouter=True).\
-                filter(alias.user_id != UserSkill.user_id).\
-                filter(alias.name.in_([UserSkill.name, None])).\
-                filter(alias.user_id == self.id)
+        me = aliased(UserSkill)
+        user_id_scores = dict(db.session.query(
+            UserSkill.user_id, func.sum(func.coalesce(UserSkill.level, 10) - me.level)).\
+            filter(UserSkill.user_id != self.id).\
+            filter(me.user_id == self.id).\
+            filter(UserSkill.name.in_([me.name, None])).\
+            group_by(UserSkill.user_id).\
+            limit(limit).all())
 
-                #outerjoin(UserSkill, alias.user_id != UserSkill.user_id).\
-        return query.limit(limit).all()
+        users = db.session.query(User).\
+                filter(User.id.in_(user_id_scores.keys())).all()
+        for user in users:
+            user.score = user_id_scores[user.id]
+        return sorted(users, key=lambda x: x.score)
 
 
     @property
