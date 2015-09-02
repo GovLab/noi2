@@ -41,51 +41,6 @@ def about_page():
     return render_template('about.html')
 
 
-#@views.route('/login', methods=['GET', 'POST'])
-#def login():
-#    print session
-#    if request.method == 'GET':
-#        return render_template('login-page.html', **{'SKIP_NAV_BAR': False})
-#    if request.method == 'POST':
-#        social_login = json.loads(request.form.get('social-login'))
-#        session['social-login'] = social_login
-#        userid = social_login['userid']
-#        userProfile = db.getUser(userid)
-#        if userProfile:
-#            session['user-profile'] = userProfile
-#        else:
-#            db.createNewUser(userid, social_login['first_name'],
-#            social_login['last_name'], social_login['picture'])
-#            userProfile = db.getUser(userid)
-#            session['user-profile'] = userProfile
-#        flash('You are authenticated using your %s Credentials.' % social_login['idp'])
-#        g.is_logged_in = True
-#        return jsonify({'result': 0})
-
-
-#@views.route('/logout')
-#def logout():
-#    idp = session['social-login']['idp']
-#    session.clear()
-#    return redirect(url_for('main_page', **{'logout': idp}))
-
-
-#@views.route('/edit/<userid>', methods=['GET', 'POST'])
-#def edit_user(userid):
-#    if request.method == 'GET':
-#        userProfile = db.getUser(userid)  # We get some stuff from the DB.
-#        return render_template('my-profile.html',
-#                               **{'userProfile': userProfile})
-#
-#    if current_user.id:
-#        if request.method == 'POST' and userid == current_user.id:
-#            userProfile = json.loads(request.form.get('me'))
-#            session['user-profile'] = userProfile
-#            db.updateCoreProfile(userProfile)
-#            flash('Your profile has been saved.')
-#            return render_template('my-profile.html', **{'userProfile': userProfile})
-
-
 @views.route('/me', methods=['GET', 'POST'])
 @login_required
 def my_profile():
@@ -182,9 +137,6 @@ def dashboard():
                                                 'ALL_USERS': users,
                                                 'OCCUPATIONS': occupations})
 
-#@views.route('/dashboard-2')
-#def dashboard2():
-#    return render_template('dashboard-2.html', **{'top_countries': top_countries})
 
 #@views.route('/vcard/<userid>')
 #def vcard(userid):
@@ -206,13 +158,6 @@ def get_user(userid):
     '''
     user = User.query.get(userid)
     if user:
-        #if 'social-login' in session:
-        #    my_userid = session['social-login']['userid']
-        #else:
-        #    my_userid = 'anonymous'
-        #query_info = {'user-agent': request.headers.get('User-Agent'),
-        #              'type': '/user', 'userid': my_userid}
-        #db.logQuery(my_userid, query_info)
         return render_template('user-profile.html', user=user)
     else:
         flash('This is does not correspond to a valid user.')
