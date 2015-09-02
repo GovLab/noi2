@@ -123,7 +123,7 @@
   .b-login label {
     width: 29%; } }
 .modal-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -141,6 +141,22 @@
     text-align: center;
     margin: 20px; }
 
+@media (max-width: 960px) {
+  .modal-content {
+    top: 0;
+    width: 95%;
+    margin: 2.5%;
+    border-radius: 0; }
+    .modal-content .logo {
+      max-width: 100px !important; }
+    .modal-content h2, .modal-content h3 {
+      margin-bottom: 10px !important; }
+    .modal-content h2 {
+      font-size: 24px; }
+    .modal-content h3 {
+      font-size: 20px; }
+    .modal-content p {
+      font-size: 16px; } }
 .onboarding {
   text-align: center; }
   .onboarding > div {
