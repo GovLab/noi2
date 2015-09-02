@@ -9,8 +9,10 @@
 <div class="b-results">
 	<div class="b-content-header">
 		<h1>{{title}}{# | {{results|length}}#}</h1>
+    {% if NOI_DEPLOY == 'nhs.networkofinnovators.org' %}
         <p>Your personalized matches from the Expo who has experience in at least one of the areas you want to learn about.</p>
         <p><strong>E-mail one or more of them to meet, network and learn something new!</strong></p>
+    {% endif %}
 	</div>
 	<div id="result-set" class="b-results-container">
 		<ol>
