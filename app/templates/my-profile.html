@@ -18,6 +18,9 @@ ul li {
   margin-left: initial;
   margin-bottom: initial;
 }
+
+
+
   </style>
 {% endblock %}
 
@@ -26,7 +29,7 @@ ul li {
 
 {% block content %}
 
-<form action="#" method="post" enctype="multipart/form-data">
+<form class="footer-fix" action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
 <input type="hidden" name="has_picture" value="{{ form.has_picture.data }}" />
 

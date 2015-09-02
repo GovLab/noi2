@@ -75,6 +75,10 @@
 
 @media (max-width: 960px) {
 
+body {
+    padding-bottom: 320px;
+}
+
 body.homepage .bg {
     background-repeat: no-repeat;
     background-position: center 0;
