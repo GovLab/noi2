@@ -9,7 +9,7 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app.models import db, User, UserLanguage, UserExpertiseDomain
+from app.models import db, User, UserLanguage, UserExpertiseDomain, UserSkill
 from app.forms import UserForm, SearchForm
 
 from sqlalchemy import func, desc
@@ -190,7 +190,9 @@ def search():
         if form.fulltext.data:
             query = query.filter(func.to_tsvector(func.array_to_string(array([
                 User.first_name, User.last_name, User.organization, User.position,
-                User.projects]), ' ')).op('@@')(func.plainto_tsquery(form.fulltext.data)))
+                User.projects, UserSkill.name]), ' ')).op('@@')(
+                    func.plainto_tsquery(form.fulltext.data))).filter(
+                        UserSkill.user_id == User.id)
 
         # TODO ordering by relevance
         return render_template('search-results.html',
