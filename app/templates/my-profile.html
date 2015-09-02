@@ -29,6 +29,8 @@ ul li {
 
 {% block content %}
 
+<div id="mobileTest" class="hidden-xs"></div>
+
 <form class="footer-fix" action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
 <input type="hidden" name="has_picture" value="{{ form.has_picture.data }}" />
@@ -212,11 +214,11 @@ $( document ).ready(function() {
       '.chosen-select-width'     : {width:"95%"}
     }
 
-    {% if 'iPad' not in request.headers.get('User-Agent') %}
-    for (var selector in config) {
-      $(selector).chosen(config[selector]);
+    if (!$('#mobileTest').is(':hidden')) {
+      for (var selector in config) {
+        $(selector).chosen(config[selector]);
+      }
     }
-    {% endif %}
 
 </script>
 
