@@ -11,8 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
-from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
-                        desc)
+from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func)
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -36,6 +35,8 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                         default=lambda: base64.urlsafe_b64encode(os.urandom(20))[0:-2])
 
     has_picture = Column(types.Boolean, default=False)
+    deployment = Column(types.String, nullable=False,
+                        default=lambda: current_app.config['NOI_DEPLOY'])
 
     first_name = Column(types.String, info={
         'label': lazy_gettext('First Name'),
@@ -44,7 +45,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         'label': lazy_gettext('Last Name'),
     })
 
-    email = Column(EmailType, unique=True, nullable=False, info={
+    email = Column(EmailType, nullable=False, info={
         'label': lazy_gettext('Email'),
     })
 
@@ -256,6 +257,8 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
         for lan in languages_to_remove:
             self.languages.remove(lan)
+
+    constraint = UniqueConstraint('deployment', 'email')
 
 
 class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-methods

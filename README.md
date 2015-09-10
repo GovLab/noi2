@@ -75,7 +75,7 @@ To get everything running:
 
     docker-compose up
 
-### Viewing pages on Mac
+### Viewing the site on Mac
 
 Since boot2docker doesn't expose containers to `localhost` or `127.0.0.1`, you
 will need to go to the IP address you get from
@@ -83,3 +83,24 @@ will need to go to the IP address you get from
     boot2docker ip
 
 The server should be running on port 80.
+
+### Database migrations
+
+Whenever you make changes to `model.py`, you will need to generate a migration
+for the database.  Alembic can generate one automatically, which you will most
+likely need to tweak:
+
+    ./manage.sh db migrate
+
+If the generation is successful, you should receive a message like:
+
+    Generating /migrations/versions/<migration hash>_.py ... done
+
+Then, you should edit the migration at `migrations/versions/<migration
+hash>.py`, at the very least adding a human-readable description of the purpose
+of the migration.
+
+You'll need to manually restart the server using `docker-compose up` or
+`./deploy.sh`.  The migration will run automatically upon restart.
+
+Don't forget to commit the migration in git with your new code!

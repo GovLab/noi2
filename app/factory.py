@@ -4,9 +4,10 @@ NoI Factory
 Creates the app
 '''
 
-from flask import Flask
+from flask import Flask, current_app
 #from flask.ext.uploads import configure_uploads
-from flask_security import SQLAlchemyUserDatastore
+from flask_security import SQLAlchemyUserDatastore, user_registered
+from flask_security.utils import get_identity_attributes
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security,
                  babel, celery, alchemydumps,
@@ -16,9 +17,31 @@ from app.forms import EmailRestrictRegisterForm
 from app.models import db, User, Role
 from app.views import views
 
+from sqlalchemy.orm.exc import NoResultFound
+
 from celery import Task
 from slugify import slugify
 import yaml
+
+
+class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
+    '''
+    Subclass of SQLAlchemyUserDatastore that overrides `get_user` to take app
+    domain into account.
+    '''
+
+    def get_user(self, identifier):
+        '''
+        Get user by email or id, for this deployment.
+        '''
+        if self._is_numeric(identifier):
+            return self.user_model.query.get(identifier)
+        for attr in get_identity_attributes():
+            query = getattr(self.user_model, attr).ilike(identifier)
+            rv = self.user_model.query.filter_by(
+                deployment=current_app.config['NOI_DEPLOY']).filter(query).first()
+            if rv is not None:
+                return rv
 
 
 def create_app(): #pylint: disable=too-many-statements
@@ -32,8 +55,11 @@ def create_app(): #pylint: disable=too-many-statements
 
     app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
 
-    with open('/noi/app/config/local_config.yml', 'r') as config_file:
-        app.config.update(yaml.load(config_file))
+    try:
+        with open('/noi/app/config/local_config.yml', 'r') as config_file:
+            app.config.update(yaml.load(config_file))
+    except IOError:
+        app.logger.warn("No local_config.yml file")
 
     # If we control emails with a Regex, we have to confirm email.
     if 'EMAIL_REGEX' in app.config:
@@ -51,12 +77,11 @@ def create_app(): #pylint: disable=too-many-statements
     csrf.init_app(app)
     mail.init_app(app)
     bcrypt.init_app(app)
-    #security.init_app(app, bcrypt)
     s3.init_app(app)
     #configure_uploads(app, (photos))
 
     # Setup Flask-Security
-    user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+    user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
                       confirm_register_form=EmailRestrictRegisterForm)
 
@@ -121,6 +146,23 @@ def create_app(): #pylint: disable=too-many-statements
         app.jinja_env.globals['QUESTIONNAIRES'] = new_order
     else:
         app.jinja_env.globals['QUESTIONNAIRES'] = QUESTIONNAIRES
+
+    # Signals
+    @user_registered.connect_via(app)
+    def add_deployment_role(sender, **kwargs):
+        """
+        Add role for this deployment whenever a new user registers.
+        """
+        user = kwargs['user']
+        try:
+            role = Role.query.filter_by(name=sender.config['NOI_DEPLOY']).one()
+        except NoResultFound:
+            role = Role(name=sender.config['NOI_DEPLOY'])
+            db.session.add(role)
+
+        user.roles.append(role)
+        db.session.add(user)
+        db.session.commit()
 
     return app
 
