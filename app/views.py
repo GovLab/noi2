@@ -128,7 +128,7 @@ def dashboard():
             .order_by(desc(func.count(User.id))).all()
     users = [{'latlng': u.latlng,
               'first_name': u.first_name,
-              'last_name': u.last_name} for u in User.query.all()]
+              'last_name': u.last_name} for u in User.query_in_deployment().all()]
     occupations = db.session.query(func.count(User.id)) \
             .group_by(User.organization_type) \
             .order_by(desc(func.count(User.id))).all()
@@ -156,7 +156,7 @@ def get_user(userid):
     '''
     Public-facing profile view
     '''
-    user = User.query.get(userid)
+    user = User.query_in_deployment().get(userid)
     if user:
         return render_template('user-profile.html', user=user)
     else:
@@ -174,7 +174,7 @@ def search():
     if request.method == 'GET':
         return render_template('search.html', form=form)
     if request.method == 'POST':
-        query = User.query  #pylint: disable=no-member
+        query = User.query_in_deployment()  #pylint: disable=no-member
 
         if form.country.data and form.country.data != 'ZZ':
             query = query.filter(User.country == form.country.data)
@@ -237,7 +237,7 @@ def recent_users():
     '''
     Most recent users.
     '''
-    users = User.query.order_by(desc(User.created_at)).limit(10).all()
+    users = User.query_in_deployment().order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
                            **{'title': 'Our most recent members', 'results': users,
                               'query': ''})

@@ -139,7 +139,9 @@ nhs.networkofinnovators.org:
     - Acute Health
     - Health Policy
     - Commissioning
-  shared:
+  searches:
+    - _default
 
 test-mexico:
   locale: es_MX
+  searches:

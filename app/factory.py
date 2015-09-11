@@ -91,7 +91,7 @@ def create_app(): #pylint: disable=too-many-statements
 
     app.jinja_env.filters['slug'] = lambda x: slugify(x).lower()
 
-    noi_deploy = app.config.get('NOI_DEPLOY', '_default')
+    noi_deploy = app.config['NOI_DEPLOY']
     if noi_deploy == '_default':
         app.logger.warn('No NOI_DEPLOY found in config, deploy-specific '
                         'attributes like the About page, custom domains and '
@@ -100,6 +100,8 @@ def create_app(): #pylint: disable=too-many-statements
     default_deployment = deployments['_default']
     if 'locale' in this_deployment:
         app.config['BABEL_DEFAULT_LOCALE'] = this_deployment['locale']
+    app.config['SEARCH_DEPLOYMENTS'] = this_deployment.get('searches', []) or []
+    app.config['SEARCH_DEPLOYMENTS'].append(noi_deploy)
     babel.init_app(app)
 
     app.config['DOMAINS'] = this_deployment.get('domains',

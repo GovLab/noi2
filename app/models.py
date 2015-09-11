@@ -100,9 +100,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         '''
         Query for users within this deployment
         '''
-        ## TODO
-        return cls.query.filter_by()
-
+        return cls.query.filter(cls.deployment.in_(current_app.config['SEARCH_DEPLOYMENTS']))
 
     @property
     def display_in_search(self):

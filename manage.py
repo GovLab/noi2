@@ -166,7 +166,7 @@ def send_bulk_password_reset_links(users_csv):
         # them a reset link)
         # TODO specialize the email sent so it's not "reset your password" but
         # "Claim your NoI account" or somesuch, upon which password is set.
-        user = User.query.filter_by(email=row['email']).one()
+        user = User.query_in_deployment().filter_by(email=row['email']).one()
         send_reset_password_instructions(user)
 
 

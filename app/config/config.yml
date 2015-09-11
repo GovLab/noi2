@@ -35,3 +35,5 @@ MAIL_USE_TLS: True
 S3_BUCKET_NAME: 'network-of-innovators'
 
 CELERY_TIMEZONE: 'UTC'
+
+NOI_DEPLOY: '_default'
