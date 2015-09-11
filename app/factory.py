@@ -72,7 +72,6 @@ def create_app(): #pylint: disable=too-many-statements
 
     app.register_blueprint(views)
 
-    babel.init_app(app)
     cache.init_app(app)
     csrf.init_app(app)
     mail.init_app(app)
@@ -99,6 +98,9 @@ def create_app(): #pylint: disable=too-many-statements
                         'logos will be missing.')
     this_deployment = deployments.get(noi_deploy, deployments['_default'])
     default_deployment = deployments['_default']
+    if 'locale' in this_deployment:
+        app.config['BABEL_DEFAULT_LOCALE'] = this_deployment['locale']
+    babel.init_app(app)
 
     app.config['DOMAINS'] = this_deployment.get('domains',
                                                 default_deployment['domains'])

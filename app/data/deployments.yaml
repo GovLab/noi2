@@ -140,3 +140,6 @@ nhs.networkofinnovators.org:
     - Health Policy
     - Commissioning
   shared:
+
+test-mexico:
+  locale: es_MX

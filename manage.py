@@ -18,10 +18,12 @@ from flask_security.recoverable import send_reset_password_instructions
 from random import choice
 from sqlalchemy.exc import IntegrityError
 
+import codecs
 import json
 import os
 import string
 import subprocess
+import yaml
 
 
 app = create_app() #pylint: disable=invalid-name
@@ -36,6 +38,13 @@ alchemydumps = AlchemyDumps(app, db)
 manager.add_command('alchemydumps', AlchemyDumpsCommand)
 
 
+def gettext_for(text):
+    '''
+    Generate a jinja2 "{{ gettext() }}" line for text.
+    '''
+    return u'{{{{ gettext("{}") }}}}\n'.format(text.replace('"', r'\"'))
+
+
 @manager.shell
 def _make_context():
     '''
@@ -47,11 +56,57 @@ def _make_context():
 @manager.command
 def translate():
     """
-    Extract translation
+    Extract translation for all existing locales, creating new mofiles when
+    necessary, updating otherwise.  We have to do some tricky stuff to figure
+    out which strings are marked for translation in the domains and
+    questionnaires.
     """
+    locales = set()
+
+    with open('/noi/app/data/deployments.yaml') as deployments_file:
+        deployments = yaml.load(deployments_file)
+
+    with open('/noi/app/data/questions.yaml') as questions_file:
+        questionnaires = yaml.load(questions_file)
+
+    with codecs.open('/noi/app/templates/translate.tmp.html', 'w', 'utf-8') as totranslate:
+        for deployment in deployments.values():
+            for domain in deployment.get('domains', []):
+                totranslate.write(gettext_for(domain))
+            #if 'about' in deployment:
+            #    totranslate.write(gettext_for(deployment['about']))
+            if 'locale' in deployment:
+                locales.add(deployment['locale'])
+
+        for questionnaire in questionnaires:
+            totranslate.write(gettext_for(questionnaire['description']))
+            totranslate.write(gettext_for(questionnaire['name']))
+            if 'topics' in questionnaire:
+                for topic in questionnaire['topics']:
+                    if 'name' in topic:
+                        totranslate.write(gettext_for(topic['name']))
+                    totranslate.write(gettext_for(topic['description']))
+                    for question in topic['questions']:
+                        totranslate.write(gettext_for(question['question']))
+
+    # Generate basic messages.pot
     subprocess.check_call(
-        'pybabel extract -F app/babel.cfg -k lazy_gettext -o app/messages.pot app/',
+        'pybabel extract -F /noi/app/babel.cfg -k lazy_gettext -o /noi/app/messages.pot /noi/',
         shell=True)
+
+    # Update all potfiles, create those not yet in existence
+    for locale in locales:
+        try:
+            subprocess.check_call('pybabel update -l {locale} -i /noi/app/messages.pot '
+                                  '-d /noi/app/translations/'.format(
+                                      locale=locale), shell=True)
+        except subprocess.CalledProcessError:
+            subprocess.check_call('pybabel init -l {locale} -i /noi/app/messages.pot '
+                                  '-d /noi/app/translations/'.format(
+                                      locale=locale), shell=True)
+        subprocess.check_call('pybabel compile -f -l {locale} -d /noi/app/translations/'.format(
+            locale=locale), shell=True)
+
     return 0
 
 

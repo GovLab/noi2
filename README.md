@@ -37,8 +37,7 @@ To run the site in deploy mode:
 
 ## Development
 
-To develop, install the pip requirements into a virtualenv.  You will need
-Docker.
+To develop, install the pip requirements into a virtualenv.  You will need Docker.
 
     virtualenv .env
     source .env/bin/activate
@@ -104,3 +103,19 @@ You'll need to manually restart the server using `docker-compose up` or
 `./deploy.sh`.  The migration will run automatically upon restart.
 
 Don't forget to commit the migration in git with your new code!
+
+### Dealing with translations
+
+Running this will generate all necessary translation files for locales that are
+in `deployments.yaml`.
+
+    ./manage.sh translate
+
+You'll need to populate the resulting `.po` file for each locale in
+`translations/<locale>/LC_MESSAGES/messages.po`, then run the same script again
+
+    ./manage.sh translate
+
+To generate the `.mo` file used in actual translation.  Successive runs of the
+script won't destroy any data in the `.po` file, which is kept in version
+control.

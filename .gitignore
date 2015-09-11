@@ -9,3 +9,4 @@ celerybeat.pid
 alchemydumps
 *.log
 tmp
+translate.tmp.html
