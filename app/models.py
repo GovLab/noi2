@@ -95,6 +95,15 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
 
+    @classmethod
+    def query_in_deployment(cls):
+        '''
+        Query for users within this deployment
+        '''
+        ## TODO
+        return cls.query.filter_by()
+
+
     @property
     def display_in_search(self):
         '''
