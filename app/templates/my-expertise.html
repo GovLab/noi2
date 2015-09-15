@@ -1,6 +1,6 @@
 {% extends "__base__.html" %}
 
-{% block title %}My Expertise{% endblock %}
+{% block title %}{{ gettext('My Expertise') }}{% endblock %}
 {% block page_style_post %}
 <style>
 .profile-img { width: 60px; height: 60px; border-radius: 30px;}
@@ -68,7 +68,7 @@ label {
 
 {% macro noi_question(question, area, topic, index) -%}
 <li class="list-group-item {{'noi-q-even' if (index % 2) else 'noi-q-odd'}}">
-    <div class="noi-i-know">I know</div>
+    <div class="noi-i-know">I know') }}</div>
 		<div style="font-size: 1.5em;" class="noi-question">
 		&laquo; {{question['question']}} &raquo;
 		</div>
@@ -78,16 +78,16 @@ label {
 {%- endmacro %}
 
 
-<h1>My expertise</h1>
+<h1>{{ gettext('My expertise') }}</h1>
 
 <div class="alert alert-info">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         
-<p>Tell us what you know about various key topics by answering some of the following questions.</p>
-<p>For each question, you can choose from
+<p>{{ gettext('Tell us what you know about various key topics by answering some of the following questions.') }}</p>
+<p>{{ gettext('For each question, you can choose from') }}
   {% for k,v in LEVELS|dictsort %}
   <button style="font-size: 14px;" type="button" class="e-answer">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
-  {% endfor %}, or skip it entirely.
+  {% endfor %}, or skip it entirely.') }}
 </p>
 </div>
 
@@ -123,7 +123,7 @@ label {
         <a id="collapse-btn-{{topic['topic']|slug}}"class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-{{questionnaire.id}}" href="#collapse-{{topic.topic|slug}}">
           <i class="fa fa-plus-square-o"></i>
           <span class="noi-topic-name">{{topic['topic']}}</span></a>&nbsp;<span class="noi-expertise-progress-topic" id="{{topic.topic|slug}}"></span>
-          <div style="margin-bottom: 20px;">What you can share about {{topic['description']}}.</div>
+          <div style="margin-bottom: 20px;">{{ gettext('What you can share about') }} {{topic['description']}}.</div>
         </div>
 
         <div id="collapse-{{topic.topic|slug}}" class="accordion-body collapse">
@@ -150,7 +150,7 @@ label {
 
   <div class="row">
     <div class="col-md-12 col-xs-12 text-center">
-      <button id="save-expertise" type="submit">Save</button>
+      <button id="save-expertise" type="submit">{{ gettext('Save') }}</button>
 
 </div>
 </div>

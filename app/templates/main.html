@@ -1,6 +1,6 @@
 {% extends '__base__.html' %}
 
-{% block title %}Network of Innovators{% endblock %}
+{% block title %}{{ gettext('Network of Innovators') }}{% endblock %}
 
 {% block body_class %}homepage{% endblock %}
 {% block content %}
@@ -12,17 +12,17 @@
             <div class="top-bar"></div>
             <div>
                 <img class="logo" src="../static/img/noi-logo.png" alt="">
-                <h2><strong>Network of Innovators</strong> Expert Finder</h2>
-                <h3>A GovLab experiment in partnership with NHS England</h3>
+                <h2><strong>{{ gettext('Network of Innovators</strong> Expert Finder') }}</h2>
+                <h3>{{ gettext('A GovLab experiment in partnership with NHS England') }}</h3>
                 
-                <p>Test your knowledge of innovative practices<br>
+                <p>{{ gettext('Test your knowledge of innovative practices<br>
                 Get matched to people with complementary expertise<br>
-                Build your network at NHS Expo 15</p>
+                Build your network at NHS Expo 15') }}</p>
 
-                <div class="action"><a href="/register" class="button">Register</a><a href="/login" class="button light">Login</a></div>
+                <div class="action"><a href="/register" class="button">{{ gettext('Register') }}</a><a href="/login" class="button light">{{ gettext('Login') }}</a></div>
 
-                <p class="small-print"><strong>About this Experiment</strong>
-                As part of an ongoing project to understand the demand for and capacity to use data by the NHS in England, NHS is collaborating with the GovLab to test the Network of Innovators expert finder at the 2015 NHS Health and Care Innovation Expo.</p>
+                <p class="small-print"><strong>{{ gettext('About this Experiment') }}</strong>
+                {{ gettext('As part of an ongoing project to understand the demand for and capacity to use data by the NHS in England, NHS is collaborating with the GovLab to test the Network of Innovators expert finder at the 2015 NHS Health and Care Innovation Expo.') }}</p>
             </div>
         </div>
     </div>

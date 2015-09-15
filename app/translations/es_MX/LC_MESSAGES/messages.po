@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-15 16:22+0000\n"
+"POT-Creation-Date: 2015-09-15 17:22+0000\n"
 "PO-Revision-Date: 2015-09-11 15:30+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es_MX <LL@li.org>\n"
@@ -107,12 +107,85 @@ msgid ""
 "expertise below first."
 msgstr ""
 
-#: /noi/app/templates/about.html:3
+#: /noi/app/templates/__footer__.html:7 /noi/app/templates/about.html:16
+msgid "Information Collection Statement"
+msgstr ""
+
+#: /noi/app/templates/__footer__.html:10
+msgid ""
+"This work by <span xmlns:cc=\"http://creativecommons.org/ns#\" "
+"property=\"cc:attributionName\">The GovLab</span> is licensed under a <a "
+"rel=\"license\" "
+"href=\"http://creativecommons.org/licenses/by/4.0/\">Creative Commons "
+"Attribution 4.0 International License</a>."
+msgstr ""
+
+#: /noi/app/templates/__footer__.html:16
+msgid "Powered by:"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:6
+msgid "Toggle navigation"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:11
+msgid "Network of Innovators "
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:17 /noi/app/templates/about.html:3
 msgid "About"
 msgstr ""
 
-#: /noi/app/templates/about.html:16
-msgid "Information Collection Statement"
+#: /noi/app/templates/__navbar__.html:18 /noi/app/templates/feedback.html:3
+msgid "Feedback"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:19
+msgid "Search"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:21
+msgid "Explore"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:23
+msgid "Recently joined"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:24
+msgid "Find innovators with answers"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:25
+msgid "Find innovators like you"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:33 /noi/app/templates/my-profile.html:3
+msgid "My Profile"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:38
+msgid "Edit My Profile"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:39
+msgid "Edit My Expertise"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:40
+msgid "See My Public Profile"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:41
+msgid "Logout"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:43 /noi/app/templates/main.html:22
+msgid "Register"
+msgstr ""
+
+#: /noi/app/templates/__navbar__.html:44 /noi/app/templates/main.html:22
+msgid "Login"
 msgstr ""
 
 #: /noi/app/templates/about.html:18
@@ -121,6 +194,116 @@ msgid ""
 " purpose for which the site is intended. For questions about user "
 "privacy, please contact <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
+msgstr ""
+
+#: /noi/app/templates/feedback.html:14
+msgid "Share your feedback about the Network of Innovators"
+msgstr ""
+
+#: /noi/app/templates/feedback.html:17
+msgid "This form requires JavaScript to complete."
+msgstr ""
+
+#: /noi/app/templates/login-page.html:3
+msgid "Login Page"
+msgstr ""
+
+#: /noi/app/templates/login-page.html:8
+msgid "Please login using your favorite social network."
+msgstr ""
+
+#: /noi/app/templates/login-page.html:9
+msgid ""
+"We are using your social information to populate your first name, last "
+"name and profile picture."
+msgstr ""
+
+#: /noi/app/templates/main.html:3
+msgid "Network of Innovators"
+msgstr ""
+
+#: /noi/app/templates/main.html:15
+msgid "Network of Innovators</strong> Expert Finder"
+msgstr ""
+
+#: /noi/app/templates/main.html:16
+msgid "A GovLab experiment in partnership with NHS England"
+msgstr ""
+
+#: /noi/app/templates/main.html:18
+msgid ""
+"Test your knowledge of innovative practices<br>\n"
+"                Get matched to people with complementary expertise<br>\n"
+"                Build your network at NHS Expo 15"
+msgstr ""
+
+#: /noi/app/templates/main.html:24
+msgid "About this Experiment"
+msgstr ""
+
+#: /noi/app/templates/main.html:25
+msgid ""
+"As part of an ongoing project to understand the demand for and capacity "
+"to use data by the NHS in England, NHS is collaborating with the GovLab "
+"to test the Network of Innovators expert finder at the 2015 NHS Health "
+"and Care Innovation Expo."
+msgstr ""
+
+#: /noi/app/templates/my-expertise.html:3
+msgid "My Expertise"
+msgstr ""
+
+#: /noi/app/templates/my-expertise.html:81
+msgid "My expertise"
+msgstr ""
+
+#: /noi/app/templates/my-expertise.html:86
+msgid ""
+"Tell us what you know about various key topics by answering some of the "
+"following questions."
+msgstr ""
+
+#: /noi/app/templates/my-expertise.html:87
+msgid "For each question, you can choose from"
+msgstr ""
+
+#: /noi/app/templates/my-expertise.html:126
+msgid "What you can share about"
+msgstr ""
+
+#: /noi/app/templates/my-expertise.html:153
+#: /noi/app/templates/my-profile.html:105
+msgid "Save"
+msgstr ""
+
+#: /noi/app/templates/search-results.html:6
+msgid "Contact all these people"
+msgstr ""
+
+#: /noi/app/templates/search-results.html:13
+msgid ""
+"Your personalized matches from the Expo who has experience in at least "
+"one of the areas you want to learn about."
+msgstr ""
+
+#: /noi/app/templates/search-results.html:14
+msgid "E-mail one or more of them to meet, network and learn something new!"
+msgstr ""
+
+#: /noi/app/templates/search.html:38
+msgid "By country"
+msgstr ""
+
+#: /noi/app/templates/search.html:43
+msgid "By language(s)"
+msgstr ""
+
+#: /noi/app/templates/search.html:48
+msgid "By domain(s)"
+msgstr ""
+
+#: /noi/app/templates/search.html:53
+msgid "By keyword(s)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:1

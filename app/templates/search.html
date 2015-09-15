@@ -1,6 +1,6 @@
 {% extends "__base__.html" %}
 
-{% block title %}Search interface{% endblock %}
+{% block title %}{{ ngettext('Search interface') }}{% endblock %}
 
 {% block page_style_pre %}
 {#{% if request.MOBILE == False %}#}
@@ -27,7 +27,7 @@ ul li {
 <div id="search-ui-page">
 <div class="container-fluid">
   <div class="b-content-header">
-    <h1>Search for Innovators</h1>
+    <h1>{{ ngettext('Search for Innovators') }}</h1>
   </div>
   
   <div class="row">
@@ -35,22 +35,22 @@ ul li {
       <form class="b-form" action="/search" method="POST">
 
         <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
-        <label class="col-md-4 control-label" for="textarea">By country</label>
+        <label class="col-md-4 control-label" for="textarea">{{ gettext('By country') }}</label>
         <div class="selector">
           {{ form.country() }}
         </div>
 
-        <label class="col-md-4 control-label" for="textarea">By language(s)</label>
+        <label class="col-md-4 control-label" for="textarea">{{ gettext('By language(s)') }}</label>
         <div class="selector">
           {{ form.locales() }}
         </div>
 
-        <label class="col-md-4 control-label" for="textarea">By domain(s)</label>
+        <label class="col-md-4 control-label" for="textarea">{{ gettext('By domain(s)') }}</label>
         <div class="selector">
           {{ form.expertise_domain_names() }}
         </div>
 
-    <label class="col-md-4 control-label" for="textarea">By keyword(s)</label>
+    <label class="col-md-4 control-label" for="textarea">{{ gettext('By keyword(s)') }}</label>
     <div class="selector">
       {{ form.fulltext() }}
       {#<input placeholder="Search for anything ..." type="text" id="fulltext" name="fulltext">#}
