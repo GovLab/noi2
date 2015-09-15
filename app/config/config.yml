@@ -1,5 +1,5 @@
 #General/Misc Config
-DEBUG: False
+DEBUG: True
 LOGLEVEL: 'INFO'
 UPLOADS_DEFAULT_DEST: "/tmp"
 
