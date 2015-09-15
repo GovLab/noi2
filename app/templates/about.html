@@ -1,11 +1,11 @@
 {% extends "__base__.html" %}
 
-{% block title %}About{% endblock %}
+{% block title %}{{ gettext('About') }}{% endblock %}
 
 {% block content %}
 <div id="about-page" class="b-article">
 <div class="b-content-header">
-  <h1>About the Network of Innovators</h1>
+  <h1>{{ ngettext('About the Network of Innovators') }}</h1>
 </div>
 
 
@@ -13,8 +13,9 @@
   {{ ABOUT | safe }}
 </div>
 
-<h2>Information Collection Statement</h2>
-<a name="privacy"></a><p>All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact <a href="mailto:info@thegovlab.org">info@thegovlab.org</a>.</p>
+<h2>{{ gettext('Information Collection Statement') }}</h2>
+<a name="privacy"></a>
+<p>{{ gettext("All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact <a href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>.") }}</p>
 
 </div>
 {% endblock %}

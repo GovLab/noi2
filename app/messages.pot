@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-11 18:51+0000\n"
+"POT-Creation-Date: 2015-09-15 16:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,6 +104,22 @@ msgstr ""
 msgid ""
 "Before we can match you with fellow innovators, you need to enter your "
 "expertise below first."
+msgstr ""
+
+#: /noi/app/templates/about.html:3
+msgid "About"
+msgstr ""
+
+#: /noi/app/templates/about.html:16
+msgid "Information Collection Statement"
+msgstr ""
+
+#: /noi/app/templates/about.html:18
+msgid ""
+"All information you supply is publicly visible and is used solely for the"
+" purpose for which the site is intended. For questions about user "
+"privacy, please contact <a "
+"href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:1
