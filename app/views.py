@@ -156,7 +156,7 @@ def get_user(userid):
     '''
     Public-facing profile view
     '''
-    user = User.query_in_deployment().get(userid)
+    user = User.query_in_deployment().filter_by(id=userid).one()
     if user:
         return render_template('user-profile.html', user=user)
     else:
