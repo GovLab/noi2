@@ -33,7 +33,9 @@ ul li {
 
 <form class="footer-fix" action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
-<input type="hidden" name="has_picture" value="{{ form.has_picture.data }}" />
+{% if form.has_picture.data %}
+<input type="hidden" name="has_picture" value="true" />
+{% endif %}
 
 <div class="form-horizontal">
 
