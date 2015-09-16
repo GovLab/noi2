@@ -486,115 +486,125 @@ msgid ""
 "solutions.</p> <p><b>These twenty questions help you describe what you "
 "know and can share about open data and what you want to learn from "
 "others.  Click on a link below to create an expertise profile.</b></p>\n"
-msgstr "TRANSLATE"
+"msgstr "<p>Lo que hace que los datos abiertos sean una herramienta poderosa "
+"para gobernar mejor es la habilidad de las personas, dentro y fuera de las "
+"instituciones, de usar los mismos datos para crear políticas públicas, "
+"herramientas, visualizaciones, mapas y aplicaciones. Los datos abiertos "
+"pueden proveer la materia prima para organizar conversaciones informadas "
+"acerca de lo que no está funcionando y establecer los fundamentos empíricos " 
+"para desarrollar soluciones. Estas preguntas te ayudarán a describir lo "
+"que sabes y lo que deseas compartir acerca de datos abiertos y lo que desean " 
+"aprender de otros. Haz click en el siguiente enlace para crear un perfil "
+"de competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:35
 msgid "Open Data"
-msgstr "TRANSLATE"
+msgstr "Datos Abiertos"
 
 #: /noi/app/templates/translate.tmp.html:36
 msgid "creating an open data plan and strategy to achieve key goals"
-msgstr "TRANSLATE"
+msgstr "creando un plan y una estrategia de datos abiertos para alcanzar metas clave"
 
 #: /noi/app/templates/translate.tmp.html:37
 msgid ""
 "How to identify what data will help my organization achieve its core "
 "mission"
-msgstr "TRANSLATE"
+msgstr "cómo identificar qué datos ayudarán a que mi organización logre su misión principal"
 
 #: /noi/app/templates/translate.tmp.html:38
 msgid ""
 "How to distinguish between potentially sensitive data and non-sensitive "
 "data"
-msgstr "TRANSLATE"
+msgstr "cómo distinguir entre datos potencialmente sensibles y datos no-sensibles"
 
 #: /noi/app/templates/translate.tmp.html:39
 msgid "How to craft a clear policy explaining what data to open and how"
-msgstr "TRANSLATE"
+msgstr "cómo redactar una política pública clara explicando qué datos abrir y cómo"
 
 #: /noi/app/templates/translate.tmp.html:40
 msgid "How to do public consultation on an open data policy"
-msgstr "TRANSLATE"
+msgstr "cómo hacer una consulta pública sobre una política de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:41
 msgid "How to get organizational approval for opening data"
-msgstr "TRANSLATE"
+msgstr "cómo obtener aprobación organizacional para abrir datos"
 
 #: /noi/app/templates/translate.tmp.html:42
 msgid "operationalizing an open data program in practice"
-msgstr "TRANSLATE"
+msgstr "implementando un programa de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:43
 msgid "How to scrape data from my domain"
-msgstr "TRANSLATE"
+msgstr "cómo extraer datos de mi sitio"
 
 #: /noi/app/templates/translate.tmp.html:44
 msgid "How to make data machine-readable"
-msgstr "TRANSLATE"
+msgstr "generar datos que sean legibles para máquinas/computadoras"
 
 #: /noi/app/templates/translate.tmp.html:45
 msgid "what formats to publish data in"
-msgstr "TRANSLATE"
+msgstr "en qué formatos publicar datos"
 
 #: /noi/app/templates/translate.tmp.html:46
 msgid "how to license my data"
-msgstr "TRANSLATE"
+msgstr "cómo poner licencias a mis datos"
 
 #: /noi/app/templates/translate.tmp.html:47
 msgid "what data standards to publish data in"
-msgstr "TRANSLATE"
+msgstr "en qué estándares de datos publicar mis datos"
 
 #: /noi/app/templates/translate.tmp.html:48
 msgid "how to use the right infrastructure for making data available"
-msgstr "TRANSLATE"
+msgstr "cómo usar la infraestructura correcta para lograr que los datos estén disponibles"
 
 #: /noi/app/templates/translate.tmp.html:49
 msgid "good management for an open data project"
-msgstr "TRANSLATE"
+msgstr "hacer un buena administración de un proyecto de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:50
 msgid "how to determine how often datasets should be released and updated"
-msgstr "TRANSLATE"
+msgstr "cómo determinar la frecuencia con la que estas bases de datos datos deben ser publicadas y actualizadas"
 
 #: /noi/app/templates/translate.tmp.html:51
 msgid "how to ensure continued data quality and integrity"
-msgstr "TRANSLATE"
+msgstr "cómo asegurar un nivel continuo en la calidad e integridad de mis datos"
 
 #: /noi/app/templates/translate.tmp.html:52
 msgid "responding to what users need and want"
-msgstr "TRANSLATE"
+msgstr "responder a lo que los usuarios quieren y necesitan"
 
 #: /noi/app/templates/translate.tmp.html:53
 msgid ""
 "how to create incentives for users or the public to make productive use "
 "of the data"
-msgstr "TRANSLATE"
+msgstr "cómo crear incentivos para que los usuarios o el público hagan un uso productivo de los datos"
 
 #: /noi/app/templates/translate.tmp.html:54
 msgid "how to identify and combine other sources of open data to achieve a goal"
-msgstr "TRANSLATE"
+msgstr "cómo identificar y combinar otras fuentes de datos abiertos para lograr una meta"
 
 #: /noi/app/templates/translate.tmp.html:55
 msgid "how to design a data collaborative"
-msgstr "TRANSLATE"
+msgstr "cómo diseñar una alianza público-privada para compartir datos"
 
 #: /noi/app/templates/translate.tmp.html:56
 msgid ""
 "how to express the value proposition of the open data datasets, including"
 " what problems can be solved with this data"
-msgstr "TRANSLATE"
+msgstr "cómo expresar la propuesta de valor de las bases de datos abiertos," 
+" incluyendo el tipo de problemas que pueden solucionarse con estos datos"
 
 #: /noi/app/templates/translate.tmp.html:57
 msgid "assessing effectiveness"
-msgstr "TRANSLATE"
+msgstr "evaluando la efectividad"
 
 #: /noi/app/templates/translate.tmp.html:58
 msgid "how to monitor how my data is being used"
-msgstr "TRANSLATE"
+msgstr "cómo monitorear en qué forma se están usando mis datos"
 
 #: /noi/app/templates/translate.tmp.html:59
 msgid "how to measure the economic and/or social impact of opening up data"
-msgstr "TRANSLATE"
+msgstr "cómo medir el impacto económico y/o social de abrir datos"
 
 #: /noi/app/templates/translate.tmp.html:60
 msgid ""
