@@ -87,7 +87,7 @@ label {
 <p>{{ gettext('For each question, you can choose from') }}
   {% for k,v in LEVELS|dictsort %}
   <button style="font-size: 14px;" type="button" class="e-answer">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
-  {% endfor %}, or skip it entirely.') }}
+  {% endfor %}, {{ gettext('or skip it entirely.') }}
 </p>
 </div>
 

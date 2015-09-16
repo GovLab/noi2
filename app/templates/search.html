@@ -1,6 +1,6 @@
 {% extends "__base__.html" %}
 
-{% block title %}{{ ngettext('Search interface') }}{% endblock %}
+{% block title %}{{ gettext('Search interface') }}{% endblock %}
 
 {% block page_style_pre %}
 {#{% if request.MOBILE == False %}#}
@@ -27,7 +27,7 @@ ul li {
 <div id="search-ui-page">
 <div class="container-fluid">
   <div class="b-content-header">
-    <h1>{{ ngettext('Search for Innovators') }}</h1>
+    <h1>{{ gettext('Search for Innovators') }}</h1>
   </div>
   
   <div class="row">

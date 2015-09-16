@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-15 17:22+0000\n"
+"POT-Creation-Date: 2015-09-16 02:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,10 @@ msgstr ""
 msgid "Network of Innovators "
 msgstr ""
 
+#: /noi/app/templates/__navbar__.html:11
+msgid "(beta)"
+msgstr ""
+
 #: /noi/app/templates/__navbar__.html:17 /noi/app/templates/about.html:3
 msgid "About"
 msgstr ""
@@ -180,11 +184,20 @@ msgid "Logout"
 msgstr ""
 
 #: /noi/app/templates/__navbar__.html:43 /noi/app/templates/main.html:22
+#: /noi/app/templates/security/_menu.html:6
+#: /noi/app/templates/security/register_user.html:13
 msgid "Register"
 msgstr ""
 
 #: /noi/app/templates/__navbar__.html:44 /noi/app/templates/main.html:22
+#: /noi/app/templates/security/_menu.html:4
+#: /noi/app/templates/security/login_user.html:13
+#: /noi/app/templates/security/send_login.html:13
 msgid "Login"
+msgstr ""
+
+#: /noi/app/templates/about.html:8
+msgid "About the Network of Innovators"
 msgstr ""
 
 #: /noi/app/templates/about.html:18
@@ -203,6 +216,10 @@ msgstr ""
 msgid "This form requires JavaScript to complete."
 msgstr ""
 
+#: /noi/app/templates/feedback.html:29
+msgid "Thanks for submitting our form!"
+msgstr ""
+
 #: /noi/app/templates/login-page.html:3
 msgid "Login Page"
 msgstr ""
@@ -218,6 +235,13 @@ msgid ""
 msgstr ""
 
 #: /noi/app/templates/main.html:3
+#: /noi/app/templates/security/change_password.html:3
+#: /noi/app/templates/security/forgot_password.html:3
+#: /noi/app/templates/security/login_user.html:3
+#: /noi/app/templates/security/register_user.html:3
+#: /noi/app/templates/security/reset_password.html:3
+#: /noi/app/templates/security/send_confirmation.html:3
+#: /noi/app/templates/security/send_login.html:3
 msgid "Network of Innovators"
 msgstr ""
 
@@ -266,6 +290,10 @@ msgstr ""
 msgid "For each question, you can choose from"
 msgstr ""
 
+#: /noi/app/templates/my-expertise.html:90
+msgid "or skip it entirely."
+msgstr ""
+
 #: /noi/app/templates/my-expertise.html:126
 msgid "What you can share about"
 msgstr ""
@@ -273,6 +301,10 @@ msgstr ""
 #: /noi/app/templates/my-expertise.html:153
 #: /noi/app/templates/my-profile.html:105
 msgid "Save"
+msgstr ""
+
+#: /noi/app/templates/my-profile.html:204
+msgid "Sorry, that file is too big.  Please choose a smaller one."
 msgstr ""
 
 #: /noi/app/templates/search-results.html:6
@@ -287,6 +319,14 @@ msgstr ""
 
 #: /noi/app/templates/search-results.html:14
 msgid "E-mail one or more of them to meet, network and learn something new!"
+msgstr ""
+
+#: /noi/app/templates/search.html:3
+msgid "Search interface"
+msgstr ""
+
+#: /noi/app/templates/search.html:30
+msgid "Search for Innovators"
 msgstr ""
 
 #: /noi/app/templates/search.html:38
@@ -1595,6 +1635,14 @@ msgid ""
 "record laws"
 msgstr ""
 
+#: /noi/app/templates/user-profile.html:93
+msgid "Languages:"
+msgstr ""
+
+#: /noi/app/templates/user-profile.html:101
+msgid "No language information available."
+msgstr ""
+
 #: /noi/app/templates/user-profile.html:105
 msgid "Domain(s) of expertise:"
 msgstr ""
@@ -1603,7 +1651,39 @@ msgstr ""
 msgid "No domain information available."
 msgstr ""
 
+#: /noi/app/templates/user-profile.html:117
+msgid "Projects I have done"
+msgstr ""
+
 #: /noi/app/templates/user-profile.html:121
 msgid "No project information provided."
+msgstr ""
+
+#: /noi/app/templates/security/_menu.html:2
+msgid "Menu"
+msgstr ""
+
+#: /noi/app/templates/security/_menu.html:9
+msgid "Forgot password"
+msgstr ""
+
+#: /noi/app/templates/security/_menu.html:12
+msgid "Confirm account"
+msgstr ""
+
+#: /noi/app/templates/security/change_password.html:13
+msgid "Change password"
+msgstr ""
+
+#: /noi/app/templates/security/forgot_password.html:13
+msgid "Send password reset instructions"
+msgstr ""
+
+#: /noi/app/templates/security/reset_password.html:13
+msgid "Reset password"
+msgstr ""
+
+#: /noi/app/templates/security/send_confirmation.html:13
+msgid "Resend confirmation instructions"
 msgstr ""
 

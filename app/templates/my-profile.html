@@ -69,7 +69,7 @@ ul li {
 {# <div class="form-group">
 <label class="col-md-4 control-label" for="textinput">{{ gettext('Location') }}</label>  
 <div id="locationField" class="col-md-4">
-      <input id="autocomplete" size="50" placeholder="Enter your location" class="form-control input-md" type="text" autocomplete="off">
+      <input id="autocomplete" size="50" placeholder="{{ gettext('Enter your location') }}" class="form-control input-md" type="text" autocomplete="off">
       <input id="q-latlng" name="latlng" type="hidden">
     </div>
 </div>
@@ -201,7 +201,7 @@ $( document ).ready(function() {
           if (this.files[0]) {
             if (this.files[0].size > 1000 * 1000) {
               $(this).val('');
-              alert('Sorry, that file is too big.  Please choose a smaller one.');
+              alert({{ gettext('Sorry, that file is too big.  Please choose a smaller one.') }});
             }
           }
         }
