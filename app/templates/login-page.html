@@ -1,12 +1,12 @@
 {% extends '__base__.html' %}
 
-{% block title %}Login Page{% endblock %}
+{% block title %}{{ gettext('Login Page') }}{% endblock %}
 
 {% block content %}
 <div id="login-page">
 <div class="b-content-header">
-  <h1>Please login using your favorite social network.</h1>
-  <p>We are using your social information to populate your first name, last name and profile picture.</p>
+  <h1>{{ gettext('Please login using your favorite social network.') }}</h1>
+  <p>{{ gettext('We are using your social information to populate your first name, last name and profile picture.') }}</p>
 </div>
 
 <div class="row">

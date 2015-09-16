@@ -1,6 +1,6 @@
 {% extends "__base__.html" %}
 
-{% block title %}My Profile{% endblock %}
+{% block title %}{{ gettext('My Profile') }}{% endblock %}
 
 {% block page_style_pre %}
   <link rel="stylesheet" href="/static/chosen_v1.4.2/docsupport/style.css">
@@ -69,9 +69,9 @@ ul li {
 
 <!-- Location -->
 {# <div class="form-group">
-<label class="col-md-4 control-label" for="textinput">Location</label>  
+<label class="col-md-4 control-label" for="textinput">{{ gettext('Location') }}</label>  
 <div id="locationField" class="col-md-4">
-      <input id="autocomplete" size="50" placeholder="Enter your location" class="form-control input-md" type="text" autocomplete="off">
+      <input id="autocomplete" size="50" placeholder="{{ gettext('Enter your location') }}" class="form-control input-md" type="text" autocomplete="off">
       <input id="q-latlng" name="latlng" type="hidden">
     </div>
 </div>
@@ -80,7 +80,7 @@ ul li {
 
 <!-- Location > City -->
 {#<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">City</label>  
+  <label class="col-md-4 control-label" for="textinput">{{ gettext('City') }}</label>  
   <div class="col-md-4">
   <input id="q-city" name="city" type="text" placeholder="placeholder" disabled class="form-control input-md">
   </div>
@@ -89,7 +89,7 @@ ul li {
 
 <!-- Location > Country -->
 {#<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Country</label>  
+  <label class="col-md-4 control-label" for="textinput">{{ gettext('Country') }}</label>  
   <div class="col-md-4">
   <input id="q-country" name="country" type="text" placeholder="placeholder" disabled class="form-control input-md">
   <input id="q-country_code" name="country_code" type="hidden">
@@ -104,7 +104,7 @@ ul li {
 
 
 <div class="text-center">
-  <button type="submit">Save</button>
+  <button type="submit">{{ gettext('Save') }}</button>
 </div>
 
 </form>
@@ -203,7 +203,7 @@ $( document ).ready(function() {
           if (this.files[0]) {
             if (this.files[0].size > 1000 * 1000) {
               $(this).val('');
-              alert('Sorry, that file is too big.  Please choose a smaller one.');
+              alert({{ gettext('Sorry, that file is too big.  Please choose a smaller one.') }});
             }
           }
         }
