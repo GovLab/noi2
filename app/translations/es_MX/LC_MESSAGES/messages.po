@@ -619,7 +619,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:66
 msgid "how to define and express the problem addressed by the prize."
-msgstr "TRANSLATE"
+msgstr "cómo definir y expresar el problema que enfrenta el reto."
 
 #: /noi/app/templates/translate.tmp.html:67
 msgid ""
