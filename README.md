@@ -119,3 +119,16 @@ You'll need to populate the resulting `.po` file for each locale in
 To generate the `.mo` file used in actual translation.  Successive runs of the
 script won't destroy any data in the `.po` file, which is kept in version
 control.
+
+### Unit Testing
+
+To run the unit tests, simply run:
+
+    ./nosetests.sh
+
+This just executes [`nosetests`][] inside the web application's Docker
+container.
+
+Tests are located in `app/tests`. Please feel free to add more!
+
+  [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
