@@ -54,6 +54,25 @@ def _make_context():
 
 
 @manager.command
+def translate_compile():
+    """
+    Compile existing .po files.  Since we don't keep the .mo files in version
+    control, this has to be done before server start.
+    """
+    locales = set()
+    with open('/noi/app/data/deployments.yaml') as deployments_file:
+        deployments = yaml.load(deployments_file)
+
+    for deployment in deployments.values():
+        if 'locale' in deployment:
+            locales.add(deployment['locale'])
+
+    for locale in locales:
+        subprocess.check_call('pybabel compile -f -l {locale} -d /noi/app/translations/'.format(
+            locale=locale), shell=True)
+
+
+@manager.command
 def translate():
     """
     Extract translation for all existing locales, creating new mofiles when
