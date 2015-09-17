@@ -1,6 +1,6 @@
 {% extends "__base__.html" %}
 
-{% block title %}My Expertise{% endblock %}
+{% block title %}{{ gettext('My Expertise') }}{% endblock %}
 {% block page_style_post %}
 <style>
 .profile-img { width: 60px; height: 60px; border-radius: 30px;}
@@ -68,7 +68,7 @@ label {
 
 {% macro noi_question(question, area, topic, index) -%}
 <li class="list-group-item {{'noi-q-even' if (index % 2) else 'noi-q-odd'}}">
-    <div class="noi-i-know">I know</div>
+    <div class="noi-i-know">I know') }}</div>
 		<div style="font-size: 1.5em;" class="noi-question">
 		&laquo; {{question['question']}} &raquo;
 		</div>
@@ -78,29 +78,27 @@ label {
 {%- endmacro %}
 
 
-<h1>My expertise</h1>
+<h1>{{ gettext('My expertise') }}</h1>
 
 <div class="alert alert-info">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
         
-<p>Tell us what you know about various key topics by answering some of the following questions.</p>
-
-<p>For each question, you can choose from
+<p>{{ gettext('Tell us what you know about various key topics by answering some of the following questions.') }}</p>
+<p>{{ gettext('For each question, you can choose from') }}
   {% for k,v in LEVELS|dictsort %}
   <button style="font-size: 14px;" type="button" class="e-answer">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
-  {% endfor %}
+  {% endfor %}, {{ gettext('or skip it entirely.') }}
 </p>
 </div>
 
 <ul class="nav nav-tabs __nav-justified__" id="expertise-tab">
-  {% for area in AREAS[0:3] %}
-    <li role="presentation" class="text-center {{'noi-expertise-not-yet' if not area.topics}}"><a href="#{{area.id}}-tab">
-      <img alt="{{area.name}}" class="noi-expertise-icon" src="/static/img/expertise-icons/{{area.icon}}">
-      <br/><span class="noi-expertise-icon-name">{{area['name']}}</span>
-      <br/><span id="{{area.id}}" class="noi-expertise-progress"></span></a>
+  {% for questionnaire in QUESTIONNAIRES %}
+    <li role="presentation" class="text-center {{'noi-expertise-not-yet' if not questionnaire.topics}}"><a href="#{{questionnaire.id}}-tab">
+      <img alt="{{questionnaire.name}}" class="noi-expertise-icon" src="/static/img/expertise-icons/{{questionnaire.icon}}">
+      <br/><span class="noi-expertise-icon-name">{{questionnaire['name']}}</span>
+      <br/><span id="{{questionnaire.id}}" class="noi-expertise-progress"></span></a>
     </li>
   {% endfor %}
-  <li role="presentation" style="vertical-align: bottom;">More to come</li> 
 </ul>
 
 <form action="#" method="POST">
@@ -108,31 +106,31 @@ label {
     <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
   <br/>
 
-{% for area in AREAS %}
+{% for questionnaire in QUESTIONNAIRES %}
 
-  <div class="tab-pane fade {{'active in' if loop.index == 1}}" id="{{area.id}}-tab">
+  <div class="tab-pane fade {{'active in' if loop.index == 1}}" id="{{questionnaire.id}}-tab">
 
-    <div class="accordion" id="accordion-{{area.id}}">
+    <div class="accordion" id="accordion-{{questionnaire.id}}">
 
-      <!-- Area description -->
-      <h3>{{area['name']}}</h3>
-    <div class="noi-area-description">{{area['description']|safe}}</div>
+      <!-- questionnaire description -->
+      <h3>{{questionnaire['name']}}</h3>
+    <div class="noi-area-description">{{questionnaire['description']|safe}}</div>
 
-  {% for topic in area['topics'] %}
+  {% for topic in questionnaire['topics'] %}
 
     <div class="accordion-group">
       <div class="accordion-heading">
-        <a id="collapse-btn-{{topic['topic']|slug}}"class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-{{area.id}}" href="#collapse-{{topic.topic|slug}}">
+        <a id="collapse-btn-{{topic['topic']|slug}}"class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-{{questionnaire.id}}" href="#collapse-{{topic.topic|slug}}">
           <i class="fa fa-plus-square-o"></i>
           <span class="noi-topic-name">{{topic['topic']}}</span></a>&nbsp;<span class="noi-expertise-progress-topic" id="{{topic.topic|slug}}"></span>
-          <div style="margin-bottom: 20px;">What you can share about {{topic['description']}}.</div>
+          <div style="margin-bottom: 20px;">{{ gettext('What you can share about') }} {{topic['description']}}.</div>
         </div>
 
         <div id="collapse-{{topic.topic|slug}}" class="accordion-body collapse">
           <div class="accordion-inner">
             <ul class="list-group">
             {% for question in topic['questions'] %}
-              {{ noi_question(question, area, topic, loop.index) }}
+              {{ noi_question(question, questionnaire, topic, loop.index) }}
            {% endfor %}
             </ul>
           </div>
@@ -152,7 +150,7 @@ label {
 
   <div class="row">
     <div class="col-md-12 col-xs-12 text-center">
-      <button id="save-expertise" type="submit">Save</button>
+      <button id="save-expertise" type="submit">{{ gettext('Save') }}</button>
 
 </div>
 </div>

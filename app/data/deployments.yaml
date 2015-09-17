@@ -1,0 +1,147 @@
+_default:
+  about: >
+    TODO
+
+  domains:
+    - Agriculture
+    - Arts and culture
+    - Business Licensing and Regulation
+    - Consumer rights and issues
+    - Defense and Armed Forces
+    - Education
+    - Energy
+    - Environment
+    - Foreign affairs
+    - Government efficiency, transparency and accountability
+    - Health
+    - Housing - Human Rights - Immigration and Citizenship Services
+    - International Aid and Development
+    - Labor
+    - Law and Justice System
+    - Media and Communications
+    - National Security
+    - Public safety and Emergencies
+    - Sanitation
+    - Science and Innovation
+    - Social care
+    - Tax and Revenue
+    - Trade and Investment
+    - Transportation
+    - Water and Electricity
+
+  questions:
+    - opendata
+    - prizes
+    - agile
+    - citizenscience
+    - nudges
+    - partnerships
+    - communityengagement
+    - crowdsourcing
+
+sa.networkofinnovators.org:
+  about: >
+    <p><b>Network of Innovators (NoI)</b> is an application designed and
+    developed by The GovLab in collaboration with governance innovation leaders
+    across seven countries. The tool makes searchable the know-how of government
+    innovators on topics integral to governing more effectively and legitimately,
+    such as citizen engagement, opening data and prize-backed challenges. By
+    answering questions about governance innovation skills and experiences, the
+    participant creates a profile, enabling her to be matched to those with
+    complementary knowledge—either those who are similar or different—to enable
+    mutual support and learning.</p>
+    <p><b>NoI</b> adopts a more nuanced way of sharing and finding expertise – one that
+    looks beyond traditional credentials to focus on real world know how. Instead
+    of rigid categories or open-ended tags, NoI attempts to get at what people know
+    by asking the kinds of questions they could answer. In response to those
+    questions, they can specify the expertise they have and want to share: whether
+    they have the ability to do something, to tell someone about it, or to refer
+    them to others knowledgeable about the topic.</p>
+    <p><b>NoI</b> is an experiment intended to help the community learn if expert
+    networking is an effective means to:</p>
+    <ul>
+    <li>Find who else has experience trying an innovation.
+    <li>Identify who has worked on a particular type of policy or problem.
+    <li>Find collaborators to develop new ideas for tackling a shared problem together.
+    <li>Form alliances and networks of supporters.
+    <li>Create a visual map of your own and other people’s expertise and the ability to compare skills across countries.
+    <li>Describe the job profile of the 21st century public servant.
+    </ul>
+    <p>We want to hear from you.</p>
+    <p>Please email us at <a href="mailto:smarterstate@thegovlab.org">
+    smarterstate@thegovlab.org</a> with your suggestions.</p>
+
+
+nhs.networkofinnovators.org:
+  about: >
+    <h3>NHS - GovLab Collaboration</h3>
+    <p>Innovation is critical to enabling NHS England to achieve its ambitions to
+    ramp up the pace and scale of change, and deliver better outcomes for
+    patients. With the Five Year Forward Plan NHS England has clearly articulated
+    the fundamental role of data and innovation in achieving these ambitions at
+    all levels of the organization.</p>
+    <p>The NHS Health and Care Innovation Expo presents a unique opportunity to
+    map and tap into the collective mindset of a broad cross-section of those who
+    work in and around the NHS in real time about the demand for collecting,
+    sharing and using data to improve outcomes.</p>
+    <p>From September 2-3, you are invited to participate in Network of
+    Innovators, an experiment of The GovLab.</p>
+    <ul>
+      <li>How can we make innovation actionable?
+      <li>How can we make manifest the expertise and capacity for innovation that already exists within and across NHS England?
+      <li>How can we connect innovators across domains and disciplines
+    </ul>
+    <h3>The GovLab Experiment</h3>
+    <p>Network of Innovators (NoI) is a collaborative platform to connect and
+    search for people across organizations, institutions, sectors and
+    communities. By answering questionnaires across a range of topics related to
+    your innovation skills and experiences, NoI will match you to others with
+    complementary knowledge to enable learning and support.</p>
+    <p>Network of Innovators (NoI) Experiment has been developed by The GovLab in
+    partnership with governance innovation leaders across seven countries.  This
+    is an experiment. We want to understand whether the approach works, how
+    people use such a tool, and how they might want to use it in the future. The
+    aim is both to enhance the conference experience by matching people for
+    mutual benefit but also to improve the design of the platform. Questionnaires
+    Answer questions to understand your own expertise, find allies and
+    collaborators & learn from others.</p>
+  questions:
+    - datascience:
+        description: >
+            <p>Better use of data has the potential to improve the quality of healthcare for all, reduce costs, and promote innovation.</p>
+            <p>Access to high quality, relevant data is essential, but to make use of that data, the NHS in England also needs to build the capacity for using data to improve people’s lives.</p>
+            <p>These questions help you describe what you know about using data and what you want to learn from others. By answering some or all of these questions, you can then get matched with those with complementary expertise. When you are finished, you can also complete questionnaires about other areas of governance innovation.</p>
+    - opendata:
+        description: >
+            <p>The NHS has committed to opening up and making more accessible the data it collects consistent with personal privacy. When organizations open their data for research, analysis and reuse, it can be a powerful tool for improvement. With more open data those inside and outside of NHS in England can create useful policies, tools, visualizations, maps, and apps. Open data can provide the raw material to convene informed conversations about what’s broken and the empirical foundation for developing solutions. But knowing how to make data more accessible consistent with the demands of privacy and security isn’t easy.</p>
+            <p>The questions below are designed to help you describe what you know, can share and what want to learn from others about open data.</p>
+    - crowdsourcing:
+        description: >
+            <p>Crowdsourcing is the process of outsourcing work typically done inside an organization to a distribution group outside of it, often using new technology. Crowdsourcing is a valuable tool that could help the NHS in England get help on a variety of tasks. These might include asking the “crowd” (e.g. clinicians, administrators, patients, professors, students, and other stakeholders) to collect and share data, contribute ideas and opinions, or undertake tasks. Crowdsourcing methods enable more distributed and diverse collaboration in ways that can improve the efficiency, legitimacy and diversity of important projects that need stakeholder engagement.</p>
+            <p>How much do you know about leveraging the wisdom of the crowd? </p>
+    - prizes:
+        description: >
+            <p>Prize-Backed Challenges offer an incentive to encourage, recognise and reward innovation. The NHS’ own innovation challenge prizes have sought to solve big problems by creating an impetus for those inside and outside NHS to innovate. When successfully executed, prize-backed challenges and competitions can also drive the adoption of innovations across an institution. Competitions like these offer a range of advantages for government agencies, especially in an era of tightening budgets. But knowing when and how to design a successful prize-backed challenge is hard.</p>
+            <p>How much do you know about designing an innovation challenge?</p>
+    - communityengagement:
+        description:
+            <p>NHS in England works best when its diverse stakeholders -- whether patients, front line staff, CCGs, and others -- are directly engaged in decision-making and service delivery. Engagement can build trust and increase the legitimacy of decision-making. It can also help the NHS in England solve problems more effectively by developing solutions that are designed in consultation with their stakeholders. But knowing when and how to engage members of a community and under what conditions is hard. </p>
+            <p>Share what you know and what you would like to learn about how to formulate, implement and measure a community engagement strategy.</p>
+    - citizenscience:
+        description: >
+            <p>Citizen science typically refers to scientific or research tasks, such as data collection, measurement, and classification, that are undertaken collaboratively either online or off by volunteer members of the general public and professional scientists or researchers. It can also refer to laypeople undertaking their own community-based science initiatives. As institutions like the NHS in England seek to do more with less, citizen science could provide an innovative method for engaging with communities of patients and providers to help do better research, understand on-the-ground-conditions and accomplish difficult, time-consuming objectives more effectively and efficiency.</p>
+            <p>What do you know about how to design a citizen science initiative?</p>
+  domains:
+    - Mental Health
+    - Primary Care
+    - Community Care
+    - Public Health and Population Health
+    - Acute Health
+    - Health Policy
+    - Commissioning
+  searches:
+    - _default
+
+test-mexico:
+  locale: es_MX
+  searches:

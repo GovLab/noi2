@@ -24,8 +24,8 @@
 	list-style-type: none;
 }
 
-{% for area in CONTENT['areas'] %}
-.noi-color-{{area['id']}} { background-color: {{area['icon-color']}}; }
+{% for questionnaire in QUESTIONNAIRES %}
+.noi-color-{{questionnaire['id']}} { background-color: {{ questionnaire['icon-color'] }}; }
 {% endfor %}
 
 </style>
@@ -41,12 +41,16 @@
 			<center><span class="flag-icon flag-icon-squared flag-icon-{{ user.country.code }}"></center>
 		</div>
 		<div class="debug col-xs-4 col-md-4">
-      {#<center><img class="profile-img" src="{{user|avatar}}"/><center>#}
+      {% if current_user.has_picture %}
+      <center><img class="profile-img" src="{{ user.picture_url }}"/><center>
+      {% endif %}
 			</div>
 		<div class="debug col-xs-4 col-md-4">
+      {#
 			<center>
 			<img class="profile-map" src="https://maps.googleapis.com/maps/api/staticmap?center={{ user.latlng }}&size=300x100&zoom=5&markers=color:blue%7Clabel:%7C{{ user.latlng }}" alt="location">
 		</center>
+    #}
 		</div>
 	</div>
 <div class="row">
@@ -73,33 +77,35 @@
 	<div class="debug col-xs-2 col-md-2 text-center">
 		<i class="fa fa-phone-square fa-2x"></i> Phone
 	</div>
+  {#
 	<div class="debug col-xs-2 col-md-2 text-center">
 		<a href="/vcard/{{ user.id }}">
 			<i class="fa fa-download fa-2x"></i></i> vCard
 		</a>
 	</div>
+  #}
 		<div class="debug col-xs-2 col-md-2 text-center"></div>
 </div>
 <br/>
 
 <div class="row">
 	<div class="col-xs-12 col-md-4">
-		<h3>Languages:</h3>
-		{% if user.languages %}
+		<h3>{{ gettext('Languages:') }}</h3>
+		{% if user.locales %}
 		<ul>
-			{% for locale in user.languages %}
+			{% for locale in user.locales %}
 				<li>{{ locale.display_name }}</li>
 			{% endfor %}
 		</ul>
 		{% else %}
-		No language information available.
+		{{ gettext('No language information available.') }}
 		{% endif %}
 	</div>
 	<div class="col-xs-12 col-md-4">
 		<h3>{{ gettext("Domain(s) of expertise:") }}</h3>
-		{% if user.expertise_domains %}
+		{% if user.expertise_domain_names %}
 		<ul>
-			{% for domain in user.expertise_domains %}
+			{% for domain in user.expertise_domain_names %}
 			<li>{{ domain }}</li>
 			{% endfor %}
 		</ul>
@@ -108,7 +114,7 @@
 		{% endif %}
 	</div>
 	<div class="col-xs-12 col-md-4">
-		<h3>Projects I have done</h3>
+		<h3>{{ gettext('Projects I have done') }}</h3>
 		{% if user.projects %}
 		<pre>{{ user.projects }}</pre>
 		{% else %}
@@ -120,9 +126,9 @@
 
 <div class="row">
 {% if user.skills %}
-{% for area in CONTENT['areas'] %}
-	<div class="col-md-2 text-center {{'noi-expertise-not-yet' if not area.topics}}">
-<img class="noi-expertise-icon" src="/static/img/expertise-icons/{{area['icon']}}"><br/>{{area['name']}}
+{% for questionnaire in QUESTIONNAIRES %}
+	<div class="col-md-2 text-center {{'noi-expertise-not-yet' if not questionnaire.topics}}">
+<img class="noi-expertise-icon" src="/static/img/expertise-icons/{{ questionnaire.icon }}"><br/>{{ questionnaire.name }}
 </div>
 <div class="col-md-4">
 <ul class="noi-expertise-list-profile">
@@ -130,7 +136,7 @@
 {% for skill in user.skills %}
 {% with %}
 {% set question = QUESTIONS_BY_ID[skill.name] %}
-{% if question.area_id == area.id %}
+{% if question.area_id == questionnaire.id %}
 <li>
 <span class="noi-expertise-level-profile">
     {% set level = skill.level %}
@@ -146,7 +152,7 @@
       <i class="fa fa-question"></i>
     {% endif %}
 </span>
-&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{area['id']}}">{{ question.label|replace('-', ' ') }}</span>
+&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{questionnaire['id']}}">{{ question.label|replace('-', ' ') }}</span>
 </li>
 {% endif %}
 {% endwith %}

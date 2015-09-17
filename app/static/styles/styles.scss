@@ -1,0 +1,325 @@
+.navbar-default .navbar-brand:before {
+    background: url(../img/noi-logo-neg.png) no-repeat;
+    background-size: contain;
+    height: 30px;
+    top: 12px;
+}
+
+.navbar-brand {
+    font-size: 16px;
+}
+
+.navbar>.container .navbar-brand, 
+.navbar>.container-fluid .navbar-brand {
+    margin-left: 10px;
+    margin-top: 4px;
+}
+
+.b-content-header {
+    p {
+        text-align: center;
+    }
+}
+
+.govlab-logo-footer {
+    width: 200px;
+}
+
+#footer {
+    background: #472b74;
+
+    a {
+        color: rgba(255,255,255,0.6);
+        font-style: italic;
+    }
+
+    .e-license {
+        p { color: rgba(255,255,255,0.6); }
+    }
+
+    .right-part {
+        span {
+            display: block;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.6);
+        }
+    }
+}
+
+.b-question-answers {
+    .radio-selection {
+        display: none;
+    }
+
+    label {
+        border: 1px solid #ddd;
+        padding: 4px 10px;
+        margin: 10px;
+
+        &:hover {
+            background-color: #eee;
+        }
+    }
+
+    input:checked + label {
+        background-color: #472b74;   
+        color: #fff;
+    }
+}
+
+.noi-q-even, .noi-q-odd { 
+    background-color: #FFF !important; 
+    padding: 30px 0;
+}
+
+
+@media (max-width: 960px) {
+
+body {
+    padding-bottom: 320px;
+}
+
+body.homepage .bg {
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    padding-bottom: 181%;
+    // margin-top: -100px;
+}
+
+body.homepage {
+
+    .container { padding-bottom: 110px; }
+    
+    #footer {
+        .right-part {text-align: center;}
+    }
+}
+}
+
+.b-login {
+    border: 1px solid #472b74;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    margin-bottom: 120px;
+
+    h1 {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 300;
+        margin-bottom: 40px;
+
+    }
+
+    input[type='text'], input[type='password']  { width: 70%; }
+    input[type='submit'] { 
+        width: 100%;
+    }
+
+    label {
+        width: 100%;
+    }
+
+    h2 {
+        display: none;
+    }
+
+    ul {
+        margin: 30px 0 0 0;
+        text-align: center;
+        padding-left: 0;
+
+        li { 
+        display: inline-block;
+        font-size: 14px;
+        margin: 0 5px;
+        a {
+            color: #999;
+            font-weight: 300;
+        }   
+    }
+    }
+}
+
+
+@media (min-width: 992px) {
+
+body.homepage .bg {
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    padding-bottom: 47%;
+    margin-top: -50px;
+}
+
+#footer {
+    text-align: left;
+    background: #472b74;
+
+    a {
+        color: rgba(255,255,255,0.6);
+        font-style: italic;
+    }
+
+    .e-license {
+        p { color: rgba(255,255,255,0.6); }
+
+
+    }
+    .e-ccimage {
+        float: left;
+        margin-right: 10px;
+    }
+
+    .right-part {
+        text-align: right;
+        span {
+            color: rgba(255,255,255,0.6);
+        }
+    }
+}
+
+.b-login {
+    input[type='text'], input[type='password']  { width: 70%; }
+    input[type='submit'] { 
+        width: 39%;
+        margin-left: 30%;
+    }
+
+    label {
+        width: 29%;
+    }
+}
+
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.modal-content {
+    top: 0;
+    width: 60%;
+    margin: 6% 20%;
+    border-radius: 0;
+    
+    .action {
+        text-align: center;
+        margin: 20px;
+    }
+    
+}
+
+@media (max-width: 960px) {
+    .modal-content {
+        top: 0;
+        width: 95%;
+        margin: 2.5%;
+        border-radius: 0;
+
+        .logo {
+            max-width: 100px !important;
+        }
+
+        h2, h3 {
+            margin-bottom: 10px !important;
+        }
+
+        h2 {font-size: 24px;}
+        h3 {font-size: 20px;}
+
+        p {font-size: 16px;}
+    }
+}
+
+
+.onboarding {
+    text-align: center;
+
+    > div {
+        padding: 40px;
+    }
+
+    .top-bar {
+        padding: 3px;
+        background-color: #472b74;
+    }
+
+    .logo {
+        max-width: 200px;
+        margin-left: -15px;
+    }
+
+    h3 {
+        margin-bottom: 60px;
+        color: #472b74;
+    }
+
+    .action {
+        margin-top: 40px;
+    }
+
+    .button {
+        display: inline-block;
+        color: #fff;
+        padding: 16px 50px;
+        background-color: #472b74;
+        margin: 5px;
+        transition: all 0.3s ease;
+        opacity: .8;
+
+        &:hover {
+            opacity: 1;            
+            transition: all 0.3s ease;
+        }
+
+        &.light {
+            background-color: #aaa;
+        }
+    }
+
+    .small-print {
+        text-align: left;
+        font-size: 14px;
+        margin-top: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 960px) {
+body.homepage .bg { background-image: url("../img/homepage-bg-mobile-australia.jpg"); }
+
+.nhs-networkofinnovators-org {
+    body.homepage .bg { background-image: url("../img/homepage-bg-mobile-nhs.jpg"); }
+}
+}
+
+@media (min-width: 992px) {
+body.homepage .bg { background-image: url("../img/homepage-bg-australia.jpg"); }
+
+.nhs-networkofinnovators-org {
+    body.homepage .bg { background-image: url("../img/homepage-bg-nhs.jpg"); }
+}
+}

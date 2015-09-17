@@ -2,3 +2,11 @@
 *.pyc
 app/config/local_config.yml
 *.mo
+.keys
+backups
+celerybeat-schedule
+celerybeat.pid
+alchemydumps
+*.log
+tmp
+translate.tmp.html

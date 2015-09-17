@@ -3,18 +3,19 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-      <a href="/about#privacy">Information Collection Statement</a>
-    </div>
-      <div class="col-md-6">
+      <div class="col-md-7">
+        <a href="/about#privacy">{{ gettext('Information Collection Statement') }}</a>
         <div class="e-license">
           <a class="e-ccimage" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-          <p>This work by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">The GovLab</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+          <p>{{ gettext('This work by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">The GovLab</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.') }}</p>
           <p>
           </p>
         </div>
       </div>
+      <div class="col-md-5 right-part">
+        <span>{{ gettext('Powered by:') }}</span>
+        <img class="govlab-logo-footer" src="../static/img/govlab-logo-white.png" alt="">
+      </div>
     </div>
   </div>
-
 </div>

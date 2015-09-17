@@ -1,11 +1,39 @@
-web:
+app:
     build: app/
     command: /noi/run.sh
     links:
         - db
+          #- redis
     volumes:
         - .:/noi
-    ports:
-        - "5000:5000"
+        - migrations:/migrations
+    environment:
+        - NOI_ENVIRONMENT # unless production, assumed "development"
 db:
     image: postgres:9.4
+web:
+    image: nginx
+    volumes:
+        - conf/:/etc/nginx/conf.d/
+        - ./app/static:/noi/app/static
+        - .keys:/etc/ssl/certs
+    links:
+        - app
+    ports:
+        - "80:80"
+        - "443:443"
+#worker:
+#    build: app/
+#    command: /noi/run.sh
+#    links:
+#        - redis
+#        - db
+#    volumes:
+#        - .:/noi
+#        - migrations:/migrations
+#        - backups:/alchemydumps
+#    environment:
+#        - NOI_ENVIRONMENT=celery
+#        - C_FORCE_ROOT=True
+#redis:
+#    image: redis

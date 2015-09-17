@@ -4,18 +4,20 @@ NoI Views
 All views in the app, as a blueprint
 '''
 
-from flask import (Blueprint, render_template, session, request, flash,
-                   redirect, url_for)
+from flask import (Blueprint, render_template, request, flash,
+                   redirect, url_for, current_app)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import CONTENT
-from app.models import db, User
-from app.forms import UserForm
+from app.models import db, User, UserLanguage, UserExpertiseDomain, UserSkill
+from app.forms import UserForm, SearchForm
 
 from sqlalchemy import func, desc
+from sqlalchemy.dialects.postgres import array
 
-import copy
+from boto.s3.connection import S3Connection
+
+import mimetypes
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
@@ -23,9 +25,12 @@ views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 @views.route('/')
 def main_page():
     '''
-    Main NoI page
+    Main NoI page: forward to match page if logged in already.
     '''
-    return render_template('main.html', **{'SKIP_NAV_BAR': False})
+    if current_user.is_authenticated():
+        return redirect(url_for('views.match'))
+    else:
+        return render_template('main.html', SKIP_NAV_BAR=False)
 
 
 @views.route('/about')
@@ -33,53 +38,7 @@ def about_page():
     '''
     NoI about page.
     '''
-    #TODO this should vary based off of deployment
-    return render_template('about.html', **{})
-
-
-#@views.route('/login', methods=['GET', 'POST'])
-#def login():
-#    print session
-#    if request.method == 'GET':
-#        return render_template('login-page.html', **{'SKIP_NAV_BAR': False})
-#    if request.method == 'POST':
-#        social_login = json.loads(request.form.get('social-login'))
-#        session['social-login'] = social_login
-#        userid = social_login['userid']
-#        userProfile = db.getUser(userid)
-#        if userProfile:
-#            session['user-profile'] = userProfile
-#        else:
-#            db.createNewUser(userid, social_login['first_name'],
-#            social_login['last_name'], social_login['picture'])
-#            userProfile = db.getUser(userid)
-#            session['user-profile'] = userProfile
-#        flash('You are authenticated using your %s Credentials.' % social_login['idp'])
-#        g.is_logged_in = True
-#        return jsonify({'result': 0})
-
-
-#@views.route('/logout')
-#def logout():
-#    idp = session['social-login']['idp']
-#    session.clear()
-#    return redirect(url_for('main_page', **{'logout': idp}))
-
-
-#@views.route('/edit/<userid>', methods=['GET', 'POST'])
-#def edit_user(userid):
-#    if request.method == 'GET':
-#        userProfile = db.getUser(userid)  # We get some stuff from the DB.
-#        return render_template('my-profile.html',
-#                               **{'userProfile': userProfile})
-#
-#    if current_user.id:
-#        if request.method == 'POST' and userid == current_user.id:
-#            userProfile = json.loads(request.form.get('me'))
-#            session['user-profile'] = userProfile
-#            db.updateCoreProfile(userProfile)
-#            flash('Your profile has been saved.')
-#            return render_template('my-profile.html', **{'userProfile': userProfile})
+    return render_template('about.html')
 
 
 @views.route('/me', methods=['GET', 'POST'])
@@ -89,6 +48,8 @@ def my_profile():
     Show user their profile, let them edit it
     '''
     form = UserForm(obj=current_user)
+    if 'X-Upload-Too-Big' in request.headers:
+        form.picture.errors = ('Sorry, the picture you tried to upload was too large',)
     if request.method == 'GET':
         return render_template('my-profile.html', form=form)
     elif request.method == 'POST':
@@ -98,15 +59,32 @@ def my_profile():
         #flash('Your profile has been saved. <br/>You may also want to <a'
         #      'href="/my-expertise">tell us what you know</a>.')
         #session['has_created_profile'] = True
-        form.populate_obj(current_user)
+
         if form.validate():
+            form.populate_obj(current_user)
+
+            if form.picture.has_file():
+                conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
+                                    current_app.config['S3_SECRET_ACCESS_KEY'])
+                bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
+                bucket.make_public(recursive=False)
+
+                mimetype = mimetypes.guess_type(form.picture.data.filename)[0]
+
+                k = bucket.new_key(current_user.picture_path)
+                k.set_metadata('Content-Type', mimetype)
+                k.set_contents_from_file(form.picture.data)
+                k.make_public()
+
+                current_user.has_picture = True
+
             db.session.add(current_user)
             db.session.commit()
-            flash(lazy_gettext('Your profile has been saved. <br/>You may also want to <a'
-                               'href="/my-expertise">tell us what you know</a>.'))
+            flash('Your profile has been saved. <br/>Please tell '
+                               'us about your expertise below.')
+            return redirect(url_for('views.my_expertise'))
         else:
-            flash(lazy_gettext(u'Could not save, please correct errors below: {}'.format(
-                form.errors)))
+            flash(lazy_gettext(u'Could not save, please correct errors below'))
 
         return render_template('my-profile.html', form=form)
 
@@ -123,7 +101,7 @@ def my_expertise():
     #social_login = session['social-login']
     #userid = social_login['userid']
     if request.method == 'GET':
-        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
+        return render_template('my-expertise.html')
     elif request.method == 'POST':
         for k, val in request.form.iteritems():
             current_user.set_skill(k, val)
@@ -136,10 +114,11 @@ def my_expertise():
         <li>Fill another expertise questionnaire below</li>
         <li>View your <a href="/user/{}">public profile</a></li>
         """).format(current_user.id))
-        return render_template('my-expertise.html', AREAS=CONTENT['areas'])
+        return render_template('my-expertise.html')
 
 
 @views.route('/dashboard')
+@login_required
 def dashboard():
     '''
     Dashboard of what's happening on the platform.
@@ -149,7 +128,7 @@ def dashboard():
             .order_by(desc(func.count(User.id))).all()
     users = [{'latlng': u.latlng,
               'first_name': u.first_name,
-              'last_name': u.last_name} for u in User.query.all()]
+              'last_name': u.last_name} for u in User.query_in_deployment().all()]
     occupations = db.session.query(func.count(User.id)) \
             .group_by(User.organization_type) \
             .order_by(desc(func.count(User.id))).all()
@@ -158,9 +137,6 @@ def dashboard():
                                                 'ALL_USERS': users,
                                                 'OCCUPATIONS': occupations})
 
-#@views.route('/dashboard-2')
-#def dashboard2():
-#    return render_template('dashboard-2.html', **{'top_countries': top_countries})
 
 #@views.route('/vcard/<userid>')
 #def vcard(userid):
@@ -175,19 +151,13 @@ def dashboard():
 
 
 @views.route('/user/<userid>')
+@login_required
 def get_user(userid):
     '''
     Public-facing profile view
     '''
-    user = User.query.get(userid)
+    user = User.query_in_deployment().filter_by(id=userid).one()
     if user:
-        #if 'social-login' in session:
-        #    my_userid = session['social-login']['userid']
-        #else:
-        #    my_userid = 'anonymous'
-        #query_info = {'user-agent': request.headers.get('User-Agent'),
-        #              'type': '/user', 'userid': my_userid}
-        #db.logQuery(my_userid, query_info)
         return render_template('user-profile.html', user=user)
     else:
         flash('This is does not correspond to a valid user.')
@@ -195,31 +165,40 @@ def get_user(userid):
 
 
 @views.route('/search', methods=['GET', 'POST'])
+@login_required
 def search():
+    '''
+    Generic search page
+    '''
+    form = SearchForm()
     if request.method == 'GET':
-        return render_template('search.html', **{'AREAS': CONTENT['areas']})
+        return render_template('search.html', form=form)
     if request.method == 'POST':
-        print request
-        country = request.values.get('country', '')
-        langs = request.values.getlist('langs')
-        skills = request.values.getlist('skills')
-        domains = request.values.getlist('domains')
-        fulltext = request.values.get('fulltext', '')
-        query = {'location': country, 'langs': langs, 'skills': skills,
-                 'fulltext': fulltext, 'domains': domains}
-        print query
-        if 'social-login' in session:
-            my_userid = session['social-login']['userid']
-        else:
-            my_userid = 'anonymous'
-        query_info = copy.deepcopy(query)
-        query_info['type'] = '/search'
-        query_info['user-agent'] = request.headers.get('User-Agent')
-        db.logQuery(my_userid, query_info)
-        experts = db.findExpertsAsJSON(**query)
-        session['has_done_search'] = True
+        query = User.query_in_deployment()  #pylint: disable=no-member
+
+        if form.country.data and form.country.data != 'ZZ':
+            query = query.filter(User.country == form.country.data)
+
+        if form.locales.data:
+            query = query.join(User.languages).filter(UserLanguage.locale.in_(
+                form.locales.data))
+
+        if form.expertise_domain_names.data:
+            query = query.join(User.expertise_domains).filter(UserExpertiseDomain.name.in_(
+                form.expertise_domain_names.data))
+
+        if form.fulltext.data:
+            query = query.filter(func.to_tsvector(func.array_to_string(array([
+                User.first_name, User.last_name, User.organization, User.position,
+                User.projects, UserSkill.name]), ' ')).op('@@')(
+                    func.plainto_tsquery(form.fulltext.data))).filter(
+                        UserSkill.user_id == User.id)
+
+        # TODO ordering by relevance
         return render_template('search-results.html',
-                               **{'title': 'Expertise search', 'results': experts, 'query': query})
+                               title='Expertise search',
+                               form=form,
+                               results=query.limit(20).all())
 
 
 @views.route('/match')
@@ -240,43 +219,33 @@ def match():
 @views.route('/match-knn')
 @login_required
 def knn():
-    if 'user-expertise' not in session:
+    '''
+    Find nearest neighbor (innovators most like you)
+    '''
+    if not current_user.skill_levels:
         flash('Before we can find innovators like you, you need to '
               '<a href="/my-expertise">fill your expertise</a> first.', 'error')
         return redirect(url_for('views.my_expertise'))
-    query = {}
-    if 'user-expertise' not in session:
-        print "User expertise not in session"
-        #my_needs = []
-    else:
-        skills = session['user-expertise']
-    print skills
-    experts = db.findMatchKnnAsJSON(skills)
-    session['has_done_search'] = True
-    return render_template('search-results.html',
-                           **{'title': 'People most like me',
-                              'results': experts, 'query': query})
+    experts = current_user.nearest_neighbors
+    return render_template('search-results.html', title='People most like me',
+                           results=experts)
 
 
 @views.route('/users/recent')
+@login_required
 def recent_users():
-    users = User.query.order_by(desc(User.created_at)).limit(10).all()
+    '''
+    Most recent users.
+    '''
+    users = User.query_in_deployment().order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
-                           **{'title': 'Our Ten most recent members', 'results': users,
+                           **{'title': 'Our most recent members', 'results': users,
                               'query': ''})
 
 
 @views.route('/feedback')
 def feedback():
+    '''
+    Feedback page.
+    '''
     return render_template('feedback.html', **{})
-
-
-@views.route('/match-test')
-def match_test():
-    print session
-    query = {'location': '', 'langs': [], 'skills': [], 'fulltext': 'NYU'}
-    if 'user-expertise' not in session:
-        session['user-expertise'] = {}
-    experts = db.findMatchAsJSON(session['user-expertise'])
-    return render_template('test.html',
-                           **{'title': 'Matching search', 'results': experts, 'query': query})

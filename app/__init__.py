@@ -4,6 +4,7 @@ NoI __init__
 Creates globals
 '''
 
+from flask_alchemydumps import AlchemyDumps
 from flask_assets import Bundle, Environment
 from flask_security import Security
 from flask_cache import Cache
@@ -22,6 +23,7 @@ import locale
 
 s3 = FlaskS3()
 mail = Mail()
+alchemydumps = AlchemyDumps()
 security = Security()
 csrf = CsrfProtect()
 babel = Babel()
@@ -29,8 +31,8 @@ bcrypt = Bcrypt()
 
 celery = Celery(
     __name__,
-    #broker=os.environ.get('REDISGREEN_URL', None),
-    include=[]
+    broker='redis://redis', #TODO this should be from config
+    include=['app.tasks']
 )
 
 assets = Environment()
@@ -44,7 +46,7 @@ main_js = Bundle('js/plugins.js',
                  output='gen/main_packed.%(version)s.js')
 assets.register('main_js', main_js)
 
-photos = UploadSet('photos', IMAGES)
+#photos = UploadSet('photos', IMAGES)
 
 cache = Cache()
 
@@ -63,33 +65,7 @@ LEVELS = {'LEVEL_I_CAN_EXPLAIN': {'score': 2,
 
 VALID_SKILL_LEVELS = [v['score'] for k, v in LEVELS.iteritems()]
 
-NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray'.split(',')
-
-DOMAINS = """Business Licensing and Regulation
-Civil Society
-Corporate Social Responsibility
-Defense and Security
-Economic Development
-Education
-Emergency Services
-Environment
-Extractives Industries
-Governance
-Health
-Human Rights
-Immigration and Citizenship Services
-Judiciary
-Labor
-Legislature
-Media and Telecommunications
-Public Safety
-Research
-Sanitation
-Social Care
-Sub-National Governance
-Talent Services
-Transportation
-Water and Electricity""".split('\n')
+NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray,#a3abd1'.split(',')
 
 LOCALES = []
 _LOCALE_CODES = set()
@@ -108,15 +84,16 @@ ORG_TYPES = {'edu': 'Academia',
              'gov': 'Government',
              'other': 'Other'}
 
-# Process YAML file
-CONTENT = yaml.load(open('/noi/app/content.yaml'))
+# Process YAML files
+QUESTIONNAIRES = yaml.load(open('/noi/app/data/questions.yaml'))
 QUESTIONS_BY_ID = {}
-for area in CONTENT['areas']:
-    for topic in area.get('topics', []):
+for questionnaire in QUESTIONNAIRES:
+    for topic in questionnaire.get('topics', []):
         for question in topic['questions']:
-            question_id = slugify('_'.join([area['id'], topic['topic'], question['label']]))
+            question_id = slugify('_'.join([questionnaire['id'],
+                                            topic['topic'], question['label']]))
             question['id'] = question_id
-            question['area_id'] = area['id']
+            question['area_id'] = questionnaire['id']
             question['topic'] = topic['topic']
             if question_id in QUESTIONS_BY_ID:
                 raise Exception("Duplicate skill id {}".format(question_id))

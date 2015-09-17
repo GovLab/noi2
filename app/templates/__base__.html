@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="{{ NOI_DEPLOY|slug }}">
 <head>
     {% block head %}
     {% block page_style_pre %}{% endblock %}
@@ -7,50 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles-legacy.css">
     <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
     <link rel="stylesheet" type="text/css" href="/static/styles/dev.css">
     <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <!--<style>
-    .profile-img { width: 80px; height: 80px; border-radius: 40px;}
-    .profile-img-nav { width: 40px; height: 40px; border-radius: 20px; vertical-align: initial;}
-    .navbar2 { border2: solid 1px black; font-size: 30px; line-height: 25px; vertical-align: top;}
-
-   .navbar-brand { padding: 15px 15px; line-height: 1em; border2: solid 1px black;}
-   .noi-brand { font-size: 30px;
-                vertical-align: bottom;
-                text-align: center;
-                margin-top: 15px;
-                margin-left: 10px;
-                float: right;
-                }
-
-.noi-expertise-icon { height: 50px; }
-.noi-expertise-not-yet {
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* msie */
-}
-
-    .dropdown-menu>li>a { font-size: 30px;}
-    </style> -->
     <style>
 
-.link-disabled { pointer-events:none; }
-.caret { vertical-align: top;}
-.noi-expertise-icon { height: 50px; }
-.noi-expertise-not-yet {
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* msie */
-}
-    .profile-img-nav { width: 40px; height: 40px; border-radius: 20px; vertical-align: initial;}
+
     </style>
     {% block page_style_post %}{% endblock %}
     {% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 	<!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5LR5G6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -65,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-63136844-1', 'auto');
+  ga('create', '{{ config.GA_TRACKING_CODE }}', 'auto');
   ga('send', 'pageview');
 
 </script> <!-- GA script -->
@@ -74,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {% else %} 
     {% include "__navbar__.html" %}
     {% endif %}
-
+    <div class="bg"></div>
     <div class="container">
 
         <!-- Display the Flash alerts. -->
@@ -106,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="/static/hello.min.js"></script>
     <script src="//use.typekit.net/zez3buj.js"></script>
     <script>
-    if(window.innerHeight > window.innerWidth){
-    alert("For a better user experience, please rotate your phone to landscape mode.");
-    }
+    // if(window.innerHeight > window.innerWidth){
+    // alert("For a better user experience, please rotate your phone to landscape mode.");
+    // }
     </script>
     <script>try{Typekit.load();}catch(e){}</script>
     {% if DEBUG %}
