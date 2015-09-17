@@ -80,11 +80,11 @@ def my_profile():
 
             db.session.add(current_user)
             db.session.commit()
-            flash('Your profile has been saved. <br/>Please tell '
-                               'us about your expertise below.')
+            flash(gettext('Your profile has been saved. <br/>Please tell '
+                          'us about your expertise below.'))
             return redirect(url_for('views.my_expertise'))
         else:
-            flash(lazy_gettext(u'Could not save, please correct errors below'))
+            flash(gettext(u'Could not save, please correct errors below'))
 
         return render_template('my-profile.html', form=form)
 
@@ -107,13 +107,13 @@ def my_expertise():
             current_user.set_skill(k, val)
         db.session.add(current_user)
         db.session.commit()
-        flash(lazy_gettext("""Your expertise has been updated.<br/>
+        flash(gettext("""Your expertise has been updated.<br/>
         What you can do next:
         <ul>
         <li><a href="/search">Search for innovators</a></li>
         <li>Fill another expertise questionnaire below</li>
-        <li>View your <a href="/user/{}">public profile</a></li>
-        """).format(current_user.id))
+        <li>View your <a href="/user/%(id)d">public profile</a></li>
+                      """ % {'id': current_user.id}))
         return render_template('my-expertise.html')
 
 
@@ -160,7 +160,7 @@ def get_user(userid):
     if user:
         return render_template('user-profile.html', user=user)
     else:
-        flash('This is does not correspond to a valid user.')
+        flash(gettext('This is does not correspond to a valid user.'))
         return redirect(url_for('views.search'))
 
 
