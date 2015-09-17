@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-17 14:34+0000\n"
+"POT-Creation-Date: 2015-09-17 15:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.0\n"
 
-#: /noi/app/forms.py:78
+#: /noi/app/forms.py:60
+msgid "Choose your country"
+msgstr ""
+
+#: /noi/app/forms.py:75
+msgid "User Picture"
+msgstr ""
+
+#: /noi/app/forms.py:79
 msgid "Only jpeg, jpg, and png images are allowed."
 msgstr ""
 
-#: /noi/app/forms.py:81 /noi/app/forms.py:97
+#: /noi/app/forms.py:83 /noi/app/forms.py:99
 msgid "Languages"
 msgstr ""
 
-#: /noi/app/forms.py:87 /noi/app/forms.py:101
+#: /noi/app/forms.py:88 /noi/app/forms.py:104
 msgid "Domains of Expertise"
+msgstr ""
+
+#: /noi/app/forms.py:134
+#, python-format
+msgid "%(value)s is not a valid email address: %(explanation)svalue"
 msgstr ""
 
 #: /noi/app/models.py:42
@@ -341,16 +354,32 @@ msgstr ""
 msgid "By country"
 msgstr ""
 
+#: /noi/app/templates/search.html:40
+msgid "Choose your countries"
+msgstr ""
+
 #: /noi/app/templates/search.html:43
 msgid "By language(s)"
+msgstr ""
+
+#: /noi/app/templates/search.html:45
+msgid "Choose your languages"
 msgstr ""
 
 #: /noi/app/templates/search.html:48
 msgid "By domain(s)"
 msgstr ""
 
+#: /noi/app/templates/search.html:50
+msgid "Choose your fields of expertise"
+msgstr ""
+
 #: /noi/app/templates/search.html:53
 msgid "By keyword(s)"
+msgstr ""
+
+#: /noi/app/templates/search.html:60
+msgid "Find experts"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:1
