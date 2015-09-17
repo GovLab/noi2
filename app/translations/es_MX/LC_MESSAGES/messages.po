@@ -621,25 +621,25 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:64
 msgid "Prizes"
-msgstr "TRANSLATE"
+msgstr "Premios"
 
 #: /noi/app/templates/translate.tmp.html:65
 msgid "defining the problem"
-msgstr "TRANSLATE"
+msgstr "Definiendo el alcance del problema"
 
 #: /noi/app/templates/translate.tmp.html:66
 msgid "how to define and express the problem addressed by the prize."
-msgstr "TRANSLATE"
+msgstr "cómo definir y expresar el problema que enfrenta el reto."
 
 #: /noi/app/templates/translate.tmp.html:67
 msgid ""
 "how to do rapid research to test the assumptions behind my problem "
 "definition"
-msgstr "TRANSLATE"
+msgstr "cómo hacer investigación rápida para entender el contexto de mi premio."
 
 #: /noi/app/templates/translate.tmp.html:68
 msgid "how to develop metrics to use to measure progress"
-msgstr "TRANSLATE"
+msgstr "cómo desarrollar indicadores para medir el progreso."
 
 #: /noi/app/templates/translate.tmp.html:69
 msgid "deciding if a prize is the right tool"
@@ -649,31 +649,31 @@ msgstr "TRANSLATE"
 msgid ""
 "how to decide when to use a prize-backed challenge rather than other "
 "options like conventional crowdsourcing"
-msgstr "TRANSLATE"
+msgstr " cómo decidir cuándo usar un reto respaldado por un premio en lugar de otras opciones como crowdsourcing convencional."
 
 #: /noi/app/templates/translate.tmp.html:71
 msgid "how to determine whether a prize or a grand challenge is optimal"
-msgstr "TRANSLATE"
+msgstr "cómo determinar si un premio o un gran desafío es óptimo"
 
 #: /noi/app/templates/translate.tmp.html:72
 msgid "how to decide whether to use financial or non-financial incentives"
-msgstr "TRANSLATE"
+msgstr "cómo decidir si usar incentivos económicos o no económicos."
 
 #: /noi/app/templates/translate.tmp.html:73
 msgid "how to set the value of a prize"
-msgstr "TRANSLATE"
+msgstr "cómo establecer el valor económico de un premio."
 
 #: /noi/app/templates/translate.tmp.html:74
 msgid "targeting the right participants"
-msgstr "TRANSLATE"
+msgstr "Identificando a la audiencia correcta"
 
 #: /noi/app/templates/translate.tmp.html:75
 msgid "how to identify would-be participating innovators"
-msgstr "TRANSLATE"
+msgstr "cómo identificar a posibles innovadores para que participen."
 
 #: /noi/app/templates/translate.tmp.html:76
 msgid "how to assess the the potential costs involved for them in participating"
-msgstr "TRANSLATE"
+msgstr "cómo evaluar los costos que involucra el hecho de que participen."
 
 #: /noi/app/templates/translate.tmp.html:77
 msgid "rinning a prize-backed challenge"
@@ -681,53 +681,53 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:78
 msgid "how to fund a prize-backed challenge"
-msgstr "TRANSLATE"
+msgstr "cómo financiar un reto respaldado por un premio"
 
 #: /noi/app/templates/translate.tmp.html:79
 msgid "how to create a plan for running the prize with defined milestones"
-msgstr "TRANSLATE"
+msgstr "cómo crear un plan para ejecutar el premio con hitos definidos"
 
 #: /noi/app/templates/translate.tmp.html:80
 msgid ""
 "how to access outside contractors to support the design and "
 "implementation of the prizes"
-msgstr "TRANSLATE"
+msgstr "cómo acceder a contratistas externos para apoyar el diseño e implementación de los premios."
 
 #: /noi/app/templates/translate.tmp.html:81
 msgid "how to decide how long the prize should run"
-msgstr "TRANSLATE"
+msgstr "cómo decidir cuánto tiempo debe durar el reto."
 
 #: /noi/app/templates/translate.tmp.html:82
 msgid "how to develop a communication strategy to get the word out"
-msgstr "TRANSLATE"
+msgstr "cómo desarrollar una estrategia de comunicación para dar difusión al reto."
 
 #: /noi/app/templates/translate.tmp.html:83
 msgid "how to choose from the tools available to run a prize-backed challenge"
-msgstr "TRANSLATE"
+msgstr "cómo elegir entre las herramientas disponibles para ejecutar un reto respaldado por un premio. "
 
 #: /noi/app/templates/translate.tmp.html:84
 msgid "judging a prize"
-msgstr "TRANSLATE"
+msgstr "Juzgando"
 
 #: /noi/app/templates/translate.tmp.html:85
 msgid "how to design assessment criteria"
-msgstr "TRANSLATE"
+msgstr "cómo diseñar los criterios de evaluación."
 
 #: /noi/app/templates/translate.tmp.html:86
 msgid "how to select judges"
-msgstr "TRANSLATE"
+msgstr "cómo seleccionar a los jueces."
 
 #: /noi/app/templates/translate.tmp.html:87
 msgid "overcoming legal concerns"
-msgstr "TRANSLATE"
+msgstr "Inquietudes Legales"
 
 #: /noi/app/templates/translate.tmp.html:88
 msgid "how to determine ownership and copyright"
-msgstr "TRANSLATE"
+msgstr "cómo determinar la propiedad intelectual y los derechos de autor."
 
 #: /noi/app/templates/translate.tmp.html:89
 msgid "how to navigate governmental endorsement and privacy concerns"
-msgstr "TRANSLATE"
+msgstr "cómo sortear las preocupaciones de respaldo gubernamental y la privacidad. "
 
 #: /noi/app/templates/translate.tmp.html:90
 msgid "what to do after a challenge"
@@ -735,7 +735,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:91
 msgid "how to translate winning entries into well-developed solutions"
-msgstr "TRANSLATE"
+msgstr "cómo traducir propuestas ganadoras en soluciones bien desarrolladas."
 
 #: /noi/app/templates/translate.tmp.html:92
 #: /noi/app/templates/translate.tmp.html:149
