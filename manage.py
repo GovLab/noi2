@@ -4,7 +4,7 @@ NoI manage.py
 Scripts to run the server and perform maintenance operations
 '''
 
-from app import mail, models
+from app import mail, models, LEVELS, ORG_TYPES
 from app.factory import create_app
 from app.models import db, User, UserSkill
 from app.utils import csv_reader
@@ -89,6 +89,12 @@ def translate():
                     for question in topic['questions']:
                         totranslate.write(gettext_for(question['question']))
 
+    for level in LEVELS.values():
+        totranslate.write(gettext_for(level['label']))
+
+    for org_type in ORG_TYPES.values():
+        totranslate.write(gettext_for(org_type))
+
     # Generate basic messages.pot
     subprocess.check_call(
         'pybabel extract -F /noi/app/babel.cfg -k lazy_gettext -o /noi/app/messages.pot /noi/',
@@ -142,7 +148,7 @@ def add_fake_users(users_csv):
     for row in csv_reader(os.path.join('/noi', users_csv)):
         row['password'] = ''.join(choice(string.letters + string.digits) for _ in range(20))
         row['active'] = False  # TODO is this OK?
-        user = User(**row)  # pylint: disable=star-args
+        user = User(**row)
         db.session.add(user)
         try:
             db.session.commit()
