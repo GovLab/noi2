@@ -83,17 +83,16 @@ def translate():
             totranslate.write(gettext_for(questionnaire['name']))
             if 'topics' in questionnaire:
                 for topic in questionnaire['topics']:
-                    if 'name' in topic:
-                        totranslate.write(gettext_for(topic['name']))
+                    totranslate.write(gettext_for(topic['topic']))
                     totranslate.write(gettext_for(topic['description']))
                     for question in topic['questions']:
                         totranslate.write(gettext_for(question['question']))
 
-    for level in LEVELS.values():
-        totranslate.write(gettext_for(level['label']))
+        for level in LEVELS.values():
+            totranslate.write(gettext_for(level['label']))
 
-    for org_type in ORG_TYPES.values():
-        totranslate.write(gettext_for(org_type))
+        for org_type in ORG_TYPES.values():
+            totranslate.write(gettext_for(org_type))
 
     # Generate basic messages.pot
     subprocess.check_call(
