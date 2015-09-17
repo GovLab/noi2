@@ -2,6 +2,8 @@ _default:
   about: >
     TODO
 
+  contact_form_id: 1246
+
   domains:
     - Agriculture
     - Arts and culture

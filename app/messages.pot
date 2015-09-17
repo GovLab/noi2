@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-17 15:41+0000\n"
+"POT-Creation-Date: 2015-09-17 16:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,6 +117,20 @@ msgstr ""
 msgid ""
 "Before we can match you with fellow innovators, you need to enter your "
 "expertise below first."
+msgstr ""
+
+#: /noi/app/views.py:226
+msgid ""
+"Before we can find innovators like you, you need to <a href=\"/my-"
+"expertise\">fill your expertise</a> first."
+msgstr ""
+
+#: /noi/app/views.py:231
+msgid "People most like me"
+msgstr ""
+
+#: /noi/app/views.py:243
+msgid "Our most recent members"
 msgstr ""
 
 #: /noi/app/templates/__footer__.html:7 /noi/app/templates/about.html:16
@@ -326,6 +340,10 @@ msgstr ""
 
 #: /noi/app/templates/my-profile.html:206
 msgid "Sorry, that file is too big.  Please choose a smaller one."
+msgstr ""
+
+#: /noi/app/templates/search-results.html:6
+msgid "Contact+request+from+the+Network+of+Innovators"
 msgstr ""
 
 #: /noi/app/templates/search-results.html:6

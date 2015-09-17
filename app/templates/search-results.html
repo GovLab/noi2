@@ -3,7 +3,7 @@
 {% block content %}
 
 <div id="new-search">
-  <a target="__email__" role="button" class="btn btn-primary" href="mailto:{{results|map(attribute='email')|join(',')}}?subject={{ gettext(Contact+request+from+the+Network+of+Innovators) }}">{{ gettext('Contact all these people') }}</a>
+  <a target="__email__" role="button" class="btn btn-primary" href="mailto:{{results|map(attribute='email')|join(',')}}?subject={{ gettext('Contact+request+from+the+Network+of+Innovators') }}">{{ gettext('Contact all these people') }}</a>
 </div>
 
 <div class="b-results">
