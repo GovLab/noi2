@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-17 16:44+0000\n"
+"POT-Creation-Date: 2015-09-17 17:59+0000\n"
 "PO-Revision-Date: 2015-09-11 15:30+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es_MX <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr "Áreas de competencia"
 #: /noi/app/forms.py:134
 #, python-format
 msgid "%(value)s is not a valid email address: %(explanation)svalue"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/models.py:42
 msgid "First Name"
@@ -124,6 +124,10 @@ msgid ""
 "expertise below first."
 msgstr "TRANSLATE"
 
+#: /noi/app/views.py:215
+msgid "People Who Know what I do not"
+msgstr "TRANSLATE"
+
 #: /noi/app/views.py:226
 #, fuzzy
 msgid ""
@@ -133,11 +137,11 @@ msgstr "TRANSLATE"
 
 #: /noi/app/views.py:231
 msgid "People most like me"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/views.py:243
 msgid "Our most recent members"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/__footer__.html:7 /noi/app/templates/about.html:16
 msgid "Information Collection Statement"
@@ -312,11 +316,11 @@ msgstr "Mi Competencia"
 
 #: /noi/app/templates/my-expertise.html:54
 msgid "and"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/my-expertise.html:71
 msgid "I know"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/my-expertise.html:81
 msgid "My expertise"
@@ -334,7 +338,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/my-expertise.html:90
 msgid "or skip it entirely."
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/my-expertise.html:126
 msgid "What you can share about"
@@ -347,21 +351,15 @@ msgstr "Guardar"
 
 #: /noi/app/templates/my-profile.html:206
 msgid "Sorry, that file is too big.  Please choose a smaller one."
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/search-results.html:6
 msgid "Contact+request+from+the+Network+of+Innovators"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/search-results.html:6
 msgid "Contact all these people"
 msgstr "Contactar a todas estas personas"
-
-#: /noi/app/templates/search-results.html:13
-msgid ""
-"Your personalized matches from the Expo who has experience in at least "
-"one of the areas you want to learn about."
-msgstr "TRANSLATE"
 
 #: /noi/app/templates/search-results.html:14
 msgid "E-mail one or more of them to meet, network and learn something new!"
@@ -381,7 +379,7 @@ msgstr "Por país"
 
 #: /noi/app/templates/search.html:40
 msgid "Choose your countries"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/search.html:43
 msgid "By language(s)"
@@ -398,7 +396,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/search.html:50
 msgid "Choose your fields of expertise"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/search.html:53
 msgid "By keyword(s)"
@@ -650,7 +648,7 @@ msgstr "cómo asegurar un nivel continuo en la calidad e integridad de mis datos
 
 #: /noi/app/templates/translate.tmp.html:54
 msgid "Accelerating use"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:55
 msgid "responding to what users need and want"
@@ -684,7 +682,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:60
 msgid "Measuring Impact"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:61
 msgid "assessing effectiveness"
@@ -768,7 +766,7 @@ msgstr "cómo establecer el valor económico de un premio."
 
 #: /noi/app/templates/translate.tmp.html:80
 msgid "Identifying the Right Audience"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:81
 msgid "targeting the right participants"
@@ -784,7 +782,7 @@ msgstr "cómo evaluar los costos que involucra el hecho de que participen."
 
 #: /noi/app/templates/translate.tmp.html:84
 msgid "Mechanics"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:85
 msgid "rinning a prize-backed challenge"
@@ -898,7 +896,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:108
 msgid "Tasks and Goals"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:109
 msgid ""
@@ -1031,7 +1029,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:138
 msgid "Platforms and Tools"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:139
 msgid "deciding upon and using citizen science platforms and tools"
@@ -1071,7 +1069,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:146
 msgid "Decision Making"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:147
 msgid "using input gained through citizen science to drive decision making"
@@ -1089,7 +1087,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:150
 msgid "Legal Questions"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:151
 msgid "legal concerns and barriers related to citizen science initiatives"
@@ -1284,7 +1282,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:194
 msgid "Identifying goals and participants"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:195
 msgid ""
@@ -1312,7 +1310,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:199
 msgid "Implementing a community engagement strategy"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:200
 msgid "What you can share about operationalizing a community engagement program."
@@ -1403,7 +1401,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:219
 msgid "Measuring, evaluating and providing feedback"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:220
 msgid ""
@@ -1427,7 +1425,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:224
 msgid "Transforming my organisation"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:225
 msgid ""
@@ -1465,7 +1463,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:232
 msgid "Lab Creation and Vision"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:233
 msgid "What you can share about launching a government innovation lab."
@@ -1497,7 +1495,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:239
 msgid "Lab Operations"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:240
 msgid ""
@@ -1537,7 +1535,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:246
 msgid "Lab Experimentation and Methodology"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:247
 msgid ""
@@ -1588,7 +1586,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:257
 msgid "Capturing, Leveraging and Communicating Results"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:258
 msgid ""
@@ -1659,7 +1657,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:270
 msgid "Determining the Activity"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:271
 msgid "What can you share about the type of activities the crowd could perform"
@@ -1704,7 +1702,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:278
 msgid "Determining a Successful Crowdsourcing Strategy"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:279
 msgid ""
@@ -1754,7 +1752,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:287
 msgid "Providing the Right Incentives"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:288
 msgid "What can you share about providing the right incentives for participation"
@@ -1857,7 +1855,7 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:309
 msgid "Quality Control Mechanisms"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:310
 msgid "What can you share about defining the right mechanism of quality control"
@@ -1898,23 +1896,23 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:318
 msgid "I can refer you"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:319
 msgid "I can do it"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:320
 msgid "I can explain"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:321
 msgid "I want to learn"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:322
 msgid "Non Profit"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:323
 #, fuzzy
@@ -1923,15 +1921,15 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:324
 msgid "Private Sector"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:325
 msgid "Other"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:326
 msgid "Academia"
-msgstr ""
+msgstr "TRANSLATE"
 
 #: /noi/app/templates/user-profile.html:93
 msgid "Languages:"
@@ -1984,10 +1982,4 @@ msgstr "TRANSLATE"
 #: /noi/app/templates/security/send_confirmation.html:13
 msgid "Resend confirmation instructions"
 msgstr ""
-
-#~ msgid "test test"
-#~ msgstr "TRANSLATE"
-
-#~ msgid "test test 3"
-#~ msgstr "TRANSLATE"
 
