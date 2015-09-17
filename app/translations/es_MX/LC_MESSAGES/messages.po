@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-16 02:13+0000\n"
+"POT-Creation-Date: 2015-09-17 14:14+0000\n"
 "PO-Revision-Date: 2015-09-11 15:30+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es_MX <LL@li.org>\n"
@@ -301,11 +301,11 @@ msgid "What you can share about"
 msgstr "TRANSLATE"
 
 #: /noi/app/templates/my-expertise.html:153
-#: /noi/app/templates/my-profile.html:105
+#: /noi/app/templates/my-profile.html:107
 msgid "Save"
 msgstr "TRANSLATE"
 
-#: /noi/app/templates/my-profile.html:204
+#: /noi/app/templates/my-profile.html:206
 msgid "Sorry, that file is too big.  Please choose a smaller one."
 msgstr ""
 
@@ -486,16 +486,17 @@ msgid ""
 "solutions.</p> <p><b>These twenty questions help you describe what you "
 "know and can share about open data and what you want to learn from "
 "others.  Click on a link below to create an expertise profile.</b></p>\n"
-"msgstr "<p>Lo que hace que los datos abiertos sean una herramienta poderosa "
-"para gobernar mejor es la habilidad de las personas, dentro y fuera de las "
+msgstr ""
+"<p>Lo que hace que los datos abiertos sean una herramienta poderosa para "
+"gobernar mejor es la habilidad de las personas, dentro y fuera de las "
 "instituciones, de usar los mismos datos para crear políticas públicas, "
 "herramientas, visualizaciones, mapas y aplicaciones. Los datos abiertos "
 "pueden proveer la materia prima para organizar conversaciones informadas "
-"acerca de lo que no está funcionando y establecer los fundamentos empíricos " 
-"para desarrollar soluciones. Estas preguntas te ayudarán a describir lo "
-"que sabes y lo que deseas compartir acerca de datos abiertos y lo que desean " 
-"aprender de otros. Haz click en el siguiente enlace para crear un perfil "
-"de competencias.</b></p>\n"
+"acerca de lo que no está funcionando y establecer los fundamentos "
+"empíricos para desarrollar soluciones. Estas preguntas te ayudarán a "
+"describir lo que sabes y lo que deseas compartir acerca de datos abiertos"
+" y lo que desean aprender de otros. Haz click en el siguiente enlace para"
+" crear un perfil de competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:35
 msgid "Open Data"
@@ -503,13 +504,17 @@ msgstr "Datos Abiertos"
 
 #: /noi/app/templates/translate.tmp.html:36
 msgid "creating an open data plan and strategy to achieve key goals"
-msgstr "creando un plan y una estrategia de datos abiertos para alcanzar metas clave"
+msgstr ""
+"creando un plan y una estrategia de datos abiertos para alcanzar metas "
+"clave"
 
 #: /noi/app/templates/translate.tmp.html:37
 msgid ""
 "How to identify what data will help my organization achieve its core "
 "mission"
-msgstr "cómo identificar qué datos ayudarán a que mi organización logre su misión principal"
+msgstr ""
+"cómo identificar qué datos ayudarán a que mi organización logre su misión"
+" principal"
 
 #: /noi/app/templates/translate.tmp.html:38
 msgid ""
@@ -555,7 +560,9 @@ msgstr "en qué estándares de datos publicar mis datos"
 
 #: /noi/app/templates/translate.tmp.html:48
 msgid "how to use the right infrastructure for making data available"
-msgstr "cómo usar la infraestructura correcta para lograr que los datos estén disponibles"
+msgstr ""
+"cómo usar la infraestructura correcta para lograr que los datos estén "
+"disponibles"
 
 #: /noi/app/templates/translate.tmp.html:49
 msgid "good management for an open data project"
@@ -563,7 +570,9 @@ msgstr "hacer un buena administración de un proyecto de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:50
 msgid "how to determine how often datasets should be released and updated"
-msgstr "cómo determinar la frecuencia con la que estas bases de datos datos deben ser publicadas y actualizadas"
+msgstr ""
+"cómo determinar la frecuencia con la que estas bases de datos datos deben"
+" ser publicadas y actualizadas"
 
 #: /noi/app/templates/translate.tmp.html:51
 msgid "how to ensure continued data quality and integrity"
@@ -577,11 +586,15 @@ msgstr "responder a lo que los usuarios quieren y necesitan"
 msgid ""
 "how to create incentives for users or the public to make productive use "
 "of the data"
-msgstr "cómo crear incentivos para que los usuarios o el público hagan un uso productivo de los datos"
+msgstr ""
+"cómo crear incentivos para que los usuarios o el público hagan un uso "
+"productivo de los datos"
 
 #: /noi/app/templates/translate.tmp.html:54
 msgid "how to identify and combine other sources of open data to achieve a goal"
-msgstr "cómo identificar y combinar otras fuentes de datos abiertos para lograr una meta"
+msgstr ""
+"cómo identificar y combinar otras fuentes de datos abiertos para lograr "
+"una meta"
 
 #: /noi/app/templates/translate.tmp.html:55
 msgid "how to design a data collaborative"
@@ -591,8 +604,9 @@ msgstr "cómo diseñar una alianza público-privada para compartir datos"
 msgid ""
 "how to express the value proposition of the open data datasets, including"
 " what problems can be solved with this data"
-msgstr "cómo expresar la propuesta de valor de las bases de datos abiertos," 
-" incluyendo el tipo de problemas que pueden solucionarse con estos datos"
+msgstr ""
+"cómo expresar la propuesta de valor de las bases de datos abiertos, "
+"incluyendo el tipo de problemas que pueden solucionarse con estos datos"
 
 #: /noi/app/templates/translate.tmp.html:57
 msgid "assessing effectiveness"
@@ -649,7 +663,9 @@ msgstr "TRANSLATE"
 msgid ""
 "how to decide when to use a prize-backed challenge rather than other "
 "options like conventional crowdsourcing"
-msgstr " cómo decidir cuándo usar un reto respaldado por un premio en lugar de otras opciones como crowdsourcing convencional."
+msgstr ""
+" cómo decidir cuándo usar un reto respaldado por un premio en lugar de "
+"otras opciones como crowdsourcing convencional."
 
 #: /noi/app/templates/translate.tmp.html:71
 msgid "how to determine whether a prize or a grand challenge is optimal"
@@ -691,7 +707,9 @@ msgstr "cómo crear un plan para ejecutar el premio con hitos definidos"
 msgid ""
 "how to access outside contractors to support the design and "
 "implementation of the prizes"
-msgstr "cómo acceder a contratistas externos para apoyar el diseño e implementación de los premios."
+msgstr ""
+"cómo acceder a contratistas externos para apoyar el diseño e "
+"implementación de los premios."
 
 #: /noi/app/templates/translate.tmp.html:81
 msgid "how to decide how long the prize should run"
@@ -703,7 +721,9 @@ msgstr "cómo desarrollar una estrategia de comunicación para dar difusión al 
 
 #: /noi/app/templates/translate.tmp.html:83
 msgid "how to choose from the tools available to run a prize-backed challenge"
-msgstr "cómo elegir entre las herramientas disponibles para ejecutar un reto respaldado por un premio. "
+msgstr ""
+"cómo elegir entre las herramientas disponibles para ejecutar un reto "
+"respaldado por un premio. "
 
 #: /noi/app/templates/translate.tmp.html:84
 msgid "judging a prize"
@@ -727,7 +747,9 @@ msgstr "cómo determinar la propiedad intelectual y los derechos de autor."
 
 #: /noi/app/templates/translate.tmp.html:89
 msgid "how to navigate governmental endorsement and privacy concerns"
-msgstr "cómo sortear las preocupaciones de respaldo gubernamental y la privacidad. "
+msgstr ""
+"cómo sortear las preocupaciones de respaldo gubernamental y la "
+"privacidad. "
 
 #: /noi/app/templates/translate.tmp.html:90
 msgid "what to do after a challenge"

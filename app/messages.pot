@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-16 02:13+0000\n"
+"POT-Creation-Date: 2015-09-17 14:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,11 +299,11 @@ msgid "What you can share about"
 msgstr ""
 
 #: /noi/app/templates/my-expertise.html:153
-#: /noi/app/templates/my-profile.html:105
+#: /noi/app/templates/my-profile.html:107
 msgid "Save"
 msgstr ""
 
-#: /noi/app/templates/my-profile.html:204
+#: /noi/app/templates/my-profile.html:206
 msgid "Sorry, that file is too big.  Please choose a smaller one."
 msgstr ""
 
