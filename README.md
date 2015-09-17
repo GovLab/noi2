@@ -57,29 +57,23 @@ If requirements change, you need to do this again.
 
     docker-compose build
 
-### Mac OSX OpenSSL issues
-
-If an OpenSSL error is preventing `docker-compose build` from working on Mac
-OSX, you'll need to install `docker-compose` via `curl` instead of `pip`:
-
-    curl -L https://github.com/docker/compose/releases/download/1.3.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
-
-You may need to prepend `sudo` to the commands above depending on your system's
-permissions.
-
 ### Running the server
 
 To get everything running:
 
     docker-compose up
 
-### Viewing the site on Mac
+### OS X Notes
 
-Since boot2docker doesn't expose containers to `localhost` or `127.0.0.1`, you
-will need to go to the IP address you get from
+Please install [Docker Toolbox][]. This will ensure that you have
+Docker, Docker Machine, and Docker Compose on your system.
 
-    boot2docker ip
+#### Viewing the site on Mac
+
+Since Docker Machine doesn't expose containers to `localhost` or
+`127.0.0.1`, you will need to go to the IP address you get from
+
+    docker-machine ip default
 
 The server should be running on port 80.
 
@@ -132,3 +126,4 @@ container.
 Tests are located in `app/tests`. Please feel free to add more!
 
   [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
+  [Docker Toolbox]: https://www.docker.com/toolbox
