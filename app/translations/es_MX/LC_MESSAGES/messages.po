@@ -754,137 +754,137 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:96
 msgid "Citizen Science"
-msgstr "TRANSLATE"
+msgstr "Ciencia Ciudadana"
 
 #: /noi/app/templates/translate.tmp.html:97
 msgid ""
 "defining the goals of a citizen science initiative and the tasks to be "
 "completed in order to achieve them"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir sobre definir metas de una iniciativa de ciencia ciudadana y las tareas que se deben completar para lograrlas. "
 
 #: /noi/app/templates/translate.tmp.html:98
 msgid "How to identify a compelling goal for a citizen science project"
-msgstr "TRANSLATE"
+msgstr "identificar una meta convincente para un proyecto de ciencia ciudadana."
 
 #: /noi/app/templates/translate.tmp.html:99
 msgid "How to identify and define the tasks for participants to do"
-msgstr "TRANSLATE"
+msgstr "identificar y definir las tareas que deben realizar los participantes "
 
 #: /noi/app/templates/translate.tmp.html:100
 msgid ""
 "How to decide the types of tasks to be considered when developing a "
 "citizen science project"
-msgstr "TRANSLATE"
+msgstr "decidir el tipo de tareas que se deben considerar al desarrollar un proyecto de ciencia ciudadana."
 
 #: /noi/app/templates/translate.tmp.html:101
 msgid "How to articulate intended outcomes of a project"
-msgstr "TRANSLATE"
+msgstr "articular los resultados previstos de un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:102
 msgid "How to articulate how the tasks will advance a research field"
-msgstr "TRANSLATE"
+msgstr "articular de qué forma las tareas ayudarán a avanzar un campo de investigación."
 
 #: /noi/app/templates/translate.tmp.html:103
 msgid "How to define the success of a project"
-msgstr "TRANSLATE"
+msgstr "definir el éxito de un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:104
 msgid "How to measure and evaluate the success of a project"
-msgstr "TRANSLATE"
+msgstr "medir y evaluar el éxito de un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:105
 msgid ""
 "How to define and validate a protocol for an experiment and required data"
 " collection"
-msgstr "TRANSLATE"
+msgstr "definir y validar un protocolo para un experimento y la recolección de datos requerida."
 
 #: /noi/app/templates/translate.tmp.html:106
 msgid "How to define a project in terms of time required and geographic range"
-msgstr "TRANSLATE"
+msgstr "definir un proyecto en términos del tiempo requerido y del alcance geográfico."
 
 #: /noi/app/templates/translate.tmp.html:107
 msgid "How to identify funding opportunities for a project"
-msgstr "TRANSLATE"
+msgstr "identificar oportunidades de financiamiento para un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:108
 msgid "developing incentives to motivate participation"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir sobre desarrollar incentivos con el objetivo de motivar la participación. "
 
 #: /noi/app/templates/translate.tmp.html:109
 msgid "How to engage with and/or create a community for participants."
-msgstr "TRANSLATE"
+msgstr "involucrar y comprometer a los participantes y/o crear una comunidad de participantes."
 
 #: /noi/app/templates/translate.tmp.html:110
 msgid "How to retain participants"
-msgstr "TRANSLATE"
+msgstr "retener a los participantes."
 
 #: /noi/app/templates/translate.tmp.html:111
 msgid "How to address variations and skew in participation"
-msgstr "TRANSLATE"
+msgstr "lidiar con variaciones y sesgos en la participación."
 
 #: /noi/app/templates/translate.tmp.html:112
 msgid "How to scale up participation"
-msgstr "TRANSLATE"
+msgstr "hacer crecer la participación."
 
 #: /noi/app/templates/translate.tmp.html:113
 msgid "How to identify collaborators around the project"
-msgstr "TRANSLATE"
+msgstr "identificar colaboradores para el proyecto."
 
 #: /noi/app/templates/translate.tmp.html:114
 msgid "How to define and develop gamification in projects"
-msgstr "TRANSLATE"
+msgstr "definir y desarrollar procesos de gamificación en proyectos"
 
 #: /noi/app/templates/translate.tmp.html:115
 msgid ""
 "How to identify what people are competing to do (e.g. quantity, "
 "frequency, quality of participation)"
-msgstr "TRANSLATE"
+msgstr "identificar las cosas por las cuales las personas podrían competir. (e.g. cantidad, frecuencia y calidad de la participación)."
 
 #: /noi/app/templates/translate.tmp.html:116
 msgid "How to attribute contributions to the relevant parties"
-msgstr "TRANSLATE"
+msgstr "atribuir las contribuciones que han hecho las partes relevantes."
 
 #: /noi/app/templates/translate.tmp.html:117
 msgid "giving participants the skills and information needed to participate well"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de capacitar a los participantes con las habilidades y la información necesaria para que "
 
 #: /noi/app/templates/translate.tmp.html:118
 msgid "How to prepare individuals to participate in a project"
-msgstr "TRANSLATE"
+msgstr "capacitar/preparar individuos para que participen en un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:119
 msgid "How to develop an FAQ for participants to reference throughout the process"
-msgstr "TRANSLATE"
+msgstr "desarrollar una página de Preguntas Frecuentes para que los participantes tengan una referencia durante todo el proceso."
 
 #: /noi/app/templates/translate.tmp.html:120
 msgid ""
 "How to prepare people within my institution to make use of citizen "
 "scientists’ input"
-msgstr "TRANSLATE"
+msgstr "capacitar personas dentro de mi institución para que utilicen los resultados de los ciudadanos científicos."
 
 #: /noi/app/templates/translate.tmp.html:121
 msgid "How to assess data quality"
-msgstr "TRANSLATE"
+msgstr "capaz de evaluar la calidad de los datos."
 
 #: /noi/app/templates/translate.tmp.html:122
 msgid "How to design/adapt protocols to assure high quality data"
-msgstr "TRANSLATE"
+msgstr "diseñar y adaptar protocolos para asegurar una alta calidad en los datos."
 
 #: /noi/app/templates/translate.tmp.html:123
 msgid ""
 "How to identify, choose and recruit participants capable of contributing "
 "high quality data"
-msgstr "TRANSLATE"
+msgstr "identificar, escoger y reclutar participantes capaces de contribuir con datos de alta calidad."
 
 #: /noi/app/templates/translate.tmp.html:124
 msgid "deciding upon and using citizen science platforms and tools"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir sobre decidir y usar plataformas y herramientas de ciencia ciudadana. "
 
 #: /noi/app/templates/translate.tmp.html:125
 msgid ""
 "How to identify and decide on the optimal platform for sharing data "
 "submitted by participants, in a way that helps them interpret the data"
-msgstr "TRANSLATE"
+msgstr "identificar y decidir cuál es la plataforma ideal para compartir los datos que los participantes entregan y producen con otros investigadores y centros de datos."
 
 #: /noi/app/templates/translate.tmp.html:126
 msgid ""
@@ -896,101 +896,102 @@ msgstr "TRANSLATE"
 msgid ""
 "How to evaluate and implement the appropriate use of technology for "
 "collecting and reporting data given the task I am asking people to do"
-msgstr "TRANSLATE"
+msgstr "evaluar e implementar tecnologías apropiadas para recolectar y reportar los datos de las tareas que le pido a las personas que realicen."
 
 #: /noi/app/templates/translate.tmp.html:128
 msgid ""
 "How to interpret data being collected before the project has been "
 "completed"
-msgstr "TRANSLATE"
+msgstr "interpretar los datos que son recolectados antes de que el proyecto haya finalizado."
 
 #: /noi/app/templates/translate.tmp.html:129
 msgid "How to interpret data collected when the project has been completed"
-msgstr "TRANSLATE"
+msgstr "interpretar los datos recolectados cuando el proyecto ha finalizado."
 
 #: /noi/app/templates/translate.tmp.html:130
 msgid "How to archive data"
-msgstr "TRANSLATE"
+msgstr "archivar los datos."
 
 #: /noi/app/templates/translate.tmp.html:131
 msgid "using input gained through citizen science to drive decision making"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de utilizar los resultados obtenidos a través de un proyecto de ciencia ciudadana para impulsar la toma de decisiones. "
 
 #: /noi/app/templates/translate.tmp.html:132
 msgid "How to identify the societal relevance of your project"
-msgstr "TRANSLATE"
+msgstr "identificar la importancia social de un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:133
 msgid ""
 "How to translate the outcomes of the project into desired changes: "
 "(government, institutional, societal)"
-msgstr "TRANSLATE"
+msgstr "convertir los resultados del proyecto en cambios deseados: (¿gobierno? ¿institucional? ¿societal?)"
 
 #: /noi/app/templates/translate.tmp.html:134
 msgid "legal concerns and barriers related to citizen science initiatives"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de las preocupaciones legales y las barreras relacionadas con las iniciativas de ciencia ciudadana. "
 
 #: /noi/app/templates/translate.tmp.html:135
 msgid "How to identify and mitigate privacy concerns relating to data collected"
-msgstr "TRANSLATE"
+msgstr "identificar y mitigar las preocupaciones de privacidad relacionadas a los datos recolectados."
 
 #: /noi/app/templates/translate.tmp.html:136
 msgid "How to ensure COPPA compliance in projects featuring minors"
-msgstr "TRANSLATE"
+msgstr "asegurar el cumplimiento de los estándares de la Ley de Protección de la Privacidad de los Niños en Línea, COPPA (por sus siglas en inglés), en proyectos que involucren a menores."
 
 #: /noi/app/templates/translate.tmp.html:137
 msgid ""
 "How to identify considerations related to participants sharing their "
 "locations"
-msgstr "TRANSLATE"
+msgstr "identificar consideraciones relacionadas a que los participantes compartan sus ubicaciones."
 
 #: /noi/app/templates/translate.tmp.html:138
 msgid "How to ask people to license their contributions"
-msgstr "TRANSLATE"
+msgstr "pedirle a las personas que licencien sus contribuciones."
 
 #: /noi/app/templates/translate.tmp.html:139
 msgid "How to license data that is going to be published"
-msgstr "TRANSLATE"
+msgstr "elegir la licencia que debo aplicar cuando publico datos."
 
 #: /noi/app/templates/translate.tmp.html:140
 msgid "How to draft a data policy"
-msgstr "TRANSLATE"
+msgstr "redactar una política de datos."
 
 #: /noi/app/templates/translate.tmp.html:141
 msgid "How to draft a privacy policy"
-msgstr "TRANSLATE"
+msgstr "redactar una política de privacidad."
 
 #: /noi/app/templates/translate.tmp.html:142
 msgid ""
 "How to draft other liability policies and educate potential participants "
 "about privacy issues"
-msgstr "TRANSLATE"
+msgstr "redactar otras políticas de responsabilidad (liability) y educar a potenciales participantes sobre asuntos de privacidad."
 
 #: /noi/app/templates/translate.tmp.html:143
 msgid ""
 "communicating project results to participants and the public, and "
 "ensuring that projects continue after initial the engagement"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de comunicar los resultados de un proyecto a los participantes y al público, y acerca de asegurar que los proyectos continúen después de su desarrollo inicial. 
+"
 
 #: /noi/app/templates/translate.tmp.html:144
 msgid "How to communicate results and milestones to participants"
-msgstr "TRANSLATE"
+msgstr "comunicar resultados e hitos a los participantes."
 
 #: /noi/app/templates/translate.tmp.html:145
 msgid "How to identify avenues for publishing results"
-msgstr "TRANSLATE"
+msgstr "identificar los medios adecuados para publicar los resultados."
 
 #: /noi/app/templates/translate.tmp.html:146
 msgid "How to determine when to publish results"
-msgstr "TRANSLATE"
+msgstr "determinar cuándo publicar los resultados."
 
 #: /noi/app/templates/translate.tmp.html:147
 msgid "How to ensure sustainability of project management"
-msgstr "TRANSLATE"
+msgstr "asegurar la sustentabilidad en la administración del proyecto."
 
 #: /noi/app/templates/translate.tmp.html:148
 msgid "How to identify funding opportunities to sustain a project"
-msgstr "TRANSLATE"
+msgstr "identificar las oportunidades de financiamiento para sustentar un proyecto.  "
 
 #: /noi/app/templates/translate.tmp.html:150
 msgid "Nudges"
@@ -1403,144 +1404,144 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:233
 msgid "Crowdsourcing"
-msgstr "TRANSLATE"
+msgstr "Crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:234
 msgid "What can you share about identifying, enrolling, and developing a crowd"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir acerca de identificar, inscribir/enlistar y desarrollar una multitud."
 
 #: /noi/app/templates/translate.tmp.html:235
 msgid ""
 "How to identify the crowd I want to participate (e.g. general public, "
 "informed experts, participants with a particular skill)"
-msgstr "TRANSLATE"
+msgstr "Cómo identificar la multitud que quiero que participe (e.g. público en general, expertos informados, participantes con una habilidad particular)."
 
 #: /noi/app/templates/translate.tmp.html:236
 msgid ""
 "How to enable members of the crowd to participate (e.g. creating "
 "profiles, defining roles, sharing supporting materials)"
-msgstr "TRANSLATE"
+msgstr "Cómo capacitar a los miembros de la multitud para que participen (e.g. creando perfiles, definiendo roles, compartiendo materiales adicionales)"
 
 #: /noi/app/templates/translate.tmp.html:237
 msgid "How to encourage ongoing participation"
-msgstr "TRANSLATE"
+msgstr "Cómo alentar una participación continua."
 
 #: /noi/app/templates/translate.tmp.html:238
 msgid "What can you share about the type of activities the crowd could perform"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir acerca del tipo de actividades que la multitud desarrollará."
 
 #: /noi/app/templates/translate.tmp.html:239
 msgid ""
 "How to ask the crowd to perform a specific task (e.g. design a product, "
 "tag photos, classify information, analyse information)"
-msgstr "TRANSLATE"
+msgstr "Cómo pedir a la multitud que realice una tarea específica (e.g. diseñar un producto, etiquetar fotos, clasificar información, analizar información)."
 
 #: /noi/app/templates/translate.tmp.html:240
 msgid ""
 "How to ask the crowd to collect and share data (e.g. report a water leak,"
 " a case of corruption, quality of the air in their city)"
-msgstr "TRANSLATE"
+msgstr "Cómo pedir a la multitud que recopile y comparta datos (e.g. reportar una fuga de agua, un caso de corrupción, la calidad de aire de la ciudad)."
 
 #: /noi/app/templates/translate.tmp.html:241
 msgid ""
 "How to ask the crowd for their opinion (e.g. vote on a design contest, "
 "opine on a policy recommendation)"
-msgstr "TRANSLATE"
+msgstr "Cómo pedir a la multitud su opinión (e.g. votar en un concurso de diseño, opinar en una recomendación sobre política pública)."
 
 #: /noi/app/templates/translate.tmp.html:242
 msgid ""
 "How to ask the crowd for new ideas (e.g. solve a public problem, generate"
 " ideas to reduce unnecessary government spending)"
-msgstr "TRANSLATE"
+msgstr "Cómo pedir nuevas ideas a la multitud (e.g. solucionar un problema público, generar ideas para reducir el gasto gubernamental innecesario)."
 
 #: /noi/app/templates/translate.tmp.html:243
 msgid ""
 "How to ask the crowd for funds (e.g. donate money to help build a park, "
 "funding a municipal bond)"
-msgstr "TRANSLATE"
+msgstr "Cómo pedir fondos a la multitud (e.g. donar dinero para ayudar a construir un parque, financiar un bono municipal)."
 
 #: /noi/app/templates/translate.tmp.html:244
 msgid ""
 "How to ask the crowd for referrals (e.g. share information with their "
 "personal or professional networks, provide recommendations of other "
 "members of the crowd to include in an initiative)"
-msgstr "TRANSLATE"
+msgstr "Cómo pedir recomendaciones a la multitud (e.g. que compartan información con sus redes personales o profesionales, que proporcionen recomendaciones a otros miembros de la multitud para incluir en una iniciativa)."
 
 #: /noi/app/templates/translate.tmp.html:245
 msgid ""
 "What can you share about defining if crowdsourcing is the right process "
 "for a given situation"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir sobre decidir si el crowdsourcing es la herramienta adecuada para una situación determinada."
 
 #: /noi/app/templates/translate.tmp.html:246
 msgid ""
 "How to decide when to use crowdsourcing rather than other options like "
 "the conventional top-down process of decision-making"
-msgstr "TRANSLATE"
+msgstr "Cómo decidir cuándo utilizar crowdsourcing en lugar de otras opciones convencionales como procesos verticales de toma de decisiones (top-down)."
 
 #: /noi/app/templates/translate.tmp.html:247
 msgid ""
 "How to identify the gaps in expertise that can be minimised through the "
 "participation of the crowd"
-msgstr "TRANSLATE"
+msgstr "Cómo identificar las brechas en conocimiento y competencias que pueden minimizarse a través de la participación de la multitud."
 
 #: /noi/app/templates/translate.tmp.html:248
 msgid ""
 "How to design a crowdsourcing strategy that provides value to the "
 "participants either through the outcome or the participation itself"
-msgstr "TRANSLATE"
+msgstr "Cómo diseñar una estrategia de crowdsourcing que proporcione valor a los participantes a través de los resultados alcanzados o de su participación."
 
 #: /noi/app/templates/translate.tmp.html:249
 msgid ""
 "How to connect the efforts of the crowd to enable them to aggregate and "
 "build off each other’s work"
-msgstr "TRANSLATE"
+msgstr "Cómo conectar los esfuerzos de la multitud para posibilitar que conjunten esfuerzos y construyan con base en el trabajo de los otros."
 
 #: /noi/app/templates/translate.tmp.html:250
 msgid ""
 "How to determine the institutional resources required to implement a "
 "successful crowdsourcing initiative"
-msgstr "TRANSLATE"
+msgstr "Cómo determinar los recursos institucionales que se requieren para implementar una iniciativa exitosa de crowdsourcing."
 
 #: /noi/app/templates/translate.tmp.html:251
 msgid ""
 "How to assess the potential time and resources required from the crowd in"
 " order to participate"
-msgstr "TRANSLATE"
+msgstr "Cómo evaluar el potencial tiempo y los recursos que la multitud requiere para implementar una iniciativa exitosa de crowdsourcing."
 
 #: /noi/app/templates/translate.tmp.html:252
 msgid "How to assess the effectiveness of using crowdsourcing"
-msgstr "TRANSLATE"
+msgstr "Cómo evaluar la efectividad de utilizar crowdsourcing."
 
 #: /noi/app/templates/translate.tmp.html:253
 msgid "What can you share about providing the right incentives for participation"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir sobre proporcionar los incentivos correctos para fomentar la participación "
 
 #: /noi/app/templates/translate.tmp.html:254
 msgid "How to define the scope of the crowd’s participation"
-msgstr "TRANSLATE"
+msgstr "Cómo definir el alcance de la participación de la multitud."
 
 #: /noi/app/templates/translate.tmp.html:255
 msgid "How to provide feedback for participation"
-msgstr "TRANSLATE"
+msgstr "Cómo proveer retroalimentación por su participación."
 
 #: /noi/app/templates/translate.tmp.html:256
 msgid ""
 "How to decide whether to use financial or non-financial incentives (or a "
 "mix of incentives)"
-msgstr "TRANSLATE"
+msgstr "Cómo decidir si utilizar incentivos financieros o no financieros (o una mezcla de incentivos)."
 
 #: /noi/app/templates/translate.tmp.html:257
 msgid "How to determine whether the use of a competition is beneficial"
-msgstr "TRANSLATE"
+msgstr "Cómo determinar si el uso de una competencia es beneficioso"
 
 #: /noi/app/templates/translate.tmp.html:258
 msgid "How to determine whether the use of reputation systems is beneficial"
-msgstr "TRANSLATE"
+msgstr "Cómo determinar si el uso de sistemas de reputación es beneficioso"
 
 #: /noi/app/templates/translate.tmp.html:259
 msgid "How to use altruistic or community building incentives"
-msgstr "TRANSLATE"
+msgstr "Cómo usar incentivos altruistas o de construcción de comunidad"
 
 #: /noi/app/templates/translate.tmp.html:260
 msgid "How to design recreational incentives (i.e. gamification)"
@@ -1552,91 +1553,91 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:262
 msgid "How to monitor and adapt the incentives at the individual or crowd levels"
-msgstr "TRANSLATE"
+msgstr "ómo diseñar incentivos recreativos (e.g. gamificación)"
 
 #: /noi/app/templates/translate.tmp.html:263
 msgid ""
 "How to tackle the possible credibility and authenticity issues involved "
 "in the input received from the crowd"
-msgstr "TRANSLATE"
+msgstr "Cómo confrontar posibles cuestiones relacionadas a la credibilidad y autenticidad de las aportaciones de la multitud"
 
 #: /noi/app/templates/translate.tmp.html:264
 msgid ""
 "What can you share about setting up, running and managing a crowdsourcing"
 " effort"
-msgstr "TRANSLATE"
+msgstr "Qué puedo compartir de implementar, y administrar un esfuerzo de crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:265
 msgid ""
 "How to create a plan for running the crowdsourcing project with defined "
 "milestones"
-msgstr "TRANSLATE"
+msgstr "Cómo crear un plan para ejecutar un proyecto de crowdsourcing con hitos definidos "
 
 #: /noi/app/templates/translate.tmp.html:266
 msgid ""
 "How to target the right audience to attract the desired crowd and "
 "participation"
-msgstr "TRANSLATE"
+msgstr "Cómo dirigirse a la audiencia adecuada para atraer la participación deseada de la multitud "
 
 #: /noi/app/templates/translate.tmp.html:267
 msgid "How to choose a platform to do the crowdsourcing project"
-msgstr "TRANSLATE"
+msgstr "Cómo escoger una plataforma para llevar a cabo el proyecto de crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:268
 msgid ""
 "How to access outside contractors and/or intermediaries to support the "
 "design and implementation of the desired crowdsourcing platform"
-msgstr "TRANSLATE"
+msgstr "Cómo contactar contratistas externos y/o intermediarios para que apoyen en el diseño y la implementación de la plataforma elegida para crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:269
 msgid ""
 "How to build a team within an institution that supports the project from "
 "initial idea through implementation"
-msgstr "TRANSLATE"
+msgstr "Cómo construir un equipo dentro de una institución que apoye el proyecto desde su idea inicial hasta su implementación "
 
 #: /noi/app/templates/translate.tmp.html:270
 msgid "How to develop a communication strategy to target the right audience"
-msgstr "TRANSLATE"
+msgstr "Cómo desarrollar una estrategia de comunicación dirigida a la audiencia adecuada"
 
 #: /noi/app/templates/translate.tmp.html:271
 msgid "How to connect members of the crowd to each other when appropriate"
-msgstr "TRANSLATE"
+msgstr "Cómo conectar a los miembros de la multitud entre sí cuando sea apropiado"
 
 #: /noi/app/templates/translate.tmp.html:272
 msgid "How to prepare to utilize or implement the output of the crowd"
-msgstr "TRANSLATE"
+msgstr "Cómo utilizar o implementar las contribuciones de la multitud "
 
 #: /noi/app/templates/translate.tmp.html:273
 msgid "What can you share about defining the right mechanism of quality control"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir acerca de definir el mecanismo adecuado de control de calidad"
 
 #: /noi/app/templates/translate.tmp.html:274
 msgid "How to ensure high-quality and accurate participation from the crowd"
-msgstr "TRANSLATE"
+msgstr "Cómo asegurar participaciones de alta calidad y acuciosas por parte de la multitud."
 
 #: /noi/app/templates/translate.tmp.html:275
 msgid ""
 "How to leverage crowd participants to evaluate crowd contributions "
 "(through voting, rating or peer-review)"
-msgstr "TRANSLATE"
+msgstr "Cómo aprovechar a los participantes de la multitud para que evalúen las contribuciones de la multitud (a través de votaciones, puntuaciones o revisión de pares)"
 
 #: /noi/app/templates/translate.tmp.html:276
 msgid "What can you share about addressing potential legal and ethical tensions"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir sobre lidiar con potenciales tensiones legales o éticas "
 
 #: /noi/app/templates/translate.tmp.html:277
 msgid "How to determine ownership and copyright of crowd contributions"
-msgstr "TRANSLATE"
+msgstr "Cómo determinar los derechos de autor y de propiedad de las contribuciones de la multitud."
 
 #: /noi/app/templates/translate.tmp.html:278
 msgid "How to navigate governmental endorsement and privacy concerns"
-msgstr "TRANSLATE"
+msgstr "Cómo lidar con las preocupaciones de endoso gubernamental y de privacidad"
 
 #: /noi/app/templates/translate.tmp.html:279
 msgid ""
 "How to navigate potential tensions regarding free speech and public "
 "record laws"
-msgstr "TRANSLATE"
+msgstr "Cómo lidiar con potenciales tensiones relacionadas a la libertad de expresión "
 
 #: /noi/app/templates/user-profile.html:93
 #, fuzzy
