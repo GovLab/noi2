@@ -9,5 +9,5 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - ./manage.sh db upgrade
+  - docker-compose build
   - ./nosetests.sh
