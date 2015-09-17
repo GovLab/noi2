@@ -46,6 +46,7 @@ class ChosenSelect(Select):  #pylint: disable=no-init,too-few-public-methods
         #if field.errors:
         c = kwargs.pop('class', '') or kwargs.pop('class_', '')
         kwargs['class'] = u'%s form-select chosen-select' % (c)
+        kwargs['data-placeholder'] = kwargs.pop('placeholder')
         return super(ChosenSelect, self).__call__(field, **kwargs)
 
 
@@ -56,7 +57,7 @@ def _get_choices(self):
     Customization of Country field to allow selection of `None`.
     '''
     choices = self._get_choices_old()
-    choices.insert(0, ('ZZ', '',))
+    choices.insert(0, ('ZZ', lazy_gettext('Choose your country'),))
     return choices
 CountryField._get_choices = _get_choices
 
@@ -71,22 +72,22 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         exclude = ['password', 'active', 'email', 'picture_id', 'deployment']
 
     picture = FileField(
-        label='User Picture',
+        label=lazy_gettext('User Picture'),
         description='Optional',
         validators=[FileAllowed(
             ('jpg', 'jpeg', 'png'),
             lazy_gettext('Only jpeg, jpg, and png images are allowed.'))]
     )
 
-    locales = SelectMultipleField(label=lazy_gettext('Languages'),
-                                  widget=ChosenSelect(multiple=True),
-                                  # in native language
-                                  #choices=[(l.language, l.display_name) for l in LOCALES])
-                                  choices=[(l.language, l.english_name) for l in LOCALES])
+    locales = CallableChoicesSelectMultipleField(
+        label=lazy_gettext('Languages'),
+        widget=ChosenSelect(multiple=True),
+        choices=lambda: [(l.language, l.get_language_name(current_app.config.get(
+            'BABEL_DEFAULT_LOCALE'))) for l in LOCALES])
     expertise_domain_names = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Domains of Expertise'),
         widget=ChosenSelect(multiple=True),
-        choices=lambda: [(v, v) for v in current_app.config['DOMAINS']])
+        choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
 
 
 class SearchForm(Form):
@@ -94,13 +95,15 @@ class SearchForm(Form):
     Form for searching the user database.
     '''
     country = CountryField()
-    locales = SelectMultipleField(label=lazy_gettext('Languages'),
-                                  widget=ChosenSelect(multiple=True),
-                                  choices=[(l.language, l.display_name) for l in LOCALES])
+    locales = CallableChoicesSelectMultipleField(
+        label=lazy_gettext('Languages'),
+        widget=ChosenSelect(multiple=True),
+        choices=lambda: [(l.language, l.get_language_name(current_app.config.get(
+            'BABEL_DEFAULT_LOCALE'))) for l in LOCALES])
     expertise_domain_names = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Domains of Expertise'),
         widget=ChosenSelect(multiple=True),
-        choices=lambda: [(v, v) for v in current_app.config['DOMAINS']])
+        choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
     fulltext = TextField()
 
 
@@ -125,5 +128,8 @@ class EmailRestrictRegisterForm(ConfirmRegisterForm):
                 return value
 
         if email_regex:
-            raise ValidationError('{value} is not a valid email address: {explanation}'.format(
-                value=value, explanation=current_app.config.get('EMAIL_EXPLANATION')))
+            raise ValidationError(lazy_gettext(
+                '%(value)s is not a valid email address: %(explanation)s' %
+                {'value': value,
+                 'explanation': lazy_gettext(current_app.config.get('EMAIL_EXPLANATION'))}
+            ))

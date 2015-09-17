@@ -208,7 +208,7 @@ def match():
     Find innovators with answers
     '''
     if not current_user.skill_levels:
-        flash(gettext('Before we can match you with fellow innovators, you need to '
+        flash(lazy_gettext('Before we can match you with fellow innovators, you need to '
                       'enter your expertise below first.'), 'error')
         return redirect(url_for('views.my_expertise'))
     return render_template('search-results.html',
@@ -223,11 +223,12 @@ def knn():
     Find nearest neighbor (innovators most like you)
     '''
     if not current_user.skill_levels:
-        flash('Before we can find innovators like you, you need to '
-              '<a href="/my-expertise">fill your expertise</a> first.', 'error')
+        flash(lazy_gettext('Before we can find innovators like you, you need to '
+                           '<a href="/my-expertise">fill your expertise</a> first.'), 'error')
         return redirect(url_for('views.my_expertise'))
     experts = current_user.nearest_neighbors
-    return render_template('search-results.html', title='People most like me',
+    return render_template('search-results.html',
+                           title=lazy_gettext('People most like me'),
                            results=experts)
 
 
@@ -239,7 +240,8 @@ def recent_users():
     '''
     users = User.query_in_deployment().order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
-                           **{'title': 'Our most recent members', 'results': users,
+                           **{'title': lazy_gettext('Our most recent members'),
+                              'results': users,
                               'query': ''})
 
 

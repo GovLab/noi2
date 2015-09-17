@@ -51,7 +51,7 @@ label {
 
 {% macro noi_buttons(question_id) -%}
 	<div class="btn-group-wrap b-question-answers">
-      <span class="noi-and-i-can">and</span> 
+    <span class="noi-and-i-can">{{ gettext('and') }}</span> 
 		<div id="q-" class="btn-group btn-group-vertical">
 		<div class="btn-group btn-group-vertical answers">
       {% for k, v in LEVELS|dictsort %}
@@ -60,7 +60,7 @@ label {
       {% endif %}
         {% set radio_id = question_id + '-' + v['score']|string %}
         <input {% if current_user.skill_levels.get(question_id)|string == v['score']|string %}checked{% endif %} class="radio-selection" id="{{ radio_id }}" type="radio" name="{{ question_id }}" value="{{v['score']}}" />
-        <label for="{{ radio_id }}">{{v['icon']|safe}}&nbsp;{{v['label']}}</label>
+        <label for="{{ radio_id }}">{{v['icon']|safe}}&nbsp;{{ gettext(v['label']) }}</label>
       {% endfor %}
     </div>
 		</div>
@@ -68,11 +68,11 @@ label {
 
 {% macro noi_question(question, area, topic, index) -%}
 <li class="list-group-item {{'noi-q-even' if (index % 2) else 'noi-q-odd'}}">
-    <div class="noi-i-know">I know') }}</div>
+    <div class="noi-i-know">{{ gettext('I know') }}</div>
 		<div style="font-size: 1.5em;" class="noi-question">
-		&laquo; {{question['question']}} &raquo;
+		&laquo; {{ gettext(question['question']) }} &raquo;
 		</div>
-		{{ noi_buttons(question['id']) }}
+		{{ gettext(noi_buttons(question['id'])) }}
     <br/>
 			</li>
 {%- endmacro %}
@@ -86,7 +86,7 @@ label {
 <p>{{ gettext('Tell us what you know about various key topics by answering some of the following questions.') }}</p>
 <p>{{ gettext('For each question, you can choose from') }}
   {% for k,v in LEVELS|dictsort %}
-  <button style="font-size: 14px;" type="button" class="e-answer">{{v['icon']|safe}}&nbsp;{{v['label']}}</button>
+  <button style="font-size: 14px;" type="button" class="e-answer">{{v['icon']|safe}}&nbsp;{{ gettext(v['label']) }}</button>
   {% endfor %}, {{ gettext('or skip it entirely.') }}
 </p>
 </div>
@@ -95,7 +95,7 @@ label {
   {% for questionnaire in QUESTIONNAIRES %}
     <li role="presentation" class="text-center {{'noi-expertise-not-yet' if not questionnaire.topics}}"><a href="#{{questionnaire.id}}-tab">
       <img alt="{{questionnaire.name}}" class="noi-expertise-icon" src="/static/img/expertise-icons/{{questionnaire.icon}}">
-      <br/><span class="noi-expertise-icon-name">{{questionnaire['name']}}</span>
+      <br/><span class="noi-expertise-icon-name">{{ gettext(questionnaire['name']) }}</span>
       <br/><span id="{{questionnaire.id}}" class="noi-expertise-progress"></span></a>
     </li>
   {% endfor %}
@@ -113,8 +113,8 @@ label {
     <div class="accordion" id="accordion-{{questionnaire.id}}">
 
       <!-- questionnaire description -->
-      <h3>{{questionnaire['name']}}</h3>
-    <div class="noi-area-description">{{questionnaire['description']|safe}}</div>
+      <h3>{{ gettext(questionnaire['name']) }}</h3>
+    <div class="noi-area-description">{{ gettext(questionnaire['description'])|safe }}</div>
 
   {% for topic in questionnaire['topics'] %}
 
@@ -122,8 +122,8 @@ label {
       <div class="accordion-heading">
         <a id="collapse-btn-{{topic['topic']|slug}}"class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-{{questionnaire.id}}" href="#collapse-{{topic.topic|slug}}">
           <i class="fa fa-plus-square-o"></i>
-          <span class="noi-topic-name">{{topic['topic']}}</span></a>&nbsp;<span class="noi-expertise-progress-topic" id="{{topic.topic|slug}}"></span>
-          <div style="margin-bottom: 20px;">{{ gettext('What you can share about') }} {{topic['description']}}.</div>
+          <span class="noi-topic-name">{{ gettext(topic['topic']) }}</span></a>&nbsp;<span class="noi-expertise-progress-topic" id="{{topic.topic|slug}}"></span>
+          <div style="margin-bottom: 20px;">{{ gettext('What you can share about') }} {{ gettext(topic['description']) }}.</div>
         </div>
 
         <div id="collapse-{{topic.topic|slug}}" class="accordion-body collapse">

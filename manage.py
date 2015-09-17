@@ -4,7 +4,7 @@ NoI manage.py
 Scripts to run the server and perform maintenance operations
 '''
 
-from app import mail, models
+from app import mail, models, LEVELS, ORG_TYPES
 from app.factory import create_app
 from app.models import db, User, UserSkill
 from app.utils import csv_reader
@@ -54,6 +54,25 @@ def _make_context():
 
 
 @manager.command
+def translate_compile():
+    """
+    Compile existing .po files.  Since we don't keep the .mo files in version
+    control, this has to be done before server start.
+    """
+    locales = set()
+    with open('/noi/app/data/deployments.yaml') as deployments_file:
+        deployments = yaml.load(deployments_file)
+
+    for deployment in deployments.values():
+        if 'locale' in deployment:
+            locales.add(deployment['locale'])
+
+    for locale in locales:
+        subprocess.check_call('pybabel compile -f -l {locale} -d /noi/app/translations/'.format(
+            locale=locale), shell=True)
+
+
+@manager.command
 def translate():
     """
     Extract translation for all existing locales, creating new mofiles when
@@ -83,11 +102,16 @@ def translate():
             totranslate.write(gettext_for(questionnaire['name']))
             if 'topics' in questionnaire:
                 for topic in questionnaire['topics']:
-                    if 'name' in topic:
-                        totranslate.write(gettext_for(topic['name']))
+                    totranslate.write(gettext_for(topic['topic']))
                     totranslate.write(gettext_for(topic['description']))
                     for question in topic['questions']:
                         totranslate.write(gettext_for(question['question']))
+
+        for level in LEVELS.values():
+            totranslate.write(gettext_for(level['label']))
+
+        for org_type in ORG_TYPES.values():
+            totranslate.write(gettext_for(org_type))
 
     # Generate basic messages.pot
     subprocess.check_call(
@@ -142,7 +166,7 @@ def add_fake_users(users_csv):
     for row in csv_reader(os.path.join('/noi', users_csv)):
         row['password'] = ''.join(choice(string.letters + string.digits) for _ in range(20))
         row['active'] = False  # TODO is this OK?
-        user = User(**row)  # pylint: disable=star-args
+        user = User(**row)
         db.session.add(user)
         try:
             db.session.commit()

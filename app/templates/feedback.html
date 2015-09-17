@@ -23,7 +23,7 @@
 <script src="//d3q1ytufopwvkq.cloudfront.net/0/formrenderer.js"></script>
 <script>
   new FormRenderer({
-    "project_id": 1246,
+    "project_id": {{ config.contact_form_id }},
     "afterSubmit": {
       "method": "page",
       "html": "<p>{{ gettext('Thanks for submitting our form!') }}</p>"
