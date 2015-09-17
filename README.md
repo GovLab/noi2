@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/GovLab/noi2.svg?branch=master)](https://travis-ci.org/GovLab/noi2)
+
 # Network of Innovators
 
 ## Quick install
