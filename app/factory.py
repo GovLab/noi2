@@ -38,13 +38,13 @@ class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
             return self.user_model.query.get(identifier)
         for attr in get_identity_attributes():
             query = getattr(self.user_model, attr).ilike(identifier)
-            rv = self.user_model.query.filter_by(
+            retval = self.user_model.query.filter_by(
                 deployment=current_app.config['NOI_DEPLOY']).filter(query).first()
-            if rv is not None:
-                return rv
+            if retval is not None:
+                return retval
 
 
-def create_app(): #pylint: disable=too-many-statements
+def create_app(): #pylint: disable=too-many-statements,too-many-locals,too-many-branches
     '''
     Create an instance of the app.
     '''

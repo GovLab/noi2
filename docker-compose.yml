@@ -10,7 +10,9 @@ app:
     environment:
         - NOI_ENVIRONMENT # unless production, assumed "development"
 db:
-    image: postgres:9.4
+    image: agios/postgres-bdr
+    ports:
+        - "20231:5432"
 web:
     image: nginx
     volumes:

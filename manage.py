@@ -153,6 +153,33 @@ def add_fake_users(users_csv):
 
 
 @manager.command
+def setup_db_master():
+    '''
+    Set up connection to db master using BDR, no-op if MASTER_DATABASE_HOST
+    isn't set.
+    '''
+    if app.config.get('MASTER_DATABASE_HOST'):
+        db.session.execute('CREATE EXTENSION IF NOT EXISTS btree_gist;')
+        db.session.commit()
+        db.session.execute('CREATE EXTENSION IF NOT EXISTS bdr;')
+        db.session.commit()
+        # for some reason this doesn't work unless executed separately via psql
+        db.session.execute('''SELECT bdr.bdr_group_join(
+              local_node_name := 'node_{deployment}',
+              node_external_dsn := 'host={slave_host} port={slave_port} dbname=postgres',
+              join_using_dsn := 'host={master_host} port={master_port} dbname=postgres'
+        );
+            '''.format(**{'deployment': app.config.get('NOI_DEPLOY', '_default'),
+                          'slave_host': app.config['SLAVE_PUBLIC_HOST'],
+                          'slave_port': app.config['SLAVE_PUBLIC_PORT'],
+                          'master_host': app.config['MASTER_DATABASE_HOST'],
+                          'master_port': app.config['MASTER_DATABASE_PORT'],
+                          'dbname': app.config['MASTER_DATABASE_NAME']}))
+        db.session.commit()
+        #db.engine.execute('SELECT bdr.bdr_node_join_wait_for_ready();')
+
+
+@manager.command
 def send_bulk_password_reset_links(users_csv):
     """
     Send bulk password reset links for the included emails.  Argument is a CSV,
