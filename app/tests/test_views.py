@@ -1,7 +1,7 @@
 from flask.ext.testing import TestCase
 
 from app.factory import create_app
-from app.models import db
+from app.models import User
 
 from .test_models import DbTestCase
 
@@ -66,6 +66,11 @@ class ViewTests(ViewTestCase):
         self.register_and_login('foo@example.org', 'test123')
         self.logout()
         self.login('foo@example.org', 'test123')
+
+    def test_existing_user_profile_is_ok(self):
+        self.register_and_login('foo@example.org', 'test123')
+        user = User.query_in_deployment().filter_by(email='foo@example.org')
+        self.assert200(self.client.get('/user/%d' % user.one().id))
 
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
