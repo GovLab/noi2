@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-17 17:59+0000\n"
+"POT-Creation-Date: 2015-09-18 14:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,19 +98,30 @@ msgstr ""
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 
+#: /noi/app/views.py:83
+msgid ""
+"Your profile has been saved. <br/>Please tell us about your expertise "
+"below."
+msgstr ""
+
 #: /noi/app/views.py:87
 msgid "Could not save, please correct errors below"
 msgstr ""
 
 #: /noi/app/views.py:110
+#, python-format
 msgid ""
 "Your expertise has been updated.<br/>\n"
 "        What you can do next:\n"
 "        <ul>\n"
 "        <li><a href=\"/search\">Search for innovators</a></li>\n"
 "        <li>Fill another expertise questionnaire below</li>\n"
-"        <li>View your <a href=\"/user/{}\">public profile</a></li>\n"
-"        "
+"        <li>View your <a href=\"/user/%(id)d\">public profile</a></li>\n"
+"                      id"
+msgstr ""
+
+#: /noi/app/views.py:163
+msgid "This is does not correspond to a valid user."
 msgstr ""
 
 #: /noi/app/views.py:211
