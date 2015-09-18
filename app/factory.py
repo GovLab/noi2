@@ -43,6 +43,7 @@ class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
             if rv is not None:
                 return rv
 
+user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
 
 def create_app(config=None): #pylint: disable=too-many-statements
     '''
@@ -83,7 +84,6 @@ def create_app(config=None): #pylint: disable=too-many-statements
     #configure_uploads(app, (photos))
 
     # Setup Flask-Security
-    user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
                       confirm_register_form=EmailRestrictRegisterForm)
 
