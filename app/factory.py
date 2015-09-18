@@ -43,8 +43,7 @@ class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
             if rv is not None:
                 return rv
 
-
-def create_app(): #pylint: disable=too-many-statements
+def create_app(config=None): #pylint: disable=too-many-statements
     '''
     Create an instance of the app.
     '''
@@ -55,11 +54,14 @@ def create_app(): #pylint: disable=too-many-statements
 
     app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
 
-    try:
-        with open('/noi/app/config/local_config.yml', 'r') as config_file:
-            app.config.update(yaml.load(config_file))
-    except IOError:
-        app.logger.warn("No local_config.yml file")
+    if config is None:
+        try:
+            with open('/noi/app/config/local_config.yml', 'r') as config_file:
+                app.config.update(yaml.load(config_file))
+        except IOError:
+            app.logger.warn("No local_config.yml file")
+    else:
+        app.config.update(config)
 
     # If we control emails with a Regex, we have to confirm email.
     if 'EMAIL_REGEX' in app.config:
