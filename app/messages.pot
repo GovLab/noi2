@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-17 16:44+0000\n"
+"POT-Creation-Date: 2015-09-18 14:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,25 +98,40 @@ msgstr ""
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 
+#: /noi/app/views.py:83
+msgid ""
+"Your profile has been saved. <br/>Please tell us about your expertise "
+"below."
+msgstr ""
+
 #: /noi/app/views.py:87
 msgid "Could not save, please correct errors below"
 msgstr ""
 
 #: /noi/app/views.py:110
+#, python-format
 msgid ""
 "Your expertise has been updated.<br/>\n"
 "        What you can do next:\n"
 "        <ul>\n"
 "        <li><a href=\"/search\">Search for innovators</a></li>\n"
 "        <li>Fill another expertise questionnaire below</li>\n"
-"        <li>View your <a href=\"/user/{}\">public profile</a></li>\n"
-"        "
+"        <li>View your <a href=\"/user/%(id)d\">public profile</a></li>\n"
+"                      id"
+msgstr ""
+
+#: /noi/app/views.py:163
+msgid "This is does not correspond to a valid user."
 msgstr ""
 
 #: /noi/app/views.py:211
 msgid ""
 "Before we can match you with fellow innovators, you need to enter your "
 "expertise below first."
+msgstr ""
+
+#: /noi/app/views.py:215
+msgid "People Who Know what I do not"
 msgstr ""
 
 #: /noi/app/views.py:226
@@ -348,12 +363,6 @@ msgstr ""
 
 #: /noi/app/templates/search-results.html:6
 msgid "Contact all these people"
-msgstr ""
-
-#: /noi/app/templates/search-results.html:13
-msgid ""
-"Your personalized matches from the Expo who has experience in at least "
-"one of the areas you want to learn about."
 msgstr ""
 
 #: /noi/app/templates/search-results.html:14
