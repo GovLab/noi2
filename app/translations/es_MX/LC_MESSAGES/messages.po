@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-18 14:41+0000\n"
+"POT-Creation-Date: 2015-09-18 18:12+0000\n"
 "PO-Revision-Date: 2015-09-11 15:30+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es_MX <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr "Áreas de competencia"
 #: /noi/app/forms.py:134
 #, python-format
 msgid "%(value)s is not a valid email address: %(explanation)svalue"
-msgstr "TRANSLATE"
+msgstr "%(value)s TRANSLATE %(explanation)s"
 
 #: /noi/app/models.py:42
 msgid "First Name"
@@ -108,7 +108,8 @@ msgid ""
 "Your profile has been saved. <br/>Please tell us about your expertise "
 "below."
 msgstr ""
-"Su perfil se ha guardado. <br/>Porfavor favor cuéntenos acerca de sus competencias "
+"Su perfil se ha guardado. <br/>Porfavor favor cuéntenos acerca de sus "
+"competencias "
 
 #: /noi/app/views.py:87
 msgid "Could not save, please correct errors below"
@@ -142,7 +143,8 @@ msgid ""
 "Before we can match you with fellow innovators, you need to enter your "
 "expertise below first."
 msgstr ""
-"Antes de poder conectarlo con otros innovadores, primero debe ingresar su competencia.
+"Antes de poder conectarlo con otros innovadores, primero debe ingresar su"
+" competencia"
 
 #: /noi/app/views.py:215
 msgid "People Who Know what I do not"
@@ -177,7 +179,7 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/4.0/\">Creative Commons "
 "Attribution 4.0 International License</a>."
 msgstr ""
-"Este trabajo por<span xmlns:cc=\"http://creativecommons.org/ns#\" "
+"Este trabajo por <span xmlns:cc=\"http://creativecommons.org/ns#\" "
 "property=\"cc:attributionName\">The GovLab</span> está bajo una <a "
 "rel=\"licencia\" "
 "href=\"http://creativecommons.org/licenses/by/4.0/\">Creative Commons "
@@ -241,7 +243,7 @@ msgstr "Editar Mis Competencias"
 
 #: /noi/app/templates/__navbar__.html:40
 msgid "See My Public Profile"
-msgstr "Ver Mi Pefil Público"
+msgstr "Ver Mi Perfil Público"
 
 #: /noi/app/templates/__navbar__.html:41
 msgid "Logout"
@@ -271,10 +273,10 @@ msgid ""
 " purpose for which the site is intended. For questions about user "
 "privacy, please contact <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
-msgstr "TRANSLATE"
-"Toda la información que proporcione será públicamente visible y se usará con el"
-" único próposito para el que el sitio fue diseñado. Para saber más del aviso de "
-"privacidad, por favor escriba a <a "
+msgstr ""
+"TRANSLATEToda la información que proporcione será públicamente visible y "
+"se usará con el único próposito para el que el sitio fue diseñado. Para "
+"saber más del aviso de privacidad, por favor escriba a <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 
 #: /noi/app/templates/feedback.html:14
@@ -318,7 +320,7 @@ msgstr "Red de Innovadores"
 
 #: /noi/app/templates/main.html:15
 msgid "Network of Innovators</strong> Expert Finder"
-msgstr "Red de innovadores</strong> Localizador de Expertos""
+msgstr "Red de innovadores</strong> Localizador de Expertos\""
 
 #: /noi/app/templates/main.html:16
 msgid "A GovLab experiment in partnership with NHS England"
@@ -1361,7 +1363,7 @@ msgid ""
 "and under what conditions is hard. </p> <p>Share what you know and what "
 "you would like to learn about how to formulate, implement and measure a "
 "community engagement strategy.</p>\n"
-msgstr "TRANSLATE"
+msgstr "TRANSLATE\n"
 
 #: /noi/app/templates/translate.tmp.html:193
 msgid "Community Engagement"
@@ -1542,7 +1544,7 @@ msgid ""
 " strategies, human-centered design, or both – is helping to uncover what "
 "works in practice in addressing public problems. </p> <p><b>Click on a "
 "link below to create an expertise profile.</b></p>\n"
-msgstr "TRANSLATE"
+msgstr "TRANSLATE\n"
 
 #: /noi/app/templates/translate.tmp.html:231
 msgid "Lab Design"
@@ -1711,7 +1713,7 @@ msgid ""
 "questions help you describe what you know and can share about "
 "crowdsourcing and what you want to learn from others. Click on a link "
 "below to create an expertise  profile.</b></p>\n"
-msgstr "TRANSLATE"
+msgstr "TRANSLATE\n"
 
 #: /noi/app/templates/translate.tmp.html:264
 msgid "Crowdsourcing"
@@ -2142,5 +2144,4 @@ msgstr "TRANSLATE"
 #: /noi/app/templates/security/send_confirmation.html:13
 msgid "Resend confirmation instructions"
 msgstr "TRANSLATE"
-
 
