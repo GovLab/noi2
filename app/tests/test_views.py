@@ -11,12 +11,11 @@ class ViewTestCase(DbTestCase):
     def create_app(self):
         config = self.BASE_APP_CONFIG.copy()
         config.update(
+            DEBUG=False,
             WTF_CSRF_ENABLED=False,
-            SECURITY_REGISTERABLE=True,
-            SECURITY_SEND_REGISTER_EMAIL=False,
+            # This speeds tests up considerably.
+            SECURITY_PASSWORD_HASH='plaintext',
             CACHE_NO_NULL_WARNING=True,
-            SECRET_KEY='test',
-            S3_BUCKET_NAME='test_bucket'
         )
         return create_app(config=config)
 

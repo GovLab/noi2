@@ -49,12 +49,12 @@ def create_app(config=None): #pylint: disable=too-many-statements
     '''
     app = Flask(__name__)
 
+    with open('/noi/app/config/config.yml', 'r') as config_file:
+        app.config.update(yaml.load(config_file))
+
+    app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
+
     if config is None:
-        with open('/noi/app/config/config.yml', 'r') as config_file:
-            app.config.update(yaml.load(config_file))
-
-        app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
-
         try:
             with open('/noi/app/config/local_config.yml', 'r') as config_file:
                 app.config.update(yaml.load(config_file))
