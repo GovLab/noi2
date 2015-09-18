@@ -1,16 +1,32 @@
 from flask import Flask
 from flask.ext.testing import TestCase
 from nose.tools import eq_
+from sqlalchemy.exc import OperationalError
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+import psycopg2
 
 from .. import models
 
 db = models.db
 
+PG_USER = 'postgres'
+PG_HOST = 'db'
+PG_DBNAME = 'noi_test'
+PG_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)
+
+def create_database():
+    con = psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
+    con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+    cur = con.cursor()
+    cur.execute('CREATE DATABASE ' + PG_DBNAME)
+    cur.close()
+    con.close()
+
 class DbTestCase(TestCase):
     BASE_APP_CONFIG = dict(
         # TODO: We should use a test postgres db instead, since it's
         # closer to our production deployment.
-        SQLALCHEMY_DATABASE_URI='sqlite://',
+        SQLALCHEMY_DATABASE_URI=PG_URL,
         NOI_DEPLOY='_default'
     )
 
@@ -21,7 +37,14 @@ class DbTestCase(TestCase):
         return app
 
     def setUp(self):
-        db.create_all()
+        try:
+            db.create_all()
+        except OperationalError, e:
+            if 'database "%s" does not exist' % PG_DBNAME in str(e):
+                create_database()
+                db.create_all()
+            else:
+                raise e
 
     def tearDown(self):
         db.session.remove()
