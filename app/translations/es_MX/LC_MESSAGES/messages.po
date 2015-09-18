@@ -1363,178 +1363,184 @@ msgid ""
 "and under what conditions is hard. </p> <p>Share what you know and what "
 "you would like to learn about how to formulate, implement and measure a "
 "community engagement strategy.</p>\n"
-msgstr "TRANSLATE\n"
+msgstr "Las instituciones usualmente trabajan mejor cuando sus grupos de interés– ya sean ciudadanos, clientes, padres de familia, pacientes u otros miembros de una comunidad–se involucran de forma directa en la toma de decisiones y en la prestación de servicios. 
+La participación puede construir confianza e incrementar la legitimidad en la toma de decisiones. También puede ayudar a que las instituciones resuelvan problemas de una manera más efectiva, al desarrollar soluciones que están diseñadas en consulta con los grupos de interés. Sin embargo, saber cuándo y cómo involucrar a los miembros de una comunidad y bajo qué condiciones es difícil. 
+
+Comparte lo que sabes y lo que deseas aprender acerca de cómo formular, implementar y medir una estrategia de participación comunitaria. 
+\n"
 
 #: /noi/app/templates/translate.tmp.html:193
 msgid "Community Engagement"
-msgstr "TRANSLATE"
+msgstr "Participación Comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:194
 msgid "Identifying goals and participants"
-msgstr "TRANSLATE"
+msgstr "Identificando metas y participantes"
 
 #: /noi/app/templates/translate.tmp.html:195
 msgid ""
 "What you can share about setting the stage for a community engagement "
 "program."
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de establecer las bases para un programa de participación comunitaria. "
 
 #: /noi/app/templates/translate.tmp.html:196
 msgid ""
 "Clearly identify the rationale, purpose and objectives for community "
 "engagement."
-msgstr "TRANSLATE"
+msgstr "Identificar claramente el propósito, los objetivos, y la racionalidad de la participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:197
 msgid ""
 "Find and interpret relevant legislative and/or policy requirements "
 "driving the need for engagement."
-msgstr "TRANSLATE"
+msgstr "Encontrar e interpretar los requerimientos legislativos y/o de políticas públicas que impulsan la necesidad de participación. "
 
 #: /noi/app/templates/translate.tmp.html:198
 msgid ""
 "Identify who needs to be involved, including all stakeholders affected, "
 "impacted or interested in the engagement."
-msgstr "TRANSLATE"
+msgstr "Identificar quién debe estar involucrado, incluyendo grupos de interés afectados, impactados o interesados en la participación. "
 
 #: /noi/app/templates/translate.tmp.html:199
 msgid "Implementing a community engagement strategy"
-msgstr "TRANSLATE"
+msgstr "Implementando una estrategia de participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:200
 msgid "What you can share about operationalizing a community engagement program."
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de poner en práctica un programa de participación comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:201
 msgid ""
 "Identify and communicate incentives to participate, including anticipated"
 " outcomes."
-msgstr "TRANSLATE"
+msgstr "Identificar y comunicar incentivos para motivar la participación, incluyendo los resultados esperados. "
 
 #: /noi/app/templates/translate.tmp.html:202
 msgid "Develop briefing materials and information to inform engagement."
-msgstr "TRANSLATE"
+msgstr "Desarrollar materiales informativos para comunicar sobre la participación."
 
 #: /noi/app/templates/translate.tmp.html:203
 msgid "Use multiple dialog methods to engage stakeholders."
-msgstr "TRANSLATE"
+msgstr "Usar múltiples métodos de diálogo para involucrar a los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:204
 msgid "Plan and deliver face-to-face deliberation."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar una deliberación presencial"
 
 #: /noi/app/templates/translate.tmp.html:205
 msgid "Plan and deliver a deliberative poll."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar una encuesta deliberativa"
 
 #: /noi/app/templates/translate.tmp.html:206
 msgid "Plan and deliver a citizen jury."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un jurado ciudadano"
 
 #: /noi/app/templates/translate.tmp.html:207
 msgid "Plan and deliver a participatory budgeting process."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un proceso de presupuesto participativo "
 
 #: /noi/app/templates/translate.tmp.html:208
 msgid "Plan and deliver a charrette or scenario-planning exercise."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un ejercicio de planeación de escenarios"
 
 #: /noi/app/templates/translate.tmp.html:209
 msgid "Develop an action/project plan with timeline to implement the engagement."
-msgstr "TRANSLATE"
+msgstr " Desarrollar un plan de acción/proyecto con un cronograma para implementar la participación. "
 
 #: /noi/app/templates/translate.tmp.html:210
 msgid "Ensure accessibility of the engagement activity."
-msgstr "TRANSLATE"
+msgstr "Asegurar la accesibilidad de la actividad de participación. "
 
 #: /noi/app/templates/translate.tmp.html:211
 #, fuzzy
 msgid "Using online and digital channels to engage stakeholders"
-msgstr "TRANSLATE"
+msgstr "Usando medios en línea y digitales para involucrar a los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:212
 msgid ""
 "What you can share about effectively using tools to gain input from "
 "diverse stakeholders"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir acerca de usar efectivamente herramientas para obtener insumos de diversos grupos de interés. "
 
 #: /noi/app/templates/translate.tmp.html:213
 msgid ""
 "Use social media, digital and online tools to engage stakeholders as a "
 "group."
-msgstr "TRANSLATE"
+msgstr "Usar redes sociales, herramientas digitales y en línea para involucrar a los grupos de interés como una comunidad. "
 
 #: /noi/app/templates/translate.tmp.html:214
 msgid "Use social media, digital and online tools to conduct surveys."
-msgstr "TRANSLATE"
+msgstr "Usar redes sociales, herramientas digitales y en línea para realizar encuestas."
 
 #: /noi/app/templates/translate.tmp.html:215
 msgid ""
 "Plan and deliver an e-deliberation process like a 21st century town "
 "meeting."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un proceso de deliberación en línea, como un cabildo abierto del siglo 21."
 
 #: /noi/app/templates/translate.tmp.html:216
 msgid "Plan and deliver open space technology."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar tecnología de espacios abiertos."
 
 #: /noi/app/templates/translate.tmp.html:217
 msgid ""
 "Use digital and online tools to amplify engagement efforts and increase "
 "reach."
-msgstr "TRANSLATE"
+msgstr "Usar herramientas digitales y en línea para amplificar los esfuerzos de participación y para incrementar el alcance. "
 
 #: /noi/app/templates/translate.tmp.html:218
 msgid "Use digital and online tools to provide feedback to stakeholders."
-msgstr "TRANSLATE"
+msgstr "Usar herramientas digitales y en línea para proporcionar retroalimentación a los grupos de interés. "
 
 #: /noi/app/templates/translate.tmp.html:219
 msgid "Measuring, evaluating and providing feedback"
-msgstr "TRANSLATE"
+msgstr "Midiendo, evaluando y proporcionando retroalimentación "
 
 #: /noi/app/templates/translate.tmp.html:220
 msgid ""
 "What you can share about assessing effectiveness and sharing targeted "
 "feedback"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de evaluar la efectividad y compartir retroalimentación específica
+"
 
 #: /noi/app/templates/translate.tmp.html:221
 msgid "Capture and utilise relevant data related to all aspects of engagement."
-msgstr "TRANSLATE"
+msgstr "Recolectar y utilizar los datos relacionados a cada uno de los aspectos de la participación."
 
 #: /noi/app/templates/translate.tmp.html:222
 msgid ""
 "Create tools for providing clear feedback to participants and decision "
 "makers."
-msgstr "TRANSLATE"
+msgstr "Crear herramientas para proporcionar retroalimentación clara a los participantes y a los responsables de la toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:223
 msgid "Clearly and regularly report outcomes to participants and stakeholders."
-msgstr "TRANSLATE"
+msgstr "Reportar de forma clara y regular los resultados a los participantes y a los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:224
 msgid "Transforming my organisation"
-msgstr "TRANSLATE"
+msgstr "Transformando mi organización "
 
 #: /noi/app/templates/translate.tmp.html:225
 msgid ""
 "What you can share about increasing the organizational use of citizen "
 "engagement"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de mejorar tu organización haciendo uso de la participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:226
 msgid ""
 "Ensure that the learnings from a community engagement exercise get used "
 "to support continuous improvement within my organisation."
-msgstr "TRANSLATE"
+msgstr "Asegurar que los aprendizajes del ejercicio de participación comunitaria sean utilizados para apoyar el mejoramiento continuo dentro de mi organización. "
 
 #: /noi/app/templates/translate.tmp.html:227
 msgid "Increase organisational awareness of the value of community engagement."
-msgstr "TRANSLATE"
+msgstr "Aumentar la conciencia en la organización sobre el valor de la participación comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:228
 msgid "Develop and deliver appropriate training for staff across my organisation."
-msgstr "TRANSLATE"
+msgstr "Desarrollar e implementar la capacitación adecuada para el personal de toda de mi organización.
+"
 
 #: /noi/app/templates/translate.tmp.html:229
 msgid ""
