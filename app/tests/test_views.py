@@ -3,27 +3,22 @@ from flask.ext.testing import TestCase
 from app.factory import create_app
 from app.models import db
 
+from .test_models import DbTestCase
+
 LOGGED_IN_SENTINEL = '<a href="/me"'
 
-class ViewTestCase(TestCase):
+class ViewTestCase(DbTestCase):
     def create_app(self):
-        return create_app(config=dict(
+        config = self.BASE_APP_CONFIG.copy()
+        config.update(
             WTF_CSRF_ENABLED=False,
-            SQLALCHEMY_DATABASE_URI='sqlite://',
             SECURITY_REGISTERABLE=True,
             SECURITY_SEND_REGISTER_EMAIL=False,
-            NOI_DEPLOY='_default',
             CACHE_NO_NULL_WARNING=True,
             SECRET_KEY='test',
             S3_BUCKET_NAME='test_bucket'
-        ))
-
-    def setUp(self):
-        db.create_all()
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
+        )
+        return create_app(config=config)
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(

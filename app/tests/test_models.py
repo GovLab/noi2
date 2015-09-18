@@ -6,12 +6,17 @@ from .. import models
 
 db = models.db
 
-class DbTest(TestCase):
+class DbTestCase(TestCase):
+    BASE_APP_CONFIG = dict(
+        # TODO: We should use a test postgres db instead, since it's
+        # closer to our production deployment.
+        SQLALCHEMY_DATABASE_URI='sqlite://',
+        NOI_DEPLOY='_default'
+    )
+
     def create_app(self):
         app = Flask('test')
-        app.config['TESTING'] = True
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
-        app.config['NOI_DEPLOY'] = '_default'
+        app.config.update(self.BASE_APP_CONFIG)
         db.init_app(app)
         return app
 
@@ -22,7 +27,7 @@ class DbTest(TestCase):
         db.session.remove()
         db.drop_all()
 
-class UserDbTests(DbTest):
+class UserDbTests(DbTestCase):
     def test_ensure_deployment_has_a_default_setting(self):
         u = models.User(email=u'a@example.org', password='a', active=True)
         db.session.add(u)
