@@ -12,9 +12,17 @@ db = models.db
 PG_USER = 'postgres'
 PG_HOST = 'db'
 PG_DBNAME = 'noi_test'
-PG_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)
 
-def create_database():
+# We can't use postgres on Travis CI builds until
+# https://github.com/GovLab/noi2/issues/23 is fixed.
+USE_POSTGRES = False
+
+if USE_POSTGRES:
+    TEST_DB_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)
+else:
+    TEST_DB_URL = 'sqlite://'
+
+def create_postgres_database():
     con = psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
     con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = con.cursor()
@@ -24,9 +32,7 @@ def create_database():
 
 class DbTestCase(TestCase):
     BASE_APP_CONFIG = dict(
-        # TODO: We should use a test postgres db instead, since it's
-        # closer to our production deployment.
-        SQLALCHEMY_DATABASE_URI=PG_URL,
+        SQLALCHEMY_DATABASE_URI=TEST_DB_URL,
         NOI_DEPLOY='_default'
     )
 
@@ -40,8 +46,9 @@ class DbTestCase(TestCase):
         try:
             db.create_all()
         except OperationalError, e:
-            if 'database "%s" does not exist' % PG_DBNAME in str(e):
-                create_database()
+            db_noexist_msg = 'database "%s" does not exist' % PG_DBNAME
+            if USE_POSTGRES and db_noexist_msg in str(e):
+                create_postgres_database()
                 db.create_all()
             else:
                 raise e
