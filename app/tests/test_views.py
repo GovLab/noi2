@@ -1,6 +1,6 @@
 from flask.ext.testing import TestCase
 
-from app.factory import create_app, user_datastore
+from app.factory import create_app
 from app.models import User
 
 from .test_models import DbTestCase
@@ -38,11 +38,15 @@ class ViewTestCase(DbTestCase):
         assert LOGGED_IN_SENTINEL not in res.data
         return res
 
+    def create_user(self, email, password):
+        datastore = self.app.extensions['security'].datastore
+        return datastore.create_user(email=email, password=password)
+
     def login(self, email=None, password=None):
         if email is None:
             email = u'test@example.org'
             password = 'test123'
-            user_datastore.create_user(email=email, password=password)
+            self.create_user(email=email, password=password)
         res = self.client.post('/login', data=dict(
             next='/',
             submit="Login",
@@ -72,7 +76,7 @@ class ViewTests(ViewTestCase):
         self.login('foo@example.org', 'test123')
 
     def test_existing_user_profile_is_ok(self):
-        u = user_datastore.create_user(email=u'u@example.org', password='t')
+        u = self.create_user(email=u'u@example.org', password='t')
         self.login('u@example.org', 't')
         self.assert200(self.client.get('/user/%d' % u.id))
 
