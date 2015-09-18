@@ -3,14 +3,14 @@
 {% block content %}
 
 <div id="new-search">
-<a target="__email__" role="button" class="btn btn-primary" href="mailto:{{results|map(attribute='email')|join(',')}}?subject=Contact+request+from+the+Network+of+Innovators">{{ gettext('Contact all these people') }}</a>
+  <a target="__email__" role="button" class="btn btn-primary" href="mailto:{{results|map(attribute='email')|join(',')}}?subject={{ gettext('Contact+request+from+the+Network+of+Innovators') }}">{{ gettext('Contact all these people') }}</a>
 </div>
 
 <div class="b-results">
 	<div class="b-content-header">
-		<h1>{{title}}{# | {{results|length}}#}</h1>
+		<h1>{{ title }}{# | {{results|length}}#}</h1>
     {% if NOI_DEPLOY == 'nhs.networkofinnovators.org' %}
-        <p>{{ gettext('Your personalized matches from the Expo who has experience in at least one of the areas you want to learn about.') }}</p>
+        <p>Your personalized matches from the Expo who has experience in at least one of the areas you want to learn about.</p>
         <p><strong>{{ gettext('E-mail one or more of them to meet, network and learn something new!') }}</strong></p>
     {% endif %}
 	</div>

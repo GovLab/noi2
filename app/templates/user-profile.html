@@ -172,7 +172,7 @@
 
 <div class="text-center">
 {% for k, v in LEVELS|dictsort %}
-      <span style="border: solid 1px black; padding: 3px;">{{v['icon']|safe}}&nbsp;{{v['label']}}</span>
+<span style="border: solid 1px black; padding: 3px;">{{v['icon']|safe}}&nbsp;{{ gettext(v['label']) }}</span>
       {% endfor %}
 </div>
 

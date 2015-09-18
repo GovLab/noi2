@@ -6,7 +6,7 @@ app:
           #- redis
     volumes:
         - .:/noi
-        - migrations:/migrations
+        - ./migrations:/migrations
     environment:
         - NOI_ENVIRONMENT # unless production, assumed "development"
 db:
@@ -16,7 +16,7 @@ db:
 web:
     image: nginx
     volumes:
-        - conf/:/etc/nginx/conf.d/
+        - ./conf/:/etc/nginx/conf.d/
         - ./app/static:/noi/app/static
         - .keys:/etc/ssl/certs
     links:

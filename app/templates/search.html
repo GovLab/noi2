@@ -37,17 +37,17 @@ ul li {
         <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
         <label class="col-md-4 control-label" for="textarea">{{ gettext('By country') }}</label>
         <div class="selector">
-          {{ form.country() }}
+          {{ form.country(placeholder=gettext('Choose your countries')) }}
         </div>
 
         <label class="col-md-4 control-label" for="textarea">{{ gettext('By language(s)') }}</label>
         <div class="selector">
-          {{ form.locales() }}
+          {{ form.locales(placeholder=gettext('Choose your languages')) }}
         </div>
 
         <label class="col-md-4 control-label" for="textarea">{{ gettext('By domain(s)') }}</label>
         <div class="selector">
-          {{ form.expertise_domain_names() }}
+          {{ form.expertise_domain_names(placeholder=gettext('Choose your fields of expertise')) }}
         </div>
 
     <label class="col-md-4 control-label" for="textarea">{{ gettext('By keyword(s)') }}</label>
@@ -57,7 +57,7 @@ ul li {
     </div>
 
 		<div>
-			<input type="submit" value="Find experts">
+      <input type="submit" value="{{ gettext('Find experts') }}">
 		</div>
 
 	</form>
