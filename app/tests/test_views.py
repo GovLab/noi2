@@ -38,11 +38,15 @@ class ViewTestCase(DbTestCase):
         assert LOGGED_IN_SENTINEL not in res.data
         return res
 
-    def login(self, username, password):
+    def login(self, email=None, password=None):
+        if email is None:
+            email = u'test@example.org'
+            password = 'test123'
+            user_datastore.create_user(email=email, password=password)
         res = self.client.post('/login', data=dict(
             next='/',
             submit="Login",
-            email=username,
+            email=email,
             password=password
         ), follow_redirects=True)
         self.assert200(res)
@@ -71,6 +75,26 @@ class ViewTests(ViewTestCase):
         u = user_datastore.create_user(email=u'u@example.org', password='t')
         self.login('u@example.org', 't')
         self.assert200(self.client.get('/user/%d' % u.id))
+
+    def test_my_profile_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/me'))
+
+    def test_my_expertise_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/my-expertise'))
+
+    def test_dashboard_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/dashboard'))
+
+    def test_search_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/search'))
+
+    def test_recent_users_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/users/recent'))
 
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
