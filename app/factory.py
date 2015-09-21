@@ -22,6 +22,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from celery import Task
 from slugify import slugify
 import yaml
+import os
 
 
 class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
@@ -63,6 +64,18 @@ def create_app(config=None): #pylint: disable=too-many-statements,too-many-branc
             app.logger.warn("No local_config.yml file")
     else:
         app.config.update(config)
+
+    if os.environ.get('POSTGRES_PASSWORD'):
+        app.config['SQLALCHEMY_DATABASE_PASSWORD'] = os.environ['POSTGRES_PASSWORD']
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://{user}:{password}@{host}:{port}/{dbname}'.\
+            format(**{
+                'user': app.config['SQLALCHEMY_DATABASE_USER'],
+                'password': app.config['SQLALCHEMY_DATABASE_PASSWORD'],
+                'host': app.config['SQLALCHEMY_DATABASE_HOST'],
+                'port': app.config['SQLALCHEMY_DATABASE_PORT'],
+                'dbname': app.config['SQLALCHEMY_DATABASE_DBNAME']
+            })
 
     # If we control emails with a Regex, we have to confirm email.
     if 'EMAIL_REGEX' in app.config:

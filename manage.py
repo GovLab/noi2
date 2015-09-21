@@ -16,7 +16,7 @@ from flask_security.utils import encrypt_password
 from flask_security.recoverable import send_reset_password_instructions
 
 from random import choice
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError, OperationalError
 
 import codecs
 import json
@@ -182,25 +182,37 @@ def setup_db_master():
     Set up connection to db master using BDR, no-op if MASTER_DATABASE_HOST
     isn't set.
     '''
-    if app.config.get('MASTER_DATABASE_HOST'):
-        db.session.execute('CREATE EXTENSION IF NOT EXISTS btree_gist;')
-        db.session.commit()
-        db.session.execute('CREATE EXTENSION IF NOT EXISTS bdr;')
-        db.session.commit()
-        # for some reason this doesn't work unless executed separately via psql
-        db.session.execute('''SELECT bdr.bdr_group_join(
-              local_node_name := 'node_{deployment}',
-              node_external_dsn := 'host={slave_host} port={slave_port} dbname=postgres',
-              join_using_dsn := 'host={master_host} port={master_port} dbname=postgres'
-        );
-            '''.format(**{'deployment': app.config.get('NOI_DEPLOY', '_default'),
-                          'slave_host': app.config['SLAVE_PUBLIC_HOST'],
-                          'slave_port': app.config['SLAVE_PUBLIC_PORT'],
-                          'master_host': app.config['MASTER_DATABASE_HOST'],
-                          'master_port': app.config['MASTER_DATABASE_PORT'],
-                          'dbname': app.config['MASTER_DATABASE_NAME']}))
-        db.session.commit()
-        #db.engine.execute('SELECT bdr.bdr_node_join_wait_for_ready();')
+    if app.config.get('BDR_DB_HOST'):
+        try:
+            db.session.execute('CREATE EXTENSION IF NOT EXISTS btree_gist;')
+            db.session.commit()
+            db.session.execute('CREATE EXTENSION IF NOT EXISTS bdr;')
+            db.session.commit()
+            db.session.execute('''SELECT bdr.bdr_group_join(
+                  local_node_name := 'node_{deployment}',
+                  node_external_dsn := 'host={db_public_host} port={db_public_port} dbname={db_public_dbname} user={db_public_user} password={db_public_password}',
+                  join_using_dsn := 'host={bdr_db_host} port={bdr_db_port} dbname={bdr_db_dbname} user={bdr_db_user} password={bdr_db_password}'
+            );
+                '''.format(**{'deployment': app.config.get('NOI_DEPLOY', '_default'),
+                              'db_public_host': app.config['DB_PUBLIC_HOST'],
+                              'db_public_port': app.config['SQLALCHEMY_DATABASE_PORT'],
+                              'db_public_dbname': app.config['SQLALCHEMY_DATABASE_DBNAME'],
+                              'db_public_user': app.config['SQLALCHEMY_DATABASE_USER'],
+                              'db_public_password': app.config['SQLALCHEMY_DATABASE_PASSWORD'],
+                              'bdr_db_host': app.config['BDR_DB_HOST'],
+                              'bdr_db_port': app.config['BDR_DB_PORT'],
+                              'bdr_db_dbname': app.config['BDR_DB_DBNAME'],
+                              'bdr_db_user': app.config['BDR_DB_USER'],
+                              'bdr_db_password': app.config['BDR_DB_PASSWORD']}))
+            db.session.commit()
+            app.logger.debug('waiting for bdr')
+            #import time
+            #time.sleep(15)
+            db.engine.execute('SELECT bdr.bdr_node_join_wait_for_ready();')
+            db.session.commit()
+        except OperationalError:
+            app.logger.debug('Already joined BDR group, skipping')
+
 
 
 @manager.command

@@ -9,10 +9,15 @@ app:
         - ./migrations:/migrations
     environment:
         - NOI_ENVIRONMENT # unless production, assumed "development"
+        - POSTGRES_PASSWORD
 db:
     image: agios/postgres-bdr
     ports:
-        - "20231:5432"
+        - "5432:5432"
+    environment:
+        - POSTGRES_USER=noi
+        - POSTGRES_PASSWORD
+        - POSTGRES_DB=noi
 web:
     image: nginx
     volumes:
