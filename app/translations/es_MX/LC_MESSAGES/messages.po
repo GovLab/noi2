@@ -1363,178 +1363,184 @@ msgid ""
 "and under what conditions is hard. </p> <p>Share what you know and what "
 "you would like to learn about how to formulate, implement and measure a "
 "community engagement strategy.</p>\n"
-msgstr "TRANSLATE\n"
+msgstr "Las instituciones usualmente trabajan mejor cuando sus grupos de interés– ya sean ciudadanos, clientes, padres de familia, pacientes u otros miembros de una comunidad–se involucran de forma directa en la toma de decisiones y en la prestación de servicios. 
+La participación puede construir confianza e incrementar la legitimidad en la toma de decisiones. También puede ayudar a que las instituciones resuelvan problemas de una manera más efectiva, al desarrollar soluciones que están diseñadas en consulta con los grupos de interés. Sin embargo, saber cuándo y cómo involucrar a los miembros de una comunidad y bajo qué condiciones es difícil. 
+
+Comparte lo que sabes y lo que deseas aprender acerca de cómo formular, implementar y medir una estrategia de participación comunitaria. 
+\n"
 
 #: /noi/app/templates/translate.tmp.html:193
 msgid "Community Engagement"
-msgstr "TRANSLATE"
+msgstr "Participación Comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:194
 msgid "Identifying goals and participants"
-msgstr "TRANSLATE"
+msgstr "Identificando metas y participantes"
 
 #: /noi/app/templates/translate.tmp.html:195
 msgid ""
 "What you can share about setting the stage for a community engagement "
 "program."
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de establecer las bases para un programa de participación comunitaria. "
 
 #: /noi/app/templates/translate.tmp.html:196
 msgid ""
 "Clearly identify the rationale, purpose and objectives for community "
 "engagement."
-msgstr "TRANSLATE"
+msgstr "Identificar claramente el propósito, los objetivos, y la racionalidad de la participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:197
 msgid ""
 "Find and interpret relevant legislative and/or policy requirements "
 "driving the need for engagement."
-msgstr "TRANSLATE"
+msgstr "Encontrar e interpretar los requerimientos legislativos y/o de políticas públicas que impulsan la necesidad de participación. "
 
 #: /noi/app/templates/translate.tmp.html:198
 msgid ""
 "Identify who needs to be involved, including all stakeholders affected, "
 "impacted or interested in the engagement."
-msgstr "TRANSLATE"
+msgstr "Identificar quién debe estar involucrado, incluyendo grupos de interés afectados, impactados o interesados en la participación. "
 
 #: /noi/app/templates/translate.tmp.html:199
 msgid "Implementing a community engagement strategy"
-msgstr "TRANSLATE"
+msgstr "Implementando una estrategia de participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:200
 msgid "What you can share about operationalizing a community engagement program."
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de poner en práctica un programa de participación comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:201
 msgid ""
 "Identify and communicate incentives to participate, including anticipated"
 " outcomes."
-msgstr "TRANSLATE"
+msgstr "Identificar y comunicar incentivos para motivar la participación, incluyendo los resultados esperados. "
 
 #: /noi/app/templates/translate.tmp.html:202
 msgid "Develop briefing materials and information to inform engagement."
-msgstr "TRANSLATE"
+msgstr "Desarrollar materiales informativos para comunicar sobre la participación."
 
 #: /noi/app/templates/translate.tmp.html:203
 msgid "Use multiple dialog methods to engage stakeholders."
-msgstr "TRANSLATE"
+msgstr "Usar múltiples métodos de diálogo para involucrar a los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:204
 msgid "Plan and deliver face-to-face deliberation."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar una deliberación presencial"
 
 #: /noi/app/templates/translate.tmp.html:205
 msgid "Plan and deliver a deliberative poll."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar una encuesta deliberativa"
 
 #: /noi/app/templates/translate.tmp.html:206
 msgid "Plan and deliver a citizen jury."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un jurado ciudadano"
 
 #: /noi/app/templates/translate.tmp.html:207
 msgid "Plan and deliver a participatory budgeting process."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un proceso de presupuesto participativo "
 
 #: /noi/app/templates/translate.tmp.html:208
 msgid "Plan and deliver a charrette or scenario-planning exercise."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un ejercicio de planeación de escenarios"
 
 #: /noi/app/templates/translate.tmp.html:209
 msgid "Develop an action/project plan with timeline to implement the engagement."
-msgstr "TRANSLATE"
+msgstr " Desarrollar un plan de acción/proyecto con un cronograma para implementar la participación. "
 
 #: /noi/app/templates/translate.tmp.html:210
 msgid "Ensure accessibility of the engagement activity."
-msgstr "TRANSLATE"
+msgstr "Asegurar la accesibilidad de la actividad de participación. "
 
 #: /noi/app/templates/translate.tmp.html:211
 #, fuzzy
 msgid "Using online and digital channels to engage stakeholders"
-msgstr "TRANSLATE"
+msgstr "Usando medios en línea y digitales para involucrar a los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:212
 msgid ""
 "What you can share about effectively using tools to gain input from "
 "diverse stakeholders"
-msgstr "TRANSLATE"
+msgstr "Qué puedes compartir acerca de usar efectivamente herramientas para obtener insumos de diversos grupos de interés. "
 
 #: /noi/app/templates/translate.tmp.html:213
 msgid ""
 "Use social media, digital and online tools to engage stakeholders as a "
 "group."
-msgstr "TRANSLATE"
+msgstr "Usar redes sociales, herramientas digitales y en línea para involucrar a los grupos de interés como una comunidad. "
 
 #: /noi/app/templates/translate.tmp.html:214
 msgid "Use social media, digital and online tools to conduct surveys."
-msgstr "TRANSLATE"
+msgstr "Usar redes sociales, herramientas digitales y en línea para realizar encuestas."
 
 #: /noi/app/templates/translate.tmp.html:215
 msgid ""
 "Plan and deliver an e-deliberation process like a 21st century town "
 "meeting."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar un proceso de deliberación en línea, como un cabildo abierto del siglo 21."
 
 #: /noi/app/templates/translate.tmp.html:216
 msgid "Plan and deliver open space technology."
-msgstr "TRANSLATE"
+msgstr "Planear e implementar tecnología de espacios abiertos."
 
 #: /noi/app/templates/translate.tmp.html:217
 msgid ""
 "Use digital and online tools to amplify engagement efforts and increase "
 "reach."
-msgstr "TRANSLATE"
+msgstr "Usar herramientas digitales y en línea para amplificar los esfuerzos de participación y para incrementar el alcance. "
 
 #: /noi/app/templates/translate.tmp.html:218
 msgid "Use digital and online tools to provide feedback to stakeholders."
-msgstr "TRANSLATE"
+msgstr "Usar herramientas digitales y en línea para proporcionar retroalimentación a los grupos de interés. "
 
 #: /noi/app/templates/translate.tmp.html:219
 msgid "Measuring, evaluating and providing feedback"
-msgstr "TRANSLATE"
+msgstr "Midiendo, evaluando y proporcionando retroalimentación "
 
 #: /noi/app/templates/translate.tmp.html:220
 msgid ""
 "What you can share about assessing effectiveness and sharing targeted "
 "feedback"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de evaluar la efectividad y compartir retroalimentación específica
+"
 
 #: /noi/app/templates/translate.tmp.html:221
 msgid "Capture and utilise relevant data related to all aspects of engagement."
-msgstr "TRANSLATE"
+msgstr "Recolectar y utilizar los datos relacionados a cada uno de los aspectos de la participación."
 
 #: /noi/app/templates/translate.tmp.html:222
 msgid ""
 "Create tools for providing clear feedback to participants and decision "
 "makers."
-msgstr "TRANSLATE"
+msgstr "Crear herramientas para proporcionar retroalimentación clara a los participantes y a los responsables de la toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:223
 msgid "Clearly and regularly report outcomes to participants and stakeholders."
-msgstr "TRANSLATE"
+msgstr "Reportar de forma clara y regular los resultados a los participantes y a los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:224
 msgid "Transforming my organisation"
-msgstr "TRANSLATE"
+msgstr "Transformando mi organización "
 
 #: /noi/app/templates/translate.tmp.html:225
 msgid ""
 "What you can share about increasing the organizational use of citizen "
 "engagement"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de mejorar tu organización haciendo uso de la participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:226
 msgid ""
 "Ensure that the learnings from a community engagement exercise get used "
 "to support continuous improvement within my organisation."
-msgstr "TRANSLATE"
+msgstr "Asegurar que los aprendizajes del ejercicio de participación comunitaria sean utilizados para apoyar el mejoramiento continuo dentro de mi organización. "
 
 #: /noi/app/templates/translate.tmp.html:227
 msgid "Increase organisational awareness of the value of community engagement."
-msgstr "TRANSLATE"
+msgstr "Aumentar la conciencia en la organización sobre el valor de la participación comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:228
 msgid "Develop and deliver appropriate training for staff across my organisation."
-msgstr "TRANSLATE"
+msgstr "Desarrollar e implementar la capacitación adecuada para el personal de toda de mi organización.
+"
 
 #: /noi/app/templates/translate.tmp.html:229
 msgid ""
@@ -1548,83 +1554,84 @@ msgstr "TRANSLATE\n"
 
 #: /noi/app/templates/translate.tmp.html:231
 msgid "Lab Design"
-msgstr "TRANSLATE"
+msgstr "Diseño de laboratorios"
 
 #: /noi/app/templates/translate.tmp.html:232
 msgid "Lab Creation and Vision"
-msgstr "TRANSLATE"
+msgstr "Creación de laboratorios y visión"
 
 #: /noi/app/templates/translate.tmp.html:233
 msgid "What you can share about launching a government innovation lab."
-msgstr "TRANSLATE"
+msgstr "Lo que puede compartir acerca de poner en marcha un laboratorio de innovación. "
 
 #: /noi/app/templates/translate.tmp.html:234
 msgid ""
 "how to articulate the value proposition of my Lab and the need for "
 "experimentation."
-msgstr "TRANSLATE"
+msgstr "articular la propuesta de valor para mi laboratorio y la necesidad de experimentación"
 
 #: /noi/app/templates/translate.tmp.html:235
 msgid "how to develop a plan for my Lab"
-msgstr "TRANSLATE"
+msgstr "desarrollar un plan para mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:236
 msgid ""
 "how to clearly articulate the problems that my Lab is supposed to solve, "
 "and the assumptions it is going to test"
-msgstr "TRANSLATE"
+msgstr "articular de forma clara los problemas que mi laboratorio debe resolver y los supuestos que mi laboratorio pondrá a prueba"
 
 #: /noi/app/templates/translate.tmp.html:237
 msgid "how to define the service lines for my Lab"
-msgstr "TRANSLATE"
+msgstr "definir las líneas de servicio para mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:238
 msgid "how to articulate a clear theory of change for my Lab"
-msgstr "TRANSLATE"
+msgstr "articular una teoría de cambio clara para mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:239
 msgid "Lab Operations"
-msgstr "TRANSLATE"
+msgstr "Operaciones del laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:240
 msgid ""
 "What you can share about the organizational mechanics of running a "
 "government innovation lab."
-msgstr "TRANSLATE"
+msgstr "Lo que puede compartir acerca de la gestión operativa que implica dirigir un laboratorio de innovación gubernamental. "
 
 #: /noi/app/templates/translate.tmp.html:241
 msgid ""
 "how to define an engagement model for my Lab vis a vis other parts of my "
 "organisation"
-msgstr "TRANSLATE"
+msgstr "definir un modelo de participación para mi laboratorio 
+"
 
 #: /noi/app/templates/translate.tmp.html:242
 msgid ""
 "how to define a handover protocol between my Lab and other parts of the "
 "organisation"
-msgstr "TRANSLATE"
+msgstr "definir un protocolo de traspaso entre mi laboratorio y otras partes de la organización definir los roles y Términos de Referencia que el equipo necesita para el éxito de mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:243
 msgid ""
 "how to define the roles and Terms of Reference staff need for the success"
 " of my Lab"
-msgstr "TRANSLATE"
+msgstr "definir los roles y Términos de Referencia que el equipo necesita para el éxito de mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:244
 msgid ""
 "how to cost the services for my Lab and define a business model that "
 "guarantees long term sustainability"
-msgstr "TRANSLATE"
+msgstr "presupuestar los servicios para mi laboratorio y definir el modelo de negocio que garantizará sustentabilidad a largo plazo"
 
 #: /noi/app/templates/translate.tmp.html:245
 msgid ""
 "how to effectively argue for the most effective reporting lines and "
 "organisational placement for my Lab"
-msgstr "TRANSLATE"
+msgstr "argumentar para tener la dependencia organizacional más efectiva para mi laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:246
 msgid "Lab Experimentation and Methodology"
-msgstr "TRANSLATE"
+msgstr "Experimentación y Metodología del Laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:247
 msgid ""
@@ -1634,72 +1641,78 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:248
 msgid "how to define metrics for my Lab to demonstrate its impact"
-msgstr "TRANSLATE"
+msgstr "cómo definir las métricas para que mi laboratorio demuestre su impacto
+"
 
 #: /noi/app/templates/translate.tmp.html:249
 msgid "how to select and implement the methodologies that my Lab will promote"
-msgstr "TRANSLATE"
+msgstr "cómo seleccionar e implementar las metodologías que promoverá mi laboratorio
+"
 
 #: /noi/app/templates/translate.tmp.html:250
 msgid "how to train others in Lab methodologies and tools"
-msgstr "TRANSLATE"
+msgstr "cómo capacitar a otros en las metodologías y herramientas del laboratorio
+"
 
 #: /noi/app/templates/translate.tmp.html:251
 msgid "how to manage a Lab project using an agile development approach"
-msgstr "TRANSLATE"
+msgstr "cómo administrar un proyecto de laboratorio utilizando una metodología de desarrollo ágil
+"
 
 #: /noi/app/templates/translate.tmp.html:252
 msgid ""
 "how to track, evidence and iterate our programmes to ensure relevance and"
 " generate timely results"
-msgstr "TRANSLATE"
+msgstr "cómo monitorear, demostrar, e iterar nuestros programas para asegurar su importancia y generar resultados oportunos"
 
 #: /noi/app/templates/translate.tmp.html:253
 #, fuzzy
 msgid "Staffing and Resources"
-msgstr "TRANSLATE"
+msgstr "Personal y Recursos"
 
 #: /noi/app/templates/translate.tmp.html:254
 msgid "What you can share about managing lab staff and budgets"
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir sobre la administración del personal y los presupuestos.
+"
 
 #: /noi/app/templates/translate.tmp.html:255
 msgid "how to effectively recruit a group of early champions to support the Lab"
-msgstr "TRANSLATE"
+msgstr "reclutar de forma efectiva un grupo de  que apoyen el laboratorio
+"
 
 #: /noi/app/templates/translate.tmp.html:256
 msgid ""
 "how to manage resources, including people, time and budget to ensure "
 "value for money"
-msgstr "TRANSLATE"
+msgstr "administrar recursos, incluyendo personas, tiempo y presupuesto para asegurar una buena relación calidad-precio "
 
 #: /noi/app/templates/translate.tmp.html:257
 msgid "Capturing, Leveraging and Communicating Results"
-msgstr "TRANSLATE"
+msgstr "Captando, aprovechando y comunicando resultados "
 
 #: /noi/app/templates/translate.tmp.html:258
 msgid ""
 "What you can share about making use of lab results internally and "
 "communicating impacts externally."
-msgstr "TRANSLATE"
+msgstr "Lo que puedes compartir acerca de hacer uso interno de los resultados del laboratorio y de comunicar los impactos al exterior  "
 
 #: /noi/app/templates/translate.tmp.html:259
 msgid ""
 "how to develop a portfolio of demonstration projects that can demonstrate"
 " tangible results even in the face of skepticism"
-msgstr "TRANSLATE"
+msgstr "desarrollar un portafolio de proyectos de demostración que puedan comprobar resultados tangibles incluso ante personas escépticas"
 
 #: /noi/app/templates/translate.tmp.html:260
 msgid ""
 "how to research, pilot and test new programmes based on the insights and "
 "knowhow gathered from previous ones"
-msgstr "TRANSLATE"
+msgstr "cómo investigar, crear un piloto y probar nuevos programas con base a los aprendizajes y el conocimiento práctico recopilado de los programas anteriores"
 
 #: /noi/app/templates/translate.tmp.html:261
 msgid ""
 "how to capture, articulate and share the narrative around the impact and "
 "outcomes of lab programmes, i.e. through case studies"
-msgstr "TRANSLATE"
+msgstr "cómo captar, articular y compartir la narrativa alrededor del impacto y los resultados obtenidos en los programas del laboratorio, por ejemplo, a través de casos de estudio.  "
 
 #: /noi/app/templates/translate.tmp.html:262
 msgid ""
