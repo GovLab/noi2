@@ -94,7 +94,7 @@ class SharedMessageDbTests(DbTestCase):
         db.session.add(message1)
         db.session.add(message2)
         db.session.commit()
-        messages = models.Event.query_in_deployment(['_default'])
+        messages = models.Event.query_in_deployment()
         eq_(messages.count(), 1)
         eq_(messages[0].type, 'shared_message')
         eq_(messages[0].message, 'hi')
