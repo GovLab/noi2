@@ -1,7 +1,7 @@
 from flask.ext.testing import TestCase
 
 from app.factory import create_app
-from app.models import User
+from app.models import User, Event
 
 from .test_models import DbTestCase
 
@@ -55,6 +55,34 @@ class ViewTestCase(DbTestCase):
         self.assert200(res)
         assert LOGGED_IN_SENTINEL in res.data
         return res
+
+class ActivityFeedTests(ViewTestCase):
+    def test_posting_activity_requires_full_name(self):
+        self.login()
+        res = self.client.post('/activity', data=dict(
+            message="hello there"
+        ), follow_redirects=True)
+        self.assert200(res)
+        self.assertEqual(Event.query_in_deployment().count(), 0)
+        assert 'We need your name before you can post' in res.data
+
+    def test_posting_activity_works(self):
+        self.login()
+        user = User.query_in_deployment()\
+                 .filter(User.email=='test@example.org').one()
+        user.first_name = 'John'
+        user.last_name = 'Doe'
+        res = self.client.post('/activity', data=dict(
+            message="hello there"
+        ), follow_redirects=True)
+        self.assert200(res)
+        self.assertEqual(Event.query_in_deployment().count(), 1)
+        assert 'Message posted' in res.data
+        assert 'hello there' in res.data
+
+    def test_activity_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/activity'))
 
 class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):

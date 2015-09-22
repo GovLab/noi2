@@ -12,7 +12,7 @@ from flask_security.forms import ConfirmRegisterForm
 
 from flask_babel import lazy_gettext
 from wtforms_alchemy import model_form_factory, CountryField
-from wtforms.fields import SelectMultipleField, TextField
+from wtforms.fields import SelectMultipleField, TextField, TextAreaField
 from wtforms.widgets import Select
 from wtforms.validators import ValidationError
 
@@ -88,6 +88,16 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         label=lazy_gettext('Domains of Expertise'),
         widget=ChosenSelect(multiple=True),
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
+
+
+class SharedMessageForm(Form):
+    '''
+    Form for submittin a message to share with the network.
+    '''
+
+    message = TextAreaField(
+        label=lazy_gettext('Have a question or something to share about innovation?')
+    )
 
 
 class SearchForm(Form):
