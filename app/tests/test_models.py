@@ -1,7 +1,7 @@
 from flask import Flask
 from flask.ext.testing import TestCase
 from nose.tools import eq_
-from sqlalchemy.exc import OperationalError
+from sqlalchemy.exc import OperationalError, IntegrityError
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
@@ -64,6 +64,21 @@ class UserDbTests(DbTestCase):
         db.session.add(u)
         db.session.commit()
         eq_(u.deployment, '_default')
+
+    def test_ensure_user_is_constrained_by_deployment_and_email(self):
+        a1 = models.User(email=u'a@example.org', password='a', active=True,
+                         deployment='1')
+        a2 = models.User(email=u'a@example.org', password='a', active=True,
+                         deployment='2')
+        db.session.add(a1)
+        db.session.add(a2)
+        db.session.commit()
+
+        with self.assertRaises(IntegrityError):
+            a1 = models.User(email=u'a@example.org', password='u',
+                             active=True, deployment='1')
+            db.session.add(a1)
+            db.session.commit()
 
 class SharedMessageDbTests(DbTestCase):
     def test_only_events_in_deployments_are_seen(self):
