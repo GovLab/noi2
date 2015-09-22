@@ -104,12 +104,16 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         return cls.query.filter(cls.deployment.in_(current_app.config['SEARCH_DEPLOYMENTS']))
 
     @property
+    def full_name(self):
+        return u"%s %s" % (self.first_name, self.last_name)
+
+    @property
     def display_in_search(self):
         '''
         Determine whether user has filled out bare minimum to display in search
         results.
         '''
-        return self.first_name is not None and self.last_name is not None
+        return bool(self.first_name and self.last_name)
 
     @property
     def picture_path(self):

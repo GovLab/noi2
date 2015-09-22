@@ -1,0 +1,35 @@
+{% extends "__base__.html" %}
+
+{% block content %}
+
+<form method="post">
+{{ shared_message_form.csrf_token }}
+
+{{ shared_message_form.message.label() }}
+{{ shared_message_form.message(placeholder=gettext("Share with the network")) }}
+
+<button type="submit">{{ gettext('Post') }}</button>
+</form>
+
+<h2>Activity</h2>
+
+{% macro user_link(user) -%}
+<a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a>
+{%- endmacro %}
+
+<ul>
+{% for event in events %}
+  <li>
+  <time datetime="{{ event.created_at }}"></time>
+  {% if event.type == 'shared_message' %}
+    <p>{{ user_link(event.user) }} shared:</p>
+
+    {{ event.message }}
+  {% else %}
+    UNKNOWN EVENT TYPE: {{ event.type }}
+  {% endif %}
+  </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
