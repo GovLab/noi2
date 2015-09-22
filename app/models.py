@@ -339,3 +339,50 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
     user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
 
     __table_args__ = (UniqueConstraint('user_id', 'name'),)
+
+class Event(db.Model):
+    '''
+    An event that shows up in the activity feed for a deployment.
+    '''
+
+    __tablename__ = 'events'
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
+    created_at = Column(types.DateTime(), default=datetime.datetime.now)
+    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
+                        onupdate=datetime.datetime.now)
+    type = Column(types.String)
+
+    user_id = Column(types.Integer, ForeignKey('users.id'))
+    user = orm.relationship('User', backref='events')
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'event',
+        'polymorphic_on': type
+    }
+
+    @classmethod
+    def query_in_deployment(cls, deployments=None):
+        '''
+        Query for events within this deployment.
+        '''
+
+        deployments = current_app.config['SEARCH_DEPLOYMENTS']
+
+        return cls.query\
+          .join(User)\
+          .filter(User.deployment.in_(deployments))
+
+class SharedMessageEvent(Event):
+    '''
+    A message shared by a user with the network.
+    '''
+
+    __tablename__ = 'shared_messages'
+
+    id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
+
+    message = Column(types.Text)
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'shared_message'
+    }
