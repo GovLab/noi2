@@ -362,7 +362,7 @@ class Event(db.Model):
     }
 
     @classmethod
-    def query_in_deployment(cls, deployments=None):
+    def query_in_deployment(cls):
         '''
         Query for events within this deployment.
         '''
