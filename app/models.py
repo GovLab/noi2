@@ -22,6 +22,7 @@ import os
 
 db = SQLAlchemy()  #pylint: disable=invalid-name
 
+get_current_deployment = lambda: current_app.config['NOI_DEPLOY']
 
 class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     '''
@@ -36,7 +37,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
 
     has_picture = Column(types.Boolean, default=False)
     deployment = Column(types.String, nullable=False,
-                        default=lambda: current_app.config['NOI_DEPLOY'])
+                        default=get_current_deployment)
 
     first_name = Column(types.String, info={
         'label': lazy_gettext('First Name'),
@@ -352,8 +353,8 @@ class Event(db.Model):
                         onupdate=datetime.datetime.now)
     type = Column(types.String)
 
-    user_id = Column(types.Integer, ForeignKey('users.id'))
-    user = orm.relationship('User', backref='events')
+    deployment = Column(types.String, nullable=False,
+                        default=get_current_deployment)
 
     __mapper_args__ = {
         'polymorphic_identity': 'event',
@@ -363,23 +364,37 @@ class Event(db.Model):
     @classmethod
     def query_in_deployment(cls):
         '''
-        Query for events within this deployment.
+        Query for events within this deployment
         '''
+        return cls.query.filter(cls.deployment.in_(current_app.config['SEARCH_DEPLOYMENTS']))
 
-        deployments = current_app.config['SEARCH_DEPLOYMENTS']
+class UserEvent(Event):
+    '''
+    An activity feed event whose subject is a particular user.
+    '''
 
-        return cls.query\
-          .join(User)\
-          .filter(User.deployment.in_(deployments))
+    __tablename__ = 'user_events'
 
-class SharedMessageEvent(Event):
+    id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
+    user_id = Column(types.Integer, ForeignKey('users.id'))
+    user = orm.relationship('User', backref='events')
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'user_event'
+    }
+
+    @classmethod
+    def from_user(cls, user, **kwargs):
+        return cls(user_id=user.id, deployment=user.deployment, **kwargs)
+
+class SharedMessageEvent(UserEvent):
     '''
     A message shared by a user with the network.
     '''
 
     __tablename__ = 'shared_messages'
 
-    id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
+    id = Column(types.Integer, ForeignKey('user_events.id'), primary_key=True)
 
     message = Column(types.Text)
 
