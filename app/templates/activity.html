@@ -11,6 +11,27 @@
 <button type="submit">{{ gettext('Post') }}</button>
 </form>
 
+<h3>My Profile Progress</h3>
+
+<ul>
+  {% set q_progress = user.questionnaire_progress %}
+  {% for questionnaire in QUESTIONNAIRES %}
+    {% set item_progress = q_progress[questionnaire.id] %}
+    {% if item_progress.answered > 0 %}
+      <li>{{ questionnaire.name }}
+	<progress value="{{ item_progress.answered }}"
+		  max="{{ item_progress.total }}"></progress>
+	{% if item_progress.answered == item_progress.total %}
+	  &#x2713; {# A unicode check mark. #}
+	{% endif %}
+      </li>
+    {% else %}
+      <li class="text-muted">{{ questionnaire.name }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<a href="{{ url_for('views.my_profile') }}">View / Edit My Profile</a>
+
 <h2>Activity</h2>
 
 {% macro user_link(user) -%}

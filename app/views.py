@@ -267,6 +267,7 @@ def activity():
             return redirect(url_for('views.activity'))
 
     return render_template('activity.html', **{
+        'user': current_user,
         'events': events,
         'shared_message_form': shared_message_form
     })
