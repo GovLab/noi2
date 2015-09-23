@@ -97,7 +97,15 @@ class ViewTests(ViewTestCase):
 
     def test_search_is_ok(self):
         self.login()
-        self.assert200(self.client.get('/search'))
+        res = self.client.get('/search')
+        self.assert200(res)
+        assert "Search for Innovators" in res.data
+
+    def test_search_results_is_ok(self):
+        self.login()
+        res = self.client.get('/search?country=ZZ')
+        self.assert200(res)
+        assert "Expertise search" in res.data
 
     def test_recent_users_is_ok(self):
         self.login()
