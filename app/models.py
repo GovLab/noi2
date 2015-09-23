@@ -119,6 +119,9 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         '''
         Determine whether user has filled out bare minimum to display in search
         results.
+
+        Specifically, we want to make sure that the first and last name
+        are both non-NULL and non-blank.
         '''
         return bool(self.first_name and self.last_name)
 
