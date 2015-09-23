@@ -164,16 +164,16 @@ def get_user(userid):
         return redirect(url_for('views.search'))
 
 
-@views.route('/search', methods=['GET', 'POST'])
+@views.route('/search')
 @login_required
 def search():
     '''
     Generic search page
     '''
-    form = SearchForm()
-    if request.method == 'GET':
+    form = SearchForm(request.args)
+    if not form.country.data:
         return render_template('search.html', form=form)
-    if request.method == 'POST':
+    else:
         query = User.query_in_deployment()  #pylint: disable=no-member
 
         if form.country.data and form.country.data != 'ZZ':
