@@ -79,6 +79,10 @@ class ViewTests(ViewTestCase):
         self.login('u@example.org', 't')
         self.assert200(self.client.get('/user/%d' % u.id))
 
+    def test_nonexistent_user_profile_is_not_found(self):
+        self.login()
+        self.assert404(self.client.get('/user/1234'))
+
     def test_my_profile_is_ok(self):
         self.login()
         self.assert200(self.client.get('/me'))
