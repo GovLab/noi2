@@ -33,7 +33,8 @@ def create_postgres_database():
 class DbTestCase(TestCase):
     BASE_APP_CONFIG = dict(
         SQLALCHEMY_DATABASE_URI=TEST_DB_URL,
-        NOI_DEPLOY='_default'
+        NOI_DEPLOY='_default',
+        SEARCH_DEPLOYMENTS=['_default']
     )
 
     def create_app(self):
@@ -78,6 +79,26 @@ class UserDbTests(DbTestCase):
                              active=True, deployment='1')
             db.session.add(a1)
             db.session.commit()
+
+class SharedMessageDbTests(DbTestCase):
+    def test_only_events_in_deployments_are_seen(self):
+        other = models.User(email=u'b@example.org', password='a', active=True,
+                            deployment='other')
+        a = models.User(email=u'a@example.org', password='a', active=True,
+                        deployment='_default')
+        db.session.add(other)
+        db.session.add(a)
+        db.session.commit()
+        message1 = models.SharedMessageEvent.from_user(a, message="hi")
+        message2 = models.SharedMessageEvent.from_user(other, message="other")
+        db.session.add(message1)
+        db.session.add(message2)
+        db.session.commit()
+        messages = models.Event.query_in_deployment()
+        eq_(messages.count(), 1)
+        eq_(messages[0].type, 'shared_message')
+        eq_(messages[0].message, 'hi')
+        eq_(messages[0].user.email, 'a@example.org')
 
 def test_users_only_display_in_search_if_they_have_first_and_last_name():
     user = models.User()
