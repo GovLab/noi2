@@ -1,4 +1,4 @@
-from app.models import db, User, UserSkill
+from app.models import db, User
 
 from flask import current_app
 from sqlalchemy.exc import IntegrityError
@@ -22,12 +22,11 @@ def load_fixture(filename='sample_users.json', password='password'):
             )
 
         user = User(password=password, active=True, **user_data)
-        for name, level in skills.iteritems():
-            skill = UserSkill(name=name, level=level)
-            user.skills.append(skill)
-            db.session.add(skill)
         db.session.add(user)
         try:
+            db.session.commit()
+            for name, level in skills.iteritems():
+                user.set_skill(name, level)
             db.session.commit()
         except IntegrityError:
             current_app.logger.debug("Could not add user %s" % \
