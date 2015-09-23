@@ -265,7 +265,7 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
         for lan in languages_to_remove:
             self.languages.remove(lan)
 
-    constraint = UniqueConstraint('deployment', 'email')
+    __table_args__ = (UniqueConstraint('deployment', 'email'),)
 
 
 class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-methods
@@ -279,8 +279,7 @@ class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-me
 
     user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
 
-    constraint = UniqueConstraint('user_id', 'name')
-
+    __table_args__ = (UniqueConstraint('user_id', 'name'),)
 
 class UserLanguage(db.Model):  #pylint: disable=no-init,too-few-public-methods
     '''
@@ -293,7 +292,7 @@ class UserLanguage(db.Model):  #pylint: disable=no-init,too-few-public-methods
 
     user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
 
-    constraint = UniqueConstraint('user_id', 'locale')
+    __table_args__ = (UniqueConstraint('user_id', 'locale'),)
 
 
 class Role(db.Model, RoleMixin): #pylint: disable=no-init,too-few-public-methods
@@ -318,7 +317,7 @@ class RoleUser(db.Model): #pylint: disable=no-init,too-few-public-methods
     user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
     role_id = Column(types.Integer(), ForeignKey('roles.id'), nullable=False)
 
-    constraint = UniqueConstraint('user_id', 'role_id')
+    __table_args__ = (UniqueConstraint('user_id', 'role_id'),)
 
 
 class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
@@ -339,4 +338,4 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
 
     user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
 
-    constraint = UniqueConstraint('user_id', 'name')
+    __table_args__ = (UniqueConstraint('user_id', 'name'),)

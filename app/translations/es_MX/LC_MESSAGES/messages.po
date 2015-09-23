@@ -21,7 +21,7 @@ msgstr ""
 #: /noi/app/forms.py:60
 #, fuzzy
 msgid "Choose your country"
-msgstr "Elige tu país"
+msgstr "Elija su país"
 
 #: /noi/app/forms.py:75
 #, fuzzy
@@ -43,7 +43,7 @@ msgstr "Áreas de competencia"
 #: /noi/app/forms.py:134
 #, python-format
 msgid "%(value)s is not a valid email address: %(explanation)svalue"
-msgstr "%(value)s TRANSLATE %(explanation)s"
+msgstr "%(value)s no es una dirección de correo electrónico válida: %(explanation)s"
 
 #: /noi/app/models.py:42
 msgid "First Name"
@@ -108,7 +108,7 @@ msgid ""
 "Your profile has been saved. <br/>Please tell us about your expertise "
 "below."
 msgstr ""
-"Su perfil se ha guardado. <br/>Porfavor favor cuéntenos acerca de sus "
+"Su perfil ha sido guardado. <br/>Porfavor favor cuéntenos acerca de sus "
 "competencias "
 
 #: /noi/app/views.py:87
@@ -187,11 +187,11 @@ msgstr ""
 
 #: /noi/app/templates/__footer__.html:16
 msgid "Powered by:"
-msgstr "TRANSLATE"
+msgstr "Presentado por"
 
 #: /noi/app/templates/__navbar__.html:6
 msgid "Toggle navigation"
-msgstr "TRANSLATE"
+msgstr "Barra de navegación"
 
 #: /noi/app/templates/__navbar__.html:11
 msgid "Network of Innovators "
@@ -203,11 +203,11 @@ msgstr "(beta)"
 
 #: /noi/app/templates/__navbar__.html:17 /noi/app/templates/about.html:3
 msgid "About"
-msgstr "Acerca"
+msgstr "Acerca de"
 
 #: /noi/app/templates/__navbar__.html:18 /noi/app/templates/feedback.html:3
 msgid "Feedback"
-msgstr "Sugerencias"
+msgstr "Comentarios y Sugerencias"
 
 #: /noi/app/templates/__navbar__.html:19
 msgid "Search"
@@ -275,13 +275,13 @@ msgid ""
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 msgstr ""
 "Toda la información que proporcione será públicamente visible y "
-"se usará con el único próposito para el que el sitio fue diseñado. Para "
+"se usará con el único objetivo para el que el sitio fue diseñado. Para "
 "saber más del aviso de privacidad, por favor escriba a <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 
 #: /noi/app/templates/feedback.html:14
 msgid "Share your feedback about the Network of Innovators"
-msgstr "Comparta sus comentarios sobre la Red de Innovadores"
+msgstr "Comparta sus comentarios y sugerencias sobre la Red de Innovadores"
 
 #: /noi/app/templates/feedback.html:17
 msgid "This form requires JavaScript to complete."
@@ -304,7 +304,7 @@ msgid ""
 "We are using your social information to populate your first name, last "
 "name and profile picture."
 msgstr ""
-"Estamos usando su información pública para completar su nombre, apellido "
+"Estamos utilizando su información pública para completar su nombre, apellido "
 "e imagen de perfil."
 
 #: /noi/app/templates/main.html:3
@@ -365,19 +365,21 @@ msgstr "Mi competencia"
 msgid ""
 "Tell us what you know about various key topics by answering some of the "
 "following questions."
-msgstr "TRANSLATE"
+msgstr ""
+"Díganos qué sabe acerca de diversos temas clave al responder algunas de las "
+"siguientes preguntas."
 
 #: /noi/app/templates/my-expertise.html:87
 msgid "For each question, you can choose from"
-msgstr "TRANSLATE"
+msgstr "Para cada pregunta, usted puede escoger entre"
 
 #: /noi/app/templates/my-expertise.html:90
 msgid "or skip it entirely."
-msgstr "TRANSLATE"
+msgstr "o saltarla por completo"
 
 #: /noi/app/templates/my-expertise.html:126
 msgid "What you can share about"
-msgstr "TRANSLATE"
+msgstr "Lo que puede compartir"
 
 #: /noi/app/templates/my-expertise.html:153
 #: /noi/app/templates/my-profile.html:107
@@ -386,11 +388,11 @@ msgstr "Guardar"
 
 #: /noi/app/templates/my-profile.html:206
 msgid "Sorry, that file is too big.  Please choose a smaller one."
-msgstr "TRANSLATE"
+msgstr "Lo sentimos, el archivo es demasiado grande. Por favor seleccione uno de menor tamaño."
 
 #: /noi/app/templates/search-results.html:6
 msgid "Contact+request+from+the+Network+of+Innovators"
-msgstr "TRANSLATE"
+msgstr "Solicitud+de+contacto+de+la+Red+de+Innovadores"
 
 #: /noi/app/templates/search-results.html:6
 msgid "Contact all these people"
@@ -398,7 +400,7 @@ msgstr "Contactar a todas estas personas"
 
 #: /noi/app/templates/search-results.html:14
 msgid "E-mail one or more of them to meet, network and learn something new!"
-msgstr "TRANSLATE"
+msgstr "¡Escriba un correo electrónico a uno o más de ellos para conocerlos, conectar con ellos y aprender algo nuevo!"
 
 #: /noi/app/templates/search.html:3
 msgid "Search interface"
@@ -414,7 +416,7 @@ msgstr "Por país"
 
 #: /noi/app/templates/search.html:40
 msgid "Choose your countries"
-msgstr "TRANSLATE"
+msgstr "Elija sus países"
 
 #: /noi/app/templates/search.html:43
 msgid "By language(s)"
@@ -423,15 +425,15 @@ msgstr "Por idioma(s)"
 #: /noi/app/templates/search.html:45
 #, fuzzy
 msgid "Choose your languages"
-msgstr "Por idioma(s)"
+msgstr "Elija su idioma(s)"
 
 #: /noi/app/templates/search.html:48
 msgid "By domain(s)"
-msgstr "TRANSLATE"
+msgstr "Por sector(es)"
 
 #: /noi/app/templates/search.html:50
 msgid "Choose your fields of expertise"
-msgstr "TRANSLATE"
+msgstr "Elija sus áreas de competencia"
 
 #: /noi/app/templates/search.html:53
 msgid "By keyword(s)"
@@ -439,7 +441,7 @@ msgstr "Por palabra(s) clave"
 
 #: /noi/app/templates/search.html:60
 msgid "Find experts"
-msgstr "TRANSLATE"
+msgstr "Encuentre expertos"
 
 #: /noi/app/templates/translate.tmp.html:1
 msgid "Agriculture"
@@ -451,123 +453,123 @@ msgstr "Arte y cultura"
 
 #: /noi/app/templates/translate.tmp.html:3
 msgid "Business Licensing and Regulation"
-msgstr "TRANSLATE"
+msgstr "Licencia de Negocio y Regulación"
 
 #: /noi/app/templates/translate.tmp.html:4
 msgid "Consumer rights and issues"
-msgstr "TRANSLATE"
+msgstr "Asuntos y Derechos del Consumidor"
 
 #: /noi/app/templates/translate.tmp.html:5
 msgid "Defense and Armed Forces"
-msgstr "Fuerzas Armadas "
+msgstr "Fuerzas Armadas y de Defensa"
 
 #: /noi/app/templates/translate.tmp.html:6
 msgid "Education"
-msgstr "TRANSLATE"
+msgstr "Educación"
 
 #: /noi/app/templates/translate.tmp.html:7
 msgid "Energy"
-msgstr "TRANSLATE"
+msgstr "Energía"
 
 #: /noi/app/templates/translate.tmp.html:8
 msgid "Environment"
-msgstr "TRANSLATE"
+msgstr "Medio Ambiente"
 
 #: /noi/app/templates/translate.tmp.html:9
 msgid "Foreign affairs"
-msgstr "TRANSLATE"
+msgstr "Relaciones Exteriores"
 
 #: /noi/app/templates/translate.tmp.html:10
 msgid "Government efficiency, transparency and accountability"
-msgstr "TRANSLATE"
+msgstr "Eficiencia gubernamental, transparencia y rendición de cuentas"
 
 #: /noi/app/templates/translate.tmp.html:11
 msgid "Health"
-msgstr "TRANSLATE"
+msgstr "Salud"
 
 #: /noi/app/templates/translate.tmp.html:12
 msgid "Housing - Human Rights - Immigration and Citizenship Services"
-msgstr "TRANSLATE"
+msgstr "Vivienda - Derechos Humanos - Servicios de Ciudadanía e Inmigración"
 
 #: /noi/app/templates/translate.tmp.html:13
 msgid "International Aid and Development"
-msgstr "TRANSLATE"
+msgstr "Ayuda Internacional y Desarrollo"
 
 #: /noi/app/templates/translate.tmp.html:14
 msgid "Labor"
-msgstr "TRANSLATE"
+msgstr "Trabajo"
 
 #: /noi/app/templates/translate.tmp.html:15
 msgid "Law and Justice System"
-msgstr "TRANSLATE"
+msgstr "Leyes y Sistema de Justicia"
 
 #: /noi/app/templates/translate.tmp.html:16
 msgid "Media and Communications"
-msgstr "TRANSLATE"
+msgstr "Medios de Comunicación"
 
 #: /noi/app/templates/translate.tmp.html:17
 msgid "National Security"
-msgstr "TRANSLATE"
+msgstr "Seguridad Nacional"
 
 #: /noi/app/templates/translate.tmp.html:18
 msgid "Public safety and Emergencies"
-msgstr "TRANSLATE"
+msgstr "Seguridad Pública y Emergencias"
 
 #: /noi/app/templates/translate.tmp.html:19
 msgid "Sanitation"
-msgstr "TRANSLATE"
+msgstr "Servicios Sanitarios"
 
 #: /noi/app/templates/translate.tmp.html:20
 msgid "Science and Innovation"
-msgstr "TRANSLATE"
+msgstr "Ciencia e innovación"
 
 #: /noi/app/templates/translate.tmp.html:21
 msgid "Social care"
-msgstr "TRANSLATE"
+msgstr "Protección Social"
 
 #: /noi/app/templates/translate.tmp.html:22
 msgid "Tax and Revenue"
-msgstr "TRANSLATE"
+msgstr "Impuestos"
 
 #: /noi/app/templates/translate.tmp.html:23
 msgid "Trade and Investment"
-msgstr "TRANSLATE"
+msgstr "Comercio e Inversión"
 
 #: /noi/app/templates/translate.tmp.html:24
 msgid "Transportation"
-msgstr "TRANSLATE"
+msgstr "Transporte"
 
 #: /noi/app/templates/translate.tmp.html:25
 msgid "Water and Electricity"
-msgstr "TRANSLATE"
+msgstr "Agua y Electricidad"
 
 #: /noi/app/templates/translate.tmp.html:26
 msgid "Mental Health"
-msgstr "TRANSLATE"
+msgstr "Salud Mental"
 
 #: /noi/app/templates/translate.tmp.html:27
 msgid "Primary Care"
-msgstr "TRANSLATE"
+msgstr "Cuidado Primario"
 
 #: /noi/app/templates/translate.tmp.html:28
 msgid "Community Care"
-msgstr "TRANSLATE"
+msgstr "Asistencia Comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:29
 msgid "Public Health and Population Health"
-msgstr "TRANSLATE"
+msgstr "Salud Pública"
 
 #: /noi/app/templates/translate.tmp.html:30
 msgid "Acute Health"
-msgstr "TRANSLATE"
+msgstr "Problemas Graves de Salud"
 
 #: /noi/app/templates/translate.tmp.html:31
 msgid "Health Policy"
-msgstr "TRANSLATE"
+msgstr "Políticas de Salud"
 
 #: /noi/app/templates/translate.tmp.html:32
 msgid "Commissioning"
-msgstr "TRANSLATE"
+msgstr "Comisionar"
 
 #: /noi/app/templates/translate.tmp.html:33
 msgid ""
@@ -598,7 +600,7 @@ msgstr "Datos Abiertos"
 #: /noi/app/templates/translate.tmp.html:36
 #, fuzzy
 msgid "Open Data Policy"
-msgstr "TRANSLATE"
+msgstr "Políticas de Datos Abiertos"
 
 #: /noi/app/templates/translate.tmp.html:37
 msgid "creating an open data plan and strategy to achieve key goals"
@@ -683,7 +685,7 @@ msgstr "cómo asegurar un nivel continuo en la calidad e integridad de mis datos
 
 #: /noi/app/templates/translate.tmp.html:54
 msgid "Accelerating use"
-msgstr "TRANSLATE"
+msgstr "Acelerando el uso"
 
 #: /noi/app/templates/translate.tmp.html:55
 msgid "responding to what users need and want"
@@ -717,7 +719,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:60
 msgid "Measuring Impact"
-msgstr "TRANSLATE"
+msgstr "Midiendo el impacto"
 
 #: /noi/app/templates/translate.tmp.html:61
 msgid "assessing effectiveness"
@@ -755,7 +757,7 @@ msgstr "Definiendo el alcance del problema"
 
 #: /noi/app/templates/translate.tmp.html:70
 msgid "defining the problem"
-msgstr "Definiendo el alcance del problema"
+msgstr "Definiendo el problema"
 
 #: /noi/app/templates/translate.tmp.html:71
 msgid "how to define and express the problem addressed by the prize."
@@ -773,11 +775,11 @@ msgstr "cómo desarrollar indicadores para medir el progreso."
 
 #: /noi/app/templates/translate.tmp.html:74
 msgid "Designing for a Successful Prize"
-msgstr "TRANSLATE"
+msgstr "Diseñando para un premio exitoso"
 
 #: /noi/app/templates/translate.tmp.html:75
 msgid "deciding if a prize is the right tool"
-msgstr "TRANSLATE"
+msgstr "decidiendo si un premio es la herramienta adecuada"
 
 #: /noi/app/templates/translate.tmp.html:76
 msgid ""
@@ -801,11 +803,11 @@ msgstr "cómo establecer el valor económico de un premio."
 
 #: /noi/app/templates/translate.tmp.html:80
 msgid "Identifying the Right Audience"
-msgstr "TRANSLATE"
+msgstr "Identificando a la audiencia correcta"
 
 #: /noi/app/templates/translate.tmp.html:81
 msgid "targeting the right participants"
-msgstr "Identificando a la audiencia correcta"
+msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:82
 msgid "how to identify would-be participating innovators"
@@ -859,7 +861,7 @@ msgstr "Juzgando"
 
 #: /noi/app/templates/translate.tmp.html:93
 msgid "judging a prize"
-msgstr "Juzgando"
+msgstr "Juzgando un premio"
 
 #: /noi/app/templates/translate.tmp.html:94
 msgid "how to design assessment criteria"
@@ -876,7 +878,7 @@ msgstr "Inquietudes Legales"
 
 #: /noi/app/templates/translate.tmp.html:97
 msgid "overcoming legal concerns"
-msgstr "Inquietudes Legales"
+msgstr "Superando las inquietudes legales"
 
 #: /noi/app/templates/translate.tmp.html:98
 msgid "how to determine ownership and copyright"
@@ -890,11 +892,11 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:100
 msgid "Implementation"
-msgstr "TRANSLATE"
+msgstr "Implementación"
 
 #: /noi/app/templates/translate.tmp.html:101
 msgid "what to do after a challenge"
-msgstr "TRANSLATE"
+msgstr "qué hacer después de un reto"
 
 #: /noi/app/templates/translate.tmp.html:102
 msgid "how to translate winning entries into well-developed solutions"
@@ -908,7 +910,7 @@ msgstr "Próximamente"
 
 #: /noi/app/templates/translate.tmp.html:104
 msgid "Agile"
-msgstr "TRANSLATE"
+msgstr "Ágil"
 
 #: /noi/app/templates/translate.tmp.html:105
 msgid ""
@@ -1137,7 +1139,7 @@ msgstr "archivar los datos."
 
 #: /noi/app/templates/translate.tmp.html:146
 msgid "Decision Making"
-msgstr "TRANSLATE"
+msgstr "Toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:147
 msgid "using input gained through citizen science to drive decision making"
@@ -2071,7 +2073,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:318
 msgid "I can refer you"
-msgstr "TRANSLATE"
+msgstr "Puedo referirte a alguien"
 
 #: /noi/app/templates/translate.tmp.html:319
 msgid "I can do it"
@@ -2087,7 +2089,7 @@ msgstr "Quiero aprender"
 
 #: /noi/app/templates/translate.tmp.html:322
 msgid "Non Profit"
-msgstr "TRANSLATE"
+msgstr "Sin fines de lucro"
 
 #: /noi/app/templates/translate.tmp.html:323
 #, fuzzy
@@ -2112,49 +2114,49 @@ msgstr "Lenguajes"
 
 #: /noi/app/templates/user-profile.html:101
 msgid "No language information available."
-msgstr "TRANSLATE"
+msgstr "No hay información de lenguaje disponible"
 
 #: /noi/app/templates/user-profile.html:105
 msgid "Domain(s) of expertise:"
-msgstr "TRANSLATE"
+msgstr "Área(s) de competencia"
 
 #: /noi/app/templates/user-profile.html:113
 msgid "No domain information available."
-msgstr "TRANSLATE"
+msgstr "No hay información sobre el área disponible"
 
 #: /noi/app/templates/user-profile.html:117
 msgid "Projects I have done"
-msgstr "TRANSLATE"
+msgstr "Proyectos que he realizado"
 
 #: /noi/app/templates/user-profile.html:121
 msgid "No project information provided."
-msgstr "TRANSLATE"
+msgstr "No se proporcionó información del proyecto"
 
 #: /noi/app/templates/security/_menu.html:2
 msgid "Menu"
-msgstr "TRANSLATE"
+msgstr "Menú"
 
 #: /noi/app/templates/security/_menu.html:9
 msgid "Forgot password"
-msgstr "TRANSLATE"
+msgstr "Olvidé mi contraseña"
 
 #: /noi/app/templates/security/_menu.html:12
 msgid "Confirm account"
-msgstr "TRANSLATE"
+msgstr "Confirmar mi cuenta"
 
 #: /noi/app/templates/security/change_password.html:13
 msgid "Change password"
-msgstr "TRANSLATE"
+msgstr "Cambiar contraseña"
 
 #: /noi/app/templates/security/forgot_password.html:13
 msgid "Send password reset instructions"
-msgstr "TRANSLATE"
+msgstr "Enviar contraseña e instrucciones de ayuda"
 
 #: /noi/app/templates/security/reset_password.html:13
 msgid "Reset password"
-msgstr "TRANSLATE"
+msgstr "Reestablecer contraseña"
 
 #: /noi/app/templates/security/send_confirmation.html:13
 msgid "Resend confirmation instructions"
-msgstr "TRANSLATE"
+msgstr "Reenviar instrucciones de confirmación"
 

@@ -32,9 +32,8 @@ ul li {
   
   <div class="row">
     <div class="col-xs-4 col-md-4">
-      <form class="b-form" action="/search" method="POST">
+      <form class="b-form" action="/search" method="GET">
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
         <label class="col-md-4 control-label" for="textarea">{{ gettext('By country') }}</label>
         <div class="selector">
           {{ form.country(placeholder=gettext('Choose your countries')) }}
