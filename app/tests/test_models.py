@@ -5,6 +5,7 @@ from sqlalchemy.exc import OperationalError, IntegrityError
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
+from .util import load_fixture
 from .. import models
 
 db = models.db
@@ -79,6 +80,22 @@ class UserDbTests(DbTestCase):
                              active=True, deployment='1')
             db.session.add(a1)
             db.session.commit()
+
+class UserSkillDbTests(DbTestCase):
+    def setUp(self):
+        super(UserSkillDbTests, self).setUp()
+        load_fixture()
+
+    def test_skill_levels_works(self):
+        sly_less = models.User.query_in_deployment()\
+          .filter(models.User.email=='sly@stone-less-knowledgeable.com')\
+          .one()
+        self.assertEqual(sly_less.skill_levels, {
+            u'opendata-implementing-an-open-data-program-data-quality-and-integrity': -1,
+            u'opendata-implementing-an-open-data-program-frequency-of-release': -1,
+            u'opendata-implementing-an-open-data-program-managing-open-data': -1,
+            u'opendata-implementing-an-open-data-program-open-data-standards': -1
+        })
 
 class SharedMessageDbTests(DbTestCase):
     def test_only_events_in_deployments_are_seen(self):
