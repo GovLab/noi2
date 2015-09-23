@@ -85,12 +85,17 @@ class UserSkillDbTests(DbTestCase):
     def setUp(self):
         super(UserSkillDbTests, self).setUp()
         load_fixture()
-
-    def test_skill_levels_works(self):
-        sly_less = models.User.query_in_deployment()\
+        self.sly_less = models.User.query_in_deployment()\
           .filter(models.User.email=='sly@stone-less-knowledgeable.com')\
           .one()
-        self.assertEqual(sly_less.skill_levels, {
+
+    def test_questionnaire_progress_works(self):
+        progress = self.sly_less.questionnaire_progress
+        self.assertEqual(progress['opendata']['answered'], 4)
+        self.assertEqual(progress['prizes']['answered'], 0)
+
+    def test_skill_levels_works(self):
+        self.assertEqual(self.sly_less.skill_levels, {
             u'opendata-implementing-an-open-data-program-data-quality-and-integrity': -1,
             u'opendata-implementing-an-open-data-program-frequency-of-release': -1,
             u'opendata-implementing-an-open-data-program-managing-open-data': -1,

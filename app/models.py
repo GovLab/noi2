@@ -4,7 +4,8 @@ NoI Models
 SQLAlchemy models for the app
 '''
 
-from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS
+from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS, \
+                QUESTIONNAIRES
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
@@ -190,6 +191,28 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             user.score = user_id_scores[user.id]
         return sorted(users, key=lambda x: x.score)
 
+    @property
+    def questionnaire_progress(self):
+        '''
+        Return a dictionary mapping top-level skill area IDs (e.g.,
+        'opendata', 'prizes') to information about how many questions
+        the user has answered in that skill area.
+        '''
+
+        skill_levels = self.skill_levels
+        progress = {}
+        for questionnaire in QUESTIONNAIRES:
+            topic_progress = {
+                'answered': 0,
+                'total': 0
+            }
+            progress[questionnaire['id']] = topic_progress
+            for topic in questionnaire.get('topics', []):
+                for question in topic['questions']:
+                    topic_progress['total'] += 1
+                    if question['id'] in skill_levels:
+                        topic_progress['answered'] += 1
+        return progress
 
     @property
     def skill_levels(self):
