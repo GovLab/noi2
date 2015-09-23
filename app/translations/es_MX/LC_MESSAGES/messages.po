@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-18 18:12+0000\n"
+"POT-Creation-Date: 2015-09-23 20:25+0000\n"
 "PO-Revision-Date: 2015-09-11 15:30+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es_MX <LL@li.org>\n"
@@ -17,6 +17,153 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.0\n"
+
+#: /noi/app/factory.py:93
+msgid "You do not have permission to view this resource."
+msgstr "translate"
+
+#: /noi/app/factory.py:95
+#, python-format
+msgid "Thank you. Confirmation instructions have been sent to %(email)s."
+msgstr "translate %(email)s"
+
+#: /noi/app/factory.py:98
+msgid "Thank you. Your email has been confirmed."
+msgstr "translate"
+
+#: /noi/app/factory.py:100
+msgid "Your email has already been confirmed."
+msgstr "translate"
+
+#: /noi/app/factory.py:102
+msgid "Invalid confirmation token."
+msgstr "translate"
+
+#: /noi/app/factory.py:104
+#, python-format
+msgid "%(email)s is already associated with an account."
+msgstr "%(email)s translate"
+
+#: /noi/app/factory.py:106
+msgid "Password does not match"
+msgstr "translate"
+
+#: /noi/app/factory.py:108
+msgid "Passwords do not match"
+msgstr "translate"
+
+#: /noi/app/factory.py:110
+msgid "Redirections outside the domain are forbidden"
+msgstr "translate"
+
+#: /noi/app/factory.py:112
+#, python-format
+msgid "Instructions to reset your password have been sent to %(email)s."
+msgstr "translate"
+
+#: /noi/app/factory.py:114
+#, python-format
+msgid ""
+"You did not reset your password within %(within)s. New instructions have "
+"been sent to %(email)s."
+msgstr "translate %(within)s %(email)s"
+
+#: /noi/app/factory.py:117
+#, fuzzy
+msgid "Invalid reset password token."
+msgstr "Reestablecer contraseña"
+
+#: /noi/app/factory.py:119
+msgid "Email requires confirmation."
+msgstr "translate"
+
+#: /noi/app/factory.py:121
+#, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr "translate"
+
+#: /noi/app/factory.py:123
+#, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr "translate %(within)s %(email)s"
+
+#: /noi/app/factory.py:127
+#, python-format
+msgid ""
+"You did not login within %(within)s. New instructions to login have been "
+"sent to %(email)s."
+msgstr "translate %(within)s %(email)s"
+
+#: /noi/app/factory.py:130
+#, python-format
+msgid "Instructions to login have been sent to %(email)s."
+msgstr "translate %(email)s"
+
+#: /noi/app/factory.py:132
+msgid "Invalid login token."
+msgstr "translate"
+
+#: /noi/app/factory.py:134
+msgid "Account is disabled."
+msgstr "translate"
+
+#: /noi/app/factory.py:136
+msgid "Email not provided"
+msgstr "translate"
+
+#: /noi/app/factory.py:138
+#, fuzzy
+msgid "Invalid email address"
+msgstr "translate"
+
+#: /noi/app/factory.py:140
+msgid "Password not provided"
+msgstr "translate"
+
+#: /noi/app/factory.py:142
+msgid "No password is set for this user"
+msgstr "translate"
+
+#: /noi/app/factory.py:144
+msgid "Password must be at least 6 characters"
+msgstr "translate"
+
+#: /noi/app/factory.py:146
+msgid "Specified user does not exist"
+msgstr "translate"
+
+#: /noi/app/factory.py:148
+#, fuzzy
+msgid "Invalid password"
+msgstr "Cambiar contraseña"
+
+#: /noi/app/factory.py:150
+msgid "You have successfuly logged in."
+msgstr "translate"
+
+#: /noi/app/factory.py:152
+msgid ""
+"You successfully reset your password and you have been logged in "
+"automatically."
+msgstr "translate"
+
+#: /noi/app/factory.py:155
+msgid "Your new password must be different than your previous password."
+msgstr "translate"
+
+#: /noi/app/factory.py:157
+msgid "You successfully changed your password."
+msgstr "translate"
+
+#: /noi/app/factory.py:159
+msgid "Please log in to access this page."
+msgstr "translate"
+
+#: /noi/app/factory.py:161
+msgid "Please reauthenticate to access this page."
+msgstr "translate"
 
 #: /noi/app/forms.py:60
 #, fuzzy
@@ -32,78 +179,84 @@ msgstr "Usar imagen"
 msgid "Only jpeg, jpg, and png images are allowed."
 msgstr "Sólo se permiten imágenes en formato jpeg, jpg o png."
 
-#: /noi/app/forms.py:83 /noi/app/forms.py:99
+#: /noi/app/forms.py:83 /noi/app/forms.py:109
 msgid "Languages"
 msgstr "Idiomas"
 
-#: /noi/app/forms.py:88 /noi/app/forms.py:104
+#: /noi/app/forms.py:88 /noi/app/forms.py:114
 msgid "Domains of Expertise"
 msgstr "Áreas de competencia"
 
-#: /noi/app/forms.py:134
+#: /noi/app/forms.py:99
+msgid "Have a question or something to share about innovation?"
+msgstr "translate"
+
+#: /noi/app/forms.py:144
 #, python-format
 msgid "%(value)s is not a valid email address: %(explanation)svalue"
-msgstr "%(value)s no es una dirección de correo electrónico válida: %(explanation)s"
+msgstr ""
+"%(value)s no es una dirección de correo electrónico válida: "
+"%(explanation)s"
 
-#: /noi/app/models.py:42
+#: /noi/app/models.py:57
 msgid "First Name"
 msgstr "Nombre"
 
-#: /noi/app/models.py:45
+#: /noi/app/models.py:60
 msgid "Last Name"
 msgstr "Apellido"
 
-#: /noi/app/models.py:49
+#: /noi/app/models.py:64
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: /noi/app/models.py:53
+#: /noi/app/models.py:68
 msgid "Password"
 msgstr "Contraseña"
 
-#: /noi/app/models.py:65
+#: /noi/app/models.py:80
 msgid "Position"
 msgstr "Cargo en su organización"
 
-#: /noi/app/models.py:68
+#: /noi/app/models.py:83
 msgid "Organization"
 msgstr "Organización"
 
-#: /noi/app/models.py:71
+#: /noi/app/models.py:86
 msgid "Type of Organization"
 msgstr "Tipo de Organización"
 
-#: /noi/app/models.py:72
+#: /noi/app/models.py:87
 msgid "The type of organization you work for"
 msgstr "El tipo de organización para la que trabaja"
 
-#: /noi/app/models.py:76
+#: /noi/app/models.py:91
 msgid "Country"
 msgstr "País"
 
-#: /noi/app/models.py:80
+#: /noi/app/models.py:95
 msgid "City"
 msgstr "Ciudad"
 
-#: /noi/app/models.py:84
+#: /noi/app/models.py:99
 msgid "Location"
 msgstr "Ubicación"
 
-#: /noi/app/models.py:85
+#: /noi/app/models.py:100
 msgid "Enter your location"
 msgstr "Ingrese su ubicación"
 
-#: /noi/app/models.py:89
+#: /noi/app/models.py:104
 msgid "Projects"
 msgstr "Proyectos"
 
-#: /noi/app/models.py:90
+#: /noi/app/models.py:105
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 "Agregue el nombre y un url o una breve descripción de sus proyectos de "
 "trabajo actuales."
 
-#: /noi/app/views.py:83
+#: /noi/app/views.py:85
 msgid ""
 "Your profile has been saved. <br/>Please tell us about your expertise "
 "below."
@@ -111,11 +264,11 @@ msgstr ""
 "Su perfil ha sido guardado. <br/>Porfavor favor cuéntenos acerca de sus "
 "competencias "
 
-#: /noi/app/views.py:87
+#: /noi/app/views.py:89
 msgid "Could not save, please correct errors below"
 msgstr "No se pudo guardar, por favor corrija los siguientes errores"
 
-#: /noi/app/views.py:110
+#: /noi/app/views.py:112
 #, fuzzy, python-format
 msgid ""
 "Your expertise has been updated.<br/>\n"
@@ -134,11 +287,7 @@ msgstr ""
 "        <li>Ver su <a href=\"/user/%(id)d\">perfil público</a></li>\n"
 "                      id"
 
-#: /noi/app/views.py:163
-msgid "This is does not correspond to a valid user."
-msgstr "Esto no corresponde a un usuario válido."
-
-#: /noi/app/views.py:211
+#: /noi/app/views.py:209
 msgid ""
 "Before we can match you with fellow innovators, you need to enter your "
 "expertise below first."
@@ -146,11 +295,11 @@ msgstr ""
 "Antes de poder conectarlo con otros innovadores, primero debe ingresar su"
 " competencia"
 
-#: /noi/app/views.py:215
+#: /noi/app/views.py:213
 msgid "People Who Know what I do not"
 msgstr "Personas que conocen lo que yo no conozco"
 
-#: /noi/app/views.py:226
+#: /noi/app/views.py:224
 #, fuzzy
 msgid ""
 "Before we can find innovators like you, you need to <a href=\"/my-"
@@ -159,13 +308,21 @@ msgstr ""
 "Antes de poder encontrar innovadores como usted, necesita <a href=\"/my-"
 "expertise\">completar su competencia</a> primero."
 
-#: /noi/app/views.py:231
+#: /noi/app/views.py:229
 msgid "People most like me"
 msgstr "Personas más similares a mí"
 
-#: /noi/app/views.py:243
+#: /noi/app/views.py:241
 msgid "Our most recent members"
 msgstr "Nuestros miembros más recientes"
+
+#: /noi/app/views.py:257
+msgid "We need your name before you can post a message."
+msgstr ""
+
+#: /noi/app/views.py:266
+msgid "Message posted!"
+msgstr ""
 
 #: /noi/app/templates/__footer__.html:7 /noi/app/templates/about.html:16
 msgid "Information Collection Statement"
@@ -274,10 +431,18 @@ msgid ""
 "privacy, please contact <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 msgstr ""
-"Toda la información que proporcione será públicamente visible y "
-"se usará con el único objetivo para el que el sitio fue diseñado. Para "
-"saber más del aviso de privacidad, por favor escriba a <a "
+"Toda la información que proporcione será públicamente visible y se usará "
+"con el único objetivo para el que el sitio fue diseñado. Para saber más "
+"del aviso de privacidad, por favor escriba a <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
+
+#: /noi/app/templates/activity.html:9
+msgid "Share with the network"
+msgstr ""
+
+#: /noi/app/templates/activity.html:11
+msgid "Post"
+msgstr ""
 
 #: /noi/app/templates/feedback.html:14
 msgid "Share your feedback about the Network of Innovators"
@@ -304,8 +469,8 @@ msgid ""
 "We are using your social information to populate your first name, last "
 "name and profile picture."
 msgstr ""
-"Estamos utilizando su información pública para completar su nombre, apellido "
-"e imagen de perfil."
+"Estamos utilizando su información pública para completar su nombre, "
+"apellido e imagen de perfil."
 
 #: /noi/app/templates/main.html:3
 #: /noi/app/templates/security/change_password.html:3
@@ -366,8 +531,8 @@ msgid ""
 "Tell us what you know about various key topics by answering some of the "
 "following questions."
 msgstr ""
-"Díganos qué sabe acerca de diversos temas clave al responder algunas de las "
-"siguientes preguntas."
+"Díganos qué sabe acerca de diversos temas clave al responder algunas de "
+"las siguientes preguntas."
 
 #: /noi/app/templates/my-expertise.html:87
 msgid "For each question, you can choose from"
@@ -388,7 +553,9 @@ msgstr "Guardar"
 
 #: /noi/app/templates/my-profile.html:206
 msgid "Sorry, that file is too big.  Please choose a smaller one."
-msgstr "Lo sentimos, el archivo es demasiado grande. Por favor seleccione uno de menor tamaño."
+msgstr ""
+"Lo sentimos, el archivo es demasiado grande. Por favor seleccione uno de "
+"menor tamaño."
 
 #: /noi/app/templates/search-results.html:6
 msgid "Contact+request+from+the+Network+of+Innovators"
@@ -400,7 +567,9 @@ msgstr "Contactar a todas estas personas"
 
 #: /noi/app/templates/search-results.html:14
 msgid "E-mail one or more of them to meet, network and learn something new!"
-msgstr "¡Escriba un correo electrónico a uno o más de ellos para conocerlos, conectar con ellos y aprender algo nuevo!"
+msgstr ""
+"¡Escriba un correo electrónico a uno o más de ellos para conocerlos, "
+"conectar con ellos y aprender algo nuevo!"
 
 #: /noi/app/templates/search.html:3
 msgid "Search interface"
@@ -410,36 +579,36 @@ msgstr "Buscar interface"
 msgid "Search for Innovators"
 msgstr "Buscar innovadores"
 
-#: /noi/app/templates/search.html:38
+#: /noi/app/templates/search.html:37
 msgid "By country"
 msgstr "Por país"
 
-#: /noi/app/templates/search.html:40
+#: /noi/app/templates/search.html:39
 msgid "Choose your countries"
 msgstr "Elija sus países"
 
-#: /noi/app/templates/search.html:43
+#: /noi/app/templates/search.html:42
 msgid "By language(s)"
 msgstr "Por idioma(s)"
 
-#: /noi/app/templates/search.html:45
+#: /noi/app/templates/search.html:44
 #, fuzzy
 msgid "Choose your languages"
 msgstr "Elija su idioma(s)"
 
-#: /noi/app/templates/search.html:48
+#: /noi/app/templates/search.html:47
 msgid "By domain(s)"
 msgstr "Por sector(es)"
 
-#: /noi/app/templates/search.html:50
+#: /noi/app/templates/search.html:49
 msgid "Choose your fields of expertise"
 msgstr "Elija sus áreas de competencia"
 
-#: /noi/app/templates/search.html:53
+#: /noi/app/templates/search.html:52
 msgid "By keyword(s)"
 msgstr "Por palabra(s) clave"
 
-#: /noi/app/templates/search.html:60
+#: /noi/app/templates/search.html:59
 msgid "Find experts"
 msgstr "Encuentre expertos"
 
@@ -1365,11 +1534,11 @@ msgid ""
 "and under what conditions is hard. </p> <p>Share what you know and what "
 "you would like to learn about how to formulate, implement and measure a "
 "community engagement strategy.</p>\n"
-msgstr "Las instituciones usualmente trabajan mejor cuando sus grupos de interés– ya sean ciudadanos, clientes, padres de familia, pacientes u otros miembros de una comunidad–se involucran de forma directa en la toma de decisiones y en la prestación de servicios. 
-La participación puede construir confianza e incrementar la legitimidad en la toma de decisiones. También puede ayudar a que las instituciones resuelvan problemas de una manera más efectiva, al desarrollar soluciones que están diseñadas en consulta con los grupos de interés. Sin embargo, saber cuándo y cómo involucrar a los miembros de una comunidad y bajo qué condiciones es difícil. 
-
-Comparte lo que sabes y lo que deseas aprender acerca de cómo formular, implementar y medir una estrategia de participación comunitaria. 
-\n"
+msgstr ""
+"Las instituciones usualmente trabajan mejor cuando sus grupos de interés–"
+" ya sean ciudadanos, clientes, padres de familia, pacientes u otros "
+"miembros de una comunidad–se involucran de forma directa en la toma de "
+"decisiones y en la prestación de servicios"
 
 #: /noi/app/templates/translate.tmp.html:193
 msgid "Community Engagement"
@@ -1383,25 +1552,33 @@ msgstr "Identificando metas y participantes"
 msgid ""
 "What you can share about setting the stage for a community engagement "
 "program."
-msgstr "Lo que puedes compartir acerca de establecer las bases para un programa de participación comunitaria. "
+msgstr ""
+"Lo que puedes compartir acerca de establecer las bases para un programa "
+"de participación comunitaria. "
 
 #: /noi/app/templates/translate.tmp.html:196
 msgid ""
 "Clearly identify the rationale, purpose and objectives for community "
 "engagement."
-msgstr "Identificar claramente el propósito, los objetivos, y la racionalidad de la participación comunitaria"
+msgstr ""
+"Identificar claramente el propósito, los objetivos, y la racionalidad de "
+"la participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:197
 msgid ""
 "Find and interpret relevant legislative and/or policy requirements "
 "driving the need for engagement."
-msgstr "Encontrar e interpretar los requerimientos legislativos y/o de políticas públicas que impulsan la necesidad de participación. "
+msgstr ""
+"Encontrar e interpretar los requerimientos legislativos y/o de políticas "
+"públicas que impulsan la necesidad de participación. "
 
 #: /noi/app/templates/translate.tmp.html:198
 msgid ""
 "Identify who needs to be involved, including all stakeholders affected, "
 "impacted or interested in the engagement."
-msgstr "Identificar quién debe estar involucrado, incluyendo grupos de interés afectados, impactados o interesados en la participación. "
+msgstr ""
+"Identificar quién debe estar involucrado, incluyendo grupos de interés "
+"afectados, impactados o interesados en la participación. "
 
 #: /noi/app/templates/translate.tmp.html:199
 msgid "Implementing a community engagement strategy"
@@ -1409,13 +1586,17 @@ msgstr "Implementando una estrategia de participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:200
 msgid "What you can share about operationalizing a community engagement program."
-msgstr "Lo que puedes compartir acerca de poner en práctica un programa de participación comunitaria "
+msgstr ""
+"Lo que puedes compartir acerca de poner en práctica un programa de "
+"participación comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:201
 msgid ""
 "Identify and communicate incentives to participate, including anticipated"
 " outcomes."
-msgstr "Identificar y comunicar incentivos para motivar la participación, incluyendo los resultados esperados. "
+msgstr ""
+"Identificar y comunicar incentivos para motivar la participación, "
+"incluyendo los resultados esperados. "
 
 #: /noi/app/templates/translate.tmp.html:202
 msgid "Develop briefing materials and information to inform engagement."
@@ -1447,7 +1628,9 @@ msgstr "Planear e implementar un ejercicio de planeación de escenarios"
 
 #: /noi/app/templates/translate.tmp.html:209
 msgid "Develop an action/project plan with timeline to implement the engagement."
-msgstr " Desarrollar un plan de acción/proyecto con un cronograma para implementar la participación. "
+msgstr ""
+" Desarrollar un plan de acción/proyecto con un cronograma para "
+"implementar la participación. "
 
 #: /noi/app/templates/translate.tmp.html:210
 msgid "Ensure accessibility of the engagement activity."
@@ -1462,23 +1645,31 @@ msgstr "Usando medios en línea y digitales para involucrar a los grupos de inte
 msgid ""
 "What you can share about effectively using tools to gain input from "
 "diverse stakeholders"
-msgstr "Qué puedes compartir acerca de usar efectivamente herramientas para obtener insumos de diversos grupos de interés. "
+msgstr ""
+"Qué puedes compartir acerca de usar efectivamente herramientas para "
+"obtener insumos de diversos grupos de interés. "
 
 #: /noi/app/templates/translate.tmp.html:213
 msgid ""
 "Use social media, digital and online tools to engage stakeholders as a "
 "group."
-msgstr "Usar redes sociales, herramientas digitales y en línea para involucrar a los grupos de interés como una comunidad. "
+msgstr ""
+"Usar redes sociales, herramientas digitales y en línea para involucrar a "
+"los grupos de interés como una comunidad. "
 
 #: /noi/app/templates/translate.tmp.html:214
 msgid "Use social media, digital and online tools to conduct surveys."
-msgstr "Usar redes sociales, herramientas digitales y en línea para realizar encuestas."
+msgstr ""
+"Usar redes sociales, herramientas digitales y en línea para realizar "
+"encuestas."
 
 #: /noi/app/templates/translate.tmp.html:215
 msgid ""
 "Plan and deliver an e-deliberation process like a 21st century town "
 "meeting."
-msgstr "Planear e implementar un proceso de deliberación en línea, como un cabildo abierto del siglo 21."
+msgstr ""
+"Planear e implementar un proceso de deliberación en línea, como un "
+"cabildo abierto del siglo 21."
 
 #: /noi/app/templates/translate.tmp.html:216
 msgid "Plan and deliver open space technology."
@@ -1488,11 +1679,15 @@ msgstr "Planear e implementar tecnología de espacios abiertos."
 msgid ""
 "Use digital and online tools to amplify engagement efforts and increase "
 "reach."
-msgstr "Usar herramientas digitales y en línea para amplificar los esfuerzos de participación y para incrementar el alcance. "
+msgstr ""
+"Usar herramientas digitales y en línea para amplificar los esfuerzos de "
+"participación y para incrementar el alcance. "
 
 #: /noi/app/templates/translate.tmp.html:218
 msgid "Use digital and online tools to provide feedback to stakeholders."
-msgstr "Usar herramientas digitales y en línea para proporcionar retroalimentación a los grupos de interés. "
+msgstr ""
+"Usar herramientas digitales y en línea para proporcionar "
+"retroalimentación a los grupos de interés. "
 
 #: /noi/app/templates/translate.tmp.html:219
 msgid "Measuring, evaluating and providing feedback"
@@ -1502,22 +1697,29 @@ msgstr "Midiendo, evaluando y proporcionando retroalimentación "
 msgid ""
 "What you can share about assessing effectiveness and sharing targeted "
 "feedback"
-msgstr "Lo que puedes compartir acerca de evaluar la efectividad y compartir retroalimentación específica
-"
+msgstr ""
+"Lo que puedes compartir acerca de evaluar la efectividad y compartir "
+"retroalimentación específic"
 
 #: /noi/app/templates/translate.tmp.html:221
 msgid "Capture and utilise relevant data related to all aspects of engagement."
-msgstr "Recolectar y utilizar los datos relacionados a cada uno de los aspectos de la participación."
+msgstr ""
+"Recolectar y utilizar los datos relacionados a cada uno de los aspectos "
+"de la participación."
 
 #: /noi/app/templates/translate.tmp.html:222
 msgid ""
 "Create tools for providing clear feedback to participants and decision "
 "makers."
-msgstr "Crear herramientas para proporcionar retroalimentación clara a los participantes y a los responsables de la toma de decisiones"
+msgstr ""
+"Crear herramientas para proporcionar retroalimentación clara a los "
+"participantes y a los responsables de la toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:223
 msgid "Clearly and regularly report outcomes to participants and stakeholders."
-msgstr "Reportar de forma clara y regular los resultados a los participantes y a los grupos de interés"
+msgstr ""
+"Reportar de forma clara y regular los resultados a los participantes y a "
+"los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:224
 msgid "Transforming my organisation"
@@ -1527,22 +1729,30 @@ msgstr "Transformando mi organización "
 msgid ""
 "What you can share about increasing the organizational use of citizen "
 "engagement"
-msgstr "Lo que puedes compartir acerca de mejorar tu organización haciendo uso de la participación comunitaria"
+msgstr ""
+"Lo que puedes compartir acerca de mejorar tu organización haciendo uso de"
+" la participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:226
 msgid ""
 "Ensure that the learnings from a community engagement exercise get used "
 "to support continuous improvement within my organisation."
-msgstr "Asegurar que los aprendizajes del ejercicio de participación comunitaria sean utilizados para apoyar el mejoramiento continuo dentro de mi organización. "
+msgstr ""
+"Asegurar que los aprendizajes del ejercicio de participación comunitaria "
+"sean utilizados para apoyar el mejoramiento continuo dentro de mi "
+"organización. "
 
 #: /noi/app/templates/translate.tmp.html:227
 msgid "Increase organisational awareness of the value of community engagement."
-msgstr "Aumentar la conciencia en la organización sobre el valor de la participación comunitaria "
+msgstr ""
+"Aumentar la conciencia en la organización sobre el valor de la "
+"participación comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:228
 msgid "Develop and deliver appropriate training for staff across my organisation."
-msgstr "Desarrollar e implementar la capacitación adecuada para el personal de toda de mi organización.
-"
+msgstr ""
+"Desarrollar e implementar la capacitación adecuada para el personal de "
+"toda de mi organización"
 
 #: /noi/app/templates/translate.tmp.html:229
 msgid ""
@@ -1564,13 +1774,17 @@ msgstr "Creación de laboratorios y visión"
 
 #: /noi/app/templates/translate.tmp.html:233
 msgid "What you can share about launching a government innovation lab."
-msgstr "Lo que puede compartir acerca de poner en marcha un laboratorio de innovación. "
+msgstr ""
+"Lo que puede compartir acerca de poner en marcha un laboratorio de "
+"innovación. "
 
 #: /noi/app/templates/translate.tmp.html:234
 msgid ""
 "how to articulate the value proposition of my Lab and the need for "
 "experimentation."
-msgstr "articular la propuesta de valor para mi laboratorio y la necesidad de experimentación"
+msgstr ""
+"articular la propuesta de valor para mi laboratorio y la necesidad de "
+"experimentación"
 
 #: /noi/app/templates/translate.tmp.html:235
 msgid "how to develop a plan for my Lab"
@@ -1580,7 +1794,9 @@ msgstr "desarrollar un plan para mi laboratorio "
 msgid ""
 "how to clearly articulate the problems that my Lab is supposed to solve, "
 "and the assumptions it is going to test"
-msgstr "articular de forma clara los problemas que mi laboratorio debe resolver y los supuestos que mi laboratorio pondrá a prueba"
+msgstr ""
+"articular de forma clara los problemas que mi laboratorio debe resolver y"
+" los supuestos que mi laboratorio pondrá a prueba"
 
 #: /noi/app/templates/translate.tmp.html:237
 msgid "how to define the service lines for my Lab"
@@ -1598,38 +1814,48 @@ msgstr "Operaciones del laboratorio "
 msgid ""
 "What you can share about the organizational mechanics of running a "
 "government innovation lab."
-msgstr "Lo que puede compartir acerca de la gestión operativa que implica dirigir un laboratorio de innovación gubernamental. "
+msgstr ""
+"Lo que puede compartir acerca de la gestión operativa que implica dirigir"
+" un laboratorio de innovación gubernamental. "
 
 #: /noi/app/templates/translate.tmp.html:241
 msgid ""
 "how to define an engagement model for my Lab vis a vis other parts of my "
 "organisation"
-msgstr "definir un modelo de participación para mi laboratorio 
-"
+msgstr "definir un modelo de participación para mi laboratori"
 
 #: /noi/app/templates/translate.tmp.html:242
 msgid ""
 "how to define a handover protocol between my Lab and other parts of the "
 "organisation"
-msgstr "definir un protocolo de traspaso entre mi laboratorio y otras partes de la organización definir los roles y Términos de Referencia que el equipo necesita para el éxito de mi laboratorio "
+msgstr ""
+"definir un protocolo de traspaso entre mi laboratorio y otras partes de "
+"la organización definir los roles y Términos de Referencia que el equipo "
+"necesita para el éxito de mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:243
 msgid ""
 "how to define the roles and Terms of Reference staff need for the success"
 " of my Lab"
-msgstr "definir los roles y Términos de Referencia que el equipo necesita para el éxito de mi laboratorio "
+msgstr ""
+"definir los roles y Términos de Referencia que el equipo necesita para el"
+" éxito de mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:244
 msgid ""
 "how to cost the services for my Lab and define a business model that "
 "guarantees long term sustainability"
-msgstr "presupuestar los servicios para mi laboratorio y definir el modelo de negocio que garantizará sustentabilidad a largo plazo"
+msgstr ""
+"presupuestar los servicios para mi laboratorio y definir el modelo de "
+"negocio que garantizará sustentabilidad a largo plazo"
 
 #: /noi/app/templates/translate.tmp.html:245
 msgid ""
 "how to effectively argue for the most effective reporting lines and "
 "organisational placement for my Lab"
-msgstr "argumentar para tener la dependencia organizacional más efectiva para mi laboratorio"
+msgstr ""
+"argumentar para tener la dependencia organizacional más efectiva para mi "
+"laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:246
 msgid "Lab Experimentation and Methodology"
@@ -1643,29 +1869,31 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:248
 msgid "how to define metrics for my Lab to demonstrate its impact"
-msgstr "cómo definir las métricas para que mi laboratorio demuestre su impacto
-"
+msgstr "cómo definir las métricas para que mi laboratorio demuestre su impact"
 
 #: /noi/app/templates/translate.tmp.html:249
 msgid "how to select and implement the methodologies that my Lab will promote"
-msgstr "cómo seleccionar e implementar las metodologías que promoverá mi laboratorio
-"
+msgstr ""
+"cómo seleccionar e implementar las metodologías que promoverá mi "
+"laboratori"
 
 #: /noi/app/templates/translate.tmp.html:250
 msgid "how to train others in Lab methodologies and tools"
-msgstr "cómo capacitar a otros en las metodologías y herramientas del laboratorio
-"
+msgstr "cómo capacitar a otros en las metodologías y herramientas del laboratori"
 
 #: /noi/app/templates/translate.tmp.html:251
 msgid "how to manage a Lab project using an agile development approach"
-msgstr "cómo administrar un proyecto de laboratorio utilizando una metodología de desarrollo ágil
-"
+msgstr ""
+"cómo administrar un proyecto de laboratorio utilizando una metodología de"
+" desarrollo ági"
 
 #: /noi/app/templates/translate.tmp.html:252
 msgid ""
 "how to track, evidence and iterate our programmes to ensure relevance and"
 " generate timely results"
-msgstr "cómo monitorear, demostrar, e iterar nuestros programas para asegurar su importancia y generar resultados oportunos"
+msgstr ""
+"cómo monitorear, demostrar, e iterar nuestros programas para asegurar su "
+"importancia y generar resultados oportunos"
 
 #: /noi/app/templates/translate.tmp.html:253
 #, fuzzy
@@ -1674,19 +1902,21 @@ msgstr "Personal y Recursos"
 
 #: /noi/app/templates/translate.tmp.html:254
 msgid "What you can share about managing lab staff and budgets"
-msgstr "Lo que puedes compartir sobre la administración del personal y los presupuestos.
-"
+msgstr ""
+"Lo que puedes compartir sobre la administración del personal y los "
+"presupuestos"
 
 #: /noi/app/templates/translate.tmp.html:255
 msgid "how to effectively recruit a group of early champions to support the Lab"
-msgstr "reclutar de forma efectiva un grupo de  que apoyen el laboratorio
-"
+msgstr "reclutar de forma efectiva un grupo de  que apoyen el laboratori"
 
 #: /noi/app/templates/translate.tmp.html:256
 msgid ""
 "how to manage resources, including people, time and budget to ensure "
 "value for money"
-msgstr "administrar recursos, incluyendo personas, tiempo y presupuesto para asegurar una buena relación calidad-precio "
+msgstr ""
+"administrar recursos, incluyendo personas, tiempo y presupuesto para "
+"asegurar una buena relación calidad-precio "
 
 #: /noi/app/templates/translate.tmp.html:257
 msgid "Capturing, Leveraging and Communicating Results"
@@ -1696,25 +1926,35 @@ msgstr "Captando, aprovechando y comunicando resultados "
 msgid ""
 "What you can share about making use of lab results internally and "
 "communicating impacts externally."
-msgstr "Lo que puedes compartir acerca de hacer uso interno de los resultados del laboratorio y de comunicar los impactos al exterior  "
+msgstr ""
+"Lo que puedes compartir acerca de hacer uso interno de los resultados del"
+" laboratorio y de comunicar los impactos al exterior  "
 
 #: /noi/app/templates/translate.tmp.html:259
 msgid ""
 "how to develop a portfolio of demonstration projects that can demonstrate"
 " tangible results even in the face of skepticism"
-msgstr "desarrollar un portafolio de proyectos de demostración que puedan comprobar resultados tangibles incluso ante personas escépticas"
+msgstr ""
+"desarrollar un portafolio de proyectos de demostración que puedan "
+"comprobar resultados tangibles incluso ante personas escépticas"
 
 #: /noi/app/templates/translate.tmp.html:260
 msgid ""
 "how to research, pilot and test new programmes based on the insights and "
 "knowhow gathered from previous ones"
-msgstr "cómo investigar, crear un piloto y probar nuevos programas con base a los aprendizajes y el conocimiento práctico recopilado de los programas anteriores"
+msgstr ""
+"cómo investigar, crear un piloto y probar nuevos programas con base a los"
+" aprendizajes y el conocimiento práctico recopilado de los programas "
+"anteriores"
 
 #: /noi/app/templates/translate.tmp.html:261
 msgid ""
 "how to capture, articulate and share the narrative around the impact and "
 "outcomes of lab programmes, i.e. through case studies"
-msgstr "cómo captar, articular y compartir la narrativa alrededor del impacto y los resultados obtenidos en los programas del laboratorio, por ejemplo, a través de casos de estudio.  "
+msgstr ""
+"cómo captar, articular y compartir la narrativa alrededor del impacto y "
+"los resultados obtenidos en los programas del laboratorio, por ejemplo, a"
+" través de casos de estudio.  "
 
 #: /noi/app/templates/translate.tmp.html:262
 msgid ""
@@ -2159,4 +2399,31 @@ msgstr "Reestablecer contraseña"
 #: /noi/app/templates/security/send_confirmation.html:13
 msgid "Resend confirmation instructions"
 msgstr "Reenviar instrucciones de confirmación"
+
+#~ msgid "This is does not correspond to a valid user."
+#~ msgstr "Esto no corresponde a un usuario válido."
+
+#~ msgid "Remember Me"
+#~ msgstr ""
+
+#~ msgid "Retype Password"
+#~ msgstr "Reestablecer contraseña"
+
+#~ msgid "Resend Confirmation Instructions"
+#~ msgstr "Reenviar instrucciones de confirmación"
+
+#~ msgid "Recover Password"
+#~ msgstr "Reestablecer contraseña"
+
+#~ msgid "Reset Password"
+#~ msgstr "Reestablecer contraseña"
+
+#~ msgid "New Password"
+#~ msgstr "Cambiar contraseña"
+
+#~ msgid "Change Password"
+#~ msgstr "Cambiar contraseña"
+
+#~ msgid "Send Login Link"
+#~ msgstr ""
 

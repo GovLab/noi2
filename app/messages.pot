@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-18 18:12+0000\n"
+"POT-Creation-Date: 2015-09-23 20:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,150 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.0\n"
+
+#: /noi/app/factory.py:93
+msgid "You do not have permission to view this resource."
+msgstr ""
+
+#: /noi/app/factory.py:95
+#, python-format
+msgid "Thank you. Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/factory.py:98
+msgid "Thank you. Your email has been confirmed."
+msgstr ""
+
+#: /noi/app/factory.py:100
+msgid "Your email has already been confirmed."
+msgstr ""
+
+#: /noi/app/factory.py:102
+msgid "Invalid confirmation token."
+msgstr ""
+
+#: /noi/app/factory.py:104
+#, python-format
+msgid "%(email)s is already associated with an account."
+msgstr ""
+
+#: /noi/app/factory.py:106
+msgid "Password does not match"
+msgstr ""
+
+#: /noi/app/factory.py:108
+msgid "Passwords do not match"
+msgstr ""
+
+#: /noi/app/factory.py:110
+msgid "Redirections outside the domain are forbidden"
+msgstr ""
+
+#: /noi/app/factory.py:112
+#, python-format
+msgid "Instructions to reset your password have been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/factory.py:114
+#, python-format
+msgid ""
+"You did not reset your password within %(within)s. New instructions have "
+"been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/factory.py:117
+msgid "Invalid reset password token."
+msgstr ""
+
+#: /noi/app/factory.py:119
+msgid "Email requires confirmation."
+msgstr ""
+
+#: /noi/app/factory.py:121
+#, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/factory.py:123
+#, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/factory.py:127
+#, python-format
+msgid ""
+"You did not login within %(within)s. New instructions to login have been "
+"sent to %(email)s."
+msgstr ""
+
+#: /noi/app/factory.py:130
+#, python-format
+msgid "Instructions to login have been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/factory.py:132
+msgid "Invalid login token."
+msgstr ""
+
+#: /noi/app/factory.py:134
+msgid "Account is disabled."
+msgstr ""
+
+#: /noi/app/factory.py:136
+msgid "Email not provided"
+msgstr ""
+
+#: /noi/app/factory.py:138
+msgid "Invalid email address"
+msgstr ""
+
+#: /noi/app/factory.py:140
+msgid "Password not provided"
+msgstr ""
+
+#: /noi/app/factory.py:142
+msgid "No password is set for this user"
+msgstr ""
+
+#: /noi/app/factory.py:144
+msgid "Password must be at least 6 characters"
+msgstr ""
+
+#: /noi/app/factory.py:146
+msgid "Specified user does not exist"
+msgstr ""
+
+#: /noi/app/factory.py:148
+msgid "Invalid password"
+msgstr ""
+
+#: /noi/app/factory.py:150
+msgid "You have successfuly logged in."
+msgstr ""
+
+#: /noi/app/factory.py:152
+msgid ""
+"You successfully reset your password and you have been logged in "
+"automatically."
+msgstr ""
+
+#: /noi/app/factory.py:155
+msgid "Your new password must be different than your previous password."
+msgstr ""
+
+#: /noi/app/factory.py:157
+msgid "You successfully changed your password."
+msgstr ""
+
+#: /noi/app/factory.py:159
+msgid "Please log in to access this page."
+msgstr ""
+
+#: /noi/app/factory.py:161
+msgid "Please reauthenticate to access this page."
+msgstr ""
 
 #: /noi/app/forms.py:60
 msgid "Choose your country"
@@ -29,86 +173,90 @@ msgstr ""
 msgid "Only jpeg, jpg, and png images are allowed."
 msgstr ""
 
-#: /noi/app/forms.py:83 /noi/app/forms.py:99
+#: /noi/app/forms.py:83 /noi/app/forms.py:109
 msgid "Languages"
 msgstr ""
 
-#: /noi/app/forms.py:88 /noi/app/forms.py:104
+#: /noi/app/forms.py:88 /noi/app/forms.py:114
 msgid "Domains of Expertise"
 msgstr ""
 
-#: /noi/app/forms.py:134
+#: /noi/app/forms.py:99
+msgid "Have a question or something to share about innovation?"
+msgstr ""
+
+#: /noi/app/forms.py:144
 #, python-format
 msgid "%(value)s is not a valid email address: %(explanation)svalue"
 msgstr ""
 
-#: /noi/app/models.py:42
+#: /noi/app/models.py:57
 msgid "First Name"
 msgstr ""
 
-#: /noi/app/models.py:45
+#: /noi/app/models.py:60
 msgid "Last Name"
 msgstr ""
 
-#: /noi/app/models.py:49
+#: /noi/app/models.py:64
 msgid "Email"
 msgstr ""
 
-#: /noi/app/models.py:53
+#: /noi/app/models.py:68
 msgid "Password"
 msgstr ""
 
-#: /noi/app/models.py:65
+#: /noi/app/models.py:80
 msgid "Position"
 msgstr ""
 
-#: /noi/app/models.py:68
+#: /noi/app/models.py:83
 msgid "Organization"
 msgstr ""
 
-#: /noi/app/models.py:71
+#: /noi/app/models.py:86
 msgid "Type of Organization"
 msgstr ""
 
-#: /noi/app/models.py:72
+#: /noi/app/models.py:87
 msgid "The type of organization you work for"
 msgstr ""
 
-#: /noi/app/models.py:76
+#: /noi/app/models.py:91
 msgid "Country"
 msgstr ""
 
-#: /noi/app/models.py:80
+#: /noi/app/models.py:95
 msgid "City"
 msgstr ""
 
-#: /noi/app/models.py:84
+#: /noi/app/models.py:99
 msgid "Location"
 msgstr ""
 
-#: /noi/app/models.py:85
+#: /noi/app/models.py:100
 msgid "Enter your location"
 msgstr ""
 
-#: /noi/app/models.py:89
+#: /noi/app/models.py:104
 msgid "Projects"
 msgstr ""
 
-#: /noi/app/models.py:90
+#: /noi/app/models.py:105
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 
-#: /noi/app/views.py:83
+#: /noi/app/views.py:85
 msgid ""
 "Your profile has been saved. <br/>Please tell us about your expertise "
 "below."
 msgstr ""
 
-#: /noi/app/views.py:87
+#: /noi/app/views.py:89
 msgid "Could not save, please correct errors below"
 msgstr ""
 
-#: /noi/app/views.py:110
+#: /noi/app/views.py:112
 #, python-format
 msgid ""
 "Your expertise has been updated.<br/>\n"
@@ -120,32 +268,36 @@ msgid ""
 "                      id"
 msgstr ""
 
-#: /noi/app/views.py:163
-msgid "This is does not correspond to a valid user."
-msgstr ""
-
-#: /noi/app/views.py:211
+#: /noi/app/views.py:209
 msgid ""
 "Before we can match you with fellow innovators, you need to enter your "
 "expertise below first."
 msgstr ""
 
-#: /noi/app/views.py:215
+#: /noi/app/views.py:213
 msgid "People Who Know what I do not"
 msgstr ""
 
-#: /noi/app/views.py:226
+#: /noi/app/views.py:224
 msgid ""
 "Before we can find innovators like you, you need to <a href=\"/my-"
 "expertise\">fill your expertise</a> first."
 msgstr ""
 
-#: /noi/app/views.py:231
+#: /noi/app/views.py:229
 msgid "People most like me"
 msgstr ""
 
-#: /noi/app/views.py:243
+#: /noi/app/views.py:241
 msgid "Our most recent members"
+msgstr ""
+
+#: /noi/app/views.py:257
+msgid "We need your name before you can post a message."
+msgstr ""
+
+#: /noi/app/views.py:266
+msgid "Message posted!"
 msgstr ""
 
 #: /noi/app/templates/__footer__.html:7 /noi/app/templates/about.html:16
@@ -248,6 +400,14 @@ msgid ""
 " purpose for which the site is intended. For questions about user "
 "privacy, please contact <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
+msgstr ""
+
+#: /noi/app/templates/activity.html:9
+msgid "Share with the network"
+msgstr ""
+
+#: /noi/app/templates/activity.html:11
+msgid "Post"
 msgstr ""
 
 #: /noi/app/templates/feedback.html:14
@@ -377,35 +537,35 @@ msgstr ""
 msgid "Search for Innovators"
 msgstr ""
 
-#: /noi/app/templates/search.html:38
+#: /noi/app/templates/search.html:37
 msgid "By country"
 msgstr ""
 
-#: /noi/app/templates/search.html:40
+#: /noi/app/templates/search.html:39
 msgid "Choose your countries"
 msgstr ""
 
-#: /noi/app/templates/search.html:43
+#: /noi/app/templates/search.html:42
 msgid "By language(s)"
 msgstr ""
 
-#: /noi/app/templates/search.html:45
+#: /noi/app/templates/search.html:44
 msgid "Choose your languages"
 msgstr ""
 
-#: /noi/app/templates/search.html:48
+#: /noi/app/templates/search.html:47
 msgid "By domain(s)"
 msgstr ""
 
-#: /noi/app/templates/search.html:50
+#: /noi/app/templates/search.html:49
 msgid "Choose your fields of expertise"
 msgstr ""
 
-#: /noi/app/templates/search.html:53
+#: /noi/app/templates/search.html:52
 msgid "By keyword(s)"
 msgstr ""
 
-#: /noi/app/templates/search.html:60
+#: /noi/app/templates/search.html:59
 msgid "Find experts"
 msgstr ""
 
