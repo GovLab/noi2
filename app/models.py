@@ -22,8 +22,25 @@ import os
 
 db = SQLAlchemy()  #pylint: disable=invalid-name
 
+class DeploymentMixin(object):
+    '''
+    Mixin class for any model that is accessible on a per-deployment
+    basis.
+    '''
 
-class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
+    deployment = Column(types.String, nullable=False,
+                        default=lambda: current_app.config['NOI_DEPLOY'])
+
+    @classmethod
+    def query_in_deployment(cls):
+        '''
+        Query for instances of the model within this deployment.
+        '''
+
+        deployments = current_app.config['SEARCH_DEPLOYMENTS']
+        return cls.query.filter(cls.deployment.in_(deployments))
+
+class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-few-public-methods
     '''
     User
     '''
@@ -35,8 +52,6 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
                         default=lambda: base64.urlsafe_b64encode(os.urandom(20))[0:-2])
 
     has_picture = Column(types.Boolean, default=False)
-    deployment = Column(types.String, nullable=False,
-                        default=lambda: current_app.config['NOI_DEPLOY'])
 
     first_name = Column(types.String, info={
         'label': lazy_gettext('First Name'),
@@ -95,20 +110,20 @@ class User(db.Model, UserMixin): #pylint: disable=no-init,too-few-public-methods
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
 
-    @classmethod
-    def query_in_deployment(cls):
-        '''
-        Query for users within this deployment
-        '''
-        return cls.query.filter(cls.deployment.in_(current_app.config['SEARCH_DEPLOYMENTS']))
+    @property
+    def full_name(self):
+        return u"%s %s" % (self.first_name, self.last_name)
 
     @property
     def display_in_search(self):
         '''
         Determine whether user has filled out bare minimum to display in search
         results.
+
+        Specifically, we want to make sure that the first and last name
+        are both non-NULL and non-blank.
         '''
-        return self.first_name is not None and self.last_name is not None
+        return bool(self.first_name and self.last_name)
 
     @property
     def picture_path(self):
@@ -339,3 +354,54 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
     user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
 
     __table_args__ = (UniqueConstraint('user_id', 'name'),)
+
+class Event(db.Model, DeploymentMixin):
+    '''
+    An event that shows up in the activity feed for a deployment.
+    '''
+
+    __tablename__ = 'events'
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
+    created_at = Column(types.DateTime(), default=datetime.datetime.now)
+    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
+                        onupdate=datetime.datetime.now)
+    type = Column(types.String)
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'event',
+        'polymorphic_on': type
+    }
+
+class UserEvent(Event):
+    '''
+    An activity feed event whose subject is a particular user.
+    '''
+
+    __tablename__ = 'user_events'
+
+    id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
+    user_id = Column(types.Integer, ForeignKey('users.id'))
+    user = orm.relationship('User', backref='events')
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'user_event'
+    }
+
+    @classmethod
+    def from_user(cls, user, **kwargs):
+        return cls(user_id=user.id, deployment=user.deployment, **kwargs)
+
+class SharedMessageEvent(UserEvent):
+    '''
+    A message shared by a user with the network.
+    '''
+
+    __tablename__ = 'shared_messages'
+
+    id = Column(types.Integer, ForeignKey('user_events.id'), primary_key=True)
+
+    message = Column(types.Text)
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'shared_message'
+    }

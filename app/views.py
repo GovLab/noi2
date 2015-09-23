@@ -9,8 +9,10 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app.models import db, User, UserLanguage, UserExpertiseDomain, UserSkill
-from app.forms import UserForm, SearchForm
+from app.models import db, User, UserLanguage, UserExpertiseDomain, \
+                       UserSkill, Event, SharedMessageEvent
+
+from app.forms import UserForm, SearchForm, SharedMessageForm
 
 from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
@@ -240,6 +242,34 @@ def recent_users():
                               'results': users,
                               'query': ''})
 
+@views.route('/activity', methods=['GET', 'POST'])
+@login_required
+def activity():
+    '''
+    View for the activity feed of recent events.
+    '''
+
+    events = Event.query_in_deployment().order_by(desc(Event.created_at)).limit(10).all()
+    shared_message_form = SharedMessageForm()
+
+    if request.method == 'POST':
+        if not current_user.display_in_search:
+            flash(gettext(u'We need your name before you can post a message.'), 'error')
+        elif shared_message_form.validate():
+            data = shared_message_form.message.data
+            msg = SharedMessageEvent.from_user(
+                current_user,
+                message=data
+            )
+            db.session.add(msg)
+            db.session.commit()
+            flash(gettext(u'Message posted!'))
+            return redirect(url_for('views.activity'))
+
+    return render_template('activity.html', **{
+        'events': events,
+        'shared_message_form': shared_message_form
+    })
 
 @views.route('/feedback')
 def feedback():
