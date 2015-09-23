@@ -156,12 +156,8 @@ def get_user(userid):
     '''
     Public-facing profile view
     '''
-    user = User.query_in_deployment().filter_by(id=userid).one()
-    if user:
-        return render_template('user-profile.html', user=user)
-    else:
-        flash(gettext('This is does not correspond to a valid user.'))
-        return redirect(url_for('views.search'))
+    user = User.query_in_deployment().filter_by(id=userid).first_or_404()
+    return render_template('user-profile.html', user=user)
 
 
 @views.route('/search', methods=['GET', 'POST'])
