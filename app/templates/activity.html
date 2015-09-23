@@ -11,6 +11,23 @@
 <button type="submit">{{ gettext('Post') }}</button>
 </form>
 
+<h3>My Profile Progress</h3>
+
+<ul>
+  {% set q_progress = user.questionnaire_progress %}
+  {% for questionnaire in QUESTIONNAIRES %}
+    {% if q_progress[questionnaire.id].answered > 0 %}
+      <li>{{ questionnaire.name }}
+	<progress value="{{ q_progress[questionnaire.id].answered }}"
+		  max="{{ q_progress[questionnaire.id].total }}"></progress>
+      </li>
+    {% else %}
+      <li class="text-muted">{{ questionnaire.name }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<a href="{{ url_for('views.my_profile') }}">View / Edit My Profile</a>
+
 <h2>Activity</h2>
 
 {% macro user_link(user) -%}
