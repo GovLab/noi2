@@ -9,8 +9,6 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import QUESTIONNAIRES
-
 from app.models import db, User, UserLanguage, UserExpertiseDomain, \
                        UserSkill, Event, SharedMessageEvent
 
@@ -270,7 +268,6 @@ def activity():
 
     return render_template('activity.html', **{
         'user': current_user,
-        'QUESTIONNAIRES': QUESTIONNAIRES,
         'events': events,
         'shared_message_form': shared_message_form
     })

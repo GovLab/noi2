@@ -16,10 +16,14 @@
 <ul>
   {% set q_progress = user.questionnaire_progress %}
   {% for questionnaire in QUESTIONNAIRES %}
-    {% if q_progress[questionnaire.id].answered > 0 %}
+    {% set item_progress = q_progress[questionnaire.id] %}
+    {% if item_progress.answered > 0 %}
       <li>{{ questionnaire.name }}
-	<progress value="{{ q_progress[questionnaire.id].answered }}"
-		  max="{{ q_progress[questionnaire.id].total }}"></progress>
+	<progress value="{{ item_progress.answered }}"
+		  max="{{ item_progress.total }}"></progress>
+	{% if item_progress.answered == item_progress.total %}
+	  &#x2713; {# A unicode check mark. #}
+	{% endif %}
       </li>
     {% else %}
       <li class="text-muted">{{ questionnaire.name }}</li>

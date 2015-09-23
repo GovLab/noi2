@@ -4,8 +4,8 @@ NoI Models
 SQLAlchemy models for the app
 '''
 
-from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS, \
-                QUESTIONNAIRES
+from app import (ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS,
+                 QUESTIONNAIRES)
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
