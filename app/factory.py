@@ -176,7 +176,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     # This forces any "lazy strings" like those returned by
     # lazy_gettext() to be evaluated.
-    app.login_manager.localize_callback = lambda x: unicode(x)
+    app.login_manager.localize_callback = unicode
 
     db.init_app(app)
     alchemydumps.init_app(app, db)
