@@ -174,6 +174,10 @@ def create_app(config=None): #pylint: disable=too-many-statements
     security.init_app(app, datastore=user_datastore,
                       confirm_register_form=EmailRestrictRegisterForm)
 
+    # This forces any "lazy strings" like those returned by
+    # lazy_gettext() to be evaluated.
+    app.login_manager.localize_callback = lambda x: unicode(x)
+
     db.init_app(app)
     alchemydumps.init_app(app, db)
     #login_manager.init_app(app)
