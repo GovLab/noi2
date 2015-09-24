@@ -20,150 +20,158 @@ msgstr ""
 
 #: /noi/app/factory.py:93
 msgid "You do not have permission to view this resource."
-msgstr "translate"
+msgstr "No cuenta con la autorización necesaria para ver este recurso."
 
 #: /noi/app/factory.py:95
 #, python-format
 msgid "Thank you. Confirmation instructions have been sent to %(email)s."
-msgstr "translate %(email)s"
+msgstr "Gracias. Las instrucciones de confirmación han sido enviadas a %(email)s."
 
 #: /noi/app/factory.py:98
 msgid "Thank you. Your email has been confirmed."
-msgstr "translate"
+msgstr "Gracias. Su dirección de correo electrónico ha sido confirmada."
 
 #: /noi/app/factory.py:100
 msgid "Your email has already been confirmed."
-msgstr "translate"
+msgstr "Su correo electrónico ya ha sido confirmado."
 
 #: /noi/app/factory.py:102
 msgid "Invalid confirmation token."
-msgstr "translate"
+msgstr "Enlace de confirmación inválido."
 
 #: /noi/app/factory.py:104
 #, python-format
 msgid "%(email)s is already associated with an account."
-msgstr "%(email)s translate"
+msgstr "%(email)s está actualmente asociado a una cuenta."
 
 #: /noi/app/factory.py:106
 msgid "Password does not match"
-msgstr "translate"
+msgstr "La contraseña es incorrecta"
 
 #: /noi/app/factory.py:108
 msgid "Passwords do not match"
-msgstr "translate"
+msgstr "Las contraseñas no coinciden"
 
 #: /noi/app/factory.py:110
 msgid "Redirections outside the domain are forbidden"
-msgstr "translate"
+msgstr "Redirecciones fuera del sitio están prohibidas."
 
 #: /noi/app/factory.py:112
 #, python-format
 msgid "Instructions to reset your password have been sent to %(email)s."
-msgstr "translate"
+msgstr "Las instrucciones para reestablecer su contraseña han sido enviadas a %(email)s"
 
 #: /noi/app/factory.py:114
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
-msgstr "translate %(within)s %(email)s"
+msgstr ""
+"No reestableció su contraseña en %(within)s. Nuevas instrucciones han "
+"sido enviadas a %(email)s."
 
 #: /noi/app/factory.py:117
 #, fuzzy
 msgid "Invalid reset password token."
-msgstr "Reestablecer contraseña"
+msgstr "Enlace para reestablecer contraseña inválido."
 
 #: /noi/app/factory.py:119
 msgid "Email requires confirmation."
-msgstr "translate"
+msgstr "Su dirección de correo electrónico necesita ser confirmada."
 
 #: /noi/app/factory.py:121
 #, python-format
 msgid "Confirmation instructions have been sent to %(email)s."
-msgstr "translate"
+msgstr "Las instrucciones de confirmación han sido enviadas a %(email)s"
 
 #: /noi/app/factory.py:123
 #, python-format
 msgid ""
 "You did not confirm your email within %(within)s. New instructions to "
 "confirm your email have been sent to %(email)s."
-msgstr "translate %(within)s %(email)s"
+msgstr ""
+"No confirmó su correo electrónico en %(within)s. Nuevas instrucciones para "
+"confirmar su correo han sido enviadas a %(email)s."
 
 #: /noi/app/factory.py:127
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
-msgstr "translate %(within)s %(email)s"
+msgstr ""
+"No inició sesión en %(within)s. Nuevas instrucciones de inicio de sesión han "
+"sido enviadas a %(email)s."
 
 #: /noi/app/factory.py:130
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
-msgstr "translate %(email)s"
+msgstr "Las instrucciones para iniciar sesión han sido enviadas a %(email)s"
 
 #: /noi/app/factory.py:132
 msgid "Invalid login token."
-msgstr "translate"
+msgstr "Enlace de inicio de sesión inválido"
 
 #: /noi/app/factory.py:134
 msgid "Account is disabled."
-msgstr "translate"
+msgstr "Su cuenta ha sido deshabilitada."
 
 #: /noi/app/factory.py:136
 msgid "Email not provided"
-msgstr "translate"
+msgstr "No se ha proporcionado la dirección de correo electrónico"
 
 #: /noi/app/factory.py:138
 #, fuzzy
 msgid "Invalid email address"
-msgstr "translate"
+msgstr "Dirección de correo electrónico inválida"
 
 #: /noi/app/factory.py:140
 msgid "Password not provided"
-msgstr "translate"
+msgstr "Contraseña no proporcionada"
 
 #: /noi/app/factory.py:142
 msgid "No password is set for this user"
-msgstr "translate"
+msgstr "No hay una contraseña establecida para este usuario"
 
 #: /noi/app/factory.py:144
 msgid "Password must be at least 6 characters"
-msgstr "translate"
+msgstr "Su contraseña debe ser de al menos 6 caracteres"
 
 #: /noi/app/factory.py:146
 msgid "Specified user does not exist"
-msgstr "translate"
+msgstr "El usuario especificado no existe"
 
 #: /noi/app/factory.py:148
 #, fuzzy
 msgid "Invalid password"
-msgstr "Cambiar contraseña"
+msgstr "Contraseña inválida"
 
 #: /noi/app/factory.py:150
 msgid "You have successfuly logged in."
-msgstr "translate"
+msgstr "Ha iniciado sesión de forma exitosa."
 
 #: /noi/app/factory.py:152
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
-msgstr "translate"
+msgstr ""
+"Ha restablecido su contraseña de forma exitosa y ha iniciado sesión "
+"de forma automática."
 
 #: /noi/app/factory.py:155
 msgid "Your new password must be different than your previous password."
-msgstr "translate"
+msgstr "Su nueva contrseña debe ser distinta a su anterior contraseña."
 
 #: /noi/app/factory.py:157
 msgid "You successfully changed your password."
-msgstr "translate"
+msgstr "Ha cambiado su contraseña de forma exitosa."
 
 #: /noi/app/factory.py:159
 msgid "Please log in to access this page."
-msgstr "translate"
+msgstr "Por favor inicie sesión para obtener acceso a esta página."
 
 #: /noi/app/factory.py:161
 msgid "Please reauthenticate to access this page."
-msgstr "translate"
+msgstr "Por favor auntentique nuevamente para acceder esta página."
 
 #: /noi/app/forms.py:60
 #, fuzzy
@@ -173,7 +181,7 @@ msgstr "Elija su país"
 #: /noi/app/forms.py:75
 #, fuzzy
 msgid "User Picture"
-msgstr "Usar imagen"
+msgstr "Usar Imagen"
 
 #: /noi/app/forms.py:79
 msgid "Only jpeg, jpg, and png images are allowed."
@@ -189,7 +197,7 @@ msgstr "Áreas de competencia"
 
 #: /noi/app/forms.py:99
 msgid "Have a question or something to share about innovation?"
-msgstr "translate"
+msgstr "¿Tiene una pregunta o algo que compartir sobre innovación?"
 
 #: /noi/app/forms.py:144
 #, python-format
@@ -261,7 +269,7 @@ msgid ""
 "Your profile has been saved. <br/>Please tell us about your expertise "
 "below."
 msgstr ""
-"Su perfil ha sido guardado. <br/>Porfavor favor cuéntenos acerca de sus "
+"Su perfil ha sido guardado. <br/>Por favor cuéntenos acerca de sus "
 "competencias "
 
 #: /noi/app/views.py:89
@@ -318,11 +326,11 @@ msgstr "Nuestros miembros más recientes"
 
 #: /noi/app/views.py:257
 msgid "We need your name before you can post a message."
-msgstr ""
+msgstr "Necesitamos su nombre antes de que pueda publicar un mensaje."
 
 #: /noi/app/views.py:266
 msgid "Message posted!"
-msgstr ""
+msgstr "¡Mensaje publicado!"
 
 #: /noi/app/templates/__footer__.html:7 /noi/app/templates/about.html:16
 msgid "Information Collection Statement"
@@ -432,17 +440,17 @@ msgid ""
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 msgstr ""
 "Toda la información que proporcione será públicamente visible y se usará "
-"con el único objetivo para el que el sitio fue diseñado. Para saber más "
+"con el único objetivo para el que el sitio fue creado. Para saber más "
 "del aviso de privacidad, por favor escriba a <a "
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 
 #: /noi/app/templates/activity.html:9
 msgid "Share with the network"
-msgstr ""
+msgstr "Comparta con sus contactos"
 
 #: /noi/app/templates/activity.html:11
 msgid "Post"
-msgstr ""
+msgstr "Publicar"
 
 #: /noi/app/templates/feedback.html:14
 msgid "Share your feedback about the Network of Innovators"
@@ -646,7 +654,7 @@ msgstr "Medio Ambiente"
 
 #: /noi/app/templates/translate.tmp.html:9
 msgid "Foreign affairs"
-msgstr "Relaciones Exteriores"
+msgstr "Asuntos Exteriores"
 
 #: /noi/app/templates/translate.tmp.html:10
 msgid "Government efficiency, transparency and accountability"
@@ -840,7 +848,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:51
 msgid "good management for an open data project"
-msgstr "hacer un buena administración de un proyecto de datos abiertos"
+msgstr "hacer una buena administración de un proyecto de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:52
 msgid "how to determine how often datasets should be released and updated"
@@ -913,7 +921,15 @@ msgid ""
 " and can share about prize-backed challenges\n"
 " and what you want to learn from others. \n"
 "Click on a link below to create an expertise profile.</b></p>\n"
-msgstr "TRANSLATE"
+msgstr ""
+"<p> Los gobiernos––y otras entidades–– cada vez más están buscando solucionar"
+" problemas grandes utilizando nuevas tecnologías y enfoques innovadores. Uno "
+"de los enfoques más comunes involucra concursos premiados así como retos y grandes "
+"retos. Estas competencias ofrecen una serie de ventajas para las agencias "
+"gubernamentales, especialmente en una era de presupuestos "
+"ajustados.</p> <p><b> Estas veinte preguntas te ayudan a describir qué puedes "
+"saber y qué puedes compartir acerca de retos y lo que puedes aprender de otros. \n" 
+"Haz click en el enlace siguiente para crear un perfil de competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:68
 msgid "Prizes"
@@ -926,7 +942,7 @@ msgstr "Definiendo el alcance del problema"
 
 #: /noi/app/templates/translate.tmp.html:70
 msgid "defining the problem"
-msgstr "Definiendo el problema"
+msgstr "definiendo el problema"
 
 #: /noi/app/templates/translate.tmp.html:71
 msgid "how to define and express the problem addressed by the prize."
@@ -976,7 +992,7 @@ msgstr "Identificando a la audiencia correcta"
 
 #: /noi/app/templates/translate.tmp.html:81
 msgid "targeting the right participants"
-msgstr ""
+msgstr "identificando a los participantes correctos"
 
 #: /noi/app/templates/translate.tmp.html:82
 msgid "how to identify would-be participating innovators"
@@ -988,11 +1004,11 @@ msgstr "cómo evaluar los costos que involucra el hecho de que participen."
 
 #: /noi/app/templates/translate.tmp.html:84
 msgid "Mechanics"
-msgstr "TRANSLATE"
+msgstr "Mecánica"
 
 #: /noi/app/templates/translate.tmp.html:85
 msgid "rinning a prize-backed challenge"
-msgstr "TRANSLATE"
+msgstr "ejecutando un reto respaldado por un premio"
 
 #: /noi/app/templates/translate.tmp.html:86
 msgid "how to fund a prize-backed challenge"
@@ -1102,7 +1118,7 @@ msgstr "Ciencia Ciudadana"
 
 #: /noi/app/templates/translate.tmp.html:108
 msgid "Tasks and Goals"
-msgstr "TRANSLATE"
+msgstr "Tareas y Metas"
 
 #: /noi/app/templates/translate.tmp.html:109
 msgid ""
@@ -1125,33 +1141,33 @@ msgid ""
 "How to decide the types of tasks to be considered when developing a "
 "citizen science project"
 msgstr ""
-"decidir el tipo de tareas que se deben considerar al desarrollar un "
+"cómo decidir el tipo de tareas que se deben considerar al desarrollar un "
 "proyecto de ciencia ciudadana."
 
 #: /noi/app/templates/translate.tmp.html:113
 msgid "How to articulate intended outcomes of a project"
-msgstr "articular los resultados previstos de un proyecto."
+msgstr "cómo articular los resultados previstos de un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:114
 msgid "How to articulate how the tasks will advance a research field"
 msgstr ""
-"articular de qué forma las tareas ayudarán a avanzar un campo de "
+"como articular de qué forma las tareas ayudarán a avanzar un campo de "
 "investigación."
 
 #: /noi/app/templates/translate.tmp.html:115
 msgid "How to define the success of a project"
-msgstr "definir el éxito de un proyecto."
+msgstr "cómo definir el éxito de un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:116
 msgid "How to measure and evaluate the success of a project"
-msgstr "medir y evaluar el éxito de un proyecto."
+msgstr "cómo medir y evaluar el éxito de un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:117
 msgid ""
 "How to define and validate a protocol for an experiment and required data"
 " collection"
 msgstr ""
-"definir y validar un protocolo para un experimento y la recolección de "
+"cómo definir y validar un protocolo para un experimento y la recolección de "
 "datos requerida."
 
 #: /noi/app/templates/translate.tmp.html:118
@@ -1167,55 +1183,55 @@ msgstr "identificar oportunidades de financiamiento para un proyecto."
 #: /noi/app/templates/translate.tmp.html:120
 #, fuzzy
 msgid "Incentives and Motivation"
-msgstr "TRANSLATE"
+msgstr "Incentivos y Motivación"
 
 #: /noi/app/templates/translate.tmp.html:121
 msgid "developing incentives to motivate participation"
 msgstr ""
-"Qué puedes compartir sobre desarrollar incentivos con el objetivo de "
+"desarrollar incentivos con el objetivo de "
 "motivar la participación. "
 
 #: /noi/app/templates/translate.tmp.html:122
 msgid "How to engage with and/or create a community for participants."
 msgstr ""
-"involucrar y comprometer a los participantes y/o crear una comunidad de "
+"cómo involucrar y comprometer a los participantes y/o crear una comunidad de "
 "participantes."
 
 #: /noi/app/templates/translate.tmp.html:123
 msgid "How to retain participants"
-msgstr "retener a los participantes."
+msgstr "cómo retener a los participantes."
 
 #: /noi/app/templates/translate.tmp.html:124
 msgid "How to address variations and skew in participation"
-msgstr "lidiar con variaciones y sesgos en la participación."
+msgstr "cómo lidiar con variaciones y sesgos en la participación."
 
 #: /noi/app/templates/translate.tmp.html:125
 msgid "How to scale up participation"
-msgstr "hacer crecer la participación."
+msgstr "cómo hacer crecer la participación."
 
 #: /noi/app/templates/translate.tmp.html:126
 msgid "How to identify collaborators around the project"
-msgstr "identificar colaboradores para el proyecto."
+msgstr "cómo identificar colaboradores para el proyecto."
 
 #: /noi/app/templates/translate.tmp.html:127
 msgid "How to define and develop gamification in projects"
-msgstr "definir y desarrollar procesos de gamificación en proyectos"
+msgstr "cómo definir y desarrollar procesos de gamificación en proyectos"
 
 #: /noi/app/templates/translate.tmp.html:128
 msgid ""
 "How to identify what people are competing to do (e.g. quantity, "
 "frequency, quality of participation)"
 msgstr ""
-"identificar las cosas por las cuales las personas podrían competir. (e.g."
+"cómo identificar las cosas por las cuales las personas podrían competir. (e.g."
 " cantidad, frecuencia y calidad de la participación)."
 
 #: /noi/app/templates/translate.tmp.html:129
 msgid "How to attribute contributions to the relevant parties"
-msgstr "atribuir las contribuciones que han hecho las partes relevantes."
+msgstr "cómo atribuir las contribuciones que han hecho las partes relevantes."
 
 #: /noi/app/templates/translate.tmp.html:130
 msgid "Training"
-msgstr "TRANSLATE"
+msgstr "Entrenamiento"
 
 #: /noi/app/templates/translate.tmp.html:131
 msgid "giving participants the skills and information needed to participate well"
