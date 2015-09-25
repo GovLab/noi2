@@ -53,4 +53,18 @@
 {% endfor %}
 </ul>
 
+<h3>Most Complete Profiles</h3>
+
+<ol>
+  {% for ranked_user in most_complete_profiles %}
+    <li>
+      <p>{{ user_link(ranked_user) }}</p>
+      <small>
+	{{ ranked_user.skill_count }} /
+	{{ QUESTIONS_BY_ID.keys()|length }} Skills
+      </small>
+    </li>
+  {% endfor %}
+</ol>
+
 {% endblock %}
