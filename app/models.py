@@ -248,6 +248,21 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     languages = orm.relationship('UserLanguage', cascade='all,delete-orphan')
     skills = orm.relationship('UserSkill', cascade='all,delete-orphan')
 
+    @classmethod
+    def get_most_complete_profiles(cls, limit=10):
+        count = func.count()
+        user_id_skill_counts = dict(
+            db.session.query(UserSkill.user_id, count).\
+            group_by(UserSkill.user_id).\
+            order_by(count.desc()).\
+            limit(limit).all()
+        )
+        users = db.session.query(User).\
+                filter(User.id.in_(user_id_skill_counts.keys())).all()
+        for user in users:
+            user.skill_count = user_id_skill_counts[user.id]
+        return sorted(users, key=lambda x: x.skill_count, reverse=True)
+
     @hybrid_property
     def expertise_domain_names(self):
         '''

@@ -89,6 +89,10 @@ class UserSkillDbTests(DbTestCase):
           .filter(models.User.email=='sly@stone-less-knowledgeable.com')\
           .one()
 
+    def test_get_most_complete_profiles_works(self):
+        users = models.User.get_most_complete_profiles()
+        self.assertEqual(users[-1].email, 'sly@stone-less-knowledgeable.com')
+
     def test_questionnaire_progress_works(self):
         progress = self.sly_less.questionnaire_progress
         self.assertEqual(progress['opendata']['answered'], 4)
