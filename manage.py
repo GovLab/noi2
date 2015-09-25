@@ -195,7 +195,7 @@ def setup_db_master():
             );
                 '''.format(**{'deployment': app.config.get('NOI_DEPLOY', '_default'),
                               'db_public_host': app.config['DB_PUBLIC_HOST'],
-                              'db_public_port': app.config['SQLALCHEMY_DATABASE_PORT'],
+                              'db_public_port': app.config['DB_PUBLIC_PORT'],
                               'db_public_dbname': app.config['SQLALCHEMY_DATABASE_DBNAME'],
                               'db_public_user': app.config['SQLALCHEMY_DATABASE_USER'],
                               'db_public_password': app.config['SQLALCHEMY_DATABASE_PASSWORD'],

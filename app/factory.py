@@ -65,8 +65,11 @@ def create_app(config=None): #pylint: disable=too-many-statements,too-many-branc
     else:
         app.config.update(config)
 
+    # DB is publicly exposed, there must be a password set
     if os.environ.get('POSTGRES_PASSWORD'):
         app.config['SQLALCHEMY_DATABASE_PASSWORD'] = os.environ['POSTGRES_PASSWORD']
+    else:
+        raise Exception('No POSTGRES_PASSWORD set in environment, aborting')
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://{user}:{password}@{host}:{port}/{dbname}'.\
             format(**{
