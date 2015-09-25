@@ -257,6 +257,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             order_by(count.desc()).\
             limit(limit).all()
         )
+        if not user_id_skill_counts:
+            return []
         users = db.session.query(User).\
                 filter(User.id.in_(user_id_skill_counts.keys())).all()
         for user in users:
