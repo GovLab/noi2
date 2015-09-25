@@ -176,14 +176,23 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
         #skills = [s.name for s in self.skills]
 
-        me = aliased(UserSkill)
-        user_id_scores = dict(db.session.query(
-            UserSkill.user_id, func.sum(func.coalesce(UserSkill.level, 10) - me.level)).\
-            filter(UserSkill.user_id != self.id).\
-            filter(me.user_id == self.id).\
-            filter(UserSkill.name.in_([me.name, None])).\
-            group_by(UserSkill.user_id).\
-            limit(limit).all())
+        #user_id_scores = dict(db.session.query(
+        #    User.deployment, UserSkill.user_id, func.sum(func.abs(func.coalesce(UserSkill.level, 10) - me.level))).\
+        #    outerjoin(UserSkill, UserSkill.user_id != self.id). \
+        #    #filter(UserSkill.user_id != self.id).\
+        #    filter(me.user_id == self.id).\
+        #    filter(UserSkill.name.in_([me.name, None])).\
+        #    group_by(UserSkill.user_id).\
+        #    limit(limit).all())
+
+        my_skills = aliased(UserSkill, name='my_skills', adapt_on_names=True)
+        others_skills = aliased(UserSkill, name='others_skills', adapt_on_names=True
+
+        resp = db.session.query(
+            func.sum(func.abs(func.coalesce(others.level, 10) - my_skills.level)), User).\
+            outerjoin(others_skills, others_skills.user_id != my_skills.user_id).\
+            outerjoin(User, User.id == others_skills.user_id).\
+            filter(others_skills.name.in_([my_skills.name, None]))
 
         users = db.session.query(User).\
                 filter(User.id.in_(user_id_scores.keys())).all()

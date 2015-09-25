@@ -106,6 +106,24 @@ class UserSkillDbTests(DbTestCase):
             u'opendata-implementing-an-open-data-program-open-data-standards': -1
         })
 
+    def test_nearest_neighbors_works(self):
+        '''
+        Make sure that nearest neighbors ranks proximity of users correctly.
+        '''
+        sly_more = models.User.query.filter_by(email='sly@stone-more.com').one()
+        print [(user.email, user.score) for user in sly_more.nearest_neighbors]
+        self.assertEqual([(user.email, user.score) for user in sly_more.nearest_neighbors],
+                         [(u'sly@stone-less-knowledgeable.com', 0),
+                          (u'sly@stone.com', 15),
+                          (u'dubya@shrub.com', 21),
+                          (u'paul@lennon.com', 63)])
+
+                         [('sly@stone.com', 0),
+                          ('dubya@shrub.com', 0),
+                          ('sly@stone-less-knowledgeable.com', 0),
+                          ('paul@lennon.com', 0)])
+
+
 class SharedMessageDbTests(DbTestCase):
     def test_only_events_in_deployments_are_seen(self):
         other = models.User(email=u'b@example.org', password='a', active=True,
