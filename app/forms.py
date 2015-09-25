@@ -152,8 +152,7 @@ class NOIRegisterForm(RegisterForm):
     '''
     Localizeable version of Flask-Security's RegisterForm
     '''
-    first_name = StringField(lazy_gettext('First Name'))
-    last_name = StringField(lazy_gettext('Last Name'))
+
     email = StringField(
         lazy_gettext('Email'),
         validators=[email_required, email_validator, unique_user_email])
