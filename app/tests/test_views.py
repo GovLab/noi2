@@ -1,5 +1,6 @@
 from flask.ext.testing import TestCase
 
+from app import QUESTIONS_BY_ID
 from app.factory import create_app
 from app.models import User, Event
 
@@ -39,7 +40,9 @@ class ViewTestCase(DbTestCase):
 
     def create_user(self, email, password):
         datastore = self.app.extensions['security'].datastore
-        return datastore.create_user(email=email, password=password)
+        user = datastore.create_user(email=email, password=password)
+        self.last_created_user = user
+        return user
 
     def login(self, email=None, password=None):
         if email is None:
@@ -84,6 +87,30 @@ class ActivityFeedTests(ViewTestCase):
         self.login()
         self.assert200(self.client.get('/activity'))
 
+class MyExpertiseTests(ViewTestCase):
+    def setUp(self):
+        super(MyExpertiseTests, self).setUp()
+        self.question_id_0 = QUESTIONS_BY_ID.keys()[0]
+        self.question_id_1 = QUESTIONS_BY_ID.keys()[1]
+
+    def test_get_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/my-expertise'))
+
+    def test_updating_expertise_works(self):
+        self.login()
+        user = self.last_created_user
+        self.assertEqual(user.skill_levels, {})
+        res = self.client.post('/my-expertise', data={
+            self.question_id_0: '-1',
+            self.question_id_1: 'invalid value',
+            'invalid_question_id': '-1'
+        })
+        self.assert200(res)
+        self.assertEqual(user.skill_levels, {
+            self.question_id_0: -1
+        })
+
 class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):
         self.assert200(self.client.get('/'))
@@ -114,10 +141,6 @@ class ViewTests(ViewTestCase):
     def test_my_profile_is_ok(self):
         self.login()
         self.assert200(self.client.get('/me'))
-
-    def test_my_expertise_is_ok(self):
-        self.login()
-        self.assert200(self.client.get('/my-expertise'))
 
     def test_dashboard_is_ok(self):
         self.login()
