@@ -87,6 +87,21 @@ class ActivityFeedTests(ViewTestCase):
         self.login()
         self.assert200(self.client.get('/activity'))
 
+class MyProfileTests(ViewTestCase):
+    def test_get_is_ok(self):
+        self.login()
+        self.assert200(self.client.get('/me'))
+
+    def test_updating_profile_works(self):
+        self.login()
+        user = self.last_created_user
+        res = self.client.post('/me', data={
+            'first_name': 'John2'
+        }, follow_redirects=True)
+        assert 'Your profile has been saved' in res.data
+        self.assert200(res)
+        self.assertEqual(user.first_name, 'John2')
+
 class MyExpertiseTests(ViewTestCase):
     def setUp(self):
         super(MyExpertiseTests, self).setUp()
@@ -137,10 +152,6 @@ class ViewTests(ViewTestCase):
     def test_nonexistent_user_profile_is_not_found(self):
         self.login()
         self.assert404(self.client.get('/user/1234'))
-
-    def test_my_profile_is_ok(self):
-        self.login()
-        self.assert200(self.client.get('/me'))
 
     def test_dashboard_is_ok(self):
         self.login()
