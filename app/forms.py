@@ -153,6 +153,14 @@ class NOIRegisterForm(RegisterForm):
     Localizeable version of Flask-Security's RegisterForm
     '''
 
+    # Note that extra fields in this registration form are passed
+    # directly on to the User model as kwargs, so the names need
+    # to match exactly. For more information, see:
+    #
+    # https://pythonhosted.org/Flask-Security/customizing.html
+    first_name = StringField(lazy_gettext('First Name'))
+    last_name = StringField(lazy_gettext('Last Name'))
+
     email = StringField(
         lazy_gettext('Email'),
         validators=[email_required, email_validator, unique_user_email])
