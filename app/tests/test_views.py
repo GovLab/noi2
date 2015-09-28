@@ -96,11 +96,16 @@ class MyProfileTests(ViewTestCase):
         self.login()
         user = self.last_created_user
         res = self.client.post('/me', data={
-            'first_name': 'John2'
+            'first_name': 'John2',
+            'expertise_domain_names': 'Agriculture',
+            'locales': 'af'
         }, follow_redirects=True)
         assert 'Your profile has been saved' in res.data
         self.assert200(res)
         self.assertEqual(user.first_name, 'John2')
+        self.assertEqual(user.expertise_domain_names, ['Agriculture'])
+        self.assertEqual(len(user.locales), 1)
+        self.assertEqual(str(user.locales[0]), 'af')
 
 class MyExpertiseTests(ViewTestCase):
     def setUp(self):
