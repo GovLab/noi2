@@ -67,6 +67,11 @@ def _get_choices(self):
     return choices
 CountryField._get_choices = _get_choices
 
+class SimpleUserForm(ModelForm):
+    class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
+        model = User
+        only = ['position', 'organization', 'organization_type', 'city',
+                'country']
 
 class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     '''

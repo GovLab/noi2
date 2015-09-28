@@ -12,7 +12,8 @@ from flask_login import login_required, current_user
 from app.models import db, User, UserLanguage, UserExpertiseDomain, \
                        UserSkill, Event, SharedMessageEvent
 
-from app.forms import UserForm, SearchForm, SharedMessageForm
+from app.forms import (UserForm, SearchForm, SharedMessageForm,
+                       SimpleUserForm)
 
 from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
@@ -90,6 +91,29 @@ def my_profile():
 
         return render_template('my-profile.html', form=form)
 
+@views.route('/register/step/3', methods=['GET', 'POST'])
+def my_expertise_simple():
+    return "TODO: Finish this."
+
+@views.route('/register/step/2', methods=['GET', 'POST'])
+@login_required
+def my_profile_simple():
+    '''
+    Let user edit a simplified version of their profile as part
+    of their registration.
+    '''
+
+    form = SimpleUserForm(obj=current_user)
+    if request.method == 'POST':
+        if form.validate():
+            form.populate_obj(current_user)
+            db.session.add(current_user)
+            db.session.commit()
+            return redirect(url_for('views.my_expertise_simple'))
+        else:
+            flash(gettext(u'Could not save, please correct errors below'))
+
+    return render_template('my-profile-simple.html', form=form)
 
 @views.route('/my-expertise', methods=['GET', 'POST'])
 @login_required
