@@ -14,7 +14,7 @@ from app.models import db, User, UserLanguage, UserExpertiseDomain, \
                        UserSkill, Event, SharedMessageEvent
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm,
-                       SimpleUserForm)
+                       RegisterStep2Form)
 
 from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
@@ -102,11 +102,11 @@ def get_area_questionnaire_or_404(areaid):
             return questionnaire
     abort(404)
 
-def render_expertise_simple(**kwargs):
+def render_register_step_3(**kwargs):
     questions_answered = len(current_user.skills)
 
     return render_template(
-        'my-expertise-simple.html',
+        'register-step-3.html',
         user_can_join=questions_answered >= MIN_QUESTIONS_TO_JOIN,
         questions_left=MIN_QUESTIONS_TO_JOIN - questions_answered,
         **kwargs
@@ -114,16 +114,16 @@ def render_expertise_simple(**kwargs):
 
 @views.route('/register/step/3')
 @login_required
-def my_expertise_simple():
+def register_step_3():
     '''
     Provide the user with a list of expertise areas to choose from.
     '''
 
-    return render_expertise_simple()
+    return render_register_step_3()
 
 @views.route('/register/step/3/<areaid>')
 @login_required
-def my_expertise_simple_area(areaid):
+def register_step_3_area(areaid):
     '''
     Redirect the user to the first unanswered question in the given area.
     '''
@@ -134,13 +134,13 @@ def my_expertise_simple_area(areaid):
         question = questionnaire['questions'][i]
         if question['id'] not in skills:
             break
-    return redirect(url_for('views.my_expertise_simple_area_question',
+    return redirect(url_for('views.register_step_3_area_question',
                             areaid=areaid, questionid=str(i+1)))
 
 @views.route('/register/step/3/<areaid>/<questionid>',
              methods=['GET', 'POST'])
 @login_required
-def my_expertise_simple_area_question(areaid, questionid):
+def register_step_3_area_question(areaid, questionid):
     '''
     Ask the user the given question number in the given area.
     '''
@@ -167,13 +167,13 @@ def my_expertise_simple_area_question(areaid, questionid):
         db.session.commit()
         if next_questionid:
             return redirect(url_for(
-                'views.my_expertise_simple_area_question',
+                'views.register_step_3_area_question',
                 areaid=areaid, questionid=next_questionid
             ))
         else:
-            return redirect(url_for('views.my_expertise_simple'))
+            return redirect(url_for('views.register_step_3'))
 
-    return render_expertise_simple(
+    return render_register_step_3(
         question=question,
         areaid=areaid,
         questionid=questionid,
@@ -184,23 +184,23 @@ def my_expertise_simple_area_question(areaid, questionid):
 
 @views.route('/register/step/2', methods=['GET', 'POST'])
 @login_required
-def my_profile_simple():
+def register_step_2():
     '''
     Let user edit a simplified version of their profile as part
     of their registration.
     '''
 
-    form = SimpleUserForm(obj=current_user)
+    form = RegisterStep2Form(obj=current_user)
     if request.method == 'POST':
         if form.validate():
             form.populate_obj(current_user)
             db.session.add(current_user)
             db.session.commit()
-            return redirect(url_for('views.my_expertise_simple'))
+            return redirect(url_for('views.register_step_3'))
         else:
             flash(gettext(u'Could not save, please correct errors below'))
 
-    return render_template('my-profile-simple.html', form=form)
+    return render_template('register-step-2.html', form=form)
 
 @views.route('/my-expertise', methods=['GET', 'POST'])
 @login_required

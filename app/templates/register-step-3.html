@@ -16,7 +16,7 @@
 <ul>
   {% for questionnaire in QUESTIONNAIRES %}
     {% if questionnaire.questions %}
-      <li><a href="{{ url_for('views.my_expertise_simple_area', areaid=questionnaire.id) }}">{{ questionnaire.name }}</a></li>
+      <li><a href="{{ url_for('views.register_step_3_area', areaid=questionnaire.id) }}">{{ questionnaire.name }}</a></li>
     {% endif %}
   {% endfor %}
 </ul>
@@ -33,13 +33,13 @@
 <div class="text-center">
 {% if prev_questionid %}
   <div>
-    <a href="{{ url_for('views.my_expertise_simple_area_question', areaid=areaid, questionid=prev_questionid) }}">&lt;</a>
+    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=prev_questionid) }}">&lt;</a>
   </div>
 {% endif %}
   <strong>{{ question.question }}</strong>
 {% if next_questionid %}
   <div>
-    <a href="{{ url_for('views.my_expertise_simple_area_question', areaid=areaid, questionid=next_questionid) }}">{{ gettext('Skip this question') }}</a>
+    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=next_questionid) }}">{{ gettext('Skip this question') }}</a>
   </div>
 {% endif %}
 
