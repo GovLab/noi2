@@ -6,7 +6,7 @@ Creates the app
 
 from flask import Flask, current_app
 #from flask.ext.uploads import configure_uploads
-from flask_babel import lazy_gettext
+from flask_babel import lazy_gettext as original_lazy_gettext
 from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
@@ -25,6 +25,19 @@ from sqlalchemy.orm.exc import NoResultFound
 from celery import Task
 from slugify import slugify
 import yaml
+
+def lazy_gettext(string):
+    '''
+    Like lazy_gettext, but doesn't interpolate strings. This is
+    required for integration with flask_security, which does its
+    own string interpolation but doesn't support i18n.
+
+    For more information, see: https://github.com/GovLab/noi2/issues/41
+    '''
+
+    return original_lazy_gettext(string,
+                                 email='%(email)s',
+                                 within='%(within)s')
 
 #print 'field_label' + str(flask_security.forms.get_form_field_label)
 #flask_security.forms.get_form_field_label = lambda: 'foo'
