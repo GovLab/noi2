@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-23 20:25+0000\n"
+"POT-Creation-Date: 2015-09-29 15:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,232 +17,268 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.0\n"
 
-#: /noi/app/factory.py:93
+#: /noi/app/factory.py:95
 msgid "You do not have permission to view this resource."
 msgstr ""
 
-#: /noi/app/factory.py:95
+#: /noi/app/factory.py:97
 #, python-format
 msgid "Thank you. Confirmation instructions have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:98
+#: /noi/app/factory.py:100
 msgid "Thank you. Your email has been confirmed."
 msgstr ""
 
-#: /noi/app/factory.py:100
+#: /noi/app/factory.py:102
 msgid "Your email has already been confirmed."
 msgstr ""
 
-#: /noi/app/factory.py:102
+#: /noi/app/factory.py:104
 msgid "Invalid confirmation token."
 msgstr ""
 
-#: /noi/app/factory.py:104
+#: /noi/app/factory.py:106
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr ""
 
-#: /noi/app/factory.py:106
+#: /noi/app/factory.py:108
 msgid "Password does not match"
 msgstr ""
 
-#: /noi/app/factory.py:108
+#: /noi/app/factory.py:110
 msgid "Passwords do not match"
 msgstr ""
 
-#: /noi/app/factory.py:110
+#: /noi/app/factory.py:112
 msgid "Redirections outside the domain are forbidden"
 msgstr ""
 
-#: /noi/app/factory.py:112
+#: /noi/app/factory.py:114
 #, python-format
 msgid "Instructions to reset your password have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:114
+#: /noi/app/factory.py:116
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:117
+#: /noi/app/factory.py:119
 msgid "Invalid reset password token."
 msgstr ""
 
-#: /noi/app/factory.py:119
+#: /noi/app/factory.py:121
 msgid "Email requires confirmation."
 msgstr ""
 
-#: /noi/app/factory.py:121
+#: /noi/app/factory.py:123
 #, python-format
 msgid "Confirmation instructions have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:123
+#: /noi/app/factory.py:125
 #, python-format
 msgid ""
 "You did not confirm your email within %(within)s. New instructions to "
 "confirm your email have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:127
+#: /noi/app/factory.py:129
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:130
+#: /noi/app/factory.py:132
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:132
+#: /noi/app/factory.py:134
 msgid "Invalid login token."
 msgstr ""
 
-#: /noi/app/factory.py:134
+#: /noi/app/factory.py:136
 msgid "Account is disabled."
 msgstr ""
 
-#: /noi/app/factory.py:136
+#: /noi/app/factory.py:138
 msgid "Email not provided"
 msgstr ""
 
-#: /noi/app/factory.py:138
+#: /noi/app/factory.py:140
 msgid "Invalid email address"
 msgstr ""
 
-#: /noi/app/factory.py:140
+#: /noi/app/factory.py:142
 msgid "Password not provided"
 msgstr ""
 
-#: /noi/app/factory.py:142
+#: /noi/app/factory.py:144
 msgid "No password is set for this user"
 msgstr ""
 
-#: /noi/app/factory.py:144
+#: /noi/app/factory.py:146
 msgid "Password must be at least 6 characters"
 msgstr ""
 
-#: /noi/app/factory.py:146
+#: /noi/app/factory.py:148
 msgid "Specified user does not exist"
 msgstr ""
 
-#: /noi/app/factory.py:148
+#: /noi/app/factory.py:150
 msgid "Invalid password"
 msgstr ""
 
-#: /noi/app/factory.py:150
+#: /noi/app/factory.py:152
 msgid "You have successfuly logged in."
 msgstr ""
 
-#: /noi/app/factory.py:152
+#: /noi/app/factory.py:154
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
 msgstr ""
 
-#: /noi/app/factory.py:155
+#: /noi/app/factory.py:157
 msgid "Your new password must be different than your previous password."
 msgstr ""
 
-#: /noi/app/factory.py:157
+#: /noi/app/factory.py:159
 msgid "You successfully changed your password."
 msgstr ""
 
-#: /noi/app/factory.py:159
+#: /noi/app/factory.py:161
 msgid "Please log in to access this page."
 msgstr ""
 
-#: /noi/app/factory.py:161
+#: /noi/app/factory.py:163
 msgid "Please reauthenticate to access this page."
 msgstr ""
 
-#: /noi/app/forms.py:60
+#: /noi/app/forms.py:66
 msgid "Choose your country"
 msgstr ""
 
-#: /noi/app/forms.py:75
+#: /noi/app/forms.py:83
 msgid "User Picture"
 msgstr ""
 
-#: /noi/app/forms.py:79
+#: /noi/app/forms.py:87
 msgid "Only jpeg, jpg, and png images are allowed."
 msgstr ""
 
-#: /noi/app/forms.py:83 /noi/app/forms.py:109
+#: /noi/app/forms.py:91 /noi/app/forms.py:117
 msgid "Languages"
 msgstr ""
 
-#: /noi/app/forms.py:88 /noi/app/forms.py:114
+#: /noi/app/forms.py:96 /noi/app/forms.py:122
 msgid "Domains of Expertise"
 msgstr ""
 
-#: /noi/app/forms.py:99
+#: /noi/app/forms.py:107
 msgid "Have a question or something to share about innovation?"
 msgstr ""
 
-#: /noi/app/forms.py:144
+#: /noi/app/forms.py:132
+msgid "Resend Confirmation Instructions"
+msgstr ""
+
+#: /noi/app/forms.py:139
+msgid "Recover Password"
+msgstr ""
+
+#: /noi/app/forms.py:147 /noi/app/forms.py:159 /noi/app/models.py:65
+msgid "Email"
+msgstr ""
+
+#: /noi/app/forms.py:148 /noi/app/forms.py:162 /noi/app/models.py:69
+msgid "Password"
+msgstr ""
+
+#: /noi/app/forms.py:149
+msgid "Remember Me"
+msgstr ""
+
+#: /noi/app/forms.py:150
+msgid "Log in"
+msgstr ""
+
+#: /noi/app/forms.py:164
+msgid "Sign up"
+msgstr ""
+
+#: /noi/app/forms.py:191
 #, python-format
 msgid "%(value)s is not a valid email address: %(explanation)svalue"
 msgstr ""
 
-#: /noi/app/models.py:57
+#: /noi/app/forms.py:200
+msgid "Reset Password"
+msgstr ""
+
+#: /noi/app/forms.py:209
+msgid "New Password"
+msgstr ""
+
+#: /noi/app/forms.py:213
+msgid "Retype Password"
+msgstr ""
+
+#: /noi/app/forms.py:216
+msgid "Change Password"
+msgstr ""
+
+#: /noi/app/models.py:58
 msgid "First Name"
 msgstr ""
 
-#: /noi/app/models.py:60
+#: /noi/app/models.py:61
 msgid "Last Name"
 msgstr ""
 
-#: /noi/app/models.py:64
-msgid "Email"
-msgstr ""
-
-#: /noi/app/models.py:68
-msgid "Password"
-msgstr ""
-
-#: /noi/app/models.py:80
+#: /noi/app/models.py:81
 msgid "Position"
 msgstr ""
 
-#: /noi/app/models.py:83
+#: /noi/app/models.py:84
 msgid "Organization"
 msgstr ""
 
-#: /noi/app/models.py:86
+#: /noi/app/models.py:87
 msgid "Type of Organization"
 msgstr ""
 
-#: /noi/app/models.py:87
+#: /noi/app/models.py:88
 msgid "The type of organization you work for"
 msgstr ""
 
-#: /noi/app/models.py:91
+#: /noi/app/models.py:92
 msgid "Country"
 msgstr ""
 
-#: /noi/app/models.py:95
+#: /noi/app/models.py:96
 msgid "City"
 msgstr ""
 
-#: /noi/app/models.py:99
+#: /noi/app/models.py:100
 msgid "Location"
 msgstr ""
 
-#: /noi/app/models.py:100
+#: /noi/app/models.py:101
 msgid "Enter your location"
 msgstr ""
 
-#: /noi/app/models.py:104
+#: /noi/app/models.py:105
 msgid "Projects"
 msgstr ""
 
-#: /noi/app/models.py:105
+#: /noi/app/models.py:106
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 
