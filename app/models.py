@@ -12,7 +12,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
-from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func)
+from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
+                        desc)
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -152,18 +153,19 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         Returns a list of (user, score) tuples with matching positive skills,
         ordered by the most helpful (highest score) descending.
         '''
-        learn_level = LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
-        skills_needing_help = [s.name for s in self.skills if s.level == learn_level]
-        user_id_scores = dict(db.session.query(UserSkill.user_id, func.sum(UserSkill.level)).\
-                              filter(UserSkill.name.in_(skills_needing_help)).\
-                              filter(UserSkill.level > learn_level).\
-                              group_by(UserSkill.user_id).\
-                              limit(limit).all())
-        users = db.session.query(User).\
-                filter(User.id.in_(user_id_scores.keys())).all()
-        for user in users:
-            user.score = user_id_scores[user.id]
-        return sorted(users, key=lambda x: x.score, reverse=True)
+        my_skills = aliased(UserSkill, name='my_skills', adapt_on_names=True)
+        their_skills = aliased(UserSkill, name='their_skills', adapt_on_names=True)
+
+        return User.query_in_deployment().\
+                add_column(func.sum(their_skills.level - my_skills.level)).\
+                filter(their_skills.user_id != my_skills.user_id).\
+                filter(User.id == their_skills.user_id).\
+                filter(their_skills.name == my_skills.name).\
+                filter(my_skills.user_id == self.id).\
+                filter(my_skills.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']).\
+                group_by(User).\
+                order_by(desc(func.sum(their_skills.level - my_skills.level))).\
+                limit(limit)
 
     @property
     def nearest_neighbors(self, limit=10):
@@ -174,10 +176,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
         Order is closest to least close, which is an ascending score.
         '''
-
         my_skills = aliased(UserSkill, name='my_skills', adapt_on_names=True)
         their_skills = aliased(UserSkill, name='their_skills', adapt_on_names=True)
-
 
         # difference we assume for user that has not answered question
         unanswered_difference = (LEVELS['LEVEL_I_CAN_DO_IT']['score'] -
