@@ -1798,8 +1798,8 @@ msgstr ""
 "La creciente tendencia de laboratorios––que usualmente se enfocan en herramientas "
 "innovadoras y estrategias,  y en el diseño centrado en el usuario, o en ambos - "
 "está ayudando a descubrir qué funciona en la práctica al momento de lidiar con "
-problemas públicos. </p> <p><b>Haz click en el enlace siguiente para crear un perfil de "
-"competencias.</b></p>\n""
+"problemas públicos. </p> <p><b>Haz click en el enlace siguiente para crear un perfil de "
+"competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:231
 msgid "Lab Design"
@@ -1860,7 +1860,7 @@ msgid ""
 "how to define an engagement model for my Lab vis a vis other parts of my "
 "organisation"
 msgstr "definir un modelo de participación para mi laboratorio en función a "
-otras partes de mi organización"
+"otras partes de mi organización"
 
 #: /noi/app/templates/translate.tmp.html:242
 msgid ""
