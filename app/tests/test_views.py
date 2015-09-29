@@ -24,6 +24,8 @@ class ViewTestCase(DbTestCase):
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
             next='/',
+            first_name='John',
+            last_name='Doe',
             email=username,
             password=password,
             password_confirm=password,

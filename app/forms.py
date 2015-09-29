@@ -20,7 +20,7 @@ from wtforms_alchemy import model_form_factory, CountryField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields import SelectMultipleField, TextField, TextAreaField
 from wtforms.widgets import Select
-from wtforms.validators import ValidationError
+from wtforms.validators import ValidationError, Required
 
 import re
 
@@ -163,8 +163,10 @@ class NOIRegisterForm(RegisterForm):
     # to match exactly. For more information, see:
     #
     # https://pythonhosted.org/Flask-Security/customizing.html
-    first_name = StringField(lazy_gettext('First Name'))
-    last_name = StringField(lazy_gettext('Last Name'))
+    first_name = StringField(lazy_gettext('First Name'),
+                             validators=[Required()])
+    last_name = StringField(lazy_gettext('Last Name'),
+                            validators=[Required()])
 
     email = StringField(
         lazy_gettext('Email'),
