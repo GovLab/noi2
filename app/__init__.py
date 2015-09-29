@@ -87,7 +87,10 @@ ORG_TYPES = {'edu': 'Academia',
 # Process YAML files
 QUESTIONNAIRES = yaml.load(open('/noi/app/data/questions.yaml'))
 QUESTIONS_BY_ID = {}
+MIN_QUESTIONS_TO_JOIN = 3
 for questionnaire in QUESTIONNAIRES:
+    area_questions = []
+    questionnaire['questions'] = area_questions
     for topic in questionnaire.get('topics', []):
         for question in topic['questions']:
             question_id = slugify('_'.join([questionnaire['id'],
@@ -95,7 +98,9 @@ for questionnaire in QUESTIONNAIRES:
             question['id'] = question_id
             question['area_id'] = questionnaire['id']
             question['topic'] = topic['topic']
+            question['questionnaire'] = questionnaire
             if question_id in QUESTIONS_BY_ID:
                 raise Exception("Duplicate skill id {}".format(question_id))
             else:
                 QUESTIONS_BY_ID[question_id] = question
+            area_questions.append(question)

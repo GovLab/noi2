@@ -5,10 +5,11 @@ All views in the app, as a blueprint
 '''
 
 from flask import (Blueprint, render_template, request, flash,
-                   redirect, url_for, current_app)
+                   redirect, url_for, current_app, abort)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
+from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN
 from app.models import db, User, UserLanguage, UserExpertiseDomain, \
                        UserSkill, Event, SharedMessageEvent
 
@@ -91,9 +92,95 @@ def my_profile():
 
         return render_template('my-profile.html', form=form)
 
-@views.route('/register/step/3', methods=['GET', 'POST'])
+def get_area_questionnaire_or_404(areaid):
+    '''
+    Return the questionnaire for the given area ID or raise a 404.
+    '''
+
+    for questionnaire in QUESTIONNAIRES:
+        if questionnaire['id'] == areaid:
+            return questionnaire
+    abort(404)
+
+def render_expertise_simple(**kwargs):
+    questions_answered = len(current_user.skills)
+
+    return render_template(
+        'my-expertise-simple.html',
+        user_can_join=questions_answered >= MIN_QUESTIONS_TO_JOIN,
+        questions_left=MIN_QUESTIONS_TO_JOIN - questions_answered,
+        **kwargs
+    )
+
+@views.route('/register/step/3')
+@login_required
 def my_expertise_simple():
-    return "TODO: Finish this."
+    '''
+    Provide the user with a list of expertise areas to choose from.
+    '''
+
+    return render_expertise_simple()
+
+@views.route('/register/step/3/<areaid>')
+@login_required
+def my_expertise_simple_area(areaid):
+    '''
+    Redirect the user to the first unanswered question in the given area.
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    skills = current_user.skill_levels
+    for i in range(len(questionnaire['questions'])):
+        question = questionnaire['questions'][i]
+        if question['id'] not in skills:
+            break
+    return redirect(url_for('views.my_expertise_simple_area_question',
+                            areaid=areaid, questionid=str(i+1)))
+
+@views.route('/register/step/3/<areaid>/<questionid>',
+             methods=['GET', 'POST'])
+@login_required
+def my_expertise_simple_area_question(areaid, questionid):
+    '''
+    Ask the user the given question number in the given area.
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    max_questionid = len(questionnaire['questions'])
+    try:
+        questionid = int(questionid)
+        if questionid < 1 or questionid > max_questionid:
+            raise ValueError
+        question = questionnaire['questions'][questionid - 1]
+        next_questionid = None
+        prev_questionid = None
+        if questionid > 1:
+            prev_questionid = questionid - 1
+        if questionid < max_questionid:
+            next_questionid = questionid + 1
+    except ValueError:
+        abort(404)
+
+    if request.method == 'POST':
+        current_user.set_skill(question['id'], request.form.get('answer'))
+        db.session.add(current_user)
+        db.session.commit()
+        if next_questionid:
+            return redirect(url_for(
+                'views.my_expertise_simple_area_question',
+                areaid=areaid, questionid=next_questionid
+            ))
+        else:
+            return redirect(url_for('views.my_expertise_simple'))
+
+    return render_expertise_simple(
+        question=question,
+        areaid=areaid,
+        questionid=questionid,
+        next_questionid=next_questionid,
+        prev_questionid=prev_questionid,
+        max_questionid=max_questionid,
+    )
 
 @views.route('/register/step/2', methods=['GET', 'POST'])
 @login_required
