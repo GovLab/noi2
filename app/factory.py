@@ -14,7 +14,9 @@ from app import (csrf, cache, mail, bcrypt, s3, assets, security,
                  babel, celery, alchemydumps,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
 from app.config.schedule import CELERYBEAT_SCHEDULE
-from app.forms import EmailRestrictRegisterForm
+from app.forms import (NOIConfirmRegisterForm, NOIForgotPasswordForm,
+                       NOIResetPasswordForm, NOIChangePasswordForm,
+                       NOISendConfirmationForm, NOIRegisterForm)
 from app.models import db, User, Role
 from app.views import views
 
@@ -172,7 +174,12 @@ def create_app(config=None): #pylint: disable=too-many-statements
     # Setup Flask-Security
     user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
-                      confirm_register_form=EmailRestrictRegisterForm)
+                      register_form=NOIRegisterForm,
+                      confirm_register_form=NOIConfirmRegisterForm,
+                      forgot_password_form=NOIForgotPasswordForm,
+                      reset_password_form=NOIResetPasswordForm,
+                      change_password_form=NOIChangePasswordForm,
+                      send_confirmation_form=NOISendConfirmationForm)
 
     # This forces any "lazy strings" like those returned by
     # lazy_gettext() to be evaluated.
