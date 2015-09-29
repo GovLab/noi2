@@ -83,6 +83,14 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         only = ['first_name', 'last_name', 'position', 'organization',
                 'organization_type', 'city', 'country', 'projects',
                 'has_picture']
+        field_args = {
+            'first_name': {
+                'validators': [Required()]
+            },
+            'last_name': {
+                'validators': [Required()]
+            },
+        }
 
     picture = FileField(
         label=lazy_gettext('User Picture'),
