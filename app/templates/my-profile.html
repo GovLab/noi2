@@ -203,7 +203,7 @@ $( document ).ready(function() {
           if (this.files[0]) {
             if (this.files[0].size > 1000 * 1000) {
               $(this).val('');
-              alert({{ gettext('Sorry, that file is too big.  Please choose a smaller one.') }});
+              alert({{ gettext('Sorry, that file is too big.  Please choose a smaller one.')|tojson }});
             }
           }
         }
