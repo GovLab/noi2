@@ -1,7 +1,8 @@
 from flask.ext.testing import TestCase
 
-from app import QUESTIONS_BY_ID
+from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN
 from app.factory import create_app
+from app.views import get_area_questionnaire_or_404
 from app.models import User, Event
 
 from .test_models import DbTestCase
@@ -23,6 +24,8 @@ class ViewTestCase(DbTestCase):
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
             next='/',
+            first_name='John',
+            last_name='Doe',
             email=username,
             password=password,
             password_confirm=password,
@@ -58,6 +61,81 @@ class ViewTestCase(DbTestCase):
         self.assert200(res)
         assert LOGGED_IN_SENTINEL in res.data
         return res
+
+class MultiStepRegistrationTests(ViewTestCase):
+    OPENDATA_QUESTIONNAIRE = get_area_questionnaire_or_404('opendata')
+    NUM_OPENDATA_QUESTIONS = len(OPENDATA_QUESTIONNAIRE['questions'])
+
+    def setUp(self):
+        super(MultiStepRegistrationTests, self).setUp()
+        self.login()
+
+    def test_step_2_is_ok(self):
+        res = self.client.get('/register/step/2')
+        self.assert200(res)
+
+    def test_step_2_redirects_to_step_3(self):
+        self.assertRedirects(self.client.post('/register/step/2'),
+                             '/register/step/3')
+
+    def test_step_3_is_ok(self):
+        res = self.client.get('/register/step/3')
+        self.assert200(res)
+        self.assertContext('user_can_join', False)
+
+    def test_step_3_with_areaid_redirects_to_first_unanswered_question(self):
+        self.assertRedirects(self.client.get('/register/step/3/opendata'),
+                             '/register/step/3/opendata/1')
+
+        self.client.post('/register/step/3/opendata/1', data={
+            'answer': '-1'
+        })
+        self.assertRedirects(self.client.get('/register/step/3/opendata'),
+                             '/register/step/3/opendata/2')
+
+    def test_step_3_with_questionid_is_ok(self):
+        self.assert200(self.client.get('/register/step/3/opendata/1'))
+        self.assert200(self.client.get('/register/step/3/opendata/%d' % (
+            self.NUM_OPENDATA_QUESTIONS
+        )))
+        self.assertContext('user_can_join', False)
+
+    def test_step_3_user_can_join_when_min_questions_are_answered(self):
+        for i in range(1, MIN_QUESTIONS_TO_JOIN + 1):
+            self.client.post('/register/step/3/opendata/%d' % i, data={
+                'answer': '-1'
+            })
+        self.client.get('/register/step/3')
+        self.assertContext('user_can_join', True)
+
+    def test_step_3_answering_last_question_works(self):
+        self.assertEqual(len(self.last_created_user.skills), 0)
+        res = self.client.post('/register/step/3/opendata/%d' % (
+            self.NUM_OPENDATA_QUESTIONS
+        ), data={
+            'answer': '-1'
+        })
+        self.assertRedirects(res, '/register/step/3')
+        self.assertEqual(len(self.last_created_user.skills), 1)
+
+    def test_step_3_answering_first_question_works(self):
+        self.assertEqual(len(self.last_created_user.skills), 0)
+        res = self.client.post('/register/step/3/opendata/1', data={
+            'answer': '-1'
+        })
+        self.assertRedirects(res, '/register/step/3/opendata/2')
+        self.assertEqual(len(self.last_created_user.skills), 1)
+
+    def test_step_3_with_invalid_questionid_is_not_found(self):
+        self.assert404(self.client.get('/register/step/3/opendata/0'))
+        self.assert404(self.client.get('/register/step/3/opendata/blah'))
+        self.assert404(self.client.get('/register/step/3/opendata/%d' % (
+            (self.NUM_OPENDATA_QUESTIONS + 1)
+        )))
+
+    def test_step_3_with_invalid_areaid_is_not_found(self):
+        self.assert404(self.client.get('/register/step/3/blah'))
+        self.assert404(self.client.get('/register/step/3/blah/1'))
 
 class ActivityFeedTests(ViewTestCase):
     def test_posting_activity_requires_full_name(self):

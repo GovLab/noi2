@@ -20,7 +20,7 @@ from wtforms_alchemy import model_form_factory, CountryField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields import SelectMultipleField, TextField, TextAreaField
 from wtforms.widgets import Select
-from wtforms.validators import ValidationError
+from wtforms.validators import ValidationError, Required
 
 import re
 
@@ -67,6 +67,11 @@ def _get_choices(self):
     return choices
 CountryField._get_choices = _get_choices
 
+class RegisterStep2Form(ModelForm):
+    class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
+        model = User
+        only = ['position', 'organization', 'organization_type', 'city',
+                'country']
 
 class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     '''
@@ -154,6 +159,16 @@ class NOIRegisterForm(RegisterForm):
     '''
     Localizeable version of Flask-Security's RegisterForm
     '''
+
+    # Note that extra fields in this registration form are passed
+    # directly on to the User model as kwargs, so the names need
+    # to match exactly. For more information, see:
+    #
+    # https://pythonhosted.org/Flask-Security/customizing.html
+    first_name = StringField(lazy_gettext('First Name'),
+                             validators=[Required()])
+    last_name = StringField(lazy_gettext('Last Name'),
+                            validators=[Required()])
 
     email = StringField(
         lazy_gettext('Email'),

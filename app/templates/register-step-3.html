@@ -1,0 +1,71 @@
+{% extends "__base__.html" %}
+
+{% block title %}
+  {{ gettext('My Expertise') }}
+  {% if question %}
+    - {{ question.questionnaire.name }} #{{ questionid }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ gettext('Almost There!') }}</h1>
+
+<p>{{ gettext("Pick an innovation area that you're interested in:") }}</p>
+
+<ul>
+  {% for questionnaire in QUESTIONNAIRES %}
+    {% if questionnaire.questions %}
+      <li><a href="{{ url_for('views.register_step_3_area', areaid=questionnaire.id) }}">{{ questionnaire.name }}</a></li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+{% if question %}
+
+<h2>{{ question.questionnaire.name }}</h2>
+
+<p>{{ gettext("Now tell us about your knowledge level in this area to join the network and get matched with other innovators.") }}</p>
+
+<form method="post">
+<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+
+<div class="text-center">
+{% if prev_questionid %}
+  <div>
+    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=prev_questionid) }}">&lt;</a>
+  </div>
+{% endif %}
+  <strong>{{ question.question }}</strong>
+{% if next_questionid %}
+  <div>
+    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=next_questionid) }}">{{ gettext('Skip this question') }}</a>
+  </div>
+{% endif %}
+
+  <div>
+  {% for k, v in LEVELS|dictsort %}
+    <button type="submit" name="answer" value="{{ v.score }}">
+      {{ v.label }}
+    </button>
+  {% endfor %}
+  </div>
+
+  <div class="text-muted">
+    {{ questionid }} / {{ max_questionid }}
+  </div>
+</div>
+
+</form>
+
+{% endif %}
+
+<div class="text-center">
+{% if user_can_join %}
+  <a href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a>
+{% else %}
+  {{ gettext("You must answer at least %d more question(s) to join." % questions_left) }}
+{% endif %}
+</div>
+
+{% endblock %}

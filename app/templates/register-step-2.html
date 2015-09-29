@@ -1,0 +1,49 @@
+{% extends "__base__.html" %}
+
+{% block title %}{{ gettext('My Profile') }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ gettext("Success!") }}</h1>
+
+<p>{{ gettext("Now please share some basic info about yourself, so others can know who you are.") }}</p>
+
+<form class="footer-fix" method="post">
+{{ form.csrf_token }}
+
+<div class="form-horizontal">
+
+{% macro input(name) -%}
+<div class="form-group">
+  {{ form[name].label(class="col-md-4 control-label") }}
+  <div class="col-md-4">
+  {{ form[name](class="input-md form-control",placeholder=form[name].description) }}
+  {% if form[name].errors %}
+    <ul class="error">
+    {% for error in form[name].errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </div>
+</div>
+{%- endmacro %}
+
+<fieldset>
+
+<!-- Form Name -->
+<legend></legend>
+
+{{ input("position") }}
+{{ input("organization") }}
+{{ input("organization_type") }}
+{{ input("city") }}
+{{ input("country") }}
+
+<div class="text-center">
+  <button type="submit">{{ gettext('Next') }}</button>
+</div>
+
+</form>
+
+{% endblock %}
