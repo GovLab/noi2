@@ -1,4 +1,25 @@
 [{
+    "first_name": "outsider",
+    "last_name": "jones",
+    "email": "sly@stone.com",
+    "confirmed_at": "2010-01-01",
+    "deployment": "sword_coast",
+    "skills": {
+        "opendata-open-data-policy-core-mission": 2,
+        "opendata-open-data-policy-sensitive-vs-non-sensitive": 2,
+        "opendata-open-data-policy-crafting-an-open-data-policy": 2,
+        "opendata-open-data-policy-getting-public-input": 2,
+        "opendata-open-data-policy-getting-org-approval": 2,
+        "opendata-implementing-an-open-data-program-scraping-open-data": 2,
+        "opendata-implementing-an-open-data-program-making-machine-readable": 2,
+        "opendata-implementing-an-open-data-program-open-data-formats": -1,
+        "opendata-implementing-an-open-data-program-open-data-license": -1,
+        "opendata-implementing-an-open-data-program-open-data-standards": -1,
+        "opendata-implementing-an-open-data-program-managing-open-data": -1,
+        "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+        "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+    }
+},{
     "first_name": "sly",
     "last_name": "stone",
     "email": "sly@stone.com",

@@ -56,12 +56,12 @@
 <h3>Most Complete Profiles</h3>
 
 <ol>
-  {% for ranked_user in most_complete_profiles %}
+  {% for user, score in most_complete_profiles %}
     <li>
-      <p>{{ user_link(ranked_user) }}</p>
+      <p>{{ user_link(user) }}</p>
       <small>
-	{{ ranked_user.skill_count }} /
-	{{ QUESTIONS_BY_ID.keys()|length }} Skills
+        {{ score }} /
+        {{ QUESTIONS_BY_ID.keys()|length }} Skills
       </small>
     </li>
   {% endfor %}
