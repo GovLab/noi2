@@ -10,8 +10,8 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN
-from app.models import db, User, UserLanguage, UserExpertiseDomain, \
-                       UserSkill, Event, SharedMessageEvent
+from app.models import (db, User, UserLanguage, UserExpertiseDomain,
+                        UserSkill, Event, SharedMessageEvent)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm,
                        RegisterStep2Form)
@@ -22,9 +22,31 @@ from sqlalchemy.dialects.postgres import array
 from boto.s3.connection import S3Connection
 
 import mimetypes
+import functools
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
+def full_registration_required(func):
+    '''
+    A view decorator that requires both login *and* full completion
+    of the registration process. If the user isn't logged in, they
+    are redirected to login; if they are logged in but not fully
+    registered, they are redirected to complete the registration
+    process.
+
+    Note that if the user is not marked as fully registered but
+    nonetheless meets the criteria for full registration, they will
+    be marked as fully registered and granted access to the view.
+    '''
+
+    @functools.wraps(func)
+    @login_required
+    def decorated_view(*args, **kwargs):
+        if not current_user.has_fully_registered:
+            return redirect(url_for('views.register_step_2'))
+        return func(*args, **kwargs)
+
+    return decorated_view
 
 @views.route('/')
 def main_page():
@@ -46,7 +68,7 @@ def about_page():
 
 
 @views.route('/me', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def my_profile():
     '''
     Show user their profile, let them edit it
@@ -165,6 +187,9 @@ def register_step_3_area_question(areaid, questionid):
         current_user.set_skill(question['id'], request.form.get('answer'))
         db.session.add(current_user)
         db.session.commit()
+        if len(current_user.skills) >= MIN_QUESTIONS_TO_JOIN:
+            current_user.set_fully_registered()
+            db.session.commit()
         if next_questionid:
             return redirect(url_for(
                 'views.register_step_3_area_question',
@@ -203,7 +228,7 @@ def register_step_2():
     return render_template('register-step-2.html', form=form)
 
 @views.route('/my-expertise', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def my_expertise():
     '''
     Allow user to edit their expertise
@@ -231,7 +256,7 @@ def my_expertise():
 
 
 @views.route('/dashboard')
-@login_required
+@full_registration_required
 def dashboard():
     '''
     Dashboard of what's happening on the platform.
@@ -264,7 +289,7 @@ def dashboard():
 
 
 @views.route('/user/<userid>')
-@login_required
+@full_registration_required
 def get_user(userid):
     '''
     Public-facing profile view
@@ -274,7 +299,7 @@ def get_user(userid):
 
 
 @views.route('/search')
-@login_required
+@full_registration_required
 def search():
     '''
     Generic search page
@@ -312,7 +337,7 @@ def search():
 
 
 @views.route('/match')
-@login_required
+@full_registration_required
 def match():
     '''
     Find innovators with answers
@@ -327,7 +352,7 @@ def match():
 
 
 @views.route('/match-knn')
-@login_required
+@full_registration_required
 def knn():
     '''
     Find nearest neighbor (innovators most like you)
@@ -343,7 +368,7 @@ def knn():
 
 
 @views.route('/users/recent')
-@login_required
+@full_registration_required
 def recent_users():
     '''
     Most recent users.
@@ -356,7 +381,7 @@ def recent_users():
                               'query': ''})
 
 @views.route('/activity', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def activity():
     '''
     View for the activity feed of recent events.

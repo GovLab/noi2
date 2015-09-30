@@ -3,7 +3,7 @@ from flask.ext.testing import TestCase
 from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN
 from app.factory import create_app
 from app.views import get_area_questionnaire_or_404
-from app.models import User, Event
+from app.models import User, SharedMessageEvent
 
 from .test_models import DbTestCase
 
@@ -40,17 +40,20 @@ class ViewTestCase(DbTestCase):
         assert LOGGED_IN_SENTINEL not in res.data
         return res
 
-    def create_user(self, email, password):
+    def create_user(self, email, password, fully_register=True):
         datastore = self.app.extensions['security'].datastore
         user = datastore.create_user(email=email, password=password)
+        if fully_register:
+            user.set_fully_registered()
         self.last_created_user = user
         return user
 
-    def login(self, email=None, password=None):
+    def login(self, email=None, password=None, fully_register=True):
         if email is None:
             email = u'test@example.org'
             password = 'test123'
-            self.create_user(email=email, password=password)
+            self.create_user(email=email, password=password,
+                             fully_register=fully_register)
         res = self.client.post('/login', data=dict(
             next='/',
             submit="Login",
@@ -67,7 +70,7 @@ class MultiStepRegistrationTests(ViewTestCase):
 
     def setUp(self):
         super(MultiStepRegistrationTests, self).setUp()
-        self.login()
+        self.login(fully_register=False)
 
     def test_step_2_is_ok(self):
         res = self.client.get('/register/step/2')
@@ -100,12 +103,16 @@ class MultiStepRegistrationTests(ViewTestCase):
         self.assertContext('user_can_join', False)
 
     def test_step_3_user_can_join_when_min_questions_are_answered(self):
+        self.assertFalse(self.last_created_user.has_fully_registered)
         for i in range(1, MIN_QUESTIONS_TO_JOIN + 1):
-            self.client.post('/register/step/3/opendata/%d' % i, data={
+            res = self.client.post('/register/step/3/opendata/%d' % i, data={
                 'answer': '-1'
             })
+            self.assertEqual(res.status_code, 302)
         self.client.get('/register/step/3')
         self.assertContext('user_can_join', True)
+        self.assert200(self.client.get('/activity'))
+        self.assertTrue(self.last_created_user.has_fully_registered)
 
     def test_step_3_answering_last_question_works(self):
         self.assertEqual(len(self.last_created_user.skills), 0)
@@ -137,13 +144,17 @@ class MultiStepRegistrationTests(ViewTestCase):
         self.assert404(self.client.get('/register/step/3/blah/1'))
 
 class ActivityFeedTests(ViewTestCase):
+    def test_viewing_activity_requires_full_registration(self):
+        self.login(fully_register=False)
+        self.assertRedirects(self.client.get('/activity'), '/register/step/2')
+
     def test_posting_activity_requires_full_name(self):
         self.login()
         res = self.client.post('/activity', data=dict(
             message="hello there"
         ), follow_redirects=True)
         self.assert200(res)
-        self.assertEqual(Event.query_in_deployment().count(), 0)
+        self.assertEqual(SharedMessageEvent.query_in_deployment().count(), 0)
         assert 'We need your name before you can post' in res.data
 
     def test_posting_activity_works(self):
@@ -156,7 +167,7 @@ class ActivityFeedTests(ViewTestCase):
             message="hello there"
         ), follow_redirects=True)
         self.assert200(res)
-        self.assertEqual(Event.query_in_deployment().count(), 1)
+        self.assertEqual(SharedMessageEvent.query_in_deployment().count(), 1)
         assert 'Message posted' in res.data
         assert 'hello there' in res.data
 

@@ -5,7 +5,7 @@ SQLAlchemy models for the app
 '''
 
 from app import (ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS,
-                 QUESTIONNAIRES)
+                 QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN)
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
@@ -196,6 +196,27 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                           * unanswered_difference) + \
                      func.sum(func.abs(their_skills.level - my_skills.level))).\
                 limit(limit)
+
+    @property
+    def has_fully_registered(self):
+        '''
+        Returns whether the user has fully completed the registration/signup
+        flow.
+        '''
+
+        return db.session.query(UserJoinedEvent).\
+               filter_by(user_id=self.id).\
+               first() is not None
+
+    def set_fully_registered(self):
+        '''
+        Marks the user as having fully completed the registration/signup
+        flow, if they haven't already.
+        '''
+
+        if self.has_fully_registered:
+            return
+        db.session.add(UserJoinedEvent.from_user(self))
 
     @property
     def questionnaire_progress(self):
@@ -431,6 +452,15 @@ class UserEvent(Event):
     @classmethod
     def from_user(cls, user, **kwargs):
         return cls(user_id=user.id, deployment=user.deployment, **kwargs)
+
+class UserJoinedEvent(UserEvent):
+    '''
+    A user completed the registration process and joined the network.
+    '''
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'user_joined_event'
+    }
 
 class SharedMessageEvent(UserEvent):
     '''

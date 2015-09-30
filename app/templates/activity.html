@@ -46,6 +46,8 @@
     <p>{{ user_link(event.user) }} shared:</p>
 
     {{ event.message }}
+  {% elif event.type == 'user_joined_event' %}
+    <p>{{ user_link(event.user) }} joined NOI.</p>
   {% else %}
     UNKNOWN EVENT TYPE: {{ event.type }}
   {% endif %}
