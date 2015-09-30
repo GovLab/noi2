@@ -251,39 +251,6 @@ def my_expertise():
         return render_template('my-expertise.html')
 
 
-@views.route('/dashboard')
-@full_registration_required
-def dashboard():
-    '''
-    Dashboard of what's happening on the platform.
-    '''
-    top_countries = db.session.query(func.count(User.id)) \
-            .group_by(User.country) \
-            .order_by(desc(func.count(User.id))).all()
-    users = [{'latlng': u.latlng,
-              'first_name': u.first_name,
-              'last_name': u.last_name} for u in User.query_in_deployment().all()]
-    occupations = db.session.query(func.count(User.id)) \
-            .group_by(User.organization_type) \
-            .order_by(desc(func.count(User.id))).all()
-
-    return render_template('dashboard.html', **{'top_countries': top_countries,
-                                                'ALL_USERS': users,
-                                                'OCCUPATIONS': occupations})
-
-
-#@views.route('/vcard/<userid>')
-#def vcard(userid):
-#    user = db.getUser(userid)
-#    if user:
-#        card = make_vCard(user['first_name'], user['last_name'], user['org'],
-#        user['title'], user['email'], user['city'], user['country'])
-#        return Response(card, mimetype='text/vcard')
-#    else:
-#        flash('This is does not correspond to a valid user.')
-#        return redirect(url_for('main_page'))
-
-
 @views.route('/user/<userid>')
 @full_registration_required
 def get_user(userid):
