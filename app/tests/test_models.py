@@ -90,8 +90,14 @@ class UserSkillDbTests(DbTestCase):
           .one()
 
     def test_get_most_complete_profiles_works(self):
-        users = models.User.get_most_complete_profiles()
-        self.assertEqual(users[-1].email, 'sly@stone-less-knowledgeable.com')
+        user_scores = models.User.get_most_complete_profiles()
+        self.assertEqual(user_scores.all()[-1][0].email, 'sly@stone-less-knowledgeable.com')
+        # should exclude invisible deployments
+        self.assertEqual(user_scores.count(), 5)
+
+        # should respect limit
+        user_scores = models.User.get_most_complete_profiles(limit=3)
+        self.assertEqual(user_scores.count(), 3)
 
     def test_questionnaire_progress_works(self):
         progress = self.sly_less.questionnaire_progress

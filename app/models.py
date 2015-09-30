@@ -256,20 +256,15 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
     @classmethod
     def get_most_complete_profiles(cls, limit=10):
-        count = func.count()
-        user_id_skill_counts = dict(
-            db.session.query(UserSkill.user_id, count).\
-            group_by(UserSkill.user_id).\
-            order_by(count.desc()).\
-            limit(limit).all()
-        )
-        if not user_id_skill_counts:
-            return []
-        users = db.session.query(User).\
-                filter(User.id.in_(user_id_skill_counts.keys())).all()
-        for user in users:
-            user.skill_count = user_id_skill_counts[user.id]
-        return sorted(users, key=lambda x: x.skill_count, reverse=True)
+        '''
+        Obtain a list of most complete profiles, as (User, score) tuples.
+        '''
+        return User.query_in_deployment().\
+                add_column(func.count(UserSkill.id)).\
+                filter(User.id == UserSkill.user_id).\
+                group_by(User).\
+                order_by(func.count(UserSkill.id).desc()).\
+                limit(limit)
 
     @hybrid_property
     def expertise_domain_names(self):
