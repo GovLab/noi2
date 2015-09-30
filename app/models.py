@@ -146,6 +146,34 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         )
 
     @property
+    def has_fully_registered(self):
+        '''
+        Returns whether the user has fully completed the registration/signup
+        flow.
+        '''
+
+        join_event = db.session.query(SimpleUserEvent).\
+                     filter(SimpleUserEvent.user_id==self.id).\
+                     filter(SimpleUserEvent.subtype==\
+                            SimpleUserEvent.SUBTYPE_USER_JOINED).\
+                     all()
+        return len(join_event) > 0
+
+    def set_fully_registered(self):
+        '''
+        Marks the user as having fully completed the registration/signup
+        flow, if they haven't already.
+        '''
+
+        if self.has_fully_registered:
+            return
+        join_event = SimpleUserEvent.from_user(
+            self,
+            subtype=SimpleUserEvent.SUBTYPE_USER_JOINED
+        )
+        db.session.add(join_event)
+
+    @property
     def helpful_users(self, limit=10):
         '''
         Returns a list of users with matching positive skills, ordered by the
@@ -430,6 +458,21 @@ class UserEvent(Event):
     @classmethod
     def from_user(cls, user, **kwargs):
         return cls(user_id=user.id, deployment=user.deployment, **kwargs)
+
+class SimpleUserEvent(UserEvent):
+    '''
+    Any kind of user event that doesn't have any extra data associated
+    with it.
+    '''
+
+    # A user completed the registration process and joined the network.
+    SUBTYPE_USER_JOINED = 1
+
+    subtype = Column(types.Integer)
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'simple_user_event'
+    }
 
 class SharedMessageEvent(UserEvent):
     '''
