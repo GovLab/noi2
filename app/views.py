@@ -43,10 +43,7 @@ def full_registration_required(func):
     @login_required
     def decorated_view(*args, **kwargs):
         if not current_user.has_fully_registered:
-            if current_user.matches_criteria_for_full_registration():
-                current_user.set_fully_registered()
-            else:
-                return redirect(url_for('views.register_step_2'))
+            return redirect(url_for('views.register_step_2'))
         return func(*args, **kwargs)
 
     return decorated_view
@@ -71,7 +68,7 @@ def about_page():
 
 
 @views.route('/me', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def my_profile():
     '''
     Show user their profile, let them edit it
@@ -190,6 +187,8 @@ def register_step_3_area_question(areaid, questionid):
         current_user.set_skill(question['id'], request.form.get('answer'))
         db.session.add(current_user)
         db.session.commit()
+        if len(current_user.skills) >= MIN_QUESTIONS_TO_JOIN:
+            current_user.set_fully_registered()
         if next_questionid:
             return redirect(url_for(
                 'views.register_step_3_area_question',
@@ -228,7 +227,7 @@ def register_step_2():
     return render_template('register-step-2.html', form=form)
 
 @views.route('/my-expertise', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def my_expertise():
     '''
     Allow user to edit their expertise

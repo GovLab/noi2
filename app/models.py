@@ -209,14 +209,6 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                      all()
         return len(join_event) > 0
 
-    def matches_criteria_for_full_registration(self):
-        '''
-        Returns whether the user matches the criteria to be marked as
-        having fully completed the registration/signup flow.
-        '''
-
-        return len(self.skills) >= MIN_QUESTIONS_TO_JOIN
-
     def set_fully_registered(self):
         '''
         Marks the user as having fully completed the registration/signup

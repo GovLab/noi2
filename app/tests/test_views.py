@@ -105,9 +105,10 @@ class MultiStepRegistrationTests(ViewTestCase):
     def test_step_3_user_can_join_when_min_questions_are_answered(self):
         self.assertFalse(self.last_created_user.has_fully_registered)
         for i in range(1, MIN_QUESTIONS_TO_JOIN + 1):
-            self.client.post('/register/step/3/opendata/%d' % i, data={
+            res = self.client.post('/register/step/3/opendata/%d' % i, data={
                 'answer': '-1'
             })
+            self.assertEqual(res.status_code, 302)
         self.client.get('/register/step/3')
         self.assertContext('user_can_join', True)
         self.assert200(self.client.get('/activity'))
