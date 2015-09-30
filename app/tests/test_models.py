@@ -140,6 +140,31 @@ class UserSkillDbTests(DbTestCase):
                           (u'paul@lennon.com', 63),
                           (u'sly@stone-less-knowledgeable.com', 108)])
 
+class UserRegistrationDbTests(DbTestCase):
+    def setUp(self):
+        super(UserRegistrationDbTests, self).setUp()
+        user = models.User(email=u'a@example.org', password='a', active=True)
+        db.session.add(user)
+        db.session.commit()
+        self.user = user
+
+    def test_user_is_not_fully_registered_by_default(self):
+        eq_(self.user.has_fully_registered, False)
+
+    def test_set_fully_registered_works(self):
+        self.user.set_fully_registered()
+        eq_(self.user.has_fully_registered, True)
+
+    def test_multiple_join_events_are_not_created(self):
+        self.user.set_fully_registered()
+        self.user.set_fully_registered()
+        join_events = db.session.query(models.SimpleUserEvent).\
+                      filter(models.SimpleUserEvent.user_id==self.user.id).\
+                      filter(models.SimpleUserEvent.subtype==\
+                             models.SimpleUserEvent.SUBTYPE_USER_JOINED).\
+                      all()
+        eq_(len(join_events), 1)
+
 class SharedMessageDbTests(DbTestCase):
     def test_only_events_in_deployments_are_seen(self):
         other = models.User(email=u'b@example.org', password='a', active=True,
