@@ -221,6 +221,15 @@ class ViewTests(ViewTestCase):
     def test_nonexistent_page_is_not_found(self):
         self.assert404(self.client.get('/nonexistent'))
 
+    def test_registration_complains_if_email_is_taken(self):
+        self.register_and_login('foo@example.org', 'test123')
+        self.logout()
+        res = self.client.post('/register', data=dict(
+            email='foo@example.org'
+        ))
+        assert ('foo@example.org is already '
+                'associated with an account') in res.data
+
     def test_registration_works(self):
         self.register_and_login('foo@example.org', 'test123')
         self.logout()
