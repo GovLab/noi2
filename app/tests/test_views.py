@@ -70,7 +70,7 @@ class MultiStepRegistrationTests(ViewTestCase):
 
     def setUp(self):
         super(MultiStepRegistrationTests, self).setUp()
-        self.login()
+        self.login(fully_register=False)
 
     def test_step_2_is_ok(self):
         res = self.client.get('/register/step/2')
@@ -103,12 +103,15 @@ class MultiStepRegistrationTests(ViewTestCase):
         self.assertContext('user_can_join', False)
 
     def test_step_3_user_can_join_when_min_questions_are_answered(self):
+        self.assertFalse(self.last_created_user.has_fully_registered)
         for i in range(1, MIN_QUESTIONS_TO_JOIN + 1):
             self.client.post('/register/step/3/opendata/%d' % i, data={
                 'answer': '-1'
             })
         self.client.get('/register/step/3')
         self.assertContext('user_can_join', True)
+        self.assert200(self.client.get('/activity'))
+        self.assertTrue(self.last_created_user.has_fully_registered)
 
     def test_step_3_answering_last_question_works(self):
         self.assertEqual(len(self.last_created_user.skills), 0)

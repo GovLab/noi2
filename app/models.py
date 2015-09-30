@@ -5,7 +5,7 @@ SQLAlchemy models for the app
 '''
 
 from app import (ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS,
-                 QUESTIONNAIRES)
+                 QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN)
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
@@ -210,6 +210,14 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                             SimpleUserEvent.SUBTYPE_USER_JOINED).\
                      all()
         return len(join_event) > 0
+
+    def matches_criteria_for_full_registration(self):
+        '''
+        Returns whether the user matches the criteria to be marked as
+        having fully completed the registration/signup flow.
+        '''
+
+        return len(self.skills) >= MIN_QUESTIONS_TO_JOIN
 
     def set_fully_registered(self):
         '''

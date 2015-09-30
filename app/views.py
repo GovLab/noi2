@@ -34,13 +34,20 @@ def full_registration_required(func):
     are redirected to login; if they are logged in but not fully
     registered, they are redirected to complete the registration
     process.
+
+    Note that if the user is not marked as fully registered but
+    nonetheless meets the criteria for full registration, they will
+    be marked as fully registered and granted access to the view.
     '''
 
     @functools.wraps(func)
     @login_required
     def decorated_view(*args, **kwargs):
         if not current_user.has_fully_registered:
-            return redirect(url_for('views.register_step_2'))
+            if current_user.matches_criteria_for_full_registration():
+                current_user.set_fully_registered()
+            else:
+                return redirect(url_for('views.register_step_2'))
         return func(*args, **kwargs)
 
     return decorated_view
