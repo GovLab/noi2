@@ -11,8 +11,7 @@ from flask_login import login_required, current_user
 
 from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
-                        UserSkill, Event, SharedMessageEvent,
-                        SimpleUserEvent)
+                        UserSkill, Event, SharedMessageEvent)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm,
                        RegisterStep2Form)

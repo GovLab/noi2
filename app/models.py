@@ -204,10 +204,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         flow.
         '''
 
-        join_event = db.session.query(SimpleUserEvent).\
-                     filter(SimpleUserEvent.user_id==self.id).\
-                     filter(SimpleUserEvent.subtype==\
-                            SimpleUserEvent.SUBTYPE_USER_JOINED).\
+        join_event = db.session.query(UserJoinedEvent).\
+                     filter_by(user_id=self.id).\
                      all()
         return len(join_event) > 0
 
@@ -227,11 +225,7 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
         if self.has_fully_registered:
             return
-        join_event = SimpleUserEvent.from_user(
-            self,
-            subtype=SimpleUserEvent.SUBTYPE_USER_JOINED
-        )
-        db.session.add(join_event)
+        db.session.add(UserJoinedEvent.from_user(self))
 
     @property
     def questionnaire_progress(self):
@@ -473,19 +467,13 @@ class UserEvent(Event):
     def from_user(cls, user, **kwargs):
         return cls(user_id=user.id, deployment=user.deployment, **kwargs)
 
-class SimpleUserEvent(UserEvent):
+class UserJoinedEvent(UserEvent):
     '''
-    Any kind of user event that doesn't have any extra data associated
-    with it.
+    A user completed the registration process and joined the network.
     '''
-
-    # A user completed the registration process and joined the network.
-    SUBTYPE_USER_JOINED = 1
-
-    subtype = Column(types.Integer)
 
     __mapper_args__ = {
-        'polymorphic_identity': 'simple_user_event'
+        'polymorphic_identity': 'user_joined_event'
     }
 
 class SharedMessageEvent(UserEvent):

@@ -158,10 +158,8 @@ class UserRegistrationDbTests(DbTestCase):
     def test_multiple_join_events_are_not_created(self):
         self.user.set_fully_registered()
         self.user.set_fully_registered()
-        join_events = db.session.query(models.SimpleUserEvent).\
-                      filter(models.SimpleUserEvent.user_id==self.user.id).\
-                      filter(models.SimpleUserEvent.subtype==\
-                             models.SimpleUserEvent.SUBTYPE_USER_JOINED).\
+        join_events = db.session.query(models.UserJoinedEvent).\
+                      filter_by(user_id=self.user.id).\
                       all()
         eq_(len(join_events), 1)
 
