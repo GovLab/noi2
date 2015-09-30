@@ -26,6 +26,17 @@ import functools
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
+def get_best_registration_step_url(user):
+    '''
+    Assuming the user is not yet fully registered, returns the URL
+    of the most appropriate step in the registration flow for
+    them to complete.
+    '''
+
+    if len(user.skills) > 0 or RegisterStep2Form.is_not_empty(user):
+        return url_for('views.register_step_3')
+    return url_for('views.register_step_2')
+
 def full_registration_required(func):
     '''
     A view decorator that requires both login *and* full completion
@@ -39,7 +50,7 @@ def full_registration_required(func):
     @login_required
     def decorated_view(*args, **kwargs):
         if not current_user.has_fully_registered:
-            return redirect(url_for('views.register_step_2'))
+            return redirect(get_best_registration_step_url(current_user))
         return func(*args, **kwargs)
 
     return decorated_view
