@@ -66,38 +66,8 @@ ul li {
 {{ input("position") }}
 {{ input("organization") }}
 {{ input("organization_type") }}
-
-<!-- Location -->
-{# <div class="form-group">
-<label class="col-md-4 control-label" for="textinput">{{ gettext('Location') }}</label>  
-<div id="locationField" class="col-md-4">
-      <input id="autocomplete" size="50" placeholder="{{ gettext('Enter your location') }}" class="form-control input-md" type="text" autocomplete="off">
-      <input id="q-latlng" name="latlng" type="hidden">
-    </div>
-</div>
-#}
-{#{{ input("latlng") }}#}
-
-<!-- Location > City -->
-{#<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">{{ gettext('City') }}</label>  
-  <div class="col-md-4">
-  <input id="q-city" name="city" type="text" placeholder="placeholder" disabled class="form-control input-md">
-  </div>
-</div>#}
 {{ input("city") }}
-
-<!-- Location > Country -->
-{#<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">{{ gettext('Country') }}</label>  
-  <div class="col-md-4">
-  <input id="q-country" name="country" type="text" placeholder="placeholder" disabled class="form-control input-md">
-  <input id="q-country_code" name="country_code" type="hidden">
-  </div>
-</div>#}
 {{ input("country") }}
-
-
 {{ input("expertise_domain_names") }}
 {{ input("locales") }}
 {{ input("projects") }}
@@ -115,87 +85,6 @@ ul li {
 
 <script src="/static/chosen_v1.4.2/chosen.jquery.js" type="text/javascript"></script>
 <script src="/static/chosen_v1.4.2/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-
-{#
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
-
-<script>
-
-var placeSearch, autocomplete;
-var componentForm = {
-  'locality': ['long_name', 'q-city'],
-  'country': ['long_name', 'q-country']
-};
-
-function initialize() {
-  // Create the autocomplete object, restricting the search
-  // to geographical location types.
-  autocomplete = new google.maps.places.Autocomplete(
-      /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-      { types: ['geocode'] });
-  // When the user selects an address from the dropdown,
-  // populate the address fields in the form.
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    fillInAddress();
-  });
-}
-
-function fillInAddress() {
-  // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-
-  /*
-  for (var component in componentForm) {
-    document.getElementById(componentForm[component][1]).value = '';
-    document.getElementById(componentForm[component][1]).disabled = true;
-  }
-  */
-
-  // Get each component of the address from the place details
-  // and fill the corresponding field on the form.
-  console.log(place);
-  // We get the lat/lng of the place.
-  document.getElementById('q-latlng').value = place.geometry.location.toString();
-  document.getElementById('q-city').value = '';  // a country result does not update a city.
-  // We get the city and country.
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
-    if (componentForm[addressType]) {
-      var attributeId = componentForm[addressType][0];
-      var formId = componentForm[addressType][1];
-      console.log(formId);
-      var val = place.address_components[i][attributeId];
-      document.getElementById(formId).value = val;
-
-      // We store the country code.
-      if (addressType == 'country') {
-        document.getElementById('q-country_code').value = place.address_components[i].short_name;
-      }
-    }
-  }
-}
-
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = new google.maps.LatLng(
-          position.coords.latitude, position.coords.longitude);
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
-
-$( document ).ready(function() {
-   initialize();
-});
-
-</script>
-#}
-
 
 <script type="text/javascript">
     $('#picture').on('change', function (evt) {
