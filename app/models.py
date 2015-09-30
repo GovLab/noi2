@@ -470,11 +470,6 @@ class Event(db.Model, DeploymentMixin):
     }
 
 
-#class ConnectionEvent(db.Model, DeploymentMixin):
-#    '''
-#    A connection established 
-#    '''
-
 class UserEvent(Event):
     '''
     An activity feed event whose subject is a particular user.
