@@ -16,7 +16,7 @@
 	</div>
 	<div id="result-set" class="b-results-container">
 		<ol>
-			{% for user in results %}
+			{% for score, user in results %}
       {% if user.display_in_search %}
 			<li class="noi b-result-item">
 				<!-- <div style="" class="noi-index">{{loop.index}}{% if DEBUG %}<br/><a href="edit/{{user.id}}">edit</a>{% endif %}</div> -->
@@ -30,9 +30,9 @@
 					<div class="e-bottom-info">
 
             {#
-					{% if user.score and user.score > 0 %}
+					{% if score and score > 0 %}
 						<div class="e-score">
-							<i class="fa fa-star"></i>{{user.score}}
+							<i class="fa fa-star"></i>{{score}}
 						</div>
 					{% endif %}
           #}

@@ -283,7 +283,8 @@ def search():
     if not form.country.data:
         return render_template('search.html', form=form)
     else:
-        query = User.query_in_deployment()  #pylint: disable=no-member
+        # Add fake rank of 0 for now
+        query = User.query_in_deployment().add_column('0')  #pylint: disable=no-member
 
         if form.country.data and form.country.data != 'ZZ':
             query = query.filter(User.country == form.country.data)
@@ -347,7 +348,8 @@ def recent_users():
     '''
     Most recent users.
     '''
-    users = User.query_in_deployment().order_by(desc(User.created_at)).limit(10).all()
+    users = User.query_in_deployment().add_column('0').\
+            order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
                            **{'title': lazy_gettext('Our most recent members'),
                               'results': users,

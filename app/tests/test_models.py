@@ -106,6 +106,40 @@ class UserSkillDbTests(DbTestCase):
             u'opendata-implementing-an-open-data-program-open-data-standards': -1
         })
 
+    def test_helpful_users_works(self):
+        '''
+        Make sure that helpful users ranks users based off of most helpful
+        answers, and sticks to the proper deployment.
+        '''
+        sly_more = models.User.query.filter_by(email='sly@stone-more.com').one()
+        outsider = models.User(email=u'a@example.org', password='a', active=True,
+                               deployment='2')
+        db.session.add(outsider)
+        db.session.commit()
+
+        self.assertEqual([(user.email, score) for user, score in sly_more.helpful_users],
+                         [(u'paul@lennon.com', 48L),
+                          (u'dubya@shrub.com', 16L),
+                          (u'sly@stone-less-knowledgeable.com', 0L),
+                          (u'sly@stone.com', 0L)])
+
+    def test_nearest_neighbors_works(self):
+        '''
+        Make sure that nearest neighbors ranks proximity of users correctly,
+        and only within the existing deployment.
+        '''
+        sly_more = models.User.query.filter_by(email='sly@stone-more.com').one()
+        outsider = models.User(email=u'a@example.org', password='a', active=True,
+                               deployment='2')
+        db.session.add(outsider)
+        db.session.commit()
+
+        self.assertEqual([(user.email, score) for user, score in sly_more.nearest_neighbors],
+                         [(u'sly@stone.com', 15),
+                          (u'dubya@shrub.com', 21),
+                          (u'paul@lennon.com', 63),
+                          (u'sly@stone-less-knowledgeable.com', 108)])
+
 class SharedMessageDbTests(DbTestCase):
     def test_only_events_in_deployments_are_seen(self):
         other = models.User(email=u'b@example.org', password='a', active=True,
