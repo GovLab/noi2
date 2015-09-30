@@ -204,10 +204,9 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         flow.
         '''
 
-        join_event = db.session.query(UserJoinedEvent).\
-                     filter_by(user_id=self.id).\
-                     all()
-        return len(join_event) > 0
+        return db.session.query(UserJoinedEvent).\
+               filter_by(user_id=self.id).\
+               first() is not None
 
     def set_fully_registered(self):
         '''
