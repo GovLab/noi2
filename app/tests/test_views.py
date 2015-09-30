@@ -266,10 +266,6 @@ class ViewTests(ViewTestCase):
         self.login()
         self.assert404(self.client.get('/user/1234'))
 
-    def test_dashboard_is_ok(self):
-        self.login()
-        self.assert200(self.client.get('/dashboard'))
-
     def test_search_is_ok(self):
         self.login()
         res = self.client.get('/search')
