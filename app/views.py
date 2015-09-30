@@ -189,6 +189,7 @@ def register_step_3_area_question(areaid, questionid):
         db.session.commit()
         if len(current_user.skills) >= MIN_QUESTIONS_TO_JOIN:
             current_user.set_fully_registered()
+            db.session.commit()
         if next_questionid:
             return redirect(url_for(
                 'views.register_step_3_area_question',
