@@ -196,3 +196,67 @@ def test_users_only_display_in_search_if_they_have_first_and_last_name():
     eq_(user.display_in_search, False)
     user.last_name = "Doe"
     eq_(user.display_in_search, True)
+
+
+class UserConnectionDbTests(DbTestCase):
+    '''
+    Tests for connections between users.
+    '''
+
+    def setUp(self):
+        super(UserConnectionDbTests, self).setUp()
+        load_fixture()
+        self.sly_less = models.User.query_in_deployment()\
+          .filter(models.User.email == 'sly@stone-less-knowledgeable.com')\
+          .one()
+
+    def test_user_no_connections(self):
+        '''
+        A user initially has no connections.
+        '''
+        self.assertEquals(self.sly_less.connections, 0)
+
+    def test_user_connect_on_email_one(self):
+        '''
+        A user gains a connection on emailing someone.
+        '''
+        self.sly_less.email_connect([
+            models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        ])
+        db.session.commit()
+        self.assertEquals(self.sly_less.connections, 1)
+
+    def test_user_connect_on_email_several(self):
+        '''
+        A user gains several connections on emailing several people.
+        '''
+        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
+        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        self.sly_less.email_connect([dubya, lennon, stone])
+        db.session.commit()
+        self.assertEquals(self.sly_less.connections, 3)
+
+    def test_user_connect_reciprocal(self):
+        '''
+        A user's connections are reciprocal.
+        '''
+        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
+        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        self.sly_less.email_connect([dubya, lennon, stone])
+        db.session.commit()
+        self.assertEquals(dubya.connections, 1)
+        self.assertEquals(lennon.connections, 1)
+        self.assertEquals(stone.connections, 1)
+
+    def test_user_connect_on_email_noduplicate(self):
+        '''
+        Emailing one person several times does not result in additional
+        connections.
+        '''
+        paul = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        for _ in xrange(0, 3):
+            self.sly_less.email_connect([paul])
+        db.session.commit()
+        self.assertEquals(self.sly_less.connections, 1)

@@ -248,6 +248,17 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         '''
         return dict([(skill.name, skill.level) for skill in self.skills])
 
+    @property
+    def connections(self):
+        '''
+        Count the number of unique recipients for emails from this user.
+        '''
+        sent = db.session.query(func.count(func.distinct(Email.to_user_id))).\
+                filter(Email.from_user_id == self.id).first()[0]
+        received = db.session.query(func.count(func.distinct(Email.from_user_id))).\
+                filter(Email.to_user_id == self.id).first()[0]
+        return sent + received
+
     def set_skill(self, skill_name, skill_level):
         '''
         Set the level of a single skill by name.
@@ -267,6 +278,14 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         db.session.add(UserSkill(user_id=self.id,
                                  name=skill_name,
                                  level=skill_level))
+
+    def email_connect(self, users):
+        '''
+        Indicate that this user has opened an email window with this list of
+        users as recipients.
+        '''
+        for user in users:
+            db.session.add(Email(from_user_id=self.id, to_user_id=user.id))
 
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
@@ -417,6 +436,22 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
 
     __table_args__ = (UniqueConstraint('user_id', 'name'),)
 
+
+class Email(db.Model): #pylint: disable=no-init,too-few-public-methods
+    '''
+    An email sent from one user to another.
+    '''
+    __tablename__ = 'email'
+
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
+    created_at = Column(types.DateTime(), default=datetime.datetime.now)
+    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
+                        onupdate=datetime.datetime.now)
+
+    from_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+    to_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+
+
 class Event(db.Model, DeploymentMixin):
     '''
     An event that shows up in the activity feed for a deployment.
@@ -433,6 +468,12 @@ class Event(db.Model, DeploymentMixin):
         'polymorphic_identity': 'event',
         'polymorphic_on': type
     }
+
+
+#class ConnectionEvent(db.Model, DeploymentMixin):
+#    '''
+#    A connection established 
+#    '''
 
 class UserEvent(Event):
     '''
