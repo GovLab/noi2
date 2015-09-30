@@ -176,6 +176,7 @@ class NOIRegisterForm(RegisterForm):
     password = PasswordField(
         lazy_gettext('Password'), validators=[password_required,
                                               password_length])
+    password_confirm = None
     submit = SubmitField(lazy_gettext('Sign up'))
 
 

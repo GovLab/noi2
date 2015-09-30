@@ -28,7 +28,6 @@ class ViewTestCase(DbTestCase):
             last_name='Doe',
             email=username,
             password=password,
-            password_confirm=password,
             submit='Register'
         ), follow_redirects=True)
         self.assert200(res)
