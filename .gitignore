@@ -10,3 +10,5 @@ alchemydumps
 *.log
 tmp
 translate.tmp.html
+.webassets-cache
+gen/

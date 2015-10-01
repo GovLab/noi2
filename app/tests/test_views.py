@@ -1,11 +1,10 @@
-from flask.ext.testing import TestCase
-
 from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN
 from app.factory import create_app
 from app.views import get_area_questionnaire_or_404
 from app.models import User, SharedMessageEvent
 
 from .test_models import DbTestCase
+from .util import load_fixture
 
 LOGGED_IN_SENTINEL = '<a href="/me"'
 
@@ -285,3 +284,14 @@ class ViewTests(ViewTestCase):
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
                              '/login?next=%2Fuser%2F1234')
+
+    def test_email(self):
+        load_fixture()
+        self.login()
+        res = self.client.post('/email', data={
+            'emails': ['sly@stone.com', 'paul@lennon.com']
+        })
+        self.assertEquals(res.status, '204 NO CONTENT')
+        user = User.query_in_deployment()\
+                 .filter(User.email=='test@example.org').one()
+        self.assertEquals(2, user.connections)

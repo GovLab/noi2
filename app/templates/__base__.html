@@ -5,6 +5,7 @@
     {% block page_style_pre %}{% endblock %}
     <!--Mobile specific meta goodness :)-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/static/styles/styles-legacy.css">
@@ -20,7 +21,8 @@
     {% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
-	<!-- Google Tag Manager -->
+
+<!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5LR5G6"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -76,17 +78,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="/static/jquery.querystring.js"></script>
-    <script src="/static/hello.min.js"></script>
     <script src="//use.typekit.net/zez3buj.js"></script>
-    <script>
-    // if(window.innerHeight > window.innerWidth){
-    // alert("For a better user experience, please rotate your phone to landscape mode.");
-    // }
-    </script>
+    {% assets "main_js" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
     <script>try{Typekit.load();}catch(e){}</script>
-    {% if DEBUG %}
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-    {% endif %}
 
 	{% block page_script %}		
 	{% endblock %}

@@ -22,6 +22,7 @@
 },{
     "first_name": "sly",
     "last_name": "stone",
+    "deployment": "_default",
     "email": "sly@stone.com",
     "confirmed_at": "2010-01-01",
     "skills": {
@@ -42,6 +43,7 @@
 },{
     "first_name": "sly",
     "last_name": "stone-more-knowledgeable",
+    "deployment": "_default",
     "email": "sly@stone-more.com",
     "confirmed_at": "2010-01-01",
     "skills": {
@@ -62,6 +64,7 @@
 },{
     "first_name": "sly",
     "last_name": "stone-less-knowledgeable",
+    "deployment": "_default",
     "email": "sly@stone-less-knowledgeable.com",
     "confirmed_at": "2010-01-01",
     "skills": {
@@ -73,6 +76,7 @@
 },{
     "first_name": "paul",
     "last_name": "lennon",
+    "deployment": "_default",
     "email": "paul@lennon.com",
     "confirmed_at": "2010-01-01",
     "skills": {
@@ -93,6 +97,7 @@
 },{
     "first_name": "dubya",
     "last_name": "shrub",
+    "deployment": "_default",
     "email": "dubya@shrub.com",
     "confirmed_at": "2010-01-01",
     "skills": {
