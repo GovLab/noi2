@@ -11,7 +11,7 @@
 <button type="submit">{{ gettext('Post') }}</button>
 </form>
 
-<h3>My Profile Progress</h3>
+<h3>{{ gettext('My Profile Progress') }}</h3>
 
 <ul>
   {% set q_progress = user.questionnaire_progress %}
@@ -30,9 +30,11 @@
     {% endif %}
   {% endfor %}
 </ul>
-<a href="{{ url_for('views.my_profile') }}">View / Edit My Profile</a>
+<a href="{{ url_for('views.my_profile') }}">
+  {{ gettext('View / Edit My Profile') }}
+</a>
 
-<h2>Activity</h2>
+<h2>{{ gettext('Activity') }}</h2>
 
 {% macro user_link(user) -%}
 <a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a>
@@ -43,11 +45,11 @@
   <li>
   <time datetime="{{ event.created_at }}"></time>
   {% if event.type == 'shared_message' %}
-    <p>{{ user_link(event.user) }} shared:</p>
+    <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
 
     {{ event.message }}
   {% elif event.type == 'user_joined_event' %}
-    <p>{{ user_link(event.user) }} joined NOI.</p>
+    <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
   {% else %}
     UNKNOWN EVENT TYPE: {{ event.type }}
   {% endif %}
@@ -55,7 +57,7 @@
 {% endfor %}
 </ul>
 
-<h3>Most Complete Profiles</h3>
+<h3>{{ gettext('Most Complete Profiles') }}</h3>
 
 <ol>
   {% for user, score in most_complete_profiles %}
