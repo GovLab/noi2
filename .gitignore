@@ -1,6 +1,7 @@
 .env
 *.pyc
 app/config/local_config.yml
+app/static/css
 *.mo
 .keys
 backups

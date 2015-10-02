@@ -380,3 +380,13 @@ def feedback():
     Feedback page.
     '''
     return render_template('feedback.html', **{})
+
+@views.route('/sass-test')
+def sass_test():
+    '''
+    This is just a temporary endpoint that we can test SASS
+    integration at. Once we actually use SASS for the whole site,
+    this route can be removed.
+    '''
+
+    return render_template('sass-test.html')
