@@ -2,7 +2,8 @@ from flask.ext.testing import TestCase
 
 from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN
 from app.factory import create_app
-from app.views import get_area_questionnaire_or_404
+from app.views import (get_area_questionnaire_or_404,
+                       get_best_registration_step_url)
 from app.models import User, SharedMessageEvent
 
 from .test_models import DbTestCase
@@ -71,6 +72,22 @@ class MultiStepRegistrationTests(ViewTestCase):
     def setUp(self):
         super(MultiStepRegistrationTests, self).setUp()
         self.login(fully_register=False)
+
+    def _get_best_step_url(self):
+        return get_best_registration_step_url(self.last_created_user)
+
+    def test_best_registration_step_is_2_by_default(self):
+        self.assertEqual(self._get_best_step_url(), '/register/step/2')
+
+    def test_best_registration_step_is_3_if_org_is_filled(self):
+        self.last_created_user.organization = 'foo'
+        self.assertEqual(self._get_best_step_url(), '/register/step/3')
+
+    def test_best_registration_step_is_3_if_skills_exist(self):
+        self.client.post('/register/step/3/opendata/1', data={
+            'answer': '-1'
+        })
+        self.assertEqual(self._get_best_step_url(), '/register/step/3')
 
     def test_step_2_is_ok(self):
         res = self.client.get('/register/step/2')

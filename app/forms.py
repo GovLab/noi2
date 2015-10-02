@@ -73,6 +73,19 @@ class RegisterStep2Form(ModelForm):
         only = ['position', 'organization', 'organization_type', 'city',
                 'country']
 
+    @classmethod
+    def is_not_empty(cls, user):
+        '''
+        Returns whether or not the user has filled out any of the
+        fields in the form. Used to determine whether to skip past
+        this form when resuming the registration process.
+        '''
+
+        for attr in cls.Meta.only:
+            if getattr(user, attr):
+                return True
+        return False
+
 class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     '''
     Form for users to edit their profile
