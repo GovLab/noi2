@@ -14,7 +14,7 @@ from flask_babel import lazy_gettext
 
 from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
                         desc)
-from sqlalchemy.orm import aliased
+from sqlalchemy.orm import aliased, backref
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -479,7 +479,11 @@ class UserEvent(Event):
 
     id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
     user_id = Column(types.Integer, ForeignKey('users.id'))
-    user = orm.relationship('User', backref='events')
+    # user = orm.relationship('User', backref='events')
+
+    user = orm.relationship('User',backref=backref('events',
+                         uselist=True,
+                         cascade='delete-orphan,all'))
 
     __mapper_args__ = {
         'polymorphic_identity': 'user_event'
