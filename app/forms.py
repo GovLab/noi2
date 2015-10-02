@@ -81,8 +81,10 @@ class RegisterStep2Form(ModelForm):
         this form when resuming the registration process.
         '''
 
-        return (user.position or user.organization or user.city or
-                user.country)
+        for attr in cls.Meta.only:
+            if getattr(user, attr):
+                return True
+        return False
 
 class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     '''
