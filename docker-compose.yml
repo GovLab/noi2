@@ -9,6 +9,8 @@ app:
         - ./migrations:/migrations
     environment:
         - NOI_ENVIRONMENT # unless production, assumed "development"
+    ports:
+        - "5001:5001"
 db:
     image: postgres:9.4
 web:
@@ -22,6 +24,14 @@ web:
     ports:
         - "80:80"
         - "443:443"
+phantomjs:
+    image: cmfatih/phantomjs
+    links:
+        - web
+    expose:
+        - 8910
+    entrypoint: phantomjs
+    command: --webdriver=8910
 #worker:
 #    build: app/
 #    command: /noi/run.sh

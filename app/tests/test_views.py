@@ -10,16 +10,17 @@ from .test_models import DbTestCase
 LOGGED_IN_SENTINEL = '<a href="/me"'
 
 class ViewTestCase(DbTestCase):
-    def create_app(self):
-        config = self.BASE_APP_CONFIG.copy()
-        config.update(
+    BASE_APP_CONFIG = DbTestCase.BASE_APP_CONFIG.copy()
+    BASE_APP_CONFIG.update(
             DEBUG=False,
             WTF_CSRF_ENABLED=False,
             # This speeds tests up considerably.
             SECURITY_PASSWORD_HASH='plaintext',
             CACHE_NO_NULL_WARNING=True,
-        )
-        return create_app(config=config)
+    )
+
+    def create_app(self):
+        return create_app(config=self.BASE_APP_CONFIG)
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(

@@ -32,3 +32,4 @@ simple-crypt==4.1.7
 python-slugify==1.1.3
 wtforms_alchemy
 redis
+selenium

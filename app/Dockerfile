@@ -16,3 +16,4 @@ COPY . /noi/app
 RUN pip install -r /noi/app/requirements.txt
 
 EXPOSE 5000
+EXPOSE 5001
