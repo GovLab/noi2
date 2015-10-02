@@ -25,6 +25,7 @@ from celery import Task
 from slugify import slugify
 import yaml
 import flask_babel
+import os
 
 def lazy_gettext(string):
     '''
@@ -93,11 +94,9 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
 
     if config is None:
-        try:
-            with open('/noi/app/config/local_config.yml', 'r') as config_file:
-                app.config.update(yaml.load(config_file))
-        except IOError:
-            app.logger.warn("No local_config.yml file")
+        if os.stat('/noi/app/config/local_config.yml').st_size > 0:
+            config_file = open('/noi/app/config/local_config.yml', 'r')
+            app.config.update(yaml.load(config_file))
     else:
         app.config.update(config)
 
