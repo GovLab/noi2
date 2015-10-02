@@ -16,7 +16,7 @@ PG_DBNAME = 'noi_test'
 
 # We can't use postgres on Travis CI builds until
 # https://github.com/GovLab/noi2/issues/23 is fixed.
-USE_POSTGRES = True
+USE_POSTGRES = False
 
 if USE_POSTGRES:
     TEST_DB_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)

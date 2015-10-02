@@ -254,8 +254,10 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         Count the number of unique recipients for emails from this user.
         '''
         sent = db.session.query(func.count(func.distinct(Email.to_user_id))).\
+                filter(Email.to_user_id != self.id).\
                 filter(Email.from_user_id == self.id).first()[0]
         received = db.session.query(func.count(func.distinct(Email.from_user_id))).\
+                filter(Email.from_user_id != self.id).\
                 filter(Email.to_user_id == self.id).first()[0]
         return sent + received
 
