@@ -1,0 +1,31 @@
+.b-alert-message {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    text-align: center;
+    color: $white;
+    box-shadow: 0 0 10px $gray-30;
+
+    .material-icons {font-size: 32px;}
+
+    p { color: $white; }
+}
+
+
+.b-alert-message.m-error { 
+    background-color: $red; 
+}
+
+.b-alert-message.m-success { 
+    background-color: $green; 
+}
+
+.b-alert-message.m-warning { 
+    background-color: $yellow; 
+}
+
+.m-hide {
+    display: none;
+}
