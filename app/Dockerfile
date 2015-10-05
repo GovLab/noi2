@@ -13,7 +13,7 @@ RUN apt-get install -y python-pip libpq-dev python-dev postgresql-client-9.4 lib
 RUN mkdir -p /noi/app
 COPY . /noi/app
 
-RUN curl https://bootstrap.pypa.io/ez_setup.py -o - | python # update setuptools
+RUN pip install --upgrade pip
 RUN pip install -r /noi/app/requirements.txt
 
 EXPOSE 5000
