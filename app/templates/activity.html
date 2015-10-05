@@ -50,6 +50,9 @@
     {{ event.message }}
   {% elif event.type == 'user_joined_event' %}
     <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
+  {% elif event.type == 'connection_event' %}
+    <p>{{ gettext('+%(new)s new connections made in NOI.', new=event.emails.count()) }}</p>
+    <p>{{ gettext('+%(total)s connections!', total=event.total_connections) }}</p>
   {% else %}
     UNKNOWN EVENT TYPE: {{ event.type }}
   {% endif %}

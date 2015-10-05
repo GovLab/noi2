@@ -1,7 +1,7 @@
 from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN
 from app.factory import create_app
 from app.views import get_area_questionnaire_or_404
-from app.models import User, SharedMessageEvent
+from app.models import User, SharedMessageEvent, ConnectionEvent
 
 from .test_models import DbTestCase
 from .util import load_fixture
@@ -170,6 +170,20 @@ class ActivityFeedTests(ViewTestCase):
         assert 'Message posted' in res.data
         assert 'hello there' in res.data
 
+    def test_email_connection_is_activity(self):
+        load_fixture()
+        self.login()
+        res = self.client.post('/email', data={
+            'emails[]': ['sly@stone.com', 'paul@lennon.com']
+        })
+        self.assertEquals(res.status, '204 NO CONTENT')
+        self.assertEqual(ConnectionEvent.query_in_deployment().count(), 1)
+
+        res = self.client.get('/activity')
+        self.assert200(res)
+        assert '2 new connections made in NOI' in res.data
+        assert '2 connections' in res.data
+
     def test_activity_is_ok(self):
         self.login()
         self.assert200(self.client.get('/activity'))
@@ -289,7 +303,7 @@ class ViewTests(ViewTestCase):
         load_fixture()
         self.login()
         res = self.client.post('/email', data={
-            'emails': ['sly@stone.com', 'paul@lennon.com']
+            'emails[]': ['sly@stone.com', 'paul@lennon.com']
         })
         self.assertEquals(res.status, '204 NO CONTENT')
         user = User.query_in_deployment()\

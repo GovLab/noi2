@@ -13,7 +13,7 @@ from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
 from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
-                        desc)
+                        desc, cast, String)
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -286,8 +286,12 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         Indicate that this user has opened an email window with this list of
         users as recipients.
         '''
+        event = ConnectionEvent()
         for user in users:
-            db.session.add(Email(from_user_id=self.id, to_user_id=user.id))
+            event.emails.append(Email(from_user_id=self.id, to_user_id=user.id))
+
+        db.session.add(event)
+        return event
 
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
@@ -452,6 +456,10 @@ class Email(db.Model): #pylint: disable=no-init,too-few-public-methods
 
     from_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
     to_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+    connection_event_id = Column(types.Integer, ForeignKey('events.id'),
+                                 nullable=False)
+    connection_event = orm.relationship('ConnectionEvent', backref=orm.backref(
+        'emails', lazy='dynamic'))
 
 
 class Event(db.Model, DeploymentMixin):
@@ -470,6 +478,31 @@ class Event(db.Model, DeploymentMixin):
         'polymorphic_identity': 'event',
         'polymorphic_on': type
     }
+
+
+class ConnectionEvent(Event):
+    '''
+    A user connected to other user(s).
+    '''
+    __mapper_args__ = {
+        'polymorphic_identity': 'connection_event'
+    }
+
+    total_connections = Column(types.Integer)
+
+    def set_total_connections(self):
+        self.total_connections = ConnectionEvent.connections_in_deployment()
+
+    @classmethod
+    def connections_in_deployment(cls):
+        '''
+        Count total number of distinct connections in deployment.  This must
+        be done after committing the emails originally associated with this
+        event.
+        '''
+        return db.session.query(func.count(func.distinct(
+            cast(Email.to_user_id, String) + '-' +
+            cast(Email.from_user_id, String)))).first()[0]
 
 
 class UserEvent(Event):
@@ -491,6 +524,7 @@ class UserEvent(Event):
     def from_user(cls, user, **kwargs):
         return cls(user_id=user.id, deployment=user.deployment, **kwargs)
 
+
 class UserJoinedEvent(UserEvent):
     '''
     A user completed the registration process and joined the network.
@@ -499,6 +533,7 @@ class UserJoinedEvent(UserEvent):
     __mapper_args__ = {
         'polymorphic_identity': 'user_joined_event'
     }
+
 
 class SharedMessageEvent(UserEvent):
     '''

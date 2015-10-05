@@ -18,9 +18,7 @@ $(document).ready(function () {
         emails = href.split(':')[1].split('?')[0].split(',');
 
     $.post('/email', {
-      data: {
-        emails: emails
-      }
+      'emails': emails
     });
   });
 });
