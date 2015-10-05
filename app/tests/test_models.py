@@ -318,3 +318,23 @@ class UserConnectionDbTests(DbTestCase):
             self.sly_less.email_connect([paul])
         db.session.commit()
         self.assertEquals(self.sly_less.connections, 1)
+
+    def test_user_get_most_complete_profiles_works(self):
+        '''
+        Make sure the `get_most_complete_profiles` endpoint works.
+        '''
+        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
+        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        self.assertEquals(models.Email.query.count(), 0)
+        self.assertEquals([(u.email, score) for u, score in models.User.get_most_connected_profiles()],
+                          [])
+        self.sly_less.email_connect([dubya, lennon, stone])
+        lennon.email_connect([dubya])
+        db.session.commit()
+        self.assertEquals(models.Email.query.count(), 4)
+        self.assertEquals([(u.email, score) for u, score in models.User.get_most_connected_profiles()],
+                          [(self.sly_less.email, 3),
+                           (dubya.email, 2),
+                           (lennon.email, 2),
+                           (stone.email, 1)])

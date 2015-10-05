@@ -251,7 +251,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     @property
     def connections(self):
         '''
-        Count the number of unique recipients for emails from this user.
+        Count the number of distinct email addresses this person has sent or
+        received messages from in the deployment.
         '''
         sent = db.session.query(func.count(func.distinct(Email.to_user_id))).\
                 filter(Email.to_user_id != self.id).\
@@ -310,6 +311,23 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                 filter(User.id == UserSkill.user_id).\
                 group_by(User).\
                 order_by(func.count(UserSkill.id).desc()).\
+                limit(limit)
+
+    @classmethod
+    def get_most_connected_profiles(cls, limit=10):
+        '''
+        Obtain a list of most connected profiles, as descending (User, score)
+        tuples.
+        '''
+        return User.query_in_deployment().\
+                add_column(func.count(func.distinct(
+                    cast(Email.to_user_id, String) + '-' +
+                    cast(Email.from_user_id, String)))).\
+                filter((User.id == Email.from_user_id) | (User.id == Email.to_user_id)).\
+                group_by(User).\
+                order_by(func.count(func.distinct(
+                    cast(Email.to_user_id, String) + '-' +
+                    cast(Email.from_user_id, String))).desc()).\
                 limit(limit)
 
     @hybrid_property

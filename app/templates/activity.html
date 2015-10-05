@@ -74,4 +74,18 @@
   {% endfor %}
 </ol>
 
+<h3>{{ gettext('Most Connected') }}</h3>
+
+<ol>
+  {% for user, score in most_connected_profiles %}
+    <li>
+      <p>{{ user_link(user) }}</p>
+      <small>
+        {{ score }} connections
+      </small>
+    </li>
+  {% endfor %}
+</ol>
+
+
 {% endblock %}
