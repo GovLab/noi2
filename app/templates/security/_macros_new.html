@@ -1,7 +1,7 @@
 {% macro render_field_with_errors(field) %}
   {{ field.label(class="sr-only") }} {{ field(class="b-textfield", placeholder=field.label.text, **kwargs)|safe }}
   {% if field.errors %}
-    <ul>
+    <ul class="list-unstyled">
     {% for error in field.errors %}
       <li>{{ error }}</li>
     {% endfor %}
