@@ -14,11 +14,11 @@ $.ajaxSetup({
 $(document).ready(function () {
   // Keep track of mailto: links as connections
   $("a[href^=mailto]").click(function (evt) {
-    var href = $(evt.target).attr('href'),
-        emails = href.split(':')[1].split('?')[0].split(',');
-
-    $.post('/email', {
-      'emails': emails
-    });
+    var connectTo = $(evt.target).data('connect-to');
+    if (connectTo) {
+      $.post('/email', {
+        'emails': connectTo.split(',')
+      });
+    }
   });
 });
