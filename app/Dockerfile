@@ -8,7 +8,7 @@ FROM debian:jessie
 MAINTAINER John Krauss <john@thegovlab.org>
 
 RUN apt-get update && apt-get -y dist-upgrade
-RUN apt-get install -yqq python-pip libpq-dev python-dev postgresql-client-9.4
+RUN apt-get install -yqq python-pip libpq-dev python-dev postgresql-client-9.4 libffi-dev
 
 RUN mkdir -p /noi/app
 COPY . /noi/app
