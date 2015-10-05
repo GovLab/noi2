@@ -1,0 +1,32 @@
+{% extends "style-guide/base.html" %}
+
+{% block title %}Sign Up - Basic Information{% endblock %}
+
+{% block content %}
+    <div class="b-onboarding m-signup">
+        <section>
+            <div class="e-confirmed material-icons">check</div>
+            <p class="e-onboarding-message">Now please share some basic information about yourself,<br> so others can know who you are</p>
+            <form action="" class="e-onboarding-form">
+                <input class="b-textfield" type="text" placeholder="Organization">
+                <select class="b-dropdown" name="" id="">
+                    <option value="">Type of Organization</option>
+                    <option value="">Organization 1</option>
+                    <option value="">Organization 2</option>
+                    <option value="">Organization 3</option>
+                </select>
+                <input class="b-textfield" type="text" placeholder="Position">
+                <input class="b-textfield" type="text" placeholder="Location">
+                <input class="b-button" type="submit" value="Next">
+            </form>
+        </section>
+        
+        <footer>
+            <div class="e-signup-progress">
+                <span></span>
+                <span class="m-current"></span>
+                <span></span>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

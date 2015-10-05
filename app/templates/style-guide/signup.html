@@ -1,0 +1,34 @@
+{% extends "style-guide/base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <div class="b-onboarding m-signup">
+        <header>
+            <div class="b-logo">NOI</div>
+            
+        </header>
+        
+        <section>
+            <p class="e-onboarding-message">Sign up with your email address</p>
+            <form action="" class="e-onboarding-form">
+                <input class="b-textfield m-invalid" type="text" placeholder="First Name">
+                <input class="b-textfield" type="text" placeholder="Last Name">
+                <input class="b-textfield m-valid" type="email" placeholder="Email">
+                <input class="b-textfield" type="password" placeholder="Password">
+                <input class="b-textfield" type="password" placeholder="Confirm Password">
+                <input class="b-button" type="submit" value="Sign Up">
+
+                <div class="b-checkbox"><input id="remember-me" type="checkbox" name="remember-me"><label for="remember-me">Remember Me</label></div>
+            </form>
+        </section>
+        
+        <footer>
+            <div class="e-signup-progress">
+                <span class="m-current"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

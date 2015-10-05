@@ -13,19 +13,7 @@
     p { color: $white; }
 }
 
-
-.b-alert-message.m-error { 
-    background-color: $red; 
-}
-
-.b-alert-message.m-success { 
-    background-color: $green; 
-}
-
-.b-alert-message.m-warning { 
-    background-color: $yellow; 
-}
-
-.m-hide {
-    display: none;
-}
+.b-alert-message.m-error { background-color: $red; }
+.b-alert-message.m-success { background-color: $green; }
+.b-alert-message.m-warning { background-color: $yellow; }
+.m-hide { display: none; }

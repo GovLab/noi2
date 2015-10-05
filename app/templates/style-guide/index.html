@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>NOI Style Guide</title>
+<style>
+iframe {
+  border: 1px solid black;
+}
+
+.page {
+  display: inline-block;
+  padding: 20px;
+}
+</style>
+<h1>NOI Style Guide</h1>
+
+{% set PAGES_TO_EXCLUDE = ['index', 'base'] %}
+{% for page in pages %}
+  {% if page not in PAGES_TO_EXCLUDE %}
+    <div class="page">
+      <h3><a href="{{ url_for('views.style_guide', pageid=page) }}">{{ page }}</a></h3>
+      <iframe src="{{ url_for('views.style_guide', pageid=page) }}" width="320" height="480"></iframe>
+    </div>
+  {% endif %}
+{% endfor %}

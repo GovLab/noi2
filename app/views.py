@@ -5,7 +5,8 @@ All views in the app, as a blueprint
 '''
 
 from flask import (Blueprint, render_template, request, flash,
-                   redirect, url_for, current_app, abort)
+                   redirect, url_for, current_app, abort,
+                   send_from_directory)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
@@ -21,6 +22,8 @@ from sqlalchemy.dialects.postgres import array
 
 from boto.s3.connection import S3Connection
 
+import os
+import re
 import mimetypes
 import functools
 
@@ -407,3 +410,53 @@ def feedback():
     Feedback page.
     '''
     return render_template('feedback.html', **{})
+
+def debug_required(func):
+    '''
+    A view decorator that requires DEBUG to be True; the view 404s on
+    production deploys.
+    '''
+
+    @functools.wraps(func)
+    def decorated_view(*args, **kwargs):
+        if not current_app.config['DEBUG']:
+            abort(404)
+        return func(*args, **kwargs)
+
+    return decorated_view
+
+@views.route('/style-guide/')
+@debug_required
+def style_guide_home():
+    '''
+    Root page for the NOI Style Guide.
+    '''
+
+    filenames = os.listdir('/noi/app/templates/style-guide')
+    pages = []
+    for filename in filenames:
+        match = re.search('^([A-Za-z0-9\-_]+)\.html$', filename)
+        if match:
+            pages.append(match.group(1))
+    return render_template('style-guide/index.html', pages=pages)
+
+@views.route('/style-guide/<pageid>')
+@debug_required
+def style_guide(pageid):
+    '''
+    Renders an individual template page for the NOI Style Guide.
+    '''
+
+    if not re.search(r'^[A-Za-z0-9\-_]+$', pageid):
+        abort(404)
+    return render_template('style-guide/%s.html' % pageid)
+
+@views.route('/style-guide/static/<path:path>')
+@debug_required
+def send_style_guide_static_asset(path):
+    '''
+    Delivers a static asset for the NOI Style Guide.
+    '''
+
+    return send_from_directory('/noi/app/templates/style-guide/static',
+                               path)
