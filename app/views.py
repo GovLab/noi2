@@ -272,6 +272,22 @@ def get_user(userid):
     return render_template('user-profile.html', user=user)
 
 
+@views.route('/email', methods=['POST'])
+@full_registration_required
+def email():
+    '''
+    Mark that an email could have been sent to recipients in post
+    '''
+    emails = request.form.getlist('emails[]')
+    if emails:
+        users = User.query_in_deployment().filter(User.email.in_(emails))
+        event = current_user.email_connect(users)
+        db.session.commit()
+        event.set_total_connections()
+        db.session.commit()
+    return ('', 204)
+
+
 @views.route('/search')
 @full_registration_required
 def search():
