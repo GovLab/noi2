@@ -1,0 +1,28 @@
+{% extends "style-guide/base.html" %}
+
+{% block title %}Sign Up - Basic Information{% endblock %}
+
+{% block content %}
+    <div class="b-onboarding m-signup-first-category">
+        <section>
+            <div class="e-confirmed material-icons">check</div>
+            <p class="e-onboarding-message">Pick an innovation area <br>that you are interested in</p>
+            <div class="e-category-menu">
+                <a href="#" class="e-category">Data Science</a>
+                <a href="#" class="e-category">Open Data</a>
+                <a href="#" class="e-category">Crowdsourcing</a>
+                <a href="#" class="e-category">Prizes</a>
+                <a href="#" class="e-category">Community Engagement</a>
+                <a href="#" class="e-category">Citizen Science</a>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="e-signup-progress">
+                <span></span>
+                <span></span>
+                <span class="m-current"></span>
+            </div>
+        </footer>
+    </div>
+{% endblock %}
