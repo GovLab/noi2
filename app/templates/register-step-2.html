@@ -1,49 +1,39 @@
-{% extends "__base__.html" %}
+{% extends "__base_new__.html" %}
 
-{% block title %}{{ gettext('My Profile') }}{% endblock %}
+{% block title %}{{ gettext('Register - Basic Information') }}{% endblock %}
+
+{% from "security/_macros_new.html" import render_field_with_errors, render_field %}
 
 {% block content %}
+<div class="b-onboarding m-signup">
+  <section>
+    <div class="e-confirmed material-icons">check</div>
+    <p class="e-onboarding-message">{{ gettext("Now please share some basic info about yourself, so others can know who you are.") }}</p>
 
-<h1>{{ gettext("Success!") }}</h1>
+    <form class="e-onboarding-form" method="post">
+      {{ form.csrf_token }}
 
-<p>{{ gettext("Now please share some basic info about yourself, so others can know who you are.") }}</p>
+      {{ render_field_with_errors(form.position) }}
+      {{ render_field_with_errors(form.organization) }}
+      {{ render_field_with_errors(form.organization_type) }}
+      {{ render_field_with_errors(form.city) }}
+      {{ render_field_with_errors(form.country) }}
 
-<form class="footer-fix" method="post">
-{{ form.csrf_token }}
+      <input class="b-button" type="submit" value="{{ gettext('Next') }}">
 
-<div class="form-horizontal">
+    </form>
+  </section>
 
-{% macro input(name) -%}
-<div class="form-group">
-  {{ form[name].label(class="col-md-4 control-label") }}
-  <div class="col-md-4">
-  {{ form[name](class="input-md form-control",placeholder=form[name].description) }}
-  {% if form[name].errors %}
-    <ul class="error">
-    {% for error in form[name].errors %}
-    <li>{{ error }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-  </div>
+  <ul class="list-unstyled">
+    <li><a href="/logout">{{ gettext('Logout') }}</a></li>
+  </ul>
+
+  <footer>
+    <div class="e-signup-progress">
+      <span></span>
+      <span class="m-current"></span>
+      <span></span>
+    </div>
+  </footer>
 </div>
-{%- endmacro %}
-
-<fieldset>
-
-<!-- Form Name -->
-<legend></legend>
-
-{{ input("position") }}
-{{ input("organization") }}
-{{ input("organization_type") }}
-{{ input("city") }}
-{{ input("country") }}
-
-<div class="text-center">
-  <button type="submit">{{ gettext('Next') }}</button>
-</div>
-
-</form>
-
 {% endblock %}

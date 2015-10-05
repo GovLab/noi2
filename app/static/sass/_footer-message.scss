@@ -1,0 +1,17 @@
+.b-footer-message {
+    padding: 20px 40px;
+    text-align: center;
+    background-color: $gray-80;
+    h3 {
+        text-transform: uppercase;
+        color: $white-70;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    p {
+        color: $white-70;
+        font-weight: 200;
+        line-height: 1.6;
+    }
+}

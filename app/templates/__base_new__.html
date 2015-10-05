@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="{{ NOI_DEPLOY|slug }}">
+<head>
+    <meta charset="UTF-8">
+    {% block head %}
+    {% block page_style_pre %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/normalize.css') }}">
+    <link rel="stylesheet" href="{{ COMPILED_SASS_ROOT }}/styles.scss.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>{% block title %}{{ gettext('Network of Innovators') }}{% endblock %}</title>
+    {% block page_style_post %}{% endblock %}
+    {% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+<!-- Display the Flash alerts. -->
+{# Regardless of where these appear visually on the page, they should
+   stay near the top of the HTML so that screen readers announce them
+   first. #}
+
+{% for category, message in get_flashed_messages(with_categories=true) %}
+  {% if category == 'error' %}
+    {% set flashed_message_class = 'm-error' %}
+  {% else %}
+    {% set flashed_message_class = 'm-success' %}
+  {% endif %}
+  <div class="b-alert-message {{flashed_message_class}}">
+    <!-- TODO: This <div> needs to be a <button> for a11y. -->
+    <!-- TODO: Move the JS out of an onclick attribute. -->
+    <div class="material-icons" onclick="$(this).parent().addClass('m-hide')">close</div>
+    <p>{{ message|safe }}</p>
+  </div>
+{% endfor %}
+
+    {% block content %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
+    {% block page_script %}{% endblock %}
+</body>
+</html>

@@ -7,7 +7,7 @@ from app.models import User, SharedMessageEvent, ConnectionEvent
 from .test_models import DbTestCase
 from .util import load_fixture
 
-LOGGED_IN_SENTINEL = '<a href="/me"'
+LOGGED_IN_SENTINEL = '<a href="/logout"'
 
 class ViewTestCase(DbTestCase):
     def create_app(self):

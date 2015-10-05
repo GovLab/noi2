@@ -1,0 +1,165 @@
+.b-onboarding {
+    text-align: center;
+    color: $white;
+    background-color: $blue;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+
+    header { height: 12vh;}
+    section { flex:1; }
+
+
+    .e-onboarding-message {
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        margin: 20px 30px;
+    }
+
+    &.m-signup-confirmation .e-onboarding-message {
+        font-size: 24px;
+        letter-spacing: 0.5px;
+        margin-top: 120px;
+    }
+
+    .e-onboarding-form {
+        padding:  0 30px;
+
+        .b-button {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .b-textfield,
+        .b-dropdown {
+            margin-bottom: 10px;
+        }
+    }
+
+    .e-password-reminder {
+        margin-top: 20px;
+        color: $white;
+        display: inline-block;
+    }
+
+    .e-signup {
+        padding: 20px 30px;
+        margin-bottom: 0;
+        background-color: $gray-20;
+
+        a {
+            color: $white;
+            font-weight: 600;
+            text-decoration: none;
+        }   
+    }
+
+    .e-confirmed {
+        font-size: 48px;
+        margin: 20px 0 0;
+    }
+
+    .e-category-menu {
+        padding: 20px 30px 0;
+
+        .e-category {
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 30px 0;
+            background-color: $white-10;
+            margin: 2px 0;
+            width: calc(50% - 10px);
+            color: $white;
+            font-size: 16px;
+            height: 110px;
+            vertical-align: middle;
+
+        }        
+    }
+
+    .e-signup-progress {
+        height: 7vh;
+
+        span {
+            border-radius: 50%;
+            background-color: $white-50;
+            display: inline-block;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+
+        .m-current {
+            background-color: $white;
+            height: 16px;
+            width: 16px;
+        }
+    }
+}
+.ui-bg { width: 100%; }
+
+.b-onboarding-questions {
+    position: absolute;
+    top: 8vh;
+    left: 7%;
+    width: 82%;
+
+    .e-card {
+        text-align: center;
+        background-color: $white;
+        box-shadow: 3px 3px 10px $gray-30;
+        position: absolute;
+        padding-bottom: 30px;
+
+        .e-card-category {
+            background-color: $orange;
+            margin-top: 0;
+            padding: 6px;
+            color: $white;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 16px;
+        }
+
+        form {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .e-question {
+            font-size: 18px;
+            margin: 30px 20px;
+        }
+
+        .b-button { 
+            margin-bottom: 10px; 
+            color: $white;
+        }
+        
+        .b-button.m-guide { background-color: $purple; }
+        .b-button.m-do { background-color: $teal; }
+        .b-button.m-connect { background-color: $yellow; }
+        .b-button.m-learn { background-color: $orange; }
+        .b-button.m-skip {
+            background-color: transparent;
+            color: $gray-30 !important;
+            box-shadow: none;
+        }
+    }
+
+    .e-card:first-of-type {
+        z-index: 100;
+    }
+
+    .e-card:nth-of-type(2) {
+        z-index: 99;
+        transform: translate(10px, 10px);
+    }
+
+    .e-card:nth-of-type(3) {
+        z-index: 98;
+        transform: translate(20px, 20px);
+    }
+}
