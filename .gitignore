@@ -13,3 +13,4 @@ tmp
 translate.tmp.html
 .webassets-cache
 gen/
+.DS_Store

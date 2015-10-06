@@ -51,15 +51,19 @@ assets.register('main_js', main_js)
 cache = Cache()
 
 LEVELS = {'LEVEL_I_CAN_EXPLAIN': {'score': 2,
+                                  'class': 'm-guide',
                                   'icon': '<i class="fa-fw fa fa-book"></i>',
                                   'label': 'I can explain'},
           'LEVEL_I_CAN_DO_IT': {'score': 5,
+                                'class': 'm-do',
                                 'icon': '<i class="fa-fw fa fa-cogs"></i>',
                                 'label': 'I can do it'},
           'LEVEL_I_CAN_REFER': {'score': 1,
+                                'class': 'm-connect',
                                 'icon': '<i class="fa-fw fa fa-mail-forward"></i>',
                                 'label': 'I can refer you'},
           'LEVEL_I_WANT_TO_LEARN': {'score': -1,
+                                    'class': 'm-learn',
                                     'icon': '<i class="fa-fw fa fa-question"></i>',
                                     'label': 'I want to learn'}}
 
