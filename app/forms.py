@@ -8,13 +8,19 @@ from app.models import User
 from flask import current_app
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed
-from flask_security.forms import ConfirmRegisterForm
+from flask_security.forms import (LoginForm, RegisterForm, ConfirmRegisterForm,
+                                  ForgotPasswordForm, ChangePasswordForm,
+                                  ResetPasswordForm,
+                                  SendConfirmationForm, email_required,
+                                  email_validator, unique_user_email,
+                                  password_required, password_length, EqualTo)
 
 from flask_babel import lazy_gettext
 from wtforms_alchemy import model_form_factory, CountryField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields import SelectMultipleField, TextField, TextAreaField
 from wtforms.widgets import Select
-from wtforms.validators import ValidationError
+from wtforms.validators import ValidationError, Required
 
 import re
 
@@ -61,6 +67,11 @@ def _get_choices(self):
     return choices
 CountryField._get_choices = _get_choices
 
+class RegisterStep2Form(ModelForm):
+    class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
+        model = User
+        only = ['position', 'organization', 'organization_type', 'city',
+                'country']
 
 class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     '''
@@ -69,7 +80,17 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
 
     class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
         model = User
-        exclude = ['password', 'active', 'email', 'picture_id', 'deployment']
+        only = ['first_name', 'last_name', 'position', 'organization',
+                'organization_type', 'city', 'country', 'projects',
+                'has_picture']
+        field_args = {
+            'first_name': {
+                'validators': [Required()]
+            },
+            'last_name': {
+                'validators': [Required()]
+            },
+        }
 
     picture = FileField(
         label=lazy_gettext('User Picture'),
@@ -117,7 +138,57 @@ class SearchForm(Form):
     fulltext = TextField()
 
 
-class EmailRestrictRegisterForm(ConfirmRegisterForm):
+class NOISendConfirmationForm(SendConfirmationForm):
+    '''
+    Localizeable version of Flask-Security's SendConfirmationForm
+    '''
+    submit = SubmitField(lazy_gettext('Resend Confirmation Instructions'))
+
+
+class NOIForgotPasswordForm(ForgotPasswordForm):
+    '''
+    Localizeable version of Flask-Security's ForgotPasswordForm
+    '''
+    submit = SubmitField(lazy_gettext('Recover Password'))
+
+
+class NOILoginForm(LoginForm):
+    '''
+    Localizeable version of Flask-Security's LoginForm
+    '''
+
+    email = StringField(lazy_gettext('Email'))
+    password = PasswordField(lazy_gettext('Password'))
+    remember = BooleanField(lazy_gettext('Remember Me'))
+    submit = SubmitField(lazy_gettext('Log in'))
+
+
+class NOIRegisterForm(RegisterForm):
+    '''
+    Localizeable version of Flask-Security's RegisterForm
+    '''
+
+    # Note that extra fields in this registration form are passed
+    # directly on to the User model as kwargs, so the names need
+    # to match exactly. For more information, see:
+    #
+    # https://pythonhosted.org/Flask-Security/customizing.html
+    first_name = StringField(lazy_gettext('First Name'),
+                             validators=[Required()])
+    last_name = StringField(lazy_gettext('Last Name'),
+                            validators=[Required()])
+
+    email = StringField(
+        lazy_gettext('Email'),
+        validators=[email_required, email_validator, unique_user_email])
+    password = PasswordField(
+        lazy_gettext('Password'), validators=[password_required,
+                                              password_length])
+    password_confirm = None
+    submit = SubmitField(lazy_gettext('Sign up'))
+
+
+class NOIConfirmRegisterForm(ConfirmRegisterForm):
     '''
     Custom registration form that limits emails to a certain domain.
     '''
@@ -143,3 +214,27 @@ class EmailRestrictRegisterForm(ConfirmRegisterForm):
                 {'value': value,
                  'explanation': lazy_gettext(current_app.config.get('EMAIL_EXPLANATION'))}
             ))
+
+
+class NOIResetPasswordForm(ResetPasswordForm):
+    '''
+    Localizeable ResetPasswordForm
+    '''
+
+    submit = SubmitField(lazy_gettext('Reset Password'))
+
+
+class NOIChangePasswordForm(ChangePasswordForm):
+    '''
+    Localizeable ChangePasswordForm
+    '''
+
+    new_password = PasswordField(
+        lazy_gettext('New Password'),
+        validators=[password_required, password_length])
+
+    new_password_confirm = PasswordField(
+        lazy_gettext('Retype Password'),
+        validators=[EqualTo('new_password', message='RETYPE_PASSWORD_MISMATCH')])
+
+    submit = SubmitField(lazy_gettext('Change Password'))

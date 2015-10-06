@@ -26,7 +26,7 @@
     "project_id": {{ config.contact_form_id }},
     "afterSubmit": {
       "method": "page",
-      "html": "<p>{{ gettext('Thanks for submitting our form!') }}</p>"
+      "html": "<p>" + {{ gettext('Thanks for submitting our form!')|tojson }} + "</p>"
     }
   });
 </script>

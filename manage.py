@@ -6,8 +6,9 @@ Scripts to run the server and perform maintenance operations
 
 from app import mail, models, LEVELS, ORG_TYPES
 from app.factory import create_app
-from app.models import db, User, UserSkill
+from app.models import db, User
 from app.utils import csv_reader
+from app.tests.util import load_fixture
 
 from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
 from flask_migrate import Migrate, MigrateCommand
@@ -19,7 +20,6 @@ from random import choice
 from sqlalchemy.exc import IntegrityError, OperationalError
 
 import codecs
-import json
 import os
 import string
 import subprocess
@@ -258,22 +258,9 @@ def populate_db():
     """
     Populate DB from fixture data
     """
-    fixture_data = json.load(open('/noi/fixtures/sample_users.json', 'r'))
-    for i, user_data in enumerate(fixture_data):
-        skills = user_data.pop('skills')
-        user = User(password=encrypt_password('foobar'), active=True, **user_data)
-        for name, level in skills.iteritems():
-            skill = UserSkill(name=name, level=level)
-            user.skills.append(skill)
-            db.session.add(skill)
-        db.session.add(user)
-        try:
-            db.session.commit()
-        except IntegrityError:
-            app.logger.debug("Could not add user %s", user_data['email'])
-            db.session.rollback()
-    return 0
 
+    load_fixture(password=encrypt_password('foobar'))
+    return 0
 
 
 if __name__ == '__main__':

@@ -5,14 +5,16 @@ All views in the app, as a blueprint
 '''
 
 from flask import (Blueprint, render_template, request, flash,
-                   redirect, url_for, current_app)
+                   redirect, url_for, current_app, abort)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app.models import db, User, UserLanguage, UserExpertiseDomain, \
-                       UserSkill, Event, SharedMessageEvent
+from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN
+from app.models import (db, User, UserLanguage, UserExpertiseDomain,
+                        UserSkill, Event, SharedMessageEvent)
 
-from app.forms import UserForm, SearchForm, SharedMessageForm
+from app.forms import (UserForm, SearchForm, SharedMessageForm,
+                       RegisterStep2Form)
 
 from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
@@ -20,9 +22,27 @@ from sqlalchemy.dialects.postgres import array
 from boto.s3.connection import S3Connection
 
 import mimetypes
+import functools
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
+def full_registration_required(func):
+    '''
+    A view decorator that requires both login *and* full completion
+    of the registration process. If the user isn't logged in, they
+    are redirected to login; if they are logged in but not fully
+    registered, they are redirected to complete the registration
+    process.
+    '''
+
+    @functools.wraps(func)
+    @login_required
+    def decorated_view(*args, **kwargs):
+        if not current_user.has_fully_registered:
+            return redirect(url_for('views.register_step_2'))
+        return func(*args, **kwargs)
+
+    return decorated_view
 
 @views.route('/')
 def main_page():
@@ -44,7 +64,7 @@ def about_page():
 
 
 @views.route('/me', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def my_profile():
     '''
     Show user their profile, let them edit it
@@ -90,9 +110,121 @@ def my_profile():
 
         return render_template('my-profile.html', form=form)
 
+def get_area_questionnaire_or_404(areaid):
+    '''
+    Return the questionnaire for the given area ID or raise a 404.
+    '''
+
+    for questionnaire in QUESTIONNAIRES:
+        if questionnaire['id'] == areaid:
+            return questionnaire
+    abort(404)
+
+def render_register_step_3(**kwargs):
+    questions_answered = len(current_user.skills)
+
+    return render_template(
+        'register-step-3.html',
+        user_can_join=questions_answered >= MIN_QUESTIONS_TO_JOIN,
+        questions_left=MIN_QUESTIONS_TO_JOIN - questions_answered,
+        **kwargs
+    )
+
+@views.route('/register/step/3')
+@login_required
+def register_step_3():
+    '''
+    Provide the user with a list of expertise areas to choose from.
+    '''
+
+    return render_register_step_3()
+
+@views.route('/register/step/3/<areaid>')
+@login_required
+def register_step_3_area(areaid):
+    '''
+    Redirect the user to the first unanswered question in the given area.
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    skills = current_user.skill_levels
+    for i in range(len(questionnaire['questions'])):
+        question = questionnaire['questions'][i]
+        if question['id'] not in skills:
+            break
+    return redirect(url_for('views.register_step_3_area_question',
+                            areaid=areaid, questionid=str(i+1)))
+
+@views.route('/register/step/3/<areaid>/<questionid>',
+             methods=['GET', 'POST'])
+@login_required
+def register_step_3_area_question(areaid, questionid):
+    '''
+    Ask the user the given question number in the given area.
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    max_questionid = len(questionnaire['questions'])
+    try:
+        questionid = int(questionid)
+        if questionid < 1 or questionid > max_questionid:
+            raise ValueError
+        question = questionnaire['questions'][questionid - 1]
+        next_questionid = None
+        prev_questionid = None
+        if questionid > 1:
+            prev_questionid = questionid - 1
+        if questionid < max_questionid:
+            next_questionid = questionid + 1
+    except ValueError:
+        abort(404)
+
+    if request.method == 'POST':
+        current_user.set_skill(question['id'], request.form.get('answer'))
+        db.session.add(current_user)
+        db.session.commit()
+        if len(current_user.skills) >= MIN_QUESTIONS_TO_JOIN:
+            current_user.set_fully_registered()
+            db.session.commit()
+        if next_questionid:
+            return redirect(url_for(
+                'views.register_step_3_area_question',
+                areaid=areaid, questionid=next_questionid
+            ))
+        else:
+            return redirect(url_for('views.register_step_3'))
+
+    return render_register_step_3(
+        question=question,
+        areaid=areaid,
+        questionid=questionid,
+        next_questionid=next_questionid,
+        prev_questionid=prev_questionid,
+        max_questionid=max_questionid,
+    )
+
+@views.route('/register/step/2', methods=['GET', 'POST'])
+@login_required
+def register_step_2():
+    '''
+    Let user edit a simplified version of their profile as part
+    of their registration.
+    '''
+
+    form = RegisterStep2Form(obj=current_user)
+    if request.method == 'POST':
+        if form.validate():
+            form.populate_obj(current_user)
+            db.session.add(current_user)
+            db.session.commit()
+            return redirect(url_for('views.register_step_3'))
+        else:
+            flash(gettext(u'Could not save, please correct errors below'))
+
+    return render_template('register-step-2.html', form=form)
 
 @views.route('/my-expertise', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def my_expertise():
     '''
     Allow user to edit their expertise
@@ -120,7 +252,7 @@ def my_expertise():
 
 
 @views.route('/dashboard')
-@login_required
+@full_registration_required
 def dashboard():
     '''
     Dashboard of what's happening on the platform.
@@ -153,7 +285,7 @@ def dashboard():
 
 
 @views.route('/user/<userid>')
-@login_required
+@full_registration_required
 def get_user(userid):
     '''
     Public-facing profile view
@@ -163,7 +295,7 @@ def get_user(userid):
 
 
 @views.route('/search')
-@login_required
+@full_registration_required
 def search():
     '''
     Generic search page
@@ -172,7 +304,8 @@ def search():
     if not form.country.data:
         return render_template('search.html', form=form)
     else:
-        query = User.query_in_deployment()  #pylint: disable=no-member
+        # Add fake rank of 0 for now
+        query = User.query_in_deployment().add_column('0')  #pylint: disable=no-member
 
         if form.country.data and form.country.data != 'ZZ':
             query = query.filter(User.country == form.country.data)
@@ -200,7 +333,7 @@ def search():
 
 
 @views.route('/match')
-@login_required
+@full_registration_required
 def match():
     '''
     Find innovators with answers
@@ -215,7 +348,7 @@ def match():
 
 
 @views.route('/match-knn')
-@login_required
+@full_registration_required
 def knn():
     '''
     Find nearest neighbor (innovators most like you)
@@ -231,19 +364,20 @@ def knn():
 
 
 @views.route('/users/recent')
-@login_required
+@full_registration_required
 def recent_users():
     '''
     Most recent users.
     '''
-    users = User.query_in_deployment().order_by(desc(User.created_at)).limit(10).all()
+    users = User.query_in_deployment().add_column('0').\
+            order_by(desc(User.created_at)).limit(10).all()
     return render_template('search-results.html',
                            **{'title': lazy_gettext('Our most recent members'),
                               'results': users,
                               'query': ''})
 
 @views.route('/activity', methods=['GET', 'POST'])
-@login_required
+@full_registration_required
 def activity():
     '''
     View for the activity feed of recent events.
@@ -267,8 +401,10 @@ def activity():
             return redirect(url_for('views.activity'))
 
     return render_template('activity.html', **{
+        'user': current_user,
         'events': events,
-        'shared_message_form': shared_message_form
+        'shared_message_form': shared_message_form,
+        'most_complete_profiles': User.get_most_complete_profiles(limit=5)
     })
 
 @views.route('/feedback')

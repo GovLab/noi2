@@ -4,14 +4,16 @@ NoI Models
 SQLAlchemy models for the app
 '''
 
-from app import ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS
+from app import (ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS,
+                 QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN)
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_security import UserMixin, RoleMixin
 from flask_babel import lazy_gettext
 
-from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func)
+from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
+                        desc)
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -21,6 +23,7 @@ import datetime
 import os
 
 db = SQLAlchemy()  #pylint: disable=invalid-name
+
 
 class DeploymentMixin(object):
     '''
@@ -147,49 +150,96 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     @property
     def helpful_users(self, limit=10):
         '''
-        Returns a list of users with matching positive skills, ordered by the
-        most helpful (highest score) descending.
+        Returns a list of (user, score) tuples with matching positive skills,
+        ordered by the most helpful (highest score) descending.
         '''
-        learn_level = LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
-        skills_needing_help = [s.name for s in self.skills if s.level == learn_level]
-        user_id_scores = dict(db.session.query(UserSkill.user_id, func.sum(UserSkill.level)).\
-                              filter(UserSkill.name.in_(skills_needing_help)).\
-                              filter(UserSkill.level > learn_level).\
-                              group_by(UserSkill.user_id).\
-                              limit(limit).all())
-        users = db.session.query(User).\
-                filter(User.id.in_(user_id_scores.keys())).all()
-        for user in users:
-            user.score = user_id_scores[user.id]
-        return sorted(users, key=lambda x: x.score, reverse=True)
+        my_skills = aliased(UserSkill, name='my_skills', adapt_on_names=True)
+        their_skills = aliased(UserSkill, name='their_skills', adapt_on_names=True)
+
+        return User.query_in_deployment().\
+                add_column(func.sum(their_skills.level - my_skills.level)).\
+                filter(their_skills.user_id != my_skills.user_id).\
+                filter(User.id == their_skills.user_id).\
+                filter(their_skills.name == my_skills.name).\
+                filter(my_skills.user_id == self.id).\
+                filter(my_skills.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']).\
+                group_by(User).\
+                order_by(desc(func.sum(their_skills.level - my_skills.level))).\
+                limit(limit)
 
     @property
     def nearest_neighbors(self, limit=10):
         '''
-        Returns a list of users with the closest matching skills.  If they
-        haven't answered the equivalent skill question, we consider that a very
-        big difference (10).
+        Returns a list of (user, score) tuples with the closest matching
+        skills.  If they haven't answered the equivalent skill question, we
+        consider that a very big difference (12).
+
+        Order is closest to least close, which is an ascending score.
         '''
-        # TODO optimize, this would get unwieldy with a few thousand answers
-        # TODO use outerjoin, right now the coalesce does nothing
+        my_skills = aliased(UserSkill, name='my_skills', adapt_on_names=True)
+        their_skills = aliased(UserSkill, name='their_skills', adapt_on_names=True)
 
-        #skills = [s.name for s in self.skills]
+        # difference we assume for user that has not answered question
+        unanswered_difference = (LEVELS['LEVEL_I_CAN_DO_IT']['score'] -
+                                 LEVELS['LEVEL_I_WANT_TO_LEARN']['score']) * 2
 
-        me = aliased(UserSkill)
-        user_id_scores = dict(db.session.query(
-            UserSkill.user_id, func.sum(func.coalesce(UserSkill.level, 10) - me.level)).\
-            filter(UserSkill.user_id != self.id).\
-            filter(me.user_id == self.id).\
-            filter(UserSkill.name.in_([me.name, None])).\
-            group_by(UserSkill.user_id).\
-            limit(limit).all())
+        return User.query_in_deployment().\
+                add_column(((len(self.skills) - func.count(func.distinct(their_skills.id))) *
+                            unanswered_difference) + \
+                       func.sum(func.abs(their_skills.level - my_skills.level))).\
+                filter(their_skills.user_id != my_skills.user_id).\
+                filter(User.id == their_skills.user_id).\
+                filter(their_skills.name == my_skills.name).\
+                filter(my_skills.user_id == self.id).\
+                group_by(User).\
+                order_by(((len(self.skills) - func.count(func.distinct(their_skills.id)))
+                          * unanswered_difference) + \
+                     func.sum(func.abs(their_skills.level - my_skills.level))).\
+                limit(limit)
 
-        users = db.session.query(User).\
-                filter(User.id.in_(user_id_scores.keys())).all()
-        for user in users:
-            user.score = user_id_scores[user.id]
-        return sorted(users, key=lambda x: x.score)
+    @property
+    def has_fully_registered(self):
+        '''
+        Returns whether the user has fully completed the registration/signup
+        flow.
+        '''
 
+        return db.session.query(UserJoinedEvent).\
+               filter_by(user_id=self.id).\
+               first() is not None
+
+    def set_fully_registered(self):
+        '''
+        Marks the user as having fully completed the registration/signup
+        flow, if they haven't already.
+        '''
+
+        if self.has_fully_registered:
+            return
+        db.session.add(UserJoinedEvent.from_user(self))
+
+    @property
+    def questionnaire_progress(self):
+        '''
+        Return a dictionary mapping top-level skill area IDs (e.g.,
+        'opendata', 'prizes') to information about how many questions
+        the user has answered in that skill area.
+        '''
+
+        skill_levels = self.skill_levels
+        progress = {}
+        for questionnaire in QUESTIONNAIRES:
+            topic_progress = {
+                'answered': 0,
+                'total': 0
+            }
+            progress[questionnaire['id']] = topic_progress
+            for topic in questionnaire.get('topics', []):
+                for question in topic['questions']:
+                    topic_progress['total'] += 1
+                    if question['id'] in skill_levels:
+                        topic_progress['answered'] += 1
+        return progress
 
     @property
     def skill_levels(self):
@@ -197,6 +247,17 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         Dictionary of this user's entered skills, keyed by the id of the skill.
         '''
         return dict([(skill.name, skill.level) for skill in self.skills])
+
+    @property
+    def connections(self):
+        '''
+        Count the number of unique recipients for emails from this user.
+        '''
+        sent = db.session.query(func.count(func.distinct(Email.to_user_id))).\
+                filter(Email.from_user_id == self.id).first()[0]
+        received = db.session.query(func.count(func.distinct(Email.from_user_id))).\
+                filter(Email.to_user_id == self.id).first()[0]
+        return sent + received
 
     def set_skill(self, skill_name, skill_level):
         '''
@@ -218,12 +279,32 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                                  name=skill_name,
                                  level=skill_level))
 
+    def email_connect(self, users):
+        '''
+        Indicate that this user has opened an email window with this list of
+        users as recipients.
+        '''
+        for user in users:
+            db.session.add(Email(from_user_id=self.id, to_user_id=user.id))
+
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
 
     expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan')
     languages = orm.relationship('UserLanguage', cascade='all,delete-orphan')
     skills = orm.relationship('UserSkill', cascade='all,delete-orphan')
+
+    @classmethod
+    def get_most_complete_profiles(cls, limit=10):
+        '''
+        Obtain a list of most complete profiles, as (User, score) tuples.
+        '''
+        return User.query_in_deployment().\
+                add_column(func.count(UserSkill.id)).\
+                filter(User.id == UserSkill.user_id).\
+                group_by(User).\
+                order_by(func.count(UserSkill.id).desc()).\
+                limit(limit)
 
     @hybrid_property
     def expertise_domain_names(self):
@@ -355,6 +436,22 @@ class UserSkill(db.Model): #pylint: disable=no-init,too-few-public-methods
 
     __table_args__ = (UniqueConstraint('user_id', 'name'),)
 
+
+class Email(db.Model): #pylint: disable=no-init,too-few-public-methods
+    '''
+    An email sent from one user to another.
+    '''
+    __tablename__ = 'email'
+
+    id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
+    created_at = Column(types.DateTime(), default=datetime.datetime.now)
+    updated_at = Column(types.DateTime(), default=datetime.datetime.now,
+                        onupdate=datetime.datetime.now)
+
+    from_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+    to_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+
+
 class Event(db.Model, DeploymentMixin):
     '''
     An event that shows up in the activity feed for a deployment.
@@ -371,6 +468,7 @@ class Event(db.Model, DeploymentMixin):
         'polymorphic_identity': 'event',
         'polymorphic_on': type
     }
+
 
 class UserEvent(Event):
     '''
@@ -390,6 +488,15 @@ class UserEvent(Event):
     @classmethod
     def from_user(cls, user, **kwargs):
         return cls(user_id=user.id, deployment=user.deployment, **kwargs)
+
+class UserJoinedEvent(UserEvent):
+    '''
+    A user completed the registration process and joined the network.
+    '''
+
+    __mapper_args__ = {
+        'polymorphic_identity': 'user_joined_event'
+    }
 
 class SharedMessageEvent(UserEvent):
     '''

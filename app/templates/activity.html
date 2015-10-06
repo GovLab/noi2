@@ -11,6 +11,27 @@
 <button type="submit">{{ gettext('Post') }}</button>
 </form>
 
+<h3>My Profile Progress</h3>
+
+<ul>
+  {% set q_progress = user.questionnaire_progress %}
+  {% for questionnaire in QUESTIONNAIRES %}
+    {% set item_progress = q_progress[questionnaire.id] %}
+    {% if item_progress.answered > 0 %}
+      <li>{{ questionnaire.name }}
+	<progress value="{{ item_progress.answered }}"
+		  max="{{ item_progress.total }}"></progress>
+	{% if item_progress.answered == item_progress.total %}
+	  &#x2713; {# A unicode check mark. #}
+	{% endif %}
+      </li>
+    {% else %}
+      <li class="text-muted">{{ questionnaire.name }}</li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<a href="{{ url_for('views.my_profile') }}">View / Edit My Profile</a>
+
 <h2>Activity</h2>
 
 {% macro user_link(user) -%}
@@ -25,11 +46,27 @@
     <p>{{ user_link(event.user) }} shared:</p>
 
     {{ event.message }}
+  {% elif event.type == 'user_joined_event' %}
+    <p>{{ user_link(event.user) }} joined NOI.</p>
   {% else %}
     UNKNOWN EVENT TYPE: {{ event.type }}
   {% endif %}
   </li>
 {% endfor %}
 </ul>
+
+<h3>Most Complete Profiles</h3>
+
+<ol>
+  {% for user, score in most_complete_profiles %}
+    <li>
+      <p>{{ user_link(user) }}</p>
+      <small>
+        {{ score }} /
+        {{ QUESTIONS_BY_ID.keys()|length }} Skills
+      </small>
+    </li>
+  {% endfor %}
+</ol>
 
 {% endblock %}

@@ -144,6 +144,10 @@ nhs.networkofinnovators.org:
   searches:
     - _default
 
+ogp.networkofinnovators.org:
+  locale: es_MX
+  searches:
+
 test-mexico:
   locale: es_MX
   searches:
