@@ -83,12 +83,20 @@
             font-size: 22px;
             letter-spacing: 1px;
         }
-        p { color: currentColor; }
+        p { 
+            color: currentColor; 
+            font-size: 18px;
+        }
 
         textarea {
             height: 20vh;
             background-color: $white-10;
             margin-bottom: 10px;
+
+            &::-webkit-input-placeholder { color: $white-70; }
+            &:-moz-placeholder { color: $white-70; } /* Firefox 18- */
+            &::-moz-placeholder { color: $white-70; }  /* Firefox 19+ */
+            &:-ms-input-placeholder { color: $white-70; }
         }
 
         .b-button { 
