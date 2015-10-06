@@ -1,4 +1,4 @@
-{% extends "__base__.html" %}
+{% extends "__base_new__.html" %}
 
 {% block title %}
   {{ gettext('My Expertise') }}
@@ -9,63 +9,63 @@
 
 {% block content %}
 
-<h1>{{ gettext('Almost There!') }}</h1>
-
-<p>{{ gettext("Pick an innovation area that you're interested in:") }}</p>
-
-<ul>
-  {% for questionnaire in QUESTIONNAIRES %}
-    {% if questionnaire.questions %}
-      <li><a href="{{ url_for('views.register_step_3_area', areaid=questionnaire.id) }}">{{ questionnaire.name }}</a></li>
-    {% endif %}
-  {% endfor %}
-</ul>
-
-{% if question %}
-
-<h2>{{ question.questionnaire.name }}</h2>
-
-<p>{{ gettext("Now tell us about your knowledge level in this area to join the network and get matched with other innovators.") }}</p>
-
-<form method="post">
-<input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
-
-<div class="text-center">
-{% if prev_questionid %}
-  <div>
-    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=prev_questionid) }}">&lt;</a>
-  </div>
-{% endif %}
-  <strong>{{ question.question }}</strong>
-{% if next_questionid %}
-  <div>
-    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=next_questionid) }}">{{ gettext('Skip this question') }}</a>
-  </div>
-{% endif %}
-
-  <div>
-  {% for k, v in LEVELS|dictsort %}
-    <button type="submit" name="answer" value="{{ v.score }}">
-      {{ v.label }}
-    </button>
-  {% endfor %}
-  </div>
-
-  <div class="text-muted">
-    {{ questionid }} / {{ max_questionid }}
-  </div>
+{% if not question %}
+<div class="b-onboarding m-signup-first-category">
+    <section>
+        <div class="e-confirmed material-icons">check</div>
+        <p class="e-onboarding-message">{{ gettext("Pick an innovation area that you're interested in:") }}</p>
+	<div class="e-category-menu">
+            {% for questionnaire in QUESTIONNAIRES %}
+                {% if questionnaire.questions %}
+                    <a href="{{ url_for('views.register_step_3_area', areaid=questionnaire.id) }}" class="e-category">{{ questionnaire.name }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    <footer>
+        <div class="e-signup-progress">
+            <span></span>
+            <span></span>
+            <span class="m-current"></span>
+        </div>
+    </footer>
 </div>
 
-</form>
-
-{% endif %}
-
-<div class="text-center">
-{% if user_can_join %}
-  <a href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a>
 {% else %}
-  {{ gettext("You must answer at least %d more question(s) to join." % questions_left) }}
+
+<div class="b-onboarding-questions">
+    <div class="e-card">
+        <h3 class="e-card-category">{{ question.questionnaire.name }} {{ questionid }}</h3>
+	<p class="e-question">{{ question.question }}</p>
+
+	<form method="post">
+	    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+            {% for k, v in LEVELS|dictsort %}
+	        <button type="submit" name="answer" value="{{ v.score }}" class="b-button {{ v.class }}">
+                    {{ v.label }}
+                </button>
+            {% endfor %}
+
+{% if next_questionid %}
+    <a href="{{ url_for('views.register_step_3_area_question', areaid=areaid, questionid=next_questionid) }}" class="b-button m-skip">{{ gettext('Skip this question') }}</a>
 {% endif %}
+
+<a href="{{ url_for('views.register_step_3') }}" class="b-button m-skip">{{ gettext('Choose another area') }}</a>
+
+		<div>
+		    <br>
+		    {% if user_can_join %}
+		        <a href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a>
+		    {% else %}
+			{{ gettext("You must answer at least %d more question(s) to join." % questions_left) }}
+		    {% endif %}
+		</div>
+
+	</form>
+
+    </div>
 </div>
+
+{% endif %}
 
 {% endblock %}
