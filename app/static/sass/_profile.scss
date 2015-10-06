@@ -1,64 +1,115 @@
-.b-profile-summary {
-    position: fixed;
-    right: 100%;
-    height: 100vh;
-    top: 0;
-}
-
-.b-profile-summary.m-active {
-    width: 70%;
-    background-color: $gray-80-matte;
-    right: 0;
-    box-shadow: 0 0 15px $gray-30;
-    text-align: center;
-    text-transform: uppercase;
+.b-profile-header {
+    display: flex;
+    position: relative;
     color: $white;
-    font-size: 20px;
-    padding: 20px;
-    letter-spacing: .6px;
-
-
-    .e-user-picture {
-        width: 120px;
-        margin: 0 auto;
-        border-radius: 50%;
-        box-shadow:  0 0 5px $gray-30;
+    overflow: hidden;
+    
+    .e-bg {
+        position: absolute;
+        z-index: -1;
+        top: -30px;
+        right: -30px;
+        left: -30px;
+        bottom: -30px;
+        background-size: cover;
+        background-position: center center;
+        -webkit-filter: blur(20px) brightness(70%);
+        -moz-filter: blur(20px) brightness(70%);
+        -o-filter: blur(20px) brightness(70%);
+        -ms-filter: blur(20px) brightness(70%);
+        filter: blur(20px) brightness(70%);
     }
 
-    .e-name {
-        font-weight: 400;    
-        color: $white-70;
-        font-size: 18px;
-    }
+    .e-left {
+        flex: 2;
+        text-align: center;
+        filter: blur(20px);
+        padding: 20px 10px;
 
-    .e-edit-profile { color: $white; }
-
-    .e-menu {
-        margin: 50px 0 80px;
-
-        a {
-            display: block;
-            padding: 10px 0;
-            color: $white;
-
-            &:hover {
-                background-color: $white-20;
-            }
+        .e-picture {
+            width: 100%;
+            @include circle;
         }
 
-
+        .e-edit {
+            margin: 20px;
+        }
     }
 
-    .e-govlab-logo {
-        background-image: url("../img/govlab-logo-white.png");
-        background-repeat: no-repeat;
-        background-position: center bottom;
-        background-size: contain;
-        height: 40px;
-        opacity: .2;
+    .e-right {
+        flex: 3;
+        padding: 30px 10px 10px;
 
+        .e-name {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            margin: 0 0 5px 0;
+        }
 
+        .e-job {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-weight: 400;
+            margin: 0 0 20px 0;
+        }
+
+        .e-info {
+            padding: 0;
+
+            > li {
+                list-style: none;
+                padding-left: 36px;
+                margin: 12px 0;
+
+                > span {
+                    display: inline-block;
+                    margin-left: -36px;
+                    margin-right: 12px;
+                    vertical-align: -6px;
+                    opacity: .5;
+                }
+            }
+        }
+    }
+}
+
+.b-profile-questionnaire {
+    padding: 30px 0;
+    width: 100vw;
+    overflow-x: scroll;
+
+    .e-questions-container {
+        white-space: nowrap;
+        width: auto;
     }
 
+    .e-question {
+        width: 100vw;
+        white-space: normal;
+        display: inline-block;
+    }
+
+    .e-prev,
+    .e-next {
+        color: $gray-10;
+        font-size: 42px;
+        margin-top: 3px;
+    }
+
+    .e-prev { float: left; } 
+    .e-next { float: right; }
+
+    .e-question-text {
+        font-size: 22px;
+        text-align: center;
+        margin: 0 30px 40px;
+        padding: 0 20px;
+    }
+
+    .e-questionnaire-answers {
+        padding: 0 20px;   
+    }
 
 }

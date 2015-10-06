@@ -56,14 +56,32 @@
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
-    box-shadow: 0 0 3px $gray-10;
+    box-shadow: 0 0 5px $gray-10;
 
-    @include breakpoint($mobile) { 
-        display: block;
-    }   
+    @include breakpoint($mobile) { display: block; }   
 }
 
 .b-button.m-naked {
+    background-color: transparent;
+    color: $gray-30 !important;
+    box-shadow: none;
+}
+
+// Button variations for the questionnaires
+
+.b-button.m-explain,
+.b-button.m-do,
+.b-button.m-connect,
+.b-button.m-learn {
+    color: $white;
+    margin-bottom: 10px;
+}
+
+.b-button.m-explain { background-color: $purple; }
+.b-button.m-do { background-color: $teal; }
+.b-button.m-connect { background-color: $yellow; }
+.b-button.m-learn { background-color: $orange; }
+.b-button.m-skip {
     background-color: transparent;
     color: $gray-30 !important;
     box-shadow: none;

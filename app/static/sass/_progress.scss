@@ -9,7 +9,6 @@
         list-style: none;
         position: relative;
 
-
         a { 
             padding: 15px 20px;
             display: block;
@@ -19,7 +18,7 @@
                 font-family: 'Material Icons';
                 font-style: normal;
                 font-weight: 400;
-                content: '\E5C8';
+                content: '\E5C8'; // Arrow Icon
                 font-size: 24px;
                 position: absolute;
                 right: 10px;
@@ -39,6 +38,9 @@
         }
     
     &:not([data-questions-left='0']) {
+        background-color: $blue-20;
+
+        a:after { color: $blue; }
 
         .e-bar {
             position: absolute;
@@ -65,6 +67,13 @@
         } 
     }
     
-    }    
+    &:not([data-questions-left]) { 
+        background-color: $white; 
+        color: inherit;
+
+        a:after { color: $gray-20; }
+    }
+    
+    }
 }
 
