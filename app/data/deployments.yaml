@@ -151,3 +151,21 @@ ogp.networkofinnovators.org:
 test-mexico:
   locale: es_MX
   searches:
+
+usg.networkofinnovators.org:
+  questions:
+    - prizes
+    - datascience
+    - opendata
+    - crowdsourcing
+    - communityengagement
+    - citizenscience
+  about: >
+    <h3>What is the Network of Innovators (NoI)?</h3>
+    <p>NoI makes know-how about innovative ways of making decisions and solving problems more searchable. Covering topics such as prize-backed challenges, open data, and crowdsourcing, the platform makes it easy to assess your own knowledge and get matched to those with complementary or similar expertise to enable learning and mutual support.</p>
+    <p>NoI adopts a more nuanced method for sharing and finding expertise – one that looks beyond traditional credentials to focus on real world know-how. Underlying NoI are two key hypotheses: Expert networking is an effective tool to accelerate the adoption of governance innovations and an expert finding tool can reduce institutional barriers to accessing knowledge and expertise when it is most needed.</p>
+    <p>This is an experiment. We want to understand whether the approach works, how people use such a tool, and how they might want to use it in the future. </p>
+    <p>Why the NoI? There is possibly no more important public issue today than how to evolve our governing organizations to make them better able to recognize and implement innovative and effective ways of solving 21st century problems. Administration that is supposed to solve critical problems on its own — an outgrowth of the professionalization of public life in the industrial age — is inadequate for a complex, networked world. Governments and institutions need to learn to make use of the full gamut of expertise — formal scientific knowledge and credentials, but also skills, experiences and craft know-how — to tackle the challenges society will face in the coming years. The next step in the process of improving the ways we solve public problems is to create the “conversational infrastructure” for matching human capital to opportunities where know-how can be applied to tackle hard problems.</p>
+    <p>Please share your suggestions through the Feedback tab or email us at <a href="mailto:noi@thegovlab.org">noi@thegovlab.org</a> with your suggestions.</p>
+    <h3>Information Collection Statement</h3>
+    <p>All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact <a href="mailto:info@thegovlab.org">info@thegovlab.org</a>.</p>
