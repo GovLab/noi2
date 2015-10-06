@@ -227,7 +227,11 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.config['DOMAINS'] = this_deployment.get('domains',
                                                 default_deployment['domains'])
 
+    app.config['CONTACT_FORM_ID'] = this_deployment.get('contact_form_id',
+                                                default_deployment['contact_form_id'])
+
     # Constant that should be available for all templates.
+
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
