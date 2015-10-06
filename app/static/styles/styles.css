@@ -194,16 +194,16 @@
     margin-top: 30px; }
 
 @media (max-width: 960px) {
-  body.homepage .bg {
+  .sa-networkofinnovators-org body.homepage .bg {
     background-image: url("../img/homepage-bg-mobile-australia.jpg"); }
 
-  .nhs-networkofinnovators-org body.homepage .bg {
+  body.homepage .bg {
     background-image: url("../img/homepage-bg-mobile-nhs.jpg"); } }
 @media (min-width: 992px) {
-  body.homepage .bg {
+  .sa-networkofinnovators-org body.homepage .bg {
     background-image: url("../img/homepage-bg-australia.jpg"); }
 
-  .nhs-networkofinnovators-org body.homepage .bg {
+  body.homepage .bg {
     background-image: url("../img/homepage-bg-nhs.jpg"); } }
 
 /*# sourceMappingURL=styles.css.map */
