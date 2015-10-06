@@ -10,7 +10,7 @@ from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security,
-                 babel, celery, alchemydumps,
+                 babel, celery, alchemydumps, sass,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
 from app.config.schedule import CELERYBEAT_SCHEDULE
 from app.forms import (NOIConfirmRegisterForm, NOIForgotPasswordForm,
@@ -305,8 +305,9 @@ def create_app(config=None): #pylint: disable=too-many-statements,too-many-branc
         db.session.add(user)
         db.session.commit()
 
-    return app
+    sass.init_app(app)
 
+    return app
 
 def create_celery(app=None):
     '''

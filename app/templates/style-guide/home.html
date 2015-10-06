@@ -1,0 +1,26 @@
+{% extends "style-guide/base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <div class="b-onboarding m-login">
+        <header>
+            <div class="b-logo">NOI</div>
+            
+        </header>
+        
+        <section>
+            <p class="e-onboarding-message">Log in with your email address</p>
+            <form action="" class="e-onboarding-form">
+                <input class="b-textfield" type="email" placeholder="Email">
+                <input class="b-textfield" type="password" placeholder="Password">
+                <input class="b-button" type="submit" value="Log in">
+
+                <div class="b-checkbox"><input id="remember-me" type="checkbox" name="remember-me"><label for="remember-me">Remember Me</label></div>
+            </form>
+        </section>
+        
+        <footer>
+            <a class="e-password-reminder" href="#">Forgot your password?</a>
+            <p class="e-signup">Don't have an account? <a href="./signup.html">Sign up</a></p>
+        </footer>
+    </div>
+{% endblock %}

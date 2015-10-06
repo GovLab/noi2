@@ -1,0 +1,74 @@
+$gray-05: rgba(0,0,0,0.05);
+$gray-10: rgba(0,0,0,0.1);
+$gray-20: rgba(0,0,0,0.2);
+$gray-30: rgba(0,0,0,0.3);
+$gray-40: rgba(0,0,0,0.4);
+$gray-50: rgba(0,0,0,0.5);
+$gray-60: rgba(0,0,0,0.6);
+$gray-70: rgba(0,0,0,0.7);
+$gray-80: rgba(0,0,0,0.8);
+$gray-90: rgba(0,0,0,0.9);
+
+$gray-80-matte: #333;
+
+$white-10: rgba(255, 255, 255, 0.1);
+$white-20: rgba(255, 255, 255, 0.2);
+$white-30: rgba(255, 255, 255, 0.3);
+$white-40: rgba(255, 255, 255, 0.4);
+$white-50: rgba(255, 255, 255, 0.5);
+$white-60: rgba(255, 255, 255, 0.6);
+$white-70: rgba(255, 255, 255, 0.7);
+$white-80: rgba(255, 255, 255, 0.8);
+$white-90: rgba(255, 255, 255, 0.9);
+$white: rgba(255, 255, 255, 1);
+
+$teal: rgba(0,135,147, 1);
+$blue: rgba(4,138,179, 1);
+$purple: rgba(82,48,128, 1);
+$yellow: rgba(217,181,73, 1);
+$orange: rgba(237,92,66, 1);
+$red: rgba(157,56,56,1);
+$green: rgba(73,127,73,1);
+
+
+// Typography
+$main-font: 'proxima-nova', sans-serif;
+
+// Breakpoints
+$desktop: 1080px;
+$tablet: max-width 1079px;
+$mobile: max-width 600px;
+
+// Mixins
+
+
+
+
+
+* { box-sizing: border-box; }
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+@import 'breakpoint';
+
+// Modules
+@import 'base';
+@import 'bootstrap-type';
+@import 'components';
+@import 'nav';
+@import 'profile';
+@import 'alert-messages';
+@import 'footer-message';
+@import 'a11y';
+
+// Pages
+@import 'onboarding';
+@import 'activity';
+@import 'profile-progress';
+
+
+
+

@@ -29,18 +29,3 @@
   {% endif %}
 </div>
 {% endblock %}
-
-
-{% block page_script %}
-<script>
-// The user asked to be logged out; we log him/her out.
-var idp = $.querystring(window.location.search)['logout'];
-if (idp) {
-    hello(idp).logout({force:true}).then(function() {
-    alert('Signed out from ' + idp);
-}, function(e) {
-    alert('Signed out error: ' + e.error.message);
-});
-};
-</script>
-{% endblock %}

@@ -1,0 +1,72 @@
+.b-profile-progress {
+    .e-progress-container {
+        margin: 0;
+        padding: 0;
+    }
+    .e-progress-item {
+        list-style: none;
+        position: relative;
+
+
+        a { 
+            padding: 15px 20px;
+            display: block;
+
+            &:nth-of-type(even) {
+                background-color: $gray-05;
+            }
+
+            &:after {
+                color: $gray-20;
+                font-family: 'Material Icons';
+                font-style: normal;
+                font-weight: 400;
+                content: '\E5C8';
+                font-size: 24px;
+                position: absolute;
+                right: 10px;
+            }
+        }
+
+        .e-questions-left {
+            position: absolute;
+            right: 46px;
+            font-size: 14px;
+            font-style: italic;
+            color: $gray-40;
+            padding: 17px 0;
+            top: 0;
+        }
+    
+    
+
+    &[data-questions-left="0"] {
+        color: $white;
+
+        .e-bar {
+            background-color: $green !important;
+            width: 100%;
+        }
+
+        .e-questions-left { display: none; }
+
+        a:after { content: '\E876'; } // Checkmark Icon
+
+    }
+        
+    &:not([data-progress='0']) {
+        
+        .e-bar {
+            position: absolute;
+            background-color: $blue;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+    }
+
+    
+    }    
+}
+

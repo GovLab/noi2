@@ -1,0 +1,94 @@
+// Textfields
+
+.b-textfield {
+    padding: 15px;
+    background-color: $white-20;
+    border: 0;
+    width: 100%;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: $white;
+    transition: all 0.4s ease;
+
+
+    &:focus { 
+        outline: none;
+        background-color: $white;
+        transition: all 0.4s ease;
+        color: $gray-80;
+    }
+
+    box-shadow: inset 0 0 3px $gray-10;
+
+    @include breakpoint($mobile) { display: block; }
+}
+
+.b-textfield::-webkit-input-placeholder { color: $white; }
+.b-textfield:-moz-placeholder { color: $white; } 
+.b-textfield::-moz-placeholder { color: $white; } 
+.b-textfield:-ms-input-placeholder { color: $white; }
+
+.b-textfield:focus::-webkit-input-placeholder { color: $gray-80; }
+.b-textfield:focus:-moz-placeholder { color: $gray-80; } 
+.b-textfield:focus::-moz-placeholder { color: $gray-80; } 
+.b-textfield:focus:-ms-input-placeholder { color: $gray-80; }
+
+.b-textfield.m-invalid::-webkit-input-placeholder { color: $red; }
+.b-textfield.m-invalid:-moz-placeholder { color: $red; }
+.b-textfield.m-invalid::-moz-placeholder { color: $red; }
+.b-textfield.m-invalid:-ms-input-placeholder { color: $red; }
+
+.b-textfield.m-valid::-webkit-input-placeholder { color: $green; }
+.b-textfield.m-valid:-moz-placeholder { color: $green; }
+.b-textfield.m-valid::-moz-placeholder { color: $green; }
+.b-textfield.m-valid:-ms-input-placeholder { color: $green; }
+
+.b-textfield.m-invalid,
+.b-textfield.m-valid { background-color: $white-80; }
+
+// Buttons
+
+.b-button {
+    width: 100%;
+    padding: 16px;
+    background-color: $gray-20;
+    border: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 0 3px $gray-10;
+
+    @include breakpoint($mobile) { 
+        display: block;
+    }   
+}
+
+.b-button.m-naked {
+    background-color: transparent;
+    color: $gray-30 !important;
+    box-shadow: none;
+}
+
+.b-checkbox {
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    
+    input[type="checkbox"] { margin-right: 10px; }
+}
+
+.b-dropdown {
+    padding: 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: $white-20;
+    border: 0;
+    width: 100%;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: $white;
+    position: relative;
+    border-radius: 0;
+    box-shadow: inset 0 0 3px $gray-10;
+}

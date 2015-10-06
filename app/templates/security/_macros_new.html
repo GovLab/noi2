@@ -1,0 +1,20 @@
+{% macro render_field_with_errors(field) %}
+  {{ field.label(class="sr-only") }}
+  {% if field.type in ["SelectField", "CountryField"] %}
+    {% set field_class = "b-dropdown" %}
+  {% else %}
+    {% set field_class = "b-textfield" %}
+  {% endif %}
+  {{ field(class=field_class, placeholder=field.label.text, **kwargs)|safe }}
+  {% if field.errors %}
+    <ul class="list-unstyled">
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+
+{% macro render_field(field) %}
+  <p>{{ field(**kwargs)|safe }}</p>
+{% endmacro %}

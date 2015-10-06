@@ -41,7 +41,7 @@ main_css = Bundle('css/vendor/bootstrap.css',
                   output='gen/main_packed.%(version)s.css')
 assets.register('main_css', main_css)
 
-main_js = Bundle('js/plugins.js',
+main_js = Bundle('js/main.js',
                  #filters='jsmin',
                  output='gen/main_packed.%(version)s.js')
 assets.register('main_js', main_js)

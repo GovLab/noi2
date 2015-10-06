@@ -1,13 +1,13 @@
-from flask.ext.testing import TestCase
-
 from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN
 from app.factory import create_app
-from app.views import get_area_questionnaire_or_404
-from app.models import User, SharedMessageEvent
+from app.views import (get_area_questionnaire_or_404,
+                       get_best_registration_step_url)
+from app.models import User, SharedMessageEvent, ConnectionEvent
 
 from .test_models import DbTestCase
+from .util import load_fixture
 
-LOGGED_IN_SENTINEL = '<a href="/me"'
+LOGGED_IN_SENTINEL = '<a href="/logout"'
 
 class ViewTestCase(DbTestCase):
     def create_app(self):
@@ -71,6 +71,22 @@ class MultiStepRegistrationTests(ViewTestCase):
     def setUp(self):
         super(MultiStepRegistrationTests, self).setUp()
         self.login(fully_register=False)
+
+    def _get_best_step_url(self):
+        return get_best_registration_step_url(self.last_created_user)
+
+    def test_best_registration_step_is_2_by_default(self):
+        self.assertEqual(self._get_best_step_url(), '/register/step/2')
+
+    def test_best_registration_step_is_3_if_org_is_filled(self):
+        self.last_created_user.organization = 'foo'
+        self.assertEqual(self._get_best_step_url(), '/register/step/3')
+
+    def test_best_registration_step_is_3_if_skills_exist(self):
+        self.client.post('/register/step/3/opendata/1', data={
+            'answer': '-1'
+        })
+        self.assertEqual(self._get_best_step_url(), '/register/step/3')
 
     def test_step_2_is_ok(self):
         res = self.client.get('/register/step/2')
@@ -171,6 +187,20 @@ class ActivityFeedTests(ViewTestCase):
         assert 'Message posted' in res.data
         assert 'hello there' in res.data
 
+    def test_email_connection_is_activity(self):
+        load_fixture()
+        self.login()
+        res = self.client.post('/email', data={
+            'emails[]': ['sly@stone.com', 'paul@lennon.com']
+        })
+        self.assertEquals(res.status, '204 NO CONTENT')
+        self.assertEqual(ConnectionEvent.query_in_deployment().count(), 1)
+
+        res = self.client.get('/activity')
+        self.assert200(res)
+        assert '2 new connections made in NOI' in res.data
+        assert '2 connections' in res.data
+
     def test_activity_is_ok(self):
         self.login()
         self.assert200(self.client.get('/activity'))
@@ -266,10 +296,6 @@ class ViewTests(ViewTestCase):
         self.login()
         self.assert404(self.client.get('/user/1234'))
 
-    def test_dashboard_is_ok(self):
-        self.login()
-        self.assert200(self.client.get('/dashboard'))
-
     def test_search_is_ok(self):
         self.login()
         res = self.client.get('/search')
@@ -289,3 +315,14 @@ class ViewTests(ViewTestCase):
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
                              '/login?next=%2Fuser%2F1234')
+
+    def test_email(self):
+        load_fixture()
+        self.login()
+        res = self.client.post('/email', data={
+            'emails[]': ['sly@stone.com', 'paul@lennon.com']
+        })
+        self.assertEquals(res.status, '204 NO CONTENT')
+        user = User.query_in_deployment()\
+                 .filter(User.email=='test@example.org').one()
+        self.assertEquals(2, user.connections)

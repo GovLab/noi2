@@ -1,0 +1,59 @@
+.b-navigation {
+    background-color: $blue;
+
+    .e-top-bar {
+        display: flex;
+        padding: 0 10px;
+        background-color: $gray-20;
+        align-items: center;
+
+        .e-logo {
+            font-size: 16px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: $white;
+            flex: 1;
+            letter-spacing: 1px;
+        }
+
+        .e-user-utils {
+            padding: 10px 0;
+        }
+
+        .e-post {
+            color: $white;
+            padding: 10px;
+            opacity: .6;
+            vertical-align: top;
+        }
+
+        .e-user-picture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    }
+
+    .e-main-nav {
+        display: flex;
+
+        .e-nav-item {
+            flex: 1;
+            color: $white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .e-nav-item:hover {
+            background-color: $gray-10;
+        }
+
+        .material-icons { 
+            font-size: 30px; 
+            display: block;
+            margin-bottom: 6px;
+            opacity: .4;
+        }
+    }
+}

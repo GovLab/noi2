@@ -4,7 +4,7 @@ NoI manage.py
 Scripts to run the server and perform maintenance operations
 '''
 
-from app import mail, models, LEVELS, ORG_TYPES
+from app import mail, models, sass, LEVELS, ORG_TYPES
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
@@ -262,6 +262,16 @@ def populate_db():
     load_fixture(password=encrypt_password('foobar'))
     return 0
 
+@manager.command
+def build_sass():
+    """
+    Build SASS files.
+    """
+
+    print "Building SASS files..."
+    sass.build_files()
+    print "Done. Built SASS files are in app/%s." % sass.CSS_DIR
+    return 0
 
 if __name__ == '__main__':
     subprocess.call('../symlink-hooks.sh', shell=True)

@@ -198,6 +198,56 @@ def test_users_only_display_in_search_if_they_have_first_and_last_name():
     eq_(user.display_in_search, True)
 
 
+class ConnectionEventDbTests(DbTestCase):
+    '''
+    Tests for adding connections
+    '''
+    def setUp(self):
+        super(ConnectionEventDbTests, self).setUp()
+        load_fixture()
+        self.sly_less = models.User.query_in_deployment()\
+          .filter(models.User.email == 'sly@stone-less-knowledgeable.com')\
+          .one()
+
+    def test_creates_connection_event(self):
+        '''
+        Adding connections should create one event.
+        '''
+        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
+        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        event = self.sly_less.email_connect([dubya, lennon])
+        event.set_total_connections()
+        db.session.commit()
+        connection_events = models.ConnectionEvent.query.all()
+        self.assertEquals(len(connection_events), 1)
+        connection_event = connection_events[-1]
+        self.assertEquals(connection_event.emails.count(), 2)
+        self.assertEquals(models.ConnectionEvent.connections_in_deployment(), 2)
+        self.assertEquals(connection_event.total_connections, 2)
+
+        # second connect shouldn't do anything, since no new connections made
+        event = self.sly_less.email_connect([dubya, lennon])
+        event.set_total_connections()
+        db.session.commit()
+        connection_events = models.ConnectionEvent.query.all()
+        self.assertEquals(len(connection_events), 2)
+        connection_event = connection_events[-1]
+        self.assertEquals(connection_event.emails.count(), 2)
+        self.assertEquals(models.ConnectionEvent.connections_in_deployment(), 2)
+        self.assertEquals(connection_event.total_connections, 2)
+
+        # this should add one more
+        event = self.sly_less.email_connect([lennon, stone])
+        event.set_total_connections()
+        db.session.commit()
+        connection_events = models.ConnectionEvent.query.all()
+        self.assertEquals(len(connection_events), 3)
+        connection_event = connection_events[-1]
+        self.assertEquals(connection_event.emails.count(), 2)
+        self.assertEquals(models.ConnectionEvent.connections_in_deployment(), 3)
+        self.assertEquals(connection_event.total_connections, 3)
+
 class UserConnectionDbTests(DbTestCase):
     '''
     Tests for connections between users.
@@ -214,6 +264,14 @@ class UserConnectionDbTests(DbTestCase):
         '''
         A user initially has no connections.
         '''
+        self.assertEquals(self.sly_less.connections, 0)
+
+    def test_user_no_self_connections(self):
+        '''
+        A user cannot connect with themselves.
+        '''
+        self.sly_less.email_connect([self.sly_less])
+        db.session.commit()
         self.assertEquals(self.sly_less.connections, 0)
 
     def test_user_connect_on_email_one(self):

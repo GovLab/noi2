@@ -19,6 +19,7 @@ if [ "$NOI_ENVIRONMENT" == production ]; then
     python manage.py setup_db_master
     python manage.py db upgrade
     python manage.py translate_compile
+    python manage.py build_sass
     gunicorn wsgi:application -b 0.0.0.0:5000
 elif [ "$NOI_ENVIRONMENT" == celery ]; then
     #cd /noi && celery worker -Q celery -A celery_core.celery --loglevel=debug

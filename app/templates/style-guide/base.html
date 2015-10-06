@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Network of Innovators | The GovLab{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/vendor/normalize.css">
+    <link rel="stylesheet" href="{{ COMPILED_SASS_ROOT }}/styles.scss.css">
+
+</head>
+<body>
+{% block header %}{% endblock %}
+{% block content %}{% endblock %}
+
+<div class="b-overlay"></div>
+<div class="b-alert-message m-error m-hide"> <!-- .m-error, .m-success, .m-warning -->
+    <div class="material-icons">close</div> <!-- done, error, warning -->
+    <p>Invalid Email Address</p>
+</div>
+    <script src="https://use.typekit.net/uom0weq.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</body>
+</html>
