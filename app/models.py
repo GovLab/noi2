@@ -218,6 +218,45 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             return
         db.session.add(UserJoinedEvent.from_user(self))
 
+    def match(self, level, limit=10):
+        '''
+        Return a list of users that can answer questions this user wants to
+        learn at the specified level.
+        '''
+        if db.engine.name == 'sqlite':
+            agg = func.group_concat
+        elif db.engine.name == 'postgresql':
+            agg = func.string_agg
+        else:
+            raise Exception('Unknown aggregation function for DB {}'.format(
+                db.engine.name))
+        matched_users = User.query_in_deployment().\
+                add_column(agg(UserSkill.name, ',')).\
+                add_column(func.count(UserSkill.id)).\
+                filter(UserSkill.name.in_(
+                    [s.name for s in
+                     self.skills if s.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
+                    ])).\
+                filter(User.id == UserSkill.user_id).\
+                filter(UserSkill.level == level).\
+                filter(UserSkill.user_id != self.id).\
+                group_by(User).\
+                order_by(func.count().desc()).\
+                limit(limit)
+
+        for user, question_ids_by_comma, count in matched_users:
+            questionnaires = {}
+            for question_id in question_ids_by_comma.split(','):
+                question = QUESTIONS_BY_ID[question_id]
+                questionnaire_name = question['questionnaire']['name']
+                if questionnaire_name not in questionnaires:
+                    questionnaires[questionnaire_name] = set()
+                questionnaires[questionnaire_name].add(question_id)
+
+            yield (user, sorted(questionnaires.iteritems(),
+                                lambda a, b: len(a[1]) - len(b[1]),
+                                reverse=True))
+
     @property
     def questionnaire_progress(self):
         '''

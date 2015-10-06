@@ -6,7 +6,7 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
 from .util import load_fixture
-from .. import models
+from .. import models, LEVELS
 
 db = models.db
 
@@ -80,6 +80,200 @@ class UserDbTests(DbTestCase):
                              active=True, deployment='1')
             db.session.add(a1)
             db.session.commit()
+
+
+class UserMatchDbTests(DbTestCase):
+    def setUp(self):
+        super(UserMatchDbTests, self).setUp()
+        load_fixture()
+        self.sly = models.User.query_in_deployment()\
+          .filter(models.User.email=='sly@stone.com')\
+          .one()
+
+    def test_user_match_i_can_explain(self):
+        '''
+        This method should provide a list of users who can explain the
+        questions this user wants to learn, in descending order of similarity,
+        with each of the questions grouped by topic.
+
+        I_CAN_EXPLAIN is scored at '2'
+        '''
+        self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        stone_more = models.User.query_in_deployment().filter_by(email='sly@stone-more.com').one()
+        stone_more.set_skill('prizes-scoping-the-problem-problem-definition', 2)
+        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
+        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', 2)
+        db.session.add(stone_less)
+        db.session.add(stone_more)
+        db.session.commit()
+
+        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+            LEVELS['LEVEL_I_CAN_EXPLAIN']['score'])],
+            [
+                ('sly@stone-more.com', [
+                    ('Open Data', set([
+                        "opendata-open-data-policy-core-mission",
+                        "opendata-open-data-policy-sensitive-vs-non-sensitive",
+                        "opendata-open-data-policy-crafting-an-open-data-policy",
+                        "opendata-open-data-policy-getting-public-input",
+                        "opendata-open-data-policy-getting-org-approval"
+                    ])),
+                    ('Prizes', set([
+                        'prizes-scoping-the-problem-problem-definition'
+                    ]))
+                ]),
+                ('sly@stone-less-knowledgeable.com', [
+                    ('Prizes', set([
+                        'prizes-scoping-the-problem-problem-definition'
+                    ]))
+                ])
+            ])
+
+    def test_user_match_i_can_do_it(self):
+        '''
+        This method should provide a list of users who can do the
+        questions this user wants to learn, in descending order of similarity,
+        with each of the questions grouped by topic.
+
+        I_CAN_DO_IT is scored at '5'
+        '''
+        self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        paul = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        paul.set_skill('prizes-scoping-the-problem-problem-definition', 5)
+        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
+        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', 5)
+        db.session.add(stone_less)
+        db.session.add(paul)
+        db.session.commit()
+
+        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+            LEVELS['LEVEL_I_CAN_DO_IT']['score'])],
+            [('paul@lennon.com',
+              [
+                  ('Open Data', set([
+                      "opendata-open-data-policy-core-mission",
+                      "opendata-open-data-policy-sensitive-vs-non-sensitive",
+                      "opendata-open-data-policy-crafting-an-open-data-policy",
+                      "opendata-open-data-policy-getting-public-input",
+                      "opendata-open-data-policy-getting-org-approval",
+                      "opendata-implementing-an-open-data-program-scraping-open-data",
+                      "opendata-implementing-an-open-data-program-making-machine-readable",
+                      "opendata-implementing-an-open-data-program-open-data-formats",
+                      "opendata-implementing-an-open-data-program-open-data-license",
+                      "opendata-implementing-an-open-data-program-open-data-standards",
+                      "opendata-implementing-an-open-data-program-managing-open-data",
+                      "opendata-implementing-an-open-data-program-frequency-of-release",
+                      "opendata-implementing-an-open-data-program-data-quality-and-integrity"
+                  ])),
+                  ('Prizes', set([
+                      "prizes-scoping-the-problem-problem-definition"
+                  ]))
+              ]),
+             ('sly@stone-less-knowledgeable.com',
+              [
+                  ('Prizes', set([
+                      "prizes-scoping-the-problem-problem-definition"
+                  ]))
+              ])
+            ])
+
+    def test_user_match_i_can_refer(self):
+        '''
+        This method should provide a list of users who can do provide
+        a referral for questions this user wants to learn, in descending order
+        of similarity, with each of the questions grouped by topic.
+
+        I_CAN_REFER is scored at '1'
+        '''
+        self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
+        dubya.set_skill('prizes-scoping-the-problem-problem-definition', 1)
+        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
+        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', 1)
+        db.session.add(stone_less)
+        db.session.add(dubya)
+        db.session.commit()
+
+        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+            LEVELS['LEVEL_I_CAN_REFER']['score'])],
+            [('dubya@shrub.com',
+              [
+                  ('Open Data', set([
+                      "opendata-open-data-policy-core-mission",
+                      "opendata-open-data-policy-sensitive-vs-non-sensitive",
+                      "opendata-open-data-policy-crafting-an-open-data-policy",
+                      "opendata-open-data-policy-getting-public-input",
+                      "opendata-open-data-policy-getting-org-approval",
+                      "opendata-implementing-an-open-data-program-scraping-open-data",
+                      "opendata-implementing-an-open-data-program-making-machine-readable",
+                      "opendata-implementing-an-open-data-program-open-data-formats",
+                      "opendata-implementing-an-open-data-program-open-data-license",
+                      "opendata-implementing-an-open-data-program-open-data-standards",
+                      "opendata-implementing-an-open-data-program-managing-open-data",
+                      "opendata-implementing-an-open-data-program-frequency-of-release",
+                      "opendata-implementing-an-open-data-program-data-quality-and-integrity"
+                  ])),
+                  ('Prizes', set([
+                      "prizes-scoping-the-problem-problem-definition"
+                  ]))
+              ]),
+             ('sly@stone-less-knowledgeable.com',
+              [
+                  ('Prizes', set([
+                      "prizes-scoping-the-problem-problem-definition"
+                  ]))
+              ])
+            ])
+
+    def test_user_match_i_want_to_learn(self):
+        '''
+        This method should provide a list of users who want to learn the same
+        things, in descending order of similarity, with each of the questions
+        grouped by topic.
+
+        I_WANT_TO_LEARN is scored at -1
+        '''
+        self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        stone_more = models.User.query_in_deployment().filter_by(email='sly@stone-more.com').one()
+        stone_more.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
+        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        db.session.add(stone_less)
+        db.session.add(stone_more)
+        db.session.commit()
+
+        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+            LEVELS['LEVEL_I_WANT_TO_LEARN']['score'])],
+            [('sly@stone-more.com',
+              [
+                  ('Open Data', set([
+                      "opendata-implementing-an-open-data-program-scraping-open-data",
+                      "opendata-implementing-an-open-data-program-making-machine-readable",
+                      "opendata-implementing-an-open-data-program-open-data-formats",
+                      "opendata-implementing-an-open-data-program-open-data-license",
+                      "opendata-implementing-an-open-data-program-open-data-standards",
+                      "opendata-implementing-an-open-data-program-managing-open-data",
+                      "opendata-implementing-an-open-data-program-frequency-of-release",
+                      "opendata-implementing-an-open-data-program-data-quality-and-integrity"
+                  ])),
+                  ('Prizes', set([
+                      "prizes-scoping-the-problem-problem-definition"
+                  ]))
+              ]),
+             ('sly@stone-less-knowledgeable.com',
+              [
+                  ('Open Data', set([
+                      "opendata-implementing-an-open-data-program-open-data-standards",
+                      "opendata-implementing-an-open-data-program-managing-open-data",
+                      "opendata-implementing-an-open-data-program-frequency-of-release",
+                      "opendata-implementing-an-open-data-program-data-quality-and-integrity"
+                  ])),
+                  ('Prizes', set([
+                      "prizes-scoping-the-problem-problem-definition"
+                  ]))
+              ])
+            ])
+
 
 class UserSkillDbTests(DbTestCase):
     def setUp(self):
