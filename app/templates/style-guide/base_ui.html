@@ -3,37 +3,71 @@
 {% block title %}{% endblock %}
 
 {% block header %}
+
 <header class="b-navigation">
-    <section class="e-top-bar">
-        <h1 class="e-logo">Network of Innovators</h1>
-        <div class="e-user-utils">
-            <span class="e-post material-icons">chat</span>
-            <img class="e-user-picture" src="./static/img/user-picture.jpg">
+    <div class="b-post-update-wrapper">
+        <section class="e-top-bar">
+            <h1 class="e-logo">Network of Innovators</h1>
+            <div class="e-user-utils">
+                <span class="e-post material-icons">chat</span>
+                <img class="e-user-picture" src="./static/img/user-picture.jpg">
+            </div>
+        </section>
+        <div class="e-post-update">
+            <h3>Post an update</h3>
+            <p>Have a question to pose to the whole community? Need help with a task? <br>Ask the Network!</p>
+            <form action="">
+                <textarea></textarea>
+                <button class="b-button">Send <i class="material-icons">send</i></button>
+            </form>
         </div>
-    </section>
+    </div>
     <nav class="e-main-nav">
-            <a href="#" class="e-nav-item">
-                <span class="material-icons">home</span>
-                Home
-            </a>
-            <a href="#" class="e-nav-item">
-                <span class="material-icons">group</span>
-                Match Me
-            </a>
-            <a href="#" class="e-nav-item">
-                <span class="material-icons">search</span>
-                Find Innovator
-            </a>
-            <a href="#" class="e-nav-item">
-                <span class="material-icons">language</span>
-                View Network
-            </a>
-            <a href="#" class="e-nav-item">
-                <span class="material-icons">feedback</span>
-                Share Feedback
-            </a>
+        <a href="#" class="e-nav-item">
+            <span class="material-icons">home</span>
+            Home
+        </a>
+        <a href="#" class="e-nav-item">
+            <span class="material-icons">group</span>
+            Match Me
+        </a>
+        <a href="#" class="e-nav-item">
+            <span class="material-icons">search</span>
+            Find Innovator
+        </a>
+        <a href="#" class="e-nav-item">
+            <span class="material-icons">language</span>
+            View Network
+        </a>
+        <a href="#" class="e-nav-item">
+            <span class="material-icons">feedback</span>
+            Share Feedback
+        </a>
     </nav>
 </header>
+
+{% endblock %}
+
+
+{% block page_script %}
+<script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
+<script>
+
+    $(document).ready(function() {
+       $('.e-post').click(function() {
+            $('.b-post-update-wrapper').addClass('m-update-active');
+            $('.b-overlay').addClass('m-active');
+       });
+
+       $('.b-overlay').click(function() {
+            $('.b-post-update-wrapper').removeClass('m-update-active');
+            $('.b-overlay').removeClass('m-active');
+       });
+    });
+
+
+</script>
+
 
 {% endblock %}
 

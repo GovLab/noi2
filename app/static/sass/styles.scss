@@ -34,6 +34,8 @@ $green: rgba(73,127,73,1);
 $blue-20: rgba(4,138,179, .2);
 $blue-50: rgba(4,138,179, .5);
 
+$dark-blue-matte: #036f8f;
+
 // Typography
 $main-font: 'proxima-nova', sans-serif;
 
@@ -48,8 +50,6 @@ $mobile: max-width 600px;
     border-radius: 50%;
     overflow: hidden;
 }
-
-
 
 * { box-sizing: border-box; }
 

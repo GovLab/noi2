@@ -1,4 +1,5 @@
 .b-tutorial-box {
+    display: none;
     position: absolute;
     width: 86vw;
     margin-left: 7vw;
@@ -7,7 +8,8 @@
     padding: 20px;
     color: $white;
     box-shadow: 0 0 25px $gray-50;
-    
+
+    &.m-active { display: block; }
 
     .e-top-arrow {
         width: 0;
@@ -17,7 +19,6 @@
         border-bottom: 20px solid $teal;
         position: absolute;
         top: -20px;
-        content: '';
     }
 
     p {
