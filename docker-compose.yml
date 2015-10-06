@@ -13,7 +13,7 @@ app:
 db:
     image: agios/postgres-bdr
     ports:
-        - "5432:5432"
+        - "20231:5432"
     environment:
         - POSTGRES_USER=noi
         - POSTGRES_PASSWORD
