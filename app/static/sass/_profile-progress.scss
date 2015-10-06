@@ -1,8 +1,10 @@
 .b-profile-progress {
+    
     .e-progress-container {
         margin: 0;
         padding: 0;
     }
+
     .e-progress-item {
         list-style: none;
         position: relative;
@@ -11,10 +13,6 @@
         a { 
             padding: 15px 20px;
             display: block;
-
-            &:nth-of-type(even) {
-                background-color: $gray-05;
-            }
 
             &:after {
                 color: $gray-20;
@@ -28,6 +26,8 @@
             }
         }
 
+        &:nth-of-type(even) a { background-color: $gray-05; } // Zebra Stripes
+
         .e-questions-left {
             position: absolute;
             right: 46px;
@@ -38,24 +38,8 @@
             top: 0;
         }
     
-    
+    &:not([data-questions-left='0']) {
 
-    &[data-questions-left="0"] {
-        color: $white;
-
-        .e-bar {
-            background-color: $green !important;
-            width: 100%;
-        }
-
-        .e-questions-left { display: none; }
-
-        a:after { content: '\E876'; } // Checkmark Icon
-
-    }
-        
-    &:not([data-progress='0']) {
-        
         .e-bar {
             position: absolute;
             background-color: $blue;
@@ -66,6 +50,20 @@
         }
     }
 
+    &.m-completed,
+    &[data-questions-left='0'] {
+        color: $white;
+        background-color: $green !important;
+
+        .e-bar { display: none; }
+
+        .e-questions-left { display: none; }
+
+        a:after { 
+            color: currentColor;
+            content: '\E876'; // Checkmark Icon
+        } 
+    }
     
     }    
 }

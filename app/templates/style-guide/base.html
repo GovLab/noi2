@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ COMPILED_SASS_ROOT }}/styles.scss.css">
 
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 {% block header %}{% endblock %}
 {% block content %}{% endblock %}
 
