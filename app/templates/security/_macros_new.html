@@ -1,11 +1,18 @@
 {% macro render_field_with_errors(field) %}
-  {{ field.label(class="sr-only") }}
-  {% if field.type in ["SelectField", "CountryField"] %}
-    {% set field_class = "b-dropdown" %}
+  {% if field.type == "BooleanField" %}
+    <div class="b-checkbox">
+      {{ field(**kwargs)|safe }}
+      {{ field.label }}
+    </div>
   {% else %}
-    {% set field_class = "b-textfield" %}
+    {{ field.label(class="sr-only") }}
+    {% if field.type in ["SelectField", "CountryField"] %}
+      {% set field_class = "b-dropdown" %}
+    {% else %}
+      {% set field_class = "b-textfield" %}
+    {% endif %}
+    {{ field(class=field_class, placeholder=field.label.text, **kwargs)|safe }}
   {% endif %}
-  {{ field(class=field_class, placeholder=field.label.text, **kwargs)|safe }}
   {% if field.errors %}
     <ul class="list-unstyled">
     {% for error in field.errors %}
