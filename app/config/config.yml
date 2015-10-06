@@ -45,3 +45,5 @@ S3_BUCKET_NAME: 'network-of-innovators'
 CELERY_TIMEZONE: 'UTC'
 
 NOI_DEPLOY: '_default'
+
+BDR_ACTIVE: False

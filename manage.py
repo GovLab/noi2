@@ -177,17 +177,21 @@ def add_fake_users(users_csv):
 
 
 @manager.command
-def setup_db_master():
+def bdr_setup():
     '''
-    Set up connection to db master using BDR, no-op if MASTER_DATABASE_HOST
-    isn't set.
+    Set up bi-directional replication to an existing group, if `BDR_DB_HOST` is
+    set, otherwise start a new group.
     '''
+    if not app.config.get('BDR_ACTIVE'):
+        app.logger.debug('Bi-directional replication is not active, skipping `bdr_setup`')
+        return
+
+    db.session.execute('CREATE EXTENSION IF NOT EXISTS btree_gist;')
+    db.session.commit()
+    db.session.execute('CREATE EXTENSION IF NOT EXISTS bdr;')
+    db.session.commit()
     if app.config.get('BDR_DB_HOST'):
         try:
-            db.session.execute('CREATE EXTENSION IF NOT EXISTS btree_gist;')
-            db.session.commit()
-            db.session.execute('CREATE EXTENSION IF NOT EXISTS bdr;')
-            db.session.commit()
             db.session.execute('''SELECT bdr.bdr_group_join(
                   local_node_name := 'node_{deployment}',
                   node_external_dsn := 'host={db_public_host} port={db_public_port} dbname={db_public_dbname} user={db_public_user} password={db_public_password}',
@@ -206,13 +210,29 @@ def setup_db_master():
                               'bdr_db_password': app.config['BDR_DB_PASSWORD']}))
             db.session.commit()
             app.logger.debug('waiting for bdr')
-            #import time
-            #time.sleep(15)
             db.engine.execute('SELECT bdr.bdr_node_join_wait_for_ready();')
             db.session.commit()
         except OperationalError:
             app.logger.debug('Already joined BDR group, skipping')
-
+    else:
+        try:
+            db.session.execute('''SELECT bdr.bdr_group_create(
+                  local_node_name := 'node_{deployment}',
+                  node_external_dsn := 'host={db_public_host} port={db_public_port} dbname={db_public_dbname} user={db_public_user} password={db_public_password}',
+            );
+                '''.format(**{'deployment': app.config.get('NOI_DEPLOY', '_default'),
+                              'db_public_host': app.config['DB_PUBLIC_HOST'],
+                              'db_public_port': app.config['SQLALCHEMY_DATABASE_PORT'],
+                              'db_public_dbname': app.config['SQLALCHEMY_DATABASE_DBNAME'],
+                              'db_public_user': app.config['SQLALCHEMY_DATABASE_USER'],
+                              'db_public_password': app.config['SQLALCHEMY_DATABASE_PASSWORD'],
+                             }))
+            db.session.commit()
+            app.logger.debug('waiting for bdr')
+            db.engine.execute('SELECT bdr.bdr_node_join_wait_for_ready();')
+            db.session.commit()
+        except OperationalError:
+            app.logger.debug('Already joined BDR group, skipping')
 
 
 @manager.command
