@@ -319,15 +319,13 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         Obtain a list of most connected profiles, as descending (User, score)
         tuples.
         '''
+        count_of_unique_emails = func.count(func.distinct(cast(Email.to_user_id, String) + '-' +
+                                                          cast(Email.from_user_id, String)))
         return User.query_in_deployment().\
-                add_column(func.count(func.distinct(
-                    cast(Email.to_user_id, String) + '-' +
-                    cast(Email.from_user_id, String)))).\
+                add_column(count_of_unique_emails).\
                 filter((User.id == Email.from_user_id) | (User.id == Email.to_user_id)).\
                 group_by(User).\
-                order_by(func.count(func.distinct(
-                    cast(Email.to_user_id, String) + '-' +
-                    cast(Email.from_user_id, String))).desc()).\
+                order_by(count_of_unique_emails.desc()).\
                 limit(limit)
 
     @hybrid_property

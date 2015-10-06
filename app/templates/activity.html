@@ -68,7 +68,7 @@
       <p>{{ user_link(user) }}</p>
       <small>
         {{ score }} /
-        {{ QUESTIONS_BY_ID.keys()|length }} Skills
+        {{ gettext('%(skill)s Skills', skill=QUESTIONS_BY_ID.keys()|length) }}
       </small>
     </li>
   {% endfor %}
@@ -81,7 +81,7 @@
     <li>
       <p>{{ user_link(user) }}</p>
       <small>
-        {{ score }} connections
+        {{ gettext('%(score)s connections', score=score) }}
       </small>
     </li>
   {% endfor %}
