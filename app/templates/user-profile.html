@@ -46,11 +46,6 @@
       {% endif %}
 			</div>
 		<div class="debug col-xs-4 col-md-4">
-      {#
-			<center>
-			<img class="profile-map" src="https://maps.googleapis.com/maps/api/staticmap?center={{ user.latlng }}&size=300x100&zoom=5&markers=color:blue%7Clabel:%7C{{ user.latlng }}" alt="location">
-		</center>
-    #}
 		</div>
 	</div>
 <div class="row">
@@ -67,7 +62,6 @@
 <div class="row">
 	<div class="debug col-xs-2 col-md-2 text-center"></div>
 	<div class="debug col-xs-2 col-md-2 text-center">
-		{# <i class="fa fa-star-o fa-2x"></i> #}
 	</div>
 	<div class="debug col-xs-2 col-md-2 text-center">
     <a href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}" data-connect-to="{{ user.email }}">
@@ -77,13 +71,6 @@
 	<div class="debug col-xs-2 col-md-2 text-center">
 		<i class="fa fa-phone-square fa-2x"></i> Phone
 	</div>
-  {#
-	<div class="debug col-xs-2 col-md-2 text-center">
-		<a href="/vcard/{{ user.id }}">
-			<i class="fa fa-download fa-2x"></i></i> vCard
-		</a>
-	</div>
-  #}
 		<div class="debug col-xs-2 col-md-2 text-center"></div>
 </div>
 <br/>
@@ -177,53 +164,3 @@
 </div>
 
 {% endblock %}
-
-{#
-{% block page_script %}
-<script src="/static/chart.js"></script>
-<script>
-	var all_skills = {{ SKILLS|tojson }};
-  var user_skills = {{user.skills|tojson}};
-
-  var labels = [];
-  var data = [];
-  for(var key in all_skills['opendata'].sort()) {
-  	labels.push(all_skills['opendata'][key]);
-  	if (all_skills['opendata'][key] in user_skills['opendata']) {
-  		data.push(user_skills['opendata'][all_skills['opendata'][key]]);
-  	} else {
-  		data.push(0);
-  	};
-  }
-
-
-	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-	var randomColorFactor = function(){ return Math.round(Math.random()*255)};
-	var radarChartData = {
-		labels: labels.slice(0,12),
-		datasets: [
-			{
-				label: "My Second dataset",
-				fillColor: "rgba(151,187,205,0.2)",
-				strokeColor: "rgba(151,187,205,1)",
-				pointColor: "rgba(151,187,205,1)",
-				pointStrokeColor: "#fff",
-				pointHighlightFill: "#fff",
-				pointHighlightStroke: "rgba(151,187,205,1)",
-				data : data.slice(0,12),
-			}
-		]
-	};
-	
-	var myRadarOpendata = new Chart(document.getElementById("canvas-opendata").getContext("2d")).Radar(radarChartData, {
-			responsive: false
-		});
-	var myRadarPrizes = new Chart(document.getElementById("canvas-prizes").getContext("2d")).Radar(radarChartData, {
-			responsive: false
-		});
-	var myRadarCrowdsourcing = new Chart(document.getElementById("canvas-crowdsourcing").getContext("2d")).Radar(radarChartData, {
-			responsive: false
-		});
-	</script>
-{% endblock %}
-#}
