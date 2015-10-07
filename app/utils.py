@@ -26,7 +26,7 @@ class UserSkillMatch(object):
     `questionnaires` property is a list of two-tuples, in descending order of
     number of matched questions, where the first element is the name of the
     questionnaire and the second element is a list (in no particular order) of
-    the the matched quesiton IDs.
+    the the matched question IDs.
     """
 
     def __init__(self, user, question_ids):
