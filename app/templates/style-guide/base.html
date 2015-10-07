@@ -20,6 +20,10 @@
     <p>Invalid Email Address</p>
 </div>
     <script src="https://use.typekit.net/uom0weq.js"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
+    {% assets "main_js" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
     {% block page_script %}{% endblock %}
 </body>
