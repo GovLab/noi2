@@ -4,8 +4,9 @@ NoI Models
 SQLAlchemy models for the app
 '''
 
-from app import (ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS,
-                 QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN)
+from app import (ORG_TYPES, VALID_SKILL_LEVELS, LEVELS, QUESTIONNAIRES,
+                 QUESTIONS_BY_ID)
+from app.utils import UserSkillMatch
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
@@ -220,8 +221,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
     def match(self, level, limit=10):
         '''
-        Return a list of users that can answer questions this user wants to
-        learn at the specified level.
+        Returns a list of UserSkillMatch objects, in descending order of number
+        of skills matched for each user.
         '''
         if db.engine.name == 'sqlite':
             agg = func.group_concat
@@ -245,17 +246,7 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                 limit(limit)
 
         for user, question_ids_by_comma, count in matched_users:
-            questionnaires = {}
-            for question_id in question_ids_by_comma.split(','):
-                question = QUESTIONS_BY_ID[question_id]
-                questionnaire_name = question['questionnaire']['name']
-                if questionnaire_name not in questionnaires:
-                    questionnaires[questionnaire_name] = set()
-                questionnaires[questionnaire_name].add(question_id)
-
-            yield (user, sorted(questionnaires.iteritems(),
-                                lambda a, b: len(a[1]) - len(b[1]),
-                                reverse=True))
+            yield UserSkillMatch(user, question_ids_by_comma.split(','))
 
     @property
     def questionnaire_progress(self):

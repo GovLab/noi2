@@ -107,7 +107,7 @@ class UserMatchDbTests(DbTestCase):
         db.session.add(stone_more)
         db.session.commit()
 
-        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+        self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
             LEVELS['LEVEL_I_CAN_EXPLAIN']['score'])],
             [
                 ('sly@stone-more.com', [
@@ -146,7 +146,7 @@ class UserMatchDbTests(DbTestCase):
         db.session.add(paul)
         db.session.commit()
 
-        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+        self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
             LEVELS['LEVEL_I_CAN_DO_IT']['score'])],
             [('paul@lennon.com',
               [
@@ -194,7 +194,7 @@ class UserMatchDbTests(DbTestCase):
         db.session.add(dubya)
         db.session.commit()
 
-        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+        self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
             LEVELS['LEVEL_I_CAN_REFER']['score'])],
             [('dubya@shrub.com',
               [
@@ -242,7 +242,7 @@ class UserMatchDbTests(DbTestCase):
         db.session.add(stone_more)
         db.session.commit()
 
-        self.assertEquals([(u.email, categories) for u, categories in self.sly.match(
+        self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
             LEVELS['LEVEL_I_WANT_TO_LEARN']['score'])],
             [('sly@stone-more.com',
               [
