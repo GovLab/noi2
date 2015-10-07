@@ -50,7 +50,7 @@
     }
 
     .e-govlab-logo {
-        background-image: url("../img/govlab-logo-white.png");
+        background-image: url(#{$path-to-static}/img/govlab-logo-white.png);
         background-repeat: no-repeat;
         background-position: center bottom;
         background-size: contain;
