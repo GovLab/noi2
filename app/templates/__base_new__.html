@@ -21,23 +21,18 @@
    stay near the top of the HTML so that screen readers announce them
    first. #}
 
+{% from "_macros.html" import render_alert %}
 {% for category, message in get_flashed_messages(with_categories=true) %}
-  {% if category == 'error' %}
-    {% set flashed_message_class = 'm-error' %}
-  {% else %}
-    {% set flashed_message_class = 'm-success' %}
-  {% endif %}
-  <div class="b-alert-message {{flashed_message_class}}">
-    <!-- TODO: This <div> needs to be a <button> for a11y. -->
-    <!-- TODO: Move the JS out of an onclick attribute. -->
-    <div class="material-icons" onclick="$(this).parent().addClass('m-hide')">close</div>
-    <p>{{ message|safe }}</p>
-  </div>
+  {{ render_alert(message=message, category=category) }}
 {% endfor %}
 
+    {% block header %}{% endblock %}
     {% block content %}{% endblock %}
 
     <script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
+    {% assets "main_js" %}
+      <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
     {% block page_script %}{% endblock %}
 </body>
 </html>
