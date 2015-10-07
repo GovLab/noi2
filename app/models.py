@@ -110,6 +110,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             'Add name and url or short description of any current work projects.')
     })
 
+    tutorial_step = Column(types.Integer())
+
     created_at = Column(types.DateTime(), default=datetime.datetime.now)
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)

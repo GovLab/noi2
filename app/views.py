@@ -89,12 +89,6 @@ def my_profile():
     if request.method == 'GET':
         return render_template('my-profile.html', form=form)
     elif request.method == 'POST':
-        #userProfile = json.loads(request.form.get('me'))
-        #session['user-profile'] = userProfile
-        #db.updateCoreProfile(userProfile)
-        #flash('Your profile has been saved. <br/>You may also want to <a'
-        #      'href="/my-expertise">tell us what you know</a>.')
-        #session['has_created_profile'] = True
 
         if form.validate():
             form.populate_obj(current_user)
@@ -290,6 +284,16 @@ def email():
         db.session.commit()
     return ('', 204)
 
+@views.route('/tutorial', methods=['POST'])
+@full_registration_required
+def tutorial():
+    '''
+    Save in the DB that user has seen a tutorial step.
+    '''
+    current_user.tutorial_step = int(request.form.get('step'))
+    db.session.add(current_user)
+    db.session.commit()
+    return ('', 204)
 
 @views.route('/search')
 @full_registration_required
