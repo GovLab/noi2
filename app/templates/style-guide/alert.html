@@ -1,0 +1,21 @@
+{% extends "__base_new__.html" %}
+
+{% block content %}
+  <div class="b-onboarding">
+  <p>
+    We use Bootstrap's <a target="_blank" href="http://getbootstrap.com/javascript/#alerts">alert plugin</a> for alerts.
+  </p>
+  <p>
+    This page contains multiple alerts.
+  </p>
+  <p>
+    Alerts are stacked atop one another, so the user must dismiss
+    one to see the alert underneath it.
+  </p>
+  </div>
+
+  {% from "_macros.html" import render_alert %}
+
+  {{ render_alert("This is a normal alert") }}
+  {{ render_alert("This is an error alert", "error") }}
+{% endblock %}
