@@ -302,6 +302,11 @@ class ViewTests(ViewTestCase):
         self.assert200(res)
         assert "Search for Innovators" in res.data
 
+    def test_network_is_ok(self):
+        self.login()
+        res = self.client.get('/network')
+        self.assert200(res)
+
     def test_search_results_is_ok(self):
         self.login()
         res = self.client.get('/search?country=ZZ')
