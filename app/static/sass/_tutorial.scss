@@ -1,0 +1,44 @@
+.b-tutorial-box {
+    display: none;
+    position: absolute;
+    width: 86vw;
+    margin-left: 7vw;
+    margin-right: 7vw;
+    background-color: $teal;
+    padding: 20px;
+    color: $white;
+    box-shadow: 0 0 25px $gray-50;
+
+    &.m-active { display: block; }
+
+    .e-top-arrow {
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 20px solid $teal;
+        position: absolute;
+        top: -20px;
+    }
+
+    p {
+        color: currentColor;
+        font-size: 18px;
+        line-height: 1.5;
+        margin: 0 0 10px 0;
+
+        &:last-of-type {
+            margin-bottom: 20px;
+        }
+    }
+
+    .e-counter {
+        text-align: center;
+        font-style: italic;
+        opacity: .6;
+        margin-top: 10px;
+        letter-spacing: 2px;
+    }
+
+
+}

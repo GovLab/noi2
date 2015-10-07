@@ -1,0 +1,64 @@
+.b-profile-summary {
+    position: absolute;
+    right: 100%;
+    min-height: 100vh;
+    top: 0;
+}
+
+.b-profile-summary.m-active {
+    width: 70%;
+    background-color: $gray-80-matte;
+    right: 0;
+    box-shadow: 0 0 15px $gray-30;
+    text-align: center;
+    text-transform: uppercase;
+    color: $white;
+    font-size: 20px;
+    padding: 20px;
+    letter-spacing: .6px;
+
+
+    .e-user-picture {
+        width: 120px;
+        margin: 0 auto;
+        border-radius: 50%;
+        box-shadow:  0 0 5px $gray-30;
+    }
+
+    .e-name {
+        font-weight: 400;    
+        color: $white-70;
+        font-size: 18px;
+    }
+
+    .e-edit-profile { color: $white; }
+
+    .e-menu {
+        margin: 50px 0 80px;
+
+        a {
+            display: block;
+            padding: 10px 0;
+            color: $white;
+
+            &:hover {
+                background-color: $white-20;
+            }
+        }
+
+
+    }
+
+    .e-govlab-logo {
+        background-image: url(#{$path-to-static}/img/govlab-logo-white.png);
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: contain;
+        height: 40px;
+        opacity: .2;
+
+
+    }
+
+
+}

@@ -4,8 +4,9 @@ NoI Models
 SQLAlchemy models for the app
 '''
 
-from app import (ORG_TYPES, VALID_SKILL_LEVELS, QUESTIONS_BY_ID, LEVELS,
-                 QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN)
+from app import (ORG_TYPES, VALID_SKILL_LEVELS, LEVELS, QUESTIONNAIRES,
+                 QUESTIONS_BY_ID)
+from app.utils import UserSkillMatch
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
@@ -217,6 +218,35 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         if self.has_fully_registered:
             return
         db.session.add(UserJoinedEvent.from_user(self))
+
+    def match(self, level, limit=10):
+        '''
+        Returns a list of UserSkillMatch objects, in descending order of number
+        of skills matched for each user.
+        '''
+        if db.engine.name == 'sqlite':
+            agg = func.group_concat
+        elif db.engine.name == 'postgresql':
+            agg = func.string_agg
+        else:
+            raise Exception('Unknown aggregation function for DB {}'.format(
+                db.engine.name))
+        matched_users = User.query_in_deployment().\
+                add_column(agg(UserSkill.name, ',')).\
+                add_column(func.count(UserSkill.id)).\
+                filter(UserSkill.name.in_(
+                    [s.name for s in
+                     self.skills if s.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
+                    ])).\
+                filter(User.id == UserSkill.user_id).\
+                filter(UserSkill.level == level).\
+                filter(UserSkill.user_id != self.id).\
+                group_by(User).\
+                order_by(func.count().desc()).\
+                limit(limit)
+
+        for user, question_ids_by_comma, count in matched_users:
+            yield UserSkillMatch(user, question_ids_by_comma.split(','))
 
     @property
     def questionnaire_progress(self):

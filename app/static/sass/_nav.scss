@@ -4,16 +4,20 @@
     .e-top-bar {
         display: flex;
         padding: 0 10px;
-        background-color: $gray-20;
+        background-color: $dark-blue-matte;
         align-items: center;
 
         .e-logo {
             font-size: 16px;
             font-weight: 400;
             text-transform: uppercase;
-            color: $white;
+            color: transparent;
             flex: 1;
             letter-spacing: 1px;
+            background-image: url(#{$path-to-static}/img/noi-logo-ok.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 24px;
         }
 
         .e-user-utils {
@@ -30,7 +34,7 @@
         .e-user-picture {
             width: 40px;
             height: 40px;
-            border-radius: 50%;
+            @include circle;
         }
     }
 
@@ -55,5 +59,66 @@
             margin-bottom: 6px;
             opacity: .4;
         }
+    }
+}
+
+.b-post-update-wrapper {
+    background-color: $dark-blue-matte;
+    position: static;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    .e-post-update {
+        overflow: hidden;
+        padding: 0 20px;
+        color: $white;
+        text-align: center;
+        max-height: 0;
+
+        h3 { 
+            margin: 20px 0 0; 
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+        p { 
+            color: currentColor; 
+            font-size: 18px;
+        }
+
+        textarea {
+            height: 20vh;
+            background-color: $white-10;
+            margin-bottom: 10px;
+
+            &::-webkit-input-placeholder { color: $white-70; }
+            &:-moz-placeholder { color: $white-70; } /* Firefox 18- */
+            &::-moz-placeholder { color: $white-70; }  /* Firefox 19+ */
+            &:-ms-input-placeholder { color: $white-70; }
+        }
+
+        .b-button { 
+            background-color: $blue;
+            position: relative;
+            margin-bottom: 20px;
+        
+            > i { 
+                position: absolute;
+                right: 20px;
+                margin-top: -2px;
+            }
+        }
+    }
+}
+
+.b-post-update-wrapper.m-update-active {
+    position: fixed;
+    box-shadow: 0 15px 15px -15px $gray-50;
+
+    .e-post-update { 
+        margin-top: 0; 
+        max-height: 1000px;
     }
 }

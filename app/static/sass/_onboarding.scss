@@ -137,16 +137,6 @@
             margin-bottom: 10px; 
             color: $white;
         }
-        
-        .b-button.m-guide { background-color: $purple; }
-        .b-button.m-do { background-color: $teal; }
-        .b-button.m-connect { background-color: $yellow; }
-        .b-button.m-learn { background-color: $orange; }
-        .b-button.m-skip {
-            background-color: transparent;
-            color: $gray-30 !important;
-            box-shadow: none;
-        }
     }
 
     .e-card:first-of-type {

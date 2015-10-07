@@ -1,16 +1,15 @@
 body {
     font-family: $main-font;
-    
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 p { color: $gray-80; }
+
 a { 
     text-decoration: none; 
     color: inherit;
 }
-
-
-
 
 .b-logo { 
     color: $white-40;

@@ -1,3 +1,5 @@
+$path-to-static: "/static";
+
 $gray-05: rgba(0,0,0,0.05);
 $gray-10: rgba(0,0,0,0.1);
 $gray-20: rgba(0,0,0,0.2);
@@ -31,6 +33,11 @@ $red: rgba(157,56,56,1);
 $green: rgba(73,127,73,1);
 
 
+$blue-20: rgba(4,138,179, .2);
+$blue-50: rgba(4,138,179, .5);
+
+$dark-blue-matte: #036f8f;
+
 // Typography
 $main-font: 'proxima-nova', sans-serif;
 
@@ -41,9 +48,10 @@ $mobile: max-width 600px;
 
 // Mixins
 
-
-
-
+@mixin circle {
+    border-radius: 50%;
+    overflow: hidden;
+}
 
 * { box-sizing: border-box; }
 
@@ -60,7 +68,9 @@ body {
 @import 'bootstrap-modal';
 @import 'components';
 @import 'nav';
-@import 'profile';
+@import 'off-canvas';
+@import 'progress';
+@import 'tutorial';
 @import 'alert-messages';
 @import 'footer-message';
 @import 'a11y';
@@ -68,7 +78,8 @@ body {
 // Pages
 @import 'onboarding';
 @import 'activity';
-@import 'profile-progress';
+
+@import 'profile';
 
 
 

@@ -1,5 +1,22 @@
 // Textfields
 
+textarea,
+input { outline: none; }
+
+textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    border: 0;
+    padding: 10px;
+    font-size: 18px;
+
+    &:focus { 
+        box-shadow: inset 0 0 5px $gray-30; 
+        background-color: $white-20 !important;
+    }
+}
+
 .b-textfield {
     padding: 15px;
     background-color: $white-20;
@@ -56,14 +73,32 @@
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
-    box-shadow: 0 0 3px $gray-10;
+    box-shadow: 0 0 5px $gray-10;
 
-    @include breakpoint($mobile) { 
-        display: block;
-    }   
+    @include breakpoint($mobile) { display: block; }   
 }
 
 .b-button.m-naked {
+    background-color: transparent;
+    color: $gray-30 !important;
+    box-shadow: none;
+}
+
+// Button variations for the questionnaires
+
+.b-button.m-explain,
+.b-button.m-do,
+.b-button.m-connect,
+.b-button.m-learn {
+    color: $white;
+    margin-bottom: 10px;
+}
+
+.b-button.m-explain { background-color: $purple; }
+.b-button.m-do { background-color: $teal; }
+.b-button.m-connect { background-color: $yellow; }
+.b-button.m-learn { background-color: $orange; }
+.b-button.m-skip {
     background-color: transparent;
     color: $gray-30 !important;
     box-shadow: none;
@@ -91,4 +126,16 @@
     position: relative;
     border-radius: 0;
     box-shadow: inset 0 0 3px $gray-10;
+}
+
+.b-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $gray-60;
+
+    &.m-active { display: block; }
 }
