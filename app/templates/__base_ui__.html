@@ -1,0 +1,59 @@
+{% extends "__base_new__.html" %}
+
+{% block header %}
+<header class="b-navigation">
+    <section class="e-top-bar">
+        <h1 class="e-logo">{{ gettext('Network of Innovators') }}</h1>
+        <div class="e-user-utils">
+            <span class="e-post material-icons">chat</span>
+            <!-- TODO: Wrap this in a <button> for a11y. -->
+            <img class="e-user-picture" src="{{ current_user.picture_url }}" data-toggle="modal" data-target="#profile-summary">
+        </div>
+    </section>
+    <nav class="e-main-nav">
+            <a href="{{ url_for('views.activity') }}" class="e-nav-item">
+                <span class="material-icons">home</span>
+                {{ gettext('Home') }}
+            </a>
+            <a href="{{ url_for('views.match') }}" class="e-nav-item">
+                <span class="material-icons">group</span>
+                {{ gettext('Match Me') }}
+            </a>
+            <a href="{{ url_for('views.search') }}" class="e-nav-item">
+                <span class="material-icons">search</span>
+                {{ gettext('Find Innovator') }}
+            </a>
+            <a href="{{ url_for('views.network') }}" class="e-nav-item">
+                <span class="material-icons">language</span>
+                {{ gettext('View Network') }}
+            </a>
+            <a href="{{ url_for('views.feedback') }}" class="e-nav-item">
+                <span class="material-icons">feedback</span>
+                {{ gettext('Share Feedback') }}
+            </a>
+    </nav>
+</header>
+
+<div class="modal" id="profile-summary" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<section class="b-profile-summary m-active">
+    <header>
+        <img class="e-user-picture" src="{{ current_user.picture_url }}" alt="">
+        <h3 class="e-name">{{ current_user.full_name }}</h3>
+        <a class="e-edit-profile" href="{{ url_for('views.my_profile') }}">Edit Profile</a>
+    </header>
+
+    <section class="e-menu">
+        <a href="{{ url_for('views.feedback') }}">Share Feedback</a>
+        <a href="{{ url_for('views.about_page') }}">About</a>
+        <a href="{{ url_for_security('logout') }}">Sign Out</a>
+    </section>
+
+    <footer class="e-govlab-logo">
+
+    </footer>
+</section>
+</div>
+</div>
+
+{% endblock %}
