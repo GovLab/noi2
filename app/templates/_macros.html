@@ -1,0 +1,12 @@
+{% macro render_alert(message, category) %}
+  {% if category == 'error' %}
+    {% set flashed_message_class = 'm-error' %}
+  {% else %}
+    {% set flashed_message_class = 'm-success' %}
+  {% endif %}
+  <div class="b-alert-message alert {{flashed_message_class}}">
+    <!-- TODO: This <div> needs to be a <button> for a11y. -->
+    <div class="material-icons" data-dismiss="alert">close</div>
+    <p>{{ message|safe }}</p>
+  </div>
+{% endmacro %}

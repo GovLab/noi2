@@ -221,7 +221,7 @@ msgstr "Contraseña"
 
 #: /noi/app/forms.py:149
 msgid "Remember Me"
-msgstr ""
+msgstr "Recordar mi información"
 
 #: /noi/app/forms.py:150
 #, fuzzy
@@ -230,7 +230,7 @@ msgstr "Iniciar sesión"
 
 #: /noi/app/forms.py:164
 msgid "Sign up"
-msgstr ""
+msgstr "Registrarse"
 
 #: /noi/app/forms.py:191
 #, python-format
@@ -810,9 +810,9 @@ msgstr ""
 "herramientas, visualizaciones, mapas y aplicaciones. Los datos abiertos "
 "pueden proveer la materia prima para organizar conversaciones informadas "
 "acerca de lo que no está funcionando y establecer los fundamentos "
-"empíricos para desarrollar soluciones. Estas preguntas te ayudarán a "
-"describir lo que sabes y lo que deseas compartir acerca de datos abiertos"
-" y lo que desean aprender de otros. Haz click en el siguiente enlace para"
+"empíricos para desarrollar soluciones. Estas preguntas le ayudarán a "
+"describir lo que sabe y lo que desea compartir acerca de datos abiertos"
+" y lo que desea aprender de otros. Haga click en el siguiente enlace para"
 " crear un perfil de competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:35
@@ -859,7 +859,7 @@ msgstr "cómo obtener aprobación organizacional para abrir datos"
 #: /noi/app/templates/translate.tmp.html:43
 #, fuzzy
 msgid "Implementing an open data program"
-msgstr "implementando un programa de datos abiertos"
+msgstr "Implementando un programa de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:44
 msgid "operationalizing an open data program in practice"
@@ -972,10 +972,10 @@ msgstr ""
 "innovadores. Uno de los enfoques más comunes involucra concursos "
 "premiados así como retos y grandes retos. Estas competencias ofrecen una "
 "serie de ventajas para las agencias gubernamentales, especialmente en una"
-" era de presupuestos ajustados.</p> <p><b> Estas veinte preguntas te "
-"ayudan a describir qué puedes saber y qué puedes compartir acerca de "
-"retos y lo que puedes aprender de otros. \n"
-"Haz click en el enlace siguiente para crear un perfil de "
+" era de presupuestos ajustados.</p> <p><b> Estas veinte preguntas le "
+"ayudan a describir qué puede saber y qué puede compartir acerca de "
+"retos y lo que puede aprender de otros. \n"
+"Haga click en el enlace siguiente para crear un perfil de "
 "competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:68
@@ -1167,9 +1167,9 @@ msgstr ""
 "hacer más con menos, observar el éxito de las iniciativas ciudadanas "
 "puede proporcionar un modelo para que los ciudadanos participen y ayuden "
 "a cumplir objetivos complicados a un bajo costo.</p> <p><b>Estas cuarenta"
-" y cuatro preguntas te ayudarán a describir lo que sabes y pueden "
-"compartir acerca de los proyectos de ciencia ciudadana y lo que puedes "
-"aprender de otros. Haz click en el enlace siguiente para crear un perfil "
+" y cuatro preguntas le ayudarán a describir lo que sabe y puede "
+"compartir acerca de los proyectos de ciencia ciudadana y lo que puede "
+"aprender de otros. Haga click en el enlace siguiente para crear un perfil "
 "de competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:107
@@ -1519,27 +1519,29 @@ msgstr "Ciencia de Datos"
 #: /noi/app/templates/translate.tmp.html:173
 #, fuzzy
 msgid "Data Collection"
-msgstr "TRANSLATE"
+msgstr "Recolección de datos"
 
 #: /noi/app/templates/translate.tmp.html:174
 msgid "data collection"
-msgstr "TRANSLATE"
+msgstr "recolección de datos"
 
 #: /noi/app/templates/translate.tmp.html:175
 msgid "How to create incentives for people to provide data."
-msgstr "TRANSLATE"
+msgstr "cómo crear incentivos para que las personas proporcionen datos"
 
 #: /noi/app/templates/translate.tmp.html:176
 msgid ""
 "How to use new methods (e.g. crowdsourcing) for collecting data from new "
 "sources."
-msgstr "TRANSLATE"
+msgstr "Cómo usar nuevos métodos (e.g. crowdsourcing) para recolectar datos"
+"de nuevas fuentes."
 
 #: /noi/app/templates/translate.tmp.html:177
 msgid ""
 "How to make sure that data is accurate, timely, and clean. (Data "
 "processing and conditioning)"
-msgstr "TRANSLATE"
+msgstr "Cómo comprobar que los datos son precisos, oportunos y limpios."
+"(Procesamiento y preparación de datos)"
 
 #: /noi/app/templates/translate.tmp.html:178
 #, fuzzy
@@ -1552,51 +1554,56 @@ msgstr "TRANSLATE"
 
 #: /noi/app/templates/translate.tmp.html:180
 msgid "How to store data securely."
-msgstr "TRANSLATE"
+msgstr "Cómo almacenar datos de forma segura."
 
 #: /noi/app/templates/translate.tmp.html:181
 msgid ""
 "How to transmit data securely so that when data is shared, the quality "
 "and integrity of the data is maintained."
-msgstr "TRANSLATE"
+msgstr "Cómo enviar datos de forma segura para que se mantenga la calidad "
+"e integridad de los datos cuando se comparten."
 
 #: /noi/app/templates/translate.tmp.html:182
 msgid ""
 "How to share data appropriately within my institution and with third "
 "parties in a way that does not violate privacy and confidentiality.    "
 "(Information Governance)"
-msgstr "TRANSLATE"
+msgstr "Cómo compartir datos de forma correcta dentro de mi institución "
+"y con una tercera parte de tal forma que no se violen la privacidad y "
+"la confidencialidad. (Gobernanza de datos)"
 
 #: /noi/app/templates/translate.tmp.html:183
 msgid "How to craft an information governance policy."
-msgstr "TRANSLATE"
+msgstr "Cómo redactar una política de gobernanza de datos"
 
 #: /noi/app/templates/translate.tmp.html:184
 #, fuzzy
 msgid "Drawing Insights from Data"
-msgstr "TRANSLATE"
+msgstr "Obteniendo ideas de los datos"
 
 #: /noi/app/templates/translate.tmp.html:185
 msgid "drawing insights from data"
-msgstr "TRANSLATE"
+msgstr "obteniendo ideas de los datos"
 
 #: /noi/app/templates/translate.tmp.html:186
 msgid ""
 "How to spot patterns and predict trends from existing data (predictive "
 "analytics)."
-msgstr "TRANSLATE"
+msgstr "Cómo identificar patrones y predecir tendencias de datos previos "
+"(análisis predictivo)."
 
 #: /noi/app/templates/translate.tmp.html:187
 msgid "How to formulate and test a hypothesis using data."
-msgstr "TRANSLATE"
+msgstr "Cómo formular y examinar una hipótesis usando datos"
 
 #: /noi/app/templates/translate.tmp.html:188
 msgid "How to design an experiment to test a data-driven hypothesis."
-msgstr "TRANSLATE"
+msgstr "Cómo diseñar un experimento para poner a prueba una hipótesis."
 
 #: /noi/app/templates/translate.tmp.html:189
 msgid "How to plot and visualize data in order to derive and communicate insight."
-msgstr "TRANSLATE"
+msgstr "Cómo graficar y visualizar los datos con el propósito de obtener y "
+"comunicar ideas."
 
 #: /noi/app/templates/translate.tmp.html:190
 msgid "How to interpret and communicate what data says."
@@ -1618,11 +1625,19 @@ msgstr ""
 "Las instituciones usualmente trabajan mejor cuando sus grupos de interés–"
 " ya sean ciudadanos, clientes, padres de familia, pacientes u otros "
 "miembros de una comunidad–se involucran de forma directa en la toma de "
-"decisiones y en la prestación de servicios"
+"decisiones y en la prestación de servicios. "
+"La participación puede construir confianza e incrementar la legitimidad "
+"en la toma de decisiones. También puede ayudar a que las instituciones "
+"resuelvan problemas de una manera más efectiva, al desarrollar soluciones "
+"que están diseñadas en consulta con los grupos de interés. Sin embargo, "
+"saber cuándo y cómo involucrar a los miembros de una comunidad y bajo qué "
+"condiciones es difícil. </p> <p>Comparta lo que sabe y lo que desea "
+"aprender acerca de cómo formular, implementar y medir una estrategia de "
+"participación comunitaria.</p>\n"
 
 #: /noi/app/templates/translate.tmp.html:193
 msgid "Community Engagement"
-msgstr "Participación Comunitaria "
+msgstr "Participación Comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:194
 msgid "Identifying goals and participants"
@@ -1888,7 +1903,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:237
 msgid "how to define the service lines for my Lab"
-msgstr "definir las líneas de servicio para mi laboratorio "
+msgstr "cómo definir las líneas de servicio para mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:238
 msgid "how to articulate a clear theory of change for my Lab"
@@ -2110,7 +2125,7 @@ msgstr "Cómo alentar una participación continua."
 
 #: /noi/app/templates/translate.tmp.html:270
 msgid "Determining the Activity"
-msgstr "TRANSLATE"
+msgstr "Determinando la Actividad"
 
 #: /noi/app/templates/translate.tmp.html:271
 msgid "What can you share about the type of activities the crowd could perform"
@@ -2172,7 +2187,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:278
 msgid "Determining a Successful Crowdsourcing Strategy"
-msgstr "TRANSLATE"
+msgstr "Determinando una estrategia exitosa de crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:279
 msgid ""
@@ -2237,7 +2252,7 @@ msgstr "Cómo evaluar la efectividad de utilizar crowdsourcing."
 
 #: /noi/app/templates/translate.tmp.html:287
 msgid "Providing the Right Incentives"
-msgstr "TRANSLATE"
+msgstr "Proporcionando los incentivos correctos"
 
 #: /noi/app/templates/translate.tmp.html:288
 msgid "What can you share about providing the right incentives for participation"
@@ -2275,15 +2290,15 @@ msgstr "Cómo usar incentivos altruistas o de construcción de comunidad"
 
 #: /noi/app/templates/translate.tmp.html:295
 msgid "How to design recreational incentives (i.e. gamification)"
-msgstr "TRANSLATE"
+msgstr "Cómo diseñar incentivos recreativos (e.g. gamificación)"
 
 #: /noi/app/templates/translate.tmp.html:296
 msgid "How to identify which particular incentive is working and why"
-msgstr "TRANSLATE"
+msgstr "Cómo identificar qué incentivo particular funciona y por qué"
 
 #: /noi/app/templates/translate.tmp.html:297
 msgid "How to monitor and adapt the incentives at the individual or crowd levels"
-msgstr "ómo diseñar incentivos recreativos (e.g. gamificación)"
+msgstr "Cómo diseñar incentivos recreativos (e.g. gamificación)"
 
 #: /noi/app/templates/translate.tmp.html:298
 msgid ""
@@ -2296,7 +2311,7 @@ msgstr ""
 #: /noi/app/templates/translate.tmp.html:299
 #, fuzzy
 msgid "Implementation and Tools"
-msgstr "TRANSLATE"
+msgstr "Implementación y herramientas"
 
 #: /noi/app/templates/translate.tmp.html:300
 msgid ""
@@ -2361,7 +2376,7 @@ msgstr "Cómo utilizar o implementar las contribuciones de la multitud "
 
 #: /noi/app/templates/translate.tmp.html:309
 msgid "Quality Control Mechanisms"
-msgstr "TRANSLATE"
+msgstr "Mecanismos de Control de Calidad"
 
 #: /noi/app/templates/translate.tmp.html:310
 msgid "What can you share about defining the right mechanism of quality control"
@@ -2506,7 +2521,7 @@ msgstr "Reenviar instrucciones de confirmación"
 #~ msgstr "Esto no corresponde a un usuario válido."
 
 #~ msgid "Remember Me"
-#~ msgstr ""
+#~ msgstr "Recordar mis datos"
 
 #~ msgid "Retype Password"
 #~ msgstr "Reestablecer contraseña"
@@ -2527,5 +2542,5 @@ msgstr "Reenviar instrucciones de confirmación"
 #~ msgstr "Cambiar contraseña"
 
 #~ msgid "Send Login Link"
-#~ msgstr ""
+#~ msgstr "Enviar enlace de inicio de sesión"
 
