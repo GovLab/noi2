@@ -284,6 +284,16 @@ def email():
         db.session.commit()
     return ('', 204)
 
+@views.route('/tutorial', methods=['POST'])
+@full_registration_required
+def tutorial():
+    '''
+    Save in the DB that user has seen a tutorial step.
+    '''
+    current_user.tutorial_step = int(request.form.get('step'))
+    db.session.add(current_user)
+    db.session.commit()
+    return ('', 204)
 
 @views.route('/search')
 @full_registration_required

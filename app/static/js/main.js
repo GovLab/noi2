@@ -21,4 +21,14 @@ $(document).ready(function () {
       });
     }
   });
+
+  // Advance tutorial steps
+  $("[data-tutorial-step]").click(function (evt) {
+    var step = $(evt.target).data('tutorial-step');
+    if (step) {
+      $.post('/tutorial', {
+        'step': step
+      });
+    }
+  });
 });
