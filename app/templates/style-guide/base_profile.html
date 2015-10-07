@@ -1,0 +1,60 @@
+{% extends "style-guide/base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block body_class %}b-profile-page{% endblock %}
+
+{% block header %}
+<header class="b-navigation">
+    <section class="e-top-bar">
+        <h1 class="e-logo">Network of Innovators</h1>
+        <div class="e-user-utils">
+            <span class="e-post material-icons">chat</span>
+            <img class="e-user-picture" src="./static/img/user-picture.jpg">
+        </div>
+    </section>
+    <nav class="e-main-nav">
+            <a href="#" class="e-nav-item">
+                <span class="material-icons">home</span>
+                Home
+            </a>
+            <a href="#" class="e-nav-item">
+                <span class="material-icons">group</span>
+                Match Me
+            </a>
+            <a href="#" class="e-nav-item">
+                <span class="material-icons">search</span>
+                Find Innovator
+            </a>
+            <a href="#" class="e-nav-item">
+                <span class="material-icons">language</span>
+                View Network
+            </a>
+            <a href="#" class="e-nav-item">
+                <span class="material-icons">feedback</span>
+                Share Feedback
+            </a>
+    </nav>
+</header>
+
+<section class="b-profile-header">
+    <div class="e-bg" style="background-image: url('./static/img/user-picture.jpg')"></div> {# inline style shoudl be replaced by jinja tag #}
+    <div class="e-left">
+        <img src="./static/img/user-picture.jpg" alt="" class="e-picture">
+        <span class="e-edit material-icons">edit</span>
+    </div>
+    <div class="e-right">
+        <h2 class="e-name">Beth Simone Noveck</h2>
+        <h3 class="e-job">Director and Founder</h3>
+
+        <ul class="e-info">
+           <li><span class="material-icons">business</span>UK Government</li> 
+           <li><span class="material-icons">school</span>Domain of Expertise</li> 
+           <li><span class="material-icons">location_on</span>London, UK</li> 
+           <li>English</li> 
+        </ul>
+    </div>
+</section>
+
+{% endblock %}
+

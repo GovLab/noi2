@@ -1,0 +1,70 @@
+{% extends "style-guide/base_profile.html" %}
+
+{% block title %}Profile Questionnaire{% endblock %}
+
+
+
+{% block content %}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items">
+        <li class="e-item">Overview</li>
+        <li class="e-item m-active">Expertise</li>
+    </ul>
+</nav>
+
+<section class="b-profile-progress">
+    <ul class="e-progress-container">
+        <li class="e-progress-item" data-questions-left="5">
+            <a href="#">Citizen Science</a>
+            <div class="e-questions-left">5 questions left</div>
+            <div class="e-bar" style="width: 68%;"></div>
+        </li>
+    </ul>
+</section>
+
+<section class="b-profile-questionnaire">
+    <div class="e-questions-container">
+        <div class="e-question">
+            <i class="material-icons e-prev">keyboard_arrow_left</i>
+            <i class="material-icons e-next">keyboard_arrow_right</i>
+            <p class="e-question-text">How to create incentives for people to provide data?</p>
+            <form class="e-questionnaire-answers" action="">
+                <button class="b-button m-explain">I can explain</button>
+                <button class="b-button m-do">I can do</button>
+                <button class="b-button m-connect">I can connect others</button>
+                <button class="b-button m-learn">I want to learn</button>
+                <button class="b-button m-skip">Skip this question</button>
+            </form>
+        </div>
+        <div class="e-question">
+            <i class="material-icons e-prev">keyboard_arrow_left</i>
+            <i class="material-icons e-next">keyboard_arrow_right</i>
+            <p class="e-question-text">How to create incentives for people to provide data?</p>
+            <form class="e-questionnaire-answers" action="">
+                <button class="b-button m-explain">I can explain</button>
+                <button class="b-button m-do">I can do</button>
+                <button class="b-button m-connect">I can connect others</button>
+                <button class="b-button m-learn">I want to learn</button>
+                <button class="b-button m-skip">Skip this question</button>
+            </form>
+        </div>
+        <div class="e-question">
+            <i class="material-icons e-prev">keyboard_arrow_left</i>
+            <i class="material-icons e-next">keyboard_arrow_right</i>
+            <p class="e-question-text">How to create incentives for people to provide data?</p>
+            <form class="e-questionnaire-answers" action="">
+                <button class="b-button m-explain">I can explain</button>
+                <button class="b-button m-do">I can do</button>
+                <button class="b-button m-connect">I can connect others</button>
+                <button class="b-button m-learn">I want to learn</button>
+                <button class="b-button m-skip">Skip this question</button>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="b-footer-message">
+    <h3>Complete your Profile</h3>
+    <p>Let others know your skills & expertise and also get more relevant matches!</p>
+</footer>
+
+{% endblock %}
