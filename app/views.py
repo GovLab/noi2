@@ -89,12 +89,6 @@ def my_profile():
     if request.method == 'GET':
         return render_template('my-profile.html', form=form)
     elif request.method == 'POST':
-        #userProfile = json.loads(request.form.get('me'))
-        #session['user-profile'] = userProfile
-        #db.updateCoreProfile(userProfile)
-        #flash('Your profile has been saved. <br/>You may also want to <a'
-        #      'href="/my-expertise">tell us what you know</a>.')
-        #session['has_created_profile'] = True
 
         if form.validate():
             form.populate_obj(current_user)
