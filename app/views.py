@@ -405,6 +405,15 @@ def activity():
         'most_connected_profiles': User.get_most_connected_profiles(limit=5)
     })
 
+@views.route('/network')
+@full_registration_required
+def network():
+    '''
+    View the network.
+    '''
+
+    return render_template('network.html')
+
 @views.route('/feedback')
 def feedback():
     '''
