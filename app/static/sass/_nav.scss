@@ -14,7 +14,7 @@
             color: transparent;
             flex: 1;
             letter-spacing: 1px;
-            background-image: url("../static/img/noi-logo-ok.png");
+            background-image: url(#{$path-to-static}/img/noi-logo-ok.png);
             background-size: contain;
             background-repeat: no-repeat;
             height: 24px;
