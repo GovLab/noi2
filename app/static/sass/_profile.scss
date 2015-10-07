@@ -1,11 +1,11 @@
 .b-profile-summary {
-    position: fixed;
+    position: absolute;
     right: 100%;
-    height: 100vh;
+    min-height: 100vh;
     top: 0;
 }
 
-.b-profile-summary.m-active {
+.b-profile-summary {
     width: 70%;
     background-color: $gray-80-matte;
     right: 0;

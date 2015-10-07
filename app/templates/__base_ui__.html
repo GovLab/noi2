@@ -6,7 +6,8 @@
         <h1 class="e-logo">{{ gettext('Network of Innovators') }}</h1>
         <div class="e-user-utils">
             <span class="e-post material-icons">chat</span>
-            <img class="e-user-picture" src="{{ current_user.picture_url }}">
+            <!-- TODO: Wrap this in a <button> for a11y. -->
+            <img class="e-user-picture" src="{{ current_user.picture_url }}" data-toggle="modal" data-target="#profile-summary">
         </div>
     </section>
     <nav class="e-main-nav">
@@ -32,4 +33,27 @@
             </a>
     </nav>
 </header>
+
+<div class="modal" id="profile-summary" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<section class="b-profile-summary">
+    <header>
+        <img class="e-user-picture" src="{{ current_user.picture_url }}" alt="">
+        <h3 class="e-name">{{ current_user.full_name }}</h3>
+        <a class="e-edit-profile" href="{{ url_for('views.my_profile') }}">Edit Profile</a>
+    </header>
+
+    <section class="e-menu">
+        <a href="{{ url_for('views.feedback') }}">Share Feedback</a>
+        <a href="{{ url_for('views.about_page') }}">About</a>
+        <a href="{{ url_for_security('logout') }}">Sign Out</a>
+    </section>
+
+    <footer class="e-govlab-logo">
+
+    </footer>
+</section>
+</div>
+</div>
+
 {% endblock %}
