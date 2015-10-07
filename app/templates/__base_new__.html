@@ -34,7 +34,7 @@
     <p>{{ message|safe }}</p>
   </div>
 {% endfor %}
-
+    {% block header %}{% endblock %}
     {% block content %}{% endblock %}
 
     <script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
