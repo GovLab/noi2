@@ -18,6 +18,7 @@ from app.forms import (NOIConfirmRegisterForm, NOIForgotPasswordForm,
                        NOISendConfirmationForm, NOIRegisterForm)
 from app.models import db, User, Role
 from app.views import views
+from app import style_guide
 
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -182,6 +183,8 @@ def create_app(config=None): #pylint: disable=too-many-statements
         lazy_gettext('Please reauthenticate to access this page.'), 'info')
 
     app.register_blueprint(views)
+    if app.config['DEBUG']:
+        app.register_blueprint(style_guide.views)
 
     cache.init_app(app)
     csrf.init_app(app)
