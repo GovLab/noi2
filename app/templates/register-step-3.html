@@ -7,6 +7,15 @@
   {% endif %}
 {% endblock %}
 
+{% block page_style_pre %}
+  {# This is a placeholder until we fix #115. #}
+  <style>
+    html, body {
+      background: rgba(0, 0, 0, 0.6);
+    }
+  </style>
+{% endblock %}
+
 {% block content %}
 
 {% if not question %}
@@ -55,7 +64,7 @@
 		<div>
 		    <br>
 		    {% if user_can_join %}
-		        <a href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a>
+		        <p><a class="b-button" href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a></p>
 		    {% else %}
 			{{ gettext("You must answer at least %d more question(s) to join." % questions_left) }}
 		    {% endif %}
