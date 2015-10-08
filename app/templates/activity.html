@@ -1,18 +1,86 @@
-{% extends "__base__.html" %}
+{% extends "__base_ui__.html" %}
 
 {% block content %}
 
-<form method="post">
-{{ shared_message_form.csrf_token }}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items" role="tablist">
+        <li role="presentation" class="e-item active"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">{{ gettext('Activity') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#connected" aria-controls="connected" role="tab" data-toggle="tab">{{ gettext('Most Connected') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#complete" aria-controls="complete" role="tab" data-toggle="tab">{{ gettext('Most Complete Profiles') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#progress" aria-controls="progress" role="tab" data-toggle="tab">{{ gettext('My Profile Progress') }}</a></li>
+    </ul>
+</nav>
 
-{{ shared_message_form.message.label() }}
-{{ shared_message_form.message(placeholder=gettext("Share with the network")) }}
+<div> <!-- Start of tab panel container -->
 
-<button type="submit">{{ gettext('Post') }}</button>
-</form>
+<section role="tabpanel" id="activity" class="b-activity-feed active">
 
-<h3>{{ gettext('My Profile Progress') }}</h3>
+  <ul class="e-activity-feed-container">
+{% macro user_link(user) -%}
+<strong><a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a></strong>
+{%- endmacro %}
 
+{% macro user_avatar(user) -%}
+<img class="e-user-picture" src="{{ user.picture_url }}" alt="">
+{%- endmacro %}
+
+{% for event in events %}
+  <li class="e-feed-item">
+  <time datetime="{{ event.created_at }}"></time>
+  {% if event.type == 'shared_message' %}
+    {{ user_avatar(event.user) }}
+    <div class="e-feed-message">
+      <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
+      <p>{{ event.message }}</p>
+    </div>
+  {% elif event.type == 'user_joined_event' %}
+    {{ user_avatar(event.user) }}
+    <div class="e-feed-message">
+      <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
+    </div>
+  {% elif event.type == 'connection_event' %}
+    <div class="e-feed-message">
+      <p>{{ gettext('+%(new)s new connections made in NOI.', new=event.emails.count()) }}</p>
+      <p>{{ gettext('+%(total)s connections!', total=event.total_connections) }}</p>
+    </div>
+  {% else %}
+    <div class="e-feed-message">
+      UNKNOWN EVENT TYPE: {{ event.type }}
+    </div>
+  {% endif %}
+  </li>
+{% endfor %}
+  </ul>
+</section>
+
+<div role="tabpanel" id="connected">
+<ol>
+  {% for user, score in most_connected_profiles %}
+    <li>
+      <p>{{ user_link(user) }}</p>
+      <small>
+        {{ gettext('%(score)s connections', score=score) }}
+      </small>
+    </li>
+  {% endfor %}
+</ol>
+</div>
+
+<div role="tabpanel" id="complete">
+<ol>
+  {% for user, score in most_complete_profiles %}
+    <li>
+      <p>{{ user_link(user) }}</p>
+      <small>
+        {{ score }} /
+        {{ gettext('%(skill)s Skills', skill=QUESTIONS_BY_ID.keys()|length) }}
+      </small>
+    </li>
+  {% endfor %}
+</ol>
+</div>
+
+<div role="tabpanel" id="progress">
 <ul>
   {% set q_progress = user.questionnaire_progress %}
   {% for questionnaire in QUESTIONNAIRES %}
@@ -33,59 +101,8 @@
 <a href="{{ url_for('views.my_profile') }}">
   {{ gettext('View / Edit My Profile') }}
 </a>
+</div>
 
-<h2>{{ gettext('Activity') }}</h2>
-
-{% macro user_link(user) -%}
-<a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a>
-{%- endmacro %}
-
-<ul>
-{% for event in events %}
-  <li>
-  <time datetime="{{ event.created_at }}"></time>
-  {% if event.type == 'shared_message' %}
-    <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
-
-    {{ event.message }}
-  {% elif event.type == 'user_joined_event' %}
-    <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
-  {% elif event.type == 'connection_event' %}
-    <p>{{ gettext('+%(new)s new connections made in NOI.', new=event.emails.count()) }}</p>
-    <p>{{ gettext('+%(total)s connections!', total=event.total_connections) }}</p>
-  {% else %}
-    UNKNOWN EVENT TYPE: {{ event.type }}
-  {% endif %}
-  </li>
-{% endfor %}
-</ul>
-
-<h3>{{ gettext('Most Complete Profiles') }}</h3>
-
-<ol>
-  {% for user, score in most_complete_profiles %}
-    <li>
-      <p>{{ user_link(user) }}</p>
-      <small>
-        {{ score }} /
-        {{ gettext('%(skill)s Skills', skill=QUESTIONS_BY_ID.keys()|length) }}
-      </small>
-    </li>
-  {% endfor %}
-</ol>
-
-<h3>{{ gettext('Most Connected') }}</h3>
-
-<ol>
-  {% for user, score in most_connected_profiles %}
-    <li>
-      <p>{{ user_link(user) }}</p>
-      <small>
-        {{ gettext('%(score)s connections', score=score) }}
-      </small>
-    </li>
-  {% endfor %}
-</ol>
-
+</div> <!-- End of tab panel container -->
 
 {% endblock %}
