@@ -399,6 +399,11 @@ class FullLocationDbTests(DbTestCase):
         user.city = 'New York'
         eq_(user.full_location, 'New York')
 
+    def test_country_is_zz(self):
+        user = models.User()
+        user.country = Country('ZZ')
+        eq_(user.full_location, '')
+
     def test_city_and_country(self):
         user = models.User()
         user.city = 'New York'
