@@ -5,7 +5,7 @@ from app.views import (get_area_questionnaire_or_404,
 from app.models import User, SharedMessageEvent, ConnectionEvent
 
 from .test_models import DbTestCase
-from .util import load_fixture
+from .fixtures import load_fixture
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
 
@@ -15,9 +15,7 @@ class ViewTestCase(DbTestCase):
         config.update(
             DEBUG=False,
             WTF_CSRF_ENABLED=False,
-            # This speeds tests up considerably.
-            SECURITY_PASSWORD_HASH='plaintext',
-            CACHE_NO_NULL_WARNING=True,
+            CACHE_NO_NULL_WARNING=True
         )
         return create_app(config=config)
 

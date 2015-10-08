@@ -5,7 +5,7 @@ from sqlalchemy.exc import OperationalError, IntegrityError
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
-from .util import load_fixture
+from .fixtures import load_fixture
 from .. import models, LEVELS
 
 db = models.db
@@ -35,7 +35,8 @@ class DbTestCase(TestCase):
     BASE_APP_CONFIG = dict(
         SQLALCHEMY_DATABASE_URI=TEST_DB_URL,
         NOI_DEPLOY='_default',
-        SEARCH_DEPLOYMENTS=['_default']
+        SEARCH_DEPLOYMENTS=['_default'],
+        SECURITY_PASSWORD_HASH='plaintext'
     )
 
     def create_app(self):
