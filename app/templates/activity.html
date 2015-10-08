@@ -1,5 +1,7 @@
 {% extends "__base_ui__.html" %}
 
+{% from "_macros.html" import get_user_avatar_url %}
+
 {% block content %}
 
 <nav class="b-contextual-nav">
@@ -21,7 +23,7 @@
 {%- endmacro %}
 
 {% macro user_avatar(user) -%}
-<img class="e-user-picture" src="{{ user.picture_url }}" alt="">
+<img class="e-user-picture" src="{{ get_user_avatar_url(user) }}" alt="">
 {%- endmacro %}
 
 {% for event in events %}

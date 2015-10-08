@@ -1,3 +1,11 @@
+{% macro get_user_avatar_url(user) -%}
+{% if user.has_picture -%}
+{{ user.picture_url }}
+{%- else -%}
+/style-guide/static/img/user-picture.jpg
+{%- endif %}
+{%- endmacro %}
+
 {% macro render_alert(message, category) %}
   {% if category == 'error' %}
     {% set flashed_message_class = 'm-error' %}

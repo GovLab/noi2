@@ -1,5 +1,7 @@
 {% extends "__base_new__.html" %}
 
+{% from "_macros.html" import get_user_avatar_url %}
+
 {% block header %}
 <header class="b-navigation">
     <section class="e-top-bar">
@@ -8,7 +10,7 @@
             <!-- TODO: Wrap this in a <button> for a11y. -->
             <span class="e-post material-icons" data-toggle="modal" data-target="#post-a-message">chat</span>
             <!-- TODO: Wrap this in a <button> for a11y. -->
-            <img class="e-user-picture" src="{{ current_user.picture_url }}" data-toggle="modal" data-target="#profile-summary">
+            <img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" data-toggle="modal" data-target="#profile-summary">
         </div>
     </section>
     <nav class="e-main-nav">
@@ -56,7 +58,7 @@
 <div class="modal-dialog">
 <section class="b-profile-summary m-active">
     <header>
-        <img class="e-user-picture" src="{{ current_user.picture_url }}" alt="">
+        <img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" alt="">
         <h3 class="e-name">{{ current_user.full_name }}</h3>
         <a class="e-edit-profile" href="{{ url_for('views.my_profile') }}">Edit Profile</a>
     </header>
