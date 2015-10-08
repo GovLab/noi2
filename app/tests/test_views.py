@@ -5,7 +5,7 @@ from app.views import (get_area_questionnaire_or_404,
 from app.models import User, SharedMessageEvent, ConnectionEvent
 
 from .test_models import DbTestCase
-from .fixtures import load_fixture
+from .fixtures import UserFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
 
@@ -39,10 +39,14 @@ class ViewTestCase(DbTestCase):
         return res
 
     def create_user(self, email, password, fully_register=True):
-        datastore = self.app.extensions['security'].datastore
-        user = datastore.create_user(email=email, password=password)
-        if fully_register:
-            user.set_fully_registered()
+        #datastore = self.app.extensions['security'].datastore
+        #user = datastore.create_user(email=email, password=password)
+        #if fully_register:
+        #    user.set_fully_registered()
+        args = {'email': email, 'password': password}
+        if fully_register == False:
+            args['joined'] = None
+        user = UserFactory.create(**args)
         self.last_created_user = user
         return user
 
@@ -186,7 +190,8 @@ class ActivityFeedTests(ViewTestCase):
         assert 'hello there' in res.data
 
     def test_email_connection_is_activity(self):
-        load_fixture()
+        UserFactory.create(email='sly@stone.com')
+        UserFactory.create(email='paul@lennon.com')
         self.login()
         res = self.client.post('/email', data={
             'emails[]': ['sly@stone.com', 'paul@lennon.com']
@@ -320,7 +325,8 @@ class ViewTests(ViewTestCase):
                              '/login?next=%2Fuser%2F1234')
 
     def test_email(self):
-        load_fixture()
+        UserFactory.create(email='sly@stone.com')
+        UserFactory.create(email='paul@lennon.com')
         self.login()
         res = self.client.post('/email', data={
             'emails[]': ['sly@stone.com', 'paul@lennon.com']

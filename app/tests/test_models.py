@@ -1,5 +1,5 @@
 from flask import Flask
-from flask.ext.testing import TestCase
+from flask_testing import TestCase
 from nose.tools import eq_
 from sqlalchemy.exc import OperationalError, IntegrityError
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT

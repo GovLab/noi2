@@ -1,8 +1,6 @@
-from app.models import db, User, UserSkill
+from app.models import db, User, UserSkill, UserJoinedEvent
 
-from flask import current_app
-from factory import alchemy, LazyAttribute
-#from flask_security.utils import encrypt_password
+from factory import alchemy, LazyAttribute, RelatedFactory
 from datetime import datetime
 
 
@@ -18,6 +16,13 @@ def load_fixture():
     dubya_shrub()
 
 
+class UserJoinedEventFactory(alchemy.SQLAlchemyModelFactory):
+
+    class Meta:  # pylint: disable=old-style-class,no-init,too-few-public-methods
+        model = UserJoinedEvent
+        sqlalchemy_session = db.session
+
+
 class UserFactory(alchemy.SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-public-methods
 
     class Meta:  # pylint: disable=old-style-class,no-init,too-few-public-methods
@@ -31,6 +36,8 @@ class UserFactory(alchemy.SQLAlchemyModelFactory): # pylint: disable=no-init,too
     active = True
     confirmed_at = datetime(2010, 01, 01)
     deployment = '_default'
+
+    joined = RelatedFactory(UserJoinedEventFactory, 'user')
 
 
 class UserSkillFactory(alchemy.SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-public-methods
