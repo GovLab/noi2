@@ -1,6 +1,7 @@
-{% extends "__base__.html" %}
+{% extends "__base_ui__.html" %}
 
-{% block title %}{% if user.first_name and user.last_name %}{{user.first_name}} {{user.last_name}}'s{% else %}NoI User Public{% endif %} Profile{% endblock %}
+{% block title %}{{ gettext("%(user)s's Profile", user=user.full_name) }}{% endblock %}
+
 {% block page_style_post %}
 <style>
 .profile-img { width: 100px; height: 100px; border-radius: 50px;}
@@ -34,30 +35,60 @@
 
 {% endblock %}
 
+{% from "_macros.html" import get_user_avatar_url %}
+
 {% block content %}
 
+<section class="b-profile-header">
+    <div class="e-bg" style="background-image: url('{{ get_user_avatar_url(user) }}')"></div> 
+    <div class="e-left">
+        <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
+        <span class="e-edit material-icons">edit</span>
+    </div>
+    <div class="e-right">
+        <h2 class="e-name">{{ user.full_name }}</h2>
+        <h3 class="e-job">{{ user.position }}</h3>
+
+        <ul class="e-info">
+           {% if user.organization %}
+             <li><span class="material-icons">business</span>{{ user.organization }}</li> 
+           {% endif %}
+
+           {% if user.expertise_domain_names %}
+             {% for domain in user.expertise_domain_names %}
+               <li><span class="material-icons">school</span>{{ domain }}</li>
+             {% endfor %}
+           {% endif %}
+
+           {% if user.full_location %}
+           <li><span class="material-icons">location_on</span>{{ user.full_location }}</li> 
+           {% endif %}
+
+           {% if user.locales %}
+             {% for locale in user.locales %}
+               {# TODO: Replace 'en' below w/ current locale. #}
+               <li>{{ locale.get_display_name(locale='en') }}</li>
+             {% endfor %}
+           {% endif %}
+        </ul>
+    </div>
+</section>
+
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items" role="tablist">
+        <li role="presentation" class="e-item active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">{{ gettext('Overview') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#expertise" aria-controls="expertise" role="tab" data-toggle="tab">{{ gettext('Expertise') }}</a></li>
+    </ul>
+</nav>
+
+<div> <!-- Start of tab panel container -->
+
+<section role="tabpanel" id="overview" class="active">
 	<div class="row">
 	<div class="debug col-xs-4 col-md-4">
 			<center><span class="flag-icon flag-icon-squared flag-icon-{{ user.country.code }}"></center>
 		</div>
-		<div class="debug col-xs-4 col-md-4">
-      {% if current_user.has_picture %}
-      <center><img class="profile-img" src="{{ user.picture_url }}"/><center>
-      {% endif %}
-			</div>
-		<div class="debug col-xs-4 col-md-4">
-		</div>
 	</div>
-<div class="row">
-	<div class="debug col-md-12 text-center">
-		{% if user.first_name and user.last_name %}
-			<h2>{{ user.first_name }} {{ user.last_name }}</h2>
-		{% endif %}
-	</div>
-	<div class="debug col-md-12 text-center">
-		{{ user.organization or '' }} | {{ user.position or '' }}
-	</div>
-</div>
 
 <div class="row">
 	<div class="debug col-xs-2 col-md-2 text-center"></div>
@@ -76,30 +107,6 @@
 <br/>
 
 <div class="row">
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext('Languages:') }}</h3>
-		{% if user.locales %}
-		<ul>
-			{% for locale in user.locales %}
-				<li>{{ locale.display_name }}</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		{{ gettext('No language information available.') }}
-		{% endif %}
-	</div>
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext("Domain(s) of expertise:") }}</h3>
-		{% if user.expertise_domain_names %}
-		<ul>
-			{% for domain in user.expertise_domain_names %}
-			<li>{{ domain }}</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		{{ gettext("No domain information available.") }}
-		{% endif %}
-	</div>
 	<div class="col-xs-12 col-md-4">
 		<h3>{{ gettext('Projects I have done') }}</h3>
 		{% if user.projects %}
@@ -162,5 +169,17 @@
 <span style="border: solid 1px black; padding: 3px;">{{v['icon']|safe}}&nbsp;{{ gettext(v['label']) }}</span>
       {% endfor %}
 </div>
+
+</section>
+
+<section role="tabpanel" id="expertise">
+
+</section>
+
+</div> <!-- End of tab panel container -->
+
+<footer class="b-footer-message">
+
+</footer>
 
 {% endblock %}
