@@ -8,12 +8,11 @@ from app import mail, models, sass, LEVELS, ORG_TYPES
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
-#from app.tests.util import load_fixture
+from app.tests.factories import UserFactory
 
 from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-from flask_security.utils import encrypt_password
 from flask_security.recoverable import send_reset_password_instructions
 
 from random import choice
@@ -154,7 +153,6 @@ def drop_db(verbose=False):
     return 0
 
 
-@manager.command
 def add_fake_users(users_csv):
     """
     Add a bunch of fake users from a CSV.  Will set bogus passwords for them.
@@ -194,14 +192,15 @@ def send_bulk_password_reset_links(users_csv):
         send_reset_password_instructions(user)
 
 
-#@manager.command
-#def populate_db():
-#    """
-#    Populate DB from fixture data
-#    """
-#
-#    load_fixture(password=encrypt_password('foobar'))
-#    return 0
+@manager.command
+@manager.option('-c', '--count', dest='count', default=100)
+def populate_db(count=100):
+    """
+    Populate DB from fixture data
+    """
+    UserFactory.create_batch(count)
+    db.session.commit()
+    return 0
 
 @manager.command
 def build_sass():

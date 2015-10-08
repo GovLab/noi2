@@ -15,7 +15,7 @@ from factory.alchemy import SQLAlchemyModelFactory
 from factory.fuzzy import FuzzyChoice, FuzzyNaiveDateTime
 from faker import Faker
 from datetime import datetime
-from random import choice, randint
+from random import choice, randint, sample
 
 import logging
 
@@ -76,14 +76,13 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
                                                                  o.last_name))
     active = True
     confirmed_at = FuzzyNaiveDateTime(datetime(2015, 1, 1))
-    deployment = '_default'
 
     joined = RelatedFactory(UserJoinedEventFactory, 'user')
 
     organization = LazyAttribute(lambda o: fake.company())
-    organization_type = FuzzyChoice(ORG_TYPES.values())
+    organization_type = FuzzyChoice(ORG_TYPES.keys())
 
-    country = LazyAttribute(lambda o: fake.country())
+    country = LazyAttribute(lambda o: fake.country_code())
     city = LazyAttribute(lambda o: fake.city())
 
     projects = LazyAttribute(lambda o: fake.paragraph())
@@ -98,9 +97,11 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
             return
 
         else:
-            for _ in xrange(0, randint(0, 10)):
+            domains = current_app.config['DOMAINS']
+            for expertise_domain in sample(domains, randint(0, len(domains))):
                 self.expertise_domains.append(
-                    UserExpertiseDomainFactory.create(user_id=self.id))
+                    UserExpertiseDomainFactory.create(user_id=self.id,
+                                                      name=expertise_domain))
 
     @post_generation
     def gen_languages(self, create, extracted, **kwargs): #pylint: disable=unused-argument
@@ -111,9 +112,10 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
             return
 
         else:
-            for _ in xrange(0, randint(0, 10)):
+            for locale in sample(LOCALES, randint(0, len(LOCALES))):
                 self.languages.append(
-                    UserLanguageFactory.create(user_id=self.id))
+                    UserLanguageFactory.create(user_id=self.id,
+                                               locale=locale))
 
     @post_generation
     def gen_skills(self, create, extracted, **kwargs): #pylint: disable=unused-argument
@@ -124,6 +126,8 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
             return
 
         else:
-            for _ in xrange(0, randint(0, 10)):
+            question_ids = QUESTIONS_BY_ID.keys()
+            for question_id in sample(question_ids, randint(0, len(question_ids))):
                 self.skills.append(
-                    UserSkillFactory.create(user_id=self.id))
+                    UserSkillFactory.create(user_id=self.id,
+                                            name=question_id))
