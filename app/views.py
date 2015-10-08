@@ -401,7 +401,6 @@ def activity():
     return render_template('activity.html', **{
         'user': current_user,
         'events': events,
-        'shared_message_form': shared_message_form,
         'most_complete_profiles': User.get_most_complete_profiles(limit=5),
         'most_connected_profiles': User.get_most_connected_profiles(limit=5)
     })

@@ -129,9 +129,7 @@ class SharedMessageForm(Form):
     Form for submittin a message to share with the network.
     '''
 
-    message = TextAreaField(
-        label=lazy_gettext('Have a question or something to share about innovation?')
-    )
+    message = TextAreaField()
 
 
 class SearchForm(Form):

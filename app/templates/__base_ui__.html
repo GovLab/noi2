@@ -1,13 +1,16 @@
 {% extends "__base_new__.html" %}
 
+{% from "_macros.html" import get_user_avatar_url %}
+
 {% block header %}
 <header class="b-navigation">
     <section class="e-top-bar">
         <h1 class="e-logo">{{ gettext('Network of Innovators') }}</h1>
         <div class="e-user-utils">
-            <span class="e-post material-icons">chat</span>
             <!-- TODO: Wrap this in a <button> for a11y. -->
-            <img class="e-user-picture" src="{{ current_user.picture_url }}" data-toggle="modal" data-target="#profile-summary">
+            <span class="e-post material-icons" data-toggle="modal" data-target="#post-a-message">chat</span>
+            <!-- TODO: Wrap this in a <button> for a11y. -->
+            <img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" data-toggle="modal" data-target="#profile-summary">
         </div>
     </section>
     <nav class="e-main-nav">
@@ -34,11 +37,28 @@
     </nav>
 </header>
 
+<div class="modal" id="post-a-message" tabindex="-1" role="dialog">
+<div class="modal-dialog">
+<div class="b-post-update-wrapper m-update-active">
+<div class="e-post-update">
+  <h3>{{ gettext('Post an update') }}</h3>
+  <form action="{{ url_for('views.activity') }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+
+    <p><label for="post-a-message-message">{{ gettext('Have a question to pose to the whole community? Need help with a task? Ask the Network!') }}</label></p>
+    <textarea id="post-a-message-message" name="message" required placeholder="Does anyone have experience with prize-backed challenges relating to increasing literacy?"></textarea>
+    <button class="b-button" type="submit">{{ gettext('Send') }} <i class="material-icons">send</i></button>
+  </form>
+</div>
+</div>
+</div>
+</div>
+
 <div class="modal" id="profile-summary" tabindex="-1" role="dialog">
 <div class="modal-dialog">
 <section class="b-profile-summary m-active">
     <header>
-        <img class="e-user-picture" src="{{ current_user.picture_url }}" alt="">
+        <img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" alt="">
         <h3 class="e-name">{{ current_user.full_name }}</h3>
         <a class="e-edit-profile" href="{{ url_for('views.my_profile') }}">Edit Profile</a>
     </header>

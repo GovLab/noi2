@@ -1,67 +1,74 @@
-{% extends "__base__.html" %}
+{% extends "__base_ui__.html" %}
+
+{% from "_macros.html" import get_user_avatar_url %}
 
 {% block content %}
 
-<form method="post">
-{{ shared_message_form.csrf_token }}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items" role="tablist">
+        <li role="presentation" class="e-item active"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">{{ gettext('Activity') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#connected" aria-controls="connected" role="tab" data-toggle="tab">{{ gettext('Most Connected') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#complete" aria-controls="complete" role="tab" data-toggle="tab">{{ gettext('Most Complete Profiles') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#progress" aria-controls="progress" role="tab" data-toggle="tab">{{ gettext('My Profile Progress') }}</a></li>
+    </ul>
+</nav>
 
-{{ shared_message_form.message.label() }}
-{{ shared_message_form.message(placeholder=gettext("Share with the network")) }}
+<div> <!-- Start of tab panel container -->
 
-<button type="submit">{{ gettext('Post') }}</button>
-</form>
+<section role="tabpanel" id="activity" class="b-activity-feed active">
 
-<h3>{{ gettext('My Profile Progress') }}</h3>
-
-<ul>
-  {% set q_progress = user.questionnaire_progress %}
-  {% for questionnaire in QUESTIONNAIRES %}
-    {% set item_progress = q_progress[questionnaire.id] %}
-    {% if item_progress.answered > 0 %}
-      <li>{{ questionnaire.name }}
-	<progress value="{{ item_progress.answered }}"
-		  max="{{ item_progress.total }}"></progress>
-	{% if item_progress.answered == item_progress.total %}
-	  &#x2713; {# A unicode check mark. #}
-	{% endif %}
-      </li>
-    {% else %}
-      <li class="text-muted">{{ questionnaire.name }}</li>
-    {% endif %}
-  {% endfor %}
-</ul>
-<a href="{{ url_for('views.my_profile') }}">
-  {{ gettext('View / Edit My Profile') }}
-</a>
-
-<h2>{{ gettext('Activity') }}</h2>
-
+  <ul class="e-activity-feed-container">
 {% macro user_link(user) -%}
-<a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a>
+<strong><a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a></strong>
 {%- endmacro %}
 
-<ul>
+{% macro user_avatar(user) -%}
+<img class="e-user-picture" src="{{ get_user_avatar_url(user) }}" alt="">
+{%- endmacro %}
+
 {% for event in events %}
-  <li>
+  <li class="e-feed-item">
   <time datetime="{{ event.created_at }}"></time>
   {% if event.type == 'shared_message' %}
-    <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
-
-    {{ event.message }}
+    {{ user_avatar(event.user) }}
+    <div class="e-feed-message">
+      <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
+      <p>{{ event.message }}</p>
+    </div>
   {% elif event.type == 'user_joined_event' %}
-    <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
+    {{ user_avatar(event.user) }}
+    <div class="e-feed-message">
+      <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
+    </div>
   {% elif event.type == 'connection_event' %}
-    <p>{{ gettext('+%(new)s new connections made in NOI.', new=event.emails.count()) }}</p>
-    <p>{{ gettext('+%(total)s connections!', total=event.total_connections) }}</p>
+    <div class="e-feed-message">
+      <p>{{ gettext('+%(new)s new connections made in NOI.', new=event.emails.count()) }}</p>
+      <p>{{ gettext('+%(total)s connections!', total=event.total_connections) }}</p>
+    </div>
   {% else %}
-    UNKNOWN EVENT TYPE: {{ event.type }}
+    <div class="e-feed-message">
+      UNKNOWN EVENT TYPE: {{ event.type }}
+    </div>
   {% endif %}
   </li>
 {% endfor %}
-</ul>
+  </ul>
+</section>
 
-<h3>{{ gettext('Most Complete Profiles') }}</h3>
+<div role="tabpanel" id="connected">
+<ol>
+  {% for user, score in most_connected_profiles %}
+    <li>
+      <p>{{ user_link(user) }}</p>
+      <small>
+        {{ gettext('%(score)s connections', score=score) }}
+      </small>
+    </li>
+  {% endfor %}
+</ol>
+</div>
 
+<div role="tabpanel" id="complete">
 <ol>
   {% for user, score in most_complete_profiles %}
     <li>
@@ -73,19 +80,49 @@
     </li>
   {% endfor %}
 </ol>
+</div>
 
-<h3>{{ gettext('Most Connected') }}</h3>
+<section role="tabpanel" id="progress" class="b-profile-progress">
 
-<ol>
-  {% for user, score in most_connected_profiles %}
-    <li>
-      <p>{{ user_link(user) }}</p>
-      <small>
-        {{ gettext('%(score)s connections', score=score) }}
-      </small>
-    </li>
+<ul class="e-progress-container">
+  {% set q_progress = user.questionnaire_progress %}
+  {% for questionnaire in QUESTIONNAIRES %}
+    {% set item_progress = q_progress[questionnaire.id] %}
+
+    {# TODO: Link to the normal questionnaire, not the onboarding one. #}
+    {% set questionnaire_url = url_for('views.register_step_3_area', areaid=questionnaire.id) %}
+
+    {% if item_progress.total > 0 %}
+    {% if item_progress.answered > 0 %}
+      {% set questions_left = item_progress.total - item_progress.answered %}
+      {% set percentage_complete = item_progress.answered / item_progress.total * 100 %}
+      <li class="e-progress-item" data-questions-left="{{ questions_left }}">
+        <a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a>
+        {% if questions_left > 0 %}
+          <div class="e-questions-left">{{ gettext('%(questions_left)s question(s) left', questions_left=questions_left) }}</div>
+          <div class="e-bar" style="width: {{ percentage_complete }}%"></div>
+        {% else %}
+          <div class="e-bar"></div>
+        {% endif %}
+      </li>
+    {% else %}
+      <li class="e-progress-item"><a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a></li>
+    {% endif %}
+    {% endif %}
   {% endfor %}
-</ol>
+</ul>
 
+<footer class="b-footer-message">
+  <h3><a href="{{ url_for('views.my_profile') }}">
+    {{ gettext('Complete Your Profile') }}
+  </a></h3>
+  <p>
+    {{ gettext('Let others know your skills & expertise and also get more relevant matches!') }}
+  </p>
+</footer>
+
+</section>
+
+</div> <!-- End of tab panel container -->
 
 {% endblock %}
