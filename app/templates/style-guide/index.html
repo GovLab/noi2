@@ -17,8 +17,8 @@ iframe {
 {% for page in pages %}
   {% if page not in PAGES_TO_EXCLUDE %}
     <div class="page">
-      <h3><a href="{{ url_for('views.style_guide', pageid=page) }}">{{ page }}</a></h3>
-      <iframe src="{{ url_for('views.style_guide', pageid=page) }}" width="320" height="480"></iframe>
+      <h3><a href="{{ url_for('style_guide.page', pageid=page) }}">{{ page }}</a></h3>
+      <iframe src="{{ url_for('style_guide.page', pageid=page) }}" width="320" height="480"></iframe>
     </div>
   {% endif %}
 {% endfor %}

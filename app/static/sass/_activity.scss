@@ -22,12 +22,20 @@
         display: inline-block;
         margin: 0 40px;
 
-        &.m-active {
+        // Note that &.active is applied by Bootstrap's tab plugin.
+        &.m-active, &.active {
             transform: scale(1.3);
             color: $white-80;
             font-weight: 600;
         }   
     }
+}
+
+// The content of contextual nav "tabs" should be contained in
+// elements with role="tabpanel"; only one of them should have .active,
+// which is managed by Bootstrap's tab plugin.
+[role="tabpanel"]:not(.active) {
+    display: none;
 }
 
 .b-activity-feed {

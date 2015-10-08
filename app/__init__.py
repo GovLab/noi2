@@ -44,6 +44,7 @@ assets.register('main_css', main_css)
 main_js = Bundle('js/main.js',
                  'vendor/bootstrap/js/alert.js',
                  'vendor/bootstrap/js/modal.js',
+                 'vendor/bootstrap/js/tab.js',
                  #filters='jsmin',
                  output='gen/main_packed.%(version)s.js')
 assets.register('main_js', main_js)

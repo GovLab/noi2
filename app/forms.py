@@ -8,10 +8,10 @@ from app.models import User
 from flask import current_app
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed
-from flask_security.forms import (LoginForm, RegisterForm, ConfirmRegisterForm,
+from flask_security.forms import (LoginForm, RegisterForm,
                                   ForgotPasswordForm, ChangePasswordForm,
                                   ResetPasswordForm,
-                                  SendConfirmationForm, email_required,
+                                  email_required,
                                   email_validator, unique_user_email,
                                   password_required, password_length, EqualTo)
 
@@ -151,13 +151,6 @@ class SearchForm(Form):
     fulltext = TextField()
 
 
-class NOISendConfirmationForm(SendConfirmationForm):
-    '''
-    Localizeable version of Flask-Security's SendConfirmationForm
-    '''
-    submit = SubmitField(lazy_gettext('Resend Confirmation Instructions'))
-
-
 class NOIForgotPasswordForm(ForgotPasswordForm):
     '''
     Localizeable version of Flask-Security's ForgotPasswordForm
@@ -199,34 +192,6 @@ class NOIRegisterForm(RegisterForm):
                                               password_length])
     password_confirm = None
     submit = SubmitField(lazy_gettext('Sign up'))
-
-
-class NOIConfirmRegisterForm(ConfirmRegisterForm):
-    '''
-    Custom registration form that limits emails to a certain domain.
-    '''
-
-    def validate_email(self, field):
-        '''
-        Validate email is OK for this domain
-        '''
-        value = field.data
-        email_regex = current_app.config.get('EMAIL_REGEX')
-        if email_regex:
-            if re.match(email_regex, value):
-                return value
-
-        email_whitelist = current_app.config.get('EMAIL_WHITELIST')
-        if email_whitelist:
-            if value in email_whitelist:
-                return value
-
-        if email_regex:
-            raise ValidationError(lazy_gettext(
-                '%(value)s is not a valid email address: %(explanation)s' %
-                {'value': value,
-                 'explanation': lazy_gettext(current_app.config.get('EMAIL_EXPLANATION'))}
-            ))
 
 
 class NOIResetPasswordForm(ResetPasswordForm):

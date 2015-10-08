@@ -13,11 +13,12 @@ from app import (csrf, cache, mail, bcrypt, s3, assets, security,
                  babel, celery, alchemydumps, sass,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
 from app.config.schedule import CELERYBEAT_SCHEDULE
-from app.forms import (NOIConfirmRegisterForm, NOIForgotPasswordForm,
+from app.forms import (NOIForgotPasswordForm,
                        NOIResetPasswordForm, NOIChangePasswordForm,
-                       NOISendConfirmationForm, NOIRegisterForm)
+                       NOIRegisterForm)
 from app.models import db, User, Role
 from app.views import views
+from app import style_guide
 
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -45,22 +46,6 @@ def lazy_gettext(string):
 
     return make_lazy_string(gettext_no_interpolate, string)
 
-#print 'field_label' + str(flask_security.forms.get_form_field_label)
-#flask_security.forms.get_form_field_label = lambda: 'foo'
-
-# _default_field_labels['email'] = gettext('Email Address')
-# _default_field_labels['password'] = lazy_gettext('Password')
-# _default_field_labels['remember_me'] = lazy_gettext('Remember Me')
-# _default_field_labels['login'] = lazy_gettext('Login')
-# _default_field_labels['retype_password'] = lazy_gettext('Retype Password')
-# _default_field_labels['register'] = lazy_gettext('Register')
-# _default_field_labels['send_confirmation'] = lazy_gettext('Resend Confirmation Instructions')
-# _default_field_labels['recover_password'] = lazy_gettext('Recover Password')
-# _default_field_labels['reset_password'] = lazy_gettext('Reset Password')
-# _default_field_labels['retype_password'] = lazy_gettext('Retype Password')
-# _default_field_labels['new_password'] = lazy_gettext('New Password')
-# _default_field_labels['change_password'] = lazy_gettext('Change Password')
-# _default_field_labels['send_login_link'] = lazy_gettext('Send Login Link')
 
 class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
     '''
@@ -101,26 +86,14 @@ def create_app(config=None): #pylint: disable=too-many-statements
     else:
         app.config.update(config)
 
-    # If we control emails with a Regex, we have to confirm email.
-    if 'EMAIL_REGEX' in app.config:
-        app.config['SECURITY_CONFIRMABLE'] = True
-    else:
-        app.config['SECURITY_CONFIRMABLE'] = False
+    # Confirming email is currently unsupported.
+    app.config['SECURITY_CONFIRMABLE'] = False
 
     with open('/noi/app/data/deployments.yaml') as deployments_yaml:
         deployments = yaml.load(deployments_yaml)
 
     app.config['SECURITY_MSG_UNAUTHORIZED'] = (
         lazy_gettext('You do not have permission to view this resource.'), 'error')
-    app.config['SECURITY_MSG_CONFIRM_REGISTRATION'] = (
-        lazy_gettext('Thank you. Confirmation instructions have been sent to '
-                     '%(email)s.'), 'success')
-    app.config['SECURITY_MSG_EMAIL_CONFIRMED'] = (
-        lazy_gettext('Thank you. Your email has been confirmed.'), 'success')
-    app.config['SECURITY_MSG_ALREADY_CONFIRMED'] = (
-        lazy_gettext('Your email has already been confirmed.'), 'info')
-    app.config['SECURITY_MSG_INVALID_CONFIRMATION_TOKEN'] = (
-        lazy_gettext('Invalid confirmation token.'), 'error')
     app.config['SECURITY_MSG_EMAIL_ALREADY_ASSOCIATED'] = (
         lazy_gettext('%(email)s is already associated with an account.'), 'error')
     app.config['SECURITY_MSG_PASSWORD_MISMATCH'] = (
@@ -136,14 +109,6 @@ def create_app(config=None): #pylint: disable=too-many-statements
                      'instructions have been sent to %(email)s.'), 'error')
     app.config['SECURITY_MSG_INVALID_RESET_PASSWORD_TOKEN'] = (
         lazy_gettext('Invalid reset password token.'), 'error')
-    app.config['SECURITY_MSG_CONFIRMATION_REQUIRED'] = (
-        lazy_gettext('Email requires confirmation.'), 'error')
-    app.config['SECURITY_MSG_CONFIRMATION_REQUEST'] = (
-        lazy_gettext('Confirmation instructions have been sent to %(email)s.'), 'info')
-    app.config['SECURITY_MSG_CONFIRMATION_EXPIRED'] = (
-        lazy_gettext('You did not confirm your email within %(within)s. New '
-                     'instructions to confirm your email have been sent to '
-                     '%(email)s.'), 'error')
     app.config['SECURITY_MSG_LOGIN_EXPIRED'] = (
         lazy_gettext('You did not login within %(within)s. New instructions to '
                      'login have been sent to %(email)s.'), 'error')
@@ -182,6 +147,8 @@ def create_app(config=None): #pylint: disable=too-many-statements
         lazy_gettext('Please reauthenticate to access this page.'), 'info')
 
     app.register_blueprint(views)
+    if app.config['DEBUG']:
+        app.register_blueprint(style_guide.views)
 
     cache.init_app(app)
     csrf.init_app(app)
@@ -194,11 +161,9 @@ def create_app(config=None): #pylint: disable=too-many-statements
     user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
                       register_form=NOIRegisterForm,
-                      confirm_register_form=NOIConfirmRegisterForm,
                       forgot_password_form=NOIForgotPasswordForm,
                       reset_password_form=NOIResetPasswordForm,
-                      change_password_form=NOIChangePasswordForm,
-                      send_confirmation_form=NOISendConfirmationForm)
+                      change_password_form=NOIChangePasswordForm)
 
     # This forces any "lazy strings" like those returned by
     # lazy_gettext() to be evaluated.
