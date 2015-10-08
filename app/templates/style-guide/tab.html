@@ -1,0 +1,23 @@
+{% extends "style-guide/base_ui.html" %}
+
+{% block title %}Tabs Example{% endblock %}
+
+
+{% block content %}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items" role="tablist">
+        <li role="presentation" class="e-item active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Tab 1</a></li>
+        <li role="presentation" class="e-item"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">Tab 2</a></li>
+    </ul>
+</nav>
+
+<div>
+  <div role="tabpanel" id="tab1" class="active">
+    <p>We use Bootstrap's <a target="_blank" href="http://getbootstrap.com/javascript/#tabs">tab plugin</a> for tabs.</p>
+  </div>
+  <div role="tabpanel" id="tab2">
+    <p>I am tab 2.</p>
+  </div>
+</div>
+
+{% endblock %}
