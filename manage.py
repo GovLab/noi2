@@ -194,11 +194,11 @@ def send_bulk_password_reset_links(users_csv):
 
 @manager.command
 @manager.option('-c', '--count', dest='count', default=100)
-def populate_db(count=100):
+def populate_db(count=50):
     """
     Populate DB from fixture data
     """
-    UserFactory.create_batch(count)
+    UserFactory.create_batch(int(count))
     db.session.commit()
     return 0
 

@@ -6,7 +6,8 @@ Factories to create test objects
 
 from app import QUESTIONS_BY_ID, ORG_TYPES, LOCALES
 from app.models import (db, User, UserSkill, UserJoinedEvent,
-                        UserExpertiseDomain, UserLanguage)
+                        UserExpertiseDomain, UserLanguage, Email,
+                        ConnectionEvent)
 
 from flask import current_app
 
@@ -24,6 +25,20 @@ import logging
 logger = logging.getLogger('factory')
 logger.setLevel(logging.WARNING)
 fake = Faker()
+
+class EmailFactory(SQLAlchemyModelFactory):
+
+    class Meta:  # pylint: disable=old-style-class,no-init,too-few-public-methods
+        model = Email
+        sqlalchemy_session = db.session
+
+
+class ConnectionEventFactory(SQLAlchemyModelFactory):
+
+    class Meta:  # pylint: disable=old-style-class,no-init,too-few-public-methods
+        model = ConnectionEvent
+        sqlalchemy_session = db.session
+
 
 class UserJoinedEventFactory(SQLAlchemyModelFactory):
 
@@ -131,3 +146,30 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
                 self.skills.append(
                     UserSkillFactory.create(user_id=self.id,
                                             name=question_id))
+
+    @post_generation
+    def gen_connections(self, create, extracted, **kwargs): #pylint: disable=unused-argument
+        if not create:
+            return
+
+        if extracted:
+            return
+
+        else:
+            max_connection_events = 5
+            max_emails_per_connection = 5
+
+            users = User.query_in_deployment().all()
+            for _ in xrange(0, randint(0, max_connection_events)):
+
+                users_to_connect = set()
+                for _ in xrange(0, randint(1, max_emails_per_connection)):
+                    users_to_connect.add(choice(users))
+
+                connection = ConnectionEventFactory.create()
+                for u in users_to_connect:
+                    EmailFactory.create(from_user_id=self.id,
+                                        to_user_id=u.id,
+                                        connection_event=connection)
+                connection.set_total_connections()
+
