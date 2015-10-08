@@ -62,7 +62,7 @@ class UserExpertiseDomainFactory(SQLAlchemyModelFactory):
         model = UserExpertiseDomain
         sqlalchemy_session = db.session
 
-    name = LazyAttribute(lambda o: choice(current_app.config['DOMAINS']))
+    name = LazyAttribute(lambda o: choice(current_app.config.get('DOMAINS', [])))
 
 
 class UserLanguageFactory(SQLAlchemyModelFactory):
@@ -114,26 +114,30 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
     tutorial_step = 3
 
     @post_generation
-    def gen_expertise_domains(self, create, extracted, **kwargs): #pylint: disable=unused-argument
+    def expertise_domains(self, create, extracted, **kwargs): #pylint: disable=unused-argument
         if not create:
             return
 
-        if extracted:
+        if extracted is not None:
+            for expertise_domain in extracted:
+                expertise_domain.user = self
             return
 
         else:
-            domains = current_app.config['DOMAINS']
+            domains = current_app.config.get('DOMAINS', [])
             for expertise_domain in sample(domains, randint(0, len(domains))):
                 self.expertise_domains.append(
                     UserExpertiseDomainFactory.create(user_id=self.id,
                                                       name=expertise_domain))
 
     @post_generation
-    def gen_languages(self, create, extracted, **kwargs): #pylint: disable=unused-argument
+    def languages(self, create, extracted, **kwargs): #pylint: disable=unused-argument
         if not create:
             return
 
-        if extracted:
+        if extracted is not None:
+            for language in extracted:
+                language.user = self
             return
 
         else:
@@ -143,11 +147,13 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
                                                locale=locale))
 
     @post_generation
-    def gen_skills(self, create, extracted, **kwargs): #pylint: disable=unused-argument
+    def skills(self, create, extracted, **kwargs): #pylint: disable=unused-argument
         if not create:
             return
 
-        if extracted:
+        if extracted is not None:
+            for skill in extracted:
+                skill.user = self
             return
 
         else:
@@ -158,11 +164,13 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
                                             name=question_id))
 
     @post_generation
-    def gen_connections(self, create, extracted, **kwargs): #pylint: disable=unused-argument
+    def connections(self, create, extracted, **kwargs): #pylint: disable=unused-argument
         if not create:
             return
 
-        if extracted:
+        if extracted is not None:
+            for connection in extracted:
+                connection.user = self
             return
 
         else:
@@ -184,11 +192,13 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
                 connection.set_total_connections()
 
     @post_generation
-    def gen_messages(self, create, extracted, **kwargs): #pylint: disable=unused-argument
+    def messages(self, create, extracted, **kwargs): #pylint: disable=unused-argument
         if not create:
             return
 
-        if extracted:
+        if extracted is not None:
+            for message in extracted:
+                message.user = self
             return
 
         else:

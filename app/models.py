@@ -329,9 +329,9 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
 
-    expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan')
-    languages = orm.relationship('UserLanguage', cascade='all,delete-orphan')
-    skills = orm.relationship('UserSkill', cascade='all,delete-orphan')
+    expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan', backref='user')
+    languages = orm.relationship('UserLanguage', cascade='all,delete-orphan', backref='user')
+    skills = orm.relationship('UserSkill', cascade='all,delete-orphan', backref='user')
 
     @classmethod
     def get_most_complete_profiles(cls, limit=10):

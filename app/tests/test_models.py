@@ -91,6 +91,7 @@ class UserMatchDbTests(DbTestCase):
             last_name="jones",
             email="sly@stone.com",
             deployment="sword_coast",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in [
                 ("opendata-open-data-policy-core-mission", 2),
                 ("opendata-open-data-policy-sensitive-vs-non-sensitive", 2),
@@ -111,6 +112,7 @@ class UserMatchDbTests(DbTestCase):
             first_name="sly",
             last_name="stone",
             email="sly@stone.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": -1,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": -1,
@@ -131,6 +133,7 @@ class UserMatchDbTests(DbTestCase):
             first_name="sly",
             last_name="stone-more-knowledgeable",
             email="sly@stone-more.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 2,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": 2,
@@ -151,6 +154,7 @@ class UserMatchDbTests(DbTestCase):
             first_name="sly",
             last_name="stone-less-knowledgeable",
             email="sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-implementing-an-open-data-program-open-data-standards": -1,
                 "opendata-implementing-an-open-data-program-managing-open-data": -1,
@@ -162,6 +166,7 @@ class UserMatchDbTests(DbTestCase):
             first_name="paul",
             last_name="lennon",
             email="paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 5,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": 5,
@@ -182,6 +187,7 @@ class UserMatchDbTests(DbTestCase):
             first_name="dubya",
             last_name="shrub",
             email="dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 1,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": 1,
@@ -384,6 +390,7 @@ class UserSkillDbTests(DbTestCase):
             last_name="jones",
             email="sly@stone.com",
             deployment="sword_coast",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in [
                 ("opendata-open-data-policy-core-mission", 2),
                 ("opendata-open-data-policy-sensitive-vs-non-sensitive", 2),
@@ -404,6 +411,7 @@ class UserSkillDbTests(DbTestCase):
             first_name="sly",
             last_name="stone",
             email="sly@stone.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": -1,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": -1,
@@ -424,6 +432,7 @@ class UserSkillDbTests(DbTestCase):
             first_name="sly",
             last_name="stone-more-knowledgeable",
             email="sly@stone-more.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 2,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": 2,
@@ -444,6 +453,7 @@ class UserSkillDbTests(DbTestCase):
             first_name="sly",
             last_name="stone-less-knowledgeable",
             email="sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-implementing-an-open-data-program-open-data-standards": -1,
                 "opendata-implementing-an-open-data-program-managing-open-data": -1,
@@ -455,6 +465,7 @@ class UserSkillDbTests(DbTestCase):
             first_name="paul",
             last_name="lennon",
             email="paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 5,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": 5,
@@ -475,6 +486,7 @@ class UserSkillDbTests(DbTestCase):
             first_name="dubya",
             last_name="shrub",
             email="dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 1,
                 "opendata-open-data-policy-sensitive-vs-non-sensitive": 1,
@@ -577,22 +589,27 @@ class ConnectionEventDbTests(DbTestCase):
         self.paul_lennon = UserFactory.create(
             first_name="paul",
             last_name="lennon",
-            email="paul@lennon.com")
+            email="paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.dubya_shrub = UserFactory.create(
             first_name="dubya",
             last_name="shrub",
-            email="dubya@shrub.com")
+            email="dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly_less = UserFactory.create(
             first_name="sly",
             last_name="stone-less-knowledgeable",
-            email="sly@stone-less-knowledgeable.com")
+            email="sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly = UserFactory.create(
             first_name="sly",
             last_name="stone",
-            email="sly@stone.com")
+            email="sly@stone.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
         db.session.commit()
 
     def test_creates_connection_event(self):
@@ -644,26 +661,26 @@ class UserConnectionDbTests(DbTestCase):
         self.paul_lennon = UserFactory.create(
             first_name="paul",
             last_name="lennon",
-            email="paul@lennon.com")
+            email="paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.dubya_shrub = UserFactory.create(
             first_name="dubya",
             last_name="shrub",
-            email="dubya@shrub.com")
+            email="dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly_less = UserFactory.create(
             first_name="sly",
             last_name="stone-less-knowledgeable",
-            email="sly@stone-less-knowledgeable.com")
+            email="sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly = UserFactory.create(
             first_name="sly",
             last_name="stone",
-            email="sly@stone.com")
-
-        self.sly_less = models.User.query_in_deployment()\
-          .filter(models.User.email == 'sly@stone-less-knowledgeable.com')\
-          .one()
+            email="sly@stone.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
 
         db.session.commit()
 
