@@ -6,6 +6,7 @@ Creates the app
 
 from flask import Flask, current_app
 #from flask.ext.uploads import configure_uploads
+from flask.ext.babel import get_locale
 from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
@@ -197,6 +198,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     # Constant that should be available for all templates.
 
+    app.jinja_env.globals['get_locale'] = get_locale
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS

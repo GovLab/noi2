@@ -66,8 +66,7 @@
 
            {% if user.locales %}
              {% for locale in user.locales %}
-               {# TODO: Replace 'en' below w/ current locale. #}
-               <li>{{ locale.get_display_name(locale='en') }}</li>
+               <li>{{ locale.get_display_name(locale=get_locale()) }}</li>
              {% endfor %}
            {% endif %}
         </ul>
