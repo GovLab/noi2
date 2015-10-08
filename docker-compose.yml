@@ -1,6 +1,6 @@
 app:
-    build: app/
-#    image: thegovlab/noi2
+#   build: app/
+    image: thegovlab/noi2
     command: /noi/run.sh
     links:
         - db
