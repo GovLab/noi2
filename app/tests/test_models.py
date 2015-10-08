@@ -5,7 +5,7 @@ from sqlalchemy.exc import OperationalError, IntegrityError
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
-from .fixtures import UserFactory, UserSkillFactory
+from .factories import UserFactory, UserSkillFactory
 from .. import models, LEVELS
 
 db = models.db

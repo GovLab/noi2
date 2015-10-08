@@ -5,7 +5,7 @@ from app.views import (get_area_questionnaire_or_404,
 from app.models import User, SharedMessageEvent, ConnectionEvent
 
 from .test_models import DbTestCase
-from .fixtures import UserFactory
+from .factories import UserFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
 
