@@ -6,6 +6,7 @@ from app import LOCALES
 from app.models import User
 
 from flask import current_app
+from flask.ext.babel import get_locale
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed
 from flask_security.forms import (LoginForm, RegisterForm,
@@ -116,8 +117,8 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     locales = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Languages'),
         widget=ChosenSelect(multiple=True),
-        choices=lambda: [(l.language, l.get_language_name(current_app.config.get(
-            'BABEL_DEFAULT_LOCALE'))) for l in LOCALES])
+        choices=lambda: [(l.language, l.get_language_name(get_locale()))
+                         for l in LOCALES])
     expertise_domain_names = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Domains of Expertise'),
         widget=ChosenSelect(multiple=True),
@@ -140,8 +141,8 @@ class SearchForm(Form):
     locales = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Languages'),
         widget=ChosenSelect(multiple=True),
-        choices=lambda: [(l.language, l.get_language_name(current_app.config.get(
-            'BABEL_DEFAULT_LOCALE'))) for l in LOCALES])
+        choices=lambda: [(l.language, l.get_language_name(get_locale()))
+                         for l in LOCALES])
     expertise_domain_names = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Domains of Expertise'),
         widget=ChosenSelect(multiple=True),
