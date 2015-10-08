@@ -2,11 +2,12 @@ from flask import Flask
 from flask.ext.testing import TestCase
 from nose.tools import eq_
 from sqlalchemy.exc import OperationalError, IntegrityError
+from sqlalchemy_utils import Country
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
 from .util import load_fixture
-from .. import models, LEVELS
+from .. import models, LEVELS, babel
 
 db = models.db
 
@@ -382,6 +383,32 @@ class SharedMessageDbTests(DbTestCase):
         eq_(messages[0].type, 'shared_message')
         eq_(messages[0].message, 'hi')
         eq_(messages[0].user.email, 'a@example.org')
+
+class FullLocationDbTests(DbTestCase):
+    def create_app(self):
+        app = super(FullLocationDbTests, self).create_app()
+        babel.init_app(app)
+        return app
+
+    def test_empty(self):
+        user = models.User()
+        eq_(user.full_location, '')
+
+    def test_city_only(self):
+        user = models.User()
+        user.city = 'New York'
+        eq_(user.full_location, 'New York')
+
+    def test_city_and_country(self):
+        user = models.User()
+        user.city = 'New York'
+        user.country = Country('US')
+        eq_(user.full_location, 'New York, United States')
+
+    def country_only(self):
+        user = models.User()
+        user.country = Country('US')
+        eq_(user.full_location, 'United States')
 
 def test_users_only_display_in_search_if_they_have_first_and_last_name():
     user = models.User()

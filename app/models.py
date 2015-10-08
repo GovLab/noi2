@@ -121,6 +121,15 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         return u"%s %s" % (self.first_name, self.last_name)
 
     @property
+    def full_location(self):
+        loc = []
+        if self.city:
+            loc.append(self.city)
+        if self.country and self.country.code != 'ZZ':
+            loc.append(self.country.name)
+        return ", ".join(loc)
+
+    @property
     def display_in_search(self):
         '''
         Determine whether user has filled out bare minimum to display in search
