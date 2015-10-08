@@ -7,7 +7,7 @@ Factories to create test objects
 from app import QUESTIONS_BY_ID, ORG_TYPES, LOCALES
 from app.models import (db, User, UserSkill, UserJoinedEvent,
                         UserExpertiseDomain, UserLanguage, Email,
-                        ConnectionEvent)
+                        ConnectionEvent, SharedMessageEvent)
 
 from flask import current_app
 
@@ -25,6 +25,15 @@ import logging
 logger = logging.getLogger('factory')
 logger.setLevel(logging.WARNING)
 fake = Faker()
+
+class SharedMessageEventFactory(SQLAlchemyModelFactory):
+
+    class Meta:  # pylint: disable=old-style-class,no-init,too-few-public-methods
+        model = SharedMessageEvent
+        sqlalchemy_session = db.session
+
+    message = LazyAttribute(lambda o: fake.paragraph())
+
 
 class EmailFactory(SQLAlchemyModelFactory):
 
@@ -94,6 +103,7 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
 
     joined = RelatedFactory(UserJoinedEventFactory, 'user')
 
+    position = LazyAttribute(lambda o: fake.job())
     organization = LazyAttribute(lambda o: fake.company())
     organization_type = FuzzyChoice(ORG_TYPES.keys())
 
@@ -173,3 +183,15 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
                                         connection_event=connection)
                 connection.set_total_connections()
 
+    @post_generation
+    def gen_messages(self, create, extracted, **kwargs): #pylint: disable=unused-argument
+        if not create:
+            return
+
+        if extracted:
+            return
+
+        else:
+            max_messages = 3
+            for _ in xrange(0, randint(0, max_messages)):
+                SharedMessageEventFactory.create(user_id=self.id)
