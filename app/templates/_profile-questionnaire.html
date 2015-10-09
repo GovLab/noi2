@@ -1,0 +1,54 @@
+{# TODO: A lot of this is copied and pasted from
+ # _profile-progress.html, consider refactoring. #}
+
+<section class="b-profile-progress">
+<ul class="e-progress-container">
+  {% set q_progress = user.questionnaire_progress %}
+  {% set questionnaire = question.questionnaire %}
+    {% set item_progress = q_progress[questionnaire.id] %}
+
+    {% set questionnaire_url = url_for('views.my_expertise') %}
+
+    {% if item_progress.total > 0 %}
+    {% if item_progress.answered > 0 %}
+      {% set questions_left = item_progress.total - item_progress.answered %}
+      {% set percentage_complete = item_progress.answered / item_progress.total * 100 %}
+      <li class="e-progress-item" data-questions-left="{{ questions_left }}">
+        <a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a>
+        {% if questions_left > 0 %}
+          <div class="e-questions-left">{{ gettext('%(questions_left)s question(s) left', questions_left=questions_left) }}</div>
+          <div class="e-bar" style="width: {{ percentage_complete }}%"></div>
+        {% else %}
+          <div class="e-bar"></div>
+        {% endif %}
+      </li>
+    {% else %}
+      <li class="e-progress-item"><a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a></li>
+    {% endif %}
+    {% endif %}
+</ul>
+</section>
+
+{# TODO: A fair amount of this is copied/pasted from
+ # register-step-3.html, consider refactoring. #}
+<section class="b-profile-questionnaire">
+    <div class="e-questions-container">
+        <div class="e-question">
+          {% if prev_questionid %}
+            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=prev_questionid) }}" class="material-icons e-prev">keyboard_arrow_left</a>
+          {% endif %}
+          {% if next_questionid %}
+            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=next_questionid) }}" class="material-icons e-next">keyboard_arrow_right</a>
+          {% endif %}
+            <p class="e-question-text">{{ question.question }}</p>
+            <form class="e-questionnaire-answers" method="post">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+            {% for k, v in LEVELS|dictsort %}
+          <button type="submit" name="answer" value="{{ v.score }}" class="b-button {{ v.class }}">
+                    {{ v.label }}
+                </button>
+            {% endfor %}
+            </form>
+        </div>
+    </div>
+</section>
