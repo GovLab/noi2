@@ -1,166 +1,88 @@
-{% extends "__base__.html" %}
+{% extends "__base_ui__.html" %}
 
-{% block title %}{% if user.first_name and user.last_name %}{{user.first_name}} {{user.last_name}}'s{% else %}NoI User Public{% endif %} Profile{% endblock %}
-{% block page_style_post %}
-<style>
-.profile-img { width: 100px; height: 100px; border-radius: 50px;}
-.profile-map { width: 300px; height: 100px; border-radius: 5px;}
+{% block title %}{{ gettext("%(user)s's Profile", user=user.full_name) }}{% endblock %}
 
-.debug { border-style: none; }
-.flag-icon { font-size: 100px; text-align: center; vertical-align: middle; border-radius: 50px;} 
-
-.row { margin-bottom: 20px;}
-
-.noi-expertise-tag-profile { border: solid grey 1px;
-	padding: 1px 2px 1px 2px;
-	border-radius2: 5px;
-	list-style-type: none;
-	font-size: 12px;
-	opacity: 0.8;
-}
-
-.noi-expertise-list-profile {
-	line-height: 1.5em;
-	list-style-type: none;
-}
-
-{% for questionnaire in QUESTIONNAIRES %}
-.noi-color-{{questionnaire['id']}} { background-color: {{ questionnaire['icon-color'] }}; }
-{% endfor %}
-
-</style>
-
-<link href="/static/styles/flag-icon.css" rel="stylesheet">
-
-{% endblock %}
+{% from "_macros.html" import get_user_avatar_url %}
 
 {% block content %}
 
-	<div class="row">
-	<div class="debug col-xs-4 col-md-4">
-			<center><span class="flag-icon flag-icon-squared flag-icon-{{ user.country.code }}"></center>
-		</div>
-		<div class="debug col-xs-4 col-md-4">
-      {% if current_user.has_picture %}
-      <center><img class="profile-img" src="{{ user.picture_url }}"/><center>
-      {% endif %}
-			</div>
-		<div class="debug col-xs-4 col-md-4">
-		</div>
-	</div>
-<div class="row">
-	<div class="debug col-md-12 text-center">
-		{% if user.first_name and user.last_name %}
-			<h2>{{ user.first_name }} {{ user.last_name }}</h2>
-		{% endif %}
-	</div>
-	<div class="debug col-md-12 text-center">
-		{{ user.organization or '' }} | {{ user.position or '' }}
-	</div>
-</div>
+<section class="b-profile-header">
+    <div class="e-bg" style="background-image: url('{{ get_user_avatar_url(user) }}')"></div> 
+    <div class="e-left">
+        <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
+        <span class="e-edit material-icons">edit</span>
+    </div>
+    <div class="e-right">
+        <h2 class="e-name">{{ user.full_name }}</h2>
+        <h3 class="e-job">{{ user.position }}</h3>
 
-<div class="row">
-	<div class="debug col-xs-2 col-md-2 text-center"></div>
-	<div class="debug col-xs-2 col-md-2 text-center">
-	</div>
-	<div class="debug col-xs-2 col-md-2 text-center">
-    <a href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}" data-connect-to="{{ user.email }}">
-			<i class="fa fa-at fa-2x"></i> E-Mail
-		</a>
-	</div>
-	<div class="debug col-xs-2 col-md-2 text-center">
-		<i class="fa fa-phone-square fa-2x"></i> Phone
-	</div>
-		<div class="debug col-xs-2 col-md-2 text-center"></div>
-</div>
-<br/>
+        <ul class="e-info">
+           {% if user.organization %}
+             <li><span class="material-icons">business</span>{{ user.organization }}</li> 
+           {% endif %}
 
-<div class="row">
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext('Languages:') }}</h3>
-		{% if user.locales %}
-		<ul>
-			{% for locale in user.locales %}
-				<li>{{ locale.display_name }}</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		{{ gettext('No language information available.') }}
-		{% endif %}
-	</div>
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext("Domain(s) of expertise:") }}</h3>
-		{% if user.expertise_domain_names %}
-		<ul>
-			{% for domain in user.expertise_domain_names %}
-			<li>{{ domain }}</li>
-			{% endfor %}
-		</ul>
-		{% else %}
-		{{ gettext("No domain information available.") }}
-		{% endif %}
-	</div>
-	<div class="col-xs-12 col-md-4">
-		<h3>{{ gettext('Projects I have done') }}</h3>
-		{% if user.projects %}
-		<pre>{{ user.projects }}</pre>
-		{% else %}
-		{{ gettext("No project information provided.") }}
-		{% endif %}
-	</div>
-</div>
+           {% if user.expertise_domain_names %}
+             {% for domain in user.expertise_domain_names %}
+               <li><span class="material-icons">school</span>{{ domain }}</li>
+             {% endfor %}
+           {% endif %}
 
+           {% if user.full_location %}
+           <li><span class="material-icons">location_on</span>{{ user.full_location }}</li> 
+           {% endif %}
 
-<div class="row">
-{% if user.skills %}
-{% for questionnaire in QUESTIONNAIRES %}
-	<div class="col-md-2 text-center {{'noi-expertise-not-yet' if not questionnaire.topics}}">
-<img class="noi-expertise-icon" src="/static/img/expertise-icons/{{ questionnaire.icon }}"><br/>{{ questionnaire.name }}
-</div>
-<div class="col-md-4">
-<ul class="noi-expertise-list-profile">
+           {% if user.locales %}
+             {% for locale in user.locales %}
+               <li>{{ locale.get_display_name(locale=get_locale()) }}</li>
+             {% endfor %}
+           {% endif %}
+        </ul>
+    </div>
+</section>
 
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items" role="tablist">
+        <li role="presentation" class="e-item active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">{{ gettext('Overview') }}</a></li>
+        <li role="presentation" class="e-item"><a href="#expertise" aria-controls="expertise" role="tab" data-toggle="tab">{{ gettext('Expertise') }}</a></li>
+    </ul>
+</nav>
+
+<div> <!-- Start of tab panel container -->
+
+<section role="tabpanel" id="overview" class="active">
+<a href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}" data-connect-to="{{ user.email }}">E-Mail</a>
+
+<h3>{{ gettext('Projects I have done') }}</h3>
+{% if user.projects %}
+<pre>{{ user.projects }}</pre>
+{% else %}
+{{ gettext("No project information provided.") }}
+{% endif %}
+
+</section>
+
+<section role="tabpanel" id="expertise">
+
+<ul>
 {% for skill in user.skills %}
 {% with %}
 {% set question = QUESTIONS_BY_ID[skill.name] %}
-{% if question.area_id == questionnaire.id %}
 <li>
-<span class="noi-expertise-level-profile">
-    {% set level = skill.level %}
-    {% if level == -1 %}
-      <i class="fa-fw fa fa-question"></i>
-    {% elif level == 1 %}
-      <i class="fa-fw fa fa-mail-forward"></i>
-    {% elif level == 2 %}
-      <i class="fa-fw fa fa-book"></i>
-    {% elif level == 5 %}
-      <i class="fa-fw fa fa-cogs"></i>
-    {% else %}
-      <i class="fa fa-question"></i>
-    {% endif %}
-</span>
-&nbsp;&nbsp;<span class="noi-expertise-tag-profile noi-color-{{questionnaire['id']}}">{{ question.label|replace('-', ' ') }}</span>
+{{ question.questionnaire.name }}:
+<strong>{{ LEVELS_BY_SCORE[skill.level].label }}</strong>
+<span>{{ question.question }}</span>
 </li>
-{% endif %}
 {% endwith %}
 {% endfor %}
 
 </ul>
-</div>
-{% if loop.index % 2 == 0 %}
-	</div>
-	<div class="row">
-{% endif %}
-{% endfor %}
 
-{% endif %}
+</section>
 
-</div>
+</div> <!-- End of tab panel container -->
 
-<div class="text-center">
-{% for k, v in LEVELS|dictsort %}
-<span style="border: solid 1px black; padding: 3px;">{{v['icon']|safe}}&nbsp;{{ gettext(v['label']) }}</span>
-      {% endfor %}
-</div>
+<footer class="b-footer-message">
+
+</footer>
 
 {% endblock %}
