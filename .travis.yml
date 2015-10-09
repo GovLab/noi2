@@ -9,5 +9,5 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker-compose build
+  - docker-compose pull
   - ./nosetests.sh

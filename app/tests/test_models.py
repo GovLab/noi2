@@ -1,12 +1,12 @@
 from flask import Flask
-from flask.ext.testing import TestCase
+from flask_testing import TestCase
 from nose.tools import eq_
 from sqlalchemy.exc import OperationalError, IntegrityError
 from sqlalchemy_utils import Country
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
-from .util import load_fixture
+from .factories import UserFactory, UserSkillFactory
 from .. import models, LEVELS, babel
 
 db = models.db
@@ -36,7 +36,8 @@ class DbTestCase(TestCase):
     BASE_APP_CONFIG = dict(
         SQLALCHEMY_DATABASE_URI=TEST_DB_URL,
         NOI_DEPLOY='_default',
-        SEARCH_DEPLOYMENTS=['_default']
+        SEARCH_DEPLOYMENTS=['_default'],
+        SECURITY_PASSWORD_HASH='plaintext'
     )
 
     def create_app(self):
@@ -86,10 +87,124 @@ class UserDbTests(DbTestCase):
 class UserMatchDbTests(DbTestCase):
     def setUp(self):
         super(UserMatchDbTests, self).setUp()
-        load_fixture()
-        self.sly = models.User.query_in_deployment()\
-          .filter(models.User.email=='sly@stone.com')\
-          .one()
+        self.outsider = UserFactory.create(
+            first_name=u"outsider",
+            last_name=u"jones",
+            email=u"sly@stone.com",
+            deployment=u"sword_coast",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in [
+                ("opendata-open-data-policy-core-mission", 2),
+                ("opendata-open-data-policy-sensitive-vs-non-sensitive", 2),
+                ("opendata-open-data-policy-crafting-an-open-data-policy", 2),
+                ("opendata-open-data-policy-getting-public-input", 2),
+                ("opendata-open-data-policy-getting-org-approval", 2),
+                ("opendata-implementing-an-open-data-program-scraping-open-data", 2),
+                ("opendata-implementing-an-open-data-program-making-machine-readable", 2),
+                ("opendata-implementing-an-open-data-program-open-data-formats", -1),
+                ("opendata-implementing-an-open-data-program-open-data-license", -1),
+                ("opendata-implementing-an-open-data-program-open-data-standards", -1),
+                ("opendata-implementing-an-open-data-program-managing-open-data", -1),
+                ("opendata-implementing-an-open-data-program-frequency-of-release", -1),
+                ("opendata-implementing-an-open-data-program-data-quality-and-integrity", -1)
+            ]])
+
+        self.sly = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": -1,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": -1,
+                "opendata-open-data-policy-crafting-an-open-data-policy": -1,
+                "opendata-open-data-policy-getting-public-input": -1,
+                "opendata-open-data-policy-getting-org-approval": -1,
+                "opendata-implementing-an-open-data-program-scraping-open-data": -1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": -1,
+                "opendata-implementing-an-open-data-program-open-data-formats": -1,
+                "opendata-implementing-an-open-data-program-open-data-license": -1,
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+            }.items()])
+
+        self.sly_more = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone-more-knowledgeable",
+            email=u"sly@stone-more.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": 2,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": 2,
+                "opendata-open-data-policy-crafting-an-open-data-policy": 2,
+                "opendata-open-data-policy-getting-public-input": 2,
+                "opendata-open-data-policy-getting-org-approval": 2,
+                "opendata-implementing-an-open-data-program-scraping-open-data": -1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": -1,
+                "opendata-implementing-an-open-data-program-open-data-formats": -1,
+                "opendata-implementing-an-open-data-program-open-data-license": -1,
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+            }.items()])
+
+        self.sly_less = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+            }.items()])
+
+        self.paul_lennon = UserFactory.create(
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": 5,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": 5,
+                "opendata-open-data-policy-crafting-an-open-data-policy": 5,
+                "opendata-open-data-policy-getting-public-input": 5,
+                "opendata-open-data-policy-getting-org-approval": 5,
+                "opendata-implementing-an-open-data-program-scraping-open-data": 5,
+                "opendata-implementing-an-open-data-program-making-machine-readable": 5,
+                "opendata-implementing-an-open-data-program-open-data-formats": 5,
+                "opendata-implementing-an-open-data-program-open-data-license": 5,
+                "opendata-implementing-an-open-data-program-open-data-standards": 5,
+                "opendata-implementing-an-open-data-program-managing-open-data": 5,
+                "opendata-implementing-an-open-data-program-frequency-of-release": 5,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": 5
+            }.items()])
+
+        self.dubya_shrub = UserFactory.create(
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": 1,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": 1,
+                "opendata-open-data-policy-crafting-an-open-data-policy": 1,
+                "opendata-open-data-policy-getting-public-input": 1,
+                "opendata-open-data-policy-getting-org-approval": 1,
+                "opendata-implementing-an-open-data-program-scraping-open-data": 1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": 1,
+                "opendata-implementing-an-open-data-program-open-data-formats": 1,
+                "opendata-implementing-an-open-data-program-open-data-license": 1,
+                "opendata-implementing-an-open-data-program-open-data-standards": 1,
+                "opendata-implementing-an-open-data-program-managing-open-data": 1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": 1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": 1
+            }.items()])
+        db.session.commit()
 
     def test_user_match_i_can_explain(self):
         '''
@@ -100,12 +215,10 @@ class UserMatchDbTests(DbTestCase):
         I_CAN_EXPLAIN is scored at '2'
         '''
         self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
-        stone_more = models.User.query_in_deployment().filter_by(email='sly@stone-more.com').one()
-        stone_more.set_skill('prizes-scoping-the-problem-problem-definition', 2)
-        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
-        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', 2)
-        db.session.add(stone_less)
-        db.session.add(stone_more)
+        self.sly_more.set_skill('prizes-scoping-the-problem-problem-definition', 2)
+        self.sly_less.set_skill('prizes-scoping-the-problem-problem-definition', 2)
+        db.session.add(self.sly_more)
+        db.session.add(self.sly_less)
         db.session.commit()
 
         self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
@@ -139,12 +252,10 @@ class UserMatchDbTests(DbTestCase):
         I_CAN_DO_IT is scored at '5'
         '''
         self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
-        paul = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
-        paul.set_skill('prizes-scoping-the-problem-problem-definition', 5)
-        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
-        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', 5)
-        db.session.add(stone_less)
-        db.session.add(paul)
+        self.paul_lennon.set_skill('prizes-scoping-the-problem-problem-definition', 5)
+        self.sly_less.set_skill('prizes-scoping-the-problem-problem-definition', 5)
+        db.session.add(self.paul_lennon)
+        db.session.add(self.sly_less)
         db.session.commit()
 
         self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
@@ -187,12 +298,10 @@ class UserMatchDbTests(DbTestCase):
         I_CAN_REFER is scored at '1'
         '''
         self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
-        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
-        dubya.set_skill('prizes-scoping-the-problem-problem-definition', 1)
-        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
-        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', 1)
-        db.session.add(stone_less)
-        db.session.add(dubya)
+        self.dubya_shrub.set_skill('prizes-scoping-the-problem-problem-definition', 1)
+        self.sly_less.set_skill('prizes-scoping-the-problem-problem-definition', 1)
+        db.session.add(self.dubya_shrub)
+        db.session.add(self.sly_less)
         db.session.commit()
 
         self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
@@ -235,12 +344,10 @@ class UserMatchDbTests(DbTestCase):
         I_WANT_TO_LEARN is scored at -1
         '''
         self.sly.set_skill('prizes-scoping-the-problem-problem-definition', -1)
-        stone_more = models.User.query_in_deployment().filter_by(email='sly@stone-more.com').one()
-        stone_more.set_skill('prizes-scoping-the-problem-problem-definition', -1)
-        stone_less = models.User.query_in_deployment().filter_by(email='sly@stone-less-knowledgeable.com').one()
-        stone_less.set_skill('prizes-scoping-the-problem-problem-definition', -1)
-        db.session.add(stone_less)
-        db.session.add(stone_more)
+        self.sly_more.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        self.sly_less.set_skill('prizes-scoping-the-problem-problem-definition', -1)
+        db.session.add(self.sly_less)
+        db.session.add(self.sly_more)
         db.session.commit()
 
         self.assertEquals([(m.user.email, m.questionnaires) for m in self.sly.match(
@@ -279,14 +386,128 @@ class UserMatchDbTests(DbTestCase):
 class UserSkillDbTests(DbTestCase):
     def setUp(self):
         super(UserSkillDbTests, self).setUp()
-        load_fixture()
-        self.sly_less = models.User.query_in_deployment()\
-          .filter(models.User.email=='sly@stone-less-knowledgeable.com')\
-          .one()
+        self.outsider = UserFactory.create(
+            first_name=u"outsider",
+            last_name=u"jones",
+            email=u"sly@stone.com",
+            deployment=u"sword_coast",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in [
+                ("opendata-open-data-policy-core-mission", 2),
+                ("opendata-open-data-policy-sensitive-vs-non-sensitive", 2),
+                ("opendata-open-data-policy-crafting-an-open-data-policy", 2),
+                ("opendata-open-data-policy-getting-public-input", 2),
+                ("opendata-open-data-policy-getting-org-approval", 2),
+                ("opendata-implementing-an-open-data-program-scraping-open-data", 2),
+                ("opendata-implementing-an-open-data-program-making-machine-readable", 2),
+                ("opendata-implementing-an-open-data-program-open-data-formats", -1),
+                ("opendata-implementing-an-open-data-program-open-data-license", -1),
+                ("opendata-implementing-an-open-data-program-open-data-standards", -1),
+                ("opendata-implementing-an-open-data-program-managing-open-data", -1),
+                ("opendata-implementing-an-open-data-program-frequency-of-release", -1),
+                ("opendata-implementing-an-open-data-program-data-quality-and-integrity", -1)
+            ]])
+
+        self.sly = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": -1,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": -1,
+                "opendata-open-data-policy-crafting-an-open-data-policy": -1,
+                "opendata-open-data-policy-getting-public-input": -1,
+                "opendata-open-data-policy-getting-org-approval": -1,
+                "opendata-implementing-an-open-data-program-scraping-open-data": -1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": -1,
+                "opendata-implementing-an-open-data-program-open-data-formats": -1,
+                "opendata-implementing-an-open-data-program-open-data-license": -1,
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+            }.items()])
+
+        self.sly_more = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone-more-knowledgeable",
+            email=u"sly@stone-more.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": 2,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": 2,
+                "opendata-open-data-policy-crafting-an-open-data-policy": 2,
+                "opendata-open-data-policy-getting-public-input": 2,
+                "opendata-open-data-policy-getting-org-approval": 2,
+                "opendata-implementing-an-open-data-program-scraping-open-data": -1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": -1,
+                "opendata-implementing-an-open-data-program-open-data-formats": -1,
+                "opendata-implementing-an-open-data-program-open-data-license": -1,
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+            }.items()])
+
+        self.sly_less = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+            }.items()])
+
+        self.paul_lennon = UserFactory.create(
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": 5,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": 5,
+                "opendata-open-data-policy-crafting-an-open-data-policy": 5,
+                "opendata-open-data-policy-getting-public-input": 5,
+                "opendata-open-data-policy-getting-org-approval": 5,
+                "opendata-implementing-an-open-data-program-scraping-open-data": 5,
+                "opendata-implementing-an-open-data-program-making-machine-readable": 5,
+                "opendata-implementing-an-open-data-program-open-data-formats": 5,
+                "opendata-implementing-an-open-data-program-open-data-license": 5,
+                "opendata-implementing-an-open-data-program-open-data-standards": 5,
+                "opendata-implementing-an-open-data-program-managing-open-data": 5,
+                "opendata-implementing-an-open-data-program-frequency-of-release": 5,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": 5
+            }.items()])
+
+        self.dubya_shrub = UserFactory.create(
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": 1,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": 1,
+                "opendata-open-data-policy-crafting-an-open-data-policy": 1,
+                "opendata-open-data-policy-getting-public-input": 1,
+                "opendata-open-data-policy-getting-org-approval": 1,
+                "opendata-implementing-an-open-data-program-scraping-open-data": 1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": 1,
+                "opendata-implementing-an-open-data-program-open-data-formats": 1,
+                "opendata-implementing-an-open-data-program-open-data-license": 1,
+                "opendata-implementing-an-open-data-program-open-data-standards": 1,
+                "opendata-implementing-an-open-data-program-managing-open-data": 1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": 1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": 1
+            }.items()])
+        db.session.commit()
 
     def test_get_most_complete_profiles_works(self):
         user_scores = models.User.get_most_complete_profiles()
-        self.assertEqual(user_scores.all()[-1][0].email, 'sly@stone-less-knowledgeable.com')
+        self.assertEqual(user_scores.all()[-1][0].email, self.sly_less.email)
         # should exclude invisible deployments
         self.assertEqual(user_scores.count(), 5)
 
@@ -307,39 +528,6 @@ class UserSkillDbTests(DbTestCase):
             u'opendata-implementing-an-open-data-program-open-data-standards': -1
         })
 
-    def test_helpful_users_works(self):
-        '''
-        Make sure that helpful users ranks users based off of most helpful
-        answers, and sticks to the proper deployment.
-        '''
-        sly_more = models.User.query.filter_by(email='sly@stone-more.com').one()
-        outsider = models.User(email=u'a@example.org', password='a', active=True,
-                               deployment='2')
-        db.session.add(outsider)
-        db.session.commit()
-
-        self.assertEqual([(user.email, score) for user, score in sly_more.helpful_users],
-                         [(u'paul@lennon.com', 48L),
-                          (u'dubya@shrub.com', 16L),
-                          (u'sly@stone-less-knowledgeable.com', 0L),
-                          (u'sly@stone.com', 0L)])
-
-    def test_nearest_neighbors_works(self):
-        '''
-        Make sure that nearest neighbors ranks proximity of users correctly,
-        and only within the existing deployment.
-        '''
-        sly_more = models.User.query.filter_by(email='sly@stone-more.com').one()
-        outsider = models.User(email=u'a@example.org', password='a', active=True,
-                               deployment='2')
-        db.session.add(outsider)
-        db.session.commit()
-
-        self.assertEqual([(user.email, score) for user, score in sly_more.nearest_neighbors],
-                         [(u'sly@stone.com', 15),
-                          (u'dubya@shrub.com', 21),
-                          (u'paul@lennon.com', 63),
-                          (u'sly@stone-less-knowledgeable.com', 108)])
 
 class UserRegistrationDbTests(DbTestCase):
     def setUp(self):
@@ -373,8 +561,8 @@ class SharedMessageDbTests(DbTestCase):
         db.session.add(other)
         db.session.add(a)
         db.session.commit()
-        message1 = models.SharedMessageEvent.from_user(a, message="hi")
-        message2 = models.SharedMessageEvent.from_user(other, message="other")
+        message1 = models.SharedMessageEvent.from_user(a, message=u"hi")
+        message2 = models.SharedMessageEvent.from_user(other, message=u"other")
         db.session.add(message1)
         db.session.add(message2)
         db.session.commit()
@@ -430,18 +618,39 @@ class ConnectionEventDbTests(DbTestCase):
     '''
     def setUp(self):
         super(ConnectionEventDbTests, self).setUp()
-        load_fixture()
-        self.sly_less = models.User.query_in_deployment()\
-          .filter(models.User.email == 'sly@stone-less-knowledgeable.com')\
-          .one()
+        self.paul_lennon = UserFactory.create(
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        self.dubya_shrub = UserFactory.create(
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        self.sly_less = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        self.sly = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        db.session.commit()
 
     def test_creates_connection_event(self):
         '''
         Adding connections should create one event.
         '''
-        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
-        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
-        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        dubya = self.dubya_shrub
+        lennon = self.paul_lennon
+        stone = self.sly
         event = self.sly_less.email_connect([dubya, lennon])
         event.set_total_connections()
         db.session.commit()
@@ -481,10 +690,31 @@ class UserConnectionDbTests(DbTestCase):
 
     def setUp(self):
         super(UserConnectionDbTests, self).setUp()
-        load_fixture()
-        self.sly_less = models.User.query_in_deployment()\
-          .filter(models.User.email == 'sly@stone-less-knowledgeable.com')\
-          .one()
+        self.paul_lennon = UserFactory.create(
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        self.dubya_shrub = UserFactory.create(
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        self.sly_less = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        self.sly = UserFactory.create(
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
+            connections=[], languages=[], expertise_domains=[], skills=[])
+
+        db.session.commit()
 
     def test_user_no_connections(self):
         '''
@@ -514,9 +744,9 @@ class UserConnectionDbTests(DbTestCase):
         '''
         A user gains several connections on emailing several people.
         '''
-        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
-        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
-        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        dubya = self.dubya_shrub
+        lennon = self.paul_lennon
+        stone = self.sly
         self.sly_less.email_connect([dubya, lennon, stone])
         db.session.commit()
         self.assertEquals(self.sly_less.connections, 3)
@@ -525,9 +755,9 @@ class UserConnectionDbTests(DbTestCase):
         '''
         A user's connections are reciprocal.
         '''
-        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
-        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
-        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        dubya = self.dubya_shrub
+        lennon = self.paul_lennon
+        stone = self.sly
         self.sly_less.email_connect([dubya, lennon, stone])
         db.session.commit()
         self.assertEquals(dubya.connections, 1)
@@ -539,7 +769,7 @@ class UserConnectionDbTests(DbTestCase):
         Emailing one person several times does not result in additional
         connections.
         '''
-        paul = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
+        paul = self.paul_lennon
         for _ in xrange(0, 3):
             self.sly_less.email_connect([paul])
         db.session.commit()
@@ -549,9 +779,9 @@ class UserConnectionDbTests(DbTestCase):
         '''
         Make sure the `get_most_complete_profiles` endpoint works.
         '''
-        dubya = models.User.query_in_deployment().filter_by(email='dubya@shrub.com').one()
-        lennon = models.User.query_in_deployment().filter_by(email='paul@lennon.com').one()
-        stone = models.User.query_in_deployment().filter_by(email='sly@stone.com').one()
+        dubya = self.dubya_shrub
+        lennon = self.paul_lennon
+        stone = self.sly
         self.assertEquals(models.Email.query.count(), 0)
         self.assertEquals([(u.email, score) for u, score in models.User.get_most_connected_profiles()],
                           [])

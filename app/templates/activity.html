@@ -1,23 +1,22 @@
 {% extends "__base_ui__.html" %}
 
-{% from "_macros.html" import get_user_avatar_url %}
+{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel %}
+
+{% set tabs = [
+  ('activity', gettext('Activity')),
+  ('connected', gettext('Most Connected')),
+  ('complete', gettext('Most Complete')),
+  ('progress', gettext('My Profile Progress'))
+] %}
+
+{% set active_tab = active_tab|default(tabs[0][0]) %}
 
 {% block content %}
 
-<nav class="b-contextual-nav">
-    <ul class="e-menu-items" role="tablist">
-        <li role="presentation" class="e-item active"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">{{ gettext('Activity') }}</a></li>
-        <li role="presentation" class="e-item"><a href="#connected" aria-controls="connected" role="tab" data-toggle="tab">{{ gettext('Most Connected') }}</a></li>
-        <li role="presentation" class="e-item"><a href="#complete" aria-controls="complete" role="tab" data-toggle="tab">{{ gettext('Most Complete Profiles') }}</a></li>
-        <li role="presentation" class="e-item"><a href="#progress" aria-controls="progress" role="tab" data-toggle="tab">{{ gettext('My Profile Progress') }}</a></li>
-    </ul>
-</nav>
+{{ render_tab_bar(tabs, active_tab) }}
 
 <div> <!-- Start of tab panel container -->
 
-<section role="tabpanel" id="activity" class="b-activity-feed active">
-
-  <ul class="e-activity-feed-container">
 {% macro user_link(user) -%}
 <strong><a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a></strong>
 {%- endmacro %}
@@ -26,6 +25,8 @@
 <img class="e-user-picture" src="{{ get_user_avatar_url(user) }}" alt="">
 {%- endmacro %}
 
+{% call render_tab_panel('activity', active_tab, class='b-activity-feed') %}
+  <ul class="e-activity-feed-container">
 {% for event in events %}
   <li class="e-feed-item">
   <time datetime="{{ event.created_at }}"></time>
@@ -53,9 +54,9 @@
   </li>
 {% endfor %}
   </ul>
-</section>
+{% endcall %}
 
-<div role="tabpanel" id="connected">
+{% call render_tab_panel('connected', active_tab) %}
 <ol>
   {% for user, score in most_connected_profiles %}
     <li>
@@ -66,9 +67,9 @@
     </li>
   {% endfor %}
 </ol>
-</div>
+{% endcall %}
 
-<div role="tabpanel" id="complete">
+{% call render_tab_panel('complete', active_tab) %}
 <ol>
   {% for user, score in most_complete_profiles %}
     <li>
@@ -80,10 +81,9 @@
     </li>
   {% endfor %}
 </ol>
-</div>
+{% endcall %}
 
-<section role="tabpanel" id="progress" class="b-profile-progress">
-
+{% call render_tab_panel('progress', active_tab, class='b-profile-progress') %}
 <ul class="e-progress-container">
   {% set q_progress = user.questionnaire_progress %}
   {% for questionnaire in QUESTIONNAIRES %}
@@ -121,7 +121,7 @@
   </p>
 </footer>
 
-</section>
+{% endcall %}
 
 </div> <!-- End of tab panel container -->
 
