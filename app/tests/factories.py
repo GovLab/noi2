@@ -4,7 +4,7 @@ NoI test factories
 Factories to create test objects
 '''
 
-from app import QUESTIONS_BY_ID, ORG_TYPES, LOCALES
+from app import QUESTIONS_BY_ID, ORG_TYPES, LOCALES, LEVELS
 from app.models import (db, User, UserSkill, UserJoinedEvent,
                         UserExpertiseDomain, UserLanguage, Email,
                         ConnectionEvent, SharedMessageEvent)
@@ -22,9 +22,11 @@ import logging
 
 
 # Only log warnings from factoryboy, its default DEBUG statements are spammy
-logger = logging.getLogger('factory')
-logger.setLevel(logging.WARNING)
+logging.getLogger('factory').setLevel(logging.WARNING)
 fake = Faker()
+
+LEVEL_SCORES = [lvl['score'] for lvl in LEVELS.values()]
+
 
 class SharedMessageEventFactory(SQLAlchemyModelFactory):
 
@@ -81,8 +83,7 @@ class UserSkillFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-fe
         sqlalchemy_session = db.session
 
     name = FuzzyChoice(QUESTIONS_BY_ID.keys())
-    #level = FuzzyChoice([l['score'] for l in LEVELS.values()])
-    level = FuzzyChoice([-1, 1, 2, 5])
+    level = FuzzyChoice(LEVEL_SCORES)
 
 
 class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-public-methods
@@ -95,9 +96,9 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
     last_name = LazyAttribute(lambda o: fake.last_name())
 
     # Can't log in to user unless SECURITY_PASSWORD_HASH='plaintext' in the config
-    password = 'foobar'
-    email = LazyAttribute(lambda o: '{}.{}@fakeemail.net'.format(o.first_name,
-                                                                 o.last_name))
+    password = u'foobar'
+    email = LazyAttribute(lambda o: u'{}.{}@fakeemail.net'.format(o.first_name,
+                                                                  o.last_name))
     active = True
     confirmed_at = FuzzyNaiveDateTime(datetime(2015, 1, 1))
 

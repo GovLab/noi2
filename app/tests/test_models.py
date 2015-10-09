@@ -87,10 +87,10 @@ class UserMatchDbTests(DbTestCase):
     def setUp(self):
         super(UserMatchDbTests, self).setUp()
         self.outsider = UserFactory.create(
-            first_name="outsider",
-            last_name="jones",
-            email="sly@stone.com",
-            deployment="sword_coast",
+            first_name=u"outsider",
+            last_name=u"jones",
+            email=u"sly@stone.com",
+            deployment=u"sword_coast",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in [
                 ("opendata-open-data-policy-core-mission", 2),
@@ -109,9 +109,9 @@ class UserMatchDbTests(DbTestCase):
             ]])
 
         self.sly = UserFactory.create(
-            first_name="sly",
-            last_name="stone",
-            email="sly@stone.com",
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": -1,
@@ -130,9 +130,9 @@ class UserMatchDbTests(DbTestCase):
             }.items()])
 
         self.sly_more = UserFactory.create(
-            first_name="sly",
-            last_name="stone-more-knowledgeable",
-            email="sly@stone-more.com",
+            first_name=u"sly",
+            last_name=u"stone-more-knowledgeable",
+            email=u"sly@stone-more.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 2,
@@ -151,9 +151,9 @@ class UserMatchDbTests(DbTestCase):
             }.items()])
 
         self.sly_less = UserFactory.create(
-            first_name="sly",
-            last_name="stone-less-knowledgeable",
-            email="sly@stone-less-knowledgeable.com",
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-implementing-an-open-data-program-open-data-standards": -1,
@@ -163,9 +163,9 @@ class UserMatchDbTests(DbTestCase):
             }.items()])
 
         self.paul_lennon = UserFactory.create(
-            first_name="paul",
-            last_name="lennon",
-            email="paul@lennon.com",
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 5,
@@ -184,9 +184,9 @@ class UserMatchDbTests(DbTestCase):
             }.items()])
 
         self.dubya_shrub = UserFactory.create(
-            first_name="dubya",
-            last_name="shrub",
-            email="dubya@shrub.com",
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 1,
@@ -386,10 +386,10 @@ class UserSkillDbTests(DbTestCase):
     def setUp(self):
         super(UserSkillDbTests, self).setUp()
         self.outsider = UserFactory.create(
-            first_name="outsider",
-            last_name="jones",
-            email="sly@stone.com",
-            deployment="sword_coast",
+            first_name=u"outsider",
+            last_name=u"jones",
+            email=u"sly@stone.com",
+            deployment=u"sword_coast",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in [
                 ("opendata-open-data-policy-core-mission", 2),
@@ -408,9 +408,9 @@ class UserSkillDbTests(DbTestCase):
             ]])
 
         self.sly = UserFactory.create(
-            first_name="sly",
-            last_name="stone",
-            email="sly@stone.com",
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": -1,
@@ -429,9 +429,9 @@ class UserSkillDbTests(DbTestCase):
             }.items()])
 
         self.sly_more = UserFactory.create(
-            first_name="sly",
-            last_name="stone-more-knowledgeable",
-            email="sly@stone-more.com",
+            first_name=u"sly",
+            last_name=u"stone-more-knowledgeable",
+            email=u"sly@stone-more.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 2,
@@ -450,9 +450,9 @@ class UserSkillDbTests(DbTestCase):
             }.items()])
 
         self.sly_less = UserFactory.create(
-            first_name="sly",
-            last_name="stone-less-knowledgeable",
-            email="sly@stone-less-knowledgeable.com",
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-implementing-an-open-data-program-open-data-standards": -1,
@@ -462,9 +462,9 @@ class UserSkillDbTests(DbTestCase):
             }.items()])
 
         self.paul_lennon = UserFactory.create(
-            first_name="paul",
-            last_name="lennon",
-            email="paul@lennon.com",
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 5,
@@ -483,9 +483,9 @@ class UserSkillDbTests(DbTestCase):
             }.items()])
 
         self.dubya_shrub = UserFactory.create(
-            first_name="dubya",
-            last_name="shrub",
-            email="dubya@shrub.com",
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
             connections=[], languages=[], expertise_domains=[],
             skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
                 "opendata-open-data-policy-core-mission": 1,
@@ -560,8 +560,8 @@ class SharedMessageDbTests(DbTestCase):
         db.session.add(other)
         db.session.add(a)
         db.session.commit()
-        message1 = models.SharedMessageEvent.from_user(a, message="hi")
-        message2 = models.SharedMessageEvent.from_user(other, message="other")
+        message1 = models.SharedMessageEvent.from_user(a, message=u"hi")
+        message2 = models.SharedMessageEvent.from_user(other, message=u"other")
         db.session.add(message1)
         db.session.add(message2)
         db.session.commit()
@@ -587,27 +587,27 @@ class ConnectionEventDbTests(DbTestCase):
     def setUp(self):
         super(ConnectionEventDbTests, self).setUp()
         self.paul_lennon = UserFactory.create(
-            first_name="paul",
-            last_name="lennon",
-            email="paul@lennon.com",
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.dubya_shrub = UserFactory.create(
-            first_name="dubya",
-            last_name="shrub",
-            email="dubya@shrub.com",
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly_less = UserFactory.create(
-            first_name="sly",
-            last_name="stone-less-knowledgeable",
-            email="sly@stone-less-knowledgeable.com",
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly = UserFactory.create(
-            first_name="sly",
-            last_name="stone",
-            email="sly@stone.com",
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         db.session.commit()
@@ -659,27 +659,27 @@ class UserConnectionDbTests(DbTestCase):
     def setUp(self):
         super(UserConnectionDbTests, self).setUp()
         self.paul_lennon = UserFactory.create(
-            first_name="paul",
-            last_name="lennon",
-            email="paul@lennon.com",
+            first_name=u"paul",
+            last_name=u"lennon",
+            email=u"paul@lennon.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.dubya_shrub = UserFactory.create(
-            first_name="dubya",
-            last_name="shrub",
-            email="dubya@shrub.com",
+            first_name=u"dubya",
+            last_name=u"shrub",
+            email=u"dubya@shrub.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly_less = UserFactory.create(
-            first_name="sly",
-            last_name="stone-less-knowledgeable",
-            email="sly@stone-less-knowledgeable.com",
+            first_name=u"sly",
+            last_name=u"stone-less-knowledgeable",
+            email=u"sly@stone-less-knowledgeable.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         self.sly = UserFactory.create(
-            first_name="sly",
-            last_name="stone",
-            email="sly@stone.com",
+            first_name=u"sly",
+            last_name=u"stone",
+            email=u"sly@stone.com",
             connections=[], languages=[], expertise_domains=[], skills=[])
 
         db.session.commit()
