@@ -84,6 +84,132 @@ class UserDbTests(DbTestCase):
             db.session.commit()
 
 
+class UserMatchAgainstDbTests(DbTestCase):
+    def setUp(self):
+        super(UserMatchAgainstDbTests, self).setUp()
+        self.jack = UserFactory.create(
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": -1,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": -1,
+                "opendata-open-data-policy-crafting-an-open-data-policy": -1,
+                "opendata-open-data-policy-getting-public-input": -1,
+                "opendata-open-data-policy-getting-org-approval": -1,
+                "opendata-implementing-an-open-data-program-scraping-open-data": -1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": -1,
+                "opendata-implementing-an-open-data-program-open-data-formats": -1,
+                "opendata-implementing-an-open-data-program-open-data-license": -1,
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1,
+                "prizes-scoping-the-problem-problem-definition": -1,
+                "prizes-scoping-the-problem-research": -1,
+                "prizes-scoping-the-problem-progress-metrics": -1,
+                "prizes-designing-for-a-successful-prize-when-to-use-a-prize": -1,
+                "prizes-designing-for-a-successful-prize-grand-challenge": -1,
+                "prizes-designing-for-a-successful-prize-prizes-incentives": -1,
+                "prizes-designing-for-a-successful-prize-prize-amount": -1,
+                "prizes-identifying-the-right-audience-audience": -1
+            }.items()])
+        self.jill = UserFactory.create(
+            connections=[], languages=[], expertise_domains=[],
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": -1,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": -1,
+                "opendata-open-data-policy-crafting-an-open-data-policy": -1,
+                "opendata-open-data-policy-getting-public-input": -1,
+                "opendata-open-data-policy-getting-org-approval": -1,
+                "opendata-implementing-an-open-data-program-scraping-open-data": 1,
+                "opendata-implementing-an-open-data-program-making-machine-readable": 1,
+                "opendata-implementing-an-open-data-program-open-data-formats": 1,
+                "opendata-implementing-an-open-data-program-open-data-license": 2,
+                "opendata-implementing-an-open-data-program-open-data-standards": 2,
+                "opendata-implementing-an-open-data-program-managing-open-data": 2,
+                "opendata-implementing-an-open-data-program-frequency-of-release": 5,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": 5,
+                "prizes-scoping-the-problem-problem-definition": -1,
+                "prizes-scoping-the-problem-research": -1,
+                "prizes-scoping-the-problem-progress-metrics": 1,
+                "prizes-designing-for-a-successful-prize-when-to-use-a-prize": 2,
+                "prizes-designing-for-a-successful-prize-grand-challenge": 5,
+                "prizes-designing-for-a-successful-prize-prizes-incentives": 5,
+                "prizes-designing-for-a-successful-prize-prize-amount": 5,
+                "prizes-identifying-the-right-audience-audience": 5
+            }.items()])
+        db.session.commit()
+
+    def test_user_match_against(self):
+        '''
+
+        '''
+        learn = LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
+        refer = LEVELS['LEVEL_I_CAN_REFER']['score']
+        explain = LEVELS['LEVEL_I_CAN_EXPLAIN']['score']
+        do_it = LEVELS['LEVEL_I_CAN_DO_IT']['score']
+        self.assertEqual(self.jack.match_against(self.jill), [
+            ('Open Data', 13, {
+                learn: set([
+                    "opendata-open-data-policy-core-mission",
+                    "opendata-open-data-policy-sensitive-vs-non-sensitive",
+                    "opendata-open-data-policy-crafting-an-open-data-policy",
+                    "opendata-open-data-policy-getting-public-input",
+                    "opendata-open-data-policy-getting-org-approval"
+                ]),
+                refer: set([
+                    "opendata-implementing-an-open-data-program-scraping-open-data",
+                    "opendata-implementing-an-open-data-program-making-machine-readable",
+                    "opendata-implementing-an-open-data-program-open-data-formats",
+                ]),
+                explain: set([
+                    "opendata-implementing-an-open-data-program-open-data-license",
+                    "opendata-implementing-an-open-data-program-open-data-standards",
+                    "opendata-implementing-an-open-data-program-managing-open-data",
+                ]),
+                do_it: set([
+                    "opendata-implementing-an-open-data-program-frequency-of-release",
+                    "opendata-implementing-an-open-data-program-data-quality-and-integrity",
+                ])
+            }),
+            ('Prizes', 8, {
+                learn: set([
+                    "prizes-scoping-the-problem-problem-definition",
+                    "prizes-scoping-the-problem-research",
+                ]),
+                refer: set([
+                    "prizes-scoping-the-problem-progress-metrics",
+                ]),
+                explain: set([
+                    "prizes-designing-for-a-successful-prize-when-to-use-a-prize",
+                ]),
+                do_it: set([
+                    "prizes-designing-for-a-successful-prize-grand-challenge",
+                    "prizes-designing-for-a-successful-prize-prizes-incentives",
+                    "prizes-designing-for-a-successful-prize-prize-amount",
+                    "prizes-identifying-the-right-audience-audience",
+                ])
+            })
+        ])
+
+        self.assertEqual(self.jill.match_against(self.jack), [
+            ('Open Data', 5, {
+                learn: set([
+                    "opendata-open-data-policy-core-mission",
+                    "opendata-open-data-policy-sensitive-vs-non-sensitive",
+                    "opendata-open-data-policy-crafting-an-open-data-policy",
+                    "opendata-open-data-policy-getting-public-input",
+                    "opendata-open-data-policy-getting-org-approval",
+                ])
+            }),
+            ('Prizes', 2, {
+                learn: set([
+                    "prizes-scoping-the-problem-problem-definition",
+                    "prizes-scoping-the-problem-research",
+                ])
+            })
+        ])
+
+
 class UserMatchDbTests(DbTestCase):
     def setUp(self):
         super(UserMatchDbTests, self).setUp()
@@ -93,21 +219,21 @@ class UserMatchDbTests(DbTestCase):
             email=u"sly@stone.com",
             deployment=u"sword_coast",
             connections=[], languages=[], expertise_domains=[],
-            skills=[UserSkillFactory.create(name=name, level=level) for name, level in [
-                ("opendata-open-data-policy-core-mission", 2),
-                ("opendata-open-data-policy-sensitive-vs-non-sensitive", 2),
-                ("opendata-open-data-policy-crafting-an-open-data-policy", 2),
-                ("opendata-open-data-policy-getting-public-input", 2),
-                ("opendata-open-data-policy-getting-org-approval", 2),
-                ("opendata-implementing-an-open-data-program-scraping-open-data", 2),
-                ("opendata-implementing-an-open-data-program-making-machine-readable", 2),
-                ("opendata-implementing-an-open-data-program-open-data-formats", -1),
-                ("opendata-implementing-an-open-data-program-open-data-license", -1),
-                ("opendata-implementing-an-open-data-program-open-data-standards", -1),
-                ("opendata-implementing-an-open-data-program-managing-open-data", -1),
-                ("opendata-implementing-an-open-data-program-frequency-of-release", -1),
-                ("opendata-implementing-an-open-data-program-data-quality-and-integrity", -1)
-            ]])
+            skills=[UserSkillFactory.create(name=name, level=level) for name, level in {
+                "opendata-open-data-policy-core-mission": 2,
+                "opendata-open-data-policy-sensitive-vs-non-sensitive": 2,
+                "opendata-open-data-policy-crafting-an-open-data-policy": 2,
+                "opendata-open-data-policy-getting-public-input": 2,
+                "opendata-open-data-policy-getting-org-approval": 2,
+                "opendata-implementing-an-open-data-program-scraping-open-data": 2,
+                "opendata-implementing-an-open-data-program-making-machine-readable": 2,
+                "opendata-implementing-an-open-data-program-open-data-formats": -1,
+                "opendata-implementing-an-open-data-program-open-data-license": -1,
+                "opendata-implementing-an-open-data-program-open-data-standards": -1,
+                "opendata-implementing-an-open-data-program-managing-open-data": -1,
+                "opendata-implementing-an-open-data-program-frequency-of-release": -1,
+                "opendata-implementing-an-open-data-program-data-quality-and-integrity": -1
+            }.items()])
 
         self.sly = UserFactory.create(
             first_name=u"sly",

@@ -259,6 +259,41 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         for user, question_ids_by_comma, count in matched_users:
             yield UserSkillMatch(user, question_ids_by_comma.split(','))
 
+    def match_against(self, user):
+        '''
+        Returns a list of three-tuples in the format:
+
+        (<questionnaire name>, <count of matching questions>, <skill dict>, )
+
+        In descending order of <count of matching questions>.
+
+        <skill dict> is keyed by the skill level of the other user, with each
+        value being a set of questions they can answer at that level.
+        '''
+        skills = UserSkill.query.\
+                filter(UserSkill.user_id == user.id).\
+                filter(UserSkill.name.in_(
+                    [s.name for s in
+                     self.skills if s.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
+                    ])).all()
+
+        resp = {}
+        for skill in skills:
+            question = QUESTIONS_BY_ID[skill.name]
+            questionnaire_name = question['questionnaire']['name']
+            if questionnaire_name not in resp:
+                resp[questionnaire_name] = dict()
+
+            if skill.level not in resp[questionnaire_name]:
+                resp[questionnaire_name][skill.level] = set()
+            resp[questionnaire_name][skill.level].add(skill.name)
+
+        resp = [(qname,
+                 sum([len(questions) for questions in skill_levels.values()]),
+                 skill_levels) for qname, skill_levels in resp.items()]
+
+        return sorted(resp, lambda a, b: a[1] - b[1], reverse=True)
+
     @property
     def questionnaire_progress(self):
         '''
