@@ -5,7 +5,7 @@ from app.views import (get_area_questionnaire_or_404,
 from app.models import User, SharedMessageEvent, ConnectionEvent
 
 from .test_models import DbTestCase
-from .util import load_fixture
+from .factories import UserFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
 
@@ -15,17 +15,15 @@ class ViewTestCase(DbTestCase):
         config.update(
             DEBUG=False,
             WTF_CSRF_ENABLED=False,
-            # This speeds tests up considerably.
-            SECURITY_PASSWORD_HASH='plaintext',
-            CACHE_NO_NULL_WARNING=True,
+            CACHE_NO_NULL_WARNING=True
         )
         return create_app(config=config)
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
             next='/',
-            first_name='John',
-            last_name='Doe',
+            first_name=u'John',
+            last_name=u'Doe',
             email=username,
             password=password,
             submit='Register'
@@ -40,20 +38,28 @@ class ViewTestCase(DbTestCase):
         assert LOGGED_IN_SENTINEL not in res.data
         return res
 
-    def create_user(self, email, password, fully_register=True):
-        datastore = self.app.extensions['security'].datastore
-        user = datastore.create_user(email=email, password=password)
-        if fully_register:
-            user.set_fully_registered()
+    def create_user(self, email, password, fully_register=True, **kwargs):
+        if fully_register == False:
+            kwargs['joined'] = None
+        # These default to none
+        for attr in ('position', 'organization',
+                     'organization_type', 'country', 'city', 'projects'):
+            kwargs[attr] = kwargs.get(attr)
+
+        # These default ot empty list
+        for attr in ('expertise_domains', 'languages', 'skills', 'connections', 'messages'):
+            kwargs[attr] = kwargs.get(attr, [])
+
+        user = UserFactory.create(email=email, password=password, **kwargs)
         self.last_created_user = user
         return user
 
-    def login(self, email=None, password=None, fully_register=True):
+    def login(self, email=None, password=None, fully_register=True, **kwargs):
         if email is None:
             email = u'test@example.org'
             password = 'test123'
             self.create_user(email=email, password=password,
-                             fully_register=fully_register)
+                             fully_register=fully_register, **kwargs)
         res = self.client.post('/login', data=dict(
             next='/',
             submit="Login",
@@ -165,9 +171,9 @@ class ActivityFeedTests(ViewTestCase):
         self.assertRedirects(self.client.get('/activity'), '/register/step/2')
 
     def test_posting_activity_requires_full_name(self):
-        self.login()
+        self.login(first_name=u'', last_name=u'')
         res = self.client.post('/activity', data=dict(
-            message="hello there"
+            message=u"hello there"
         ), follow_redirects=True)
         self.assert200(res)
         self.assertEqual(SharedMessageEvent.query_in_deployment().count(), 0)
@@ -176,11 +182,11 @@ class ActivityFeedTests(ViewTestCase):
     def test_posting_activity_works(self):
         self.login()
         user = User.query_in_deployment()\
-                 .filter(User.email=='test@example.org').one()
+                 .filter(User.email == 'test@example.org').one()
         user.first_name = 'John'
         user.last_name = 'Doe'
         res = self.client.post('/activity', data=dict(
-            message="hello there"
+            message=u"hello there"
         ), follow_redirects=True)
         self.assert200(res)
         self.assertEqual(SharedMessageEvent.query_in_deployment().count(), 1)
@@ -188,7 +194,8 @@ class ActivityFeedTests(ViewTestCase):
         assert 'hello there' in res.data
 
     def test_email_connection_is_activity(self):
-        load_fixture()
+        UserFactory.create(email=u'sly@stone.com', connections=[])
+        UserFactory.create(email=u'paul@lennon.com', connections=[])
         self.login()
         res = self.client.post('/email', data={
             'emails[]': ['sly@stone.com', 'paul@lennon.com']
@@ -277,7 +284,7 @@ class ViewTests(ViewTestCase):
         self.register_and_login('foo@example.org', 'test123')
         self.logout()
         res = self.client.post('/register', data=dict(
-            email='foo@example.org'
+            email=u'foo@example.org'
         ))
         assert ('foo@example.org is already '
                 'associated with an account') in res.data
@@ -322,12 +329,13 @@ class ViewTests(ViewTestCase):
                              '/login?next=%2Fuser%2F1234')
 
     def test_email(self):
-        load_fixture()
+        UserFactory.create(email=u'sly@stone.com')
+        UserFactory.create(email=u'paul@lennon.com')
         self.login()
         res = self.client.post('/email', data={
             'emails[]': ['sly@stone.com', 'paul@lennon.com']
         })
         self.assertEquals(res.status, '204 NO CONTENT')
         user = User.query_in_deployment()\
-                 .filter(User.email=='test@example.org').one()
+                 .filter(User.email==u'test@example.org').one()
         self.assertEquals(2, user.connections)
