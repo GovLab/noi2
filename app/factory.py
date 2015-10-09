@@ -12,7 +12,8 @@ from flask_security.utils import get_identity_attributes
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security,
                  babel, celery, alchemydumps, sass,
-                 QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES, QUESTIONS_BY_ID)
+                 QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
+                 QUESTIONS_BY_ID, LEVELS_BY_SCORE)
 from app.config.schedule import CELERYBEAT_SCHEDULE
 from app.forms import (NOIForgotPasswordForm,
                        NOIResetPasswordForm, NOIChangePasswordForm,
@@ -203,6 +204,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS
     app.jinja_env.globals['LEVELS'] = LEVELS
+    app.jinja_env.globals['LEVELS_BY_SCORE'] = LEVELS_BY_SCORE
     app.jinja_env.globals['QUESTIONS_BY_ID'] = QUESTIONS_BY_ID
 
     app.jinja_env.globals['ABOUT'] = this_deployment.get('about',

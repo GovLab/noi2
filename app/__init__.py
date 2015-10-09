@@ -71,6 +71,10 @@ LEVELS = {'LEVEL_I_CAN_EXPLAIN': {'score': 2,
                                     'label': 'I want to learn'}}
 
 VALID_SKILL_LEVELS = [v['score'] for k, v in LEVELS.iteritems()]
+LEVELS_BY_SCORE = {}
+
+for v in LEVELS.values():
+    LEVELS_BY_SCORE[v['score']] = v
 
 NOI_COLORS = '#D44330,#D6DB63,#BFD19F,#83C8E7,#634662,yellow,gray,#a3abd1'.split(',')
 
