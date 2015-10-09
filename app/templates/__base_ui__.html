@@ -7,10 +7,8 @@
     <section class="e-top-bar">
         <h1 class="e-logo">{{ gettext('Network of Innovators') }}</h1>
         <div class="e-user-utils">
-            <!-- TODO: Wrap this in a <button> for a11y. -->
-            <span class="e-post material-icons" data-toggle="modal" data-target="#post-a-message">chat</span>
-            <!-- TODO: Wrap this in a <button> for a11y. -->
-            <img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" data-toggle="modal" data-target="#profile-summary">
+            <a href="#post-a-message" data-toggle="modal"><span class="e-post material-icons">chat</span></a>
+            <a href="#profile-summary" data-toggle="modal"><img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}"></a>
         </div>
     </section>
     <nav class="e-main-nav">
