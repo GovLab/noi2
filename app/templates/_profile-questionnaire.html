@@ -7,7 +7,7 @@
   {% set questionnaire = question.questionnaire %}
     {% set item_progress = q_progress[questionnaire.id] %}
 
-    {% set questionnaire_url = url_for('views.my_expertise') %}
+    {% set questionnaire_url = url_for('views.my_expertise', _anchor='expertise') %}
 
     {% if item_progress.total > 0 %}
     {% if item_progress.answered > 0 %}
@@ -35,10 +35,10 @@
     <div class="e-questions-container">
         <div class="e-question">
           {% if prev_questionid %}
-            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=prev_questionid) }}" class="material-icons e-prev">keyboard_arrow_left</a>
+            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=prev_questionid, _anchor='expertise') }}" class="material-icons e-prev">keyboard_arrow_left</a>
           {% endif %}
           {% if next_questionid %}
-            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=next_questionid) }}" class="material-icons e-next">keyboard_arrow_right</a>
+            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=next_questionid, _anchor='expertise') }}" class="material-icons e-next">keyboard_arrow_right</a>
           {% endif %}
             <p class="e-question-text">{{ question.question }}</p>
             <form class="e-questionnaire-answers" method="post">

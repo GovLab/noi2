@@ -3,7 +3,7 @@
   {% for questionnaire in QUESTIONNAIRES %}
     {% set item_progress = q_progress[questionnaire.id] %}
 
-    {% set questionnaire_url = url_for('views.my_expertise_area', areaid=questionnaire.id) %}
+    {% set questionnaire_url = url_for('views.my_expertise_area', areaid=questionnaire.id, _anchor='expertise') %}
 
     {% if item_progress.total > 0 %}
     {% if item_progress.answered > 0 %}
