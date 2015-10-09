@@ -17,3 +17,19 @@
     <p>{{ message|safe }}</p>
   </div>
 {% endmacro %}
+
+{% macro render_tab_bar(tabs, active_tab) %}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items" role="tablist">
+        {% for tabid, tablabel in tabs %}
+        <li role="presentation" class="e-item {% if tabid == active_tab %}active{% endif %}"><a href="#{{ tabid }}" aria-controls="{{ tabid }}" role="tab" data-toggle="tab">{{ tablabel }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endmacro %}
+
+{% macro render_tab_panel(tabid, active_tab, class='') %}
+<section role="tabpanel" id="{{ tabid }}" class="{{ class }} {% if tabid == active_tab %}active{% endif %}">
+  {{ caller() }}
+</section>
+{% endmacro %}
