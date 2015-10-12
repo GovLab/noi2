@@ -2,7 +2,7 @@
 
 {% block title %}{{ gettext("%(user)s's Profile", user=user.full_name) }}{% endblock %}
 
-{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel %}
+{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
 
 {% set is_current_user_profile = (user.id == current_user.id) %}
 
@@ -65,7 +65,7 @@
 {% if is_current_user_profile %}
 <p>
   <a href="{{ url_for('views.my_profile') }}" class="b-button">Edit</a>
-  <a class="b-button" href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}" data-connect-to="{{ user.email }}">E-Mail</a>
+  {% call render_user_mailto_link(user, class='b-button') %}E-Mail{% endcall %}
 </p>
 {% endif %}
 

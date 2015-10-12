@@ -1,6 +1,6 @@
 {% extends "__base_ui__.html" %}
 
-{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel %}
+{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
 
 {% set tabs = [
   ('activity', gettext('Activity')),
@@ -35,6 +35,9 @@
     <div class="e-feed-message">
       <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
       <p>{{ event.message }}</p>
+      <div class="e-actions">
+        {% call render_user_mailto_link(event.user, class="material-icons") %}reply{% endcall %}
+      </div>
     </div>
   {% elif event.type == 'user_joined_event' %}
     {{ user_avatar(event.user) }}

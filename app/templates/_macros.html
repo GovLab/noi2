@@ -33,3 +33,7 @@
   {{ caller() }}
 </section>
 {% endmacro %}
+
+{% macro render_user_mailto_link(user, class='') %}
+  <a class="{{ class }}" href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}" data-connect-to="{{ user.email }}">{{ caller() }}</a>
+{% endmacro %}
