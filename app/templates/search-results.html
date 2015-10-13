@@ -1,52 +1,22 @@
-{% extends "__base__.html" %}
+{% extends "__base_ui__.html" %}
+
+{% from "_macros.html" import get_user_avatar_url %}
 
 {% block content %}
 
-<div id="new-search">
-  <a target="__email__" role="button" class="btn btn-primary" href="mailto:{{results|map(attribute='email')|join(',')}}?subject={{ gettext('Contact+request+from+the+Network+of+Innovators') }}" data-connect-to="{{results|map(attribute='email')|join(',')}}">{{ gettext('Contact all these people') }}</a>
-</div>
-
-<div class="b-results">
-	<div class="b-content-header">
-		<h1>{{ title }}{# | {{results|length}}#}</h1>
-    {% if NOI_DEPLOY == 'nhs.networkofinnovators.org' %}
-        <p>Your personalized matches from the Expo who has experience in at least one of the areas you want to learn about.</p>
-        <p><strong>{{ gettext('E-mail one or more of them to meet, network and learn something new!') }}</strong></p>
+<section class="b-innovator-results">
+  <p class="e-intro-message">Reach better decisions faster, develop solutions that create value, increase transparency and enable action.</p>
+  <div class="e-results-container">
+    {% for user, score in results %}
+    {% if user.display_in_search %}
+      <a class="e-result-item" href="{{ url_for('views.get_user', userid=user.id) }}">
+        <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
+        <p class="e-name">{{ user.full_name }}</p>
+        <p class="e-job">{{ user.position }}</p>
+      </a>
     {% endif %}
-	</div>
-	<div id="result-set" class="b-results-container">
-		<ol>
-			{% for user, score in results %}
-      {% if user.display_in_search %}
-			<li class="noi b-result-item">
-				<!-- <div style="" class="noi-index">{{loop.index}}{% if DEBUG %}<br/><a href="edit/{{user.id}}">edit</a>{% endif %}</div> -->
-        {% if user.has_picture %}
-        <img class="icon" src="{{ user.picture_url }}">
-        {% endif %}
-				<div class="e-info">
-					<a class="e-name" href="/user/{{user.id}}">{{user.first_name|title}} {{user.last_name|title}}</a>
-					<div class="e-job">{{user.title or ''}} &nbsp; {{user.organization or ''}}</div> <!-- This should be limited to 76char -->
-					<div class="e-place"><i class="fa fa-map-marker"></i>{{user.city or ''}} &nbsp; {{user.country or ''}}</div>
-					<div class="e-bottom-info">
-
-            {#
-					{% if score and score > 0 %}
-						<div class="e-score">
-							<i class="fa fa-star"></i>{{score}}
-						</div>
-					{% endif %}
-          #}
-
-{#<div class="e-lang">{{ user.languages }}</div>#}
-					</div>
-				</div>
-				
-			</li>
-      {% endif %}
-			{% endfor %}
-		</ol>
-	</div>
-</div>
-
+    {% endfor %}
+  </div>
+</section>
 
 {% endblock %}

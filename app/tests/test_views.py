@@ -339,7 +339,7 @@ class ViewTests(ViewTestCase):
         self.login()
         res = self.client.get('/search')
         self.assert200(res)
-        assert "Search for Innovators" in res.data
+        assert "Find Innovator" in res.data
 
     def test_network_is_ok(self):
         self.login()
@@ -350,7 +350,7 @@ class ViewTests(ViewTestCase):
         self.login()
         res = self.client.get('/search?country=ZZ')
         self.assert200(res)
-        assert "Expertise search" in res.data
+        assert "e-results-container" in res.data
 
     def test_recent_users_is_ok(self):
         self.login()
