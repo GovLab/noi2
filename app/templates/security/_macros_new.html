@@ -4,14 +4,14 @@
       {{ field(**kwargs)|safe }}
       {{ field.label }}
     </div>
+  {% elif field.type in ["SelectField", "CountryField"] %}
+    <div class="b-dropdown">
+      {{ field.label(class="sr-only") }}
+      {{ field(placeholder=field.label.text, **kwargs)|safe }}
+    </div>
   {% else %}
     {{ field.label(class="sr-only") }}
-    {% if field.type in ["SelectField", "CountryField"] %}
-      {% set field_class = "b-dropdown" %}
-    {% else %}
-      {% set field_class = "b-textfield" %}
-    {% endif %}
-    {{ field(class=field_class, placeholder=field.label.text, **kwargs)|safe }}
+    {{ field(class="b-textfield", placeholder=field.label.text, **kwargs)|safe }}
   {% endif %}
   {% if field.errors %}
     <ul class="list-unstyled">
