@@ -58,10 +58,10 @@ def full_registration_required(func):
 @views.route('/')
 def main_page():
     '''
-    Main NoI page: forward to match page if logged in already.
+    Main NoI page: forward to activity page if logged in already.
     '''
     if current_user.is_authenticated():
-        return redirect(url_for('views.match'))
+        return redirect(url_for('views.activity'))
     else:
         return render_template('main.html', SKIP_NAV_BAR=False)
 
