@@ -19,7 +19,9 @@
     <div class="e-bg" style="background-image: url('{{ get_user_avatar_url(user) }}')"></div> 
     <div class="e-left">
         <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
-        <span class="e-edit material-icons">edit</span>
+        {% if is_current_user_profile %}
+        <a href="{{ url_for('views.my_profile') }}" class="e-edit material-icons">edit</a>
+        {% endif %}
     </div>
     <div class="e-right">
         <h2 class="e-name">{{ user.full_name }}</h2>
@@ -62,12 +64,9 @@
 {{ gettext("No project information provided.") }}
 {% endif %}
 
-{% if is_current_user_profile %}
 <p>
-  <a href="{{ url_for('views.my_profile') }}" class="b-button">Edit</a>
   {% call render_user_mailto_link(user, class='b-button') %}E-Mail{% endcall %}
 </p>
-{% endif %}
 
 {% endcall %}
 
