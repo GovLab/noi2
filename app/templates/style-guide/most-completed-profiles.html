@@ -1,0 +1,93 @@
+{% extends "style-guide/base_ui.html" %}
+
+{% block title %}Most Completed Profiles{% endblock %}
+
+
+{% block content %}
+
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items">
+        <li class="e-item">Activity</li>
+        <li class="e-item">Most Connected</li>
+        <li class="e-item m-active">Most Complete Profiles</li>
+        <li class="e-item">My Profile Progress</li>
+    </ul>
+</nav>
+
+<section class="b-activity-feed">
+    <ul class="e-activity-feed-container">
+        <li class="e-feed-item">
+            <img class="e-user-picture" src="./static/img/user-picture.jpg" alt="">
+            <div class="e-feed-profile m-completed">
+                <p>Clara Juliana Vargas</p>
+                <div class="e-progress-bar" data-progress="10/10"><span class="e-bar" style="width: 100%;"></span></div>
+            </div>
+        </li>
+        <li class="e-feed-item">
+            <img class="e-user-picture" src="./static/img/user-picture.jpg" alt="">
+            <div class="e-feed-profile">
+                <p>Clara Juliana Vargas</p>
+                <div class="e-progress-bar" data-progress="7/10"><span class="e-bar" style="width: 70%;"></span></div>
+            </div>
+        </li>
+        <li class="e-feed-item">
+            <img class="e-user-picture" src="./static/img/user-picture.jpg" alt="">
+            <div class="e-feed-profile">
+                <p>Clara Juliana Vargas</p>
+                <div class="e-progress-bar" data-progress="4/10"><span class="e-bar" style="width: 40%;"></span></div>
+            </div>
+        </li>
+        <li class="e-feed-item">
+            <img class="e-user-picture" src="./static/img/user-picture.jpg" alt="">
+            <div class="e-feed-profile">
+                <p>Clara Juliana Vargas</p>
+                <div class="e-progress-bar" data-progress="3/10"><span class="e-bar" style="width: 30%;"></span></div>
+            </div>
+        </li>
+        <li class="e-feed-item">
+            <img class="e-user-picture" src="./static/img/user-picture.jpg" alt="">
+            <div class="e-feed-profile">
+                <p>Clara Juliana Vargas</p>
+                <div class="e-progress-bar" data-progress="2/10"><span class="e-bar" style="width: 20%;"></span></div>
+            </div>
+        </li>
+        <li class="e-feed-item">
+            <img class="e-user-picture" src="./static/img/user-picture.jpg" alt="">
+            <div class="e-feed-profile">
+                <p>Clara Juliana Vargas</p>
+                <div class="e-progress-bar" data-progress="2/10"><span class="e-bar" style="width: 20%;"></span></div>
+            </div>
+        </li>
+        
+    </ul>
+</section>
+
+<section class="b-profile-summary "> <!-- m-active -->
+    <header>
+        <img class="e-user-picture" src="./static/img/user-picture.jpg" alt="">
+        <h3 class="e-name">Beth Simone Noveck</h3>
+        <a class="e-edit-profile" href="#">Edit Profile</a>
+    </header>
+
+    <section class="e-menu">
+        <a href="#">Share Feedback</a>
+        <a href="#">Invite Someone</a>
+        <a href="#">About</a>
+        <a href="#">Sign Out</a>
+    </section>
+
+    <footer class="e-govlab-logo">
+            
+    </footer>
+</section>
+
+<div class="b-tutorial-box" style="top: 200px;"> <!-- Inline styles from JS -->
+    <div class="e-top-arrow" style="left: 65px;"></div> <!-- Inline styles from JS -->
+    <p>Welcome <strong>Simon</strong>!</p>
+    <p>You can <strong>meet your top matches</strong> based on your skills and interests</p>
+    <button class="b-button" data-tutorial-step="2">Next</button>
+    <div class="e-counter">1/3</div>
+
+</div>
+
+{% endblock %}

@@ -50,11 +50,10 @@
         margin: 0;
         padding: 15px 20px;
         display: flex;
+        align-items: center;
     }
 
-    .e-feed-item:nth-of-type(even) {
-        background-color: $gray-05;
-    }
+    .e-feed-item:nth-of-type(even) { background-color: $gray-05; }
 
     .e-user-picture {
         width: 40px;
@@ -66,9 +65,7 @@
     .e-feed-message {
         flex: 1;
 
-        p {
-            margin: 10px 0;
-        }
+        p { margin: 10px 0; }
 
         .e-more {
             text-transform: uppercase;
@@ -82,7 +79,58 @@
 
     .e-actions {
         color: $gray-40;
+        
         &:hover { color: $blue; }
+    }
+
+    .e-feed-profile {
+        flex: 1;
+        font-weight: 600;
+
+        p { padding: 0; }
+
+        .e-progress-bar:before {
+            content: attr(data-progress);
+            font-weight: 300;
+            font-size: 14px;
+            font-style: italic;
+            position: absolute;
+            right: 0;
+            top: -22px;
+        }
+        
+        .e-progress-bar {
+            background-color: $gray-10;
+            width: 100%;
+            height: 2px;
+            position: relative;
+            top: -11px;
+        }
+
+        .e-bar {
+            background-color: $blue;
+            position: absolute;
+            left: 0;
+            height: 2px;
+        }
+
+        &.m-completed {
+            .e-bar { background-color: $green; }
+            .e-progress-bar {
+                margin-right: 30px;
+                width: auto;
+            }
+            .e-progress-bar:before {
+                color: $green;
+                font-family: 'Material Icons';
+                font-style: normal;
+                font-weight: 400;
+                content: '\E876'; // Checkmark Icon
+                font-size: 24px;
+                top: -18px;
+                right: -30px;
+            }
+        }
     }
 }
 
