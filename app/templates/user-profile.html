@@ -2,7 +2,16 @@
 
 {% block title %}{{ gettext("%(user)s's Profile", user=user.full_name) }}{% endblock %}
 
-{% from "_macros.html" import get_user_avatar_url %}
+{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
+
+{% set is_current_user_profile = (user.id == current_user.id) %}
+
+{% set tabs = [
+  ('overview', gettext('Overview')),
+  ('expertise', gettext('Expertise')),
+] %}
+
+{% set active_tab = active_tab|default(tabs[0][0]) %}
 
 {% block content %}
 
@@ -40,17 +49,11 @@
     </div>
 </section>
 
-<nav class="b-contextual-nav">
-    <ul class="e-menu-items" role="tablist">
-        <li role="presentation" class="e-item active"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">{{ gettext('Overview') }}</a></li>
-        <li role="presentation" class="e-item"><a href="#expertise" aria-controls="expertise" role="tab" data-toggle="tab">{{ gettext('Expertise') }}</a></li>
-    </ul>
-</nav>
+{{ render_tab_bar(tabs, active_tab) }}
 
 <div> <!-- Start of tab panel container -->
 
-<section role="tabpanel" id="overview" class="active">
-<a href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}" data-connect-to="{{ user.email }}">E-Mail</a>
+{% call render_tab_panel('overview', active_tab) %}
 
 <h3>{{ gettext('Projects I have done') }}</h3>
 {% if user.projects %}
@@ -59,30 +62,48 @@
 {{ gettext("No project information provided.") }}
 {% endif %}
 
-</section>
+{% if is_current_user_profile %}
+<p>
+  <a href="{{ url_for('views.my_profile') }}" class="b-button">Edit</a>
+  {% call render_user_mailto_link(user, class='b-button') %}E-Mail{% endcall %}
+</p>
+{% endif %}
 
-<section role="tabpanel" id="expertise">
+{% endcall %}
+
+{% if is_current_user_profile %}
+
+{% if question %}
+  {% call render_tab_panel('expertise', active_tab) %}
+  {% include "_profile-questionnaire.html" %}
+  {% endcall %}
+{% else %}
+  {% call render_tab_panel('expertise', active_tab, class='b-profile-progress') %}
+  {% include "_profile-progress.html" %}
+  {% endcall %}
+{% endif %}
+
+{% else %}
+
+{% call render_tab_panel('expertise', active_tab) %}
 
 <ul>
 {% for skill in user.skills %}
 {% with %}
-{% set question = QUESTIONS_BY_ID[skill.name] %}
+{% set skill_question = QUESTIONS_BY_ID[skill.name] %}
 <li>
-{{ question.questionnaire.name }}:
+{{ skill_question.questionnaire.name }}:
 <strong>{{ LEVELS_BY_SCORE[skill.level].label }}</strong>
-<span>{{ question.question }}</span>
+<span>{{ skill_question.question }}</span>
 </li>
 {% endwith %}
 {% endfor %}
-
 </ul>
 
-</section>
+{% endcall %}
+
+{% endif %}
 
 </div> <!-- End of tab panel container -->
-
-<footer class="b-footer-message">
-
-</footer>
 
 {% endblock %}

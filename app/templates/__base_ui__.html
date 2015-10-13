@@ -58,7 +58,7 @@
     <header>
         <img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" alt="">
         <h3 class="e-name">{{ current_user.full_name }}</h3>
-        <a class="e-edit-profile" href="{{ url_for('views.my_profile') }}">Edit Profile</a>
+        <a class="e-edit-profile" href="{{ url_for('views.get_user', userid=current_user.id) }}">My Profile</a>
     </header>
 
     <section class="e-menu">

@@ -1,0 +1,31 @@
+<section class="b-profile-progress">
+<ul class="e-progress-container">
+  {% set questionnaire = question.questionnaire %}
+  {% set questionnaire_url = url_for('views.my_expertise', _anchor='expertise') %}
+  {% include "_profile-progress-item.html" %}
+</ul>
+</section>
+
+{# TODO: A fair amount of this is copied/pasted from
+ # register-step-3.html, consider refactoring. #}
+<section class="b-profile-questionnaire">
+    <div class="e-questions-container">
+        <div class="e-question">
+          {% if prev_questionid %}
+            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=prev_questionid, _anchor='expertise') }}" class="material-icons e-prev">keyboard_arrow_left</a>
+          {% endif %}
+          {% if next_questionid %}
+            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=next_questionid, _anchor='expertise') }}" class="material-icons e-next">keyboard_arrow_right</a>
+          {% endif %}
+            <p class="e-question-text">{{ question.question }}</p>
+            <form class="e-questionnaire-answers" method="post">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
+            {% for k, v in LEVELS|dictsort %}
+          <button type="submit" name="answer" value="{{ v.score }}" class="b-button {{ v.class }}">
+                    {{ v.label }}
+                </button>
+            {% endfor %}
+            </form>
+        </div>
+    </div>
+</section>

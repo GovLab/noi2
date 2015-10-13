@@ -1,0 +1,15 @@
+<ul class="e-progress-container">
+  {% for questionnaire in QUESTIONNAIRES %}
+    {% set questionnaire_url = url_for('views.my_expertise_area', areaid=questionnaire.id, _anchor='expertise') %}
+    {% include "_profile-progress-item.html" %}
+  {% endfor %}
+</ul>
+
+<footer class="b-footer-message">
+  <h3><a href="{{ url_for('views.my_profile') }}">
+    {{ gettext('Complete Your Profile') }}
+  </a></h3>
+  <p>
+    {{ gettext('Let others know your skills & expertise and also get more relevant matches!') }}
+  </p>
+</footer>

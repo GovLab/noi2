@@ -244,28 +244,60 @@ class MyProfileTests(ViewTestCase):
         self.assertEqual(str(user.locales[0]), 'af')
 
 class MyExpertiseTests(ViewTestCase):
+    OPENDATA_QUESTIONNAIRE = get_area_questionnaire_or_404('opendata')
+    NUM_OPENDATA_QUESTIONS = len(OPENDATA_QUESTIONNAIRE['questions'])
+
     def setUp(self):
         super(MyExpertiseTests, self).setUp()
-        self.question_id_0 = QUESTIONS_BY_ID.keys()[0]
-        self.question_id_1 = QUESTIONS_BY_ID.keys()[1]
+        self.login()
 
     def test_get_is_ok(self):
-        self.login()
-        self.assert200(self.client.get('/my-expertise'))
+        self.assert200(self.client.get('/my-expertise/'))
 
-    def test_updating_expertise_works(self):
-        self.login()
-        user = self.last_created_user
-        self.assertEqual(user.skill_levels, {})
-        res = self.client.post('/my-expertise', data={
-            self.question_id_0: '-1',
-            self.question_id_1: 'invalid value',
-            'invalid_question_id': '-1'
+    def test_with_areaid_redirects_to_first_unanswered_question(self):
+        self.assertRedirects(self.client.get('/my-expertise/opendata'),
+                             '/my-expertise/opendata/1')
+
+        self.client.post('/my-expertise/opendata/1', data={
+            'answer': '-1'
         })
-        self.assert200(res)
-        self.assertEqual(user.skill_levels, {
-            self.question_id_0: -1
+        self.assertRedirects(self.client.get('/my-expertise/opendata'),
+                             '/my-expertise/opendata/2')
+
+    def test_with_questionid_is_ok(self):
+        self.assert200(self.client.get('/my-expertise/opendata/1'))
+        self.assert200(self.client.get('/my-expertise/opendata/%d' % (
+            self.NUM_OPENDATA_QUESTIONS
+        )))
+
+    def test_answering_last_question_works(self):
+        self.assertEqual(len(self.last_created_user.skills), 0)
+        res = self.client.post('/my-expertise/opendata/%d' % (
+            self.NUM_OPENDATA_QUESTIONS
+        ), data={
+            'answer': '-1'
         })
+        self.assertRedirects(res, '/my-expertise/')
+        self.assertEqual(len(self.last_created_user.skills), 1)
+
+    def test_answering_first_question_works(self):
+        self.assertEqual(len(self.last_created_user.skills), 0)
+        res = self.client.post('/my-expertise/opendata/1', data={
+            'answer': '-1'
+        })
+        self.assertRedirects(res, '/my-expertise/opendata/2')
+        self.assertEqual(len(self.last_created_user.skills), 1)
+
+    def test_step_3_with_invalid_questionid_is_not_found(self):
+        self.assert404(self.client.get('/my-expertise/opendata/0'))
+        self.assert404(self.client.get('/my-expertise/opendata/blah'))
+        self.assert404(self.client.get('/my-expertise/opendata/%d' % (
+            (self.NUM_OPENDATA_QUESTIONS + 1)
+        )))
+
+    def test_step_3_with_invalid_areaid_is_not_found(self):
+        self.assert404(self.client.get('/my-expertise/blah'))
+        self.assert404(self.client.get('/my-expertise/blah/1'))
 
 class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):
