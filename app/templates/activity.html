@@ -59,17 +59,20 @@
   </ul>
 {% endcall %}
 
-{% call render_tab_panel('connected', active_tab) %}
-<ol>
+{% call render_tab_panel('connected', active_tab, class='b-activity-feed') %}
+<ul class="e-activity-feed-container">
   {% for user, score in most_connected_profiles %}
-    <li>
-      <p>{{ user_link(user) }}</p>
-      <small>
-        {{ gettext('%(score)s connections', score=score) }}
-      </small>
+    <li class="e-feed-item">
+      {{ user_avatar(user) }}
+      <div class="e-feed-message">
+        <p>{{ user_link(user) }}<br>
+        {{ gettext('%(score)s Connection(s)', score=score) }}
+        </p>
+      </div>
+      <a href="{{ url_for('views.get_user', userid=user.id) }}" class="material-icons">arrow_forward</a>
     </li>
   {% endfor %}
-</ol>
+</ul>
 {% endcall %}
 
 {% call render_tab_panel('complete', active_tab) %}
