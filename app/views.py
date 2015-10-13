@@ -376,8 +376,7 @@ def search():
                         UserSkill.user_id == User.id)
 
         # TODO ordering by relevance
-        return render_template('search-results.html',
-                               title='Expertise search',
+        return render_template('search.html',
                                form=form,
                                results=query.limit(20).all())
 
