@@ -1,21 +1,22 @@
-{% extends "__base__.html" %}
+{% extends "__base_ui__.html" %}
 
 {% block title %}{{ gettext('About') }}{% endblock %}
 
+{% set CONTACT_EMAIL = "info@thegovlab.org" %}
+
+{% macro render_contact_link() -%}
+<a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>
+{%- endmacro %}
+
 {% block content %}
-<div id="about-page" class="b-article">
-<div class="b-content-header">
-  <h1>{{ gettext('About the Network of Innovators') }}</h1>
-</div>
+<h1>{{ gettext('About the Network of Innovators') }}</h1>
 
-
-<div class="col-md-12">
+<p>
   {{ ABOUT | safe }}
-</div>
+</p>
 
 <h2>{{ gettext('Information Collection Statement') }}</h2>
-<a name="privacy"></a>
-<p>{{ gettext("All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact <a href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>.") }}</p>
 
-</div>
+<p>{{ gettext("All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact %(contact_link)s.", contact_link=render_contact_link()) }}</p>
+
 {% endblock %}
