@@ -3,6 +3,20 @@
 {% block title %}{{ gettext('Find Innovator') }}{% endblock %}
 
 {% block page_style_pre %}
+  <style>
+  /* TODO: This styling is temporary. */
+  .temp-chosen-style {
+    margin-bottom: 20px;
+  }
+
+  .temp-chosen-style select {
+    width: 100%;
+  }
+
+  .b-filters .b-button {
+    color: white;
+  }
+  </style>
 	<link rel="stylesheet" href="/static/chosen_v1.4.2/docsupport/style.css">
   <link rel="stylesheet" href="/static/chosen_v1.4.2/docsupport/prism.css">
   <link rel="stylesheet" href="/static/chosen_v1.4.2/chosen.css">
@@ -15,11 +29,11 @@
       <label class="sr-only" for="country">{{ gettext('By country') }}</label>
       {{ form.country(placeholder=gettext('Choose your country')) }}
     </div>
-    <div class="b-dropdown">
+    <div class="temp-chosen-style">
       <label class="sr-only" for="locales">{{ gettext('By language(s)') }}</label>
       {{ form.locales(placeholder=gettext('Choose your languages')) }}
     </div>
-    <div class="b-dropdown">
+    <div class="temp-chosen-style">
       <label class="sr-only" for="expertise_domain_names">{{ gettext('By domain(s)') }}</label>
       {{ form.expertise_domain_names(placeholder=gettext('Choose your fields of expertise')) }}
     </div>
