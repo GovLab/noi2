@@ -16,6 +16,10 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
+{% if config.GA_TRACKING_CODE %}
+{% include "analytics.html" %}
+{% endif %}
+
 <!-- Display the Flash alerts. -->
 {# Regardless of where these appear visually on the page, they should
    stay near the top of the HTML so that screen readers announce them
