@@ -1,5 +1,8 @@
 /*jslint browser:true*/
 /*globals $*/
+
+try{Typekit.load();}catch(e){}
+
 var csrftoken = $('meta[name=csrf-token]').attr('content');
 
 $.ajaxSetup({
