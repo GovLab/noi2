@@ -352,9 +352,9 @@ class ViewTests(ViewTestCase):
         self.assert200(res)
         assert "e-results-container" in res.data
 
-    def test_recent_users_is_ok(self):
+    def test_match_me_is_ok(self):
         self.login()
-        self.assert200(self.client.get('/users/recent'))
+        self.assert200(self.client.get('/match'))
 
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
