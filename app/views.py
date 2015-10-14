@@ -391,7 +391,6 @@ def match():
 
 
 @views.route('/activity', methods=['GET', 'POST'])
-@full_registration_required
 def activity():
     '''
     View for the activity feed of recent events.
@@ -401,7 +400,9 @@ def activity():
     shared_message_form = SharedMessageForm()
 
     if request.method == 'POST':
-        if not current_user.display_in_search:
+        if not current_user.is_authenticated():
+            flash(gettext(u'You must log in to post a message.'), 'error')
+        elif not current_user.display_in_search:
             flash(gettext(u'We need your name before you can post a message.'), 'error')
         elif shared_message_form.validate():
             data = shared_message_form.message.data
