@@ -1,6 +1,6 @@
 {% extends "__base_ui__.html" %}
 
-{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel %}
+{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
 
 {% set tabs = [
   ('activity', gettext('Activity')),
@@ -35,6 +35,9 @@
     <div class="e-feed-message">
       <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
       <p>{{ event.message }}</p>
+      <div class="e-actions">
+        {% call render_user_mailto_link(event.user, class="material-icons") %}reply{% endcall %}
+      </div>
     </div>
   {% elif event.type == 'user_joined_event' %}
     {{ user_avatar(event.user) }}
@@ -56,70 +59,40 @@
   </ul>
 {% endcall %}
 
-{% call render_tab_panel('connected', active_tab) %}
-<ol>
+{% call render_tab_panel('connected', active_tab, class='b-activity-feed') %}
+<ul class="e-activity-feed-container">
   {% for user, score in most_connected_profiles %}
-    <li>
-      <p>{{ user_link(user) }}</p>
-      <small>
-        {{ gettext('%(score)s connections', score=score) }}
-      </small>
+    <li class="e-feed-item">
+      {{ user_avatar(user) }}
+      <div class="e-feed-message">
+        <p>{{ user_link(user) }}<br>
+        {{ gettext('%(score)s Connection(s)', score=score) }}
+        </p>
+      </div>
+      <a href="{{ url_for('views.get_user', userid=user.id) }}" class="material-icons">arrow_forward</a>
     </li>
   {% endfor %}
-</ol>
+</ul>
 {% endcall %}
 
-{% call render_tab_panel('complete', active_tab) %}
-<ol>
+{% call render_tab_panel('complete', active_tab, class='b-activity-feed') %}
+<ul class="e-activity-feed-container">
   {% for user, score in most_complete_profiles %}
-    <li>
-      <p>{{ user_link(user) }}</p>
-      <small>
-        {{ score }} /
-        {{ gettext('%(skill)s Skills', skill=QUESTIONS_BY_ID.keys()|length) }}
-      </small>
+    <li class="e-feed-item">
+      {{ user_avatar(user) }}
+      {% set TOTAL_QUESTIONS = QUESTIONS_BY_ID.keys()|length %}
+      <div class="e-feed-profile {% if score == TOTAL_QUESTIONS %}m-completed{% endif %}">
+        <p>{{ user_link(user) }}</p>
+        <div class="e-progress-bar" data-progress="{{ score }}/{{ TOTAL_QUESTIONS }}"><span class="e-bar" style="width: {{ score / TOTAL_QUESTIONS * 100 }}%"></span></div>
+      </div>
     </li>
   {% endfor %}
-</ol>
+</ul>
 {% endcall %}
 
 {% call render_tab_panel('progress', active_tab, class='b-profile-progress') %}
-<ul class="e-progress-container">
-  {% set q_progress = user.questionnaire_progress %}
-  {% for questionnaire in QUESTIONNAIRES %}
-    {% set item_progress = q_progress[questionnaire.id] %}
 
-    {# TODO: Link to the normal questionnaire, not the onboarding one. #}
-    {% set questionnaire_url = url_for('views.register_step_3_area', areaid=questionnaire.id) %}
-
-    {% if item_progress.total > 0 %}
-    {% if item_progress.answered > 0 %}
-      {% set questions_left = item_progress.total - item_progress.answered %}
-      {% set percentage_complete = item_progress.answered / item_progress.total * 100 %}
-      <li class="e-progress-item" data-questions-left="{{ questions_left }}">
-        <a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a>
-        {% if questions_left > 0 %}
-          <div class="e-questions-left">{{ gettext('%(questions_left)s question(s) left', questions_left=questions_left) }}</div>
-          <div class="e-bar" style="width: {{ percentage_complete }}%"></div>
-        {% else %}
-          <div class="e-bar"></div>
-        {% endif %}
-      </li>
-    {% else %}
-      <li class="e-progress-item"><a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a></li>
-    {% endif %}
-    {% endif %}
-  {% endfor %}
-</ul>
-
-<footer class="b-footer-message">
-  <h3><a href="{{ url_for('views.my_profile') }}">
-    {{ gettext('Complete Your Profile') }}
-  </a></h3>
-  <p>
-    {{ gettext('Let others know your skills & expertise and also get more relevant matches!') }}
-  </p>
-</footer>
+{% include "_profile-progress.html" %}
 
 {% endcall %}
 

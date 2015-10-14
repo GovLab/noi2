@@ -1,0 +1,43 @@
+
+
+.b-filters {
+    background-color: $gray-70;
+    padding: 20px;
+
+    .b-dropdown { margin-bottom: 20px; }
+    .b-dropdown:last-child { margin-bottom: 0; }
+}
+
+.b-innovator-results {
+    padding: 0 20px;
+
+    .e-intro-message { margin: 20px 0; }
+
+    .e-result-item {
+        width: 50%;
+        display: inline-block;
+        margin: 20px -4px;
+        text-align: center;
+
+
+        .e-picture {
+            max-width: 60%;
+            @include circle;
+            margin: 0 20%;
+        }
+
+        .e-name {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1;
+            margin: 10px 0;
+            padding: 0;
+            text-transform: uppercase;
+        }
+        
+        .e-job {
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

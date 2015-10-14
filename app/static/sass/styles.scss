@@ -12,6 +12,7 @@ $gray-80: rgba(0,0,0,0.8);
 $gray-90: rgba(0,0,0,0.9);
 
 $gray-80-matte: #333;
+$gray-60-matte: #808285;
 
 $white-10: rgba(255, 255, 255, 0.1);
 $white-20: rgba(255, 255, 255, 0.2);
@@ -80,6 +81,7 @@ body {
 @import 'activity';
 
 @import 'profile';
+@import 'find-innovator';
 
 
 

@@ -58,10 +58,10 @@ def full_registration_required(func):
 @views.route('/')
 def main_page():
     '''
-    Main NoI page: forward to match page if logged in already.
+    Main NoI page: forward to activity page if logged in already.
     '''
     if current_user.is_authenticated():
-        return redirect(url_for('views.match'))
+        return redirect(url_for('views.activity'))
     else:
         return render_template('main.html', SKIP_NAV_BAR=False)
 
@@ -228,33 +228,6 @@ def register_step_2():
 
     return render_template('register-step-2.html', form=form)
 
-@views.route('/my-expertise', methods=['GET', 'POST'])
-@full_registration_required
-def my_expertise():
-    '''
-    Allow user to edit their expertise
-    '''
-    #if 'social-login' not in session:
-    #    flash('You need to be authenticated in order to fill your expertise.', 'error')
-    #    return redirect(url_for('login'))
-    #social_login = session['social-login']
-    #userid = social_login['userid']
-    if request.method == 'GET':
-        return render_template('my-expertise.html')
-    elif request.method == 'POST':
-        for k, val in request.form.iteritems():
-            current_user.set_skill(k, val)
-        db.session.add(current_user)
-        db.session.commit()
-        flash(gettext("""Your expertise has been updated.<br/>
-        What you can do next:
-        <ul>
-        <li><a href="/search">Search for innovators</a></li>
-        <li>Fill another expertise questionnaire below</li>
-        <li>View your <a href="/user/%(id)d">public profile</a></li>
-                      """ % {'id': current_user.id}))
-        return render_template('my-expertise.html')
-
 
 @views.route('/user/<userid>')
 @full_registration_required
@@ -264,6 +237,85 @@ def get_user(userid):
     '''
     user = User.query_in_deployment().filter_by(id=userid).first_or_404()
     return render_template('user-profile.html', user=user)
+
+
+@views.route('/my-expertise/')
+@full_registration_required
+def my_expertise():
+    '''
+    Show user profile progress.
+    '''
+
+    return render_template('user-profile.html', user=current_user, active_tab='expertise')
+
+
+# TODO: This code is largely copied/pasted from
+# register_step_3_area, consider refactoring.
+@views.route('/my-expertise/<areaid>')
+@full_registration_required
+def my_expertise_area(areaid):
+    '''
+    Redirect the user to the first unanswered question in the given area.
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    skills = current_user.skill_levels
+    for i in range(len(questionnaire['questions'])):
+        question = questionnaire['questions'][i]
+        if question['id'] not in skills:
+            break
+    return redirect(url_for('views.my_expertise_area_question',
+                            areaid=areaid, questionid=str(i+1)))
+
+# TODO: This code is largely copied/pasted from
+# register_step_3_area_question, consider refactoring.
+@views.route('/my-expertise/<areaid>/<questionid>',
+             methods=['GET', 'POST'])
+@full_registration_required
+def my_expertise_area_question(areaid, questionid):
+    '''
+    Ask the user the given question number in the given area.
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    max_questionid = len(questionnaire['questions'])
+    try:
+        questionid = int(questionid)
+        if questionid < 1 or questionid > max_questionid:
+            raise ValueError
+        question = questionnaire['questions'][questionid - 1]
+        next_questionid = None
+        prev_questionid = None
+        if questionid > 1:
+            prev_questionid = questionid - 1
+        if questionid < max_questionid:
+            next_questionid = questionid + 1
+    except ValueError:
+        abort(404)
+
+    if request.method == 'POST':
+        current_user.set_skill(question['id'], request.form.get('answer'))
+        db.session.add(current_user)
+        db.session.commit()
+        if next_questionid:
+            return redirect(url_for(
+                'views.my_expertise_area_question',
+                areaid=areaid, questionid=next_questionid
+            ))
+        else:
+            return redirect(url_for('views.my_expertise'))
+
+    return render_template(
+        'user-profile.html',
+        active_tab='expertise',
+        user=current_user,
+        question=question,
+        areaid=areaid,
+        questionid=questionid,
+        next_questionid=next_questionid,
+        prev_questionid=prev_questionid,
+        max_questionid=max_questionid,
+    )
 
 
 @views.route('/email', methods=['POST'])
@@ -324,8 +376,7 @@ def search():
                         UserSkill.user_id == User.id)
 
         # TODO ordering by relevance
-        return render_template('search-results.html',
-                               title='Expertise search',
+        return render_template('search.html',
                                form=form,
                                results=query.limit(20).all())
 
