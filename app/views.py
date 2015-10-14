@@ -384,45 +384,11 @@ def search():
 @full_registration_required
 def match():
     '''
-    Find innovators with answers
+    'Match Me' page.
     '''
-    if not current_user.skill_levels:
-        flash(gettext('Before we can match you with fellow innovators, you need to '
-                      'enter your expertise below first.'), 'error')
-        return redirect(url_for('views.my_expertise'))
-    return render_template('search-results.html',
-                           title=lazy_gettext('People Who Know what I do not'),
-                           results=current_user.helpful_users)
 
+    return render_template('match-me.html')
 
-@views.route('/match-knn')
-@full_registration_required
-def knn():
-    '''
-    Find nearest neighbor (innovators most like you)
-    '''
-    if not current_user.skill_levels:
-        flash(gettext('Before we can find innovators like you, you need to '
-                      '<a href="/my-expertise">fill your expertise</a> first.'), 'error')
-        return redirect(url_for('views.my_expertise'))
-    experts = current_user.nearest_neighbors
-    return render_template('search-results.html',
-                           title=lazy_gettext('People most like me'),
-                           results=experts)
-
-
-@views.route('/users/recent')
-@full_registration_required
-def recent_users():
-    '''
-    Most recent users.
-    '''
-    users = User.query_in_deployment().add_column('0').\
-            order_by(desc(User.created_at)).limit(10).all()
-    return render_template('search-results.html',
-                           **{'title': lazy_gettext('Our most recent members'),
-                              'results': users,
-                              'query': ''})
 
 @views.route('/activity', methods=['GET', 'POST'])
 @full_registration_required
