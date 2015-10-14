@@ -107,11 +107,10 @@ def my_profile():
 
             db.session.add(current_user)
             db.session.commit()
-            flash(gettext('Your profile has been saved. <br/>Please tell '
-                          'us about your expertise below.'))
+            flash(gettext('Your profile has been saved.'))
             return redirect(url_for('views.my_expertise'))
         else:
-            flash(gettext(u'Could not save, please correct errors below'))
+            flash(gettext(u'Could not save, please correct errors.'))
 
         return render_template('my-profile.html', form=form)
 
