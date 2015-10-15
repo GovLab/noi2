@@ -1,0 +1,115 @@
+.b-match-me {
+
+    .e-intro {
+        text-align: center;
+        font-size: 16px;
+        line-height: 1.6;
+        font-weight: 500;
+        background-color: $gray-10;
+        margin: 0;
+        padding: 15px 0;
+    }
+
+    .e-match-item header {
+        display: flex;
+        align-items: center;
+    }
+
+    .e-picture {
+        flex: 1;
+        padding: 20px;
+        position: relative;
+
+        img {
+            max-width: 100%;
+            @include circle;
+        }
+
+        .e-send-mail {
+            position: absolute;
+            bottom: 5px;
+            left: calc(50% - 18px);
+            @include circle;
+            background-color: $blue;
+            height: 36px;
+            width: 36px;
+            display: inline-block;
+            text-align: center;
+            display: flex;
+            text-indent: 1px;
+            align-items: center;
+            justify-content: center;
+
+            i { 
+                color: $white; 
+                font-size: 20px;
+            }
+        }
+    }
+
+    .e-info {
+        flex: 3;
+    }
+
+    .e-name,
+    .e-job,
+    .e-institution {
+        margin: 6px 0;
+        font-weight: 600;
+    }
+
+    .e-name {
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+    .e-job {
+        font-size: 15px;
+    }
+
+    .e-institution {
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .e-match-question-group {
+        padding: 0;
+
+        li {
+           list-style-type: none;
+           margin: 0;
+        }
+
+    }
+
+    .e-match-questionnaire a {
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .e-match-questionnaire:nth-of-type(odd) a {
+        background-color: $gray-05;
+    }
+    
+    .e-subject {
+        flex: 1;
+        text-transform: uppercase;
+        font-weight: 600;
+        
+    }
+
+    .e-question-number {
+        display: inline-block;
+        white-space: nowrap;
+        padding: 0 10px;
+        font-size: 12px;
+        font-style: italic;
+    }
+
+    .material-icons {
+        color: $gray-40;
+    }
+
+
+}
