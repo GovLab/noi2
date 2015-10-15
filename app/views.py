@@ -9,7 +9,7 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN
+from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN, LEVELS
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent)
 
@@ -379,6 +379,31 @@ def search():
                                form=form,
                                results=query.limit(20).all())
 
+def render_matches(active_tab, level_name):
+    matches = current_user.match(level=LEVELS[level_name]['score'])
+
+    return render_template('match-me.html',
+                           active_tab=active_tab, matches=matches)
+
+@views.route('/match/connectors')
+@full_registration_required
+def match_connectors():
+    return render_matches('connectors', 'LEVEL_I_CAN_REFER')
+
+@views.route('/match/peers')
+@full_registration_required
+def match_peers():
+    return render_matches('peers', 'LEVEL_I_WANT_TO_LEARN')
+
+@views.route('/match/explainers')
+@full_registration_required
+def match_explainers():
+    return render_matches('explainers', 'LEVEL_I_CAN_EXPLAIN')
+
+@views.route('/match/practitioners')
+@full_registration_required
+def match_practitioners():
+    return render_matches('practitioners', 'LEVEL_I_CAN_DO_IT')
 
 @views.route('/match')
 @full_registration_required
@@ -387,8 +412,7 @@ def match():
     'Match Me' page.
     '''
 
-    return render_template('match-me.html')
-
+    return redirect(url_for('views.match_connectors'))
 
 @views.route('/activity', methods=['GET', 'POST'])
 def activity():

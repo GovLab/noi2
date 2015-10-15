@@ -1,11 +1,11 @@
-from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN
+from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS
 from app.factory import create_app
 from app.views import (get_area_questionnaire_or_404,
                        get_best_registration_step_url)
-from app.models import User, SharedMessageEvent, ConnectionEvent
+from app.models import User, SharedMessageEvent, ConnectionEvent, db
 
 from .test_models import DbTestCase
-from .factories import UserFactory
+from .factories import UserFactory, UserSkillFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
 
@@ -310,6 +310,74 @@ class MyExpertiseTests(ViewTestCase):
         self.assert404(self.client.get('/my-expertise/blah'))
         self.assert404(self.client.get('/my-expertise/blah/1'))
 
+class MatchMeTests(ViewTestCase):
+    def setUp(self):
+        super(MatchMeTests, self).setUp()
+        self.login()
+
+        learn = LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
+        refer = LEVELS['LEVEL_I_CAN_REFER']['score']
+        explain = LEVELS['LEVEL_I_CAN_EXPLAIN']['score']
+        do_it = LEVELS['LEVEL_I_CAN_DO_IT']['score']
+
+        skill = "opendata-open-data-policy-core-mission"
+
+        self.last_created_user.set_skill(skill, learn)
+
+        UserFactory.create(
+            first_name=u"connector",
+            last_name=u"stone",
+            connections=[],
+            skills=[UserSkillFactory.create(name=skill, level=refer)]
+        )
+
+        UserFactory.create(
+            first_name=u"peer",
+            last_name=u"stone",
+            connections=[],
+            skills=[UserSkillFactory.create(name=skill, level=learn)]
+        )
+
+        UserFactory.create(
+            first_name=u"explainer",
+            last_name=u"stone",
+            connections=[],
+            skills=[UserSkillFactory.create(name=skill, level=explain)]
+        )
+
+        UserFactory.create(
+            first_name=u"practitioner",
+            last_name=u"stone",
+            connections=[],
+            skills=[UserSkillFactory.create(name=skill, level=do_it)]
+        )
+
+        db.session.commit()
+
+    def test_match_redirects_to_connectors(self):
+        self.assertRedirects(self.client.get('/match'),
+                             '/match/connectors')
+
+    def test_connectors_is_ok(self):
+        res = self.client.get('/match/connectors')
+        self.assert200(res)
+        assert 'connector stone' in res.data
+
+    def test_peers_is_ok(self):
+        res = self.client.get('/match/peers')
+        self.assert200(res)
+        assert 'peer stone' in res.data
+
+    def test_explainers_is_ok(self):
+        res = self.client.get('/match/explainers')
+        self.assert200(res)
+        assert 'explainer stone' in res.data
+
+    def test_practitioners_is_ok(self):
+        res = self.client.get('/match/practitioners')
+        self.assert200(res)
+        assert 'practitioner stone' in res.data
+
 class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):
         self.assert200(self.client.get('/'))
@@ -362,10 +430,6 @@ class ViewTests(ViewTestCase):
         res = self.client.get('/search?country=ZZ')
         self.assert200(res)
         assert "e-results-container" in res.data
-
-    def test_match_me_is_ok(self):
-        self.login()
-        self.assert200(self.client.get('/match'))
 
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
