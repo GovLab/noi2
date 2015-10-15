@@ -11,12 +11,18 @@
     }
 
     .e-match-item header {
-        display: flex;
+        display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;  /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
         align-items: center;
     }
 
     .e-picture {
-        flex: 1;
+        display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;  /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
         padding: 20px;
         position: relative;
 
@@ -35,7 +41,10 @@
             width: 36px;
             display: inline-block;
             text-align: center;
-            display: flex;
+            display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+            display: -ms-flexbox;  /* TWEENER - IE 10 */
+            display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+            display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
             text-indent: 1px;
             align-items: center;
             justify-content: center;
@@ -48,7 +57,10 @@
     }
 
     .e-info {
-        flex: 3;
+        -webkit-box-flex: 3;   /* OLD - iOS 6-, Safari 3.1-6 */
+        -webkit-flex: 3;       /* Safari 6.1+. iOS 7.1+, BB10 */
+        -ms-flex: 3;           /* IE 10 */
+        flex: 3;               /* NEW, Spec - Firefox, Chrome, Opera */
     }
 
     .e-name,
@@ -84,8 +96,11 @@
 
     .e-match-questionnaire a {
         padding: 10px 20px;
-        display: flex;
         align-items: center;
+        display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;  /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
     }
 
     .e-match-questionnaire:nth-of-type(odd) a {
@@ -93,7 +108,10 @@
     }
     
     .e-subject {
-        flex: 1;
+        -webkit-box-flex: 1;   /* OLD - iOS 6-, Safari 3.1-6 */
+        -webkit-flex: 1;       /* Safari 6.1+. iOS 7.1+, BB10 */
+        -ms-flex: 1;           /* IE 10 */
+        flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
         text-transform: uppercase;
         font-weight: 600;
         

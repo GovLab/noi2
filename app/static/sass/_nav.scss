@@ -2,22 +2,28 @@
     background-color: $blue;
 
     .e-top-bar {
-        display: flex;
         padding: 0 10px;
         background-color: $dark-blue-matte;
         align-items: center;
+        display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;  /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
 
         .e-logo {
             font-size: 16px;
             font-weight: 400;
             text-transform: uppercase;
             color: transparent;
-            flex: 1;
             letter-spacing: 1px;
             background-image: url(#{$path-to-static}/img/noi-logo-ok.png);
             background-size: contain;
             background-repeat: no-repeat;
             height: 24px;
+            -webkit-box-flex: 1;   /* OLD - iOS 6-, Safari 3.1-6 */
+            -webkit-flex: 1;       /* Safari 6.1+. iOS 7.1+, BB10 */
+            -ms-flex: 1;           /* IE 10 */
+            flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
         }
 
         .e-user-utils {
@@ -39,14 +45,20 @@
     }
 
     .e-main-nav {
-        display: flex;
+        display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+        display: -ms-flexbox;  /* TWEENER - IE 10 */
+        display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+        display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
 
         .e-nav-item {
-            flex: 1;
             color: $white;
             padding: 20px 0;
             text-align: center;
             font-size: 14px;
+            -webkit-box-flex: 1;   /* OLD - iOS 6-, Safari 3.1-6 */
+            -webkit-flex: 1;       /* Safari 6.1+. iOS 7.1+, BB10 */
+            -ms-flex: 1;           /* IE 10 */
+            flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
         }
 
         .e-nav-item:hover {
