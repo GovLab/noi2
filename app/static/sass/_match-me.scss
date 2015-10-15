@@ -11,14 +11,14 @@
     }
 
     .e-match-item header {
-        display: flex;
         align-items: center;
     }
 
     .e-picture {
-        flex: 1;
         padding: 20px;
         position: relative;
+        max-width: 100%;
+        text-align: center;
 
         img {
             max-width: 100%;
@@ -48,7 +48,7 @@
     }
 
     .e-info {
-        flex: 3;
+        text-align: center;
     }
 
     .e-name,
