@@ -17,7 +17,7 @@ $.ajaxSetup({
 $(document).ready(function () {
   // Keep track of mailto: links as connections
   $("a[href^=mailto]").click(function (evt) {
-    var connectTo = $(evt.target).data('connect-to');
+    var connectTo = $(this).data('connect-to');
     if (connectTo) {
       $.post('/email', {
         'emails': connectTo.split(',')
