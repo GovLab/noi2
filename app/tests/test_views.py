@@ -299,6 +299,28 @@ class MyExpertiseTests(ViewTestCase):
         self.assert404(self.client.get('/my-expertise/blah'))
         self.assert404(self.client.get('/my-expertise/blah/1'))
 
+class MatchMeTests(ViewTestCase):
+    def setUp(self):
+        super(MatchMeTests, self).setUp()
+        self.login()
+        # TODO: Create some sample users w/ skills.
+
+    def test_match_redirects_to_connectors(self):
+        self.assertRedirects(self.client.get('/match'),
+                             '/match/connectors')
+
+    def test_connectors_is_ok(self):
+        self.assert200(self.client.get('/match/connectors'))
+
+    def test_peers_is_ok(self):
+        self.assert200(self.client.get('/match/peers'))
+
+    def test_explainers_is_ok(self):
+        self.assert200(self.client.get('/match/explainers'))
+
+    def test_practitioners_is_ok(self):
+        self.assert200(self.client.get('/match/practitioners'))
+
 class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):
         self.assert200(self.client.get('/'))
@@ -351,10 +373,6 @@ class ViewTests(ViewTestCase):
         res = self.client.get('/search?country=ZZ')
         self.assert200(res)
         assert "e-results-container" in res.data
-
-    def test_match_me_is_ok(self):
-        self.login()
-        self.assert200(self.client.get('/match'))
 
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),

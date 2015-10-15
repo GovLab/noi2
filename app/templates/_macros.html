@@ -18,6 +18,22 @@
   </div>
 {% endmacro %}
 
+{% macro render_static_tab_bar(tabs, active_tab) %}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items" role="tablist">
+        {% for tabid, tablabel, taburl in tabs %}
+        <li role="presentation" class="e-item {% if tabid == active_tab %}active{% endif %}"><a href="{{ taburl }}" role="tab">{{ tablabel }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endmacro %}
+
+{% macro render_static_tab_panel(class='') %}
+<section role="tabpanel" class="{{ class }} active">
+  {{ caller() }}
+</section>
+{% endmacro %}
+
 {% macro render_tab_bar(tabs, active_tab) %}
 <nav class="b-contextual-nav">
     <ul class="e-menu-items" role="tablist">
