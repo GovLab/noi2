@@ -166,9 +166,16 @@ class MultiStepRegistrationTests(ViewTestCase):
         self.assert404(self.client.get('/register/step/3/blah/1'))
 
 class ActivityFeedTests(ViewTestCase):
-    def test_viewing_activity_requires_full_registration(self):
-        self.login(fully_register=False)
-        self.assertRedirects(self.client.get('/activity'), '/register/step/2')
+    def test_get_is_ok(self):
+        self.assert200(self.client.get('/activity'))
+
+    def test_posting_activity_requires_login(self):
+        res = self.client.post('/activity', data=dict(
+            message=u"hello there"
+        ), follow_redirects=True)
+        self.assert200(res)
+        self.assertEqual(SharedMessageEvent.query_in_deployment().count(), 0)
+        assert 'You must log in to post a message' in res.data
 
     def test_posting_activity_requires_full_name(self):
         self.login(first_name=u'', last_name=u'')
@@ -213,6 +220,10 @@ class ActivityFeedTests(ViewTestCase):
         self.assert200(self.client.get('/activity'))
 
 class MyProfileTests(ViewTestCase):
+    def test_get_requires_full_registration(self):
+        self.login(fully_register=False)
+        self.assertRedirects(self.client.get('/me'), '/register/step/2')
+
     def test_get_is_ok(self):
         self.login()
         self.assert200(self.client.get('/me'))

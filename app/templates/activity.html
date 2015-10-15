@@ -2,12 +2,17 @@
 
 {% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
 
-{% set tabs = [
+{% set base_tabs = [
   ('activity', gettext('Activity')),
   ('connected', gettext('Most Connected')),
   ('complete', gettext('Most Complete')),
-  ('progress', gettext('My Profile Progress'))
 ] %}
+
+{% if current_user.is_authenticated() %}
+  {% set tabs = base_tabs + [('progress', gettext('My Profile Progress'))] %}
+{% else %}
+  {% set tabs = base_tabs %}
+{% endif %}
 
 {% set active_tab = active_tab|default(tabs[0][0]) %}
 
@@ -35,9 +40,11 @@
     <div class="e-feed-message">
       <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
       <p>{{ event.message }}</p>
+      {% if current_user.is_authenticated() %}
       <div class="e-actions">
         {% call render_user_mailto_link(event.user, class="material-icons") %}reply{% endcall %}
       </div>
+      {% endif %}
     </div>
   {% elif event.type == 'user_joined_event' %}
     {{ user_avatar(event.user) }}
@@ -90,11 +97,13 @@
 </ul>
 {% endcall %}
 
+{% if current_user.is_authenticated() %}
 {% call render_tab_panel('progress', active_tab, class='b-profile-progress') %}
 
 {% include "_profile-progress.html" %}
 
 {% endcall %}
+{% endif %}
 
 </div> <!-- End of tab panel container -->
 
