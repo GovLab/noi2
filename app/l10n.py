@@ -1,12 +1,15 @@
 from flask import request
 
-import os
+DEFAULT_LANGUAGE = 'en'
 
-TRANSLATIONS = ['en'] + os.listdir('/noi/app/translations')
+TRANSLATIONS = ['es_MX']
 
 def init_app(app):
     babel = app.extensions['babel']
 
     @babel.localeselector
     def get_locale():
-        return request.accept_languages.best_match(TRANSLATIONS)
+        return request.accept_languages.best_match(
+            [DEFAULT_LANGUAGE] +
+            TRANSLATIONS
+        )

@@ -1,8 +1,15 @@
-from .test_views import ViewTestCase
+import os
 
+from .test_views import ViewTestCase
 from app import l10n
 
 class LocalizationTests(ViewTestCase):
+    def test_all_translations_exist(self):
+        dirs = os.listdir('/noi/app/translations')
+        for locale in l10n.TRANSLATIONS:
+            if locale not in dirs:
+                self.fail('Locale %s does not exist' % locale)
+
     def test_locale_is_en_by_default(self):
         res = self.client.get('/')
         assert '<html lang="en"' in res.data
