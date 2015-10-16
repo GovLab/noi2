@@ -20,7 +20,7 @@ from app.forms import (NOIForgotPasswordForm,
                        NOIRegisterForm)
 from app.models import db, User, Role
 from app.views import views
-from app import style_guide
+from app import style_guide, l10n
 
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -190,6 +190,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.config['SEARCH_DEPLOYMENTS'] = this_deployment.get('searches', []) or []
     app.config['SEARCH_DEPLOYMENTS'].append(noi_deploy)
     babel.init_app(app)
+    l10n.init_app(app)
 
     app.config['DOMAINS'] = this_deployment.get('domains',
                                                 default_deployment['domains'])
