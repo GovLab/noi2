@@ -15,7 +15,7 @@ $(function() {
   function showPopup(id) {
     var target = $("[data-tutorial-target='" + id + "']");
     var popup = $("#tutorial-" + id);
-    var position = positionPopup.bind(null, popup, target);
+    var position = $.proxy(positionPopup, null, popup, target);
 
     if (!target.length) return;
 
