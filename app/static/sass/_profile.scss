@@ -121,3 +121,82 @@
     }
 
 }
+
+.b-public-profile {
+    
+    .e-category {
+        background-color: $blue;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: 600;
+        color: $white;
+        text-transform: uppercase;
+        text-align: center;
+
+        .e-back {
+            position: absolute;
+            left: 20px;
+        }
+    }
+    
+    .b-contextual-nav.m-roles {
+        background-color: $gray-20;
+
+        .e-item { color: $gray-80; }
+    }
+
+    .e-intro {
+        font-size: 20px;
+        text-transform: uppercase;
+        text-align: center;
+        font-weight: 600;
+    }
+}
+
+.b-matching-questions {
+    margin: 0;
+    padding: 0;
+
+
+    .e-question-item { 
+        list-style-type: none; 
+        padding: 10px 20px 20px;
+    }
+    .e-question-item:nth-of-type(odd) { background-color: $gray-05; }
+
+    .e-question-text {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .e-user-answer {
+        position: relative;
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+        left: 25px;
+        
+        img {
+            @include circle;
+            width: 50px;
+            position: absolute;
+            left: 0;
+
+        }
+        
+        .e-user-answer-text {
+            padding: 4px 20px 6px 30px;
+            margin: 8px 0 10px -35px;
+            vertical-align: top;
+            display: inline-block;
+            color: $white;
+            font-size: 18px;
+        }
+
+        &.m-learn .e-user-answer-text {background-color: $orange;}
+        &.m-do .e-user-answer-text {background-color: $teal;}
+        &.m-explain .e-user-answer-text {background-color: $purple;}
+        &.m-connect .e-user-answer-text {background-color: $yellow;}
+
+    }
+}
