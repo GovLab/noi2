@@ -37,7 +37,7 @@ $(function() {
 
   // Advance tutorial steps
   $("[data-tutorial-step]").click(function (evt) {
-    var step = $(evt.target).data('tutorial-step');
+    var step = $(this).data('tutorial-step');
     hidePopup($(this).closest('.b-tutorial-box'));
     if (step) {
       postTutorialStep(step);
