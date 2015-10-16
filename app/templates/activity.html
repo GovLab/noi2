@@ -2,6 +2,12 @@
 
 {% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
 
+{% block page_style_pre %}
+  {% if current_user.is_authenticated() %}
+  <meta name="current-tutorial-step" content="{% if current_user.tutorial_step %}{{ current_user.tutorial_step }}{% else %}1{% endif %}">
+  {% endif %}
+{% endblock %}
+
 {% set base_tabs = [
   ('activity', gettext('Activity')),
   ('connected', gettext('Most Connected')),
@@ -106,5 +112,30 @@
 {% endif %}
 
 </div> <!-- End of tab panel container -->
+
+{% if current_user.is_authenticated() %}
+<div class="b-tutorial-box" id="tutorial-1">
+      <div class="e-top-arrow"></div>
+      <p>{{ gettext('Welcome <strong>%(first_name)s</strong>!', first_name=current_user.first_name) }}</p>
+      <p>{{ gettext('You can <strong>meet your top matches</strong> based on your skills and interests.') }}</p>
+      <button class="b-button" data-tutorial-step="2">{{ gettext('Next') }}</button>
+      <div class="e-counter">1/3</div>
+</div>
+
+<div class="b-tutorial-box" id="tutorial-2">
+      <div class="e-top-arrow"></div>
+      <p>{{ gettext('You can also <strong>browse innovators</strong> by skill area!') }}</p>
+      <button class="b-button" data-tutorial-step="3">{{ gettext('Next') }}</button>
+      <div class="e-counter">2/3</div>
+</div>
+
+<div class="b-tutorial-box on-right-side" id="tutorial-3">
+      <div class="e-top-arrow"></div>
+      <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
+      <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
+      <button class="b-button" data-tutorial-step="4">{{ gettext("OK") }}</button>
+      <div class="e-counter">3/3</div>
+</div>
+{% endif %}
 
 {% endblock %}
