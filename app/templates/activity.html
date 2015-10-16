@@ -116,17 +116,25 @@
 {% if current_user.is_authenticated() %}
 <div class="b-tutorial-box" id="tutorial-1">
       <div class="e-top-arrow"></div>
-      <p>Welcome <strong>{{ current_user.first_name }}</strong>!</p>
-      <p>You can <strong>meet your top matches</strong> based on your skills and interests.</p>
-      <button class="b-button" data-tutorial-step="2">Next</button>
-      <div class="e-counter">1/2</div>
+      <p>{{ gettext('Welcome <strong>%(first_name)s</strong>!', first_name=current_user.first_name) }}</p>
+      <p>{{ gettext('You can <strong>meet your top matches</strong> based on your skills and interests.') }}</p>
+      <button class="b-button" data-tutorial-step="2">{{ gettext('Next') }}</button>
+      <div class="e-counter">1/3</div>
 </div>
 
-<div class="b-tutorial-box on-right-side" id="tutorial-2">
+<div class="b-tutorial-box" id="tutorial-2">
       <div class="e-top-arrow"></div>
-      <p>You can access your profile and log out and stuff here.</p>
-      <button class="b-button" data-tutorial-step="3">Thanks</button>
-      <div class="e-counter">2/2</div>
+      <p>{{ gettext('You can also <strong>browse innovators</strong> by skill area!') }}</p>
+      <button class="b-button" data-tutorial-step="3">{{ gettext('Next') }}</button>
+      <div class="e-counter">2/3</div>
+</div>
+
+<div class="b-tutorial-box on-right-side" id="tutorial-3">
+      <div class="e-top-arrow"></div>
+      <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
+      <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
+      <button class="b-button" data-tutorial-step="4">{{ gettext("OK") }}</button>
+      <div class="e-counter">3/3</div>
 </div>
 {% endif %}
 
