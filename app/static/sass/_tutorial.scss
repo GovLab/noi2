@@ -11,6 +11,11 @@
 
     &.m-active { display: block; }
 
+    &.on-right-side {
+        margin-left: 14vw;
+        margin-right: 0;
+    }
+
     .e-top-arrow {
         width: 0;
         height: 0;
