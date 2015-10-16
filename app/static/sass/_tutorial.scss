@@ -23,7 +23,11 @@
         border-right: 20px solid transparent;
         border-bottom: 20px solid $teal;
         position: absolute;
-        top: -20px;
+
+        // Ensure a tiny amount of overlap between the
+        // arrow and the box to ensure browsers never render
+        // any space in between them.
+        top: -19px;
     }
 
     p {
