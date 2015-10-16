@@ -1,0 +1,29 @@
+{% extends "style-guide/base.html" %}
+
+{% block page_style_pre %}
+<meta name="current-tutorial-step" content="1">
+<style>
+p { text-align: center; }
+</style>
+{% endblock %}
+
+{% block content %}
+<p data-tutorial-target="1" style="text-align: center">I am the target for step 1.</p>
+
+<span data-tutorial-target="2" style="float: right">Hello!</span>
+
+<div class="b-tutorial-box" id="tutorial-1">
+    <div class="e-top-arrow"></div>
+    <p>We use some custom jQuery to do tutorial popovers.</p>
+    <p>Give a page element a <code>data-tutorial-target</code> attribute to point at it.</p>
+    <button class="b-button" data-tutorial-step="2">Next</button>
+    <div class="e-counter">1/2</div>
+</div>
+
+<div class="b-tutorial-box on-right-side" id="tutorial-2">
+    <div class="e-top-arrow"></div>
+    <p>Add <code>.on-right-side</code> to point at things way over here.</p>
+    <button class="b-button" data-tutorial-step="3">OK</button>
+    <div class="e-counter">2/2</div>
+</div>
+{% endblock %}
