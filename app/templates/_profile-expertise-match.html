@@ -1,0 +1,11 @@
+<ul class="e-match-question-group">
+{% for questionnaire_id, match_count, skill_dict in current_user.match_against(user) %}
+<li class="e-match-questionnaire">
+  <a href="{{ url_for('views.get_user_expertise_area', userid=user.id, areaid=questionnaire_id, _anchor='expertise') }}">
+    <div class="e-subject">{{ QUESTIONNAIRES_BY_ID[questionnaire_id].name }}</div>
+    <div class="e-question-number">You match on {{ match_count }} Question(s)</div>
+    <i class="material-icons">arrow_forward</i>
+  </a>
+</li>
+{% endfor %}
+</ul>

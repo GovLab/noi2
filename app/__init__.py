@@ -98,9 +98,11 @@ ORG_TYPES = {'edu': 'Academia',
 
 # Process YAML files
 QUESTIONNAIRES = yaml.load(open('/noi/app/data/questions.yaml'))
+QUESTIONNAIRES_BY_ID = {}
 QUESTIONS_BY_ID = {}
 MIN_QUESTIONS_TO_JOIN = 3
 for questionnaire in QUESTIONNAIRES:
+    QUESTIONNAIRES_BY_ID[questionnaire['id']] = questionnaire
     area_questions = []
     questionnaire['questions'] = area_questions
     for topic in questionnaire.get('topics', []):

@@ -1,7 +1,7 @@
-from app import QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS
+from app import (QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS,
+                 QUESTIONNAIRES_BY_ID)
 from app.factory import create_app
-from app.views import (get_area_questionnaire_or_404,
-                       get_best_registration_step_url)
+from app.views import get_best_registration_step_url
 from app.models import User, SharedMessageEvent, ConnectionEvent, db
 
 from .test_models import DbTestCase
@@ -71,7 +71,7 @@ class ViewTestCase(DbTestCase):
         return res
 
 class MultiStepRegistrationTests(ViewTestCase):
-    OPENDATA_QUESTIONNAIRE = get_area_questionnaire_or_404('opendata')
+    OPENDATA_QUESTIONNAIRE = QUESTIONNAIRES_BY_ID['opendata']
     NUM_OPENDATA_QUESTIONS = len(OPENDATA_QUESTIONNAIRE['questions'])
 
     def setUp(self):
@@ -255,7 +255,7 @@ class MyProfileTests(ViewTestCase):
         self.assertEqual(str(user.locales[0]), 'af')
 
 class MyExpertiseTests(ViewTestCase):
-    OPENDATA_QUESTIONNAIRE = get_area_questionnaire_or_404('opendata')
+    OPENDATA_QUESTIONNAIRE = QUESTIONNAIRES_BY_ID['opendata']
     NUM_OPENDATA_QUESTIONS = len(OPENDATA_QUESTIONNAIRE['questions'])
 
     def setUp(self):

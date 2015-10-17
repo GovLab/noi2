@@ -24,7 +24,7 @@ class UserSkillMatch(object):
 
     This object exposes `user` and `questionnaires` properties.  The
     `questionnaires` property is a list of two-tuples, in descending order of
-    number of matched questions, where the first element is the name of the
+    number of matched questions, where the first element is the ID of the
     questionnaire and the second element is a list (in no particular order) of
     the the matched question IDs.
     """
@@ -37,10 +37,10 @@ class UserSkillMatch(object):
         questionnaires = {}
         for question_id in question_ids:
             question = QUESTIONS_BY_ID[question_id]
-            questionnaire_name = question['questionnaire']['name']
-            if questionnaire_name not in questionnaires:
-                questionnaires[questionnaire_name] = set()
-            questionnaires[questionnaire_name].add(question_id)
+            questionnaire_id = question['questionnaire']['id']
+            if questionnaire_id not in questionnaires:
+                questionnaires[questionnaire_id] = set()
+            questionnaires[questionnaire_id].add(question_id)
 
         self._user = user
         self._questionnaires = sorted(questionnaires.iteritems(),

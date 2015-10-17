@@ -38,11 +38,10 @@
           </div>
         </header>
         <ul class="e-match-question-group">
-          {% for questionnaire_name, question_ids in match.questionnaires %}
+          {% for questionnaire_id, question_ids in match.questionnaires %}
             <li class="e-match-questionnaire">
-              <!-- TODO: This needs to link directly to relevant expertise -->
-              <a href="{{ url_for('views.get_user', userid=match.user.id) }}">
-                <div class="e-subject">{{ questionnaire_name }}</div>
+              <a href="{{ url_for('views.get_user_expertise_area', userid=match.user.id, areaid=questionnaire_id, _anchor='expertise') }}">
+                <div class="e-subject">{{ QUESTIONNAIRES_BY_ID[questionnaire_id]['name'] }}</div>
                 <div class="e-question-number">{{ gettext('%(number)s Question(s)', number=question_ids|length) }}</div>
                 <i class="material-icons">arrow_forward</i>
               </a>

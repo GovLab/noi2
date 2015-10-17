@@ -9,7 +9,7 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN, LEVELS
+from app import QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent)
 
@@ -119,10 +119,10 @@ def get_area_questionnaire_or_404(areaid):
     Return the questionnaire for the given area ID or raise a 404.
     '''
 
-    for questionnaire in QUESTIONNAIRES:
-        if questionnaire['id'] == areaid:
-            return questionnaire
-    abort(404)
+    questionnaire = QUESTIONNAIRES_BY_ID.get(areaid)
+    if questionnaire is None:
+        abort(404)
+    return questionnaire
 
 def render_register_step_3(**kwargs):
     questions_answered = len(current_user.skills)
@@ -228,14 +228,48 @@ def register_step_2():
     return render_template('register-step-2.html', form=form)
 
 
+def render_user_profile(userid=None, **kwargs):
+    if userid is None:
+        user = current_user
+    else:
+        user = User.query_in_deployment().filter_by(id=userid).first_or_404()
+    kwargs['user'] = user
+    return render_template('user-profile.html', **kwargs)
+
+
 @views.route('/user/<userid>')
 @full_registration_required
 def get_user(userid):
     '''
     Public-facing profile view
     '''
-    user = User.query_in_deployment().filter_by(id=userid).first_or_404()
-    return render_template('user-profile.html', user=user)
+
+    return render_user_profile(userid)
+
+
+@views.route('/user/<userid>/expertise/')
+@full_registration_required
+def get_user_expertise(userid):
+    '''
+    Public-facing profile view, with expertise tab selected
+    '''
+
+    return render_user_profile(userid, active_tab='expertise')
+
+
+@views.route('/user/<userid>/expertise/<areaid>')
+@full_registration_required
+def get_user_expertise_area(userid, areaid):
+    '''
+    Public-facing profile view, with expertise tab selected
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    return render_user_profile(
+        userid,
+        active_tab='expertise',
+        areaid=areaid
+        )
 
 
 @views.route('/my-expertise/')
@@ -245,7 +279,7 @@ def my_expertise():
     Show user profile progress.
     '''
 
-    return render_template('user-profile.html', user=current_user, active_tab='expertise')
+    return render_user_profile(active_tab='expertise')
 
 
 # TODO: This code is largely copied/pasted from
@@ -304,10 +338,8 @@ def my_expertise_area_question(areaid, questionid):
         else:
             return redirect(url_for('views.my_expertise'))
 
-    return render_template(
-        'user-profile.html',
+    return render_user_profile(
         active_tab='expertise',
-        user=current_user,
         question=question,
         areaid=areaid,
         questionid=questionid,
