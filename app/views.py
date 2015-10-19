@@ -74,6 +74,14 @@ def about_page():
     return render_template('about.html')
 
 
+@views.route('/faq')
+def faq():
+    '''
+    NoI FAQ page.
+    '''
+    return render_template('faq.html')
+
+
 @views.route('/me', methods=['GET', 'POST'])
 @full_registration_required
 def my_profile():
