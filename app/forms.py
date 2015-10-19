@@ -105,7 +105,7 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     locales = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Languages'),
         widget=Select(multiple=True),
-        choices=lambda: [(l.language, l.get_language_name(get_locale()))
+        choices=lambda: [(l.language, l.get_display_name())
                          for l in LOCALES])
     expertise_domain_names = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Domains of Expertise'),
