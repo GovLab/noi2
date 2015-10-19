@@ -1,7 +1,12 @@
+{% from "_macros.html" import render_user_mailto_link %}
+
 {% macro show_user_answer(user, class, text) %}
 <div class="e-user-answer {{ class }}">
   <img src="{{ get_user_avatar_url(user) }}" alt="">
-  <span class="e-user-answer-text">{{ caller() }}</span>
+  {% set user_answer_text = caller() %}
+  {% call render_user_mailto_link(user) %}
+  <span class="e-user-answer-text">{{ user_answer_text }} <span class="material-icons">send</span></span>
+  {% endcall %}
 </div>
 {% endmacro %}
 

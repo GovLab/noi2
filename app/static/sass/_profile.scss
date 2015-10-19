@@ -201,12 +201,18 @@
         }
         
         .e-user-answer-text {
-            padding: 4px 20px 6px 30px;
+            padding: 6px 20px 6px 30px;
             margin: 8px 0 10px -35px;
             vertical-align: top;
             display: inline-block;
             color: $white;
             font-size: 18px;
+
+            .material-icons {
+                padding-left: 0.5em;
+                font-size: inherit;
+                vertical-align: middle;
+            }
         }
 
         &.m-learn .e-user-answer-text {background-color: $orange;}
