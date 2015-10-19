@@ -3,10 +3,10 @@
 {% from "_macros.html" import render_static_tab_bar, render_static_tab_panel, get_user_avatar_url, render_user_mailto_link %}
 
 {% set tabs = [
+  ('practitioners', gettext('Your Practitioners'), url_for('views.match_practitioners')),
+  ('explainers', gettext('Your Explainers'), url_for('views.match_explainers')),
   ('connectors', gettext('Your Connectors'), url_for('views.match_connectors')),
   ('peers', gettext('Your Peers'), url_for('views.match_peers')),
-  ('explainers', gettext('Your Explainers'), url_for('views.match_explainers')),
-  ('practitioners', gettext('Your Practitioners'), url_for('views.match_practitioners')),
 ] %}
 
 {% block content %}
