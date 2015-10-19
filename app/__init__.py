@@ -56,19 +56,15 @@ cache = Cache()
 
 LEVELS = {'LEVEL_I_CAN_EXPLAIN': {'score': 2,
                                   'class': 'm-explain',
-                                  'icon': '<i class="fa-fw fa fa-book"></i>',
                                   'label': 'I can explain it'},
           'LEVEL_I_CAN_DO_IT': {'score': 5,
                                 'class': 'm-do',
-                                'icon': '<i class="fa-fw fa fa-cogs"></i>',
                                 'label': 'I can do it'},
           'LEVEL_I_CAN_REFER': {'score': 1,
                                 'class': 'm-connect',
-                                'icon': '<i class="fa-fw fa fa-mail-forward"></i>',
                                 'label': 'I can connect others'},
           'LEVEL_I_WANT_TO_LEARN': {'score': -1,
                                     'class': 'm-learn',
-                                    'icon': '<i class="fa-fw fa fa-question"></i>',
                                     'label': 'I want to learn'}}
 
 VALID_SKILL_LEVELS = [v['score'] for k, v in LEVELS.iteritems()]
