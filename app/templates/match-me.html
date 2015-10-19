@@ -15,13 +15,13 @@
   {% call render_static_tab_panel(class='b-match-me') %}
     <p class="e-intro">
       {% if active_tab == 'connectors' %}
-          {{ gettext("They know others who can answer your questions. Ask them to connect you!") }}
+          {{ gettext("Connectors know others who can answer your questions. Ask them to introduce you!") }}
       {% elif active_tab == 'peers' %}
-          {{ gettext("These innovators want to learn the same things you do. Why don't you join forces?") }}
+          {{ gettext("Peers want to learn the same things as you. Why don't you join forces?") }}
       {% elif active_tab == 'explainers' %}
-          {{ gettext("They know most things you want to learn. Ask them to guide you!") }}
+          {{ gettext("Explainers know what you want to learn. Ask them to guide you!") }}
       {% elif active_tab == 'practitioners' %}
-          {{ gettext("They know how to do what you want to learn. Ask them to share their experiences!") }}
+          {{ gettext("Practitioners have experience in what you want to learn. Ask them to share their experiences!") }}
       {% endif %}
     </p>
     {% for match in matches %}
