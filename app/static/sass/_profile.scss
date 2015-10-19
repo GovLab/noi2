@@ -7,6 +7,8 @@
     display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
     
+    .e-send {display: none;} // @Toolness - this is my hack for the button switcher.
+
     .e-bg {
         position: absolute;
         z-index: -1;
@@ -123,7 +125,10 @@
 }
 
 .b-public-profile {
-    
+
+    .e-send {display: block;} // @Toolness - this is my hack for the button switcher.
+    .e-edit {display: none;}  // @Toolness - this is my hack for the button switcher.
+
     .e-category {
         background-color: $blue;
         padding: 15px;
@@ -150,6 +155,17 @@
         text-transform: uppercase;
         text-align: center;
         font-weight: 600;
+    }
+
+    .e-send {
+        padding: 10px 8px 10px 12px;
+        background-color: $blue;
+        width: auto;
+        display: inline-block;
+        @include circle;
+        position: relative;
+        top: -25px;
+        box-shadow: 0 2px 5px $gray-40;
     }
 }
 
