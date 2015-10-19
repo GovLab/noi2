@@ -66,14 +66,14 @@
     <header>
         <img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" alt="">
         <h3 class="e-name">{{ current_user.full_name }}</h3>
-        <a class="e-edit-profile" href="{{ url_for('views.get_user', userid=current_user.id) }}">My Profile</a>
+        <a class="e-edit-profile" href="{{ url_for('views.get_user', userid=current_user.id) }}">{{ gettext('My Profile') }}</a>
     </header>
 
     <section class="e-menu">
-        <a href="{{ url_for('views.feedback') }}">Share Feedback</a>
-        <a href="{{ url_for('views.faq') }}">FAQ</a>
-        <a href="{{ url_for('views.about_page') }}">About</a>
-        <a href="{{ url_for_security('logout') }}">Sign Out</a>
+        <a href="{{ url_for('views.feedback') }}">{{ gettext('Share Feedback') }}</a>
+        <a href="{{ url_for('views.faq') }}">{{ gettext('FAQ') }}</a>
+        <a href="{{ url_for('views.about_page') }}">{{ gettext('About') }}</a>
+        <a href="{{ url_for_security('logout') }}">{{ gettext('Sign Out') }}</a>
     </section>
 
     <footer class="e-govlab-logo">
