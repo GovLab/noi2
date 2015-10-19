@@ -385,6 +385,9 @@ class ViewTests(ViewTestCase):
     def test_about_page_is_ok(self):
         self.assert200(self.client.get('/about'))
 
+    def test_faq_is_ok(self):
+        self.assert200(self.client.get('/faq'))
+
     def test_feedback_page_is_ok(self):
         self.assert200(self.client.get('/feedback'))
 
