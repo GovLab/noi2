@@ -452,7 +452,8 @@ def activity():
     View for the activity feed of recent events.
     '''
 
-    events = Event.query_in_deployment().order_by(desc(Event.created_at)).limit(10).all()
+    events = Event.query_in_deployment().order_by(desc(Event.created_at)).\
+             limit(50).all()
     shared_message_form = SharedMessageForm()
 
     if request.method == 'POST':
