@@ -42,7 +42,7 @@
             <li class="e-match-questionnaire">
               <a href="{{ url_for('views.get_user_expertise_area', userid=match.user.id, areaid=questionnaire_id, _anchor='expertise') }}">
                 <div class="e-subject">{{ QUESTIONNAIRES_BY_ID[questionnaire_id]['name'] }}</div>
-                <div class="e-question-number">{{ gettext('%(number)s Question(s)', number=question_ids|length) }}</div>
+                <div class="e-question-number">{{ gettext('%(number)s Skill Matches', number=question_ids|length) }}</div>
                 <i class="material-icons">arrow_forward</i>
               </a>
             </li>
