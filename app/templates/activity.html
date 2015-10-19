@@ -59,8 +59,8 @@
     </div>
   {% elif event.type == 'connection_event' %}
     <div class="e-feed-message">
-      <p>{{ gettext('+%(new)s new connections made in NOI.', new=event.emails.count()) }}</p>
-      <p>{{ gettext('+%(total)s connections!', total=event.total_connections) }}</p>
+      <p>{{ ngettext('+%(num)d new connection made in NOI.', '+%(num)d new connections made in NOI.', event.emails.count()) }}</p>
+      <p>{{ gettext('%(total)s connections!', total=event.total_connections) }}</p>
     </div>
   {% else %}
     <div class="e-feed-message">
