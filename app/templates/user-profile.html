@@ -27,6 +27,8 @@ b-public-profile
         <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
         {% if is_current_user_profile %}
         <a href="{{ url_for('views.my_profile') }}" class="e-edit material-icons">edit</a>
+        {% else %}
+        {% call render_user_mailto_link(user) %}<span class="e-send material-icons">send</span>{% endcall %}
         {% endif %}
     </div>
     <div class="e-right">
@@ -69,10 +71,6 @@ b-public-profile
 {% else %}
 {{ gettext("No project information provided.") }}
 {% endif %}
-
-<p>
-  {% call render_user_mailto_link(user, class='b-button') %}E-Mail{% endcall %}
-</p>
 
 {% endcall %}
 
