@@ -1,9 +1,14 @@
 .b-profile-header {
-    display: flex;
     position: relative;
     color: $white;
     overflow: hidden;
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
     
+    .e-send {display: none;} // @Toolness - this is my hack for the button switcher.
+
     .e-bg {
         position: absolute;
         z-index: -1;
@@ -21,7 +26,10 @@
     }
 
     .e-left {
-        flex: 2;
+        -webkit-box-flex: 2;   /* OLD - iOS 6-, Safari 3.1-6 */
+        -webkit-flex: 2;       /* Safari 6.1+. iOS 7.1+, BB10 */
+        -ms-flex: 2;           /* IE 10 */
+        flex: 2;               /* NEW, Spec - Firefox, Chrome, Opera */
         text-align: center;
         padding: 20px 10px;
 
@@ -36,8 +44,11 @@
     }
 
     .e-right {
-        flex: 3;
         padding: 30px 10px 10px;
+        -webkit-box-flex: 3;   /* OLD - iOS 6-, Safari 3.1-6 */
+        -webkit-flex: 3;       /* Safari 6.1+. iOS 7.1+, BB10 */
+        -ms-flex: 3;           /* IE 10 */
+        flex: 3;               /* NEW, Spec - Firefox, Chrome, Opera */
 
         .e-name {
             font-size: 18px;
@@ -114,7 +125,10 @@
 }
 
 .b-public-profile {
-    
+
+    .e-send {display: block;} // @Toolness - this is my hack for the button switcher.
+    .e-edit {display: none;}  // @Toolness - this is my hack for the button switcher.
+
     .e-category {
         background-color: $blue;
         padding: 15px;
@@ -141,6 +155,17 @@
         text-transform: uppercase;
         text-align: center;
         font-weight: 600;
+    }
+
+    .e-send {
+        padding: 10px 8px 10px 12px;
+        background-color: $blue;
+        width: auto;
+        display: inline-block;
+        @include circle;
+        position: relative;
+        top: -25px;
+        box-shadow: 0 2px 5px $gray-40;
     }
 }
 

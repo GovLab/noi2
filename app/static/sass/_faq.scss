@@ -1,0 +1,19 @@
+.b-faq {
+    .e-faq-list {
+        padding: 0;
+    }
+    .e-faq-item {
+        list-style-type: none;
+        padding: 15px 20px;
+        line-height: 1.5;
+
+        &:nth-of-type(even) {
+            background-color: $gray-05;
+        }
+    }
+    .e-question {
+        font-weight: bold;
+    }
+    .e-answer {}
+
+}
