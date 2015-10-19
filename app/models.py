@@ -263,7 +263,7 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         '''
         Returns a list of three-tuples in the format:
 
-        (<questionnaire name>, <count of matching questions>, <skill dict>, )
+        (<questionnaire id>, <count of matching questions>, <skill dict>, )
 
         In descending order of <count of matching questions>.
 
@@ -280,13 +280,13 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         resp = {}
         for skill in skills:
             question = QUESTIONS_BY_ID[skill.name]
-            questionnaire_name = question['questionnaire']['name']
-            if questionnaire_name not in resp:
-                resp[questionnaire_name] = dict()
+            questionnaire_id = question['questionnaire']['id']
+            if questionnaire_id not in resp:
+                resp[questionnaire_id] = dict()
 
-            if skill.level not in resp[questionnaire_name]:
-                resp[questionnaire_name][skill.level] = set()
-            resp[questionnaire_name][skill.level].add(skill.name)
+            if skill.level not in resp[questionnaire_id]:
+                resp[questionnaire_id][skill.level] = set()
+            resp[questionnaire_id][skill.level].add(skill.name)
 
         resp = [(qname,
                  sum([len(questions) for questions in skill_levels.values()]),

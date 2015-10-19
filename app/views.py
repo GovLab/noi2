@@ -9,7 +9,7 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import QUESTIONNAIRES, MIN_QUESTIONS_TO_JOIN
+from app import QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent)
 
@@ -107,11 +107,10 @@ def my_profile():
 
             db.session.add(current_user)
             db.session.commit()
-            flash(gettext('Your profile has been saved. <br/>Please tell '
-                          'us about your expertise below.'))
+            flash(gettext('Your profile has been saved.'))
             return redirect(url_for('views.my_expertise'))
         else:
-            flash(gettext(u'Could not save, please correct errors below'))
+            flash(gettext(u'Could not save, please correct errors.'))
 
         return render_template('my-profile.html', form=form)
 
@@ -120,10 +119,10 @@ def get_area_questionnaire_or_404(areaid):
     Return the questionnaire for the given area ID or raise a 404.
     '''
 
-    for questionnaire in QUESTIONNAIRES:
-        if questionnaire['id'] == areaid:
-            return questionnaire
-    abort(404)
+    questionnaire = QUESTIONNAIRES_BY_ID.get(areaid)
+    if questionnaire is None:
+        abort(404)
+    return questionnaire
 
 def render_register_step_3(**kwargs):
     questions_answered = len(current_user.skills)
@@ -229,14 +228,48 @@ def register_step_2():
     return render_template('register-step-2.html', form=form)
 
 
+def render_user_profile(userid=None, **kwargs):
+    if userid is None:
+        user = current_user
+    else:
+        user = User.query_in_deployment().filter_by(id=userid).first_or_404()
+    kwargs['user'] = user
+    return render_template('user-profile.html', **kwargs)
+
+
 @views.route('/user/<userid>')
 @full_registration_required
 def get_user(userid):
     '''
     Public-facing profile view
     '''
-    user = User.query_in_deployment().filter_by(id=userid).first_or_404()
-    return render_template('user-profile.html', user=user)
+
+    return render_user_profile(userid)
+
+
+@views.route('/user/<userid>/expertise/')
+@full_registration_required
+def get_user_expertise(userid):
+    '''
+    Public-facing profile view, with expertise tab selected
+    '''
+
+    return render_user_profile(userid, active_tab='expertise')
+
+
+@views.route('/user/<userid>/expertise/<areaid>')
+@full_registration_required
+def get_user_expertise_area(userid, areaid):
+    '''
+    Public-facing profile view, with expertise tab selected
+    '''
+
+    questionnaire = get_area_questionnaire_or_404(areaid)
+    return render_user_profile(
+        userid,
+        active_tab='expertise',
+        areaid=areaid
+        )
 
 
 @views.route('/my-expertise/')
@@ -246,7 +279,7 @@ def my_expertise():
     Show user profile progress.
     '''
 
-    return render_template('user-profile.html', user=current_user, active_tab='expertise')
+    return render_user_profile(active_tab='expertise')
 
 
 # TODO: This code is largely copied/pasted from
@@ -305,10 +338,8 @@ def my_expertise_area_question(areaid, questionid):
         else:
             return redirect(url_for('views.my_expertise'))
 
-    return render_template(
-        'user-profile.html',
+    return render_user_profile(
         active_tab='expertise',
-        user=current_user,
         question=question,
         areaid=areaid,
         questionid=questionid,
@@ -380,53 +411,42 @@ def search():
                                form=form,
                                results=query.limit(20).all())
 
+def render_matches(active_tab, level_name):
+    matches = current_user.match(level=LEVELS[level_name]['score'])
+
+    return render_template('match-me.html',
+                           active_tab=active_tab, matches=matches)
+
+@views.route('/match/connectors')
+@full_registration_required
+def match_connectors():
+    return render_matches('connectors', 'LEVEL_I_CAN_REFER')
+
+@views.route('/match/peers')
+@full_registration_required
+def match_peers():
+    return render_matches('peers', 'LEVEL_I_WANT_TO_LEARN')
+
+@views.route('/match/explainers')
+@full_registration_required
+def match_explainers():
+    return render_matches('explainers', 'LEVEL_I_CAN_EXPLAIN')
+
+@views.route('/match/practitioners')
+@full_registration_required
+def match_practitioners():
+    return render_matches('practitioners', 'LEVEL_I_CAN_DO_IT')
 
 @views.route('/match')
 @full_registration_required
 def match():
     '''
-    Find innovators with answers
+    'Match Me' page.
     '''
-    if not current_user.skill_levels:
-        flash(gettext('Before we can match you with fellow innovators, you need to '
-                      'enter your expertise below first.'), 'error')
-        return redirect(url_for('views.my_expertise'))
-    return render_template('search-results.html',
-                           title=lazy_gettext('People Who Know what I do not'),
-                           results=current_user.helpful_users)
 
-
-@views.route('/match-knn')
-@full_registration_required
-def knn():
-    '''
-    Find nearest neighbor (innovators most like you)
-    '''
-    if not current_user.skill_levels:
-        flash(gettext('Before we can find innovators like you, you need to '
-                      '<a href="/my-expertise">fill your expertise</a> first.'), 'error')
-        return redirect(url_for('views.my_expertise'))
-    experts = current_user.nearest_neighbors
-    return render_template('search-results.html',
-                           title=lazy_gettext('People most like me'),
-                           results=experts)
-
-
-@views.route('/users/recent')
-@full_registration_required
-def recent_users():
-    '''
-    Most recent users.
-    '''
-    users = User.query_in_deployment().add_column('0').\
-            order_by(desc(User.created_at)).limit(10).all()
-    return render_template('search-results.html',
-                           **{'title': lazy_gettext('Our most recent members'),
-                              'results': users,
-                              'query': ''})
+    return redirect(url_for('views.match_connectors'))
 
 @views.route('/activity', methods=['GET', 'POST'])
-@full_registration_required
 def activity():
     '''
     View for the activity feed of recent events.
@@ -436,7 +456,9 @@ def activity():
     shared_message_form = SharedMessageForm()
 
     if request.method == 'POST':
-        if not current_user.display_in_search:
+        if not current_user.is_authenticated():
+            flash(gettext(u'You must log in to post a message.'), 'error')
+        elif not current_user.display_in_search:
             flash(gettext(u'We need your name before you can post a message.'), 'error')
         elif shared_message_form.validate():
             data = shared_message_form.message.data

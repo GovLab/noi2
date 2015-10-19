@@ -13,6 +13,12 @@
 
 {% set active_tab = active_tab|default(tabs[0][0]) %}
 
+{% block body_class -%}
+{%- if not is_current_user_profile -%}
+b-public-profile
+{%- endif -%}
+{%- endblock %}
+
 {% block content %}
 
 <section class="b-profile-header">
@@ -84,22 +90,15 @@
 
 {% else %}
 
-{% call render_tab_panel('expertise', active_tab) %}
-
-<ul>
-{% for skill in user.skills %}
-{% with %}
-{% set skill_question = QUESTIONS_BY_ID[skill.name] %}
-<li>
-{{ skill_question.questionnaire.name }}:
-<strong>{{ LEVELS_BY_SCORE[skill.level].label }}</strong>
-<span>{{ skill_question.question }}</span>
-</li>
-{% endwith %}
-{% endfor %}
-</ul>
-
-{% endcall %}
+{% if areaid %}
+  {% call render_tab_panel('expertise', active_tab, class="b-expertise") %}
+  {% include "_profile-expertise-match-area.html" %}
+  {% endcall %}
+{% else %}
+  {% call render_tab_panel('expertise', active_tab, class="b-match-me") %}
+  {% include "_profile-expertise-match.html" %}
+  {% endcall %}
+{% endif %}
 
 {% endif %}
 

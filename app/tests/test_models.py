@@ -148,7 +148,7 @@ class UserMatchAgainstDbTests(DbTestCase):
         explain = LEVELS['LEVEL_I_CAN_EXPLAIN']['score']
         do_it = LEVELS['LEVEL_I_CAN_DO_IT']['score']
         self.assertEqual(self.jack.match_against(self.jill), [
-            ('Open Data', 13, {
+            ('opendata', 13, {
                 learn: set([
                     "opendata-open-data-policy-core-mission",
                     "opendata-open-data-policy-sensitive-vs-non-sensitive",
@@ -171,7 +171,7 @@ class UserMatchAgainstDbTests(DbTestCase):
                     "opendata-implementing-an-open-data-program-data-quality-and-integrity",
                 ])
             }),
-            ('Prizes', 8, {
+            ('prizes', 8, {
                 learn: set([
                     "prizes-scoping-the-problem-problem-definition",
                     "prizes-scoping-the-problem-research",
@@ -192,7 +192,7 @@ class UserMatchAgainstDbTests(DbTestCase):
         ])
 
         self.assertEqual(self.jill.match_against(self.jack), [
-            ('Open Data', 5, {
+            ('opendata', 5, {
                 learn: set([
                     "opendata-open-data-policy-core-mission",
                     "opendata-open-data-policy-sensitive-vs-non-sensitive",
@@ -201,7 +201,7 @@ class UserMatchAgainstDbTests(DbTestCase):
                     "opendata-open-data-policy-getting-org-approval",
                 ])
             }),
-            ('Prizes', 2, {
+            ('prizes', 2, {
                 learn: set([
                     "prizes-scoping-the-problem-problem-definition",
                     "prizes-scoping-the-problem-research",
@@ -351,19 +351,19 @@ class UserMatchDbTests(DbTestCase):
             LEVELS['LEVEL_I_CAN_EXPLAIN']['score'])],
             [
                 ('sly@stone-more.com', [
-                    ('Open Data', set([
+                    ('opendata', set([
                         "opendata-open-data-policy-core-mission",
                         "opendata-open-data-policy-sensitive-vs-non-sensitive",
                         "opendata-open-data-policy-crafting-an-open-data-policy",
                         "opendata-open-data-policy-getting-public-input",
                         "opendata-open-data-policy-getting-org-approval"
                     ])),
-                    ('Prizes', set([
+                    ('prizes', set([
                         'prizes-scoping-the-problem-problem-definition'
                     ]))
                 ]),
                 ('sly@stone-less-knowledgeable.com', [
-                    ('Prizes', set([
+                    ('prizes', set([
                         'prizes-scoping-the-problem-problem-definition'
                     ]))
                 ])
@@ -388,7 +388,7 @@ class UserMatchDbTests(DbTestCase):
             LEVELS['LEVEL_I_CAN_DO_IT']['score'])],
             [('paul@lennon.com',
               [
-                  ('Open Data', set([
+                  ('opendata', set([
                       "opendata-open-data-policy-core-mission",
                       "opendata-open-data-policy-sensitive-vs-non-sensitive",
                       "opendata-open-data-policy-crafting-an-open-data-policy",
@@ -403,13 +403,13 @@ class UserMatchDbTests(DbTestCase):
                       "opendata-implementing-an-open-data-program-frequency-of-release",
                       "opendata-implementing-an-open-data-program-data-quality-and-integrity"
                   ])),
-                  ('Prizes', set([
+                  ('prizes', set([
                       "prizes-scoping-the-problem-problem-definition"
                   ]))
               ]),
              ('sly@stone-less-knowledgeable.com',
               [
-                  ('Prizes', set([
+                  ('prizes', set([
                       "prizes-scoping-the-problem-problem-definition"
                   ]))
               ])
@@ -434,7 +434,7 @@ class UserMatchDbTests(DbTestCase):
             LEVELS['LEVEL_I_CAN_REFER']['score'])],
             [('dubya@shrub.com',
               [
-                  ('Open Data', set([
+                  ('opendata', set([
                       "opendata-open-data-policy-core-mission",
                       "opendata-open-data-policy-sensitive-vs-non-sensitive",
                       "opendata-open-data-policy-crafting-an-open-data-policy",
@@ -449,13 +449,13 @@ class UserMatchDbTests(DbTestCase):
                       "opendata-implementing-an-open-data-program-frequency-of-release",
                       "opendata-implementing-an-open-data-program-data-quality-and-integrity"
                   ])),
-                  ('Prizes', set([
+                  ('prizes', set([
                       "prizes-scoping-the-problem-problem-definition"
                   ]))
               ]),
              ('sly@stone-less-knowledgeable.com',
               [
-                  ('Prizes', set([
+                  ('prizes', set([
                       "prizes-scoping-the-problem-problem-definition"
                   ]))
               ])
@@ -480,7 +480,7 @@ class UserMatchDbTests(DbTestCase):
             LEVELS['LEVEL_I_WANT_TO_LEARN']['score'])],
             [('sly@stone-more.com',
               [
-                  ('Open Data', set([
+                  ('opendata', set([
                       "opendata-implementing-an-open-data-program-scraping-open-data",
                       "opendata-implementing-an-open-data-program-making-machine-readable",
                       "opendata-implementing-an-open-data-program-open-data-formats",
@@ -490,19 +490,19 @@ class UserMatchDbTests(DbTestCase):
                       "opendata-implementing-an-open-data-program-frequency-of-release",
                       "opendata-implementing-an-open-data-program-data-quality-and-integrity"
                   ])),
-                  ('Prizes', set([
+                  ('prizes', set([
                       "prizes-scoping-the-problem-problem-definition"
                   ]))
               ]),
              ('sly@stone-less-knowledgeable.com',
               [
-                  ('Open Data', set([
+                  ('opendata', set([
                       "opendata-implementing-an-open-data-program-open-data-standards",
                       "opendata-implementing-an-open-data-program-managing-open-data",
                       "opendata-implementing-an-open-data-program-frequency-of-release",
                       "opendata-implementing-an-open-data-program-data-quality-and-integrity"
                   ])),
-                  ('Prizes', set([
+                  ('prizes', set([
                       "prizes-scoping-the-problem-problem-definition"
                   ]))
               ])

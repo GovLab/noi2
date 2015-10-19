@@ -1,0 +1,54 @@
+{% extends "__base_ui__.html" %}
+
+{% from "_macros.html" import render_static_tab_bar, render_static_tab_panel, get_user_avatar_url, render_user_mailto_link %}
+
+{% set tabs = [
+  ('connectors', gettext('Your Connectors'), url_for('views.match_connectors')),
+  ('peers', gettext('Your Peers'), url_for('views.match_peers')),
+  ('explainers', gettext('Your Explainers'), url_for('views.match_explainers')),
+  ('practitioners', gettext('Your Practitioners'), url_for('views.match_practitioners')),
+] %}
+
+{% block content %}
+  {{ render_static_tab_bar(tabs, active_tab) }}
+
+  {% call render_static_tab_panel(class='b-match-me') %}
+    <p class="e-intro">
+      {% if active_tab == 'connectors' %}
+          {{ gettext("They know others who can answer your questions. Ask them to connect you!") }}
+      {% elif active_tab == 'peers' %}
+          {{ gettext("These innovators want to learn the same things you do. Why don't you join forces?") }}
+      {% elif active_tab == 'explainers' %}
+          {{ gettext("They know most things you want to learn. Ask them to guide you!") }}
+      {% elif active_tab == 'practitioners' %}
+          {{ gettext("They know how to do what you want to learn. Ask them to share their experiences!") }}
+      {% endif %}
+    </p>
+    {% for match in matches %}
+      <div class="e-match-item">
+        <header>
+          <div class="e-picture">
+            <img src="{{ get_user_avatar_url(match.user) }}" alt="">
+            {% call render_user_mailto_link(match.user, class="e-send-mail") %}<i class="material-icons">send</i>{% endcall %}
+          </div>
+          <div class="e-info">
+            <h3 class="e-name">{{ match.user.full_name }}</h3>
+            <h4 class="e-job">{{ match.user.position }}</h4>
+            <h5 class="e-institution">{{ match.user.organization }}</h5>
+          </div>
+        </header>
+        <ul class="e-match-question-group">
+          {% for questionnaire_id, question_ids in match.questionnaires %}
+            <li class="e-match-questionnaire">
+              <a href="{{ url_for('views.get_user_expertise_area', userid=match.user.id, areaid=questionnaire_id, _anchor='expertise') }}">
+                <div class="e-subject">{{ QUESTIONNAIRES_BY_ID[questionnaire_id]['name'] }}</div>
+                <div class="e-question-number">{{ gettext('%(number)s Question(s)', number=question_ids|length) }}</div>
+                <i class="material-icons">arrow_forward</i>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  {% endcall %}
+{% endblock %}

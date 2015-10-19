@@ -22,6 +22,9 @@
       <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
             {% for k, v in LEVELS|dictsort %}
           <button type="submit" name="answer" value="{{ v.score }}" class="b-button {{ v.class }}">
+            {% if current_user.skill_levels[question.id] == v.score %}
+              &#x2713; {# Unicode checkmark. #}
+            {% endif %}
                     {{ v.label }}
                 </button>
             {% endfor %}

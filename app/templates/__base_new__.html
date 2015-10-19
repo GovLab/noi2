@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="{{ NOI_DEPLOY|slug }}">
+<html lang="{{ get_locale().language }}" class="{{ NOI_DEPLOY|slug }}">
 <head>
     <meta charset="UTF-8">
     {% block head %}
@@ -16,6 +16,10 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
+{% if config.GA_TRACKING_CODE %}
+{% include "analytics.html" %}
+{% endif %}
+
 <!-- Display the Flash alerts. -->
 {# Regardless of where these appear visually on the page, they should
    stay near the top of the HTML so that screen readers announce them
@@ -30,6 +34,7 @@
     {% block content %}{% endblock %}
 
     <script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
+    <script src="//use.typekit.net/zez3buj.js"></script>
     {% assets "main_js" %}
       <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}

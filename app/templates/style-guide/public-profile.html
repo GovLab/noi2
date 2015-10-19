@@ -1,0 +1,68 @@
+{% extends "style-guide/base_profile.html" %}
+
+{% block title %}Profile Overview{% endblock %}
+{% block body_class %}b-public-profile{% endblock %}
+
+
+{% block content %}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items">
+        <li class="e-item">Overview</li>
+        <li class="e-item m-active">Expertise</li>
+    </ul>
+</nav>
+
+<section class="b-expertise">
+<div class="e-category">
+    <a href="#" class="e-back"><i class="material-icons">arrow_backwards</i></a>
+    open data
+</div>
+<nav class="b-contextual-nav m-roles">
+    <ul class="e-menu-items">
+        <li class="e-item">Peer</li>
+        <li class="e-item">Practitioner</li>
+        <li class="e-item m-active">Connector</li>
+        <li class="e-item">Explainer</li>
+    </ul>
+</nav> 
+
+<p class="e-intro">Ask John to connect you!</p>
+
+<ul class="b-matching-questions">
+    <li class="e-question-item">
+        <p class="e-question-text">How to create a plan for running the prize with defined milestones</p>
+        <div class="e-user-answer m-learn">
+            <img src="./static/img/user-picture.jpg" alt="">
+            <span class="e-user-answer-text">I want to <strong>learn</strong></span>
+        </div>
+    </li>
+    <li class="e-question-item">
+        <p class="e-question-text">How to create a plan for running the prize with defined milestones</p>
+        <div class="e-user-answer m-learn">
+            <img src="./static/img/user-picture.jpg" alt="">
+            <span class="e-user-answer-text">I want to <strong>learn</strong></span>
+        </div>
+    </li>
+    <li class="e-question-item">
+        <p class="e-question-text">How to create a plan for running the prize with defined milestones</p>
+        <div class="e-user-answer m-explain">
+            <img src="./static/img/user-picture.jpg" alt="">
+            <span class="e-user-answer-text">I can <strong>explain</strong></span>
+        </div>
+    </li>
+    <li class="e-question-item">
+        <p class="e-question-text">How to create a plan for running the prize with defined milestones</p>
+        <div class="e-user-answer m-do">
+            <img src="./static/img/user-picture.jpg" alt="">
+            <span class="e-user-answer-text">I can to <strong>do</strong></span>
+        </div>
+    </li>
+</ul>
+</section>
+
+<footer class="b-footer-message">
+    <h3>John has more expertise!</h3>
+    <p><a href="#">Complete your PRIZES profile <br>to unlock them</a></p>
+</footer>
+
+{% endblock %}

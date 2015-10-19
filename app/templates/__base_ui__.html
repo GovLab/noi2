@@ -7,8 +7,13 @@
     <section class="e-top-bar">
         <h1 class="e-logo">{{ gettext('Network of Innovators') }}</h1>
         <div class="e-user-utils">
+          {% if current_user.is_authenticated() %}
             <a href="#post-a-message" data-toggle="modal"><span class="e-post material-icons">chat</span></a>
-            <a href="#profile-summary" data-toggle="modal"><img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}"></a>
+            <a href="#profile-summary" data-toggle="modal"><img class="e-user-picture" data-tutorial-target="3" src="{{ get_user_avatar_url(current_user) }}"></a>
+          {% else %}
+            <a href="{{ url_for('views.about_page') }}"><span class="e-post material-icons">info</span></a>
+            <a href="{{ url_for_security('login') }}"><span class="e-post material-icons">account_circle</span></a>
+          {% endif %}
         </div>
     </section>
     <nav class="e-main-nav">
@@ -16,11 +21,11 @@
                 <span class="material-icons">home</span>
                 {{ gettext('Home') }}
             </a>
-            <a href="{{ url_for('views.match') }}" class="e-nav-item">
+            <a href="{{ url_for('views.match') }}" class="e-nav-item" data-tutorial-target="1">
                 <span class="material-icons">group</span>
                 {{ gettext('Match Me') }}
             </a>
-            <a href="{{ url_for('views.search') }}" class="e-nav-item">
+            <a href="{{ url_for('views.search') }}" class="e-nav-item" data-tutorial-target="2">
                 <span class="material-icons">search</span>
                 {{ gettext('Find Innovator') }}
             </a>
@@ -35,6 +40,7 @@
     </nav>
 </header>
 
+{% if current_user.is_authenticated() %}
 <div class="modal" id="post-a-message" tabindex="-1" role="dialog">
 <div class="modal-dialog">
 <div class="b-post-update-wrapper m-update-active">
@@ -51,7 +57,9 @@
 </div>
 </div>
 </div>
+{% endif %}
 
+{% if current_user.is_authenticated() %}
 <div class="modal" id="profile-summary" tabindex="-1" role="dialog">
 <div class="modal-dialog">
 <section class="b-profile-summary m-active">
@@ -73,5 +81,6 @@
 </section>
 </div>
 </div>
+{% endif %}
 
 {% endblock %}

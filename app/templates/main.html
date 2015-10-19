@@ -1,31 +1,32 @@
-{% extends '__base__.html' %}
+{% extends '__base_new__.html' %}
 
 {% block title %}{{ gettext('Network of Innovators') }}{% endblock %}
 
-{% block body_class %}homepage{% endblock %}
 {% block content %}
+    <div class="b-onboarding">
+        <header>
+            <div class="b-logo">NOI</div>
+        </header>
 
-<div id="homepage">
-  {% if NOI_DEPLOY == 'nhs.networkofinnovators.org' %}
-    <div class="modal-overlay">
-        <div class="modal-content onboarding">
-            <div class="top-bar"></div>
-            <div>
-                <img class="logo" src="../static/img/noi-logo.png" alt="">
-                <h2><strong>{{ gettext('Network of Innovators</strong> Expert Finder') }}</h2>
-                <h3>{{ gettext('A GovLab experiment in partnership with NHS England') }}</h3>
-                
-                <p>{{ gettext('Test your knowledge of innovative practices<br>
-                Get matched to people with complementary expertise<br>
-                Build your network at NHS Expo 15') }}</p>
+        <section>
+          <h1>{{ gettext('Network of Innovators') }}</h1>
 
-                <div class="action"><a href="/register" class="button">{{ gettext('Register') }}</a><a href="/login" class="button light">{{ gettext('Login') }}</a></div>
+          <p><strong>Find</strong> innovators.</p>
+          <p><strong>Share</strong> your know-how.</p>
+          <p><strong>Learn</strong> about innovation.</p>
 
-                <p class="small-print"><strong>{{ gettext('About this Experiment') }}</strong>
-                {{ gettext('As part of an ongoing project to understand the demand for and capacity to use data by the NHS in England, NHS is collaborating with the GovLab to test the Network of Innovators expert finder at the 2015 NHS Health and Care Innovation Expo.') }}</p>
-            </div>
-        </div>
+          <p>Seeking new and effective ways to solve problems and make decisions?</p>
+
+          <br>
+          <p>
+            <a class="b-button" href="{{ url_for_security('register') }}">Get Started</a>
+          </p>
+        </section>
+
+        <footer>
+          <p class="e-signup">
+            Already have an account? <a href="{{ url_for_security('login') }}">Log in</a>
+          </p>
+        </footer>
     </div>
-  {% endif %}
-</div>
 {% endblock %}

@@ -25,6 +25,8 @@
         display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
         padding: 20px;
         position: relative;
+        max-width: 100%;
+        text-align: center;
 
         img {
             max-width: 100%;
@@ -61,6 +63,7 @@
         -webkit-flex: 3;       /* Safari 6.1+. iOS 7.1+, BB10 */
         -ms-flex: 3;           /* IE 10 */
         flex: 3;               /* NEW, Spec - Firefox, Chrome, Opera */
+        text-align: center;
     }
 
     .e-name,
