@@ -1,4 +1,4 @@
-name: Open Data
+- name: Open Data
   id: opendata
   icon: opendata.svg
   icon-color: "#E86B5F"
@@ -252,7 +252,7 @@ name: Open Data
       questions:
         - question: Identifying the societal relevance of your project
           label: societal relevance
-        - question: Translating the outcomes of the project into desired changes: (government, institutional, societal)
+        - question: 'Translating the outcomes of the project into desired changes: (government, institutional, societal)'
           label: translate outcomes
     - topic: Legal Questions
       description: legal concerns and barriers related to citizen science initiatives
@@ -610,7 +610,7 @@ name: Open Data
           label: free speech and public record tensions
           
           
-  name: Nudges: Randomized Control Trials (RCTs)
+- name: 'Nudges: Randomized Control Trials (RCTs)'
   id: rcts
   icon: opendata.svg
   icon-color: "#E86B5F"
@@ -657,7 +657,7 @@ name: Open Data
         - question: Handling data safely and securely
           label: safe data handling
           
-      - topic: Measuring impact
+    - topic: Measuring impact
       description: How to translate the findings from the experiment into better policies and services.
       questions:
         - question: Cleaning the data that comes in
