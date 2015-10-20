@@ -71,7 +71,9 @@
 
     <section class="e-menu">
         <a href="{{ url_for('views.settings') }}">{{ gettext('Settings') }}</a>
-        <a href="{{ url_for('views.feedback') }}">{{ gettext('Share Feedback') }}</a>
+        <a href="{{ url_for('views.feedback') }}">{{ gettext('Share Feedback') 
+}}</a>
+        <a href="{{ url_for('views.invite') }}">{{ gettext('Invite Someone') }}</a>
         <a href="{{ url_for('views.faq') }}">{{ gettext('FAQ') }}</a>
         <a href="{{ url_for('views.about_page') }}">{{ gettext('About') }}</a>
         <a href="{{ url_for_security('logout') }}">{{ gettext('Sign Out') }}</a>

@@ -115,6 +115,15 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
 
 
+class InviteForm(Form):
+    '''
+    Form for inviting a human to join the site.
+    '''
+
+    email = StringField(lazy_gettext('Email'),
+                        validators=[email_required, email_validator])
+
+
 class SharedMessageForm(Form):
     '''
     Form for submittin a message to share with the network.
