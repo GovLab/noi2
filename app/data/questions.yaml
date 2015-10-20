@@ -258,35 +258,35 @@
     - topic: Legal Questions
       description: legal concerns and barriers related to citizen science initiatives
       questions:
-        - question: How to identify and mitigate privacy concerns relating to data collected
+        - question: Identifying and mitigate privacy concerns relating to data collected
           label: privacy concerns
-        - question: How to ensure COPPA compliance in projects featuring minors
+        - question: Ensuring COPPA compliance in projects featuring minors
           label: coppa compliance
-        - question: How to identify considerations related to participants sharing their locations
+        - question: Identifying considerations related to participants sharing their locations
           label: considerations locations
-        - question: How to ask people to license their contributions
+        - question: Asking people to license their contributions
           label: license contributions
-        - question: How to license data that is going to be published
+        - question: Licensing data that is going to be published
           label: license published data
-        - question: How to draft a data policy
+        - question: Drafting a data policy
           label: draft data policy
-        - question: How to draft a privacy policy
+        - question: Drafting a privacy policy
           label: draft privacy policy
-        - question: How to draft other liability policies and educate potential participants about privacy issues
+        - question: Drafting other liability policies and educating potential participants about privacy issues
           label: draft liability policies
 
     - topic: Communicating Results and Sustaining Projects
       description: communicating project results to participants and the public, and ensuring that projects continue after initial the engagement
       questions:
-        - question: How to communicate results and milestones to participants
+        - question: Communicating results and milestones to participants
           label: results and milestones
-        - question: How to identify avenues for publishing results
+        - question: Identifying avenues for publishing results
           label: avenues publishing results
-        - question: How to determine when to publish results
+        - question: Determining when to publish results
           label: when publish results
-        - question: How to ensure sustainability of project management
+        - question: Ensuring sustainability of project management
           label: sustainability of project management
-        - question: How to identify funding opportunities to sustain a project
+        - question: Identifying funding opportunities to sustain a project
           label: funding opportunities
 
 - name: Nudges
@@ -308,35 +308,35 @@
     - topic: Data Collection
       description: data collection
       questions:
-        - question: How to create incentives for people to provide data.
+        - question: Creating incentives for people to provide data.
           label: create incentives
-        - question: How to use new methods (e.g. crowdsourcing) for collecting data from new sources.
+        - question: Using new methods (e.g. crowdsourcing) for collecting data from new sources.
           label: new methods
-        - question: How to make sure that data is accurate, timely, and clean. (Data processing and conditioning) 
+        - question: Making sure that data is accurate, timely, and clean. (Data processing and conditioning) 
           label: data processing
     - topic: Data Governance
       description: data governance
       questions:
-        - question: How to store data securely.
+        - question: Storing data securely.
           label: store securely
-        - question: How to transmit data securely so that when data is shared, the quality and integrity of the data is maintained. 
+        - question: Transmitting data securely so that when data is shared, the quality and integrity of the data is maintained. 
           label: transmit securely
-        - question: How to share data appropriately within my institution and with third parties in a way that does not violate privacy and confidentiality.    (Information Governance) 
+        - question: Sharing data appropriately within my institution and with third parties in a way that does not violate privacy and confidentiality.    (Information Governance) 
           label: share privately
-        - question: How to craft an information governance policy.
+        - question: Crafting an information governance policy.
           label: craft policy
     - topic: Drawing Insights from Data
       description: drawing insights from data
       questions:
-        - question: How to spot patterns and predict trends from existing data (predictive analytics).
+        - question: Spotting patterns and predicting trends from existing data (predictive analytics).
           label: predictive analytics
-        - question: How to formulate and test a hypothesis using data.
+        - question: Formulating and test a hypothesis using data.
           label: hypothesis
-        - question: How to design an experiment to test a data-driven hypothesis. 
+        - question: Designing an experiment to test a data-driven hypothesis. 
           label: design experiment
-        - question: How to plot and visualize data in order to derive and communicate insight.  
+        - question: Plotting and visualizing data in order to derive and communicate insight.  
           label: visualization
-        - question: How to interpret and communicate what data says. 
+        - question: Interpreting and communicating what data says. 
           label: interpretation
 
 
@@ -353,71 +353,71 @@
     - topic:  Identifying goals and participants
       description: What you can share about setting the stage for a community engagement program.
       questions:
-        - question: Clearly identify the rationale, purpose and objectives for community engagement.
+        - question: Clearly identifying the rationale, purpose and objectives for community engagement.
           label: core mission
-        - question: Find and interpret relevant legislative and/or policy requirements driving the need for engagement.
+        - question: Finding and interpreting relevant legislative and/or policy requirements driving the need for engagement.
           label: find requirements
-        - question: Identify who needs to be involved, including all stakeholders affected, impacted or interested in the engagement.
+        - question: Identifying who needs to be involved, including all stakeholders affected, impacted or interested in the engagement.
           label: stakeholder involvement
 
     - topic: Implementing a community engagement strategy
       description: What you can share about operationalizing a community engagement program.
       questions:
-        - question: Identify and communicate incentives to participate, including anticipated outcomes.
+        - question: Identifying and communicating incentives to participate, including anticipated outcomes.
           label: identify incentives
-        - question: Develop briefing materials and information to inform engagement.
+        - question: Developing briefing materials and information to inform engagement.
           label: develop materials
-        - question: Use multiple dialog methods to engage stakeholders.
+        - question: Using multiple dialog methods to engage stakeholders.
           label: multiple dialog
-        - question: Plan and deliver face-to-face deliberation.
+        - question: Planning and delivering face-to-face deliberation.
           label: face to face
-        - question: Plan and deliver a deliberative poll.
+        - question: Planning and delivering a deliberative poll.
           label: deliberative poll
-        - question: Plan and deliver a citizen jury.
+        - question: Planning and delivering a citizen jury.
           label: citizen jury
-        - question: Plan and deliver a participatory budgeting process.
+        - question: Planning and delivering a participatory budgeting process.
           label: participatory budgeting
-        - question: Plan and deliver a charrette or scenario-planning exercise.
+        - question: Planning and delivering a charrette or scenario-planning exercise.
           label: charette
-        - question: Develop an action/project plan with timeline to implement the engagement.
+        - question: Developing an action/project plan with timeline to implement the engagement.
           label: action project
-        - question: Ensure accessibility of the engagement activity.
+        - question: Ensuring accessibility of the engagement activity.
           label: accessibility
 
     - topic: Using online and digital channels to engage stakeholders
       description: What you can share about effectively using tools to gain input from diverse stakeholders
       questions:
-        - question: Use social media, digital and online tools to engage stakeholders as a group.
+        - question: Using social media, digital and online tools to engage stakeholders as a group.
           label: social media engagement
-        - question: Use social media, digital and online tools to conduct surveys.
+        - question: Using social media, digital and online tools to conduct surveys.
           label: social media surveys
-        - question: Plan and deliver an e-deliberation process like a 21st century town meeting.
+        - question: Planning and delivering an e-deliberation process like a 21st century town meeting.
           label: e-deliberation
-        - question: Plan and deliver open space technology.
+        - question: Planning and delivering open space technology.
           label: open space
-        - question: Use digital and online tools to amplify engagement efforts and increase reach.
+        - question: Using digital and online tools to amplify engagement efforts and increase reach.
           label: amplify engagement
-        - question: Use digital and online tools to provide feedback to stakeholders.
+        - question: Using digital and online tools to provide feedback to stakeholders.
           label: online feedback
 
     - topic: Measuring, evaluating and providing feedback
       description: What you can share about assessing effectiveness and sharing targeted feedback
       questions:
-        - question: Capture and utilise relevant data related to all aspects of engagement.
+        - question: Capturing and utilising relevant data related to all aspects of engagement.
           label: capture data
-        - question: Create tools for providing clear feedback to participants and decision makers.
+        - question: Creating tools for providing clear feedback to participants and decision makers.
           label: provide feedback
-        - question: Clearly and regularly report outcomes to participants and stakeholders. 
+        - question: Clearly and regularly reporting outcomes to participants and stakeholders. 
           label: report outcome
 
     - topic: Transforming my organisation
       description: What you can share about increasing the organizational use of citizen engagement
       questions:
-        - question: Ensure that the learnings from a community engagement exercise get used to support continuous improvement within my organisation.
+        - question: Ensuring that the learnings from a community engagement exercise get used to support continuous improvement within my organisation.
           label: learnings used
-        - question: Increase organisational awareness of the value of community engagement.
+        - question: Increasing organisational awareness of the value of community engagement.
           label: organisational awareness
-        - question: Develop and deliver appropriate training for staff across my organisation.
+        - question: Developing and delivering appropriate training for staff across my organisation.
           label: appropriate training
 
 - name: Lab Design
@@ -425,72 +425,69 @@
   icon: labdesign.svg
   icon-color: "#50E3C2"
   description: >
-   <p>Across the world, governments are seeking to become more experimental 
-   and evidence-based through the creation of internal innovation labs. The growing 
-   movement of labs – which often focus on innovative tools and strategies, human-centered
-   design, or both – is helping to uncover what works in practice in addressing public problems. </p>
+   <p>Governments are seeking to become more experimental and evidence-based through the creation of internal innovation labs. The growing labs movement is helping to uncover what works in practice. For questionnaires about the community engagement and crowdsourcing methods used by many Labs, see those dedicated questionnaires. </p>
    <p><b>Click on a link below to create an expertise profile.</b></p>
 
   topics:
     - topic: Lab Creation and Vision
       description: What you can share about launching a government innovation lab.
       questions:
-        - question: how to articulate the value proposition of my Lab and the need for experimentation.
+        - question: Articulating the value proposition of my Lab and the need for experimentation
           label: articulating value proposition
-        - question: how to develop a plan for my Lab 
-          label: plan development
-        - question: how to clearly articulate the problems that my Lab is supposed to solve, and the assumptions it is going to test 
-          label: articulating problems and assumptions
-        - question: how to define the service lines for my Lab
-          label: defining service lines
-        - question: how to articulate a clear theory of change for my Lab
-          label: articulating theory of change
+        - question: Clearly defining the problems that my Lab is supposed to solve, and the assumptions it is going to test
+          label: defining problems and assumptions
+        - question: Identifying the audience to be convinced and how to persuade them to support the Lab 
+          label: pitching the Lab
+        - question: Defining the different products and services my Lab will deliver
+          label: defining products and services
+        - question: Articulating a clear theory of change for my Lab
+          label: theory of change
 
     - topic: Lab Operations
       description: What you can share about the organizational mechanics of running a government innovation lab.
       questions:
-        - question: how to define an engagement model for my Lab vis a vis other parts of my organisation
-          label: defining unique engagement model
-        - question: how to define a handover protocol between my Lab and other parts of the organisation
-          label: defining handover protocol
-        - question: how to define the roles and Terms of Reference staff need for the success of my Lab
-          label: defining staff roles
-        - question: how to cost the services for my Lab and define a business model that guarantees long term sustainability
-          label: Defining sustainable business model
-        - question: how to effectively argue for the most effective reporting lines and organisational placement for my Lab
-          label: arguing effective reporting lines and placement
+        - question: Defining an engagement model for my Lab vis a vis other parts of my organisation
+          label: engagement model
+        - question: Defining a handover protocol between my Lab and other parts of the organisation
+          label: handover protocol
+        - question: Defining the roles and Terms of Reference staff need for the success of my Lab
+          label: staff roles
+        - question: Costing the services for my Lab and defining a business model that guarantees long term sustainability
+          label: sustainable business model
+        - question: Effectively arguing for the most effective reporting lines and organisational placement for my Lab
+          label: reporting lines and placement
 
     - topic: Lab Experimentation and Methodology
       description: What you can share about developing and implementing an experimental methodology for lab work. 
       questions:
-        - question: how to define metrics for my Lab to demonstrate its impact
-          label: defining metrics of impact 
-        - question: how to select and implement the methodologies that my Lab will promote
-          label: selection and implementation of methodologies
-        - question: how to train others in Lab methodologies and tools
-          label: training others in operations
-        - question: how to manage a Lab project using an agile development approach
+        - question: Defining metrics for my Lab to demonstrate its impact
+          label: metrics
+        - question: Selecting and implementing the methods that my Lab will promote
+          label: methods
+        - question: Training others in Lab methods and tools
+          label: operations training
+        - question: Managing a Lab project using an agile development approach
           label: managing projects
-        - question: how to track, evidence and iterate our programmes to ensure relevance and generate timely results
+        - question: TrackIng evidence and iterating programs to ensure relevance and generate timely results
           label: program tracking and result generation
 
     - topic: Staffing and Resources
-      description: What you can share about managing lab staff and budgets
+      description: What you can share about managing lab staff and budgets.
       questions:
-        - question: how to effectively recruit a group of early champions to support the Lab
+        - question: Effectively recruiting a group of early champions to support the Lab
           label: recruiting support
-        - question: how to manage resources, including people, time and budget to ensure value for money
+        - question: Managing resources, including people, time and budget to ensure value for investment 
           label: resource management
 
     - topic: Capturing, Leveraging and Communicating Results
       description: What you can share about making use of lab results internally and communicating impacts externally.
       questions:
-        - question: how to develop a portfolio of demonstration projects that can demonstrate tangible results even in the face of skepticism
-          label: demonstrating results
-        - question: how to research, pilot and test new programmes based on the insights and knowhow gathered from previous ones
+        - question: Developing a portfolio of demonstration projects that can show tangible results even in the face of skepticism
+          label: showing results
+        - question: Researching, piloting and testing new programs based on the insights and knowhow gathered from previous ones
           label: new program development
-        - question: how to capture, articulate and share the narrative around the impact and outcomes of lab programmes, i.e. through case studies
-          label: communicating narrative of impact
+        - question: Capturing, articulating and sharing the narrative around the impact and outcomes of lab programs, i.e. through case studies
+          label: narrative of impact
 
 - name: Crowdsourcing
   id: crowdsourcing
@@ -510,105 +507,105 @@
     - topic: Determining the Crowd
       description: What can you share about identifying, enrolling, and developing a crowd
       questions:
-        - question: How to identify the crowd I want to participate (e.g. general public, informed experts, participants with a particular skill)
+        - question: Identifying the crowd I want to participate (e.g. general public, informed experts, participants with a particular skill)
           label: identifying crowd
-        - question: How to enable members of the crowd to participate (e.g. creating profiles, defining roles, sharing supporting materials)
+        - question: Enabling members of the crowd to participate (e.g. creating profiles, defining roles, sharing supporting materials)
           label: enable participation
-        - question:  How to encourage ongoing participation 
+        - question:  Encouraging ongoing participation 
           label: encourage participation
 
     - topic: Determining the Activity
       description:  What can you share about the type of activities the crowd could perform
       questions:
-        - question:  How to ask the crowd to perform a specific task (e.g. design a product, tag photos, classify information, analyse information)
+        - question:  Asking the crowd to perform a specific task (e.g. design a product, tag photos, classify information, analyse information)
           label: asking for specific task
-        - question: How to ask the crowd to collect and share data (e.g. report a water leak, a case of corruption, quality of the air in their city)
+        - question: Asking the crowd to collect and share data (e.g. report a water leak, a case of corruption, quality of the air in their city)
           label: asking to collect and share data
-        - question: How to ask the crowd for their opinion (e.g. vote on a design contest, opine on a policy recommendation)
+        - question: Asking the crowd for their opinion (e.g. vote on a design contest, opine on a policy recommendation)
           label: asking for opinion
-        - question: How to ask the crowd for new ideas (e.g. solve a public problem, generate ideas to reduce unnecessary government spending)
+        - question: Asking the crowd for new ideas (e.g. solve a public problem, generate ideas to reduce unnecessary government spending)
           label: asking for new ideas
-        - question:  How to ask the crowd for funds (e.g. donate money to help build a park, funding a municipal bond)
+        - question:  Asking the crowd for funds (e.g. donate money to help build a park, funding a municipal bond)
           label: asking for funds
-        - question:  How to ask the crowd for referrals (e.g. share information with their personal or professional networks, provide recommendations of other members of the crowd to include in an initiative) 
+        - question:  Asking the crowd for referrals (e.g. share information with their personal or professional networks, provide recommendations of other members of the crowd to include in an initiative) 
           label: asking for referrals
 
     - topic: Determining a Successful Crowdsourcing Strategy
       description: What can you share about defining if crowdsourcing is the right process for a given situation
       questions:
-        - question: How to decide when to use crowdsourcing rather than other options like the conventional top-down process of decision-making
+        - question: Deciding when to use crowdsourcing rather than other options like the conventional top-down process of decision-making
           label: when to crowdsource
-        - question: How to identify the gaps in expertise that can be minimised through the participation of the crowd
+        - question: Identifying the gaps in expertise that can be minimised through the participation of the crowd
           label: identify gaps in expertise
-        - question: How to design a crowdsourcing strategy that provides value to the participants either through the outcome or the participation itself 
+        - question: Designing a crowdsourcing strategy that provides value to the participants either through the outcome or the participation itself 
           label: strategy that provides value
-        - question: How to connect the efforts of the crowd to enable them to aggregate and build off each other’s work
+        - question: Connecting the efforts of the crowd to enable them to aggregate and build off each other’s work
           label: connect crowd efforts
-        - question: How to determine the institutional resources required to implement a successful crowdsourcing initiative
+        - question: Determining the institutional resources required to implement a successful crowdsourcing initiative
           label: determine requisite institutional resources
-        - question: How to assess the potential time and resources required from the crowd in order to participate
+        - question: Assessing the potential time and resources required from the crowd in order to participate
           label: assess time and resources required
-        - question: How to assess the effectiveness of using crowdsourcing
+        - question: Assessing the effectiveness of using crowdsourcing
           label: assess effectiveness
 
     - topic: Providing the Right Incentives
       description: What can you share about providing the right incentives for participation
       questions:
-        - question: How to define the scope of the crowd’s participation
+        - question: Defining the scope of the crowd’s participation
           label: defining scope
-        - question: How to provide feedback for participation 
+        - question: Providing feedback for participation 
           label: providing feedback
-        - question: How to decide whether to use financial or non-financial incentives (or a mix of incentives)
+        - question: Deciding whether to use financial or non-financial incentives (or a mix of incentives)
           label: Financial vs non-financial incentives
-        - question: How to determine whether the use of a competition is beneficial 
+        - question: Determining whether the use of a competition is beneficial 
           label: determine benefits of competition
-        - question: How to determine whether the use of reputation systems is beneficial 
+        - question: Determining whether the use of reputation systems is beneficial 
           label: determine benefits of reputation systems
-        - question: How to use altruistic or community building incentives
+        - question: Using altruistic or community building incentives
           label: Altruistic incentives
-        - question: How to design recreational incentives (i.e. gamification)
+        - question: Designing recreational incentives (i.e. gamification)
           label: design recreational incentives
-        - question: How to identify which particular incentive is working and why
+        - question: Identifying which particular incentive is working and why
           label: Indentify effective incentives
-        - question: How to monitor and adapt the incentives at the individual or crowd levels  
+        - question: Monitoring and adapting the incentives at the individual or crowd levels  
           label: Monitor and adapt incentives
-        - question: How to tackle the possible credibility and authenticity issues involved in the input received from the crowd
+        - question: Tackling the possible credibility and authenticity issues involved in the input received from the crowd
           label: credibility and authenticity issues
 
     - topic: Implementation and Tools
       description: What can you share about setting up, running and managing a crowdsourcing effort
       questions:
-        - question: How to create a plan for running the crowdsourcing project with defined milestones
+        - question: Creating a plan for running the crowdsourcing project with defined milestones
           label: defined milestones
-        - question: How to target the right audience to attract the desired crowd and participation
+        - question: Targeting the right audience to attract the desired crowd and participation
           label: target right audience
-        - question: How to choose a platform to do the crowdsourcing project
+        - question: Choosing a platform to do the crowdsourcing project
           label: choosing platform
-        - question: How to access outside contractors and/or intermediaries to support the design and implementation of the desired crowdsourcing platform 
+        - question: Accessing outside contractors and/or intermediaries to support the design and implementation of the desired crowdsourcing platform 
           label: accessing outside support
-        - question: How to build a team within an institution that supports the project from initial idea through implementation 
+        - question: Building a team within an institution that supports the project from initial idea through implementation 
           label: team-building
-        - question: How to develop a communication strategy to target the right audience
+        - question: Developing a communication strategy to target the right audience
           label: developing communication strategy
-        - question: How to connect members of the crowd to each other when appropriate
+        - question: Connecting members of the crowd to each other when appropriate
           label: connecting members of crowd
-        - question: How to prepare to utilize or implement the output of the crowd 
+        - question: Preparing to utilize or implement the output of the crowd 
           label: preparing for output
 
     - topic: Quality Control Mechanisms
       description: What can you share about defining the right mechanism of quality control
       questions:
-        - question: How to ensure high-quality and accurate participation from the crowd
+        - question: Ensuring high-quality and accurate participation from the crowd
           label: ensuring high-quality participation
-        - question: How to leverage crowd participants to evaluate crowd contributions (through voting, rating or peer-review)
+        - question: Leveraging crowd participants to evaluate crowd contributions (through voting, rating or peer-review)
           label: leverage crowd evaluation
 
     - topic: Ethical and Legal Concerns
       description: What can you share about addressing potential legal and ethical tensions
       questions:
-        - question: How to determine ownership and copyright of crowd contributions
+        - question: Determining ownership and copyright of crowd contributions
           label: determining ownership
-        - question: How to navigate governmental endorsement and privacy concerns
+        - question: Navigating governmental endorsement and privacy concerns
           label: governmental endorsement and privacy
-        - question: How to navigate potential tensions regarding free speech and public record laws
+        - question: Navigating potential tensions regarding free speech and public record laws
           label: free speech and public record tensions
