@@ -14,6 +14,7 @@ from flask_security.forms import (LoginForm, RegisterForm,
                                   ResetPasswordForm,
                                   email_required,
                                   email_validator, unique_user_email,
+                                  valid_user_email,
                                   password_required, password_length, EqualTo)
 
 from flask_babel import lazy_gettext
@@ -159,6 +160,8 @@ class NOIForgotPasswordForm(ForgotPasswordForm):
     Localizeable version of Flask-Security's ForgotPasswordForm
     '''
     submit = SubmitField(lazy_gettext('Recover Password'))
+    email = StringField(lazy_gettext('Email'),
+        validators=[email_required, email_validator, valid_user_email])
 
 
 class NOILoginForm(LoginForm):
