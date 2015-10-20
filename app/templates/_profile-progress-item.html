@@ -5,7 +5,7 @@
   {% set questions_left = item_progress.total - item_progress.answered %}
   {% set percentage_complete = item_progress.answered / item_progress.total * 100 %}
   <li class="e-progress-item" data-questions-left="{{ questions_left }}">
-    <a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a>
+    <a href="{{ questionnaire_url }}">{{ gettext(questionnaire.name) }}</a>
     {% if questions_left > 0 %}
       <div class="e-questions-left">{{ gettext('%(questions_left)s question(s) left', questions_left=questions_left) }}</div>
       <div class="e-bar" style="width: {{ percentage_complete }}%"></div>
@@ -14,6 +14,6 @@
     {% endif %}
   </li>
 {% else %}
-  <li class="e-progress-item"><a href="{{ questionnaire_url }}">{{ questionnaire.name }}</a></li>
+  <li class="e-progress-item"><a href="{{ questionnaire_url }}">{{ gettext(questionnaire.name) }}</a></li>
 {% endif %}
 {% endif %}

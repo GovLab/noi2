@@ -14,29 +14,29 @@
   {% if questionnaire_id == areaid %}
     <div class="e-category">
       <a href="{{ url_for('views.get_user_expertise', userid=user.id, _anchor='expertise') }}" class="e-back"><i class="material-icons">arrow_backwards</i></a>
-      {{ QUESTIONNAIRES_BY_ID[areaid]['name'] }}
+      {{ gettext(QUESTIONNAIRES_BY_ID[areaid]['name']) }}
     </div>
 
     <ul class="b-matching-questions">
     {% for skill_level, question_ids in skill_dict.items() %}
       {% for question_id in question_ids %}
         <li class="e-question-item">
-          <p class="e-question-text">{{ QUESTIONS_BY_ID[question_id].question }}</p>
+          <p class="e-question-text">{{ gettext(QUESTIONS_BY_ID[question_id].question) }}</p>
           {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
             {% call show_user_answer(user, 'm-explain') %}
-              {{ user.first_name }} can <strong>explain</strong>
+              {{ gettext("%(user)s can <strong>explain</strong>", user=user.first_name) }}
             {% endcall %}
           {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
             {% call show_user_answer(user, 'm-do') %}
-              {{ user.first_name }} can <strong>do it</strong>
+              {{ gettext("%(user)s can <strong>do it</strong>", user=user.first_name) }}
             {% endcall %}
           {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
             {% call show_user_answer(user, 'm-connect') %}
-              {{ user.first_name }} can <strong>connect you</strong>
+              {{ gettext("%(user)s can <strong>connect you</strong>", user=user.first_name) }}
             {% endcall %}
           {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
             {% call show_user_answer(user, 'm-learn') %}
-              {{ user.first_name }} wants to <strong>learn</strong>
+              {{ gettext("%(user)s wants to <strong>learn</strong>", user=user.first_name) }}
             {% endcall %}
           {% else %}
             {% call show_user_answer(user, 'm-learn') %}

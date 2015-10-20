@@ -17,7 +17,7 @@
           {% if next_questionid %}
             <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=next_questionid, _anchor='expertise') }}" class="material-icons e-next">keyboard_arrow_right</a>
           {% endif %}
-            <p class="e-question-text">{{ question.question }}</p>
+            <p class="e-question-text">{{ gettext(question.question) }}</p>
             <form class="e-questionnaire-answers" method="post">
       <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}" />
             {% for k, v in LEVELS|dictsort %}
@@ -25,7 +25,7 @@
             {% if current_user.skill_levels[question.id] == v.score %}
               &#x2713; {# Unicode checkmark. #}
             {% endif %}
-                    {{ v.label }}
+                    {{ gettext(v.label) }}
                 </button>
             {% endfor %}
             </form>
