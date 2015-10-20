@@ -1,5 +1,5 @@
 from app import (QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS,
-                 QUESTIONNAIRES_BY_ID)
+                 QUESTIONNAIRES_BY_ID, mail)
 from app.factory import create_app
 from app.views import get_best_registration_step_url
 from app.models import User, SharedMessageEvent, ConnectionEvent, db
@@ -10,14 +10,16 @@ from .factories import UserFactory, UserSkillFactory
 LOGGED_IN_SENTINEL = '<a href="/logout"'
 
 class ViewTestCase(DbTestCase):
+    BASE_APP_CONFIG = DbTestCase.BASE_APP_CONFIG.copy()
+
+    BASE_APP_CONFIG.update(
+        DEBUG=False,
+        WTF_CSRF_ENABLED=False,
+        CACHE_NO_NULL_WARNING=True
+    )
+
     def create_app(self):
-        config = self.BASE_APP_CONFIG.copy()
-        config.update(
-            DEBUG=False,
-            WTF_CSRF_ENABLED=False,
-            CACHE_NO_NULL_WARNING=True
-        )
-        return create_app(config=config)
+        return create_app(config=self.BASE_APP_CONFIG.copy())
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
@@ -69,6 +71,42 @@ class ViewTestCase(DbTestCase):
         self.assert200(res)
         assert LOGGED_IN_SENTINEL in res.data
         return res
+
+class InviteTests(ViewTestCase):
+    BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()
+
+    BASE_APP_CONFIG.update(
+        MAIL_USERNAME='foo@noi.org',
+        NOI_DEPLOY='noi.org',
+        MAIL_SUPPRESS_SEND=True,
+    )
+
+    def setUp(self):
+        super(ViewTestCase, self).setUp()
+        self.login()
+
+    def test_get_is_ok(self):
+        self.assert200(self.client.get('/invite'))
+
+    def test_post_with_valid_email_sends_invite(self):
+        with mail.record_messages() as outbox:
+            res = self.client.post('/invite', data={
+                'email': 'foo@example.org'
+            }, follow_redirects=True)
+            self.assertEqual(len(outbox), 1)
+        self.assert200(res)
+        assert 'Invitation sent!' in res.data
+
+    def test_post_with_invalid_email_shows_error(self):
+        with mail.record_messages() as outbox:
+            res = self.client.post('/invite', data={
+                'email': 'blarg'
+            })
+            self.assertEqual(len(outbox), 0)
+        self.assert200(res)
+        assert 'Invalid email address' in res.data
+        assert 'Your form submission was invalid' in res.data
+
 
 class MultiStepRegistrationTests(ViewTestCase):
     OPENDATA_QUESTIONNAIRE = QUESTIONNAIRES_BY_ID['opendata']

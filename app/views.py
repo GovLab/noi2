@@ -9,12 +9,13 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n
+from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
+                 mail)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm,
-                       RegisterStep2Form, ChangeLocaleForm)
+                       RegisterStep2Form, ChangeLocaleForm, InviteForm)
 
 from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
@@ -534,3 +535,32 @@ def settings():
 
     return render_template('settings.html',
                            change_locale_form=ChangeLocaleForm())
+
+@views.route('/invite', methods=['GET', 'POST'])
+@full_registration_required
+def invite():
+    '''
+    Invite another human to join the site.
+    '''
+
+    form = InviteForm()
+
+    if request.method == 'POST':
+        if form.validate():
+            site_url = 'https://%s' % current_app.config['NOI_DEPLOY']
+            sender = current_app.config['MAIL_USERNAME']
+            mail.send_message(
+                subject=gettext(
+                    "%(user)s would like you to join the network!",
+                    user=current_user.full_name
+                ),
+                body=gettext("Just visit %(url)s.", url=site_url),
+                sender=sender,
+                recipients=[form.email.data]
+            )
+            flash(gettext("Invitation sent!"))
+            return redirect(url_for('views.invite'))
+        else:
+            flash(gettext("Your form submission was invalid."), "error")
+
+    return render_template('invite.html', form=form)

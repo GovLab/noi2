@@ -1,0 +1,51 @@
+{% extends "__base_ui__.html" %}
+
+{% block title %}{{ gettext('Invite Someone') }}{% endblock %}
+
+{% block page_style_post %}
+<style>
+/* TODO: These styles are temporary until we have style-guide HTML mocks
+ * for this view. */
+
+.temporary-form-input {
+  padding: 1em 2em;
+}
+
+input, select {
+  display: block;
+  width: 100%;
+}
+</style>
+{% endblock %}
+
+{% macro input(name) -%}
+<div class="temporary-form-input">
+  {{ form[name].label }}
+  {{ form[name](placeholder=form[name].description) }}
+  {% if form[name].errors %}
+    <ul class="list-unstyled">
+    {% for error in form[name].errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+{%- endmacro %}
+
+{% block content %}
+
+<h1>{{ gettext('Invite Someone') }}</h1>
+
+<p>{{ gettext('Suggest someone to join the network') }}</p>
+
+<form action="" method="post">
+
+{{ form.csrf_token }}
+
+{{ input('email') }}
+
+<button class="b-button" type="submit">{{ gettext('Invite') }}</button>
+
+</form>
+
+{% endblock %}
