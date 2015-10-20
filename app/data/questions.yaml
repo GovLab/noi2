@@ -1,4 +1,4 @@
-- name: Open Data
+name: Open Data
   id: opendata
   icon: opendata.svg
   icon-color: "#E86B5F"
@@ -252,7 +252,7 @@
       questions:
         - question: Identifying the societal relevance of your project
           label: societal relevance
-        - question: 'Translating the outcomes of the project into desired changes: (government, institutional, societal)'
+        - question: Translating the outcomes of the project into desired changes: (government, institutional, societal)
           label: translate outcomes
     - topic: Legal Questions
       description: legal concerns and barriers related to citizen science initiatives
@@ -608,3 +608,65 @@
           label: governmental endorsement and privacy
         - question: Navigating potential tensions regarding free speech and public record laws
           label: free speech and public record tensions
+          
+          
+  name: Nudges: Randomized Control Trials (RCTs)
+  id: rcts
+  icon: opendata.svg
+  icon-color: "#E86B5F"
+  description: >
+   <p>Randomized Control Trials (RCTs) — comparing the outcomes of an intervention with a particular group against another randomly selected group that does not receive the intervention — are a rigorous and inexpensive way to find what works. Increasingly, public institutions are testing the effectiveness of services, for example, by delivering it two different ways.</p>
+   <p><b>Share your expertise</b></p>
+  topics:
+
+    - topic: Setting Up an Evaluation
+      description: How to build quantitative evaluation into a program from the outset and identify the right things to test.
+      questions:
+        - question: Identifying an empirically testable question.
+          label: testable question
+        - question: Identifying an evaluation model that allows for causal inference as to whether the test worked
+          label: evaluation model
+        - question: Identifying data to evaluate using the evaluation model
+          label: testable data
+        - question: Getting organizational approval for conducting an evaluation of this type
+          label: organizational approval
+        - question: Embedding evaluation within the program without undue disruption
+          label: embedding evaluation
+          
+    - topic: Designing and Implementing an Evaluation
+      description: How to design and launch an evaluation. 
+      questions:
+        - question: Using randomization to create a robust control group for comparison
+          label: randomization
+        - question: Ensuring that evaluation is statistically significant
+          label: statistical significance
+        - question: Working with small sample sizes and imperfect conditions
+          label: real world testing
+        - question: Choosing which group gets which version of the intervention
+          label: assignment into groups
+        - question: Translating the technical aspects of the evaluation into practical instructions for those involved in implementation
+          label: implementation instructions
+        - question: Determining the right method for analysing the results
+          label: analysis method
+        - question: Writing a credible plan for analysing the data in advance of launching
+          label: analysis plan
+        - question: Monitoring data quality throughout the trial
+          label: data quality
+        - question: Documenting and accounting for any contamination that happens in the implementation 
+          label: contamination
+        - question: Handling data safely and securely
+          label: safe data handling
+          
+      - topic: Measuring impact
+      description: How to translate the findings from the experiment into better policies and services.
+      questions:
+        - question: Cleaning the data that comes in
+          label: cleaning data
+        - question: Analyzing the results and performing robustness checks
+          label: analyzing results
+        - question: Interpreting the results and reporting the findings in an accessible and accurate manner
+          label: interpreting results
+        - question: Making key concepts such as statistical significance and Type I and II errors understandable to non-statisticians
+          label: nontechnical communications
+        - question: Helping the organisation use the results to make strategic decisions about how to work and invest in future
+          label: strategic decisions
