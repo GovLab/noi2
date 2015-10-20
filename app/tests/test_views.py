@@ -436,6 +436,11 @@ class ViewTests(ViewTestCase):
         self.assert200(res)
         assert "Find Innovator" in res.data
 
+    def test_settings_is_ok(self):
+        self.login()
+        res = self.client.get('/settings')
+        self.assert200(res)
+
     def test_network_is_ok(self):
         self.login()
         res = self.client.get('/network')

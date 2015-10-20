@@ -70,6 +70,7 @@
     </header>
 
     <section class="e-menu">
+        <a href="{{ url_for('views.settings') }}">{{ gettext('Settings') }}</a>
         <a href="{{ url_for('views.feedback') }}">{{ gettext('Share Feedback') }}</a>
         <a href="{{ url_for('views.faq') }}">{{ gettext('FAQ') }}</a>
         <a href="{{ url_for('views.about_page') }}">{{ gettext('About') }}</a>

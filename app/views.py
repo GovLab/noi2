@@ -518,3 +518,13 @@ def change_locale():
         abort(400)
 
     return redirect(request.referrer or '/')
+
+@views.route('/settings')
+@full_registration_required
+def settings():
+    '''
+    User settings page.
+    '''
+
+    return render_template('settings.html',
+                           change_locale_form=ChangeLocaleForm())
