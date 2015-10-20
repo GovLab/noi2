@@ -7,7 +7,7 @@
   <li class="e-progress-item" data-questions-left="{{ questions_left }}">
     <a href="{{ questionnaire_url }}">{{ gettext(questionnaire.name) }}</a>
     {% if questions_left > 0 %}
-      <div class="e-questions-left">{{ gettext('%(questions_left)s question(s) left', questions_left=questions_left) }}</div>
+      <div class="e-questions-left">{{ ngettext('%(num)d question left', '%(num)d questions left', questions_left) }}</div>
       <div class="e-bar" style="width: {{ percentage_complete }}%"></div>
     {% else %}
       <div class="e-bar"></div>

@@ -79,7 +79,7 @@
       {{ user_avatar(user) }}
       <div class="e-feed-message">
         <p>{{ user_link(user) }}<br>
-        {{ gettext('%(score)s Connection(s)', score=score) }}
+        {{ ngettext('%(num)d Connection', '%(num)d Connections', score) }}
         </p>
       </div>
       <a href="{{ url_for('views.get_user', userid=user.id) }}" class="material-icons">arrow_forward</a>
