@@ -415,13 +415,6 @@ def search():
             query = query.join(User.expertise_domains).filter(UserExpertiseDomain.name.in_(
                 form.expertise_domain_names.data))
 
-        if form.fulltext.data:
-            query = query.filter(func.to_tsvector(func.array_to_string(array([
-                User.first_name, User.last_name, User.organization, User.position,
-                User.projects, UserSkill.name]), ' ')).op('@@')(
-                    func.plainto_tsquery(form.fulltext.data))).filter(
-                        UserSkill.user_id == User.id)
-
         # TODO ordering by relevance
         return render_template('search.html',
                                form=form,

@@ -22,8 +22,8 @@
 {% block content %}
 <section class="b-filters">
   <form action="{{ url_for('views.search') }}" method="GET">
+    <label for="country">{{ gettext('By country') }}</label>
     <div class="b-dropdown">
-      <label class="sr-only" for="country">{{ gettext('By country') }}</label>
       {{ form.country() }}
     </div>
     <label for="locales">{{ gettext('By language(s)') }}</label>

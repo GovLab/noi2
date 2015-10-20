@@ -138,15 +138,12 @@ class SearchForm(Form):
     '''
     country = CountryField()
     locales = CallableChoicesSelectMultipleField(
-        label=lazy_gettext('Languages'),
         widget=Select(multiple=True),
         choices=lambda: [(l.language, l.get_language_name(get_locale()))
                          for l in LOCALES])
     expertise_domain_names = CallableChoicesSelectMultipleField(
-        label=lazy_gettext('Domains of Expertise'),
         widget=Select(multiple=True),
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
-    fulltext = TextField()
 
 
 class ChangeLocaleForm(Form):
