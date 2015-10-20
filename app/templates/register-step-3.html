@@ -76,7 +76,7 @@
 		<div>
 		    <br>
 		    {% if user_can_join %}
-		        <p><a class="b-button" href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a></p>
+		        <p><a class="b-button m-join" href="{{ url_for('views.activity') }}">{{ gettext('Join') }}</a></p>
 		    {% else %}
 			{{ gettext("You must answer at least %d more question(s) to join." % questions_left) }}
 		    {% endif %}

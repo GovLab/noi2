@@ -113,10 +113,10 @@
         box-shadow: 3px 3px 10px $gray-30;
         position: absolute;
         padding-bottom: 30px;
-        height: 476px;
+
 
         .e-card-category {
-            background-color: $orange;
+            background-color: $blue;
             margin-top: 0;
             padding: 6px;
             color: $white;
@@ -139,6 +139,11 @@
         .b-button { 
             margin-bottom: 10px; 
             color: $white;
+        }
+
+        .b-button.m-join {
+            background-color: $blue;
+            display: block;
         }
     }
 
