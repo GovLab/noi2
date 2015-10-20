@@ -18,10 +18,24 @@
           <p>Seeking new and effective ways to solve problems and make decisions?</p>
 
           <br>
+
           <p>
             <a class="b-button" href="{{ url_for_security('register') }}">Get Started</a>
           </p>
         </section>
+
+            <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form" data-submit-on-change>
+              {{ change_locale_form.hidden_tag() }}
+              <div class="b-dropdown">
+                {{ change_locale_form.locale.label(class="sr-only") }}
+                {{ change_locale_form.locale() }}
+              </div>
+
+              <noscript>
+                <input class="b-button" type="submit" value="{{ gettext('Change Language') }}">
+              </noscript>
+
+            </form>
 
         <footer>
           <p class="e-signup">

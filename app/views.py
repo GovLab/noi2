@@ -9,12 +9,12 @@ from flask import (Blueprint, render_template, request, flash,
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
-from app import QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS
+from app import QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm,
-                       RegisterStep2Form)
+                       RegisterStep2Form, ChangeLocaleForm)
 
 from sqlalchemy import func, desc
 from sqlalchemy.dialects.postgres import array
@@ -63,7 +63,8 @@ def main_page():
     if current_user.is_authenticated():
         return redirect(url_for('views.activity'))
     else:
-        return render_template('main.html', SKIP_NAV_BAR=False)
+        return render_template('main.html',
+                               change_locale_form=ChangeLocaleForm())
 
 
 @views.route('/about')
@@ -502,3 +503,18 @@ def feedback():
     Feedback page.
     '''
     return render_template('feedback.html', **{})
+
+@views.route('/change-locale', methods=['POST'])
+def change_locale():
+    '''
+    Change the user's current locale for interacting with the site.
+    '''
+
+    change_locale_form=ChangeLocaleForm()
+
+    if change_locale_form.validate():
+        l10n.change_session_locale(change_locale_form.locale.data)
+    else:
+        abort(400)
+
+    return redirect(request.referrer or '/')

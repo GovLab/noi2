@@ -24,4 +24,8 @@ $(document).ready(function () {
       });
     }
   });
+
+  $('form[data-submit-on-change]').change(function() {
+    this.submit();
+  });
 });
