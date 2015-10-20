@@ -1,4 +1,4 @@
-- name: Open Data
+name: Open Data
   id: opendata
   icon: opendata.svg
   icon-color: "#E86B5F"
@@ -14,57 +14,57 @@
     - topic: Open Data Policy
       description: creating an open data plan and strategy to achieve key goals
       questions:
-        - question: How to identify what data will help my organization achieve its core mission
+        - question: Identifying what data will help my organization achieve its core mission
           label: core mission
-        - question: How to distinguish between potentially sensitive data and non-sensitive data
+        - question: Distinguishing between potentially sensitive data and non-sensitive data
           label: sensitive vs non-sensitive
-        - question: How to craft a clear policy explaining what data to open and how
+        - question: Crafting a clear policy explaining what data to open and how
           label: crafting an open data policy
-        - question: How to do public consultation on an open data policy
+        - question: Doing public consultation on an open data policy
           label: getting public input
-        - question: How to get organizational approval for opening data
+        - question: Getting organizational approval for opening data
           label: getting org approval
 
     - topic: Implementing an open data program
       description: operationalizing an open data program in practice
       questions:
-        - question: How to scrape data from my domain
+        - question: Scraping data from my domain
           label: scraping open data
-        - question: How to make data machine-readable
+        - question: Making data machine-readable
           label: making machine-readable
-        - question: what formats to publish data in
+        - question: Determining what formats to publish data in
           label: open data formats
-        - question: how to license my data
+        - question: Determining how to license my data
           label: open data license
-        - question: what data standards to publish data in
+        - question: Deciding data standards to publish data in
           label: open data standards
-        - question: how to use the right infrastructure for making data available
+        - question: Using the right infrastructure for making data available
           label: infrastructure
-        - question: good management for an open data project
+        - question: Managing an open data project
           label: managing open data
-        - question: how to determine how often datasets should be released and updated
+        - question: Determining how often datasets should be released and updated
           label: frequency of release
-        - question: how to ensure continued data quality and integrity
+        - question: Ensuring continued data quality and integrity
           label: data quality and integrity
 
     - topic: Accelerating use
       description: responding to what users need and want
       questions:
-        - question: how to create incentives for users or the public to make productive use of the data
+        - question: Creating incentives for users or the public to make productive use of the data
           label: open-data-incentives
-        - question: how to identify and combine other sources of open data to achieve a goal
+        - question: Identifying and combining other sources of open data to achieve a goal
           label: mashing-up open data
-        - question: how to design a data collaborative
+        - question: Designing a data collaborative
           label: data collaborative
-        - question: how to express the value proposition of the open data datasets, including what problems can be solved with this data
+        - question: Expressing the value proposition of the open data datasets, including what problems can be solved with this data
           label: value proposition
 
     - topic: Measuring Impact
       description: assessing effectiveness
       questions:
-        - question: how to monitor how my data is being used
+        - question: Monitoring how my data is being used
           label: measuring open data use
-        - question: how to measure the economic and/or social impact of opening up data
+        - question: Measuring the economic and/or social impact of opening up data
           label: measuring open data impact
 
 - name: Prizes
@@ -85,69 +85,69 @@
     - topic: Scoping the Problem
       description: defining the problem
       questions:
-        - question: how to define and express the problem addressed by the prize.
+        - question: Defining and expressing the problem addressed by the prize.
           label: problem definition
-        - question: how to do rapid research to test the assumptions behind my problem definition
+        - question: Doing rapid research to test the assumptions behind my problem definition
           label: research
-        - question: how to develop metrics to use to measure progress
+        - question: Developing metrics to measure progress
           label: progress metrics
 
     - topic: Designing for a Successful Prize
-      description: deciding if a prize is the right tool
+      description: Deciding if a prize is the right tool
       questions:
-        - question: how to decide when to use a prize-backed challenge rather than other options like conventional crowdsourcing
+        - question: Deciding when to use a prize-backed challenge rather than other options like conventional crowdsourcing
           label: when-to-use-a-prize
-        - question: how to determine whether a prize or a grand challenge is optimal
+        - question: Determining whether a prize or a grand challenge is optimal
           label: grand challenge
-        - question: how to decide whether to use financial or non-financial incentives
+        - question: Deciding whether to use financial or non-financial incentives
           label: prizes-incentives
-        - question: how to set the value of a prize
+        - question: Setting the value of a prize
           label: prize amount
 
     - topic: Identifying the Right Audience
       description: targeting the right participants
       questions:
-        - question: how to identify would-be participating innovators
+        - question: Identifying would-be participating innovators
           label: audience
-        - question: how to assess the the potential costs involved for them in participating
+        - question: Assessing the potential costs involved for them in participating
           label: costs
 
     - topic: Mechanics
       description: rinning a prize-backed challenge
       questions:
-        - question: how to fund a prize-backed challenge
+        - question: Funding a prize-backed challenge
           label: funding
-        - question: how to create a plan for running the prize with defined milestones
+        - question: Creating a plan for running the prize with defined milestones
           label: mechanics
-        - question: how to access outside contractors to support the design and implementation of the prizes
+        - question: Accessing outside contractors to support the design and implementation of the prizes
           label: partnerships
-        - question: how to decide how long the prize should run
+        - question: Deciding how long the prize should run
           label: timing
-        - question: how to develop a communication strategy to get the word out
+        - question: Developing a communication strategy to get the word out
           label: communication
-        - question: how to choose from the tools available to run a prize-backed challenge
+        - question: Choosing from the tools available to run a prize-backed challenge
           label: platforms
 
     - topic: Judging
       description: judging a prize
       questions:
-        - question: how to design assessment criteria
+        - question: Designing assessment criteria
           label: judging criteria
-        - question: how to select judges
+        - question: Selecting judges
           label: choosing judges
 
     - topic: Legal Concerns
       description: overcoming legal concerns
       questions:
-        - question: how to determine ownership and copyright
+        - question: Determining ownership and copyright
           label: ownership and copyright
-        - question: how to navigate governmental endorsement and privacy concerns
+        - question: Navigating governmental endorsement and privacy concerns
           label: legal and privacy concerns
 
     - topic: Implementation
       description: what to do after a challenge
       questions:
-        - question: how to translate winning entries into well-developed solutions
+        - question: Translating winning entries into well-developed solutions
           label: after the challenge
 
 - name: Agile
@@ -174,87 +174,86 @@
     - topic: Tasks and Goals
       description: defining the goals of a citizen science initiative and the tasks to be completed in order to achieve them
       questions:
-        - question: How to identify a compelling goal for a citizen science project
+        - question: Identifying a compelling goal for a citizen science project
           label: compelling goal
-        - question: How to identify and define the tasks for participants to do
+        - question: Identifying and defining the tasks for participants to do
           label: define tasks
-        - question: How to decide the types of tasks to be considered when developing a citizen science project
+        - question: Deciding the types of tasks to be considered when developing a citizen science project
           label: types of tasks
-        - question: How to articulate intended outcomes of a project
+        - question: Articulating the intended outcomes of a project
           label: intended outcomes
-        - question: How to articulate how the tasks will advance a research field
+        - question: Articulating how the tasks will advance a research field
           label: advance research field
-        - question: How to define the success of a project
+        - question: Defining the success of a project
           label: define success
-        - question: How to measure and evaluate the success of a project
+        - question: Measuring and evaluating the success of a project
           label: measure success
-        - question: How to define and validate a protocol for an experiment and required data collection
+        - question: Defining and validating a protocol for an experiment and required data collection
           label: validate protocol
-        - question: How to define a project in terms of time required and geographic range
+        - question: Defining a project in terms of time required and geographic range
           label: time and geographic range
-        - question: How to identify funding opportunities for a project
+        - question: Identifying funding opportunities for a project
           label: funding opportunities
 
     - topic: Incentives and Motivation
       description: developing incentives to motivate participation
       questions:
-        - question: How to engage with and/or create a community for participants.
+        - question: Engaging with and/or creating a community for participants.
           label: community of participants
-        - question: How to retain participants
+        - question: Retaining participants
           label: retain participants
-        - question: How to address variations and skew in participation
+        - question: Addressing variations and skew in participation
           label: variations and skew
-        - question: How to scale up participation
+        - question: Scaling up participation
           label: scale participation
-        - question: How to identify collaborators around the project
+        - question: Identifying collaborators around the project
           label: identify collaborators
-        - question: How to define and develop gamification in projects
+        - question: Defining and developing gamification in projects
           label: develop gamification 
-        - question: How to identify what people are competing to do (e.g. quantity, frequency, quality of participation)
+        - question: Identifying what people are competing to do (e.g. quantity, frequency, quality of participation)
           label: identify competition 
-        - question: How to attribute contributions to the relevant parties
+        - question: Attributing contributions to the relevant parties
           label: attribute contribution
 
     - topic: Training
       description: giving participants the skills and information needed to participate well
       questions:
-        - question: How to prepare individuals to participate in a project
+        - question: Preparing individuals to participate in a project
           label: prepare participants 
-        - question: How to develop an FAQ for participants to reference throughout the process
+        - question: Developing an FAQ for participants to reference throughout the process
           label: develop faq
-        - question: How to prepare people within my institution to make use of citizen scientists’ input
+        - question: Preparing people within my institution to make use of citizen scientists’ input
           label: prepare within institution
-        - question: How to assess data quality
+        - question: Assessing data quality
           label: data quality 
-        - question: How to design/adapt protocols to assure high quality data
+        - question: Designing or adapting protocols to assure high quality data
           label: protocols high quality data
-        - question: How to identify, choose and recruit participants capable of contributing high quality data
+        - question: Identifying, choosing and recruiting participants capable of contributing high quality data
           label: high quality participants
 
     - topic: Platforms and Tools
       description: deciding upon and using citizen science platforms and tools
       questions:
-        - question: How to identify and decide on the optimal platform for sharing data submitted by participants, in a way that helps them interpret the data
+        - question: Identifying and deciding on the optimal platform for sharing data submitted by participants, in a way that helps them interpret the data
           label: platform interpret data
-        - question: How to identify and decide on the optimal platform for sharing data submitted by participants, with other researchers or data hubs
+        - question: Identifying and deciding on the optimal platform for sharing data submitted by participants, with other researchers or data hubs
           label: platform for researchers
-        - question: How to evaluate and implement the appropriate use of technology for collecting and reporting data given the task I am asking people to do
+        - question: Evaluating and implementing the appropriate use of technology for collecting and reporting data given the task I am asking people to do
           label: technology for collecting and reporting data
-        - question: How to interpret data being collected before the project has been completed
+        - question: Interpreting data being collected before the project has been completed
           label: interpret data before
-        - question: How to interpret data collected when the project has been completed
+        - question: Interpreting data collected when the project has been completed
           label: interpret data after
-        - question: How to archive data
+        - question: Archiving data
           label: archive data
 
     - topic: Decision Making
       description: using input gained through citizen science to drive decision making
       questions:
-        - question: How to identify the societal relevance of your project
+        - question: Identifying the societal relevance of your project
           label: societal relevance
-        - question: 'How to translate the outcomes of the project into desired changes: (government, institutional, societal)'
+        - question: Translating the outcomes of the project into desired changes: (government, institutional, societal)
           label: translate outcomes
-
     - topic: Legal Questions
       description: legal concerns and barriers related to citizen science initiatives
       questions:
