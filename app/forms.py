@@ -219,6 +219,9 @@ class NOIChangePasswordForm(ChangePasswordForm):
     Localizeable ChangePasswordForm
     '''
 
+    password = PasswordField(lazy_gettext('Password'),
+                             validators=[password_required])
+
     new_password = PasswordField(
         lazy_gettext('New Password'),
         validators=[password_required, password_length])
