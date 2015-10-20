@@ -2,6 +2,7 @@
 <ul class="e-progress-container">
   {% set questionnaire = question.questionnaire %}
   {% set questionnaire_url = url_for('views.my_expertise', _anchor='expertise') %}
+  {% set always_show_questions_left = true %}
   {% include "_profile-progress-item.html" %}
 </ul>
 </section>

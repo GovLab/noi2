@@ -1,19 +1,20 @@
 {% set item_progress = user.questionnaire_progress[questionnaire.id] %}
 
 {% if item_progress.total > 0 %}
-{% if item_progress.answered > 0 %}
+{% if item_progress.answered > 0 or always_show_questions_left %}
   {% set questions_left = item_progress.total - item_progress.answered %}
   {% set percentage_complete = item_progress.answered / item_progress.total * 100 %}
   <li class="e-progress-item" data-questions-left="{{ questions_left }}">
-    <a href="{{ questionnaire_url }}">{{ gettext(questionnaire.name) }}</a>
+    <a href="{{ questionnaire_url }}">{{ gettext(questionnaire.name) }}
     {% if questions_left > 0 %}
       <div class="e-questions-left">{{ ngettext('%(num)d question left', '%(num)d questions left', questions_left) }}</div>
       <div class="e-bar" style="width: {{ percentage_complete }}%"></div>
     {% else %}
       <div class="e-bar"></div>
     {% endif %}
+    </a>
   </li>
 {% else %}
-  <li class="e-progress-item"><a href="{{ questionnaire_url }}">{{ gettext(questionnaire.name) }}</a></li>
+  <li class="e-progress-item"><a href="{{ questionnaire_url }}">{{ gettext(questionnaire.name) }} <div class="e-questions-left">Add new expertise</div></a></li>
 {% endif %}
 {% endif %}
