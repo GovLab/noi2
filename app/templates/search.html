@@ -8,6 +8,12 @@
   .b-filters .b-button {
     color: white;
   }
+
+  label {
+    color: white;
+    display: block;
+    padding-bottom: 1em;
+  }
   </style>
 {% endblock %}
 
@@ -18,15 +24,15 @@
   <form action="{{ url_for('views.search') }}" method="GET">
     <div class="b-dropdown">
       <label class="sr-only" for="country">{{ gettext('By country') }}</label>
-      {{ form.country(placeholder=gettext('Choose your country')) }}
+      {{ form.country() }}
     </div>
+    <label for="locales">{{ gettext('By language(s)') }}</label>
     <div class="b-dropdown">
-      <label class="sr-only" for="locales">{{ gettext('By language(s)') }}</label>
-      {{ form.locales(placeholder=gettext('Choose your languages')) }}
+      {{ form.locales() }}
     </div>
+    <label for="expertise_domain_names">{{ gettext('By field(s) of work') }}</label>
     <div class="b-dropdown">
-      <label class="sr-only" for="expertise_domain_names">{{ gettext('By domain(s)') }}</label>
-      {{ form.expertise_domain_names(placeholder=gettext('Choose your fields of expertise')) }}
+      {{ form.expertise_domain_names() }}
     </div>
   <input class="b-button" type="submit" value="{{ gettext('Find Innovators') }}">
   </form>
