@@ -43,10 +43,9 @@
 {% else %}
 
 <div class="b-onboarding-questions">
-    <div class="e-card">
-      <p>{{ gettext("Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!", num=questions_left) }}</p>
-      <p>{{ gettext("You can always answer more questions by going to your profile page to get new and more relevant matches.") }}</p>
-      <br>
+    <div class="e-card m-intro">
+      <p class="e-text">{{ gettext("Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!", num=questions_left) }}</p>
+      <p class="e-aux-text">{{ gettext("You can always answer more questions by going to your profile page to get new and more relevant matches.") }}</p>
       <a href="{{ next_url }}" class="b-button">{{ gettext('Next') }}</a>
     </div>
 </div>
