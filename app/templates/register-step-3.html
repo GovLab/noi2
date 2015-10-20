@@ -19,6 +19,7 @@
 {% block content %}
 
 {% if not question %}
+{% if not next_url %}
 <div class="b-onboarding m-signup-first-category">
     <section>
         <div class="e-confirmed material-icons">check</div>
@@ -39,6 +40,18 @@
         </div>
     </footer>
 </div>
+{% else %}
+
+<div class="b-onboarding-questions">
+    <div class="e-card">
+      <p>{{ gettext("Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!", num=questions_left) }}</p>
+      <p>{{ gettext("You can always answer more questions by going to your profile page to get new and more relevant matches.") }}</p>
+      <br>
+      <a href="{{ next_url }}" class="b-button">{{ gettext('Next') }}</a>
+    </div>
+</div>
+
+{% endif %}
 
 {% else %}
 

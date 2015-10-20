@@ -107,10 +107,14 @@ class MultiStepRegistrationTests(ViewTestCase):
         self.assert200(res)
         self.assertContext('user_can_join', False)
 
-    def test_step_3_with_areaid_redirects_to_first_unanswered_question(self):
-        self.assertRedirects(self.client.get('/register/step/3/opendata'),
-                             '/register/step/3/opendata/1')
+    def test_step_3_with_areaid_links_to_first_unanswered_question(self):
+        # When the user hasn't answered ANY questions yet, we present
+        # them with instructions instead of redirecting them.
+        res = self.client.get('/register/step/3/opendata')
+        self.assert200(res)
+        assert '/register/step/3/opendata/1' in res.data
 
+    def test_step_3_with_areaid_redirects_to_first_unanswered_question(self):
         self.client.post('/register/step/3/opendata/1', data={
             'answer': '-1'
         })

@@ -156,7 +156,8 @@ def register_step_3():
 @login_required
 def register_step_3_area(areaid):
     '''
-    Redirect the user to the first unanswered question in the given area.
+    Present user with instructions and a link to the first unanswered
+    question in the given area.
     '''
 
     questionnaire = get_area_questionnaire_or_404(areaid)
@@ -165,8 +166,13 @@ def register_step_3_area(areaid):
         question = questionnaire['questions'][i]
         if question['id'] not in skills:
             break
-    return redirect(url_for('views.register_step_3_area_question',
-                            areaid=areaid, questionid=str(i+1)))
+
+    next_url = url_for('views.register_step_3_area_question',
+                       areaid=areaid, questionid=str(i+1))
+
+    if len(current_user.skills) == 0 or request.args.get('no_redirect'):
+        return render_register_step_3(next_url=next_url)
+    return redirect(next_url)
 
 @views.route('/register/step/3/<areaid>/<questionid>',
              methods=['GET', 'POST'])
