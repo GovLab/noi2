@@ -1,10 +1,13 @@
-from flask import request
+from flask import request, session
 import flask_babel
 from speaklater import make_lazy_string
+from babel import Locale
 
-DEFAULT_LANGUAGE = 'en'
+DEFAULT_LOCALE = Locale('en')
 
-TRANSLATIONS = ['es_MX']
+TRANSLATIONS = [Locale('es_MX')]
+VALID_LOCALES = [DEFAULT_LOCALE] + TRANSLATIONS
+VALID_LOCALE_CODES = [str(l) for l in VALID_LOCALES]
 
 
 def configure_app(app):
@@ -84,11 +87,14 @@ def init_app(app):
 
     @babel.localeselector
     def get_locale():
-        return request.accept_languages.best_match(
-            [DEFAULT_LANGUAGE] +
-            TRANSLATIONS
-        )
+        if 'locale' in session and session['locale'] in VALID_LOCALE_CODES:
+            return session['locale']
+        return request.accept_languages.best_match(VALID_LOCALE_CODES)
 
     # This forces any "lazy strings" like those returned by
     # lazy_gettext() to be evaluated.
     app.login_manager.localize_callback = unicode
+
+def change_session_locale(locale, session=session):
+    if locale in VALID_LOCALE_CODES:
+        session['locale'] = str(locale)

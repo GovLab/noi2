@@ -2,7 +2,7 @@
 NoI forms
 '''
 
-from app import LOCALES
+from app import LOCALES, l10n
 from app.models import User
 
 from flask import current_app
@@ -19,7 +19,8 @@ from flask_security.forms import (LoginForm, RegisterForm,
 from flask_babel import lazy_gettext
 from wtforms_alchemy import model_form_factory, CountryField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.fields import SelectMultipleField, TextField, TextAreaField
+from wtforms.fields import (SelectMultipleField, TextField, TextAreaField,
+                            SelectField)
 from wtforms.widgets import Select
 from wtforms.validators import ValidationError, Required
 
@@ -136,6 +137,21 @@ class SearchForm(Form):
         widget=Select(multiple=True),
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
     fulltext = TextField()
+
+
+class ChangeLocaleForm(Form):
+    '''
+    Form that allows the user to change the locale of the site.
+    '''
+
+    locale = SelectField(
+        label=lazy_gettext('Language'),
+        default=lambda: str(get_locale()),
+        choices=[
+            (str(l), l.get_display_name() or l.english_name or str(l))
+            for l in l10n.VALID_LOCALES
+        ]
+    )
 
 
 class NOIForgotPasswordForm(ForgotPasswordForm):

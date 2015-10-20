@@ -382,6 +382,19 @@ class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):
         self.assert200(self.client.get('/'))
 
+    def test_changing_locale_to_invalid_is_bad_request(self):
+        res = self.client.post('/change-locale', data={
+            'locale': 'lol'
+        })
+        self.assert400(res)
+
+    def test_changing_locale_works(self):
+        res = self.client.post('/change-locale', data={
+            'locale': 'es_MX'
+        }, follow_redirects=True)
+        self.assert200(res)
+        assert '<html lang="es"' in res.data
+
     def test_about_page_is_ok(self):
         self.assert200(self.client.get('/about'))
 
