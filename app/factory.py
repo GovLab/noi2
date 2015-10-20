@@ -15,7 +15,7 @@ from app import (csrf, cache, mail, bcrypt, s3, assets, security,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.config.schedule import CELERYBEAT_SCHEDULE
-from app.forms import (NOIForgotPasswordForm,
+from app.forms import (NOIForgotPasswordForm, NOILoginForm,
                        NOIResetPasswordForm, NOIChangePasswordForm,
                        NOIRegisterForm)
 from app.models import db, User, Role
@@ -90,6 +90,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
     # Setup Flask-Security
     user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
+                      login_form=NOILoginForm,
                       register_form=NOIRegisterForm,
                       forgot_password_form=NOIForgotPasswordForm,
                       reset_password_form=NOIResetPasswordForm,
