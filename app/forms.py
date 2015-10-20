@@ -206,6 +206,12 @@ class NOIResetPasswordForm(ResetPasswordForm):
     '''
 
     submit = SubmitField(lazy_gettext('Reset Password'))
+    password = PasswordField(
+        lazy_gettext('Password'),
+        validators=[password_required, password_length])
+    password_confirm = PasswordField(
+        lazy_gettext('Retype Password'),
+        validators=[EqualTo('password', message='RETYPE_PASSWORD_MISMATCH')])
 
 
 class NOIChangePasswordForm(ChangePasswordForm):
