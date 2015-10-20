@@ -101,6 +101,9 @@
     </li>
   {% endfor %}
 </ul>
+
+{% include "_complete_profile_cta.html" %}
+
 {% endcall %}
 
 {% if current_user.is_authenticated() %}
