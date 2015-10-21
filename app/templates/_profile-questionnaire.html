@@ -16,7 +16,10 @@
             <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=prev_questionid, _anchor='expertise') }}" class="material-icons e-prev">keyboard_arrow_left</a>
           {% endif %}
           {% if next_questionid %}
-            <a href="{{ url_for('views.my_expertise_area_question', areaid=areaid, questionid=next_questionid, _anchor='expertise') }}" class="material-icons e-next">keyboard_arrow_right</a>
+            {% set skip_url = url_for('views.my_expertise_area_question', areaid=areaid, questionid=next_questionid, _anchor='expertise') %}
+            <a href="{{ skip_url }}" class="material-icons e-next">keyboard_arrow_right</a>
+          {% else %}
+            {% set skip_url = questionnaire_url %}
           {% endif %}
             <p class="e-question-text">{{ gettext(question.question) }}</p>
             <form class="e-questionnaire-answers" method="post">
@@ -29,6 +32,9 @@
                     {{ gettext(v.label) }}
                 </button>
             {% endfor %}
+
+            <a href="{{ skip_url }}" class="b-button m-skip">{{ gettext('Skip this question') }}</a>
+
             </form>
         </div>
     </div>
