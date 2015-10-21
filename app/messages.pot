@@ -8,729 +8,771 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-29 15:05+0000\n"
+"POT-Creation-Date: 2015-10-21 13:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.0\n"
+"Generated-By: Babel 2.1.1\n"
 
-#: /noi/app/factory.py:95
+#: /noi/app/forms.py:57
+msgid "Choose your country"
+msgstr ""
+
+#: /noi/app/forms.py:80 /noi/app/forms.py:118
+msgid "Fields of Work"
+msgstr ""
+
+#: /noi/app/forms.py:105
+msgid "User Picture"
+msgstr ""
+
+#: /noi/app/forms.py:109
+msgid "Only jpeg, jpg, and png images are allowed."
+msgstr ""
+
+#: /noi/app/forms.py:113
+msgid "Languages"
+msgstr ""
+
+#: /noi/app/forms.py:128 /noi/app/forms.py:174 /noi/app/forms.py:183
+#: /noi/app/forms.py:205 /noi/app/models.py:68
+msgid "Email"
+msgstr ""
+
+#: /noi/app/forms.py:160
+msgid "Language"
+msgstr ""
+
+#: /noi/app/forms.py:173
+msgid "Recover Password"
+msgstr ""
+
+#: /noi/app/forms.py:184 /noi/app/forms.py:208 /noi/app/forms.py:221
+#: /noi/app/forms.py:233 /noi/app/models.py:72
+msgid "Password"
+msgstr ""
+
+#: /noi/app/forms.py:185
+msgid "Remember Me"
+msgstr ""
+
+#: /noi/app/forms.py:186
+msgid "Log in"
+msgstr ""
+
+#: /noi/app/forms.py:199 /noi/app/models.py:61
+msgid "First Name"
+msgstr ""
+
+#: /noi/app/forms.py:201 /noi/app/models.py:64
+msgid "Last Name"
+msgstr ""
+
+#: /noi/app/forms.py:211 /noi/app/templates/security/login_user.html:30
+msgid "Sign up"
+msgstr ""
+
+#: /noi/app/forms.py:219
+msgid "Reset Password"
+msgstr ""
+
+#: /noi/app/forms.py:224 /noi/app/forms.py:241
+msgid "Retype Password"
+msgstr ""
+
+#: /noi/app/forms.py:237
+msgid "New Password"
+msgstr ""
+
+#: /noi/app/forms.py:244 /noi/app/templates/settings.html:8
+msgid "Change Password"
+msgstr ""
+
+#: /noi/app/l10n.py:32
 msgid "You do not have permission to view this resource."
 msgstr ""
 
-#: /noi/app/factory.py:97
-#, python-format
-msgid "Thank you. Confirmation instructions have been sent to %(email)s."
-msgstr ""
-
-#: /noi/app/factory.py:100
-msgid "Thank you. Your email has been confirmed."
-msgstr ""
-
-#: /noi/app/factory.py:102
-msgid "Your email has already been confirmed."
-msgstr ""
-
-#: /noi/app/factory.py:104
-msgid "Invalid confirmation token."
-msgstr ""
-
-#: /noi/app/factory.py:106
+#: /noi/app/l10n.py:34
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr ""
 
-#: /noi/app/factory.py:108
+#: /noi/app/l10n.py:36
 msgid "Password does not match"
 msgstr ""
 
-#: /noi/app/factory.py:110
+#: /noi/app/l10n.py:38
 msgid "Passwords do not match"
 msgstr ""
 
-#: /noi/app/factory.py:112
+#: /noi/app/l10n.py:40
 msgid "Redirections outside the domain are forbidden"
 msgstr ""
 
-#: /noi/app/factory.py:114
+#: /noi/app/l10n.py:42
 #, python-format
 msgid "Instructions to reset your password have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:116
+#: /noi/app/l10n.py:44
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:119
+#: /noi/app/l10n.py:47
 msgid "Invalid reset password token."
 msgstr ""
 
-#: /noi/app/factory.py:121
-msgid "Email requires confirmation."
-msgstr ""
-
-#: /noi/app/factory.py:123
-#, python-format
-msgid "Confirmation instructions have been sent to %(email)s."
-msgstr ""
-
-#: /noi/app/factory.py:125
-#, python-format
-msgid ""
-"You did not confirm your email within %(within)s. New instructions to "
-"confirm your email have been sent to %(email)s."
-msgstr ""
-
-#: /noi/app/factory.py:129
+#: /noi/app/l10n.py:49
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:132
+#: /noi/app/l10n.py:52
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/factory.py:134
+#: /noi/app/l10n.py:54
 msgid "Invalid login token."
 msgstr ""
 
-#: /noi/app/factory.py:136
+#: /noi/app/l10n.py:56
 msgid "Account is disabled."
 msgstr ""
 
-#: /noi/app/factory.py:138
+#: /noi/app/l10n.py:58
 msgid "Email not provided"
 msgstr ""
 
-#: /noi/app/factory.py:140
+#: /noi/app/l10n.py:60
 msgid "Invalid email address"
 msgstr ""
 
-#: /noi/app/factory.py:142
+#: /noi/app/l10n.py:62
 msgid "Password not provided"
 msgstr ""
 
-#: /noi/app/factory.py:144
+#: /noi/app/l10n.py:64
 msgid "No password is set for this user"
 msgstr ""
 
-#: /noi/app/factory.py:146
+#: /noi/app/l10n.py:66
 msgid "Password must be at least 6 characters"
 msgstr ""
 
-#: /noi/app/factory.py:148
+#: /noi/app/l10n.py:68
 msgid "Specified user does not exist"
 msgstr ""
 
-#: /noi/app/factory.py:150
+#: /noi/app/l10n.py:70
 msgid "Invalid password"
 msgstr ""
 
-#: /noi/app/factory.py:152
+#: /noi/app/l10n.py:72
 msgid "You have successfuly logged in."
 msgstr ""
 
-#: /noi/app/factory.py:154
+#: /noi/app/l10n.py:74
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
 msgstr ""
 
-#: /noi/app/factory.py:157
+#: /noi/app/l10n.py:77
 msgid "Your new password must be different than your previous password."
 msgstr ""
 
-#: /noi/app/factory.py:159
+#: /noi/app/l10n.py:79
 msgid "You successfully changed your password."
 msgstr ""
 
-#: /noi/app/factory.py:161
+#: /noi/app/l10n.py:81
 msgid "Please log in to access this page."
 msgstr ""
 
-#: /noi/app/factory.py:163
+#: /noi/app/l10n.py:83
 msgid "Please reauthenticate to access this page."
 msgstr ""
 
-#: /noi/app/forms.py:66
-msgid "Choose your country"
-msgstr ""
-
-#: /noi/app/forms.py:83
-msgid "User Picture"
-msgstr ""
-
-#: /noi/app/forms.py:87
-msgid "Only jpeg, jpg, and png images are allowed."
-msgstr ""
-
-#: /noi/app/forms.py:91 /noi/app/forms.py:117
-msgid "Languages"
-msgstr ""
-
-#: /noi/app/forms.py:96 /noi/app/forms.py:122
-msgid "Domains of Expertise"
-msgstr ""
-
-#: /noi/app/forms.py:107
-msgid "Have a question or something to share about innovation?"
-msgstr ""
-
-#: /noi/app/forms.py:132
-msgid "Resend Confirmation Instructions"
-msgstr ""
-
-#: /noi/app/forms.py:139
-msgid "Recover Password"
-msgstr ""
-
-#: /noi/app/forms.py:147 /noi/app/forms.py:159 /noi/app/models.py:65
-msgid "Email"
-msgstr ""
-
-#: /noi/app/forms.py:148 /noi/app/forms.py:162 /noi/app/models.py:69
-msgid "Password"
-msgstr ""
-
-#: /noi/app/forms.py:149
-msgid "Remember Me"
-msgstr ""
-
-#: /noi/app/forms.py:150
-msgid "Log in"
-msgstr ""
-
-#: /noi/app/forms.py:164
-msgid "Sign up"
-msgstr ""
-
-#: /noi/app/forms.py:191
-#, python-format
-msgid "%(value)s is not a valid email address: %(explanation)svalue"
-msgstr ""
-
-#: /noi/app/forms.py:200
-msgid "Reset Password"
-msgstr ""
-
-#: /noi/app/forms.py:209
-msgid "New Password"
-msgstr ""
-
-#: /noi/app/forms.py:213
-msgid "Retype Password"
-msgstr ""
-
-#: /noi/app/forms.py:216
-msgid "Change Password"
-msgstr ""
-
-#: /noi/app/models.py:58
-msgid "First Name"
-msgstr ""
-
-#: /noi/app/models.py:61
-msgid "Last Name"
-msgstr ""
-
-#: /noi/app/models.py:81
+#: /noi/app/models.py:84
 msgid "Position"
 msgstr ""
 
-#: /noi/app/models.py:84
+#: /noi/app/models.py:87
 msgid "Organization"
 msgstr ""
 
-#: /noi/app/models.py:87
+#: /noi/app/models.py:90
 msgid "Type of Organization"
 msgstr ""
 
-#: /noi/app/models.py:88
+#: /noi/app/models.py:91
 msgid "The type of organization you work for"
 msgstr ""
 
-#: /noi/app/models.py:92
+#: /noi/app/models.py:95
 msgid "Country"
 msgstr ""
 
-#: /noi/app/models.py:96
+#: /noi/app/models.py:99
 msgid "City"
 msgstr ""
 
-#: /noi/app/models.py:100
+#: /noi/app/models.py:103
 msgid "Location"
 msgstr ""
 
-#: /noi/app/models.py:101
+#: /noi/app/models.py:104
 msgid "Enter your location"
 msgstr ""
 
-#: /noi/app/models.py:105
+#: /noi/app/models.py:108
 msgid "Projects"
 msgstr ""
 
-#: /noi/app/models.py:106
+#: /noi/app/models.py:109
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 
-#: /noi/app/views.py:85
-msgid ""
-"Your profile has been saved. <br/>Please tell us about your expertise "
-"below."
+#: /noi/app/views.py:128
+msgid "Your profile has been saved."
 msgstr ""
 
-#: /noi/app/views.py:89
+#: /noi/app/views.py:131
+msgid "Could not save, please correct errors."
+msgstr ""
+
+#: /noi/app/views.py:250
 msgid "Could not save, please correct errors below"
 msgstr ""
 
-#: /noi/app/views.py:112
-#, python-format
-msgid ""
-"Your expertise has been updated.<br/>\n"
-"        What you can do next:\n"
-"        <ul>\n"
-"        <li><a href=\"/search\">Search for innovators</a></li>\n"
-"        <li>Fill another expertise questionnaire below</li>\n"
-"        <li>View your <a href=\"/user/%(id)d\">public profile</a></li>\n"
-"                      id"
+#: /noi/app/views.py:478
+msgid "You must log in to post a message."
 msgstr ""
 
-#: /noi/app/views.py:209
-msgid ""
-"Before we can match you with fellow innovators, you need to enter your "
-"expertise below first."
-msgstr ""
-
-#: /noi/app/views.py:213
-msgid "People Who Know what I do not"
-msgstr ""
-
-#: /noi/app/views.py:224
-msgid ""
-"Before we can find innovators like you, you need to <a href=\"/my-"
-"expertise\">fill your expertise</a> first."
-msgstr ""
-
-#: /noi/app/views.py:229
-msgid "People most like me"
-msgstr ""
-
-#: /noi/app/views.py:241
-msgid "Our most recent members"
-msgstr ""
-
-#: /noi/app/views.py:257
+#: /noi/app/views.py:480
 msgid "We need your name before you can post a message."
 msgstr ""
 
-#: /noi/app/views.py:266
+#: /noi/app/views.py:489
 msgid "Message posted!"
 msgstr ""
 
-#: /noi/app/templates/__footer__.html:7 /noi/app/templates/about.html:16
-msgid "Information Collection Statement"
+#: /noi/app/views.py:554
+#, python-format
+msgid "%(user)s would like you to join the network!"
 msgstr ""
 
-#: /noi/app/templates/__footer__.html:10
+#: /noi/app/views.py:558
+#, python-format
+msgid "Just visit %(url)s."
+msgstr ""
+
+#: /noi/app/views.py:562
+msgid "Invitation sent!"
+msgstr ""
+
+#: /noi/app/views.py:565
+msgid "Your form submission was invalid."
+msgstr ""
+
+#: /noi/app/templates/__base_new__.html:13
+#: /noi/app/templates/__base_ui__.html:8 /noi/app/templates/main.html:3
+#: /noi/app/templates/main.html:12
+#: /noi/app/templates/security/send_login.html:3
+msgid "Network of Innovators"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:22
+msgid "Home"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:26
+msgid "Match Me"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:30 /noi/app/templates/search.html:3
+#: /noi/app/templates/search.html:37
+msgid "Find Innovators"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:34
+msgid "View Network"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:38
+#: /noi/app/templates/__base_ui__.html:74
+msgid "Share Feedback"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:48
+msgid "Post an update"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:52
 msgid ""
-"This work by <span xmlns:cc=\"http://creativecommons.org/ns#\" "
-"property=\"cc:attributionName\">The GovLab</span> is licensed under a <a "
-"rel=\"license\" "
-"href=\"http://creativecommons.org/licenses/by/4.0/\">Creative Commons "
-"Attribution 4.0 International License</a>."
+"Have a question to pose to the whole community? Need help with a task? "
+"Ask the Network!"
 msgstr ""
 
-#: /noi/app/templates/__footer__.html:16
-msgid "Powered by:"
+#: /noi/app/templates/__base_ui__.html:53
+msgid ""
+"Does anyone have experience with prize-backed challenges relating to "
+"increasing literacy?"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:6
-msgid "Toggle navigation"
+#: /noi/app/templates/__base_ui__.html:54
+msgid "Send"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:11
-msgid "Network of Innovators "
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:11
-msgid "(beta)"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:17 /noi/app/templates/about.html:3
-msgid "About"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:18 /noi/app/templates/feedback.html:3
-msgid "Feedback"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:19
-msgid "Search"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:21
-msgid "Explore"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:23
-msgid "Recently joined"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:24
-msgid "Find innovators with answers"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:25
-msgid "Find innovators like you"
-msgstr ""
-
-#: /noi/app/templates/__navbar__.html:33 /noi/app/templates/my-profile.html:3
+#: /noi/app/templates/__base_ui__.html:69 /noi/app/templates/my-profile.html:3
 msgid "My Profile"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:38
-msgid "Edit My Profile"
+#: /noi/app/templates/__base_ui__.html:73 /noi/app/templates/settings.html:5
+msgid "Settings"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:39
-msgid "Edit My Expertise"
+#: /noi/app/templates/__base_ui__.html:76 /noi/app/templates/invite.html:3
+#: /noi/app/templates/invite.html:37
+msgid "Invite Someone"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:40
-msgid "See My Public Profile"
+#: /noi/app/templates/__base_ui__.html:77
+msgid "FAQ"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:41
-msgid "Logout"
+#: /noi/app/templates/__base_ui__.html:78 /noi/app/templates/about.html:3
+msgid "About"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:43 /noi/app/templates/main.html:22
-#: /noi/app/templates/security/_menu.html:6
-#: /noi/app/templates/security/register_user.html:13
-msgid "Register"
+#: /noi/app/templates/__base_ui__.html:79
+msgid "Sign Out"
 msgstr ""
 
-#: /noi/app/templates/__navbar__.html:44 /noi/app/templates/main.html:22
-#: /noi/app/templates/security/_menu.html:4
-#: /noi/app/templates/security/login_user.html:13
-#: /noi/app/templates/security/send_login.html:13
-msgid "Login"
+#: /noi/app/templates/_complete_profile_cta.html:3
+msgid "Complete Your Profile"
+msgstr ""
+
+#: /noi/app/templates/_complete_profile_cta.html:6
+msgid ""
+"Let others know your skills & expertise and also get more relevant "
+"matches!"
+msgstr ""
+
+#: /noi/app/templates/_profile-expertise-match-area.html:27
+#, python-format
+msgid "%(user)s can <strong>explain</strong>"
+msgstr ""
+
+#: /noi/app/templates/_profile-expertise-match-area.html:31
+#, python-format
+msgid "%(user)s can <strong>do it</strong>"
+msgstr ""
+
+#: /noi/app/templates/_profile-expertise-match-area.html:35
+#, python-format
+msgid "%(user)s can <strong>connect you</strong>"
+msgstr ""
+
+#: /noi/app/templates/_profile-expertise-match-area.html:39
+#, python-format
+msgid "%(user)s wants to <strong>learn</strong>"
+msgstr ""
+
+#: /noi/app/templates/_profile-expertise-match.html:6
+#, python-format
+msgid "You match on %(num)d question"
+msgid_plural "You match on %(num)d questions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /noi/app/templates/_profile-progress-item.html:10
+#, python-format
+msgid "%(num)d question left"
+msgid_plural "%(num)d questions left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /noi/app/templates/_profile-questionnaire.html:36
+#: /noi/app/templates/register-step-3.html:71
+msgid "Skip this question"
 msgstr ""
 
 #: /noi/app/templates/about.html:8
 msgid "About the Network of Innovators"
 msgstr ""
 
-#: /noi/app/templates/about.html:18
+#: /noi/app/templates/about.html:14
+msgid "Information Collection Statement"
+msgstr ""
+
+#: /noi/app/templates/about.html:16
+#, python-format
 msgid ""
 "All information you supply is publicly visible and is used solely for the"
 " purpose for which the site is intended. For questions about user "
-"privacy, please contact <a "
-"href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
+"privacy, please contact %(contact_link)s."
 msgstr ""
 
-#: /noi/app/templates/activity.html:9
-msgid "Share with the network"
+#: /noi/app/templates/activity.html:12
+msgid "Activity"
 msgstr ""
 
-#: /noi/app/templates/activity.html:11
-msgid "Post"
+#: /noi/app/templates/activity.html:13
+msgid "Most Connected"
 msgstr ""
 
-#: /noi/app/templates/feedback.html:14
+#: /noi/app/templates/activity.html:14
+msgid "Most Complete Profiles"
+msgstr ""
+
+#: /noi/app/templates/activity.html:18
+msgid "My Profile Progress"
+msgstr ""
+
+#: /noi/app/templates/activity.html:47
+#, python-format
+msgid "%(user)s shared:"
+msgstr ""
+
+#: /noi/app/templates/activity.html:51
+msgid "Reply via e-mail"
+msgstr ""
+
+#: /noi/app/templates/activity.html:58
+#, python-format
+msgid "%(user)s joined NOI."
+msgstr ""
+
+#: /noi/app/templates/activity.html:62
+#, python-format
+msgid "+%(num)d new connection made in NOI."
+msgid_plural "+%(num)d new connections made in NOI."
+msgstr[0] ""
+msgstr[1] ""
+
+#: /noi/app/templates/activity.html:63
+#, python-format
+msgid "%(total)s connections!"
+msgstr ""
+
+#: /noi/app/templates/activity.html:82
+#, python-format
+msgid "%(num)d Connection"
+msgid_plural "%(num)d Connections"
+msgstr[0] ""
+msgstr[1] ""
+
+#: /noi/app/templates/activity.html:122
+#, python-format
+msgid "Welcome <strong>%(first_name)s</strong>!"
+msgstr ""
+
+#: /noi/app/templates/activity.html:123
+msgid ""
+"You can <strong>meet your top matches</strong> based on your skills and "
+"interests."
+msgstr ""
+
+#: /noi/app/templates/activity.html:124 /noi/app/templates/activity.html:131
+#: /noi/app/templates/register-step-2.html:21
+#: /noi/app/templates/register-step-3.html:49
+msgid "Next"
+msgstr ""
+
+#: /noi/app/templates/activity.html:130
+msgid "You can also <strong>browse innovators</strong> by skill area!"
+msgstr ""
+
+#: /noi/app/templates/activity.html:137
+msgid "Don't forget to <strong>update your profile</strong>."
+msgstr ""
+
+#: /noi/app/templates/activity.html:138
+msgid "The more questions you answer, the more relevant your matches."
+msgstr ""
+
+#: /noi/app/templates/activity.html:139
+msgid "OK"
+msgstr ""
+
+#: /noi/app/templates/faq.html:3
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: /noi/app/templates/feedback.html:3
+msgid "Feedback"
+msgstr ""
+
+#: /noi/app/templates/feedback.html:12
 msgid "Share your feedback about the Network of Innovators"
 msgstr ""
 
-#: /noi/app/templates/feedback.html:17
+#: /noi/app/templates/feedback.html:15
 msgid "This form requires JavaScript to complete."
 msgstr ""
 
-#: /noi/app/templates/feedback.html:29
+#: /noi/app/templates/feedback.html:27
 msgid "Thanks for submitting our form!"
 msgstr ""
 
-#: /noi/app/templates/login-page.html:3
-msgid "Login Page"
+#: /noi/app/templates/invite.html:39
+msgid "Suggest someone to join the network"
 msgstr ""
 
-#: /noi/app/templates/login-page.html:8
-msgid "Please login using your favorite social network."
+#: /noi/app/templates/invite.html:47
+msgid "Invite"
 msgstr ""
 
-#: /noi/app/templates/login-page.html:9
+#: /noi/app/templates/main.html:35 /noi/app/templates/settings.html:23
+msgid "Change Language"
+msgstr ""
+
+#: /noi/app/templates/match-me.html:6
+msgid "Your Practitioners"
+msgstr ""
+
+#: /noi/app/templates/match-me.html:7
+msgid "Your Explainers"
+msgstr ""
+
+#: /noi/app/templates/match-me.html:8
+msgid "Your Connectors"
+msgstr ""
+
+#: /noi/app/templates/match-me.html:9
+msgid "Your Peers"
+msgstr ""
+
+#: /noi/app/templates/match-me.html:18
 msgid ""
-"We are using your social information to populate your first name, last "
-"name and profile picture."
+"Connectors know others who can answer your questions. Ask them to "
+"introduce you!"
 msgstr ""
 
-#: /noi/app/templates/main.html:3
-#: /noi/app/templates/security/change_password.html:3
-#: /noi/app/templates/security/forgot_password.html:3
-#: /noi/app/templates/security/login_user.html:3
-#: /noi/app/templates/security/register_user.html:3
-#: /noi/app/templates/security/reset_password.html:3
-#: /noi/app/templates/security/send_confirmation.html:3
-#: /noi/app/templates/security/send_login.html:3
-msgid "Network of Innovators"
+#: /noi/app/templates/match-me.html:20
+msgid "Peers want to learn the same things as you. Why don't you join forces?"
 msgstr ""
 
-#: /noi/app/templates/main.html:15
-msgid "Network of Innovators</strong> Expert Finder"
+#: /noi/app/templates/match-me.html:22
+msgid "Explainers know what you want to learn. Ask them to guide you!"
 msgstr ""
 
-#: /noi/app/templates/main.html:16
-msgid "A GovLab experiment in partnership with NHS England"
-msgstr ""
-
-#: /noi/app/templates/main.html:18
+#: /noi/app/templates/match-me.html:24
 msgid ""
-"Test your knowledge of innovative practices<br>\n"
-"                Get matched to people with complementary expertise<br>\n"
-"                Build your network at NHS Expo 15"
+"Practitioners have experience in what you want to learn. Ask them to "
+"share their experiences!"
 msgstr ""
 
-#: /noi/app/templates/main.html:24
-msgid "About this Experiment"
-msgstr ""
+#: /noi/app/templates/match-me.html:45
+#, python-format
+msgid "%(num)d Skill Match"
+msgid_plural "%(num)d Skill Matches"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /noi/app/templates/main.html:25
-msgid ""
-"As part of an ongoing project to understand the demand for and capacity "
-"to use data by the NHS in England, NHS is collaborating with the GovLab "
-"to test the Network of Innovators expert finder at the 2015 NHS Health "
-"and Care Innovation Expo."
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:3
-msgid "My Expertise"
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:54
-msgid "and"
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:71
-msgid "I know"
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:81
-msgid "My expertise"
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:86
-msgid ""
-"Tell us what you know about various key topics by answering some of the "
-"following questions."
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:87
-msgid "For each question, you can choose from"
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:90
-msgid "or skip it entirely."
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:126
-msgid "What you can share about"
-msgstr ""
-
-#: /noi/app/templates/my-expertise.html:153
-#: /noi/app/templates/my-profile.html:107
+#: /noi/app/templates/my-profile.html:57
 msgid "Save"
 msgstr ""
 
-#: /noi/app/templates/my-profile.html:206
+#: /noi/app/templates/my-profile.html:71
 msgid "Sorry, that file is too big.  Please choose a smaller one."
 msgstr ""
 
-#: /noi/app/templates/search-results.html:6
-msgid "Contact+request+from+the+Network+of+Innovators"
+#: /noi/app/templates/register-step-2.html:3
+msgid "Register - Basic Information"
 msgstr ""
 
-#: /noi/app/templates/search-results.html:6
-msgid "Contact all these people"
+#: /noi/app/templates/register-step-2.html:11
+msgid ""
+"Now please share some basic info about yourself, so others can know who "
+"you are."
 msgstr ""
 
-#: /noi/app/templates/search-results.html:14
-msgid "E-mail one or more of them to meet, network and learn something new!"
+#: /noi/app/templates/register-step-2.html:27
+msgid "Logout"
 msgstr ""
 
-#: /noi/app/templates/search.html:3
-msgid "Search interface"
+#: /noi/app/templates/register-step-3.html:4
+msgid "My Expertise"
 msgstr ""
 
-#: /noi/app/templates/search.html:30
-msgid "Search for Innovators"
+#: /noi/app/templates/register-step-3.html:26
+msgid "Pick an innovation area that you're interested in:"
 msgstr ""
 
-#: /noi/app/templates/search.html:37
+#: /noi/app/templates/register-step-3.html:47
+#, python-format
+msgid ""
+"Now answer %(num)s questions about your experience in this area to join "
+"the network and get matched with other innovators!"
+msgstr ""
+
+#: /noi/app/templates/register-step-3.html:48
+msgid ""
+"You can always answer more questions by going to your profile page to get"
+" new and more relevant matches."
+msgstr ""
+
+#: /noi/app/templates/register-step-3.html:74
+msgid "Choose another area"
+msgstr ""
+
+#: /noi/app/templates/register-step-3.html:79
+msgid "Join"
+msgstr ""
+
+#: /noi/app/templates/search.html:25
 msgid "By country"
 msgstr ""
 
-#: /noi/app/templates/search.html:39
-msgid "Choose your countries"
-msgstr ""
-
-#: /noi/app/templates/search.html:42
+#: /noi/app/templates/search.html:29
 msgid "By language(s)"
 msgstr ""
 
-#: /noi/app/templates/search.html:44
-msgid "Choose your languages"
+#: /noi/app/templates/search.html:33
+msgid "By field(s) of work"
 msgstr ""
 
-#: /noi/app/templates/search.html:47
-msgid "By domain(s)"
-msgstr ""
-
-#: /noi/app/templates/search.html:49
-msgid "Choose your fields of expertise"
-msgstr ""
-
-#: /noi/app/templates/search.html:52
-msgid "By keyword(s)"
-msgstr ""
-
-#: /noi/app/templates/search.html:59
-msgid "Find experts"
+#: /noi/app/templates/settings.html:12
+msgid "Reset Tutorial"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:1
-msgid "Agriculture"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:2
-msgid "Arts and culture"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:3
-msgid "Business Licensing and Regulation"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:4
-msgid "Consumer rights and issues"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:5
-msgid "Defense and Armed Forces"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:6
-msgid "Education"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:7
-msgid "Energy"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:8
-msgid "Environment"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:9
-msgid "Foreign affairs"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:10
-msgid "Government efficiency, transparency and accountability"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:11
-msgid "Health"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:12
-msgid "Housing - Human Rights - Immigration and Citizenship Services"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:13
-msgid "International Aid and Development"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:14
-msgid "Labor"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:15
-msgid "Law and Justice System"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:16
-msgid "Media and Communications"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:17
-msgid "National Security"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:18
-msgid "Public safety and Emergencies"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:19
-msgid "Sanitation"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:20
-msgid "Science and Innovation"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:21
-msgid "Social care"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:22
-msgid "Tax and Revenue"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:23
-msgid "Trade and Investment"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:24
-msgid "Transportation"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:25
-msgid "Water and Electricity"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:26
 msgid "Mental Health"
 msgstr ""
 
-#: /noi/app/templates/translate.tmp.html:27
+#: /noi/app/templates/translate.tmp.html:2
 msgid "Primary Care"
 msgstr ""
 
-#: /noi/app/templates/translate.tmp.html:28
+#: /noi/app/templates/translate.tmp.html:3
 msgid "Community Care"
 msgstr ""
 
-#: /noi/app/templates/translate.tmp.html:29
+#: /noi/app/templates/translate.tmp.html:4
 msgid "Public Health and Population Health"
 msgstr ""
 
-#: /noi/app/templates/translate.tmp.html:30
+#: /noi/app/templates/translate.tmp.html:5
 msgid "Acute Health"
 msgstr ""
 
-#: /noi/app/templates/translate.tmp.html:31
+#: /noi/app/templates/translate.tmp.html:6
 msgid "Health Policy"
 msgstr ""
 
-#: /noi/app/templates/translate.tmp.html:32
+#: /noi/app/templates/translate.tmp.html:7
 msgid "Commissioning"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:8
+msgid "Agriculture"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:9
+msgid "Arts and culture"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:10
+msgid "Business Licensing and Regulation"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:11
+msgid "Consumer rights and issues"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:12
+msgid "Defense and Armed Forces"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:13
+msgid "Education"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:14
+msgid "Energy"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:15
+msgid "Environment"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:16
+msgid "Foreign affairs"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:17
+msgid "Government efficiency, transparency and accountability"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:18
+msgid "Health"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:19
+msgid "Housing - Human Rights - Immigration and Citizenship Services"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:20
+msgid "International Aid and Development"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:21
+msgid "Labor"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:22
+msgid "Law and Justice System"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:23
+msgid "Media and Communications"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:24
+msgid "National Security"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:25
+msgid "Public safety and Emergencies"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:26
+msgid "Sanitation"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:27
+msgid "Science and Innovation"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:28
+msgid "Social care"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:29
+msgid "Tax and Revenue"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:30
+msgid "Trade and Investment"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:31
+msgid "Transportation"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:32
+msgid "Water and Electricity"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:33
@@ -758,27 +800,23 @@ msgid "creating an open data plan and strategy to achieve key goals"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:38
-msgid ""
-"How to identify what data will help my organization achieve its core "
-"mission"
+msgid "Identifying what data will help my organization achieve its core mission"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:39
-msgid ""
-"How to distinguish between potentially sensitive data and non-sensitive "
-"data"
+msgid "Distinguishing between potentially sensitive data and non-sensitive data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:40
-msgid "How to craft a clear policy explaining what data to open and how"
+msgid "Crafting a clear policy explaining what data to open and how"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:41
-msgid "How to do public consultation on an open data policy"
+msgid "Doing public consultation on an open data policy"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:42
-msgid "How to get organizational approval for opening data"
+msgid "Getting organizational approval for opening data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:43
@@ -790,39 +828,39 @@ msgid "operationalizing an open data program in practice"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:45
-msgid "How to scrape data from my domain"
+msgid "Scraping data from my domain"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:46
-msgid "How to make data machine-readable"
+msgid "Making data machine-readable"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:47
-msgid "what formats to publish data in"
+msgid "Determining what formats to publish data in"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:48
-msgid "how to license my data"
+msgid "Determining how to license my data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:49
-msgid "what data standards to publish data in"
+msgid "Deciding data standards to publish data in"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:50
-msgid "how to use the right infrastructure for making data available"
+msgid "Using the right infrastructure for making data available"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:51
-msgid "good management for an open data project"
+msgid "Managing an open data project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:52
-msgid "how to determine how often datasets should be released and updated"
+msgid "Determining how often datasets should be released and updated"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:53
-msgid "how to ensure continued data quality and integrity"
+msgid "Ensuring continued data quality and integrity"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:54
@@ -835,22 +873,22 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:56
 msgid ""
-"how to create incentives for users or the public to make productive use "
-"of the data"
+"Creating incentives for users or the public to make productive use of the"
+" data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:57
-msgid "how to identify and combine other sources of open data to achieve a goal"
+msgid "Identifying and combining other sources of open data to achieve a goal"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:58
-msgid "how to design a data collaborative"
+msgid "Designing a data collaborative"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:59
 msgid ""
-"how to express the value proposition of the open data datasets, including"
-" what problems can be solved with this data"
+"Expressing the value proposition of the open data datasets, including "
+"what problems can be solved with this data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:60
@@ -862,11 +900,11 @@ msgid "assessing effectiveness"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:62
-msgid "how to monitor how my data is being used"
+msgid "Monitoring how my data is being used"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:63
-msgid "how to measure the economic and/or social impact of opening up data"
+msgid "Measuring the economic and/or social impact of opening up data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:64
@@ -895,17 +933,15 @@ msgid "defining the problem"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:71
-msgid "how to define and express the problem addressed by the prize."
+msgid "Defining and expressing the problem addressed by the prize."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:72
-msgid ""
-"how to do rapid research to test the assumptions behind my problem "
-"definition"
+msgid "Doing rapid research to test the assumptions behind my problem definition"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:73
-msgid "how to develop metrics to use to measure progress"
+msgid "Developing metrics to measure progress"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:74
@@ -913,25 +949,25 @@ msgid "Designing for a Successful Prize"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:75
-msgid "deciding if a prize is the right tool"
+msgid "Deciding if a prize is the right tool"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:76
 msgid ""
-"how to decide when to use a prize-backed challenge rather than other "
-"options like conventional crowdsourcing"
+"Deciding when to use a prize-backed challenge rather than other options "
+"like conventional crowdsourcing"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:77
-msgid "how to determine whether a prize or a grand challenge is optimal"
+msgid "Determining whether a prize or a grand challenge is optimal"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:78
-msgid "how to decide whether to use financial or non-financial incentives"
+msgid "Deciding whether to use financial or non-financial incentives"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:79
-msgid "how to set the value of a prize"
+msgid "Setting the value of a prize"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:80
@@ -943,11 +979,11 @@ msgid "targeting the right participants"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:82
-msgid "how to identify would-be participating innovators"
+msgid "Identifying would-be participating innovators"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:83
-msgid "how to assess the the potential costs involved for them in participating"
+msgid "Assessing the potential costs involved for them in participating"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:84
@@ -959,29 +995,29 @@ msgid "rinning a prize-backed challenge"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:86
-msgid "how to fund a prize-backed challenge"
+msgid "Funding a prize-backed challenge"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:87
-msgid "how to create a plan for running the prize with defined milestones"
+msgid "Creating a plan for running the prize with defined milestones"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:88
 msgid ""
-"how to access outside contractors to support the design and "
-"implementation of the prizes"
+"Accessing outside contractors to support the design and implementation of"
+" the prizes"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:89
-msgid "how to decide how long the prize should run"
+msgid "Deciding how long the prize should run"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:90
-msgid "how to develop a communication strategy to get the word out"
+msgid "Developing a communication strategy to get the word out"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:91
-msgid "how to choose from the tools available to run a prize-backed challenge"
+msgid "Choosing from the tools available to run a prize-backed challenge"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:92
@@ -993,11 +1029,11 @@ msgid "judging a prize"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:94
-msgid "how to design assessment criteria"
+msgid "Designing assessment criteria"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:95
-msgid "how to select judges"
+msgid "Selecting judges"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:96
@@ -1009,11 +1045,12 @@ msgid "overcoming legal concerns"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:98
-msgid "how to determine ownership and copyright"
+msgid "Determining ownership and copyright"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:99
-msgid "how to navigate governmental endorsement and privacy concerns"
+#: /noi/app/templates/translate.tmp.html:316
+msgid "Navigating governmental endorsement and privacy concerns"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:100
@@ -1025,7 +1062,7 @@ msgid "what to do after a challenge"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:102
-msgid "how to translate winning entries into well-developed solutions"
+msgid "Translating winning entries into well-developed solutions"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:103
@@ -1068,47 +1105,47 @@ msgid ""
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:110
-msgid "How to identify a compelling goal for a citizen science project"
+msgid "Identifying a compelling goal for a citizen science project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:111
-msgid "How to identify and define the tasks for participants to do"
+msgid "Identifying and defining the tasks for participants to do"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:112
 msgid ""
-"How to decide the types of tasks to be considered when developing a "
-"citizen science project"
+"Deciding the types of tasks to be considered when developing a citizen "
+"science project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:113
-msgid "How to articulate intended outcomes of a project"
+msgid "Articulating the intended outcomes of a project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:114
-msgid "How to articulate how the tasks will advance a research field"
+msgid "Articulating how the tasks will advance a research field"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:115
-msgid "How to define the success of a project"
+msgid "Defining the success of a project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:116
-msgid "How to measure and evaluate the success of a project"
+msgid "Measuring and evaluating the success of a project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:117
 msgid ""
-"How to define and validate a protocol for an experiment and required data"
-" collection"
+"Defining and validating a protocol for an experiment and required data "
+"collection"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:118
-msgid "How to define a project in terms of time required and geographic range"
+msgid "Defining a project in terms of time required and geographic range"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:119
-msgid "How to identify funding opportunities for a project"
+msgid "Identifying funding opportunities for a project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:120
@@ -1120,37 +1157,37 @@ msgid "developing incentives to motivate participation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:122
-msgid "How to engage with and/or create a community for participants."
+msgid "Engaging with and/or creating a community for participants."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:123
-msgid "How to retain participants"
+msgid "Retaining participants"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:124
-msgid "How to address variations and skew in participation"
+msgid "Addressing variations and skew in participation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:125
-msgid "How to scale up participation"
+msgid "Scaling up participation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:126
-msgid "How to identify collaborators around the project"
+msgid "Identifying collaborators around the project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:127
-msgid "How to define and develop gamification in projects"
+msgid "Defining and developing gamification in projects"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:128
 msgid ""
-"How to identify what people are competing to do (e.g. quantity, "
-"frequency, quality of participation)"
+"Identifying what people are competing to do (e.g. quantity, frequency, "
+"quality of participation)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:129
-msgid "How to attribute contributions to the relevant parties"
+msgid "Attributing contributions to the relevant parties"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:130
@@ -1162,31 +1199,31 @@ msgid "giving participants the skills and information needed to participate well
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:132
-msgid "How to prepare individuals to participate in a project"
+msgid "Preparing individuals to participate in a project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:133
-msgid "How to develop an FAQ for participants to reference throughout the process"
+msgid "Developing an FAQ for participants to reference throughout the process"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:134
 msgid ""
-"How to prepare people within my institution to make use of citizen "
-"scientists’ input"
+"Preparing people within my institution to make use of citizen scientists’"
+" input"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:135
-msgid "How to assess data quality"
+msgid "Assessing data quality"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:136
-msgid "How to design/adapt protocols to assure high quality data"
+msgid "Designing or adapting protocols to assure high quality data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:137
 msgid ""
-"How to identify, choose and recruit participants capable of contributing "
-"high quality data"
+"Identifying, choosing and recruiting participants capable of contributing"
+" high quality data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:138
@@ -1199,34 +1236,32 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:140
 msgid ""
-"How to identify and decide on the optimal platform for sharing data "
+"Identifying and deciding on the optimal platform for sharing data "
 "submitted by participants, in a way that helps them interpret the data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:141
 msgid ""
-"How to identify and decide on the optimal platform for sharing data "
+"Identifying and deciding on the optimal platform for sharing data "
 "submitted by participants, with other researchers or data hubs"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:142
 msgid ""
-"How to evaluate and implement the appropriate use of technology for "
+"Evaluating and implementing the appropriate use of technology for "
 "collecting and reporting data given the task I am asking people to do"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:143
-msgid ""
-"How to interpret data being collected before the project has been "
-"completed"
+msgid "Interpreting data being collected before the project has been completed"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:144
-msgid "How to interpret data collected when the project has been completed"
+msgid "Interpreting data collected when the project has been completed"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:145
-msgid "How to archive data"
+msgid "Archiving data"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:146
@@ -1238,12 +1273,12 @@ msgid "using input gained through citizen science to drive decision making"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:148
-msgid "How to identify the societal relevance of your project"
+msgid "Identifying the societal relevance of your project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:149
 msgid ""
-"How to translate the outcomes of the project into desired changes: "
+"Translating the outcomes of the project into desired changes: "
 "(government, institutional, societal)"
 msgstr ""
 
@@ -1256,38 +1291,36 @@ msgid "legal concerns and barriers related to citizen science initiatives"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:152
-msgid "How to identify and mitigate privacy concerns relating to data collected"
+msgid "Identifying and mitigate privacy concerns relating to data collected"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:153
-msgid "How to ensure COPPA compliance in projects featuring minors"
+msgid "Ensuring COPPA compliance in projects featuring minors"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:154
-msgid ""
-"How to identify considerations related to participants sharing their "
-"locations"
+msgid "Identifying considerations related to participants sharing their locations"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:155
-msgid "How to ask people to license their contributions"
+msgid "Asking people to license their contributions"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:156
-msgid "How to license data that is going to be published"
+msgid "Licensing data that is going to be published"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:157
-msgid "How to draft a data policy"
+msgid "Drafting a data policy"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:158
-msgid "How to draft a privacy policy"
+msgid "Drafting a privacy policy"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:159
 msgid ""
-"How to draft other liability policies and educate potential participants "
+"Drafting other liability policies and educating potential participants "
 "about privacy issues"
 msgstr ""
 
@@ -1302,23 +1335,23 @@ msgid ""
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:162
-msgid "How to communicate results and milestones to participants"
+msgid "Communicating results and milestones to participants"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:163
-msgid "How to identify avenues for publishing results"
+msgid "Identifying avenues for publishing results"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:164
-msgid "How to determine when to publish results"
+msgid "Determining when to publish results"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:165
-msgid "How to ensure sustainability of project management"
+msgid "Ensuring sustainability of project management"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:166
-msgid "How to identify funding opportunities to sustain a project"
+msgid "Identifying funding opportunities to sustain a project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:168
@@ -1346,19 +1379,19 @@ msgid "data collection"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:175
-msgid "How to create incentives for people to provide data."
+msgid "Creating incentives for people to provide data."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:176
 msgid ""
-"How to use new methods (e.g. crowdsourcing) for collecting data from new "
+"Using new methods (e.g. crowdsourcing) for collecting data from new "
 "sources."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:177
 msgid ""
-"How to make sure that data is accurate, timely, and clean. (Data "
-"processing and conditioning)"
+"Making sure that data is accurate, timely, and clean. (Data processing "
+"and conditioning)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:178
@@ -1370,24 +1403,24 @@ msgid "data governance"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:180
-msgid "How to store data securely."
+msgid "Storing data securely."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:181
 msgid ""
-"How to transmit data securely so that when data is shared, the quality "
-"and integrity of the data is maintained."
+"Transmitting data securely so that when data is shared, the quality and "
+"integrity of the data is maintained."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:182
 msgid ""
-"How to share data appropriately within my institution and with third "
-"parties in a way that does not violate privacy and confidentiality.    "
+"Sharing data appropriately within my institution and with third parties "
+"in a way that does not violate privacy and confidentiality.    "
 "(Information Governance)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:183
-msgid "How to craft an information governance policy."
+msgid "Crafting an information governance policy."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:184
@@ -1400,24 +1433,24 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:186
 msgid ""
-"How to spot patterns and predict trends from existing data (predictive "
+"Spotting patterns and predicting trends from existing data (predictive "
 "analytics)."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:187
-msgid "How to formulate and test a hypothesis using data."
+msgid "Formulating and test a hypothesis using data."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:188
-msgid "How to design an experiment to test a data-driven hypothesis."
+msgid "Designing an experiment to test a data-driven hypothesis."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:189
-msgid "How to plot and visualize data in order to derive and communicate insight."
+msgid "Plotting and visualizing data in order to derive and communicate insight."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:190
-msgid "How to interpret and communicate what data says."
+msgid "Interpreting and communicating what data says."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:191
@@ -1450,20 +1483,20 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:196
 msgid ""
-"Clearly identify the rationale, purpose and objectives for community "
+"Clearly identifying the rationale, purpose and objectives for community "
 "engagement."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:197
 msgid ""
-"Find and interpret relevant legislative and/or policy requirements "
+"Finding and interpreting relevant legislative and/or policy requirements "
 "driving the need for engagement."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:198
 msgid ""
-"Identify who needs to be involved, including all stakeholders affected, "
-"impacted or interested in the engagement."
+"Identifying who needs to be involved, including all stakeholders "
+"affected, impacted or interested in the engagement."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:199
@@ -1476,44 +1509,46 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:201
 msgid ""
-"Identify and communicate incentives to participate, including anticipated"
-" outcomes."
+"Identifying and communicating incentives to participate, including "
+"anticipated outcomes."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:202
-msgid "Develop briefing materials and information to inform engagement."
+msgid "Developing briefing materials and information to inform engagement."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:203
-msgid "Use multiple dialog methods to engage stakeholders."
+msgid "Using multiple dialog methods to engage stakeholders."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:204
-msgid "Plan and deliver face-to-face deliberation."
+msgid "Planning and delivering face-to-face deliberation."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:205
-msgid "Plan and deliver a deliberative poll."
+msgid "Planning and delivering a deliberative poll."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:206
-msgid "Plan and deliver a citizen jury."
+msgid "Planning and delivering a citizen jury."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:207
-msgid "Plan and deliver a participatory budgeting process."
+msgid "Planning and delivering a participatory budgeting process."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:208
-msgid "Plan and deliver a charrette or scenario-planning exercise."
+msgid "Planning and delivering a charrette or scenario-planning exercise."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:209
-msgid "Develop an action/project plan with timeline to implement the engagement."
+msgid ""
+"Developing an action/project plan with timeline to implement the "
+"engagement."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:210
-msgid "Ensure accessibility of the engagement activity."
+msgid "Ensuring accessibility of the engagement activity."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:211
@@ -1528,32 +1563,32 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:213
 msgid ""
-"Use social media, digital and online tools to engage stakeholders as a "
+"Using social media, digital and online tools to engage stakeholders as a "
 "group."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:214
-msgid "Use social media, digital and online tools to conduct surveys."
+msgid "Using social media, digital and online tools to conduct surveys."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:215
 msgid ""
-"Plan and deliver an e-deliberation process like a 21st century town "
-"meeting."
+"Planning and delivering an e-deliberation process like a 21st century "
+"town meeting."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:216
-msgid "Plan and deliver open space technology."
+msgid "Planning and delivering open space technology."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:217
 msgid ""
-"Use digital and online tools to amplify engagement efforts and increase "
-"reach."
+"Using digital and online tools to amplify engagement efforts and increase"
+" reach."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:218
-msgid "Use digital and online tools to provide feedback to stakeholders."
+msgid "Using digital and online tools to provide feedback to stakeholders."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:219
@@ -1567,17 +1602,19 @@ msgid ""
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:221
-msgid "Capture and utilise relevant data related to all aspects of engagement."
+msgid ""
+"Capturing and utilising relevant data related to all aspects of "
+"engagement."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:222
 msgid ""
-"Create tools for providing clear feedback to participants and decision "
+"Creating tools for providing clear feedback to participants and decision "
 "makers."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:223
-msgid "Clearly and regularly report outcomes to participants and stakeholders."
+msgid "Clearly and regularly reporting outcomes to participants and stakeholders."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:224
@@ -1592,26 +1629,28 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:226
 msgid ""
-"Ensure that the learnings from a community engagement exercise get used "
-"to support continuous improvement within my organisation."
+"Ensuring that the learnings from a community engagement exercise get used"
+" to support continuous improvement within my organisation."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:227
-msgid "Increase organisational awareness of the value of community engagement."
+msgid "Increasing organisational awareness of the value of community engagement."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:228
-msgid "Develop and deliver appropriate training for staff across my organisation."
+msgid ""
+"Developing and delivering appropriate training for staff across my "
+"organisation."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:229
 msgid ""
-"<p>Across the world, governments are seeking to become more experimental"
-"  and evidence-based through the creation of internal innovation labs. "
-"The growing  movement of labs – which often focus on innovative tools and"
-" strategies, human-centered design, or both – is helping to uncover what "
-"works in practice in addressing public problems. </p> <p><b>Click on a "
-"link below to create an expertise profile.</b></p>\n"
+"<p>Governments are seeking to become more experimental and evidence-based"
+" through the creation of internal innovation labs. The growing labs "
+"movement is helping to uncover what works in practice. For questionnaires"
+" about the community engagement and crowdsourcing methods used by many "
+"Labs, see those dedicated questionnaires. </p> <p><b>Click on a link "
+"below to create an expertise profile.</b></p>\n"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:231
@@ -1628,26 +1667,28 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:234
 msgid ""
-"how to articulate the value proposition of my Lab and the need for "
-"experimentation."
+"Articulating the value proposition of my Lab and the need for "
+"experimentation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:235
-msgid "how to develop a plan for my Lab"
+msgid ""
+"Clearly defining the problems that my Lab is supposed to solve, and the "
+"assumptions it is going to test"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:236
 msgid ""
-"how to clearly articulate the problems that my Lab is supposed to solve, "
-"and the assumptions it is going to test"
+"Identifying the audience to be convinced and how to persuade them to "
+"support the Lab"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:237
-msgid "how to define the service lines for my Lab"
+msgid "Defining the different products and services my Lab will deliver"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:238
-msgid "how to articulate a clear theory of change for my Lab"
+msgid "Articulating a clear theory of change for my Lab"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:239
@@ -1662,31 +1703,31 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:241
 msgid ""
-"how to define an engagement model for my Lab vis a vis other parts of my "
+"Defining an engagement model for my Lab vis a vis other parts of my "
 "organisation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:242
 msgid ""
-"how to define a handover protocol between my Lab and other parts of the "
+"Defining a handover protocol between my Lab and other parts of the "
 "organisation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:243
 msgid ""
-"how to define the roles and Terms of Reference staff need for the success"
-" of my Lab"
+"Defining the roles and Terms of Reference staff need for the success of "
+"my Lab"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:244
 msgid ""
-"how to cost the services for my Lab and define a business model that "
+"Costing the services for my Lab and defining a business model that "
 "guarantees long term sustainability"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:245
 msgid ""
-"how to effectively argue for the most effective reporting lines and "
+"Effectively arguing for the most effective reporting lines and "
 "organisational placement for my Lab"
 msgstr ""
 
@@ -1701,25 +1742,25 @@ msgid ""
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:248
-msgid "how to define metrics for my Lab to demonstrate its impact"
+msgid "Defining metrics for my Lab to demonstrate its impact"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:249
-msgid "how to select and implement the methodologies that my Lab will promote"
+msgid "Selecting and implementing the methods that my Lab will promote"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:250
-msgid "how to train others in Lab methodologies and tools"
+msgid "Training others in Lab methods and tools"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:251
-msgid "how to manage a Lab project using an agile development approach"
+msgid "Managing a Lab project using an agile development approach"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:252
 msgid ""
-"how to track, evidence and iterate our programmes to ensure relevance and"
-" generate timely results"
+"TrackIng evidence and iterating programs to ensure relevance and generate"
+" timely results"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:253
@@ -1727,17 +1768,17 @@ msgid "Staffing and Resources"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:254
-msgid "What you can share about managing lab staff and budgets"
+msgid "What you can share about managing lab staff and budgets."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:255
-msgid "how to effectively recruit a group of early champions to support the Lab"
+msgid "Effectively recruiting a group of early champions to support the Lab"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:256
 msgid ""
-"how to manage resources, including people, time and budget to ensure "
-"value for money"
+"Managing resources, including people, time and budget to ensure value for"
+" investment"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:257
@@ -1752,20 +1793,20 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:259
 msgid ""
-"how to develop a portfolio of demonstration projects that can demonstrate"
-" tangible results even in the face of skepticism"
+"Developing a portfolio of demonstration projects that can show tangible "
+"results even in the face of skepticism"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:260
 msgid ""
-"how to research, pilot and test new programmes based on the insights and "
+"Researching, piloting and testing new programs based on the insights and "
 "knowhow gathered from previous ones"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:261
 msgid ""
-"how to capture, articulate and share the narrative around the impact and "
-"outcomes of lab programmes, i.e. through case studies"
+"Capturing, articulating and sharing the narrative around the impact and "
+"outcomes of lab programs, i.e. through case studies"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:262
@@ -1796,18 +1837,18 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:267
 msgid ""
-"How to identify the crowd I want to participate (e.g. general public, "
+"Identifying the crowd I want to participate (e.g. general public, "
 "informed experts, participants with a particular skill)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:268
 msgid ""
-"How to enable members of the crowd to participate (e.g. creating "
-"profiles, defining roles, sharing supporting materials)"
+"Enabling members of the crowd to participate (e.g. creating profiles, "
+"defining roles, sharing supporting materials)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:269
-msgid "How to encourage ongoing participation"
+msgid "Encouraging ongoing participation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:270
@@ -1820,37 +1861,37 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:272
 msgid ""
-"How to ask the crowd to perform a specific task (e.g. design a product, "
-"tag photos, classify information, analyse information)"
+"Asking the crowd to perform a specific task (e.g. design a product, tag "
+"photos, classify information, analyse information)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:273
 msgid ""
-"How to ask the crowd to collect and share data (e.g. report a water leak,"
-" a case of corruption, quality of the air in their city)"
+"Asking the crowd to collect and share data (e.g. report a water leak, a "
+"case of corruption, quality of the air in their city)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:274
 msgid ""
-"How to ask the crowd for their opinion (e.g. vote on a design contest, "
-"opine on a policy recommendation)"
+"Asking the crowd for their opinion (e.g. vote on a design contest, opine "
+"on a policy recommendation)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:275
 msgid ""
-"How to ask the crowd for new ideas (e.g. solve a public problem, generate"
-" ideas to reduce unnecessary government spending)"
+"Asking the crowd for new ideas (e.g. solve a public problem, generate "
+"ideas to reduce unnecessary government spending)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:276
 msgid ""
-"How to ask the crowd for funds (e.g. donate money to help build a park, "
+"Asking the crowd for funds (e.g. donate money to help build a park, "
 "funding a municipal bond)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:277
 msgid ""
-"How to ask the crowd for referrals (e.g. share information with their "
+"Asking the crowd for referrals (e.g. share information with their "
 "personal or professional networks, provide recommendations of other "
 "members of the crowd to include in an initiative)"
 msgstr ""
@@ -1867,42 +1908,42 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:280
 msgid ""
-"How to decide when to use crowdsourcing rather than other options like "
-"the conventional top-down process of decision-making"
+"Deciding when to use crowdsourcing rather than other options like the "
+"conventional top-down process of decision-making"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:281
 msgid ""
-"How to identify the gaps in expertise that can be minimised through the "
+"Identifying the gaps in expertise that can be minimised through the "
 "participation of the crowd"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:282
 msgid ""
-"How to design a crowdsourcing strategy that provides value to the "
+"Designing a crowdsourcing strategy that provides value to the "
 "participants either through the outcome or the participation itself"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:283
 msgid ""
-"How to connect the efforts of the crowd to enable them to aggregate and "
-"build off each other’s work"
+"Connecting the efforts of the crowd to enable them to aggregate and build"
+" off each other’s work"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:284
 msgid ""
-"How to determine the institutional resources required to implement a "
+"Determining the institutional resources required to implement a "
 "successful crowdsourcing initiative"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:285
 msgid ""
-"How to assess the potential time and resources required from the crowd in"
-" order to participate"
+"Assessing the potential time and resources required from the crowd in "
+"order to participate"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:286
-msgid "How to assess the effectiveness of using crowdsourcing"
+msgid "Assessing the effectiveness of using crowdsourcing"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:287
@@ -1914,47 +1955,47 @@ msgid "What can you share about providing the right incentives for participation
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:289
-msgid "How to define the scope of the crowd’s participation"
+msgid "Defining the scope of the crowd’s participation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:290
-msgid "How to provide feedback for participation"
+msgid "Providing feedback for participation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:291
 msgid ""
-"How to decide whether to use financial or non-financial incentives (or a "
-"mix of incentives)"
+"Deciding whether to use financial or non-financial incentives (or a mix "
+"of incentives)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:292
-msgid "How to determine whether the use of a competition is beneficial"
+msgid "Determining whether the use of a competition is beneficial"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:293
-msgid "How to determine whether the use of reputation systems is beneficial"
+msgid "Determining whether the use of reputation systems is beneficial"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:294
-msgid "How to use altruistic or community building incentives"
+msgid "Using altruistic or community building incentives"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:295
-msgid "How to design recreational incentives (i.e. gamification)"
+msgid "Designing recreational incentives (i.e. gamification)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:296
-msgid "How to identify which particular incentive is working and why"
+msgid "Identifying which particular incentive is working and why"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:297
-msgid "How to monitor and adapt the incentives at the individual or crowd levels"
+msgid "Monitoring and adapting the incentives at the individual or crowd levels"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:298
 msgid ""
-"How to tackle the possible credibility and authenticity issues involved "
-"in the input received from the crowd"
+"Tackling the possible credibility and authenticity issues involved in the"
+" input received from the crowd"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:299
@@ -1969,42 +2010,42 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:301
 msgid ""
-"How to create a plan for running the crowdsourcing project with defined "
+"Creating a plan for running the crowdsourcing project with defined "
 "milestones"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:302
 msgid ""
-"How to target the right audience to attract the desired crowd and "
+"Targeting the right audience to attract the desired crowd and "
 "participation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:303
-msgid "How to choose a platform to do the crowdsourcing project"
+msgid "Choosing a platform to do the crowdsourcing project"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:304
 msgid ""
-"How to access outside contractors and/or intermediaries to support the "
-"design and implementation of the desired crowdsourcing platform"
+"Accessing outside contractors and/or intermediaries to support the design"
+" and implementation of the desired crowdsourcing platform"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:305
 msgid ""
-"How to build a team within an institution that supports the project from "
+"Building a team within an institution that supports the project from "
 "initial idea through implementation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:306
-msgid "How to develop a communication strategy to target the right audience"
+msgid "Developing a communication strategy to target the right audience"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:307
-msgid "How to connect members of the crowd to each other when appropriate"
+msgid "Connecting members of the crowd to each other when appropriate"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:308
-msgid "How to prepare to utilize or implement the output of the crowd"
+msgid "Preparing to utilize or implement the output of the crowd"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:309
@@ -2016,13 +2057,13 @@ msgid "What can you share about defining the right mechanism of quality control"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:311
-msgid "How to ensure high-quality and accurate participation from the crowd"
+msgid "Ensuring high-quality and accurate participation from the crowd"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:312
 msgid ""
-"How to leverage crowd participants to evaluate crowd contributions "
-"(through voting, rating or peer-review)"
+"Leveraging crowd participants to evaluate crowd contributions (through "
+"voting, rating or peer-review)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:313
@@ -2034,104 +2075,254 @@ msgid "What can you share about addressing potential legal and ethical tensions"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:315
-msgid "How to determine ownership and copyright of crowd contributions"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:316
-msgid "How to navigate governmental endorsement and privacy concerns"
+msgid "Determining ownership and copyright of crowd contributions"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:317
-msgid ""
-"How to navigate potential tensions regarding free speech and public "
-"record laws"
+msgid "Navigating potential tensions regarding free speech and public record laws"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:318
-msgid "I can refer you"
-msgstr ""
-
-#: /noi/app/templates/translate.tmp.html:319
-msgid "I can do it"
+msgid ""
+"<p>Randomized Control Trials (RCTs) — comparing the outcomes of an "
+"intervention with a particular group against another randomly selected "
+"group that does not receive the intervention — are a rigorous and "
+"inexpensive way to find what works. Increasingly, public institutions are"
+" testing the effectiveness of services, for example, by delivering it two"
+" different ways.</p> <p><b>Share your expertise</b></p>\n"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:320
-msgid "I can explain"
+msgid "Nudges: Randomized Control Trials (RCTs)"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:321
-msgid "I want to learn"
+msgid "Setting Up an Evaluation"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:322
-msgid "Non Profit"
+msgid ""
+"How to build quantitative evaluation into a program from the outset and "
+"identify the right things to test."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:323
-msgid "Government"
+msgid "Identifying an empirically testable question."
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:324
-msgid "Private Sector"
+msgid ""
+"Identifying an evaluation model that allows for causal inference as to "
+"whether the test worked"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:325
-msgid "Other"
+msgid "Identifying data to evaluate using the evaluation model"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:326
+msgid "Getting organizational approval for conducting an evaluation of this type"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:327
+msgid "Embedding evaluation within the program without undue disruption"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:328
+msgid "Designing and Implementing an Evaluation"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:329
+msgid "How to design and launch an evaluation."
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:330
+msgid "Using randomization to create a robust control group for comparison"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:331
+msgid "Ensuring that evaluation is statistically significant"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:332
+msgid "Working with small sample sizes and imperfect conditions"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:333
+msgid "Choosing which group gets which version of the intervention"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:334
+msgid ""
+"Translating the technical aspects of the evaluation into practical "
+"instructions for those involved in implementation"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:335
+msgid "Determining the right method for analysing the results"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:336
+msgid "Writing a credible plan for analysing the data in advance of launching"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:337
+msgid "Monitoring data quality throughout the trial"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:338
+msgid ""
+"Documenting and accounting for any contamination that happens in the "
+"implementation"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:339
+msgid "Handling data safely and securely"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:340
+msgid "Measuring impact"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:341
+msgid ""
+"How to translate the findings from the experiment into better policies "
+"and services."
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:342
+msgid "Cleaning the data that comes in"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:343
+msgid "Analyzing the results and performing robustness checks"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:344
+msgid ""
+"Interpreting the results and reporting the findings in an accessible and "
+"accurate manner"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:345
+msgid ""
+"Making key concepts such as statistical significance and Type I and II "
+"errors understandable to non-statisticians"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:346
+msgid ""
+"Helping the organisation use the results to make strategic decisions "
+"about how to work and invest in future"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:347
+msgid "I can connect others"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:348
+msgid "I can do it"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:349
+msgid "I can explain it"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:350
+msgid "I want to learn"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:351
+msgid "Non Profit"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:352
+msgid "Government"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:353
+msgid "Private Sector"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:354
+msgid "Other"
+msgstr ""
+
+#: /noi/app/templates/translate.tmp.html:355
 msgid "Academia"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:93
-msgid "Languages:"
+#: /noi/app/templates/user-profile.html:3
+#, python-format
+msgid "%(user)s's Profile"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:101
-msgid "No language information available."
+#: /noi/app/templates/user-profile.html:10
+msgid "Overview"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:105
-msgid "Domain(s) of expertise:"
+#: /noi/app/templates/user-profile.html:11
+msgid "Expertise"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:113
-msgid "No domain information available."
-msgstr ""
-
-#: /noi/app/templates/user-profile.html:117
+#: /noi/app/templates/user-profile.html:68
 msgid "Projects I have done"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:121
+#: /noi/app/templates/user-profile.html:72
 msgid "No project information provided."
 msgstr ""
 
-#: /noi/app/templates/security/_menu.html:2
+#: /noi/app/templates/security/_menu_new.html:2
 msgid "Menu"
 msgstr ""
 
-#: /noi/app/templates/security/_menu.html:9
+#: /noi/app/templates/security/_menu_new.html:4
+#: /noi/app/templates/security/login_user.html:3
+#: /noi/app/templates/security/send_login.html:13
+msgid "Login"
+msgstr ""
+
+#: /noi/app/templates/security/_menu_new.html:6
+#: /noi/app/templates/security/forgot_password.html:3
 msgid "Forgot password"
 msgstr ""
 
-#: /noi/app/templates/security/_menu.html:12
+#: /noi/app/templates/security/_menu_new.html:9
 msgid "Confirm account"
 msgstr ""
 
-#: /noi/app/templates/security/change_password.html:13
+#: /noi/app/templates/security/change_password.html:3
+#: /noi/app/templates/security/change_password.html:14
 msgid "Change password"
 msgstr ""
 
-#: /noi/app/templates/security/forgot_password.html:13
+#: /noi/app/templates/security/forgot_password.html:14
 msgid "Send password reset instructions"
 msgstr ""
 
-#: /noi/app/templates/security/reset_password.html:13
-msgid "Reset password"
+#: /noi/app/templates/security/login_user.html:14
+msgid "Log in with your email address"
 msgstr ""
 
-#: /noi/app/templates/security/send_confirmation.html:13
-msgid "Resend confirmation instructions"
+#: /noi/app/templates/security/login_user.html:27
+msgid "Forgot your password?"
+msgstr ""
+
+#: /noi/app/templates/security/login_user.html:30
+msgid "Don't have an account?"
+msgstr ""
+
+#: /noi/app/templates/security/register_user.html:3
+msgid "Register"
+msgstr ""
+
+#: /noi/app/templates/security/register_user.html:14
+msgid "Sign up with your email address"
+msgstr ""
+
+#: /noi/app/templates/security/reset_password.html:3
+#: /noi/app/templates/security/reset_password.html:14
+msgid "Reset password"
 msgstr ""
 
