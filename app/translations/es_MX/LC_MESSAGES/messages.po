@@ -26,7 +26,7 @@ msgstr "Elija su país"
 
 #: /noi/app/forms.py:80 /noi/app/forms.py:118
 msgid "Fields of Work"
-msgstr ""
+msgstr "Áreas de trabajo"
 
 #: /noi/app/forms.py:105
 #, fuzzy
@@ -90,12 +90,12 @@ msgstr "Reestablecer contraseña"
 #: /noi/app/forms.py:224 /noi/app/forms.py:241
 #, fuzzy
 msgid "Retype Password"
-msgstr "Reestablecer contraseña"
+msgstr "Reingresar contraseña"
 
 #: /noi/app/forms.py:237
 #, fuzzy
 msgid "New Password"
-msgstr "Cambiar contraseña"
+msgstr "Nueva contraseña"
 
 #: /noi/app/forms.py:244 /noi/app/templates/settings.html:8
 #, fuzzy
@@ -109,11 +109,11 @@ msgstr "No cuenta con la autorización para ver este recurso."
 #: /noi/app/l10n.py:34
 #, python-format
 msgid "%(email)s is already associated with an account."
-msgstr "%(email)s está actualmente asociado a una cuenta."
+msgstr "%(email)s ya está asociado a una cuenta."
 
 #: /noi/app/l10n.py:36
 msgid "Password does not match"
-msgstr "La contraseña es incorrecta"
+msgstr "La contraseña no coincide"
 
 #: /noi/app/l10n.py:38
 msgid "Passwords do not match"
@@ -126,18 +126,12 @@ msgstr "Están prohibidas las redirecciones fuera del sitio."
 #: /noi/app/l10n.py:42
 #, python-format
 msgid "Instructions to reset your password have been sent to %(email)s."
-msgstr ""
-"Las instrucciones para reestablecer su contraseña han sido enviadas a "
-"%(email)s"
+msgstr "Las instrucciones para reestablecer su contraseña han sido enviadas a %(email)s"
 
 #: /noi/app/l10n.py:44
 #, python-format
-msgid ""
-"You did not reset your password within %(within)s. New instructions have "
-"been sent to %(email)s."
-msgstr ""
-"No reestableció su contraseña en %(within)s. Nuevas instrucciones han "
-"sido enviadas a %(email)s."
+msgid "You did not reset your password within %(within)s. New instructions have been sent to %(email)s."
+msgstr "No reestableció su contraseña en %(within)s. Hemos enviado nuevas instrucciones a %(email)s."
 
 #: /noi/app/l10n.py:47
 #, fuzzy
@@ -146,12 +140,8 @@ msgstr "Enlace para reestablecer contraseña inválido."
 
 #: /noi/app/l10n.py:49
 #, python-format
-msgid ""
-"You did not login within %(within)s. New instructions to login have been "
-"sent to %(email)s."
-msgstr ""
-"No inició sesión en %(within)s. Nuevas instrucciones de inicio de sesión "
-"han sido enviadas a %(email)s."
+msgid "You did not login within %(within)s. New instructions to login have been sent to %(email)s."
+msgstr "No inició sesión en %(within)s. Hemos enviado nuevas instrucciones de inicio de sesión a %(email)s."
 
 #: /noi/app/l10n.py:52
 #, python-format
@@ -164,7 +154,7 @@ msgstr "Enlace de inicio de sesión inválido"
 
 #: /noi/app/l10n.py:56
 msgid "Account is disabled."
-msgstr "Su cuenta ha sido deshabilitada."
+msgstr "Su cuenta está deshabilitada."
 
 #: /noi/app/l10n.py:58
 msgid "Email not provided"
@@ -177,7 +167,7 @@ msgstr "Dirección de correo electrónico inválida"
 
 #: /noi/app/l10n.py:62
 msgid "Password not provided"
-msgstr "Contraseña no proporcionada"
+msgstr "No se proporcionó contraseña"
 
 #: /noi/app/l10n.py:64
 msgid "No password is set for this user"
@@ -201,16 +191,12 @@ msgid "You have successfuly logged in."
 msgstr "Ha iniciado sesión de forma exitosa."
 
 #: /noi/app/l10n.py:74
-msgid ""
-"You successfully reset your password and you have been logged in "
-"automatically."
-msgstr ""
-"Ha restablecido su contraseña de forma exitosa y ha iniciado sesión de "
-"forma automática."
+msgid "You successfully reset your password and you have been logged in automatically."
+msgstr "Ha restablecido su contraseña de forma exitosa y ha iniciado sesión de forma automática."
 
 #: /noi/app/l10n.py:77
 msgid "Your new password must be different than your previous password."
-msgstr "Su nueva contrseña debe ser distinta a su anterior contraseña."
+msgstr "Su nueva contraseña debe ser distinta a su contraseña anterior."
 
 #: /noi/app/l10n.py:79
 msgid "You successfully changed your password."
@@ -262,18 +248,16 @@ msgstr "Proyectos"
 
 #: /noi/app/models.py:109
 msgid "Add name and url or short description of any current work projects."
-msgstr ""
-"Agregue el nombre y un url o una breve descripción de sus proyectos de "
-"trabajo actuales."
+msgstr "Agregue el nombre y una url o breve descripción de sus proyectos de trabajo actuales."
 
 #: /noi/app/views.py:128
 msgid "Your profile has been saved."
-msgstr ""
+msgstr "Hemos guardado su perfil."
 
 #: /noi/app/views.py:131
 #, fuzzy
 msgid "Could not save, please correct errors."
-msgstr "No se pudo guardar, por favor corrija los siguientes errores"
+msgstr "No se pudo guardar, por favor corrija los errores"
 
 #: /noi/app/views.py:250
 msgid "Could not save, please correct errors below"
@@ -281,7 +265,7 @@ msgstr "No se pudo guardar, por favor corrija los siguientes errores"
 
 #: /noi/app/views.py:478
 msgid "You must log in to post a message."
-msgstr ""
+msgstr "Usted debe haber iniciado sesión para publicar un mensaje."
 
 #: /noi/app/views.py:480
 msgid "We need your name before you can post a message."
@@ -294,21 +278,21 @@ msgstr "¡Mensaje publicado!"
 #: /noi/app/views.py:554
 #, python-format
 msgid "%(user)s would like you to join the network!"
-msgstr ""
+msgstr "%(user)s quieren que te unas a la red"
 
 #: /noi/app/views.py:558
 #, python-format
 msgid "Just visit %(url)s."
-msgstr ""
+msgstr "Simplemente visita %(url)s"
 
 #: /noi/app/views.py:562
 #, fuzzy
 msgid "Invitation sent!"
-msgstr "Servicios Sanitarios"
+msgstr "¡Invitación enviada!"
 
 #: /noi/app/views.py:565
 msgid "Your form submission was invalid."
-msgstr ""
+msgstr "Su envío del formulario fue inválido."
 
 #: /noi/app/templates/__base_new__.html:13
 #: /noi/app/templates/__base_ui__.html:8 /noi/app/templates/main.html:3
@@ -319,21 +303,21 @@ msgstr "Red de Innovadores"
 
 #: /noi/app/templates/__base_ui__.html:22
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: /noi/app/templates/__base_ui__.html:26
 msgid "Match Me"
-msgstr ""
+msgstr "Conéctame"
 
 #: /noi/app/templates/__base_ui__.html:30 /noi/app/templates/search.html:3
 #: /noi/app/templates/search.html:37
 #, fuzzy
 msgid "Find Innovators"
-msgstr "Encuentre innovadores como usted"
+msgstr "Encuentra innovadores"
 
 #: /noi/app/templates/__base_ui__.html:34
 msgid "View Network"
-msgstr ""
+msgstr "Mira la Red"
 
 #: /noi/app/templates/__base_ui__.html:38
 #: /noi/app/templates/__base_ui__.html:74
@@ -343,23 +327,19 @@ msgstr "Comentarios y Sugerencias"
 
 #: /noi/app/templates/__base_ui__.html:48
 msgid "Post an update"
-msgstr ""
+msgstr "Publica una actualización"
 
 #: /noi/app/templates/__base_ui__.html:52
-msgid ""
-"Have a question to pose to the whole community? Need help with a task? "
-"Ask the Network!"
-msgstr ""
+msgid "Have a question to pose to the whole community? Need help with a task? Ask the Network!"
+msgstr "¿Tienes una pregunta para toda la comunidad? ¿Necesitas ayuda con una labor? ¡Pregúntale a la Red!" 
 
 #: /noi/app/templates/__base_ui__.html:53
-msgid ""
-"Does anyone have experience with prize-backed challenges relating to "
-"increasing literacy?"
-msgstr ""
+msgid "Does anyone have experience with prize-backed challenges relating to increasing literacy?"
+msgstr "¿Alguien tiene experiencia con concursos premiados que busquen aumentar la alfabetización?"
 
 #: /noi/app/templates/__base_ui__.html:54
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: /noi/app/templates/__base_ui__.html:69 /noi/app/templates/my-profile.html:3
 msgid "My Profile"
@@ -367,16 +347,16 @@ msgstr "Mi Perfil"
 
 #: /noi/app/templates/__base_ui__.html:73 /noi/app/templates/settings.html:5
 msgid "Settings"
-msgstr ""
+msgstr "Ajustes"
 
 #: /noi/app/templates/__base_ui__.html:76 /noi/app/templates/invite.html:3
 #: /noi/app/templates/invite.html:37
 msgid "Invite Someone"
-msgstr ""
+msgstr "Invita a alguien"
 
 #: /noi/app/templates/__base_ui__.html:77
 msgid "FAQ"
-msgstr ""
+msgstr "Preguntas Frecuentes"
 
 #: /noi/app/templates/__base_ui__.html:78 /noi/app/templates/about.html:3
 msgid "About"
@@ -385,56 +365,54 @@ msgstr "Acerca de"
 #: /noi/app/templates/__base_ui__.html:79
 #, fuzzy
 msgid "Sign Out"
-msgstr "Registrarse"
+msgstr "Salir de la sesión"
 
 #: /noi/app/templates/_complete_profile_cta.html:3
 msgid "Complete Your Profile"
-msgstr ""
+msgstr "Complete Su Perfil"
 
 #: /noi/app/templates/_complete_profile_cta.html:6
-msgid ""
-"Let others know your skills & expertise and also get more relevant "
-"matches!"
-msgstr ""
+msgid "Let others know your skills & expertise and also get more relevant matches!"
+msgstr "¡Deja que otros conozcan tus habilidades y experiencia y obtén conexiones más relevantes!"
 
 #: /noi/app/templates/_profile-expertise-match-area.html:27
 #, python-format
 msgid "%(user)s can <strong>explain</strong>"
-msgstr ""
+msgstr "%(user)s lo pueden <strong>explicar</strong>"
 
 #: /noi/app/templates/_profile-expertise-match-area.html:31
 #, python-format
 msgid "%(user)s can <strong>do it</strong>"
-msgstr ""
+msgstr "%(user)s lo pueden <strong>hacer</strong>"
 
 #: /noi/app/templates/_profile-expertise-match-area.html:35
 #, python-format
 msgid "%(user)s can <strong>connect you</strong>"
-msgstr ""
+msgstr "%(user)s te pueden <strong>referir</strong>"
 
 #: /noi/app/templates/_profile-expertise-match-area.html:39
 #, python-format
 msgid "%(user)s wants to <strong>learn</strong>"
-msgstr ""
+msgstr "%(user)s quieren <strong>aprender</strong>"
 
 #: /noi/app/templates/_profile-expertise-match.html:6
 #, python-format
 msgid "You match on %(num)d question"
 msgid_plural "You match on %(num)d questions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ustedes son compatibles en %(num)d pregunta"
+msgstr[1] "Ustedes son compatibles en %(num)d preguntas"
 
 #: /noi/app/templates/_profile-progress-item.html:10
 #, python-format
 msgid "%(num)d question left"
 msgid_plural "%(num)d questions left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Queda %(num)d pregunta"
+msgstr[1] "Quedan %(num)d preguntas""
 
 #: /noi/app/templates/_profile-questionnaire.html:36
 #: /noi/app/templates/register-step-3.html:71
 msgid "Skip this question"
-msgstr ""
+msgstr "Saltar esta pregunta"
 
 #: /noi/app/templates/about.html:8
 #, fuzzy
@@ -447,101 +425,93 @@ msgstr "Aviso de Privacidad"
 
 #: /noi/app/templates/about.html:16
 #, fuzzy, python-format
-msgid ""
-"All information you supply is publicly visible and is used solely for the"
-" purpose for which the site is intended. For questions about user "
-"privacy, please contact %(contact_link)s."
-msgstr ""
-"Toda la información que proporcione será públicamente visible y se usará "
-"con el único objetivo para el que el sitio fue creado. Para saber más del"
-" aviso de privacidad, por favor escriba a <a "
+msgid "All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact %(contact_link)s."
+msgstr "Toda la información que proporcione será públicamente visible y se usará con el único objetivo para el que el sitio fue creado. Para saber más del aviso de privacidad, por favor escriba a %(contact_link)s."
 "href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 
 #: /noi/app/templates/activity.html:12
 msgid "Activity"
-msgstr ""
+msgstr "Actividad"
 
 #: /noi/app/templates/activity.html:13
 msgid "Most Connected"
-msgstr ""
+msgstr "Más Conectados"
 
 #: /noi/app/templates/activity.html:14
 msgid "Most Complete Profiles"
-msgstr ""
+msgstr "Perfiles Más Completos"
 
 #: /noi/app/templates/activity.html:18
 msgid "My Profile Progress"
-msgstr ""
+msgstr "Mi avance de Perfil"
 
 #: /noi/app/templates/activity.html:47
 #, python-format
 msgid "%(user)s shared:"
-msgstr ""
+msgstr "%(user)s compartidos"
 
 #: /noi/app/templates/activity.html:51
 msgid "Reply via e-mail"
-msgstr ""
+msgstr "Responde por correo electrónico"
 
 #: /noi/app/templates/activity.html:58
 #, python-format
 msgid "%(user)s joined NOI."
-msgstr ""
+msgstr "%(user)s se unieron a NOI."
 
 #: /noi/app/templates/activity.html:62
 #, python-format
 msgid "+%(num)d new connection made in NOI."
 msgid_plural "+%(num)d new connections made in NOI."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "+%(num)d nueva conexión hecha en NOI."
+msgstr[1] "+%(num)d nuevas conexiones hechas en NOI."
 
 #: /noi/app/templates/activity.html:63
 #, python-format
 msgid "%(total)s connections!"
-msgstr ""
+msgstr "¡%(total)s conexiones!"
 
 #: /noi/app/templates/activity.html:82
 #, fuzzy, python-format
 msgid "%(num)d Connection"
 msgid_plural "%(num)d Connections"
-msgstr[0] "recolección de datos"
-msgstr[1] ""
+msgstr[0] "%(num)d conexión"
+msgstr[1] "%(num)d conexiones"
 
 #: /noi/app/templates/activity.html:122
 #, python-format
 msgid "Welcome <strong>%(first_name)s</strong>!"
-msgstr ""
+msgstr "Bienvenido/a <strong>%(first_name)s</strong>!"
 
 #: /noi/app/templates/activity.html:123
-msgid ""
-"You can <strong>meet your top matches</strong> based on your skills and "
-"interests."
-msgstr ""
+msgid "You can <strong>meet your top matches</strong> based on your skills and interests."
+msgstr "Puedes <strong>conocer a tus conexiones más importantes</strong> según tus habilidades e intereses."
 
 #: /noi/app/templates/activity.html:124 /noi/app/templates/activity.html:131
 #: /noi/app/templates/register-step-2.html:21
 #: /noi/app/templates/register-step-3.html:49
 msgid "Next"
-msgstr ""
+msgstr "Siguiente"
 
 #: /noi/app/templates/activity.html:130
 msgid "You can also <strong>browse innovators</strong> by skill area!"
-msgstr ""
+msgstr "¡También puedes <strong>buscar innnovadores</strong> por tipo de habilidad!"
 
 #: /noi/app/templates/activity.html:137
 msgid "Don't forget to <strong>update your profile</strong>."
-msgstr ""
+msgstr "No te olvides de <strong>actualizar tu perfil</strong>."
 
 #: /noi/app/templates/activity.html:138
 msgid "The more questions you answer, the more relevant your matches."
-msgstr ""
+msgstr "Mientras más preguntas respondas, más relevantes serán tus conexiones."
 
 #: /noi/app/templates/activity.html:139
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: /noi/app/templates/faq.html:3
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Preguntas Frecuentes"
 
 #: /noi/app/templates/feedback.html:3
 msgid "Feedback"
@@ -557,11 +527,11 @@ msgstr "Este formato requiere de JavaScript para completarse."
 
 #: /noi/app/templates/feedback.html:27
 msgid "Thanks for submitting our form!"
-msgstr "¡Muchas gracias por enviar su formato!"
+msgstr "¡Muchas gracias por enviar su formulario!"
 
 #: /noi/app/templates/invite.html:39
 msgid "Suggest someone to join the network"
-msgstr ""
+msgstr "Sugiérele a alguien unirse a la red"
 
 #: /noi/app/templates/invite.html:47
 msgid "Invite"
