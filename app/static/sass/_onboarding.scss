@@ -37,6 +37,12 @@
             margin-bottom: 10px;
         }
 
+        .b-dropdown {
+            select {
+                background-color: $white-20;
+            }
+        }
+
         label {
             color: black;
             display: block;
