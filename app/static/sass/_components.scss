@@ -74,6 +74,8 @@ textarea {
     font-weight: 600;
     letter-spacing: 1px;
     box-shadow: 0 0 5px $gray-10;
+    text-align: center;
+    display: block;
 
     @include breakpoint($mobile) { display: block; }   
 }
