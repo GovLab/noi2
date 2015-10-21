@@ -85,8 +85,14 @@
 
     .e-actions {
         color: $gray-40;
-        
+
         &:hover { color: $blue; }
+
+        .e-action-label {
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 4px;
+        }
     }
 
     .e-feed-profile {
