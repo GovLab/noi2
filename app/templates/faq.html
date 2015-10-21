@@ -35,7 +35,7 @@
         <li class="e-faq-item">
             <p class="e-question">How will you build and improve Network of Innovators?</p>
             <p class="e-answer">An expert network focused on enabling the exchange of knowledge requires participation from both people looking to find expertise and those ready to share what they know. To ensure that NoI reaches this optimal level of engagement – and continues to grow and evolve – the GovLab is conducting ongoing outreach to governance innovators at relevant conferences and events, through online media channels, and through direct outreach to innovation champions in institutions throughout the world.</p>
-            <p class="e-answer">To invite an innovator you know to join NoI, <a href="{{ url_for('views.invite') }}">click here</a>.</p>
+            <p class="e-answer">You can <a href="{{ url_for('views.invite') }}">invite an innovator</a> you know to join NoI.</p>
         </li>
         
         <li class="e-faq-item">
@@ -59,12 +59,12 @@
             <p class="e-answer">NoI was developed by The Governance Lab @ NYU (GovLab), in partnership with governance innovation leaders across eight countries.</p>
             <p class="e-answer">The GovLab’s mission is « to improve people’s lives by changing the way we govern ».</p>
             <p class="e-answer">Our goal is to strengthen the ability of institutions – including but not limited to governments – and people to work more openly, collaboratively, effectively and legitimately to make better decisions and solve public problems.</p>
-            <p class="e-answer">We believe that increased availability and use of data, new ways to leverage the capacity, intelligence, and expertise of people in the problem-solving process, combined with new advances in technology and science can transform governance. Learn more <a href="http://thegovlab.org">here</a>. </p>
+            <p class="e-answer">We believe that increased availability and use of data, new ways to leverage the capacity, intelligence, and expertise of people in the problem-solving process, combined with new advances in technology and science can transform governance. Learn more at <a href="http://thegovlab.org">thegovlab.org</a>. </p>
         </li>
 
         <li class="e-faq-item">
             <p class="e-question">How can I contact you?</p>
-            <p class="e-answer">Suggestions for improving NoI? Found a bug? Questions on how to make the most of the network? We’d love to hear from you! Contact us at {{ render_contact_govlab_link() }} and/or leave your feedback on NoI here.  </p>
+            <p class="e-answer">Suggestions for improving NoI? Found a bug? Questions on how to make the most of the network? We’d love to hear from you! Contact us at {{ render_contact_govlab_link() }} and/or fill out our <a href="{{ url_for('views.feedback') }}">feedback form</a>.</p>
         </li>
             </ul>
 </section>
