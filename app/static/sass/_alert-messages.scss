@@ -1,6 +1,6 @@
 .b-alert-message {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
     padding: 20px;
@@ -9,7 +9,7 @@
     box-shadow: 0 0 10px $gray-30;
     z-index: 1150;
 
-    .material-icons {font-size: 32px;}
+    .material-icons {font-size: 32px; float: right;}
 
     p { color: $white; }
 }
