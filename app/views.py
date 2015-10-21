@@ -76,6 +76,14 @@ def about_page():
     return render_template('about.html')
 
 
+@views.route('/terms')
+def terms_and_conditions():
+    '''
+    NoI terms and conditions page.
+    '''
+    return render_template('terms_and_conditions.html')
+
+
 @views.route('/faq')
 def faq():
     '''

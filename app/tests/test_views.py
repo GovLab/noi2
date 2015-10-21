@@ -440,6 +440,9 @@ class ViewTests(ViewTestCase):
     def test_about_page_is_ok(self):
         self.assert200(self.client.get('/about'))
 
+    def test_terms_and_conditions_is_ok(self):
+        self.assert200(self.client.get('/terms'))
+
     def test_faq_is_ok(self):
         self.assert200(self.client.get('/faq'))
 

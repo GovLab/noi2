@@ -53,3 +53,9 @@
 {% macro render_user_mailto_link(user, class='') %}
   <a class="{{ class }}" href="mailto:{{ user.email }}?subject=Contact+request+via+Network+Of+Innovators&body=Dear+{{user.first_name}}" data-connect-to="{{ user.email }}">{{ caller() }}</a>
 {% endmacro %}
+
+{% set CONTACT_EMAIL = "noi@thegovlab.org" %}
+
+{% macro render_contact_govlab_link() -%}
+<a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>
+{%- endmacro %}

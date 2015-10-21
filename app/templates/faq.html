@@ -2,6 +2,8 @@
 
 {% block title %}{{ gettext("Frequently Asked Questions") }}{% endblock %}
 
+{% from "_macros.html" import render_contact_govlab_link %}
+
 {% block content %}
 
 <section class="b-faq">
@@ -22,18 +24,18 @@
         
         <li class="e-faq-item">
             <p class="e-question">Who can see my information?</p>
-            <p class="e-answer">Your NoI profile is visible to all other users of NoI – including innovators across governments and governance innovators outside in public sector. You can read more in the NoI Terms and Conditions. If you have received abusive, solicitous or otherwise irrelevant messages from other members of NoI, please report your issue to noi@thegovlab.org.</p>
+            <p class="e-answer">Your NoI profile is visible to all other users of NoI – including innovators across governments and governance innovators outside in public sector. You can read more in the NoI <a href="{{ url_for('views.terms_and_conditions') }}">Terms and Conditions</a>. If you have received abusive, solicitous or otherwise irrelevant messages from other members of NoI, please report your issue to {{ render_contact_govlab_link() }}.</p>
         </li>
         
         <li class="e-faq-item">
             <p class="e-question">How will my data be used?</p>
-            <p class="e-answer">The information you share on NoI will be used solely for the platform’s purpose – enabling connections between government innovators – and anonymous NoI usage analysis. Your data will not be shared with any third parties, and no information will remain in the NoI database should you chose to delete your account. For more information on NoI’s data usage and control, please contact noi@thegovlab.org.</p>
+            <p class="e-answer">The information you share on NoI will be used solely for the platform’s purpose – enabling connections between government innovators – and anonymous NoI usage analysis. Your data will not be shared with any third parties, and no information will remain in the NoI database should you chose to delete your account. For more information on NoI’s data usage and control, please contact {{ render_contact_govlab_link() }}.</p>
         </li>
         
         <li class="e-faq-item">
             <p class="e-question">How will you build and improve Network of Innovators?</p>
             <p class="e-answer">An expert network focused on enabling the exchange of knowledge requires participation from both people looking to find expertise and those ready to share what they know. To ensure that NoI reaches this optimal level of engagement – and continues to grow and evolve – the GovLab is conducting ongoing outreach to governance innovators at relevant conferences and events, through online media channels, and through direct outreach to innovation champions in institutions throughout the world.</p>
-            <p class="e-answer">To invite an innovator you know to join NoI, click here.</p>
+            <p class="e-answer">To invite an innovator you know to join NoI, <a href="{{ url_for('views.invite') }}">click here</a>.</p>
         </li>
         
         <li class="e-faq-item">
@@ -49,7 +51,7 @@
         <li class="e-faq-item">
             <p class="e-question">Why were these governance innovation topics chosen, and will more innovation areas be added to NoI?</p>
             <p class="e-answer">The innovation topic questionnaires found on NoI were identified and developed by the GovLab and its governance innovation partners across eight countries. The innovation areas and the profile-creation questions included for each topic were carefully crafted and iterated upon through detailed research into the current state of governance innovation around the world and, importantly, ongoing outreach and discussion with governance innovation practitioners around the world.</p>
-            <p class="e-answer">To suggest the addition of another innovation topic, contact us at noi@thegovlab.org.</p>
+            <p class="e-answer">To suggest the addition of another innovation topic, contact us at {{ render_contact_govlab_link() }}.</p>
         </li>
 
         <li class="e-faq-item">
@@ -57,12 +59,12 @@
             <p class="e-answer">NoI was developed by The Governance Lab @ NYU (GovLab), in partnership with governance innovation leaders across eight countries.</p>
             <p class="e-answer">The GovLab’s mission is « to improve people’s lives by changing the way we govern ».</p>
             <p class="e-answer">Our goal is to strengthen the ability of institutions – including but not limited to governments – and people to work more openly, collaboratively, effectively and legitimately to make better decisions and solve public problems.</p>
-            <p class="e-answer">We believe that increased availability and use of data, new ways to leverage the capacity, intelligence, and expertise of people in the problem-solving process, combined with new advances in technology and science can transform governance. Learn more here. </p>
+            <p class="e-answer">We believe that increased availability and use of data, new ways to leverage the capacity, intelligence, and expertise of people in the problem-solving process, combined with new advances in technology and science can transform governance. Learn more <a href="http://thegovlab.org">here</a>. </p>
         </li>
 
         <li class="e-faq-item">
             <p class="e-question">How can I contact you?</p>
-            <p class="e-answer">Suggestions for improving NoI? Found a bug? Questions on how to make the most of the network? We’d love to hear from you! Contact us at noi@thegovlab.org and/or leave your feedback on NoI here.  </p>
+            <p class="e-answer">Suggestions for improving NoI? Found a bug? Questions on how to make the most of the network? We’d love to hear from you! Contact us at {{ render_contact_govlab_link() }} and/or leave your feedback on NoI here.  </p>
         </li>
             </ul>
 </section>

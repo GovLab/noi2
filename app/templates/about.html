@@ -2,11 +2,7 @@
 
 {% block title %}{{ gettext('About') }}{% endblock %}
 
-{% set CONTACT_EMAIL = "info@thegovlab.org" %}
-
-{% macro render_contact_link() -%}
-<a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>
-{%- endmacro %}
+{% from "_macros.html" import render_contact_govlab_link %}
 
 {% block content %}
 <h1>{{ gettext('About the Network of Innovators') }}</h1>
@@ -17,6 +13,6 @@
 
 <h2>{{ gettext('Information Collection Statement') }}</h2>
 
-<p>{{ gettext("All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact %(contact_link)s.", contact_link=render_contact_link()) }}</p>
+<p>{{ gettext("All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact %(contact_link)s.", contact_link=render_contact_govlab_link()) }}</p>
 
 {% endblock %}
