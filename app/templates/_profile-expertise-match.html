@@ -1,9 +1,11 @@
 <ul class="e-match-question-group">
-{% for questionnaire_id, match_count, skill_dict in current_user.match_against(user) %}
+{% for questionnaire_id, match_count, skill_dict in current_user.match_against_with_progress(user) %}
 <li class="e-match-questionnaire">
   <a href="{{ url_for('views.get_user_expertise_area', userid=user.id, areaid=questionnaire_id, _anchor='expertise') }}">
     <div class="e-subject">{{ gettext(QUESTIONNAIRES_BY_ID[questionnaire_id].name) }}</div>
-    <div class="e-question-number">{{ ngettext('You match on %(num)d question', 'You match on %(num)d questions', match_count) }}</div>
+    {% if match_count > 0 %}
+      <div class="e-question-number">{{ ngettext('You match on %(num)d question', 'You match on %(num)d questions', match_count) }}</div>
+    {% endif %}
     <i class="material-icons">arrow_forward</i>
   </a>
 </li>

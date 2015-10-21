@@ -10,18 +10,16 @@
 </div>
 {% endmacro %}
 
-{% for questionnaire_id, match_count, skill_dict in current_user.match_against(user) %}
-  {% if questionnaire_id == areaid %}
-    <div class="e-category">
-      <a href="{{ url_for('views.get_user_expertise', userid=user.id, _anchor='expertise') }}" class="e-back"><i class="material-icons">arrow_backwards</i></a>
-      {{ gettext(QUESTIONNAIRES_BY_ID[areaid]['name']) }}
-    </div>
-
-    <ul class="b-matching-questions">
+{% macro show_user_skills(skill_dict, is_matched) %}
     {% for skill_level, question_ids in skill_dict.items() %}
       {% for question_id in question_ids %}
         <li class="e-question-item">
           <p class="e-question-text">{{ gettext(QUESTIONS_BY_ID[question_id].question) }}</p>
+          {% if is_matched %}
+          <center><em>
+              {{ gettext("You want to learn this!") }}
+          </em></center>
+          {% endif %}
           {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
             {% call show_user_answer(user, 'm-explain') %}
               {{ gettext("%(user)s can <strong>explain</strong>", user=user.first_name) }}
@@ -46,7 +44,17 @@
         </li>
       {% endfor %}
     {% endfor %}
+{% endmacro %}
+
+{% for matched_skill_dict, unmatched_skill_dict in current_user.match_against_with_progress_in_area(user, areaid) %}
+    <div class="e-category">
+      <a href="{{ url_for('views.get_user_expertise', userid=user.id, _anchor='expertise') }}" class="e-back"><i class="material-icons">arrow_backwards</i></a>
+      {{ gettext(QUESTIONNAIRES_BY_ID[areaid]['name']) }}
+    </div>
+
+    <ul class="b-matching-questions">
+      {{ show_user_skills(matched_skill_dict, is_matched=True) }}
+      {{ show_user_skills(unmatched_skill_dict, is_matched=False) }}
     </ul>
 
-  {% endif %}
 {% endfor %}

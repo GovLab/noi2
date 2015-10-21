@@ -5,7 +5,7 @@ SQLAlchemy models for the app
 '''
 
 from app import (ORG_TYPES, VALID_SKILL_LEVELS, LEVELS, QUESTIONNAIRES,
-                 QUESTIONS_BY_ID)
+                 QUESTIONNAIRES_BY_ID, QUESTIONS_BY_ID)
 from app.utils import UserSkillMatch
 
 from flask import current_app
@@ -293,6 +293,50 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                  skill_levels) for qname, skill_levels in resp.items()]
 
         return sorted(resp, lambda a, b: a[1] - b[1], reverse=True)
+
+    def match_against_with_progress(self, user):
+        progress = self.questionnaire_progress
+        matches = self.match_against(user)
+        match_areas = {}
+
+        for questionnaire_id, _, _ in matches:
+            match_areas[questionnaire_id] = True
+
+        for questionnaire_id, progress in progress.items():
+            if (questionnaire_id not in match_areas
+                and progress['answered'] > 0):
+                matches.append((questionnaire_id, 0, {}))
+
+        return matches
+
+    def match_against_with_progress_in_area(self, user, areaid):
+        questionnaire = QUESTIONNAIRES_BY_ID[areaid]
+        matches = self.match_against(user)
+
+        matched_skill_dict = {}
+        matched_skills = {}
+
+        for questionnaire_id, _, skill_dict in matches:
+            if questionnaire_id == areaid:
+                matched_skill_dict = skill_dict
+                break
+
+        for question_ids in matched_skill_dict.values():
+            for question_id in question_ids:
+                matched_skills[question_id] = True
+
+        unmatched_skill_dict = {}
+        skill_levels = self.skill_levels
+        for topic in questionnaire.get('topics', []):
+            for question in topic['questions']:
+                qid = question['id']
+                if (qid in skill_levels and qid not in matched_skills):
+                    level = skill_levels[qid]
+                    if level not in unmatched_skill_dict:
+                        unmatched_skill_dict[level] = []
+                    unmatched_skill_dict[level].append(qid)
+
+        return [(matched_skill_dict, unmatched_skill_dict)]
 
     @property
     def questionnaire_progress(self):
