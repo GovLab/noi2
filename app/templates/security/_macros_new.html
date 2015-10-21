@@ -9,6 +9,9 @@
       {{ field.label(class="sr-only") }}
       {{ field(placeholder=field.label.text, **kwargs)|safe }}
     </div>
+  {% elif field.type == "CallableChoicesSelectMultipleField" %}
+    {{ field.label() }}
+    {{ field(class="b-textfield", **kwargs)|safe }}
   {% else %}
     {{ field.label(class="sr-only") }}
     {{ field(class="b-textfield", placeholder=field.label.text, **kwargs)|safe }}

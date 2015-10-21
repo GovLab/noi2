@@ -61,8 +61,7 @@ CountryField._get_choices = _get_choices
 class RegisterStep2Form(ModelForm):
     class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
         model = User
-        only = ['position', 'organization', 'organization_type',
-                'country']
+        only = ['position', 'organization', 'country']
 
     @classmethod
     def is_not_empty(cls, user):
@@ -76,6 +75,12 @@ class RegisterStep2Form(ModelForm):
             if getattr(user, attr):
                 return True
         return False
+
+    expertise_domain_names = CallableChoicesSelectMultipleField(
+        label=lazy_gettext('Fields of Work'),
+        widget=Select(multiple=True),
+        choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
+
 
 class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     '''
@@ -110,7 +115,7 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         choices=lambda: [(l.language, l.get_display_name())
                          for l in LOCALES])
     expertise_domain_names = CallableChoicesSelectMultipleField(
-        label=lazy_gettext('Domains of Expertise'),
+        label=lazy_gettext('Fields of Work'),
         widget=Select(multiple=True),
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
 
