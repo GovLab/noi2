@@ -427,7 +427,6 @@ msgstr "Aviso de Privacidad"
 #, fuzzy, python-format
 msgid "All information you supply is publicly visible and is used solely for the purpose for which the site is intended. For questions about user privacy, please contact %(contact_link)s."
 msgstr "Toda la información que proporcione será públicamente visible y se usará con el único objetivo para el que el sitio fue creado. Para saber más del aviso de privacidad, por favor escriba a %(contact_link)s."
-"href=\"mailto:info@thegovlab.org\">info@thegovlab.org</a>."
 
 #: /noi/app/templates/activity.html:12
 msgid "Activity"
@@ -535,56 +534,52 @@ msgstr "Sugiérele a alguien unirse a la red"
 
 #: /noi/app/templates/invite.html:47
 msgid "Invite"
-msgstr ""
+msgstr "Invitar"
 
 #: /noi/app/templates/main.html:35 /noi/app/templates/settings.html:23
 #, fuzzy
 msgid "Change Language"
-msgstr "Por idioma(s)"
+msgstr "Cambiar idioma"
 
 #: /noi/app/templates/match-me.html:6
 msgid "Your Practitioners"
-msgstr ""
+msgstr "Quienes tienen experiencia práctica"
 
 #: /noi/app/templates/match-me.html:7
 msgid "Your Explainers"
-msgstr ""
+msgstr "Quienes te pueden explicar"
 
 #: /noi/app/templates/match-me.html:8
 #, fuzzy
 msgid "Your Connectors"
-msgstr "Elija sus países"
+msgstr "Quienes te pueden referir"
 
 #: /noi/app/templates/match-me.html:9
 msgid "Your Peers"
-msgstr ""
+msgstr "Quienes quieren aprender"
 
 #: /noi/app/templates/match-me.html:18
-msgid ""
-"Connectors know others who can answer your questions. Ask them to "
-"introduce you!"
-msgstr ""
+msgid "Connectors know others who can answer your questions. Ask them to introduce you!"
+msgstr "Ellos/as conocen a otras personas que pueden contestar tus preguntas. ¡Pídeles que te refieran! "
 
 #: /noi/app/templates/match-me.html:20
 msgid "Peers want to learn the same things as you. Why don't you join forces?"
-msgstr ""
+msgstr "Ellos/as quieren aprender las mismas cosas que tú. ¿Por qué no suman esfuerzos?"
 
 #: /noi/app/templates/match-me.html:22
 msgid "Explainers know what you want to learn. Ask them to guide you!"
-msgstr ""
+msgstr "Ellos/as saben lo que tú quieres aprender. ¡Pídeles que te guíen!"
 
 #: /noi/app/templates/match-me.html:24
-msgid ""
-"Practitioners have experience in what you want to learn. Ask them to "
-"share their experiences!"
-msgstr ""
+msgid "Practitioners have experience in what you want to learn. Ask them to share their experiences!"
+msgstr "Ellos/as tienen experiencia en las áreas en que quieres aprender. ¡Pídeles que compartan sus experiencias!"
 
 #: /noi/app/templates/match-me.html:45
 #, python-format
 msgid "%(num)d Skill Match"
 msgid_plural "%(num)d Skill Matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)d conexión de habilidades"
+msgstr[1] "%(num)d conexiones de habilidades"
 
 #: /noi/app/templates/my-profile.html:57
 msgid "Save"
@@ -592,19 +587,15 @@ msgstr "Guardar"
 
 #: /noi/app/templates/my-profile.html:71
 msgid "Sorry, that file is too big.  Please choose a smaller one."
-msgstr ""
-"Lo sentimos, el archivo es demasiado grande. Por favor seleccione uno de "
-"menor tamaño."
+msgstr "Lo sentimos, el archivo es demasiado grande. Por favor seleccione uno de menor tamaño."
 
 #: /noi/app/templates/register-step-2.html:3
 msgid "Register - Basic Information"
-msgstr ""
+msgstr "Registrarse - Información Básica"
 
 #: /noi/app/templates/register-step-2.html:11
-msgid ""
-"Now please share some basic info about yourself, so others can know who "
-"you are."
-msgstr ""
+msgid "Now please share some basic info about yourself, so others can know who you are."
+msgstr "Por favor comparte algo de información básica sobre ti, para que otros sepan quién eres."
 
 #: /noi/app/templates/register-step-2.html:27
 msgid "Logout"
@@ -612,28 +603,24 @@ msgstr "Salir"
 
 #: /noi/app/templates/register-step-3.html:4
 msgid "My Expertise"
-msgstr "Mi Competencia"
+msgstr "Mis Competencias"
 
 #: /noi/app/templates/register-step-3.html:26
 msgid "Pick an innovation area that you're interested in:"
-msgstr ""
+msgstr "Escoge un área de innovación que te interese"
 
 #: /noi/app/templates/register-step-3.html:47
 #, python-format
-msgid ""
-"Now answer %(num)s questions about your experience in this area to join "
-"the network and get matched with other innovators!"
-msgstr ""
+msgid "Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!"
+msgstr "¡Ahora responde %(num)s preguntas sobre tu experiencia en esta área para unirte a la red y conectarte con otros innovadores!"
 
 #: /noi/app/templates/register-step-3.html:48
-msgid ""
-"You can always answer more questions by going to your profile page to get"
-" new and more relevant matches."
-msgstr ""
+msgid "You can always answer more questions by going to your profile page to get new and more relevant matches."
+msgstr "Siempre podrás responder más preguntas en tu página de perfil para obtener conexiones nuevas y más relevantes."
 
 #: /noi/app/templates/register-step-3.html:74
 msgid "Choose another area"
-msgstr ""
+msgstr "Escoge otra area"
 
 #: /noi/app/templates/register-step-3.html:79
 #, fuzzy
@@ -650,11 +637,11 @@ msgstr "Por idioma(s)"
 
 #: /noi/app/templates/search.html:33
 msgid "By field(s) of work"
-msgstr ""
+msgstr "Por área de trabajo"
 
 #: /noi/app/templates/settings.html:12
 msgid "Reset Tutorial"
-msgstr ""
+msgstr "Revisar Tutorial"
 
 #: /noi/app/templates/translate.tmp.html:1
 msgid "Mental Health"
@@ -662,7 +649,7 @@ msgstr "Salud Mental"
 
 #: /noi/app/templates/translate.tmp.html:2
 msgid "Primary Care"
-msgstr "Cuidado Primario"
+msgstr "Cuidados Primarios"
 
 #: /noi/app/templates/translate.tmp.html:3
 msgid "Community Care"
@@ -694,7 +681,7 @@ msgstr "Arte y cultura"
 
 #: /noi/app/templates/translate.tmp.html:10
 msgid "Business Licensing and Regulation"
-msgstr "Licencia de Negocio y Regulación"
+msgstr "Licenciamiento de Negocios y Regulación"
 
 #: /noi/app/templates/translate.tmp.html:11
 msgid "Consumer rights and issues"
@@ -785,8 +772,7 @@ msgid "Water and Electricity"
 msgstr "Agua y Electricidad"
 
 #: /noi/app/templates/translate.tmp.html:33
-msgid ""
-"<p>What makes open data a powerful tool for governing better is that the "
+msgid "<p>What makes open data a powerful tool for governing better is that the "
 "ability of people inside and  outside of institutions to use the same "
 "data to create useful policies, tools, visualizations, maps, and apps.  "
 "Open data can provide the raw material to convene informed conversations "
@@ -802,8 +788,8 @@ msgstr ""
 "pueden proveer la materia prima para organizar conversaciones informadas "
 "acerca de lo que no está funcionando y establecer los fundamentos "
 "empíricos para desarrollar soluciones. Estas preguntas le ayudarán a "
-"describir lo que sabe y lo que desea compartir acerca de datos abiertos y"
-" lo que desea aprender de otros. Haga click en el siguiente enlace para "
+"describir lo que sabe y lo que desea compartir acerca de datos abiertos y "
+"lo que desea aprender de otros. Haga click en el siguiente enlace para "
 "crear un perfil de competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:35
@@ -817,36 +803,32 @@ msgstr "Políticas de Datos Abiertos"
 
 #: /noi/app/templates/translate.tmp.html:37
 msgid "creating an open data plan and strategy to achieve key goals"
-msgstr ""
-"creando un plan y una estrategia de datos abiertos para alcanzar metas "
-"clave"
+msgstr "creando un plan y una estrategia de datos abiertos para alcanzar metas clave"
 
 #: /noi/app/templates/translate.tmp.html:38
 #, fuzzy
 msgid "Identifying what data will help my organization achieve its core mission"
-msgstr ""
-"cómo identificar qué datos ayudarán a que mi organización logre su misión"
-" principal"
+msgstr "Identificar qué datos ayudarán a que mi organización logre su misión principal"
 
 #: /noi/app/templates/translate.tmp.html:39
 #, fuzzy
 msgid "Distinguishing between potentially sensitive data and non-sensitive data"
-msgstr "cómo distinguir entre datos potencialmente sensibles y datos no-sensibles"
+msgstr "Distinguir entre datos potencialmente sensibles y datos no-sensibles"
 
 #: /noi/app/templates/translate.tmp.html:40
 #, fuzzy
 msgid "Crafting a clear policy explaining what data to open and how"
-msgstr "cómo redactar una política pública clara explicando qué datos abrir y cómo"
+msgstr "Redactar una política pública clara explicando qué datos abrir y cómo"
 
 #: /noi/app/templates/translate.tmp.html:41
 #, fuzzy
 msgid "Doing public consultation on an open data policy"
-msgstr "cómo hacer una consulta pública sobre una política de datos abiertos"
+msgstr "Hacer una consulta pública sobre una política de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:42
 #, fuzzy
 msgid "Getting organizational approval for opening data"
-msgstr "cómo obtener aprobación organizacional para abrir datos"
+msgstr "Obtener aprobación organizacional para abrir datos"
 
 #: /noi/app/templates/translate.tmp.html:43
 #, fuzzy
@@ -855,56 +837,52 @@ msgstr "Implementando un programa de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:44
 msgid "operationalizing an open data program in practice"
-msgstr "implementando un programa de datos abiertos"
+msgstr "Ejecución práctica de un programa de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:45
 #, fuzzy
 msgid "Scraping data from my domain"
-msgstr "cómo extraer datos de mi sitio"
+msgstr "Extraer datos de mi sitio"
 
 #: /noi/app/templates/translate.tmp.html:46
 #, fuzzy
 msgid "Making data machine-readable"
-msgstr "generar datos que sean legibles para computadoras"
+msgstr "Generar datos que sean legibles para computadoras"
 
 #: /noi/app/templates/translate.tmp.html:47
 #, fuzzy
 msgid "Determining what formats to publish data in"
-msgstr "en qué formatos publicar datos"
+msgstr "Determinar en qué formatos publicar datos"
 
 #: /noi/app/templates/translate.tmp.html:48
 #, fuzzy
 msgid "Determining how to license my data"
-msgstr "cómo poner licencias a mis datos"
+msgstr "Determinar cómo poner licencias a mis datos"
 
 #: /noi/app/templates/translate.tmp.html:49
 #, fuzzy
 msgid "Deciding data standards to publish data in"
-msgstr "en qué estándares de datos publicar mis datos"
+msgstr "Decidir en qué estándares de datos publicar mis datos"
 
 #: /noi/app/templates/translate.tmp.html:50
 #, fuzzy
 msgid "Using the right infrastructure for making data available"
-msgstr ""
-"cómo usar la infraestructura correcta para lograr que los datos estén "
-"disponibles"
+msgstr "Usar la infraestructura correcta para lograr que los datos estén disponibles"
 
 #: /noi/app/templates/translate.tmp.html:51
 #, fuzzy
 msgid "Managing an open data project"
-msgstr "hacer una buena administración de un proyecto de datos abiertos"
+msgstr "Administrar un proyecto de datos abiertos"
 
 #: /noi/app/templates/translate.tmp.html:52
 #, fuzzy
 msgid "Determining how often datasets should be released and updated"
-msgstr ""
-"cómo determinar la frecuencia con la que estas bases de datos datos deben"
-" ser publicadas y actualizadas"
+msgstr "Determinar la frecuencia con la que estas bases de datos datos deben ser publicadas y actualizadas"
 
 #: /noi/app/templates/translate.tmp.html:53
 #, fuzzy
 msgid "Ensuring continued data quality and integrity"
-msgstr "cómo asegurar un nivel continuo en la calidad e integridad de mis datos"
+msgstr "Asegurar un nivel continuo en la calidad e integridad de mis datos"
 
 #: /noi/app/templates/translate.tmp.html:54
 msgid "Accelerating use"
@@ -916,33 +894,23 @@ msgstr "responder a lo que los usuarios quieren y necesitan"
 
 #: /noi/app/templates/translate.tmp.html:56
 #, fuzzy
-msgid ""
-"Creating incentives for users or the public to make productive use of the"
-" data"
-msgstr ""
-"cómo crear incentivos para que los usuarios o el público hagan un uso "
-"productivo de los datos"
+msgid "Creating incentives for users or the public to make productive use of the data"
+msgstr "Crear incentivos para que los usuarios o el público hagan un uso productivo de los datos"
 
 #: /noi/app/templates/translate.tmp.html:57
 #, fuzzy
 msgid "Identifying and combining other sources of open data to achieve a goal"
-msgstr ""
-"cómo identificar y combinar otras fuentes de datos abiertos para lograr "
-"una meta"
+msgstr "Identificar y combinar otras fuentes de datos abiertos para lograr una meta"
 
 #: /noi/app/templates/translate.tmp.html:58
 #, fuzzy
 msgid "Designing a data collaborative"
-msgstr "cómo diseñar una alianza público-privada para compartir datos"
+msgstr "Diseñar una alianza público-privada para compartir datos"
 
 #: /noi/app/templates/translate.tmp.html:59
 #, fuzzy
-msgid ""
-"Expressing the value proposition of the open data datasets, including "
-"what problems can be solved with this data"
-msgstr ""
-"cómo expresar la propuesta de valor de las bases de datos abiertos, "
-"incluyendo el tipo de problemas que pueden solucionarse con estos datos"
+msgid "Expressing the value proposition of the open data datasets, including what problems can be solved with this data"
+msgstr "Expresar la propuesta de valor de las bases de datos abiertos, incluyendo el tipo de problemas que pueden solucionarse con estos datos"
 
 #: /noi/app/templates/translate.tmp.html:60
 msgid "Measuring Impact"
@@ -955,12 +923,12 @@ msgstr "evaluando la efectividad"
 #: /noi/app/templates/translate.tmp.html:62
 #, fuzzy
 msgid "Monitoring how my data is being used"
-msgstr "cómo monitorear en qué forma se están usando mis datos"
+msgstr "Monitorear en qué forma se están usando mis datos"
 
 #: /noi/app/templates/translate.tmp.html:63
 #, fuzzy
 msgid "Measuring the economic and/or social impact of opening up data"
-msgstr "cómo medir el impacto económico y/o social de abrir datos"
+msgstr "Medir el impacto económico y/o social de abrir datos"
 
 #: /noi/app/templates/translate.tmp.html:64
 msgid ""
