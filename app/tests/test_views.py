@@ -396,9 +396,9 @@ class MatchMeTests(ViewTestCase):
 
         db.session.commit()
 
-    def test_match_redirects_to_connectors(self):
+    def test_match_redirects_to_practitioners(self):
         self.assertRedirects(self.client.get('/match'),
-                             '/match/connectors')
+                             '/match/practitioners')
 
     def test_connectors_is_ok(self):
         res = self.client.get('/match/connectors')

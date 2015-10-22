@@ -461,7 +461,7 @@ def match():
     'Match Me' page.
     '''
 
-    return redirect(url_for('views.match_connectors'))
+    return redirect(url_for('views.match_practitioners'))
 
 @views.route('/activity', methods=['GET', 'POST'])
 def activity():
