@@ -40,6 +40,8 @@ _default:
     - partnerships
     - communityengagement
     - crowdsourcing
+    - lab-design
+    - datascience
 
 sa.networkofinnovators.org:
   about: >
