@@ -429,9 +429,11 @@ def search():
                                results=query.limit(20).all())
 
 def render_matches(active_tab, level_name):
-    matches = current_user.match(level=LEVELS[level_name]['score'])
+    level_score = LEVELS[level_name]['score']
+    matches = current_user.match(level=level_score)
 
     return render_template('match-me.html',
+                           level_score=level_score,
                            active_tab=active_tab, matches=matches)
 
 @views.route('/match/connectors')

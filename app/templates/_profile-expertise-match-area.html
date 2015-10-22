@@ -13,7 +13,7 @@
 {% macro show_user_skills(skill_dict, is_matched) %}
     {% for skill_level, question_ids in skill_dict.items() %}
       {% for question_id in question_ids %}
-        <li class="e-question-item">
+        <li class="e-question-item" {% if loop.first %}id="{% if not is_matched %}unmatched_{% endif %}{{ skill_level }}"{% endif %}>
           <p class="e-question-text">{{ gettext(QUESTIONS_BY_ID[question_id].question) }}</p>
           {% if is_matched %}
           <center><em>
