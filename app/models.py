@@ -295,7 +295,13 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         return sorted(resp, lambda a, b: a[1] - b[1], reverse=True)
 
     def match_against_with_progress(self, user):
-        progress = self.questionnaire_progress
+        '''
+        Like match_against(), but also includes information about
+        areas of expertise the target user has that we don't match
+        on.
+        '''
+
+        progress = user.questionnaire_progress
         matches = self.match_against(user)
         match_areas = {}
 
@@ -310,6 +316,20 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         return matches
 
     def match_against_with_progress_in_area(self, user, areaid):
+        '''
+        Return a tuple of (matched_skill_dict, unmatched_skill_dict)
+        for the given area.
+
+        matched_skill_dict contains information about skills that
+        the target user has which we want to learn, while
+        unmatched_skill_dict contains all other skills the target
+        user has.
+
+        Each dict is keyed by the skill level of the other user,
+        with each value being a set of questions they can answer at that
+        level.
+        '''
+
         questionnaire = QUESTIONNAIRES_BY_ID[areaid]
         matches = self.match_against(user)
 
@@ -326,7 +346,7 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                 matched_skills[question_id] = True
 
         unmatched_skill_dict = {}
-        skill_levels = self.skill_levels
+        skill_levels = user.skill_levels
         for topic in questionnaire.get('topics', []):
             for question in topic['questions']:
                 qid = question['id']
@@ -336,7 +356,7 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                         unmatched_skill_dict[level] = []
                     unmatched_skill_dict[level].append(qid)
 
-        return [(matched_skill_dict, unmatched_skill_dict)]
+        return (matched_skill_dict, unmatched_skill_dict)
 
     @property
     def questionnaire_progress(self):

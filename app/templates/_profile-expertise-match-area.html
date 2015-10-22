@@ -46,7 +46,7 @@
     {% endfor %}
 {% endmacro %}
 
-{% for matched_skill_dict, unmatched_skill_dict in current_user.match_against_with_progress_in_area(user, areaid) %}
+{% set matched_skill_dict, unmatched_skill_dict = current_user.match_against_with_progress_in_area(user, areaid) %}
     <div class="e-category">
       <a href="{{ url_for('views.get_user_expertise', userid=user.id, _anchor='expertise') }}" class="e-back"><i class="material-icons">arrow_backwards</i></a>
       {{ gettext(QUESTIONNAIRES_BY_ID[areaid]['name']) }}
@@ -56,5 +56,3 @@
       {{ show_user_skills(matched_skill_dict, is_matched=True) }}
       {{ show_user_skills(unmatched_skill_dict, is_matched=False) }}
     </ul>
-
-{% endfor %}
