@@ -2,30 +2,20 @@
 
 {% block title %}{{ gettext('Feedback') }}{% endblock %}
 
-{% block page_style_post %}
-<link href="//d3q1ytufopwvkq.cloudfront.net/0/formrenderer.css" rel="stylesheet" />
-{% endblock %}
-
 {% block content %}
 
 
 <h1>{{ gettext('Share your feedback about the Network of Innovators') }}</h1>
 
+{% if get_locale().language == "es" %}
+  {% set data_url = "https://bsayici.typeform.com/to/GJ835d" %}
+  {% set data_text = "NOI Feedback (es)" %}
+{% else %}
+  {% set data_url = "https://bsayici.typeform.com/to/wNBAos" %}
+  {% set data_text = "NOI Feedback" %}
+{% endif %}
 
-<form data-formrenderer>{{ gettext('This form requires JavaScript to complete.') }}</form>
+<div class="typeform-widget" data-url="{{ data_url }}" data-text="{{ data_text }}" style="width:100%;height:500px;"></div>
+<script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'widget.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
 
-{% endblock %}
-
-
-{% block page_script %}
-<script src="//d3q1ytufopwvkq.cloudfront.net/0/formrenderer.js"></script>
-<script>
-  new FormRenderer({
-    "project_id": {{ config.CONTACT_FORM_ID }},
-    "afterSubmit": {
-      "method": "page",
-      "html": "<p>" + {{ gettext('Thanks for submitting our form!')|tojson }} + "</p>"
-    }
-  });
-</script>
 {% endblock %}
