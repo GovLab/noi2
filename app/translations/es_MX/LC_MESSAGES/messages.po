@@ -931,18 +931,17 @@ msgid "Measuring the economic and/or social impact of opening up data"
 msgstr "Medir el impacto económico y/o social de abrir datos"
 
 #: /noi/app/templates/translate.tmp.html:64
-msgid ""
-"<p>Governments — and other entities — are increasing seeking to solve big"
-"  problems using new technologies and innovative approaches. One of the "
-"most  common approaches involves prize-backed contests as well as "
+msgid "<p>Governments — and other entities — are increasing seeking to solve big"
+"problems using new technologies and innovative approaches. One of the "
+"most common approaches involves prize-backed contests as well as "
 "challenges and  grand challenges. These competitions offer a range of "
 "advantages for  government agencies, especially in an era of tightening "
-"budgets.</p> <p><b>These twenty questions help you describe what you know"
-" and can share about prize-backed challenges\n"
-" and what you want to learn from others. \n"
+"budgets.</p> <p><b>These twenty questions help you describe what you know "
+"and can share about prize-backed challenges\n "
+"and what you want to learn from others. \n"
 "Click on a link below to create an expertise profile.</b></p>\n"
 msgstr ""
-"<p> Los gobiernos––y otras entidades–– cada vez más están buscando "
+"<p> Los gobiernos — y otras entidades — cada vez más están buscando "
 "solucionar problemas grandes utilizando nuevas tecnologías y enfoques "
 "innovadores. Uno de los enfoques más comunes involucra concursos "
 "premiados así como retos y grandes retos. Estas competencias ofrecen una "
@@ -950,7 +949,7 @@ msgstr ""
 " era de presupuestos ajustados.</p> <p><b> Estas veinte preguntas le "
 "ayudan a describir qué puede saber y qué puede compartir acerca de retos "
 "y lo que puede aprender de otros. \n"
-"Haga click en el enlace siguiente para crear un perfil de "
+"Haga click en alguno de los enlaces abajo para crear un perfil de "
 "competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:68
@@ -969,17 +968,17 @@ msgstr "definiendo el problema"
 #: /noi/app/templates/translate.tmp.html:71
 #, fuzzy
 msgid "Defining and expressing the problem addressed by the prize."
-msgstr "cómo definir y expresar el problema que enfrenta el reto."
+msgstr "Definir y expresar el problema que el concurso busca resolver."
 
 #: /noi/app/templates/translate.tmp.html:72
 #, fuzzy
 msgid "Doing rapid research to test the assumptions behind my problem definition"
-msgstr "cómo hacer investigación rápida para entender el contexto de mi premio."
+msgstr "Hacer investigación rápida para entender el contexto de mi definición de problema."
 
 #: /noi/app/templates/translate.tmp.html:73
 #, fuzzy
 msgid "Developing metrics to measure progress"
-msgstr "cómo desarrollar indicadores para medir el progreso."
+msgstr "Desarrollar indicadores para medir el progreso."
 
 #: /noi/app/templates/translate.tmp.html:74
 msgid "Designing for a Successful Prize"
@@ -988,35 +987,33 @@ msgstr "Diseñando para un premio exitoso"
 #: /noi/app/templates/translate.tmp.html:75
 #, fuzzy
 msgid "Deciding if a prize is the right tool"
-msgstr "decidiendo si un premio es la herramienta adecuada"
+msgstr "Decidiendo si un premio es la herramienta adecuada"
 
 #: /noi/app/templates/translate.tmp.html:76
 #, fuzzy
-msgid ""
-"Deciding when to use a prize-backed challenge rather than other options "
+msgid "Deciding when to use a prize-backed challenge rather than other options "
 "like conventional crowdsourcing"
-msgstr ""
-" cómo decidir cuándo usar un reto respaldado por un premio en lugar de "
-"otras opciones como crowdsourcing convencional."
+msgstr "Decidir cuándo usar un concurso premiado en lugar de "
+"otras opciones como el crowdsourcing convencional."
 
 #: /noi/app/templates/translate.tmp.html:77
 #, fuzzy
 msgid "Determining whether a prize or a grand challenge is optimal"
-msgstr "cómo determinar si un premio o un gran desafío es óptimo"
+msgstr "Determinar si un premio o un gran desafío es óptimo"
 
 #: /noi/app/templates/translate.tmp.html:78
 #, fuzzy
 msgid "Deciding whether to use financial or non-financial incentives"
-msgstr "cómo decidir si usar incentivos económicos o no económicos."
+msgstr "Decidir si usar incentivos económicos o no económicos."
 
 #: /noi/app/templates/translate.tmp.html:79
 #, fuzzy
 msgid "Setting the value of a prize"
-msgstr "cómo establecer el valor económico de un premio."
+msgstr "Establecer el valor económico de un premio."
 
 #: /noi/app/templates/translate.tmp.html:80
 msgid "Identifying the Right Audience"
-msgstr "Identificando a la audiencia correcta"
+msgstr "Identificando a la Audiencia Correcta"
 
 #: /noi/app/templates/translate.tmp.html:81
 msgid "targeting the right participants"
@@ -1025,56 +1022,51 @@ msgstr "identificando a los participantes correctos"
 #: /noi/app/templates/translate.tmp.html:82
 #, fuzzy
 msgid "Identifying would-be participating innovators"
-msgstr "cómo identificar a posibles innovadores para que participen."
+msgstr "Identificar a posibles innovadores para que participen."
 
 #: /noi/app/templates/translate.tmp.html:83
 #, fuzzy
 msgid "Assessing the potential costs involved for them in participating"
-msgstr "cómo evaluar los costos que involucra el hecho de que participen."
+msgstr "Evaluar los costos que involucra la participación de los innovadores."
 
 #: /noi/app/templates/translate.tmp.html:84
 msgid "Mechanics"
 msgstr "Mecánica"
 
 #: /noi/app/templates/translate.tmp.html:85
-msgid "rinning a prize-backed challenge"
-msgstr "ejecutando un reto respaldado por un premio"
+msgid "running a prize-backed challenge"
+msgstr "ejecutando un concurso premiado"
 
 #: /noi/app/templates/translate.tmp.html:86
 #, fuzzy
 msgid "Funding a prize-backed challenge"
-msgstr "ejecutando un reto respaldado por un premio"
+msgstr "Financiando un concurso premiado"
 
 #: /noi/app/templates/translate.tmp.html:87
 #, fuzzy
 msgid "Creating a plan for running the prize with defined milestones"
-msgstr "cómo crear un plan para ejecutar el premio con hitos definidos"
+msgstr "Crear un plan para ejecutar el premio con hitos definidos"
 
 #: /noi/app/templates/translate.tmp.html:88
 #, fuzzy
-msgid ""
-"Accessing outside contractors to support the design and implementation of"
+msgid "Accessing outside contractors to support the design and implementation of"
 " the prizes"
-msgstr ""
-"cómo acceder a contratistas externos para apoyar el diseño y la "
-"implementación de los premios."
+msgstr "Acceder a contratistas para apoyar el diseño y la implementación de los premios"
 
 #: /noi/app/templates/translate.tmp.html:89
 #, fuzzy
 msgid "Deciding how long the prize should run"
-msgstr "cómo decidir cuánto tiempo debe durar el reto."
+msgstr "Decidir cuánto tiempo debe durar el concurso"
 
 #: /noi/app/templates/translate.tmp.html:90
 #, fuzzy
 msgid "Developing a communication strategy to get the word out"
-msgstr "cómo desarrollar una estrategia de comunicación para dar difusión al reto."
+msgstr "Desarrollar una estrategia de comunicación para dar difusión al concurso"
 
 #: /noi/app/templates/translate.tmp.html:91
 #, fuzzy
 msgid "Choosing from the tools available to run a prize-backed challenge"
-msgstr ""
-"cómo elegir entre las herramientas disponibles para ejecutar un reto "
-"respaldado por un premio. "
+msgstr "Elegir entre las herramientas disponibles para ejecutar un concurso premiado"
 
 #: /noi/app/templates/translate.tmp.html:92
 msgid "Judging"
@@ -1087,12 +1079,12 @@ msgstr "Juzgando un premio"
 #: /noi/app/templates/translate.tmp.html:94
 #, fuzzy
 msgid "Designing assessment criteria"
-msgstr "cómo diseñar los criterios de evaluación."
+msgstr "Diseñar los criterios de evaluación"
 
 #: /noi/app/templates/translate.tmp.html:95
 #, fuzzy
 msgid "Selecting judges"
-msgstr "cómo seleccionar a los jueces."
+msgstr "Seleccionar a los jueces"
 
 #: /noi/app/templates/translate.tmp.html:96
 #, fuzzy
@@ -1101,20 +1093,19 @@ msgstr "Inquietudes Legales"
 
 #: /noi/app/templates/translate.tmp.html:97
 msgid "overcoming legal concerns"
-msgstr "Superando las inquietudes legales"
+msgstr "superando las inquietudes legales"
 
 #: /noi/app/templates/translate.tmp.html:98
 #, fuzzy
 msgid "Determining ownership and copyright"
-msgstr "cómo determinar la propiedad intelectual y los derechos de autor."
+msgstr "Determinar la propiedad intelectual y los derechos de autor"
 
 #: /noi/app/templates/translate.tmp.html:99
 #: /noi/app/templates/translate.tmp.html:316
 #, fuzzy
 msgid "Navigating governmental endorsement and privacy concerns"
-msgstr ""
-"cómo sortear las preocupaciones de respaldo gubernamental y la "
-"privacidad. "
+msgstr "Sortear las preocupaciones respecto del respaldo gubernamental y la "
+"privacidad"
 
 #: /noi/app/templates/translate.tmp.html:100
 msgid "Implementation"
@@ -1122,12 +1113,12 @@ msgstr "Implementación"
 
 #: /noi/app/templates/translate.tmp.html:101
 msgid "what to do after a challenge"
-msgstr "qué hacer después de un reto"
+msgstr "qué hacer después de un concurso"
 
 #: /noi/app/templates/translate.tmp.html:102
 #, fuzzy
 msgid "Translating winning entries into well-developed solutions"
-msgstr "cómo traducir propuestas ganadoras en soluciones bien desarrolladas."
+msgstr "Traducir propuestas ganadoras en soluciones bien desarrolladas"
 
 #: /noi/app/templates/translate.tmp.html:103
 #: /noi/app/templates/translate.tmp.html:167
@@ -1140,8 +1131,7 @@ msgid "Agile"
 msgstr "Ágil"
 
 #: /noi/app/templates/translate.tmp.html:105
-msgid ""
-"<p>Citizen science projects – task-based initiatives in which citizens of"
+msgid "<p>Citizen science projects – task-based initiatives in which citizens of"
 " any  background can help contribute to scientific research – like Galaxy"
 " Zoo and  Zooniverse are demonstrating the ability of lay and expert "
 "citizens alike to  make small, useful contributions to aid large, complex"
@@ -1152,10 +1142,9 @@ msgid ""
 " help you describe what you know and can share  about open data and what "
 "you want to learn from others.  Click on a link below to create an "
 "expertise profile.</b></p>\n"
-msgstr ""
-"<p>Los proyectos de ciencia ciudadana –iniciativas basadas en la "
+msgstr "<p>Los proyectos de ciencia ciudadana –iniciativas basadas en la "
 "ejecución de tareas en las que ciudadanos de cualquier procedencia pueden"
-" contribuir a la investigación científica––están demostrando la habilidad"
+" contribuir a la investigación científica– están demostrando la habilidad"
 " de los ciudadanos expertos y no expertos por igual para hacer "
 "contribuciones pequeñas y útiles que ayuden a emprender tareas complejas "
 "y grandes. En la medida en la que las instituciones de gobierno buscan "
@@ -1164,7 +1153,7 @@ msgstr ""
 "a cumplir objetivos complicados a un bajo costo.</p> <p><b>Estas cuarenta"
 " y cuatro preguntas le ayudarán a describir lo que sabe y puede compartir"
 " acerca de los proyectos de ciencia ciudadana y lo que puede aprender de "
-"otros. Haga click en el enlace siguiente para crear un perfil de "
+"otros. Haga click en el siguiente enlace para crear un perfil de "
 "competencias.</b></p>\n"
 
 #: /noi/app/templates/translate.tmp.html:107
@@ -1176,78 +1165,63 @@ msgid "Tasks and Goals"
 msgstr "Tareas y Metas"
 
 #: /noi/app/templates/translate.tmp.html:109
-msgid ""
-"defining the goals of a citizen science initiative and the tasks to be "
+msgid "defining the goals of a citizen science initiative and the tasks to be "
 "completed in order to achieve them"
-msgstr ""
-"definir metas de una iniciativa de ciencia ciudadana y las tareas que se "
-"deben completar para lograrlas "
+msgstr "definir las metas de una iniciativa de ciencia ciudadana y las tareas que se "
+"deben completar para lograrlas"
 
 #: /noi/app/templates/translate.tmp.html:110
 #, fuzzy
 msgid "Identifying a compelling goal for a citizen science project"
-msgstr ""
-"cómo identificar una meta convincente para un proyecto de ciencia "
-"ciudadana"
+msgstr "Identificar una meta convincente para un proyecto de ciencia ciudadana"
 
 #: /noi/app/templates/translate.tmp.html:111
 #, fuzzy
 msgid "Identifying and defining the tasks for participants to do"
-msgstr ""
-"cómo identificar y definir las tareas que deben realizar los "
-"participantes "
+msgstr "Identificar y definir las tareas que deben realizar los participantes"
 
 #: /noi/app/templates/translate.tmp.html:112
 #, fuzzy
-msgid ""
-"Deciding the types of tasks to be considered when developing a citizen "
-"science project"
-msgstr ""
-"cómo decidir el tipo de tareas que se deben considerar al desarrollar un "
+msgid "Deciding the types of tasks to be considered when developing a citizen science project"
+msgstr "Decidir el tipo de tareas que se deben considerar al desarrollar un "
 "proyecto de ciencia ciudadana"
 
 #: /noi/app/templates/translate.tmp.html:113
 #, fuzzy
 msgid "Articulating the intended outcomes of a project"
-msgstr "cómo articular los resultados previstos de un proyecto"
+msgstr "Articular los resultados previstos de un proyecto"
 
 #: /noi/app/templates/translate.tmp.html:114
 #, fuzzy
 msgid "Articulating how the tasks will advance a research field"
-msgstr ""
-"como articular de qué forma las tareas ayudarán a avanzar un campo de "
-"investigación"
+msgstr "Articular de qué forma las tareas ayudarán a avanzar un campo de investigación"
 
 #: /noi/app/templates/translate.tmp.html:115
 #, fuzzy
 msgid "Defining the success of a project"
-msgstr "cómo definir el éxito de un proyecto"
+msgstr "Definir el éxito de un proyecto"
 
 #: /noi/app/templates/translate.tmp.html:116
 #, fuzzy
 msgid "Measuring and evaluating the success of a project"
-msgstr "cómo medir y evaluar el éxito de un proyecto"
+msgstr "Medir y evaluar el éxito de un proyecto"
 
 #: /noi/app/templates/translate.tmp.html:117
 #, fuzzy
-msgid ""
-"Defining and validating a protocol for an experiment and required data "
+msgid "Defining and validating a protocol for an experiment and required data "
 "collection"
-msgstr ""
-"cómo definir y validar un protocolo para un experimento y la recolección "
+msgstr "Definir y validar un protocolo para un experimento y la recolección "
 "de datos requerida"
 
 #: /noi/app/templates/translate.tmp.html:118
 #, fuzzy
 msgid "Defining a project in terms of time required and geographic range"
-msgstr ""
-"cómo definir un proyecto en términos del tiempo requerido y del alcance "
-"geográfico."
+msgstr "Definir un proyecto en términos del tiempo requerido y del alcance geográfico."
 
 #: /noi/app/templates/translate.tmp.html:119
 #, fuzzy
 msgid "Identifying funding opportunities for a project"
-msgstr "cómo identificar oportunidades de financiamiento para un proyecto."
+msgstr "Identificar oportunidades de financiamiento para un proyecto."
 
 #: /noi/app/templates/translate.tmp.html:120
 #, fuzzy
@@ -1256,53 +1230,49 @@ msgstr "Incentivos y Motivación"
 
 #: /noi/app/templates/translate.tmp.html:121
 msgid "developing incentives to motivate participation"
-msgstr "desarrollando incentivos con el objetivo de motivar la participación. "
+msgstr "desarrollando incentivos para motivar la participación. "
 
 #: /noi/app/templates/translate.tmp.html:122
 #, fuzzy
 msgid "Engaging with and/or creating a community for participants."
-msgstr ""
-"cómo involucrar y comprometer a los participantes y/o crear una comunidad"
-" de participantes"
+msgstr "Involucrar y comprometer a los participantes y/o crear una comunidad para ellos"
 
 #: /noi/app/templates/translate.tmp.html:123
 #, fuzzy
 msgid "Retaining participants"
-msgstr "cómo retener a los participantes"
+msgstr "Retener a los participantes"
 
 #: /noi/app/templates/translate.tmp.html:124
 #, fuzzy
 msgid "Addressing variations and skew in participation"
-msgstr "cómo lidiar con variaciones y sesgos en la participación"
+msgstr "Lidiar con variaciones y sesgos en la participación"
 
 #: /noi/app/templates/translate.tmp.html:125
 #, fuzzy
 msgid "Scaling up participation"
-msgstr "cómo hacer crecer la participación"
+msgstr "Hacer crecer la participación"
 
 #: /noi/app/templates/translate.tmp.html:126
 #, fuzzy
 msgid "Identifying collaborators around the project"
-msgstr "cómo identificar colaboradores para el proyecto"
+msgstr "Identificar colaboradores para el proyecto"
 
 #: /noi/app/templates/translate.tmp.html:127
 #, fuzzy
 msgid "Defining and developing gamification in projects"
-msgstr "cómo definir y desarrollar procesos de gamificación en proyectos"
+msgstr "Definir y desarrollar procesos de gamificación en proyectos"
 
 #: /noi/app/templates/translate.tmp.html:128
 #, fuzzy
-msgid ""
-"Identifying what people are competing to do (e.g. quantity, frequency, "
+msgid "Identifying what people are competing to do (e.g. quantity, frequency, "
 "quality of participation)"
-msgstr ""
-"cómo identificar las cosas por las cuales las personas podrían competir "
+msgstr "Identificar las cosas por las cuales las personas podrían competir "
 "(e.g. cantidad, frecuencia y calidad de la participación)"
 
 #: /noi/app/templates/translate.tmp.html:129
 #, fuzzy
 msgid "Attributing contributions to the relevant parties"
-msgstr "cómo atribuir las contribuciones que han hecho las partes relevantes"
+msgstr "Atribuir las contribuciones que han hecho las partes relevantes"
 
 #: /noi/app/templates/translate.tmp.html:130
 msgid "Training"
@@ -1310,50 +1280,43 @@ msgstr "Entrenamiento"
 
 #: /noi/app/templates/translate.tmp.html:131
 msgid "giving participants the skills and information needed to participate well"
-msgstr ""
-"capacitar a los participantes con las habilidades y la información "
+msgstr "capacitar a los participantes con las habilidades y la información "
 "necesaria para que puedan participar exitosamente"
 
 #: /noi/app/templates/translate.tmp.html:132
 #, fuzzy
 msgid "Preparing individuals to participate in a project"
-msgstr "cómo capacitar individuos para que participen en un proyecto"
+msgstr "Capacitar individuos para que participen en un proyecto"
 
 #: /noi/app/templates/translate.tmp.html:133
 #, fuzzy
 msgid "Developing an FAQ for participants to reference throughout the process"
-msgstr ""
-"cómo desarrollar una página de Preguntas Frecuentes para que los "
+msgstr "Desarrollar una página de Preguntas Frecuentes para que los "
 "participantes tengan una referencia durante todo el proceso"
 
 #: /noi/app/templates/translate.tmp.html:134
 #, fuzzy
-msgid ""
-"Preparing people within my institution to make use of citizen scientists’"
+msgid "Preparing people within my institution to make use of citizen scientists’"
 " input"
-msgstr ""
-"cómo capacitar personas dentro de mi institución para que utilicen los "
+msgstr "Capacitar personas dentro de mi institución para que utilicen los "
 "resultados de los ciudadanos científicos"
 
 #: /noi/app/templates/translate.tmp.html:135
 #, fuzzy
 msgid "Assessing data quality"
-msgstr "cómo evaluar la calidad de los datos"
+msgstr "Evaluar la calidad de los datos"
 
 #: /noi/app/templates/translate.tmp.html:136
 #, fuzzy
 msgid "Designing or adapting protocols to assure high quality data"
-msgstr ""
-"cómo diseñar y adaptar protocolos para asegurar una alta calidad en los "
+msgstr "Diseñar y adaptar protocolos para asegurar una alta calidad en los "
 "datos"
 
 #: /noi/app/templates/translate.tmp.html:137
 #, fuzzy
-msgid ""
-"Identifying, choosing and recruiting participants capable of contributing"
+msgid "Identifying, choosing and recruiting participants capable of contributing"
 " high quality data"
-msgstr ""
-"identificar, escoger y reclutar participantes capaces de contribuir con "
+msgstr "Identificar, escoger y reclutar participantes capaces de contribuir con "
 "datos de alta calidad"
 
 #: /noi/app/templates/translate.tmp.html:138
@@ -1362,53 +1325,46 @@ msgstr "Plataformas y Herramientas"
 
 #: /noi/app/templates/translate.tmp.html:139
 msgid "deciding upon and using citizen science platforms and tools"
-msgstr "decidir y usar plataformas y herramientas de ciencia ciudadana. "
+msgstr "decidir y usar plataformas y herramientas de ciencia ciudadana"
 
 #: /noi/app/templates/translate.tmp.html:140
 #, fuzzy
-msgid ""
-"Identifying and deciding on the optimal platform for sharing data "
+msgid "Identifying and deciding on the optimal platform for sharing data "
 "submitted by participants, in a way that helps them interpret the data"
-msgstr ""
-"cómo identificar y decidir cuál es la plataforma ideal para compartir los"
+msgstr "Identificar y decidir cuál es la plataforma ideal para compartir los"
 " datos que los participantes entregan y producen de tal forma que los "
 "ayude a interpretar los datos"
 
 #: /noi/app/templates/translate.tmp.html:141
 #, fuzzy
-msgid ""
-"Identifying and deciding on the optimal platform for sharing data "
+msgid "Identifying and deciding on the optimal platform for sharing data "
 "submitted by participants, with other researchers or data hubs"
-msgstr ""
-"cómo identificar y decidir cuál es la plataforma ideal para compartir los"
+msgstr "Identificar y decidir cuál es la plataforma ideal para compartir los"
 " datos que los participantes entregan y producen con otros investigadores"
 " y centros de datos"
 
 #: /noi/app/templates/translate.tmp.html:142
 #, fuzzy
-msgid ""
-"Evaluating and implementing the appropriate use of technology for "
+msgid "Evaluating and implementing the appropriate use of technology for "
 "collecting and reporting data given the task I am asking people to do"
-msgstr ""
-"cómo evaluar e implementar tecnologías apropiadas para recolectar y "
+msgstr "Evaluar e implementar tecnologías apropiadas para recolectar y "
 "reportar los datos de las tareas que le pido a las personas que realicen"
 
 #: /noi/app/templates/translate.tmp.html:143
 #, fuzzy
 msgid "Interpreting data being collected before the project has been completed"
-msgstr ""
-"cómo interpretar los datos que son recolectados antes de que el proyecto "
+msgstr "Interpretar los datos que son recolectados antes de que el proyecto "
 "haya finalizado"
 
 #: /noi/app/templates/translate.tmp.html:144
 #, fuzzy
 msgid "Interpreting data collected when the project has been completed"
-msgstr "cómo interpretar los datos recolectados cuando el proyecto ha finalizado"
+msgstr "Interpretar los datos recolectados cuando el proyecto ha finalizado"
 
 #: /noi/app/templates/translate.tmp.html:145
 #, fuzzy
 msgid "Archiving data"
-msgstr "cómo archivar los datos"
+msgstr "Archivar los datos"
 
 #: /noi/app/templates/translate.tmp.html:146
 msgid "Decision Making"
@@ -1416,22 +1372,19 @@ msgstr "Toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:147
 msgid "using input gained through citizen science to drive decision making"
-msgstr ""
-"utilizar los resultados obtenidos a través de un proyecto de ciencia "
+msgstr "utilizar los resultados obtenidos a través de un proyecto de ciencia "
 "ciudadana para impulsar la toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:148
 #, fuzzy
 msgid "Identifying the societal relevance of your project"
-msgstr "cómo identificar la importancia social de un proyecto"
+msgstr "Identificar la importancia social de un proyecto"
 
 #: /noi/app/templates/translate.tmp.html:149
 #, fuzzy
-msgid ""
-"Translating the outcomes of the project into desired changes: "
+msgid "Translating the outcomes of the project into desired changes: "
 "(government, institutional, societal)"
-msgstr ""
-"cómo convertir los resultados del proyecto en cambios deseados: "
+msgstr "Convertir los resultados del proyecto en cambios deseados: "
 "(¿gobierno? ¿institucional? ¿societal?)"
 
 #: /noi/app/templates/translate.tmp.html:150
@@ -1440,59 +1393,53 @@ msgstr "Cuestiones Legales"
 
 #: /noi/app/templates/translate.tmp.html:151
 msgid "legal concerns and barriers related to citizen science initiatives"
-msgstr ""
-"las preocupaciones legales y las barreras relacionadas con las "
+msgstr "las preocupaciones legales y las barreras relacionadas con las "
 "iniciativas de ciencia ciudadana "
 
 #: /noi/app/templates/translate.tmp.html:152
 #, fuzzy
 msgid "Identifying and mitigate privacy concerns relating to data collected"
-msgstr ""
-"cómo identificar y mitigar las preocupaciones de privacidad relacionadas "
+msgstr "Identificar y mitigar las preocupaciones de privacidad relacionadas "
 "a los datos recolectados"
 
 #: /noi/app/templates/translate.tmp.html:153
 #, fuzzy
 msgid "Ensuring COPPA compliance in projects featuring minors"
-msgstr ""
-"cómo asegurar el cumplimiento de los estándares de la Ley de Protección "
+msgstr "Asegurar el cumplimiento de los estándares de la Ley de Protección "
 "de la Privacidad de los Niños en Línea, COPPA (por sus siglas en inglés),"
 " en proyectos que involucren a menores"
 
 #: /noi/app/templates/translate.tmp.html:154
 #, fuzzy
 msgid "Identifying considerations related to participants sharing their locations"
-msgstr ""
-"cómo identificar consideraciones relacionadas a que los participantes "
+msgstr "Identificar consideraciones relacionadas a que los participantes "
 "compartan sus ubicaciones"
 
 #: /noi/app/templates/translate.tmp.html:155
 #, fuzzy
 msgid "Asking people to license their contributions"
-msgstr "cómo pedirle a las personas que licencien sus contribuciones"
+msgstr "Pedir a las personas que licencien sus contribuciones"
 
 #: /noi/app/templates/translate.tmp.html:156
 #, fuzzy
 msgid "Licensing data that is going to be published"
-msgstr "cómo elegir la licencia que debo aplicar cuando publico datos"
+msgstr "Elegir la licencia que debo aplicar cuando publico datos"
 
 #: /noi/app/templates/translate.tmp.html:157
 #, fuzzy
 msgid "Drafting a data policy"
-msgstr "cómo redactar una política de datos"
+msgstr "Redactar una política de datos"
 
 #: /noi/app/templates/translate.tmp.html:158
 #, fuzzy
 msgid "Drafting a privacy policy"
-msgstr "cómo redactar una política de privacidad"
+msgstr "Redactar una política de privacidad"
 
 #: /noi/app/templates/translate.tmp.html:159
 #, fuzzy
-msgid ""
-"Drafting other liability policies and educating potential participants "
+msgid "Drafting other liability policies and educating potential participants "
 "about privacy issues"
-msgstr ""
-"cómo redactar otras políticas de responsabilidad (liability) y educar a "
+msgstr "Redactar otras políticas de responsabilidad (liability) y educar a "
 "potenciales participantes sobre asuntos de privacidad"
 
 #: /noi/app/templates/translate.tmp.html:160
@@ -1501,39 +1448,36 @@ msgid "Communicating Results and Sustaining Projects"
 msgstr "Comunicando Resultados y Administrando Proyectos Sostenibles"
 
 #: /noi/app/templates/translate.tmp.html:161
-msgid ""
-"communicating project results to participants and the public, and "
+msgid "communicating project results to participants and the public, and "
 "ensuring that projects continue after initial the engagement"
-msgstr ""
-"comunicar los resultados de un proyecto a los participantes y al público,"
+msgstr "comunicar los resultados de un proyecto a los participantes y al público,"
 " y acerca de asegurar que los proyectos continúen después de su "
 "desarrollo inicial"
 
 #: /noi/app/templates/translate.tmp.html:162
 #, fuzzy
 msgid "Communicating results and milestones to participants"
-msgstr "cómo comunicar resultados e hitos a los participantes"
+msgstr "Comunicar resultados e hitos a los participantes"
 
 #: /noi/app/templates/translate.tmp.html:163
 #, fuzzy
 msgid "Identifying avenues for publishing results"
-msgstr "cómo identificar los medios adecuados para publicar los resultados"
+msgstr "Identificar los medios adecuados para publicar los resultados"
 
 #: /noi/app/templates/translate.tmp.html:164
 #, fuzzy
 msgid "Determining when to publish results"
-msgstr "cómo determinar cuándo publicar los resultados"
+msgstr "Determinar cuándo publicar los resultados"
 
 #: /noi/app/templates/translate.tmp.html:165
 #, fuzzy
 msgid "Ensuring sustainability of project management"
-msgstr "cómo asegurar la sustentabilidad en la administración del proyecto"
+msgstr "Asegurar la sustentabilidad en la administración del proyecto"
 
 #: /noi/app/templates/translate.tmp.html:166
 #, fuzzy
 msgid "Identifying funding opportunities to sustain a project"
-msgstr ""
-"cómo identificar las oportunidades de financiamiento para sustentar un "
+msgstr "Identificar las oportunidades de financiamiento para sustentar un "
 "proyecto  "
 
 #: /noi/app/templates/translate.tmp.html:168
@@ -1564,64 +1508,57 @@ msgstr "recolección de datos"
 #: /noi/app/templates/translate.tmp.html:175
 #, fuzzy
 msgid "Creating incentives for people to provide data."
-msgstr "cómo crear incentivos para que las personas proporcionen datos"
+msgstr "Crear incentivos para que las personas proporcionen datos"
 
 #: /noi/app/templates/translate.tmp.html:176
 #, fuzzy
-msgid ""
-"Using new methods (e.g. crowdsourcing) for collecting data from new "
+msgid "Using new methods (e.g. crowdsourcing) for collecting data from new "
 "sources."
-msgstr ""
-"Cómo usar nuevos métodos (e.g. crowdsourcing) para recolectar datosde "
+msgstr "Usar nuevos métodos (e.g. crowdsourcing) para recolectar datosde "
 "nuevas fuentes."
 
 #: /noi/app/templates/translate.tmp.html:177
 #, fuzzy
-msgid ""
-"Making sure that data is accurate, timely, and clean. (Data processing "
+msgid "Making sure that data is accurate, timely, and clean. (Data processing "
 "and conditioning)"
-msgstr ""
-"Cómo comprobar que los datos son precisos, oportunos y "
+msgstr "Comprobar que los datos son precisos, oportunos y "
 "limpios.(Procesamiento y preparación de datos)"
 
 #: /noi/app/templates/translate.tmp.html:178
 #, fuzzy
 msgid "Data Governance"
-msgstr "TRANSLATE"
+msgstr "Gobernanza de datos"
 
 #: /noi/app/templates/translate.tmp.html:179
 msgid "data governance"
-msgstr "TRANSLATE"
+msgstr "Gobernanza de datos"
 
 #: /noi/app/templates/translate.tmp.html:180
 #, fuzzy
 msgid "Storing data securely."
-msgstr "Cómo almacenar datos de forma segura."
+msgstr "Almacenar datos de forma segura."
 
 #: /noi/app/templates/translate.tmp.html:181
 #, fuzzy
 msgid ""
 "Transmitting data securely so that when data is shared, the quality and "
 "integrity of the data is maintained."
-msgstr ""
-"Cómo enviar datos de forma segura para que se mantenga la calidad e "
+msgstr "Enviar datos de forma segura para que se mantenga la calidad e "
 "integridad de los datos cuando se comparten."
 
 #: /noi/app/templates/translate.tmp.html:182
 #, fuzzy
-msgid ""
-"Sharing data appropriately within my institution and with third parties "
+msgid "Sharing data appropriately within my institution and with third parties "
 "in a way that does not violate privacy and confidentiality.    "
 "(Information Governance)"
-msgstr ""
-"Cómo compartir datos de forma correcta dentro de mi institución y con una"
+msgstr "Compartir datos de forma correcta dentro de mi institución y con una"
 " tercera parte de tal forma que no se violen la privacidad y la "
 "confidencialidad. (Gobernanza de datos)"
 
 #: /noi/app/templates/translate.tmp.html:183
 #, fuzzy
 msgid "Crafting an information governance policy."
-msgstr "Cómo redactar una política de gobernanza de datos"
+msgstr "Redactar una política de gobernanza de datos."
 
 #: /noi/app/templates/translate.tmp.html:184
 #, fuzzy
@@ -1634,38 +1571,34 @@ msgstr "obteniendo ideas de los datos"
 
 #: /noi/app/templates/translate.tmp.html:186
 #, fuzzy
-msgid ""
-"Spotting patterns and predicting trends from existing data (predictive "
+msgid "Spotting patterns and predicting trends from existing data (predictive "
 "analytics)."
-msgstr ""
-"Cómo identificar patrones y predecir tendencias de datos previos "
+msgstr "Identificar patrones y predecir tendencias de datos previos "
 "(análisis predictivo)."
 
 #: /noi/app/templates/translate.tmp.html:187
 #, fuzzy
 msgid "Formulating and test a hypothesis using data."
-msgstr "Cómo formular y examinar una hipótesis usando datos"
+msgstr "Formular y examinar una hipótesis usando datos."
 
 #: /noi/app/templates/translate.tmp.html:188
 #, fuzzy
 msgid "Designing an experiment to test a data-driven hypothesis."
-msgstr "Cómo diseñar un experimento para poner a prueba una hipótesis."
+msgstr "Diseñar un experimento para poner a prueba una hipótesis."
 
 #: /noi/app/templates/translate.tmp.html:189
 #, fuzzy
 msgid "Plotting and visualizing data in order to derive and communicate insight."
-msgstr ""
-"Cómo graficar y visualizar los datos con el propósito de obtener y "
+msgstr "Graficar y visualizar los datos con el propósito de obtener y "
 "comunicar ideas."
 
 #: /noi/app/templates/translate.tmp.html:190
 #, fuzzy
 msgid "Interpreting and communicating what data says."
-msgstr "cómo interpretar y comunicar lo que dicen los datos"
+msgstr "Interpretar y comunicar lo que dicen los datos."
 
 #: /noi/app/templates/translate.tmp.html:191
-msgid ""
-"<p>Institutions often work best when their stakeholders -- whether "
+msgid "<p>Institutions often work best when their stakeholders -- whether "
 "citizens, customers, parents, patients, or other members of a community "
 "-- are directly engaged in decision-making and service delivery. "
 "Engagement can build trust and increase the legitimacy of decision-"
@@ -1675,8 +1608,7 @@ msgid ""
 "and under what conditions is hard. </p> <p>Share what you know and what "
 "you would like to learn about how to formulate, implement and measure a "
 "community engagement strategy.</p>\n"
-msgstr ""
-"Las instituciones usualmente trabajan mejor cuando sus grupos de interés–"
+msgstr "Las instituciones usualmente trabajan mejor cuando sus grupos de interés–"
 " ya sean ciudadanos, clientes, padres de familia, pacientes u otros "
 "miembros de una comunidad–se involucran de forma directa en la toma de "
 "decisiones y en la prestación de servicios. La participación puede "
@@ -1698,38 +1630,30 @@ msgid "Identifying goals and participants"
 msgstr "Identificando metas y participantes"
 
 #: /noi/app/templates/translate.tmp.html:195
-msgid ""
-"What you can share about setting the stage for a community engagement "
+msgid "What you can share about setting the stage for a community engagement "
 "program."
-msgstr ""
-"Lo que puedes compartir acerca de establecer las bases para un programa "
+msgstr "Lo que puedes compartir acerca de establecer las bases para un programa "
 "de participación comunitaria. "
 
 #: /noi/app/templates/translate.tmp.html:196
 #, fuzzy
-msgid ""
-"Clearly identifying the rationale, purpose and objectives for community "
+msgid "Clearly identifying the rationale, purpose and objectives for community "
 "engagement."
-msgstr ""
-"Identificar claramente el propósito, los objetivos, y la racionalidad de "
-"la participación comunitaria"
+msgstr "Identificar claramente el propósito, los objetivos, y la racionalidad de "
+"la participación comunitaria."
 
 #: /noi/app/templates/translate.tmp.html:197
 #, fuzzy
-msgid ""
-"Finding and interpreting relevant legislative and/or policy requirements "
+msgid "Finding and interpreting relevant legislative and/or policy requirements "
 "driving the need for engagement."
-msgstr ""
-"Encontrar e interpretar los requerimientos legislativos y/o de políticas "
+msgstr "Encontrar e interpretar los requerimientos legislativos y/o de políticas "
 "públicas que impulsan la necesidad de participación. "
 
 #: /noi/app/templates/translate.tmp.html:198
 #, fuzzy
-msgid ""
-"Identifying who needs to be involved, including all stakeholders "
+msgid "Identifying who needs to be involved, including all stakeholders "
 "affected, impacted or interested in the engagement."
-msgstr ""
-"Identificar quién debe estar involucrado, incluyendo grupos de interés "
+msgstr "Identificar quién debe estar involucrado, incluyendo grupos de interés "
 "afectados, impactados o interesados en la participación. "
 
 #: /noi/app/templates/translate.tmp.html:199
@@ -1738,17 +1662,14 @@ msgstr "Implementando una estrategia de participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:200
 msgid "What you can share about operationalizing a community engagement program."
-msgstr ""
-"Lo que puedes compartir acerca de poner en práctica un programa de "
+msgstr "Lo que puedes compartir acerca de poner en práctica un programa de "
 "participación comunitaria "
 
 #: /noi/app/templates/translate.tmp.html:201
 #, fuzzy
-msgid ""
-"Identifying and communicating incentives to participate, including "
+msgid "Identifying and communicating incentives to participate, including "
 "anticipated outcomes."
-msgstr ""
-"Identificar y comunicar incentivos para motivar la participación, "
+msgstr "Identificar y comunicar incentivos para motivar la participación, "
 "incluyendo los resultados esperados. "
 
 #: /noi/app/templates/translate.tmp.html:202
@@ -1759,40 +1680,38 @@ msgstr "Desarrollar materiales informativos para comunicar sobre la participaci�
 #: /noi/app/templates/translate.tmp.html:203
 #, fuzzy
 msgid "Using multiple dialog methods to engage stakeholders."
-msgstr "Usar múltiples métodos de diálogo para involucrar a los grupos de interés"
+msgstr "Usar múltiples métodos de diálogo para involucrar a los grupos de interés."
 
 #: /noi/app/templates/translate.tmp.html:204
 #, fuzzy
 msgid "Planning and delivering face-to-face deliberation."
-msgstr "Planear e implementar una deliberación presencial"
+msgstr "Planear e implementar una deliberación presencial."
 
 #: /noi/app/templates/translate.tmp.html:205
 #, fuzzy
 msgid "Planning and delivering a deliberative poll."
-msgstr "Planear e implementar una encuesta deliberativa"
+msgstr "Planear e implementar una encuesta deliberativa."
 
 #: /noi/app/templates/translate.tmp.html:206
 #, fuzzy
 msgid "Planning and delivering a citizen jury."
-msgstr "Planear e implementar un jurado ciudadano"
+msgstr "Planear e implementar un jurado ciudadano."
 
 #: /noi/app/templates/translate.tmp.html:207
 #, fuzzy
 msgid "Planning and delivering a participatory budgeting process."
-msgstr "Planear e implementar un proceso de presupuesto participativo "
+msgstr "Planear e implementar un proceso de presupuesto participativo."
 
 #: /noi/app/templates/translate.tmp.html:208
 #, fuzzy
 msgid "Planning and delivering a charrette or scenario-planning exercise."
-msgstr "Planear e implementar un ejercicio de planeación de escenarios"
+msgstr "Planear e implementar un ejercicio de planeación de escenarios."
 
 #: /noi/app/templates/translate.tmp.html:209
 #, fuzzy
-msgid ""
-"Developing an action/project plan with timeline to implement the "
+msgid "Developing an action/project plan with timeline to implement the "
 "engagement."
-msgstr ""
-" Desarrollar un plan de acción/proyecto con un cronograma para "
+msgstr "Desarrollar un plan de acción/proyecto con un cronograma para "
 "implementar la participación. "
 
 #: /noi/app/templates/translate.tmp.html:210
@@ -1815,27 +1734,22 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:213
 #, fuzzy
-msgid ""
-"Using social media, digital and online tools to engage stakeholders as a "
+msgid "Using social media, digital and online tools to engage stakeholders as a "
 "group."
-msgstr ""
-"Usar redes sociales, herramientas digitales y en línea para involucrar a "
+msgstr "Usar redes sociales, herramientas digitales y en línea para involucrar a "
 "los grupos de interés como una comunidad. "
 
 #: /noi/app/templates/translate.tmp.html:214
 #, fuzzy
 msgid "Using social media, digital and online tools to conduct surveys."
-msgstr ""
-"Usar redes sociales, herramientas digitales y en línea para realizar "
+msgstr "Usar redes sociales, herramientas digitales y en línea para realizar "
 "encuestas."
 
 #: /noi/app/templates/translate.tmp.html:215
 #, fuzzy
-msgid ""
-"Planning and delivering an e-deliberation process like a 21st century "
+msgid "Planning and delivering an e-deliberation process like a 21st century "
 "town meeting."
-msgstr ""
-"Planear e implementar un proceso de deliberación en línea, como un "
+msgstr "Planear e implementar un proceso de deliberación en línea, como un "
 "cabildo abierto del siglo 21."
 
 #: /noi/app/templates/translate.tmp.html:216
@@ -1845,18 +1759,15 @@ msgstr "Planear e implementar tecnología de espacios abiertos."
 
 #: /noi/app/templates/translate.tmp.html:217
 #, fuzzy
-msgid ""
-"Using digital and online tools to amplify engagement efforts and increase"
+msgid "Using digital and online tools to amplify engagement efforts and increase"
 " reach."
-msgstr ""
-"Usar herramientas digitales y en línea para amplificar los esfuerzos de "
+msgstr "Usar herramientas digitales y en línea para amplificar los esfuerzos de "
 "participación y para incrementar el alcance. "
 
 #: /noi/app/templates/translate.tmp.html:218
 #, fuzzy
 msgid "Using digital and online tools to provide feedback to stakeholders."
-msgstr ""
-"Usar herramientas digitales y en línea para proporcionar "
+msgstr "Usar herramientas digitales y en línea para proporcionar "
 "retroalimentación a los grupos de interés. "
 
 #: /noi/app/templates/translate.tmp.html:219
@@ -1864,79 +1775,62 @@ msgid "Measuring, evaluating and providing feedback"
 msgstr "Midiendo, evaluando y proporcionando retroalimentación "
 
 #: /noi/app/templates/translate.tmp.html:220
-msgid ""
-"What you can share about assessing effectiveness and sharing targeted "
+msgid "What you can share about assessing effectiveness and sharing targeted "
 "feedback"
-msgstr ""
-"Lo que puedes compartir acerca de evaluar la efectividad y compartir "
+msgstr "Lo que puedes compartir acerca de evaluar la efectividad y compartir "
 "retroalimentación específic"
 
 #: /noi/app/templates/translate.tmp.html:221
 #, fuzzy
-msgid ""
-"Capturing and utilising relevant data related to all aspects of "
+msgid "Capturing and utilising relevant data related to all aspects of "
 "engagement."
-msgstr ""
-"Recolectar y utilizar los datos relacionados a cada uno de los aspectos "
+msgstr "Recolectar y utilizar los datos relacionados a cada uno de los aspectos "
 "de la participación."
 
 #: /noi/app/templates/translate.tmp.html:222
 #, fuzzy
-msgid ""
-"Creating tools for providing clear feedback to participants and decision "
+msgid "Creating tools for providing clear feedback to participants and decision "
 "makers."
-msgstr ""
-"Crear herramientas para proporcionar retroalimentación clara a los "
+msgstr "Crear herramientas para proporcionar retroalimentación clara a los "
 "participantes y a los responsables de la toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:223
 #, fuzzy
 msgid "Clearly and regularly reporting outcomes to participants and stakeholders."
-msgstr ""
-"Reportar de forma clara y regular los resultados a los participantes y a "
+msgstr "Reportar de forma clara y regular los resultados a los participantes y a "
 "los grupos de interés"
 
 #: /noi/app/templates/translate.tmp.html:224
 msgid "Transforming my organisation"
-msgstr "Transformando mi organización "
+msgstr "Transformando mi organización"
 
 #: /noi/app/templates/translate.tmp.html:225
-msgid ""
-"What you can share about increasing the organizational use of citizen "
-"engagement"
-msgstr ""
-"Lo que puedes compartir acerca de mejorar tu organización haciendo uso de"
+msgid "What you can share about increasing the organizational use of citizen engagement"
+msgstr "Lo que puedes compartir acerca de mejorar tu organización haciendo uso de"
 " la participación comunitaria"
 
 #: /noi/app/templates/translate.tmp.html:226
 #, fuzzy
-msgid ""
-"Ensuring that the learnings from a community engagement exercise get used"
+msgid "Ensuring that the learnings from a community engagement exercise get used"
 " to support continuous improvement within my organisation."
-msgstr ""
-"Asegurar que los aprendizajes del ejercicio de participación comunitaria "
-"sean utilizados para apoyar el mejoramiento continuo dentro de mi "
-"organización. "
+msgstr "Asegurar que los aprendizajes del ejercicio de participación comunitaria "
+"sean utilizados para apoyar el mejoramiento continuo dentro de mi organización."
 
 #: /noi/app/templates/translate.tmp.html:227
 #, fuzzy
 msgid "Increasing organisational awareness of the value of community engagement."
-msgstr ""
-"Aumentar la conciencia en la organización sobre el valor de la "
-"participación comunitaria "
+msgstr "Aumentar la conciencia en la organización sobre el valor de la "
+"participación comunitaria."
 
 #: /noi/app/templates/translate.tmp.html:228
 #, fuzzy
-msgid ""
-"Developing and delivering appropriate training for staff across my "
+msgid "Developing and delivering appropriate training for staff across my "
 "organisation."
-msgstr ""
-"Desarrollar e implementar la capacitación adecuada para el personal de "
-"toda de mi organización"
+msgstr "Desarrollar e implementar la capacitación adecuada para el personal de "
+"toda de mi organización."
 
 #: /noi/app/templates/translate.tmp.html:229
-msgid ""
-"<p>Governments are seeking to become more experimental and evidence-based"
+msgid "<p>Governments are seeking to become more experimental and evidence-based"
 " through the creation of internal innovation labs. The growing labs "
 "movement is helping to uncover what works in practice. For questionnaires"
 " about the community engagement and crowdsourcing methods used by many "
@@ -1954,98 +1848,73 @@ msgstr "Creación de laboratorios y visión"
 
 #: /noi/app/templates/translate.tmp.html:233
 msgid "What you can share about launching a government innovation lab."
-msgstr ""
-"Lo que puede compartir acerca de poner en marcha un laboratorio de "
-"innovación. "
+msgstr "Lo que puede compartir acerca de poner en marcha un laboratorio de innovación."
 
 #: /noi/app/templates/translate.tmp.html:234
 #, fuzzy
-msgid ""
-"Articulating the value proposition of my Lab and the need for "
-"experimentation"
-msgstr ""
-"cómo articular la propuesta de valor para mi laboratorio y la necesidad "
-"de experimentación"
+msgid "Articulating the value proposition of my Lab and the need for experimentation"
+msgstr "Articular la propuesta de valor para mi laboratorio y la necesidad de experimentación"
 
 #: /noi/app/templates/translate.tmp.html:235
 #, fuzzy
-msgid ""
-"Clearly defining the problems that my Lab is supposed to solve, and the "
+msgid "Clearly defining the problems that my Lab is supposed to solve, and the "
 "assumptions it is going to test"
-msgstr ""
-"cómo articular de forma clara los problemas que mi laboratorio debe "
+msgstr "Articular de forma clara los problemas que mi laboratorio debe "
 "resolver y los supuestos que mi laboratorio pondrá a prueba"
 
 #: /noi/app/templates/translate.tmp.html:236
-msgid ""
-"Identifying the audience to be convinced and how to persuade them to "
-"support the Lab"
-msgstr ""
+msgid "Identifying the audience to be convinced and how to persuade them to support the Lab"
+msgstr "Identificar a la audiencia que debo convencer y persuadirlos a apoyar el laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:237
 msgid "Defining the different products and services my Lab will deliver"
-msgstr ""
+msgstr "Definir los diferentes productos y servicios que mi laboratorio va a ofrecer"
 
 #: /noi/app/templates/translate.tmp.html:238
 #, fuzzy
 msgid "Articulating a clear theory of change for my Lab"
-msgstr "cómo articular una teoría de cambio clara para mi laboratorio "
+msgstr "Articular una teoría de cambio clara para mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:239
 msgid "Lab Operations"
-msgstr "Operaciones del laboratorio "
+msgstr "Operaciones del laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:240
-msgid ""
-"What you can share about the organizational mechanics of running a "
+msgid "What you can share about the organizational mechanics of running a "
 "government innovation lab."
-msgstr ""
-"Lo que puede compartir acerca de la gestión operativa que implica dirigir"
+msgstr "Lo que puede compartir acerca de la gestión operativa que implica dirigir"
 " un laboratorio de innovación gubernamental. "
 
 #: /noi/app/templates/translate.tmp.html:241
 #, fuzzy
-msgid ""
-"Defining an engagement model for my Lab vis a vis other parts of my "
-"organisation"
-msgstr ""
-"definir un modelo de participación para mi laboratorio en función a otras"
+msgid "Defining an engagement model for my Lab vis a vis other parts of my organisation"
+msgstr "Definir un modelo de participación para mi laboratorio en función a otras"
 " partes de mi organización"
 
 #: /noi/app/templates/translate.tmp.html:242
 #, fuzzy
-msgid ""
-"Defining a handover protocol between my Lab and other parts of the "
-"organisation"
-msgstr ""
-"cómo definir un protocolo de traspaso entre mi laboratorio y otras partes"
+msgid "Defining a handover protocol between my Lab and other parts of the organisation"
+msgstr "Definir un protocolo de traspaso entre mi laboratorio y otras partes"
 " de la organización"
 
 #: /noi/app/templates/translate.tmp.html:243
 #, fuzzy
-msgid ""
-"Defining the roles and Terms of Reference staff need for the success of "
-"my Lab"
-msgstr ""
-"cómo definir los roles y Términos de Referencia que el equipo necesita "
+msgid "Defining the roles and Terms of Reference staff need for the success of my Lab"
+msgstr "Definir los roles y Términos de Referencia que el equipo necesita "
 "para el éxito de mi laboratorio "
 
 #: /noi/app/templates/translate.tmp.html:244
 #, fuzzy
-msgid ""
-"Costing the services for my Lab and defining a business model that "
+msgid "Costing the services for my Lab and defining a business model that "
 "guarantees long term sustainability"
-msgstr ""
-"cómo presupuestar los servicios para mi laboratorio y definir el modelo "
+msgstr "Presupuestar los servicios para mi laboratorio y definir el modelo "
 "de negocio que garantizará sustentabilidad a largo plazo"
 
 #: /noi/app/templates/translate.tmp.html:245
 #, fuzzy
-msgid ""
-"Effectively arguing for the most effective reporting lines and "
+msgid "Effectively arguing for the most effective reporting lines and "
 "organisational placement for my Lab"
-msgstr ""
-"cómo argumentar para tener la dependencia organizacional más efectiva "
+msgstr "Argumentar para tener la dependencia organizacional más efectiva "
 "para mi laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:246
@@ -2053,44 +1922,37 @@ msgid "Lab Experimentation and Methodology"
 msgstr "Experimentación y Metodología del Laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:247
-msgid ""
-"What you can share about developing and implementing an experimental "
+msgid "What you can share about developing and implementing an experimental "
 "methodology for lab work."
-msgstr ""
-"Lo que puedes compartir acerca de desarrollar e implementar una "
+msgstr ""Lo que puedes compartir acerca de desarrollar e implementar una "
 "metodología experimental para el trabajo en el laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:248
 #, fuzzy
 msgid "Defining metrics for my Lab to demonstrate its impact"
-msgstr "cómo definir las métricas para que mi laboratorio demuestre su impacto"
+msgstr "Definir las métricas para que mi laboratorio demuestre su impacto"
 
 #: /noi/app/templates/translate.tmp.html:249
 #, fuzzy
 msgid "Selecting and implementing the methods that my Lab will promote"
-msgstr ""
-"cómo seleccionar e implementar las metodologías que promoverá mi "
-"laboratorio"
+msgstr "Sseleccionar e implementar las metodologías que promoverá mi laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:250
 #, fuzzy
 msgid "Training others in Lab methods and tools"
-msgstr "cómo capacitar a otros en las metodologías y herramientas del laboratorio"
+msgstr "Capacitar a otros en las metodologías y herramientas del laboratorio"
 
 #: /noi/app/templates/translate.tmp.html:251
 #, fuzzy
 msgid "Managing a Lab project using an agile development approach"
-msgstr ""
-"cómo administrar un proyecto de laboratorio utilizando una metodología de"
+msgstr "Administrar un proyecto de laboratorio utilizando una metodología de"
 " desarrollo ágil"
 
 #: /noi/app/templates/translate.tmp.html:252
 #, fuzzy
-msgid ""
-"TrackIng evidence and iterating programs to ensure relevance and generate"
+msgid "Tracking evidence and iterating programs to ensure relevance and generate"
 " timely results"
-msgstr ""
-"cómo monitorear, demostrar, e iterar nuestros programas para asegurar su "
+msgstr "Monitorear, demostrar, e iterar nuestros programas para asegurar su "
 "importancia y generar resultados oportunos"
 
 #: /noi/app/templates/translate.tmp.html:253
@@ -2101,68 +1963,54 @@ msgstr "Personal y Recursos"
 #: /noi/app/templates/translate.tmp.html:254
 #, fuzzy
 msgid "What you can share about managing lab staff and budgets."
-msgstr ""
-"Lo que puedes compartir sobre la administración del personal y los "
-"presupuestos"
+msgstr "Lo que puedes compartir sobre la administración del personal y los presupuestos"
 
 #: /noi/app/templates/translate.tmp.html:255
 #, fuzzy
 msgid "Effectively recruiting a group of early champions to support the Lab"
-msgstr "cómo reclutar de forma efectiva un grupo de  que apoyen el laboratori"
+msgstr "Reclutar de forma efectiva un grupo de líderes que apoyen el laboratorio tempranamente"
 
 #: /noi/app/templates/translate.tmp.html:256
 #, fuzzy
-msgid ""
-"Managing resources, including people, time and budget to ensure value for"
+msgid "Managing resources, including people, time and budget to ensure value for"
 " investment"
-msgstr ""
-"cómo administrar recursos, incluyendo personas, tiempo y presupuesto para"
-" asegurar una buena relación calidad-precio "
+msgstr "Administrar recursos, incluyendo personas, tiempo y presupuesto para"
+" asegurar una buena relación calidad-precio"
 
 #: /noi/app/templates/translate.tmp.html:257
 msgid "Capturing, Leveraging and Communicating Results"
-msgstr "Captando, aprovechando y comunicando resultados "
+msgstr "Captando, aprovechando y comunicando resultados"
 
 #: /noi/app/templates/translate.tmp.html:258
-msgid ""
-"What you can share about making use of lab results internally and "
+msgid "What you can share about making use of lab results internally and "
 "communicating impacts externally."
-msgstr ""
-"Lo que puedes compartir acerca de hacer uso interno de los resultados del"
-" laboratorio y de comunicar los impactos al exterior  "
+msgstr "Lo que puedes compartir acerca de hacer uso interno de los resultados del"
+" laboratorio y de comunicar los impactos al exterior"
 
 #: /noi/app/templates/translate.tmp.html:259
 #, fuzzy
-msgid ""
-"Developing a portfolio of demonstration projects that can show tangible "
+msgid "Developing a portfolio of demonstration projects that can show tangible "
 "results even in the face of skepticism"
-msgstr ""
-"cómo desarrollar un portafolio de proyectos de demostración que puedan "
+msgstr "Desarrollar un portafolio de proyectos de demostración que puedan "
 "comprobar resultados tangibles incluso ante personas escépticas"
 
 #: /noi/app/templates/translate.tmp.html:260
 #, fuzzy
-msgid ""
-"Researching, piloting and testing new programs based on the insights and "
+msgid "Researching, piloting and testing new programs based on the insights and "
 "knowhow gathered from previous ones"
-msgstr ""
-"cómo investigar, crear un piloto y probar nuevos programas con base a los"
-" aprendizajes y el conocimiento práctico recopilado de los programas "
-"anteriores"
+msgstr "Investigar, crear un piloto y probar nuevos programas con base a los"
+" aprendizajes y el conocimiento práctico recopilado de los programas anteriores"
 
 #: /noi/app/templates/translate.tmp.html:261
 #, fuzzy
-msgid ""
-"Capturing, articulating and sharing the narrative around the impact and "
+msgid "Capturing, articulating and sharing the narrative around the impact and "
 "outcomes of lab programs, i.e. through case studies"
-msgstr ""
-"cómo captar, articular y compartir la narrativa alrededor del impacto y "
+msgstr "Captar, articular y compartir la narrativa alrededor del impacto y "
 "los resultados obtenidos en los programas del laboratorio, por ejemplo, a"
-" través de casos de estudio  "
+" través de casos de estudio"
 
 #: /noi/app/templates/translate.tmp.html:262
-msgid ""
-"<p>Crowdsourcing uses communications technologies to enable institutions"
+msgid "<p>Crowdsourcing uses communications technologies to enable institutions"
 "  to leverage the wisdom of the crowd. With crowdsourcing, organizations "
 "can get help, for example, with performing tasks, obtaining ideas and "
 "opinions,  gathering data, soliciting funds, or administering programs. "
@@ -2172,8 +2020,7 @@ msgid ""
 "questions help you describe what you know and can share about "
 "crowdsourcing and what you want to learn from others. Click on a link "
 "below to create an expertise  profile.</b></p>\n"
-msgstr ""
-"<p>El crowdsourcing utiliza tecnologías de la comunicación que permiten a"
+msgstr "<p>El crowdsourcing utiliza tecnologías de la comunicación que permiten a"
 " las instituciones aprovechar la sabiduría de la multitud. A través del "
 "crowdsourcing las organizaciones pueden obtener ayuda de un grupo diverso"
 " de individuos, por ejemplo para realizar tareas, obtener ideas u "
@@ -2192,37 +2039,32 @@ msgstr "Crowdsourcing"
 #: /noi/app/templates/translate.tmp.html:265
 #, fuzzy
 msgid "Determining the Crowd"
-msgstr "Definiendo el alcance del problema"
+msgstr "Definiendo el alcance de la multitud"
 
 #: /noi/app/templates/translate.tmp.html:266
 msgid "What can you share about identifying, enrolling, and developing a crowd"
-msgstr ""
-"Qué puedes compartir acerca de identificar, inscribir/enlistar y "
+msgstr "Lo que puedes compartir acerca de identificar, inscribir y "
 "desarrollar una multitud."
 
 #: /noi/app/templates/translate.tmp.html:267
 #, fuzzy
-msgid ""
-"Identifying the crowd I want to participate (e.g. general public, "
+msgid "Identifying the crowd I want to participate (e.g. general public, "
 "informed experts, participants with a particular skill)"
-msgstr ""
-"Cómo identificar la multitud que quiero que participe (e.g. público en "
-"general, expertos informados, participantes con una habilidad "
-"particular)."
+msgstr "Cómo identificar la multitud que quiero que participe (e.g. público en "
+"general, expertos informados, participantes con una habilidad particular)."
 
 #: /noi/app/templates/translate.tmp.html:268
 #, fuzzy
 msgid ""
 "Enabling members of the crowd to participate (e.g. creating profiles, "
 "defining roles, sharing supporting materials)"
-msgstr ""
-"Cómo capacitar a los miembros de la multitud para que participen (e.g. "
+msgstr "Capacitar a los miembros de la multitud para que participen (e.g. "
 "creando perfiles, definiendo roles, compartiendo materiales adicionales)"
 
 #: /noi/app/templates/translate.tmp.html:269
 #, fuzzy
 msgid "Encouraging ongoing participation"
-msgstr "Cómo alentar una participación continua."
+msgstr "Alentar una participación continua."
 
 #: /noi/app/templates/translate.tmp.html:270
 msgid "Determining the Activity"
@@ -2230,139 +2072,109 @@ msgstr "Determinando la Actividad"
 
 #: /noi/app/templates/translate.tmp.html:271
 msgid "What can you share about the type of activities the crowd could perform"
-msgstr ""
-"Qué puedes compartir acerca del tipo de actividades que la multitud "
+msgstr "Lo que puedes compartir acerca del tipo de actividades que la multitud "
 "desarrollará."
 
 #: /noi/app/templates/translate.tmp.html:272
 #, fuzzy
-msgid ""
-"Asking the crowd to perform a specific task (e.g. design a product, tag "
+msgid "Asking the crowd to perform a specific task (e.g. design a product, tag "
 "photos, classify information, analyse information)"
-msgstr ""
-"Cómo pedir a la multitud que realice una tarea específica (e.g. diseñar "
-"un producto, etiquetar fotos, clasificar información, analizar "
-"información)."
+msgstr "Pedir a la multitud que realice una tarea específica (e.g. diseñar "
+"un producto, etiquetar fotos, clasificar información, analizar información)."
 
 #: /noi/app/templates/translate.tmp.html:273
 #, fuzzy
-msgid ""
-"Asking the crowd to collect and share data (e.g. report a water leak, a "
+msgid "Asking the crowd to collect and share data (e.g. report a water leak, a "
 "case of corruption, quality of the air in their city)"
-msgstr ""
-"Cómo pedir a la multitud que recopile y comparta datos (e.g. reportar una"
-" fuga de agua, un caso de corrupción, la calidad de aire de la ciudad)."
+msgstr "Cómo pedir a la multitud que recopile y comparta datos (e.g. reportar una"
+" fuga de agua, un caso de corrupción, la calidad de aire en su ciudad)."
 
 #: /noi/app/templates/translate.tmp.html:274
 #, fuzzy
-msgid ""
-"Asking the crowd for their opinion (e.g. vote on a design contest, opine "
+msgid "Asking the crowd for their opinion (e.g. vote on a design contest, opine "
 "on a policy recommendation)"
-msgstr ""
-"Cómo pedir a la multitud su opinión (e.g. votar en un concurso de diseño,"
+msgstr "Pedir a la multitud su opinión (e.g. votar en un concurso de diseño,"
 " opinar en una recomendación sobre política pública)."
 
 #: /noi/app/templates/translate.tmp.html:275
 #, fuzzy
-msgid ""
-"Asking the crowd for new ideas (e.g. solve a public problem, generate "
+msgid "Asking the crowd for new ideas (e.g. solve a public problem, generate "
 "ideas to reduce unnecessary government spending)"
-msgstr ""
-"Cómo pedir nuevas ideas a la multitud (e.g. solucionar un problema "
+msgstr "Pedir nuevas ideas a la multitud (e.g. solucionar un problema "
 "público, generar ideas para reducir el gasto gubernamental innecesario)."
 
 #: /noi/app/templates/translate.tmp.html:276
 #, fuzzy
-msgid ""
-"Asking the crowd for funds (e.g. donate money to help build a park, "
+msgid "Asking the crowd for funds (e.g. donate money to help build a park, "
 "funding a municipal bond)"
-msgstr ""
-"Cómo pedir fondos a la multitud (e.g. donar dinero para ayudar a "
+msgstr "Pedir fondos a la multitud (e.g. donar dinero para ayudar a "
 "construir un parque, financiar un bono municipal)."
 
 #: /noi/app/templates/translate.tmp.html:277
 #, fuzzy
-msgid ""
-"Asking the crowd for referrals (e.g. share information with their "
+msgid "Asking the crowd for referrals (e.g. share information with their "
 "personal or professional networks, provide recommendations of other "
 "members of the crowd to include in an initiative)"
-msgstr ""
-"Cómo pedir recomendaciones a la multitud (e.g. que compartan información "
-"con sus redes personales o profesionales, que proporcionen "
-"recomendaciones a otros miembros de la multitud para incluir en una "
-"iniciativa)."
+msgstr "Pedir recomendaciones a la multitud (e.g. que compartan información "
+"con sus redes personales o profesionales, que proporcionen recomendaciones "
+"a otros miembros de la multitud para incluir en una iniciativa)."
 
 #: /noi/app/templates/translate.tmp.html:278
 msgid "Determining a Successful Crowdsourcing Strategy"
 msgstr "Determinando una estrategia exitosa de crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:279
-msgid ""
-"What can you share about defining if crowdsourcing is the right process "
+msgid "What can you share about defining if crowdsourcing is the right process "
 "for a given situation"
-msgstr ""
-"Qué puedes compartir sobre decidir si el crowdsourcing es la herramienta "
+msgstr "Lo que puedes compartir sobre decidir si el crowdsourcing es la herramienta "
 "adecuada para una situación determinada."
 
 #: /noi/app/templates/translate.tmp.html:280
 #, fuzzy
-msgid ""
-"Deciding when to use crowdsourcing rather than other options like the "
+msgid "Deciding when to use crowdsourcing rather than other options like the "
 "conventional top-down process of decision-making"
-msgstr ""
-"Cómo decidir cuándo utilizar crowdsourcing en lugar de otras opciones "
-"convencionales como procesos verticales de toma de decisiones (top-down)."
+msgstr "Decidir cuándo utilizar crowdsourcing en lugar de otras opciones "
+"convencionales como procesos verticales de toma de decisiones"
 
 #: /noi/app/templates/translate.tmp.html:281
 #, fuzzy
-msgid ""
-"Identifying the gaps in expertise that can be minimised through the "
+msgid "Identifying the gaps in expertise that can be minimised through the "
 "participation of the crowd"
-msgstr ""
-"Cómo identificar las brechas en conocimiento y competencias que pueden "
-"minimizarse a través de la participación de la multitud."
+msgstr "Identificar las brechas en conocimiento y competencias que pueden "
+"minimizarse a través de la participación de la multitud"
 
 #: /noi/app/templates/translate.tmp.html:282
 #, fuzzy
-msgid ""
-"Designing a crowdsourcing strategy that provides value to the "
+msgid "Designing a crowdsourcing strategy that provides value to the "
 "participants either through the outcome or the participation itself"
-msgstr ""
-"Cómo diseñar una estrategia de crowdsourcing que proporcione valor a los "
-"participantes a través de los resultados alcanzados o de su "
-"participación."
+msgstr "Diseñar una estrategia de crowdsourcing que proporcione valor a los "
+"participantes a través de los resultados alcanzados o de su participación"
 
 #: /noi/app/templates/translate.tmp.html:283
 #, fuzzy
-msgid ""
-"Connecting the efforts of the crowd to enable them to aggregate and build"
+msgid "Connecting the efforts of the crowd to enable them to aggregate and build"
 " off each other’s work"
-msgstr ""
-"Cómo conectar los esfuerzos de la multitud para posibilitar que conjunten"
-" esfuerzos y construyan con base en el trabajo de los otros."
+msgstr "Conectar los esfuerzos de la multitud para posibilitar que conjunten"
+" esfuerzos y construyan con base en el trabajo de los otros"
 
 #: /noi/app/templates/translate.tmp.html:284
 #, fuzzy
-msgid ""
-"Determining the institutional resources required to implement a "
+msgid "Determining the institutional resources required to implement a "
 "successful crowdsourcing initiative"
-msgstr ""
-"Cómo determinar los recursos institucionales que se requieren para "
-"implementar una iniciativa exitosa de crowdsourcing."
+msgstr "Determinar los recursos institucionales que se requieren para "
+"implementar una iniciativa exitosa de crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:285
 #, fuzzy
-msgid ""
-"Assessing the potential time and resources required from the crowd in "
+msgid "Assessing the potential time and resources required from the crowd in "
 "order to participate"
-msgstr ""
-"Cómo evaluar el potencial tiempo y los recursos que la multitud requiere "
-"para implementar una iniciativa exitosa de crowdsourcing."
+msgstr "Evaluar el potencial tiempo y los recursos que la multitud requiere "
+"para implementar una iniciativa exitosa de crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:286
 #, fuzzy
 msgid "Assessing the effectiveness of using crowdsourcing"
-msgstr "Cómo evaluar la efectividad de utilizar crowdsourcing."
+msgstr "Evaluar la efectividad de utilizar crowdsourcing."
 
 #: /noi/app/templates/translate.tmp.html:287
 msgid "Providing the Right Incentives"
@@ -2370,66 +2182,61 @@ msgstr "Proporcionando los incentivos correctos"
 
 #: /noi/app/templates/translate.tmp.html:288
 msgid "What can you share about providing the right incentives for participation"
-msgstr ""
-"Qué puedes compartir sobre proporcionar los incentivos correctos para "
-"fomentar la participación "
+msgstr "Lo que puedes compartir sobre proporcionar los incentivos correctos para "
+"fomentar la participación"
 
 #: /noi/app/templates/translate.tmp.html:289
 #, fuzzy
 msgid "Defining the scope of the crowd’s participation"
-msgstr "Cómo definir el alcance de la participación de la multitud."
+msgstr "Definir el alcance de la participación de la multitud"
 
 #: /noi/app/templates/translate.tmp.html:290
 #, fuzzy
 msgid "Providing feedback for participation"
-msgstr "Cómo proveer retroalimentación por su participación."
+msgstr "Proveer retroalimentación por su participación"
 
 #: /noi/app/templates/translate.tmp.html:291
 #, fuzzy
-msgid ""
-"Deciding whether to use financial or non-financial incentives (or a mix "
+msgid "Deciding whether to use financial or non-financial incentives (or a mix "
 "of incentives)"
-msgstr ""
-"Cómo decidir si utilizar incentivos financieros o no financieros (o una "
-"mezcla de incentivos)."
+msgstr "Decidir si utilizar incentivos financieros o no financieros (o una "
+"mezcla de incentivos)"
 
 #: /noi/app/templates/translate.tmp.html:292
 #, fuzzy
 msgid "Determining whether the use of a competition is beneficial"
-msgstr "Cómo determinar si el uso de una competencia es beneficioso"
+msgstr "Determinar si el uso de una competencia es beneficioso"
 
 #: /noi/app/templates/translate.tmp.html:293
 #, fuzzy
 msgid "Determining whether the use of reputation systems is beneficial"
-msgstr "Cómo determinar si el uso de sistemas de reputación es beneficioso"
+msgstr "Determinar si el uso de sistemas de reputación es beneficioso"
 
 #: /noi/app/templates/translate.tmp.html:294
 #, fuzzy
 msgid "Using altruistic or community building incentives"
-msgstr "Cómo usar incentivos altruistas o de construcción de comunidad"
+msgstr "Usar incentivos altruistas o de construcción de comunidad"
 
 #: /noi/app/templates/translate.tmp.html:295
 #, fuzzy
 msgid "Designing recreational incentives (i.e. gamification)"
-msgstr "Cómo diseñar incentivos recreativos (e.g. gamificación)"
+msgstr "Diseñar incentivos recreativos (e.g. gamificación)"
 
 #: /noi/app/templates/translate.tmp.html:296
 #, fuzzy
 msgid "Identifying which particular incentive is working and why"
-msgstr "Cómo identificar qué incentivo particular funciona y por qué"
+msgstr "Identificar qué incentivo particular funciona y por qué"
 
 #: /noi/app/templates/translate.tmp.html:297
 #, fuzzy
 msgid "Monitoring and adapting the incentives at the individual or crowd levels"
-msgstr "Cómo diseñar incentivos recreativos (e.g. gamificación)"
+msgstr "Diseñar incentivos recreativos (e.g. gamificación)"
 
 #: /noi/app/templates/translate.tmp.html:298
 #, fuzzy
-msgid ""
-"Tackling the possible credibility and authenticity issues involved in the"
+msgid "Tackling the possible credibility and authenticity issues involved in the"
 " input received from the crowd"
-msgstr ""
-"Cómo confrontar posibles cuestiones relacionadas a la credibilidad y "
+msgstr "Confrontar posibles cuestiones relacionadas a la credibilidad y "
 "autenticidad de las aportaciones de la multitud"
 
 #: /noi/app/templates/translate.tmp.html:299
@@ -2438,73 +2245,60 @@ msgid "Implementation and Tools"
 msgstr "Implementación y herramientas"
 
 #: /noi/app/templates/translate.tmp.html:300
-msgid ""
-"What can you share about setting up, running and managing a crowdsourcing"
+msgid "What can you share about setting up, running and managing a crowdsourcing"
 " effort"
-msgstr ""
-"Qué puedo compartir de implementar, y administrar un esfuerzo de "
+msgstr "Lo que puedo compartir çde implementar y administrar un esfuerzo de "
 "crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:301
 #, fuzzy
-msgid ""
-"Creating a plan for running the crowdsourcing project with defined "
+msgid "Creating a plan for running the crowdsourcing project with defined "
 "milestones"
-msgstr ""
-"Cómo crear un plan para ejecutar un proyecto de crowdsourcing con hitos "
+msgstr "Crear un plan para ejecutar un proyecto de crowdsourcing con hitos "
 "definidos "
 
 #: /noi/app/templates/translate.tmp.html:302
 #, fuzzy
-msgid ""
-"Targeting the right audience to attract the desired crowd and "
+msgid "Targeting the right audience to attract the desired crowd and "
 "participation"
 msgstr ""
-"Cómo dirigirse a la audiencia adecuada para atraer la participación "
-"deseada de la multitud "
+"Dirigirse a la audiencia adecuada para atraer la participación deseada de la multitud "
 
 #: /noi/app/templates/translate.tmp.html:303
 #, fuzzy
 msgid "Choosing a platform to do the crowdsourcing project"
-msgstr ""
-"Cómo escoger una plataforma para llevar a cabo el proyecto de "
+msgstr "Escoger una plataforma para llevar a cabo el proyecto de "
 "crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:304
 #, fuzzy
-msgid ""
-"Accessing outside contractors and/or intermediaries to support the design"
+msgid "Accessing outside contractors and/or intermediaries to support the design"
 " and implementation of the desired crowdsourcing platform"
-msgstr ""
-"Cómo contactar contratistas externos y/o intermediarios para que apoyen "
-"en el diseño y la implementación de la plataforma elegida para "
-"crowdsourcing"
+msgstr "Contactar contratistas externos y/o intermediarios para que apoyen "
+"en el diseño y la implementación de la plataforma elegida para crowdsourcing"
 
 #: /noi/app/templates/translate.tmp.html:305
 #, fuzzy
-msgid ""
-"Building a team within an institution that supports the project from "
+msgid "Building a team within an institution that supports the project from "
 "initial idea through implementation"
-msgstr ""
-"Cómo construir un equipo dentro de una institución que apoye el proyecto "
-"desde su idea inicial hasta su implementación "
+msgstr "Construir un equipo dentro de una institución que apoye el proyecto "
+"desde su idea inicial hasta su implementación"
 
 #: /noi/app/templates/translate.tmp.html:306
 #, fuzzy
 msgid "Developing a communication strategy to target the right audience"
-msgstr ""
-"Cómo desarrollar una estrategia de comunicación dirigida a la audiencia "
+msgstr "Desarrollar una estrategia de comunicación dirigida a la audiencia "
 "adecuada"
 
 #: /noi/app/templates/translate.tmp.html:307
 #, fuzzy
 msgid "Connecting members of the crowd to each other when appropriate"
-msgstr "Cómo conectar a los miembros de la multitud entre sí cuando sea apropiado"
+msgstr "Conectar a los miembros de la multitud entre sí cuando sea apropiado"
 
 #: /noi/app/templates/translate.tmp.html:308
 #, fuzzy
 msgid "Preparing to utilize or implement the output of the crowd"
-msgstr "Cómo utilizar o implementar las contribuciones de la multitud "
+msgstr "Utilizar o implementar las contribuciones de la multitud "
 
 #: /noi/app/templates/translate.tmp.html:309
 msgid "Quality Control Mechanisms"
@@ -2512,24 +2306,18 @@ msgstr "Mecanismos de Control de Calidad"
 
 #: /noi/app/templates/translate.tmp.html:310
 msgid "What can you share about defining the right mechanism of quality control"
-msgstr ""
-"Qué puedes compartir acerca de definir el mecanismo adecuado de control "
-"de calidad"
+msgstr "Lo que puedes compartir acerca de definir el mecanismo adecuado de control de calidad"
 
 #: /noi/app/templates/translate.tmp.html:311
 #, fuzzy
 msgid "Ensuring high-quality and accurate participation from the crowd"
-msgstr ""
-"Cómo asegurar participaciones de alta calidad y acuciosas por parte de la"
-" multitud."
+msgstr "Asegurar participaciones de alta calidad y acuciosas por parte de la multitud."
 
 #: /noi/app/templates/translate.tmp.html:312
 #, fuzzy
-msgid ""
-"Leveraging crowd participants to evaluate crowd contributions (through "
+msgid "Leveraging crowd participants to evaluate crowd contributions (through "
 "voting, rating or peer-review)"
-msgstr ""
-"Cómo aprovechar a los participantes de la multitud para que evalúen las "
+msgstr "Aprovechar a los participantes de la multitud para que evalúen las "
 "contribuciones de la multitud (a través de votaciones, puntuaciones o "
 "revisión de pares)"
 
@@ -2540,27 +2328,22 @@ msgstr "Inquietudes Legales"
 
 #: /noi/app/templates/translate.tmp.html:314
 msgid "What can you share about addressing potential legal and ethical tensions"
-msgstr ""
-"Lo que puedes compartir sobre lidiar con potenciales tensiones legales o "
-"éticas "
+msgstr "Lo que puedes compartir sobre lidiar con potenciales tensiones legales o "
+"éticas"
 
 #: /noi/app/templates/translate.tmp.html:315
 #, fuzzy
 msgid "Determining ownership and copyright of crowd contributions"
-msgstr ""
-"Cómo determinar los derechos de autor y de propiedad de las "
+msgstr "Determinar los derechos de autor y de propiedad de las "
 "contribuciones de la multitud."
 
 #: /noi/app/templates/translate.tmp.html:317
 #, fuzzy
 msgid "Navigating potential tensions regarding free speech and public record laws"
-msgstr ""
-"Cómo lidiar con potenciales tensiones relacionadas a la libertad de "
-"expresión "
+msgstr "Lidiar con potenciales tensiones relacionadas a la libertad de expresión "
 
 #: /noi/app/templates/translate.tmp.html:318
-msgid ""
-"<p>Randomized Control Trials (RCTs) — comparing the outcomes of an "
+msgid "<p>Randomized Control Trials (RCTs) — comparing the outcomes of an "
 "intervention with a particular group against another randomly selected "
 "group that does not receive the intervention — are a rigorous and "
 "inexpensive way to find what works. Increasingly, public institutions are"
@@ -2696,7 +2479,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:347
 msgid "I can connect others"
-msgstr ""
+msgstr "Puedo referir otras personas"
 
 #: /noi/app/templates/translate.tmp.html:348
 msgid "I can do it"
@@ -2735,16 +2518,16 @@ msgstr "Academia"
 #: /noi/app/templates/user-profile.html:3
 #, python-format
 msgid "%(user)s's Profile"
-msgstr ""
+msgstr "%(user)s's Perfil"
 
 #: /noi/app/templates/user-profile.html:10
 msgid "Overview"
-msgstr ""
+msgstr "Visión general"
 
 #: /noi/app/templates/user-profile.html:11
 #, fuzzy
 msgid "Expertise"
-msgstr "Mi competencia"
+msgstr "Mis competencias"
 
 #: /noi/app/templates/user-profile.html:68
 msgid "Projects I have done"
@@ -2780,21 +2563,21 @@ msgstr "Cambiar contraseña"
 
 #: /noi/app/templates/security/forgot_password.html:14
 msgid "Send password reset instructions"
-msgstr "Enviar contraseña e instrucciones de ayuda"
+msgstr "Enviar instrucciones para reestablecer contraseña"
 
 #: /noi/app/templates/security/login_user.html:14
 #, fuzzy
 msgid "Log in with your email address"
-msgstr "Dirección de correo electrónico inválida"
+msgstr "Ingresa con tu correo electrónico"
 
 #: /noi/app/templates/security/login_user.html:27
 #, fuzzy
 msgid "Forgot your password?"
-msgstr "Olvidé mi contraseña"
+msgstr "¿Olvidaste tu contraseña?"
 
 #: /noi/app/templates/security/login_user.html:30
 msgid "Don't have an account?"
-msgstr ""
+msgstr "¿No tienes una cuenta?"
 
 #: /noi/app/templates/security/register_user.html:3
 msgid "Register"
@@ -2803,7 +2586,7 @@ msgstr "Registrarse"
 #: /noi/app/templates/security/register_user.html:14
 #, fuzzy
 msgid "Sign up with your email address"
-msgstr "Dirección de correo electrónico inválida"
+msgstr "Inscríbete con tu correo electrónico"
 
 #: /noi/app/templates/security/reset_password.html:3
 #: /noi/app/templates/security/reset_password.html:14
@@ -2817,19 +2600,19 @@ msgstr "Reestablecer contraseña"
 #~ msgstr "Recordar mis datos"
 
 #~ msgid "Retype Password"
-#~ msgstr "Reestablecer contraseña"
+#~ msgstr "Reescribir contraseña"
 
 #~ msgid "Resend Confirmation Instructions"
 #~ msgstr "Reenviar instrucciones de confirmación"
 
 #~ msgid "Recover Password"
-#~ msgstr "Reestablecer contraseña"
+#~ msgstr "Recuperar contraseña"
 
 #~ msgid "Reset Password"
 #~ msgstr "Reestablecer contraseña"
 
 #~ msgid "New Password"
-#~ msgstr "Cambiar contraseña"
+#~ msgstr "Nueva contraseña"
 
 #~ msgid "Change Password"
 #~ msgstr "Cambiar contraseña"
@@ -2838,9 +2621,7 @@ msgstr "Reestablecer contraseña"
 #~ msgstr "Enviar enlace de inicio de sesión"
 
 #~ msgid "Thank you. Confirmation instructions have been sent to %(email)s."
-#~ msgstr ""
-#~ "Gracias. Las instrucciones de confirmación "
-#~ "han sido enviadas a %(email)s."
+#~ msgstr "Gracias. Las instrucciones de confirmación han sido enviadas a %(email)s."
 
 #~ msgid "Thank you. Your email has been confirmed."
 #~ msgstr "Gracias. Su dirección de correo electrónico ha sido confirmada."
@@ -2864,8 +2645,8 @@ msgstr "Reestablecer contraseña"
 #~ "to %(email)s."
 #~ msgstr ""
 #~ "No confirmó su correo electrónico en "
-#~ "%(within)s. Nuevas instrucciones para "
-#~ "confirmar su correo han sido enviadas"
+#~ "%(within)s. Heos enviado nuevas instrucciones para "
+#~ "confirmar su correo "
 #~ " a %(email)s."
 
 #~ msgid "Domains of Expertise"
@@ -2911,8 +2692,8 @@ msgstr "Reestablecer contraseña"
 #~ "your expertise below first."
 #~ msgstr ""
 #~ "Antes de poder conectarlo con otros "
-#~ "innovadores, primero debe ingresar su "
-#~ "competencia"
+#~ "innovadores, primero debe ingresar sus "
+#~ "competencias"
 
 #~ msgid "People Who Know what I do not"
 #~ msgstr "Personas que conocen lo que yo no conozco"
@@ -2924,10 +2705,10 @@ msgstr "Reestablecer contraseña"
 #~ msgstr ""
 #~ "Antes de poder encontrar innovadores "
 #~ "como usted, necesita <a href=\"/my-"
-#~ "expertise\">completar su competencia</a> primero."
+#~ "expertise\">completar sus competencias</a>."
 
 #~ msgid "People most like me"
-#~ msgstr "Personas más similares a mí"
+#~ msgstr "Personas como yo"
 
 #~ msgid "Our most recent members"
 #~ msgstr "Nuestros miembros más recientes"
@@ -3006,7 +2787,7 @@ msgstr "Reestablecer contraseña"
 #~ msgstr "Red de innovadores</strong> Localizador de Expertos\""
 
 #~ msgid "A GovLab experiment in partnership with NHS England"
-#~ msgstr "TRANSLATE"
+#~ msgstr "Un experimento de The GovLab en alianza con NHS Inglaterra"
 
 #~ msgid ""
 #~ "Test your knowledge of innovative practices<br>\n"
@@ -3088,7 +2869,7 @@ msgstr "Reestablecer contraseña"
 #~ msgstr "Encuentre expertos"
 
 #~ msgid "how to fund a prize-backed challenge"
-#~ msgstr "cómo financiar un reto respaldado por un premio"
+#~ msgstr "cómo financiar un concurso premiado"
 
 #~ msgid ""
 #~ "<p>Across the world, governments are "
