@@ -510,6 +510,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         }
 
         for questionnaire in QUESTIONNAIRES:
+            if not questionnaire['questions']:
+                continue
             max_score = NO_ANSWER
             answers_with_score = {}
             for question in questionnaire['questions']:
