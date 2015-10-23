@@ -495,6 +495,42 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             self.expertise_domains.remove(exp)
 
 
+    def get_area_scores(self):
+        skill_levels = self.skill_levels
+        result = {}
+
+        NO_ANSWER = -999
+        FINAL_SCORE_SCALER = 80
+
+        base_final_scores = {
+            LEVELS['LEVEL_I_WANT_TO_LEARN']['score']: 100,
+            LEVELS['LEVEL_I_CAN_REFER']['score']: 200,
+            LEVELS['LEVEL_I_CAN_EXPLAIN']['score']: 300,
+            LEVELS['LEVEL_I_CAN_DO_IT']['score']: 400
+        }
+
+        for questionnaire in QUESTIONNAIRES:
+            max_score = NO_ANSWER
+            answers_with_score = {}
+            for question in questionnaire['questions']:
+                if question['id'] in skill_levels:
+                    score = skill_levels[question['id']]
+                    if score > max_score:
+                        max_score = score
+                    if score not in answers_with_score:
+                        answers_with_score[score] = 0
+                    answers_with_score[score] += 1
+            final_score = 0
+            if max_score != NO_ANSWER:
+                final_score = base_final_scores[max_score] + \
+                              (float(answers_with_score[max_score]) /
+                               len(questionnaire['questions'])) * \
+                              FINAL_SCORE_SCALER
+            result[questionnaire['id']] = final_score
+
+        return result
+
+
     @hybrid_property
     def locales(self):
         '''
