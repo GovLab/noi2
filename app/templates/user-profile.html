@@ -65,6 +65,8 @@ b-public-profile
 
 {% call render_tab_panel('overview', active_tab) %}
 
+<div class="radarChart"></div>
+
 <h3>{{ gettext('Projects I have done') }}</h3>
 {% if user.projects %}
 <pre>{{ user.projects }}</pre>
@@ -102,4 +104,59 @@ b-public-profile
 
 </div> <!-- End of tab panel container -->
 
+{% endblock %}
+
+{% block page_script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+<script src="{{ url_for('static', filename='js/radarchart.js') }}"></script>
+<script>
+// This was taken from bl.ocks.org/nbremer/21746a9668ffdf6d8242
+// and modified a bit for NoI.
+
+    ////////////////////////////////////////////////////////////// 
+      //////////////////////// Set-Up ////////////////////////////// 
+      ////////////////////////////////////////////////////////////// 
+
+      var margin = {top: 100, right: 100, bottom: 100, left: 100},
+        width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+          
+      ////////////////////////////////////////////////////////////// 
+      ////////////////////////// Data ////////////////////////////// 
+      ////////////////////////////////////////////////////////////// 
+
+      var levelLabels = {{ radar_level_labels|tojson }}.reverse();
+
+      var data = [ {{ radar_data|tojson }} ];
+
+      ////////////////////////////////////////////////////////////// 
+      //////////////////// Draw the Chart ////////////////////////// 
+      ////////////////////////////////////////////////////////////// 
+
+      var color = d3.scale.ordinal()
+        .range(["#048AB3"]);
+        
+      var radarChartOptions = {
+        w: width,
+        h: height,
+        margin: margin,
+        maxValue: 500,
+        levels: 5,
+        roundStrokes: true,
+        color: color,
+        labelForLevel: function(d, i) {
+          return levelLabels[i];
+        }
+      };
+
+      var renderChart = function() {
+        RadarChart(".radarChart", data, radarChartOptions);
+      };
+
+      if ($('#overview.active').length) {
+        renderChart();
+      } else {
+        $('a[href="#overview"]').one('shown.bs.tab', renderChart);
+      }
+</script>
 {% endblock %}
