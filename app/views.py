@@ -576,10 +576,21 @@ def invite():
             sender = current_app.config['MAIL_USERNAME']
             mail.send_message(
                 subject=gettext(
-                    "%(user)s would like you to join the network!",
-                    user=current_user.full_name
+                    "%(user)s would like you to join the Network of "
+                    "Innovators!",
+                    user=current_user.full_name,
                 ),
-                body=gettext("Just visit %(url)s.", url=site_url),
+                body=gettext(
+                    "%(user)s has invited you to join the "
+                    "Network of Innovators -- a new skill-sharing network "
+                    "for government and civic innovators worldwide.\n\n"
+                    "Join today. It's FREE. And in just a few minutes, "
+                    "you can get matched with innovators from around the "
+                    "world.\n\n"
+                    "Build your network now at %(url)s.",
+                    user=current_user.full_name,
+                    url=site_url,
+                ),
                 sender=sender,
                 recipients=[form.email.data]
             )
