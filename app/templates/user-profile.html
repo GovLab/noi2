@@ -125,22 +125,10 @@ b-public-profile
       ////////////////////////// Data ////////////////////////////// 
       ////////////////////////////////////////////////////////////// 
 
-      var levelLabels = [
-        {{ gettext("Peer")|tojson }},
-        {{ gettext("Connector")|tojson }},
-        {{ gettext("Explainer")|tojson }},
-        {{ gettext("Practitioner")|tojson }},
-        ""
-      ].reverse();
+      var levelLabels = {{ radar_level_labels|tojson }}.reverse();
 
-      var data = [
-            [
-{% for questionnaire_id, score in user.get_area_scores().items() %}
-    {"axis": {{ gettext(QUESTIONNAIRES_BY_ID[questionnaire_id].name)|tojson }},
-     "value": {{ score }}}{% if not loop.last %},{% endif %}
-{% endfor %}
-            ]
-          ];
+      var data = [ {{ radar_data|tojson }} ];
+
       ////////////////////////////////////////////////////////////// 
       //////////////////// Draw the Chart ////////////////////////// 
       ////////////////////////////////////////////////////////////// 

@@ -258,6 +258,18 @@ def render_user_profile(userid=None, **kwargs):
     else:
         user = User.query_in_deployment().filter_by(id=userid).first_or_404()
     kwargs['user'] = user
+    kwargs['radar_level_labels'] = [
+        gettext("Peer"),
+        gettext("Connector"),
+        gettext("Explainer"),
+        gettext("Practitioner"),
+        ""
+    ]
+    kwargs['radar_data'] = [
+        {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
+         "value": score}
+        for qid, score in user.get_area_scores().items()
+    ]
     return render_template('user-profile.html', **kwargs)
 
 
