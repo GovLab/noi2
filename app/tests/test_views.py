@@ -432,7 +432,7 @@ class ViewTests(ViewTestCase):
 
     def test_changing_locale_works(self):
         res = self.client.post('/change-locale', data={
-            'locale': 'es_MX'
+            'locale': 'es'
         }, follow_redirects=True)
         self.assert200(res)
         assert '<html lang="es"' in res.data

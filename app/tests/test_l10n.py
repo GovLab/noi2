@@ -23,15 +23,15 @@ class LocalizationTests(ViewTestCase):
         assert '<html lang="en"' in res.data
 
     def test_locale_in_session_is_respected(self):
-        assert 'es_MX' in l10n.VALID_LOCALE_CODES
+        assert 'es' in l10n.VALID_LOCALE_CODES
         with self.client.session_transaction() as sess:
-            l10n.change_session_locale('es_MX', session=sess)
+            l10n.change_session_locale('es', session=sess)
         res = self.client.get('/')
         assert '<html lang="es"' in res.data
 
     def test_locale_in_accept_language_header_is_respected(self):
-        assert 'es_MX' in l10n.VALID_LOCALE_CODES
+        assert 'es' in l10n.VALID_LOCALE_CODES
         res = self.client.get('/', headers={
-            'Accept-Language': 'es_MX'
+            'Accept-Language': 'es'
         })
         assert '<html lang="es"' in res.data

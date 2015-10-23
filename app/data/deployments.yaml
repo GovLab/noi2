@@ -147,11 +147,11 @@ nhs.networkofinnovators.org:
     - _default
 
 ogp.networkofinnovators.org:
-  locale: es_MX
+  locale: es
   searches:
 
 test-mexico:
-  locale: es_MX
+  locale: es
   searches:
 
 usg.networkofinnovators.org:

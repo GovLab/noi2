@@ -5,7 +5,7 @@ from babel import Locale
 
 DEFAULT_LOCALE = Locale('en')
 
-TRANSLATIONS = [Locale('es_MX')]
+TRANSLATIONS = [Locale('es')]
 VALID_LOCALES = [DEFAULT_LOCALE] + TRANSLATIONS
 VALID_LOCALE_CODES = [str(l) for l in VALID_LOCALES]
 
