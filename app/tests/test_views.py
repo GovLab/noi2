@@ -94,6 +94,10 @@ class InviteTests(ViewTestCase):
                 'email': 'foo@example.org'
             }, follow_redirects=True)
             self.assertEqual(len(outbox), 1)
+            msg = outbox[0]
+            self.assertEqual(msg.sender, 'foo@noi.org')
+            self.assertEqual(msg.recipients, ['foo@example.org'])
+            assert 'https://noi.org' in msg.body
         self.assert200(res)
         assert 'Invitation sent!' in res.data
 
