@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 mail)
+                 LEVELS_BY_SCORE, mail)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent)
 
@@ -265,11 +265,21 @@ def render_user_profile(userid=None, **kwargs):
         gettext("Practitioner"),
         ""
     ]
+    area_scores = user.get_area_scores()
     kwargs['radar_data'] = [
         {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
-         "value": score}
-        for qid, score in user.get_area_scores().items()
+         "value": score_info['radar_score']}
+        for qid, score_info in area_scores.items()
     ]
+    overview_data = {}
+    kwargs['overview_data'] = overview_data
+    for qid, score_info in area_scores.items():
+        score = score_info['max_score']
+        if score is not None:
+            if score not in overview_data:
+                overview_data[score] = []
+            overview_data[score].append(QUESTIONNAIRES_BY_ID[qid])
+
     return render_template('user-profile.html', **kwargs)
 
 

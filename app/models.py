@@ -523,12 +523,17 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                         answers_with_score[score] = 0
                     answers_with_score[score] += 1
             final_score = 0
+            reported_max_score = None
             if max_score != NO_ANSWER:
                 final_score = base_final_scores[max_score] + \
                               (float(answers_with_score[max_score]) /
                                len(questionnaire['questions'])) * \
                               FINAL_SCORE_SCALER
-            result[questionnaire['id']] = final_score
+                reported_max_score = max_score
+            result[questionnaire['id']] = {
+                'radar_score': final_score,
+                'max_score': reported_max_score
+            }
 
         return result
 

@@ -65,6 +65,35 @@ b-public-profile
 
 {% call render_tab_panel('overview', active_tab) %}
 
+{% for skill_level, questionnaires in overview_data.items() %}
+  {% if is_current_user_profile %}
+    {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
+      <p>{{ gettext("You are an <strong>explainer</strong> of:") }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
+      <p>{{ gettext("You are a <strong>practitioner</strong> of:") }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
+      <p>{{ gettext("You are a <strong>connector</strong> of:") }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
+      <p>{{ gettext("You are a <strong>peer</strong> of:") }}</p>
+    {% endif %}
+  {% else %}
+    {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong>explain</strong>:", user=user.full_name) }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong>share experiences</strong> in:", user=user.full_name) }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong>connect you</strong> in:", user=user.full_name) }}</p>
+    {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
+      <p>{{ gettext("Ask %(user)s to <strong>learn with you</strong> in:", user=user.full_name) }}</p>
+    {% endif %}
+  {% endif %}
+  <ul>
+    {% for questionnaire in questionnaires %}
+      <li>{{ gettext(questionnaire.name) }}</li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
 <div class="radarChart"></div>
 
 <h3>{{ gettext('Projects I have done') }}</h3>
