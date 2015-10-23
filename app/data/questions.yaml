@@ -113,7 +113,7 @@
           label: costs
 
     - topic: Mechanics
-      description: rinning a prize-backed challenge
+      description: running a prize-backed challenge
       questions:
         - question: Funding a prize-backed challenge
           label: funding
