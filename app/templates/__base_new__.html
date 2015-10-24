@@ -16,6 +16,10 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
+{% if config.PINGDOM_RUM_ID %}
+{% include "pingdom-rum.html" %}
+{% endif %}
+
 {% if config.GA_TRACKING_CODE %}
 {% include "analytics.html" %}
 {% endif %}
