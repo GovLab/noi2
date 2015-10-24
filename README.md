@@ -56,10 +56,10 @@ you're using a pip library wrong.
 If you have a global `pylint` installed, you should remove it as it won't be
 able to track dependencies properly.
 
-Then, you need to build the images.  This will take a minute the first time.
+Then, you need to pul the images.  This will take a minute the first time.
 If requirements change, you need to do this again.
 
-    docker-compose build
+    docker-compose pull
 
 ### Running the server
 
@@ -110,9 +110,9 @@ in `deployments.yaml`.
     ./manage.sh translate
 
 You'll need to populate the resulting `.po` file for each locale in
-`translations/<locale>/LC_MESSAGES/messages.po`, then run the same script again
+`translations/<locale>/LC_MESSAGES/messages.po`, then run
 
-    ./manage.sh translate
+    ./manage.sh translate_compile
 
 To generate the `.mo` file used in actual translation.  Successive runs of the
 script won't destroy any data in the `.po` file, which is kept in version
@@ -129,5 +129,56 @@ container.
 
 Tests are located in `app/tests`. Please feel free to add more!
 
+### Changing the Dockerfile
+
+The primary container for the app is hosted on Docker Hub here:
+
+    https://hub.docker.com/r/thegovlab/noi2/
+
+This is done to make it fast to get new deploys and Travis CI builds
+up and running. However, when you need to change the container, you
+won't want to pull the image from Docker Hub; instead, you'll want to:
+
+  1. Edit `docker-compose.yml` and change the line
+     `image: thegovlab/noi2:latest` to be `build: app/`.
+  2. Make any changes you need to `app/Dockerfile`.
+  3. Run `docker-compose build`.
+
+You may want to run `docker-compose run app bash` to poke into your
+newly-built container and make sure things work. Once you're satisfied,
+you'll want to commit the new Dockerfile and push the changes to
+GitHub; at this point, Docker Hub will build a new image for others
+to download. You can monitor the status of the build on Docker Hub's
+[Build Details][] page.
+
+### Editing CSS
+
+We use [SASS][] for our styles; all files are contained in
+`app/static/sass`.
+
+When `DEBUG` is `True` (i.e., during development), we use SASS
+middleware to dynamically recompile SASS to CSS on-the-fly; however,
+this middleware has a few drawbacks:
+
+  * For technical reasons, the dynamically-compiled CSS is actually
+    served from a different directory than the precompiled CSS is
+    served from in production. Because of this, links to compiled SASS
+    in templates need to use the `COMPILED_SASS_ROOT` global, while
+    links to static assets (like images) in SASS need to use the
+    `$path-to-static` variable.
+
+  * For production, we use the [PostCSS Autoprefixer][] to
+    post-process the compiled CSS and ensure that it works across
+    all browsers. This step isn't currently done when dynamically
+    building the CSS on-the-fly via middleware.
+
+If you need to disable the middleware during development, you can
+either set `DEBUG` to `False` or set `DISABLE_SASS_MIDDLEWARE` to `True`.
+However, you'll then be responsible for re-compiling CSS when necessary,
+which can be done via `./manage.sh build_sass`.
+
   [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
   [Docker Toolbox]: https://www.docker.com/toolbox
+  [Build Details]: https://hub.docker.com/r/thegovlab/noi2/builds/
+  [SASS]: http://sass-lang.com/
+  [PostCSS Autoprefixer]: https://github.com/postcss/autoprefixer
