@@ -77,6 +77,8 @@ input, select {
             if (img.naturalWidth && img.naturalHeight &&
                 img.naturalWidth !== img.naturalHeight) {
                 onError();
+            } else {
+                window.URL.revokeObjectURL(url);
             }
         }
         img.onerror = onError;
