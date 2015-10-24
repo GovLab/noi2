@@ -9,7 +9,7 @@
     display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
 
-    header { height: 12vh;}
+    header { height: 30vh;}
     section { 
         -webkit-box-flex: 1;   /* OLD - iOS 6-, Safari 3.1-6 */
         -webkit-flex: 1;       /* Safari 6.1+. iOS 7.1+, BB10 */
@@ -17,12 +17,41 @@
         flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
     }
 
+    .b-logo {
+        background-image: url($path-to-static + "/img/noi-logo-white.png");
+        height: 30vh;
+        width: 80vw;
+        margin: 0 10vw;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .e-tagline {
+        p {
+        color: $white;
+        margin: 5px;
+        font-size: 18px;
+
+            &:last-child {
+                margin-top: 20px;
+            }   
+        }
+
+        > .b-button {
+            margin: 50px 30px;
+            width: calc(100% - 60px);
+        }
+    }
 
     .e-onboarding-message {
         font-size: 18px;
         letter-spacing: 0.5px;
         margin: 20px 30px;
+        color: $white;
     }
+
+
 
     .e-onboarding-form {
         padding:  0 30px;
@@ -60,9 +89,9 @@
         padding: 20px 30px;
         margin-bottom: 0;
         background-color: $gray-20;
+        color: $white;
 
         a {
-            color: $white;
             font-weight: 600;
             text-decoration: none;
         }   
@@ -151,6 +180,7 @@
         .b-button { 
             margin-bottom: 10px; 
             color: $white;
+            padding: 12px;
         }
 
         .b-button.m-join {
