@@ -5,11 +5,11 @@
 {% block content %}
     <div class="b-onboarding">
         <header>
-            <div class="b-logo">NOI</div>
+            <div class="b-logo"></div>
         </header>
 
-        <section>
-          <h1>{{ gettext('Network of Innovators') }}</h1>
+        <section class="e-tagline">
+          {# <h1>{{ gettext('Network of Innovators') }}</h1> #}
 
           <p><strong>Find</strong> innovators.</p>
           <p><strong>Share</strong> your know-how.</p>
@@ -17,11 +17,7 @@
 
           <p>Seeking new and effective ways to solve problems and make decisions?</p>
 
-          <br>
-
-          <p>
-            <a class="b-button" href="{{ url_for_security('register') }}">Get Started</a>
-          </p>
+          <a class="b-button" href="{{ url_for_security('register') }}">Get Started</a>
         </section>
 
             <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form" data-submit-on-change>
