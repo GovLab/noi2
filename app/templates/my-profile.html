@@ -63,12 +63,33 @@ input, select {
 {% block page_script %}
 
 <script>
+    function ensureImageIsSquare(file, field) {
+        var img = document.createElement('img');
+        var url = window.URL.createObjectURL(file);
+        var onError = function() {
+            $(field).val('');
+            alert({{ gettext('Sorry, your image must have square dimensions.'|tojson) }});
+            window.URL.revokeObjectURL(url);
+        };
+
+        img.src = url;
+        img.onload = function() {
+            if (img.naturalWidth && img.naturalHeight &&
+                img.naturalWidth !== img.naturalHeight) {
+                onError();
+            }
+        }
+        img.onerror = onError;
+    }
+
     $('#picture').on('change', function (evt) {
         if (this.files) {
           if (this.files[0]) {
             if (this.files[0].size > 1000 * 1000) {
               $(this).val('');
               alert({{ gettext('Sorry, that file is too big.  Please choose a smaller one.')|tojson }});
+            } else {
+              ensureImageIsSquare(this.files[0], this);
             }
           }
         }
