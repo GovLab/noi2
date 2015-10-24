@@ -76,9 +76,11 @@
 
 .b-categories {
     background-color: $blue;
+    
 
     .e-category-intro {
         text-align: center;
+        background-color: $gray-10;
         color: $white;
         font-size: 20px;
         padding: 5vh 20px 0;
@@ -87,9 +89,11 @@
 
     .e-category-slider {
         width: 100vw;
+        background-color: $gray-10;
         overflow-x: scroll;
         overflow-y: hidden;
         height: 60vh;
+
     }
 
     .e-category-wrapper {
@@ -106,33 +110,123 @@
         text-transform: uppercase;
         font-weight: 600;
         height: 60vh;
+        position: relative;
         
         p {
             color: $white;
-            vertical-align: top;
+            margin-top: 15vh;
+            vertical-align: middle;
+        }
+    }
+
+    .e-category-panel {
+        &:after {
+            content: "";
+            opacity: 0.1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: 1;   
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        &:nth-child(2n) {
-            background-color: $gray-10;
+        &.m-crowdsourcing:after {
+            background-image: url($path-to-static + '/img/category-crowdsourcing.png');
+            background-position: center -12vh;
+        }
+        &.m-data-science:after {
+            background-image: url($path-to-static + '/img/category-data-science.png');
+            background-position: center -12vh;
+        }
+        &.m-community-engagement:after {
+            background-image: url($path-to-static + '/img/category-community-engagement.png');
+        }
+        &.m-lab-design:after {
+            background-image: url($path-to-static + '/img/category-lab-design.png');
+            background-position: center -12vh;
+        }
+        &.m-citizen-science:after {
+            background-image: url($path-to-static + '/img/category-citizen-science.png');
+            background-position: center -19vh;
+            background-size: 120%;
+        }
+        &.m-open-data:after {
+            background-image: url($path-to-static + '/img/category-open-data.png');
+            background-position: center -19vh;
+            background-size: 120%;
+        }
+        &.m-prizes:after {
+            background-image: url($path-to-static + '/img/category-prizes.png');
+            background-position: center -19vh;
+            background-size: 120%;
+        }
+        &.m-rct:after {
+            background-image: url($path-to-static + '/img/category-rct.png');
+            background-position: center -3vh;
         }
     }
 }
 
 .b-screenshots {
+    position: relative;
+    overflow: hidden;
+    height: 130vh;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#048ab3+0,048ab3+50,333333+50,4c4c4c+100 */
+    background: rgb(4,138,179); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(4,138,179,1) 0%, rgba(4,138,179,1) 50%, rgba(51,51,51,1) 50%, rgba(76,76,76,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(4,138,179,1)), color-stop(50%,rgba(4,138,179,1)), color-stop(50%,rgba(51,51,51,1)), color-stop(100%,rgba(76,76,76,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(4,138,179,1) 0%,rgba(4,138,179,1) 50%,rgba(51,51,51,1) 50%,rgba(76,76,76,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#048ab3', endColorstr='#4c4c4c',GradientType=0 ); /* IE6-9 */
+
+
+    .e-screenshot {
+        height: 90vh;
+        position: absolute;
+        transform: rotate(-17deg);
+
+
+        &.m-left {
+            left: -200px;
+            top: -50px;
+
+        }
+
+        &.m-right {
+            left: 20%;
+            bottom: -100px;   
+            transform: rotate(-20deg);         
+        }
+
+        
+    }
     .e-blurb {
-        width: 56vw;
-        font-size: 20px;
+        width: 50vw;
+        font-size: 16px;
         color: $white;
         padding: 20px;
+        position: absolute;
+
+        &.m-right {
+            text-align: right;
+            left: 170px;
+            top: 20px;
+        }
+
+        &.m-left {
+            bottom: 10px;
+            left: 20px;
+            width: 55vw;
+        }
     }
 
-    .m-right {
-        text-align: right;
-    }
-
-    .m-left {
-
-    }
+    
 }
 
 .b-final-message {
