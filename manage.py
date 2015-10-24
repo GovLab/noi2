@@ -4,7 +4,7 @@ NoI manage.py
 Scripts to run the server and perform maintenance operations
 '''
 
-from app import mail, models, sass, LEVELS, ORG_TYPES
+from app import mail, models, sass, email_errors, LEVELS, ORG_TYPES
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
@@ -70,6 +70,17 @@ def translate_compile():
         subprocess.check_call('pybabel compile -f -l {locale} -d /noi/app/translations/'.format(
             locale=locale), shell=True)
 
+
+@manager.command
+def test_email_error_reporting():
+    """
+    Test email error reporting by logging an exception.
+    """
+
+    try:
+        1/0
+    except:
+        app.logger.exception("This is a test of application error reporting.")
 
 @manager.command
 def translate():

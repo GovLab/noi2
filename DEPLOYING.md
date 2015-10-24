@@ -35,6 +35,9 @@ S3_SECRET_ACCESS_KEY: <S3 secret for that key>
 DEBUG: False
 GA_TRACKING_CODE: <Google Analytics tracking code>
 SECRET_KEY: <Encryption key for this deployment, `cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1` in shell will work>
+ADMINS:
+  - admin@example.org
+  - <Other emails to send error reports to>
   ```
 
   * Some of these credentials can be obtained from prior installations.
@@ -52,3 +55,5 @@ SECRET_KEY: <Encryption key for this deployment, `cat /dev/urandom | tr -dc 'a-z
   * `./deploy.sh` should get everything rolling
   * If you initially get a 502, the migrations may have gotten stuck.  Go back to the terminal and run `docker-compose stop`, then `./deploy.sh` again.
   * To view logs, run `docker-compose logs`.
+  * Run `./manage.sh test_email_error_reporting` to ensure error reports
+    are emailed properly.

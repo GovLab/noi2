@@ -11,7 +11,7 @@ from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security,
-                 babel, celery, alchemydumps, sass,
+                 babel, celery, alchemydumps, sass, email_errors,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.config.schedule import CELERYBEAT_SCHEDULE
@@ -79,6 +79,9 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.register_blueprint(views)
     if app.config['DEBUG']:
         app.register_blueprint(style_guide.views)
+
+    if not app.config['DEBUG'] and app.config.get('ADMINS'):
+        email_errors.init_app(app)
 
     cache.init_app(app)
     csrf.init_app(app)

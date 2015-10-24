@@ -24,6 +24,8 @@ following in `noi/app/config/local_config.yml`:
     SERVER_NAME:
     GA_TRACKING_CODE:
     SECRET_KEY:
+    ADMINS:
+      - admin@example.org
 
 If you want SSL to work, you'll need to uncomment the lines in
 `/conf/ssl/ssl.conf`, and add the secret key and certificate of the same name
