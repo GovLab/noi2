@@ -16,4 +16,8 @@ COPY . /noi/app
 RUN pip install --upgrade pip
 RUN pip install -r /noi/app/requirements.txt
 
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g postcss-cli autoprefixer
+
 EXPOSE 5000
