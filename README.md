@@ -172,10 +172,10 @@ this middleware has a few drawbacks:
     all browsers. This step isn't currently done when dynamically
     building the CSS on-the-fly via middleware.
 
-If you need to disable the middleware during development, you can
-either set `DEBUG` to `False` or set `DISABLE_SASS_MIDDLEWARE` to `True`.
-However, you'll then be responsible for re-compiling CSS when necessary,
-which can be done via `./manage.sh build_sass`.
+If you need to disable the middleware during development, you can set
+`DISABLE_SASS_MIDDLEWARE` to `True`.  However, you'll then be
+responsible for re-compiling CSS when necessary, which can be done via
+`./manage.sh build_sass` (this *will* autoprefix your CSS).
 
   [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
   [Docker Toolbox]: https://www.docker.com/toolbox
