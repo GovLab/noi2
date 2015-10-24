@@ -11,3 +11,6 @@ before_install:
 script:
   - docker-compose pull
   - ./nosetests.sh
+
+notifications:
+  slack: govlab:FhXXpjcwabyHAV35OjQeKFTR
