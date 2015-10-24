@@ -1,11 +1,14 @@
+import subprocess
+
 from sassutils.wsgi import SassMiddleware
 import sassutils.builder
 
 SASS_DIR = 'static/sass'
 CSS_DIR = 'static/css'
+PRIMARY_CSS_FILENAME = 'styles.scss.css'
 
 def init_app(app):
-    if app.config['DEBUG']:
+    if app.config['DEBUG'] and not app.config.get('DISABLE_SASS_MIDDLEWARE'):
         # If we're debugging, we want to build SASS for each
         # request so that we have a nice development flow:
         #
@@ -26,3 +29,7 @@ def init_app(app):
 def build_files():
     sassutils.builder.build_directory('/noi/app/' + SASS_DIR,
                                       '/noi/app/' + CSS_DIR)
+    subprocess.check_call(
+        ["postcss", "-u", "autoprefixer",
+         "-r", '/noi/app/' + CSS_DIR + '/' + PRIMARY_CSS_FILENAME]
+    )
