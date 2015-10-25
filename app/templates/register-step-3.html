@@ -44,7 +44,9 @@
 
 <div class="b-onboarding-questions">
     <div class="e-card m-intro">
-      <p class="e-text">{{ gettext("Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!", num=questions_left) }}</p>
+      <h3 class="e-card-category">{{ gettext(QUESTIONNAIRES_BY_ID[areaid].name) }}</h3>
+      <p class="e-text"><em>{{ gettext(QUESTIONNAIRES_BY_ID[areaid].description) }}</em></p>
+      <p class="e-text">{{ gettext("Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!", num=MIN_QUESTIONS_TO_JOIN) }}</p>
       <p class="e-aux-text">{{ gettext("You can always answer more questions by going to your profile page to get new and more relevant matches.") }}</p>
       <a href="{{ next_url }}" class="b-button">{{ gettext('Next') }}</a>
     </div>

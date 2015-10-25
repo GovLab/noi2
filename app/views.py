@@ -176,12 +176,12 @@ def register_step_3_area(areaid):
         if question['id'] not in skills:
             break
 
-    next_url = url_for('views.register_step_3_area_question',
-                       areaid=areaid, questionid=str(i+1))
-
-    if len(current_user.skills) == 0 or request.args.get('no_redirect'):
-        return render_register_step_3(next_url=next_url)
-    return redirect(next_url)
+    return render_register_step_3(
+        next_url=url_for('views.register_step_3_area_question',
+                         areaid=areaid, questionid=str(i+1)),
+        areaid=areaid,
+        MIN_QUESTIONS_TO_JOIN=MIN_QUESTIONS_TO_JOIN
+    )
 
 @views.route('/register/step/3/<areaid>/<questionid>',
              methods=['GET', 'POST'])
