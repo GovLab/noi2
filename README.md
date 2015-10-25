@@ -174,8 +174,12 @@ production. Because of this, links to compiled SASS in templates need
 to use the `COMPILED_SASS_ROOT` global, while links to static assets
 (like images) in SASS need to use the `$path-to-static` variable.
 
+For more details on how we write our SASS, see the project's
+[SASS README][].
+
   [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
   [Docker Toolbox]: https://www.docker.com/toolbox
   [Build Details]: https://hub.docker.com/r/thegovlab/noi2/builds/
   [SASS]: http://sass-lang.com/
   [PostCSS Autoprefixer]: https://github.com/postcss/autoprefixer
+  [SASS README]: https://github.com/GovLab/noi2/blob/master/app/static/sass/README.md
