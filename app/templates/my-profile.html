@@ -19,6 +19,8 @@ input, select {
 {% endblock %}
 
 {% block content %}
+<h1 class="b-header">{{ gettext('My Profile') }}</h1>
+
 <form action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
 {% if form.has_picture.data %}

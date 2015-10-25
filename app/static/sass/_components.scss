@@ -165,3 +165,16 @@ textarea {
 
     &.m-active { display: block; }
 }
+
+.b-header {
+    width: 100%;
+    background-color: $gray-80;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+    color: $white-80;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: inherit;
+    letter-spacing: 1px;
+}
