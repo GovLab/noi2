@@ -136,9 +136,7 @@ Tests are located in `app/tests`. Please feel free to add more!
 
 ### Changing the Dockerfile
 
-The primary container for the app is hosted on Docker Hub here:
-
-    https://hub.docker.com/r/thegovlab/noi2/
+The primary container for the app is hosted on [Docker Hub][].
 
 This is done to make it fast to get new deploys and Travis CI builds
 up and running. However, when you need to change the container, you
@@ -183,3 +181,4 @@ For more details on how we write our SASS, see the project's
   [SASS]: http://sass-lang.com/
   [PostCSS Autoprefixer]: https://github.com/postcss/autoprefixer
   [SASS README]: https://github.com/GovLab/noi2/blob/master/app/static/sass/README.md
+  [Docker Hub]: https://hub.docker.com/r/thegovlab/noi2/
