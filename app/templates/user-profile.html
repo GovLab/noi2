@@ -190,4 +190,19 @@ b-public-profile
         $('a[href="#overview"]').one('shown.bs.tab', renderChart);
       }
 </script>
+{% if is_current_user_profile and active_tab == 'expertise' and question %}
+<script>
+$(function() {
+  if (window.location.hash == '') {
+    // We're likely on Safari, which doesn't like to keep URL fragments
+    // on redirect: https://bugs.webkit.org/show_bug.cgi?id=24175
+    //
+    // Because this is the questionnaire, we *really* need the page
+    // to be focused on the current question on page load, so we'll
+    // forcibly scroll down to it ourselves.
+    $('#expertise')[0].scrollIntoView();
+  }
+});
+</script>
+{% endif %}
 {% endblock %}
