@@ -120,6 +120,13 @@
         padding: 0 20px;   
     }
 
+    .m-start {
+        display: block;
+        width: auto;
+        margin: 0 20px;
+        color: white;
+        background-color: $blue;
+    }
 }
 
 .b-public-profile {

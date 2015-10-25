@@ -107,7 +107,7 @@ b-public-profile
 
 {% if is_current_user_profile %}
 
-{% if question %}
+{% if in_questionnaire %}
   {% call render_tab_panel('expertise', active_tab) %}
   {% include "_profile-questionnaire.html" %}
   {% endcall %}
@@ -190,7 +190,7 @@ b-public-profile
         $('a[href="#overview"]').one('shown.bs.tab', renderChart);
       }
 </script>
-{% if is_current_user_profile and active_tab == 'expertise' and question %}
+{% if in_questionnaire %}
 <script>
 $(function() {
   if (window.location.hash == '') {

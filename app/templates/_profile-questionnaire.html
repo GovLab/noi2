@@ -1,11 +1,28 @@
 <section class="b-profile-progress">
 <ul class="e-progress-container">
-  {% set questionnaire = question.questionnaire %}
+  {% if question %}
+    {% set questionnaire = question.questionnaire %}
+  {% else %}
+    {% set questionnaire = QUESTIONNAIRES_BY_ID[areaid] %}
+  {% endif %}
   {% set questionnaire_url = url_for('views.my_expertise', _anchor='expertise') %}
   {% set always_show_questions_left = true %}
   {% include "_profile-progress-item.html" %}
 </ul>
 </section>
+
+{% if next_url %}
+<section class="b-profile-questionnaire">
+    <div class="e-questions-container">
+        <div class="e-question">
+          <p class="e-question-text">
+            <em>{{ gettext(QUESTIONNAIRES_BY_ID[areaid].description) }}</em>
+          </p>
+        </div>
+        <a href="{{ next_url }}#expertise" class="b-button m-start">{{ gettext('Next') }}</a>
+    </div>
+</section>
+{% else %}
 
 {# TODO: A fair amount of this is copied/pasted from
  # register-step-3.html, consider refactoring. #}
@@ -39,3 +56,4 @@
         </div>
     </div>
 </section>
+{% endif %}
