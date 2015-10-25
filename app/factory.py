@@ -80,6 +80,13 @@ def create_app(config=None): #pylint: disable=too-many-statements
     if app.config['DEBUG']:
         app.register_blueprint(style_guide.views)
 
+        try:
+            from flask_debugtoolbar import DebugToolbarExtension
+            debug_toolbar = DebugToolbarExtension(app)
+        except:
+            app.logger.exception('Initialization of Flask-DebugToolbar '
+                                 'failed.')
+
     if not app.config['DEBUG'] and app.config.get('ADMINS'):
         email_errors.init_app(app)
 
