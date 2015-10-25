@@ -1,0 +1,9 @@
+{% from "_macros.html" import get_user_avatar_url %}
+
+{% macro user_link(user) -%}
+<strong><a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a></strong>
+{%- endmacro %}
+
+{% macro user_avatar(user) -%}
+<a href="{{ url_for('views.get_user', userid=user.id) }}"><img class="e-user-picture" src="{{ get_user_avatar_url(user) }}" alt=""></a>
+{%- endmacro %}

@@ -1,6 +1,7 @@
 {% extends "__base_ui__.html" %}
 
-{% from "_macros.html" import get_user_avatar_url, render_tab_bar, render_tab_panel, render_user_mailto_link %}
+{% from "_macros.html" import render_tab_bar, render_tab_panel %}
+{% from "_activity_macros.html" import user_link, user_avatar %}
 
 {% block page_style_pre %}
   {% if current_user.is_authenticated() %}
@@ -28,48 +29,8 @@
 
 <div> <!-- Start of tab panel container -->
 
-{% macro user_link(user) -%}
-<strong><a href="{{ url_for('views.get_user', userid=user.id) }}">{{ user.full_name }}</a></strong>
-{%- endmacro %}
-
-{% macro user_avatar(user) -%}
-<a href="{{ url_for('views.get_user', userid=user.id) }}"><img class="e-user-picture" src="{{ get_user_avatar_url(user) }}" alt=""></a>
-{%- endmacro %}
-
 {% call render_tab_panel('activity', active_tab, class='b-activity-feed') %}
-  <ul class="e-activity-feed-container">
-{% for event in events %}
-  <li class="e-feed-item">
-  <time datetime="{{ event.created_at }}"></time>
-  {% if event.type == 'shared_message' %}
-    {{ user_avatar(event.user) }}
-    <div class="e-feed-message">
-      <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
-      <p>{{ event.message }}</p>
-      {% if current_user.is_authenticated() %}
-      <div class="e-actions">
-        {% call render_user_mailto_link(event.user) %}<span class="material-icons">reply</span> <span class="e-action-label">{{ gettext("Reply via e-mail") }}</span>{% endcall %}
-      </div>
-      {% endif %}
-    </div>
-  {% elif event.type == 'user_joined_event' %}
-    {{ user_avatar(event.user) }}
-    <div class="e-feed-message">
-      <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
-    </div>
-  {% elif event.type == 'connection_event' %}
-    <div class="e-feed-message">
-      <p>{{ ngettext('+%(num)d new connection made in NOI.', '+%(num)d new connections made in NOI.', event.emails.count()) }}</p>
-      <p>{{ gettext('%(total)s connections!', total=event.total_connections) }}</p>
-    </div>
-  {% else %}
-    <div class="e-feed-message">
-      UNKNOWN EVENT TYPE: {{ event.type }}
-    </div>
-  {% endif %}
-  </li>
-{% endfor %}
-  </ul>
+  {% include "_activity_events.html" %}
 {% endcall %}
 
 {% call render_tab_panel('connected', active_tab, class='b-activity-feed') %}
@@ -141,4 +102,18 @@
 </div>
 {% endif %}
 
+{% endblock %}
+
+{% block page_script %}
+<script src="{{ url_for('static', filename='vendor/jquery.jscroll.js') }}"></script>
+<script>
+$(function() {
+  $('#activity').jscroll({
+    loadingHtml: '<div class="e-load-more">' +
+                 {{ gettext("Loading...")|tojson }} +
+                 '</div>',
+    autoTrigger: false
+  });
+});
+</script>
 {% endblock %}

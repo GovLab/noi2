@@ -265,6 +265,21 @@ class ActivityFeedTests(ViewTestCase):
         self.login()
         self.assert200(self.client.get('/activity'))
 
+    def test_activity_page_with_negative_number_is_not_found(self):
+        self.assert404(self.client.get('/activity/page/-1'))
+
+    def test_activity_page_zero_is_not_found(self):
+        self.assert404(self.client.get('/activity/page/0'))
+
+    def test_activity_page_one_is_ok(self):
+        self.assert200(self.client.get('/activity/page/1'))
+
+    def test_activity_page_with_non_number_is_not_found(self):
+        self.assert404(self.client.get('/activity/page/foo'))
+
+    def test_activity_page_with_too_big_a_number_is_not_found(self):
+        self.assert404(self.client.get('/activity/page/9999999'))
+
 class MyProfileTests(ViewTestCase):
     def test_get_requires_full_registration(self):
         self.login(fully_register=False)
