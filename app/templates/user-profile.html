@@ -146,7 +146,9 @@ b-public-profile
       //////////////////////// Set-Up ////////////////////////////// 
       ////////////////////////////////////////////////////////////// 
 
-      var margin = {top: 100, right: 100, bottom: 100, left: 100},
+      var mScale = window.devicePixelRatio > 1 ? 0.66 : 1;
+      var margin = {top: 100 * mScale, right: 100 * mScale,
+                    bottom: 100 * mScale, left: 100 * mScale},
         width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
         height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
           
