@@ -61,6 +61,11 @@ If requirements change, you need to do this again.
 
     docker-compose pull
 
+You may also want to seed the database with a bunch of random users and
+other data, which can be done via:
+
+    ./manage.sh populate_db
+
 ### Running the server
 
 To get everything running:
