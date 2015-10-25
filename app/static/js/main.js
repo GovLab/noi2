@@ -28,4 +28,15 @@ $(document).ready(function () {
   $('form[data-submit-on-change]').change(function() {
     this.submit();
   });
+
+  // Ensure the name of our active tab on our horizontally-scrollabar
+  // tab bars is visible.
+  $('.b-contextual-nav').each(function() {
+    var active = $('li.active', this);
+    var offset = active.offset();
+    if (!offset) return;
+    if (offset.left > window.innerWidth - 100) {
+      $(this).scrollLeft(offset.left);
+    }
+  });
 });
