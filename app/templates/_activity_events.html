@@ -1,0 +1,42 @@
+{% from "_macros.html" import render_user_mailto_link %}
+{% from "_activity_macros.html" import user_link, user_avatar %}
+
+<ul class="e-activity-feed-container">
+{% for event in events.items %}
+  <li class="e-feed-item">
+  <time datetime="{{ event.created_at }}"></time>
+  {% if event.type == 'shared_message' %}
+    {{ user_avatar(event.user) }}
+    <div class="e-feed-message">
+      <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
+      <p>{{ event.message }}</p>
+      {% if current_user.is_authenticated() %}
+      <div class="e-actions">
+        {% call render_user_mailto_link(event.user) %}<span class="material-icons">reply</span> <span class="e-action-label">{{ gettext("Reply via e-mail") }}</span>{% endcall %}
+      </div>
+      {% endif %}
+    </div>
+  {% elif event.type == 'user_joined_event' %}
+    {{ user_avatar(event.user) }}
+    <div class="e-feed-message">
+      <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
+    </div>
+  {% elif event.type == 'connection_event' %}
+    <div class="e-feed-message">
+      <p>{{ ngettext('+%(num)d new connection made in NOI.', '+%(num)d new connections made in NOI.', event.emails.count()) }}</p>
+      <p>{{ gettext('%(total)s connections!', total=event.total_connections) }}</p>
+    </div>
+  {% else %}
+    <div class="e-feed-message">
+      UNKNOWN EVENT TYPE: {{ event.type }}
+    </div>
+  {% endif %}
+  </li>
+{% endfor %}
+</ul>
+
+{% if events.has_next %}
+<div class="e-load-more">
+  <a href="{{ url_for('views.activity_page', pageid=events.next_num) }}" class="material-icons">expand_more</a>
+</div>
+{% endif %}

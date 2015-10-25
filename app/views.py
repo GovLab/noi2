@@ -487,14 +487,33 @@ def match():
 
     return redirect(url_for('views.match_practitioners'))
 
+def get_latest_events(pageid=1):
+    return Event.query_in_deployment().order_by(desc(Event.created_at)).\
+           paginate(pageid)
+
+@views.route('/activity/page/<pageid>')
+def activity_page(pageid):
+    '''
+    Individual page for activity stream (for infinite scrolling).
+    '''
+
+    try:
+        pageid = int(pageid)
+        if pageid <= 0:
+            raise ValueError()
+    except ValueError:
+        abort(404)
+
+    return render_template('_activity_events.html',
+                           events=get_latest_events(pageid))
+
 @views.route('/activity', methods=['GET', 'POST'])
 def activity():
     '''
     View for the activity feed of recent events.
     '''
 
-    events = Event.query_in_deployment().order_by(desc(Event.created_at)).\
-             limit(50).all()
+    events = get_latest_events()
     shared_message_form = SharedMessageForm()
 
     if request.method == 'POST':

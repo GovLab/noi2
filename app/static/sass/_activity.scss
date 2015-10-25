@@ -66,6 +66,14 @@
         margin-right: 20px;
     }
 
+    .e-load-more {
+        padding: 20px;
+        text-align: center;
+        .material-icons {
+            font-size: 48px;
+        }
+    }
+
     .e-feed-message {
         -webkit-box-flex: 1;   /* OLD - iOS 6-, Safari 3.1-6 */
         -webkit-flex: 1;       /* Safari 6.1+. iOS 7.1+, BB10 */
