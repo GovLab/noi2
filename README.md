@@ -156,26 +156,18 @@ to download. You can monitor the status of the build on Docker Hub's
 We use [SASS][] for our styles; all files are contained in
 `app/static/sass`.
 
+We also use the [PostCSS Autoprefixer][] to post-process the compiled
+CSS and ensure that it works across all browsers.
+
 When `DEBUG` is `True` (i.e., during development), we use SASS
 middleware to dynamically recompile SASS to CSS on-the-fly; however,
-this middleware has a few drawbacks:
+this middleware has a few drawbacks.
 
-  * For technical reasons, the dynamically-compiled CSS is actually
-    served from a different directory than the precompiled CSS is
-    served from in production. Because of this, links to compiled SASS
-    in templates need to use the `COMPILED_SASS_ROOT` global, while
-    links to static assets (like images) in SASS need to use the
-    `$path-to-static` variable.
-
-  * For production, we use the [PostCSS Autoprefixer][] to
-    post-process the compiled CSS and ensure that it works across
-    all browsers. This step isn't currently done when dynamically
-    building the CSS on-the-fly via middleware.
-
-If you need to disable the middleware during development, you can set
-`DISABLE_SASS_MIDDLEWARE` to `True`.  However, you'll then be
-responsible for re-compiling CSS when necessary, which can be done via
-`./manage.sh build_sass` (this *will* autoprefix your CSS).
+For technical reasons, the dynamically-compiled CSS is actually served
+from a different directory than the precompiled CSS is served from in
+production. Because of this, links to compiled SASS in templates need
+to use the `COMPILED_SASS_ROOT` global, while links to static assets
+(like images) in SASS need to use the `$path-to-static` variable.
 
   [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
   [Docker Toolbox]: https://www.docker.com/toolbox
