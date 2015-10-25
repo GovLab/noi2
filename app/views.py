@@ -334,17 +334,32 @@ def my_expertise():
 @full_registration_required
 def my_expertise_area(areaid):
     '''
-    Redirect the user to the first unanswered question in the given area.
+    If the user has never answered questions in this area before, show
+    them some introductory text; otherwise, automatically redirect the
+    user to the first unanswered question in the given area.
     '''
 
     questionnaire = get_area_questionnaire_or_404(areaid)
     skills = current_user.skill_levels
+    first_unanswered = None
+    total_answered = 0
+
     for i in range(len(questionnaire['questions'])):
         question = questionnaire['questions'][i]
-        if question['id'] not in skills:
-            break
-    return redirect(url_for('views.my_expertise_area_question',
-                            areaid=areaid, questionid=str(i+1)))
+        if question['id'] in skills:
+            total_answered += 1
+        elif first_unanswered is None:
+            first_unanswered = i+1
+
+    next_url = url_for('views.my_expertise_area_question',
+                       areaid=areaid, questionid=str(first_unanswered))
+
+    if total_answered == 0:
+        return render_user_profile(active_tab='expertise',
+                                   in_questionnaire=True,
+                                   areaid=areaid,
+                                   next_url=next_url)
+    return redirect(next_url)
 
 # TODO: This code is largely copied/pasted from
 # register_step_3_area_question, consider refactoring.
@@ -386,6 +401,7 @@ def my_expertise_area_question(areaid, questionid):
 
     return render_user_profile(
         active_tab='expertise',
+        in_questionnaire=True,
         question=question,
         areaid=areaid,
         questionid=questionid,

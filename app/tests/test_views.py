@@ -317,10 +317,12 @@ class MyExpertiseTests(ViewTestCase):
     def test_get_is_ok(self):
         self.assert200(self.client.get('/my-expertise/'))
 
-    def test_with_areaid_redirects_to_first_unanswered_question(self):
-        self.assertRedirects(self.client.get('/my-expertise/opendata'),
-                             '/my-expertise/opendata/1')
+    def test_with_areaid_and_no_skills_shows_into_text(self):
+        res = self.client.get('/my-expertise/opendata')
+        self.assert200(res)
+        assert '/my-expertise/opendata/1#expertise' in res.data
 
+    def test_with_areaid_and_skills_redirects_to_unanswered_question(self):
         self.client.post('/my-expertise/opendata/1', data={
             'answer': '-1'
         })
