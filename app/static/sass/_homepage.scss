@@ -71,7 +71,12 @@
 }
 
 .b-treemap {
-    background-color: $gray-80;
+    background-image: url($path-to-static + '/img/treemap.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 0;
+    padding-bottom: 125%;
+    width: 100%;
 }
 
 .b-categories {
@@ -103,7 +108,7 @@
 
     .e-category-panel {
         display: inline-block;
-        width: 100vw;
+        width: 100%;
         white-space: normal;
         text-align: center;
         font-size: 30px;
@@ -156,7 +161,7 @@
         }
         &.m-open-data:after {
             background-image: url($path-to-static + '/img/category-open-data.png');
-            background-position: center -19vh;
+            background-position: center -13vh;
             background-size: 120%;
         }
         &.m-prizes:after {
