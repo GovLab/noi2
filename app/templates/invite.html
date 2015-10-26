@@ -33,19 +33,19 @@ input, select {
 {%- endmacro %}
 
 {% block content %}
+<div class="b-invite">
+  <h1 class="b-header">{{ gettext('Invite Someone') }}</h1>
 
-<h1 class="b-header">{{ gettext('Invite Someone') }}</h1>
+  <p>{{ gettext('Suggest someone to join the network') }}</p>
 
-<p>{{ gettext('Suggest someone to join the network') }}</p>
+  <form action="" method="post">
 
-<form action="" method="post">
+  {{ form.csrf_token }}
 
-{{ form.csrf_token }}
+  {{ input('email') }}
 
-{{ input('email') }}
+  <button class="b-button" type="submit">{{ gettext('Invite') }}</button>
 
-<button class="b-button" type="submit">{{ gettext('Invite') }}</button>
-
-</form>
-
+  </form>
+</div>
 {% endblock %}

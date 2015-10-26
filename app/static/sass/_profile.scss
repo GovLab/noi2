@@ -6,6 +6,7 @@
     display: -ms-flexbox;  /* TWEENER - IE 10 */
     display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+    background-color: $gray-70;
     
     .e-send {display: none;} // @Toolness - this is my hack for the button switcher.
 
@@ -32,6 +33,7 @@
         flex: 2;               /* NEW, Spec - Firefox, Chrome, Opera */
         text-align: center;
         padding: 20px 10px;
+
 
         .e-picture {
             width: 100%;
@@ -228,36 +230,11 @@
     }
 }
 
-.b-network-viz-temp {
-    background-image: url($path-to-static + '/img/treemap.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 0;
-    position: relative;
-    padding-bottom: 125%;
-    width: 100%;
+#overview {
+    padding: 20px;
 
-    &:after {
-        background-color: $gray-40;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        content: '';
-    }
-
-    p {
-        margin: 0;
-        position: relative;
-        z-index: 2;
-        font-size: 22px;
-        text-align: center;
-        padding: 30px;
-        font-weight: 600;
-        text-transform: uppercase;
-        color: $white;
-        line-height: 1.5;
-        letter-spacing: .3px;
+    .radarChart {
+        
     }
 }
+

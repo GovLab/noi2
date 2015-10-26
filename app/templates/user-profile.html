@@ -61,7 +61,7 @@ b-public-profile
 
 {{ render_tab_bar(tabs, active_tab) }}
 
-<div> <!-- Start of tab panel container -->
+<div class="b-pofile-tabs"> <!-- Start of tab panel container -->
 
 {% call render_tab_panel('overview', active_tab) %}
 
@@ -93,17 +93,15 @@ b-public-profile
     {% endfor %}
   </ul>
 {% endfor %}
+  <div class="radarChart"></div>
+  <h3>{{ gettext('Projects I have done') }}</h3>
+  {% if user.projects %}
+  <pre>{{ user.projects }}</pre>
+  {% else %}
+  {{ gettext("No project information provided.") }}
+  {% endif %}
 
-<div class="radarChart"></div>
-
-<h3>{{ gettext('Projects I have done') }}</h3>
-{% if user.projects %}
-<pre>{{ user.projects }}</pre>
-{% else %}
-{{ gettext("No project information provided.") }}
-{% endif %}
-
-{% endcall %}
+  {% endcall %}
 
 {% if is_current_user_profile %}
 

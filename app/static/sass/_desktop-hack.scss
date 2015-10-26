@@ -1,0 +1,83 @@
+body {
+    @include breakpoint($desktop) {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: $white;
+        min-height: 100vh;   
+        position: relative;
+        box-shadow: 0 0 15px $gray-40; 
+    }
+    
+}
+
+html {
+    @include breakpoint($desktop) {
+        background-color: $gray-80;
+    }
+    
+}
+
+.b-tutorial-box {
+    @include breakpoint($desktop) {
+        width: 76%;
+    }
+}
+
+.modal {
+    @include breakpoint($desktop) {
+        position: absolute;
+    }   
+}
+
+.b-post-update-wrapper.m-update-active {
+    @include breakpoint($desktop) {
+        position: absolute;
+    }   
+}
+
+#overview .radarChart {
+    @include breakpoint($desktop) {
+    max-height: 500px;
+    overflow: hidden;
+}
+}
+
+#overview .radarChart svg {
+    @include breakpoint($desktop) {
+        transform: scale(0.7) translate(-165px, -160px);
+        }
+}
+
+.b-network-viz-temp {
+    background-image: url($path-to-static + '/img/treemap.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 0;
+    position: relative;
+    padding-bottom: 125%;
+    width: 100%;
+
+    &:after {
+        background-color: $gray-40;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        content: '';
+    }
+
+    p {
+        margin: 0;
+        position: relative;
+        z-index: 2;
+        font-size: 22px;
+        text-align: center;
+        padding: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $white;
+        line-height: 1.5;
+        letter-spacing: .3px;
+    }
+}
