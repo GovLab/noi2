@@ -1,0 +1,30 @@
+body {
+    @include breakpoint($desktop) {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: $white;
+        min-height: 100vh;   
+        position: relative;
+        box-shadow: 0 0 15px $gray-40; 
+    }
+    
+}
+
+html {
+    @include breakpoint($desktop) {
+        background-color: $gray-80;
+    }
+    
+}
+
+.b-tutorial-box {
+    @include breakpoint($desktop) {
+        width: 76%;
+    }
+}
+
+.modal {
+    @include breakpoint($desktop) {
+        position: absolute;
+    }   
+}
