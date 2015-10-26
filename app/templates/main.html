@@ -97,3 +97,17 @@
     <a href="{{ url_for('views.about_page') }}" class="b-button">{{ gettext("Learn more") }}</a>
 </section>
 {% endblock %}
+
+{% block page_script %}
+<script src="{{ url_for('static', filename='vendor/slick.js') }}"></script>
+<script>
+$(function() {
+  $('.e-category-wrapper').slick({
+    arrows: false,
+    pauseOnHover: false,
+    autoplay: true,
+    autoplaySpeed: 2000
+  });
+});
+</script>
+{% endblock %}

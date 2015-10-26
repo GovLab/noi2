@@ -95,7 +95,7 @@
     .e-category-slider {
         width: 100%;
         background-color: $gray-10;
-        overflow-x: scroll;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
         overflow-y: hidden;
         height: 60vh;
