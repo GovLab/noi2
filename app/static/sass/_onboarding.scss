@@ -154,6 +154,8 @@
         box-shadow: 3px 3px 10px $gray-30;
         position: absolute;
         padding-bottom: 30px;
+        height: 514px;
+        width: 307px;
 
 
         .e-card-category {
@@ -216,22 +218,29 @@
         }
     }
 
+    .e-choose-another {
+        font-size: 14px;
+    }
+
+
+
     .e-card:first-of-type {
         z-index: 100;
+        transform: translate(-10px, -20px); 
     }
 
     .e-card:nth-of-type(2) {
         z-index: 99;
-        transform: translate(10px, 10px);
+        transform: translate(0, -10px);
     }
 
     .e-card:nth-of-type(3) {
         z-index: 98;
-        transform: translate(20px, 20px);
+        transform: translate(10px, 0px);
     }
 
     .e-card:nth-of-type(4) {
         z-index: 97;
-        transform: translate(30px, 30px);
+        transform: translate(20px, 10px);
     }
 }
