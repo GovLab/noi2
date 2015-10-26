@@ -1,6 +1,6 @@
 body {
     @include breakpoint($desktop) {
-        max-width: 500px;
+        max-width: $desktop;
         margin: 0 auto;
         background-color: $white;
         min-height: 100vh;   
