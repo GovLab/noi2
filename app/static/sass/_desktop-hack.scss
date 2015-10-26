@@ -28,3 +28,9 @@ html {
         position: absolute;
     }   
 }
+
+.b-post-update-wrapper.m-update-active {
+    @include breakpoint($desktop) {
+        position: absolute;
+    }   
+}
