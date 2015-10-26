@@ -179,7 +179,7 @@
 .b-screenshots {
     position: relative;
     overflow: hidden;
-    height: 130vh;
+    height: 98vh;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#048ab3+0,048ab3+50,333333+50,4c4c4c+100 */
     background: rgb(4,138,179); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(4,138,179,1) 0%, rgba(4,138,179,1) 50%, rgba(51,51,51,1) 50%, rgba(76,76,76,1) 100%); /* FF3.6+ */
@@ -202,32 +202,23 @@
             top: -50px;
 
         }
-
-        &.m-right {
-            left: 20%;
-            bottom: -100px;   
-            transform: rotate(-20deg);         
-        }
-
         
     }
+
     .e-blurb {
-        width: 50vw;
+        width: 50%;
         font-size: 16px;
         color: $white;
         padding: 20px;
         position: absolute;
+        text-align: right;
+        right: 20px;
 
-        &.m-right {
-            text-align: right;
-            left: 170px;
-            top: 20px;
-        }
+        &.m-top { top: 20px; }
+        &.m-bottom { 
+            top: 400px; 
+            width: 56%;
 
-        &.m-left {
-            bottom: 10px;
-            left: 20px;
-            width: 55vw;
         }
     }
 
