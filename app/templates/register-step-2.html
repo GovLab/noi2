@@ -2,6 +2,7 @@
 
 {% block title %}{{ gettext('Register - Basic Information') }}{% endblock %}
 
+{% from "_macros.html" import render_multi_select_instructions %}
 {% from "security/_macros_new.html" import render_field_with_errors, render_field %}
 
 {% block content %}
@@ -17,6 +18,7 @@
       {{ render_field_with_errors(form.organization) }}
       {{ render_field_with_errors(form.country) }}
       {{ render_field_with_errors(form.expertise_domain_names) }}
+      {{ render_multi_select_instructions() }}
 
       <input class="b-button" type="submit" value="{{ gettext('Next') }}">
 

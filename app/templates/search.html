@@ -17,7 +17,7 @@
   </style>
 {% endblock %}
 
-{% from "_macros.html" import get_user_avatar_url %}
+{% from "_macros.html" import get_user_avatar_url, render_multi_select_instructions %}
 
 {% block content %}
 <section class="b-filters">
@@ -29,10 +29,12 @@
     <label for="locales">{{ gettext('By language(s)') }}</label>
     <div class="b-dropdown">
       {{ form.locales() }}
+      {{ render_multi_select_instructions(style="color: lightgray") }}
     </div>
     <label for="expertise_domain_names">{{ gettext('By field(s) of work') }}</label>
     <div class="b-dropdown">
       {{ form.expertise_domain_names() }}
+      {{ render_multi_select_instructions(style="color: lightgray") }}
     </div>
   <input class="b-button" type="submit" value="{{ gettext('Find Innovators') }}">
   </form>

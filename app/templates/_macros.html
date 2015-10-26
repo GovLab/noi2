@@ -6,6 +6,10 @@
 {%- endif %}
 {%- endmacro %}
 
+{% macro render_multi_select_instructions(style='') %}
+  <small style="{{ style }}">{{ gettext("To select multiple items, hold down the <strong>CTRL</strong> key (or the Command key on Macs).") }}</small>
+{% endmacro %}
+
 {% macro render_alert(message, category) %}
   {% if category == 'error' %}
     {% set flashed_message_class = 'm-error' %}

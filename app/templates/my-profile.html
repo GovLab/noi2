@@ -1,5 +1,7 @@
 {% extends "__base_ui__.html" %}
 
+{% from "_macros.html" import render_multi_select_instructions %}
+
 {% block title %}{{ gettext('My Profile') }}{% endblock %}
 
 {% block page_style_post %}
@@ -7,8 +9,12 @@
 /* TODO: These styles are temporary until we have style-guide HTML mocks
  * for this view. */
 
+form {
+  padding: 0 2em 1em 2em;
+}
+
 .temporary-form-input {
-  padding: 1em 2em;
+  padding-top: 1em;
 }
 
 input, select {
@@ -53,7 +59,9 @@ input, select {
 {{ input("city") }}
 {{ input("country") }}
 {{ input("expertise_domain_names") }}
+{{ render_multi_select_instructions() }}
 {{ input("locales") }}
+{{ render_multi_select_instructions() }}
 {{ input("projects") }}
 
 <button class="b-button" type="submit">{{ gettext('Save') }}</button>
