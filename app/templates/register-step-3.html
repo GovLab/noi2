@@ -16,6 +16,12 @@
   </style>
 {% endblock %}
 
+{% macro render_background_cards(height_target) %}
+  {% for i in range(questions_left) %}
+  <div class="e-card" data-set-height-to="{{ height_target }}"><h3 class="e-card-category">&nbsp;</h3></div>
+  {% endfor %}
+{% endmacro %}
+
 {% block content %}
 
 {% if not question %}
@@ -43,13 +49,15 @@
 {% else %}
 
 <div class="b-onboarding-questions">
-    <div class="e-card m-intro">
+    <div class="e-card m-intro" id="card">
       <h3 class="e-card-category">{{ gettext(QUESTIONNAIRES_BY_ID[areaid].name) }}</h3>
       <p class="e-text"><em>{{ gettext(QUESTIONNAIRES_BY_ID[areaid].description) }}</em></p>
       <p class="e-text">{{ gettext("Now answer %(num)s questions about your experience in this area to join the network and get matched with other innovators!", num=MIN_QUESTIONS_TO_JOIN) }}</p>
       <p class="e-aux-text">{{ gettext("You can always answer more questions by going to your profile page to get new and more relevant matches.") }}</p>
       <a href="{{ next_url }}" class="b-button">{{ gettext('Next') }}</a>
     </div>
+
+    {{ render_background_cards(height_target="#card") }}
 </div>
 
 {% endif %}
@@ -57,7 +65,7 @@
 {% else %}
 
 <div class="b-onboarding-questions">
-    <div class="e-card">
+    <div class="e-card" id="card">
         <h3 class="e-card-category">{{ gettext(question.questionnaire.name) }} {{ questionid }}</h3>
 	<p class="e-question">{{ gettext(question.question) }}</p>
 
@@ -75,7 +83,6 @@
 
 
 
-<!-- ===================== Here ============================== -->
 
 		<div>
 		    {% if user_can_join %}
@@ -90,13 +97,20 @@
 
     </div>
 
-    <div class="e-card"><h3 class="e-card-category">&nbsp;</h3></div>
-    <div class="e-card"><h3 class="e-card-category">&nbsp;</h3></div>
-    <div class="e-card"><h3 class="e-card-category">&nbsp;</h3></div>
-
-<!-- ===================== Here ============================== -->
+    {{ render_background_cards(height_target="#card") }}
 </div>
 
 {% endif %}
 
+{% endblock %}
+
+{% block page_script %}
+<script>
+$(function() {
+  $('[data-set-height-to]').each(function() {
+    var target = $($(this).data('set-height-to'));
+    $(this).height(target.height());
+  });
+});
+</script>
 {% endblock %}

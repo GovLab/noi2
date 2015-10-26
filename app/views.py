@@ -145,6 +145,9 @@ def get_area_questionnaire_or_404(areaid):
 def render_register_step_3(**kwargs):
     questions_answered = len(current_user.skills)
 
+    if current_app.debug and 'qa' in request.args:
+        questions_answered = int(request.args['qa'])
+
     return render_template(
         'register-step-3.html',
         user_can_join=questions_answered >= MIN_QUESTIONS_TO_JOIN,
