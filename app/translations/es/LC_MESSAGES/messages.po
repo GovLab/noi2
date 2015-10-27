@@ -3156,22 +3156,22 @@ msgstr "Mis competencias"
 #: /noi/app/templates/user-profile.html:71
 #, fuzzy, python-format
 msgid "You are an <strong>explainer</strong> of:"
-msgstr "%(user)s lo pueden <strong>explicar</strong>"
+msgstr ""
 
 #: /noi/app/templates/user-profile.html:73
 #, fuzzy, python-format
 msgid "You are a <strong>practitioner</strong> of:"
-msgstr "%(user)s te pueden <strong>referir</strong>"
+msgstr ""
 
 #: /noi/app/templates/user-profile.html:75
 #, fuzzy, python-format
 msgid "You are a <strong>connector</strong> of:"
-msgstr "%(user)s te pueden <strong>referir</strong>"
+msgstr ""
 
 #: /noi/app/templates/user-profile.html:77
 #, fuzzy, python-format
 msgid "You are a <strong>peer</strong> of:"
-msgstr "%(user)s quieren <strong>aprender</strong>"
+msgstr ""
 
 #: /noi/app/templates/user-profile.html:81
 #, fuzzy, python-format
