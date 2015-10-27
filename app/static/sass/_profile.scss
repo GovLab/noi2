@@ -96,9 +96,10 @@
     }
 
     .e-question {
-        width: 100%;
+        width: calc(100% - 60px);
         white-space: normal;
         display: inline-block;
+        margin: 0 30px;
     }
 
     .e-prev,
