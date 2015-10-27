@@ -235,7 +235,7 @@
     - topic: Legal Questions
       description: legal concerns and barriers related to citizen science initiatives
       questions:
-        - question: Identifying and mitigate privacy concerns relating to data collected
+        - question: Identifying and mitigating privacy concerns relating to data collected
           label: privacy concerns
         - question: Ensuring COPPA compliance in projects featuring minors
           label: coppa compliance

@@ -1918,7 +1918,7 @@ msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:150
 #, fuzzy
-msgid "Identifying and mitigate privacy concerns relating to data collected"
+msgid "Identifying and mitigating privacy concerns relating to data collected"
 msgstr ""
 "Identificar y mitigar las preocupaciones de privacidad relacionadas a los datos "
 "recolectados"
