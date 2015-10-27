@@ -219,6 +219,9 @@
         &.m-bottom { 
             top: 400px; 
             width: 56%;
+            @include breakpoint($desktop) {
+                top: 500px;
+            }
 
         }
     }
