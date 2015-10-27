@@ -25,6 +25,11 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+
+        @include breakpoint($desktop) {
+            width: 60%;
+            margin: 0 auto;
+        }
     }
 
     .e-tagline {
