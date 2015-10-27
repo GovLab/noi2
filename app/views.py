@@ -223,7 +223,7 @@ def register_step_3_area_question(areaid, questionid):
                 areaid=areaid, questionid=next_questionid
             ))
         else:
-            return redirect(url_for('views.register_step_3'))
+            return redirect(url_for('views.activity'))
 
     return render_register_step_3(
         question=question,

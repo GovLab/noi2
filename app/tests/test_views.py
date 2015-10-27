@@ -180,7 +180,7 @@ class MultiStepRegistrationTests(ViewTestCase):
         ), data={
             'answer': '-1'
         })
-        self.assertRedirects(res, '/register/step/3')
+        self.assertRedirects(res, '/activity')
         self.assertEqual(len(self.last_created_user.skills), 1)
 
     def test_step_3_answering_first_question_works(self):
