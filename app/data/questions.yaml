@@ -576,7 +576,7 @@
           label: free speech and public record tensions
           
           
-- name: 'Nudges: Randomized Control Trials (RCTs)'
+- name: 'Nudges: RCTs'
   id: rcts
   icon: opendata.svg
   icon-color: "#E86B5F"

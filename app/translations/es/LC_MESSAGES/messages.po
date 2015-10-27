@@ -2956,8 +2956,8 @@ msgstr ""
 "prestando dichos servicios de dos formas diferentes.\n"
 
 #: /noi/app/templates/translate.tmp.html:319
-msgid "Nudges: Randomized Control Trials (RCTs)"
-msgstr "Nudges: Ensayos controlados aleatorios (ECA)"
+msgid "Nudges: RCTs"
+msgstr "Nudges: ECA"
 
 #: /noi/app/templates/translate.tmp.html:320
 msgid "Setting Up an Evaluation"
