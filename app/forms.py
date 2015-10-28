@@ -81,6 +81,13 @@ class RegisterStep2Form(ModelForm):
         widget=Select(multiple=True),
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
 
+image_validator = FileAllowed(
+    ('jpg', 'jpeg', 'png'),
+    lazy_gettext('Only jpeg, jpg, and png images are allowed.')
+)
+
+class PictureForm(Form):
+    picture = FileField(validators=[image_validator])
 
 class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     '''
@@ -90,8 +97,7 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     class Meta:  #pylint: disable=no-init,missing-docstring,old-style-class,too-few-public-methods
         model = User
         only = ['first_name', 'last_name', 'position', 'organization',
-                'organization_type', 'city', 'country', 'projects',
-                'has_picture']
+                'organization_type', 'city', 'country', 'projects']
         field_args = {
             'first_name': {
                 'validators': [Required()]
@@ -104,9 +110,7 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     picture = FileField(
         label=lazy_gettext('User Picture'),
         description='Optional',
-        validators=[FileAllowed(
-            ('jpg', 'jpeg', 'png'),
-            lazy_gettext('Only jpeg, jpg, and png images are allowed.'))]
+        validators=[image_validator]
     )
 
     locales = CallableChoicesSelectMultipleField(

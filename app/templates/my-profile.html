@@ -29,9 +29,6 @@ input, select {
 
 <form action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
-{% if form.has_picture.data %}
-<input type="hidden" name="has_picture" value="true" />
-{% endif %}
 
 {% macro input(name) -%}
 <div class="temporary-form-input">
@@ -71,41 +68,53 @@ input, select {
 {% endblock %}
 
 {% block page_script %}
-
+<script src="{{ url_for('static', filename='vendor/load-image.all.min.js') }}"></script>
 <script>
-    function ensureImageIsSquare(file, field) {
-        var img = document.createElement('img');
-        var url = window.URL.createObjectURL(file);
-        var onError = function() {
-            $(field).val('');
-            alert({{ gettext('Sorry, your image must have square dimensions.'|tojson) }});
-            window.URL.revokeObjectURL(url);
-        };
+var UPLOAD_PICTURE_URL = {{ url_for('views.my_profile_upload_picture')|tojson }};
+var UPLOAD_PICTURE_SUCCESS = {{ gettext("Your user picture has been changed.")|tojson }};
+var UPLOAD_PICTURE_ERROR = {{ gettext("An error occurred when uploading your user picture.")|tojson }};
 
-        img.src = url;
-        img.onload = function() {
-            if (img.naturalWidth && img.naturalHeight &&
-                img.naturalWidth !== img.naturalHeight) {
-                onError();
-            } else {
-                window.URL.revokeObjectURL(url);
-            }
-        }
-        img.onerror = onError;
+function upload(canvas, cb) {
+  canvas.toBlob(function(blob) {
+    var fd = new FormData();
+
+    fd.append('picture', blob, 'picture.jpg');
+
+    $.ajax({
+      url: UPLOAD_PICTURE_URL,
+      type: 'POST',
+      data: fd,
+      processData: false,
+      contentType: false,
+      complete: cb,
+      success: function(data, textStatus) {
+        alert(UPLOAD_PICTURE_SUCCESS);
+      },
+      error: function() {
+        alert(UPLOAD_PICTURE_ERROR);
+      }
+    });
+  }, 'image/jpeg');
+}
+
+$('#picture').on('change', function (evt) {
+  var self = this;
+  if (this.files) {
+    if (this.files[0]) {
+      loadImage(this.files[0], function(canvas) {
+        upload(canvas, function() {
+          $(self).val('');
+        });
+      }, {
+        maxWidth: 256,
+        maxHeight: 256,
+        crop: true,
+        orientation: true,
+        canvas: true
+      });
     }
-
-    $('#picture').on('change', function (evt) {
-        if (this.files) {
-          if (this.files[0]) {
-            if (this.files[0].size > 1000 * 1000) {
-              $(this).val('');
-              alert({{ gettext('Sorry, that file is too big.  Please choose a smaller one.')|tojson }});
-            } else {
-              ensureImageIsSquare(this.files[0], this);
-            }
-          }
-        }
-    })
+  }
+});
 </script>
 
 {% endblock %}
