@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-10-26 17:16+0000\n"
+"POT-Creation-Date: 2015-10-28 14:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,48 +250,48 @@ msgstr ""
 msgid "Could not save, please correct errors."
 msgstr ""
 
-#: /noi/app/views.py:250
+#: /noi/app/views.py:253
 msgid "Could not save, please correct errors below"
 msgstr ""
 
-#: /noi/app/views.py:262
+#: /noi/app/views.py:265
 msgid "Peer"
 msgstr ""
 
-#: /noi/app/views.py:263
+#: /noi/app/views.py:266
 msgid "Connector"
 msgstr ""
 
-#: /noi/app/views.py:264
+#: /noi/app/views.py:267
 msgid "Explainer"
 msgstr ""
 
-#: /noi/app/views.py:265
+#: /noi/app/views.py:268
 msgid "Practitioner"
 msgstr ""
 
-#: /noi/app/views.py:270
+#: /noi/app/views.py:273
 msgid "name"
 msgstr ""
 
-#: /noi/app/views.py:537
+#: /noi/app/views.py:547
 msgid "You must log in to post a message."
 msgstr ""
 
-#: /noi/app/views.py:539
+#: /noi/app/views.py:549
 msgid "We need your name before you can post a message."
 msgstr ""
 
-#: /noi/app/views.py:548
+#: /noi/app/views.py:558
 msgid "Message posted!"
 msgstr ""
 
-#: /noi/app/views.py:613
+#: /noi/app/views.py:623
 #, python-format
 msgid "%(user)s would like you to join the Network of Innovators!"
 msgstr ""
 
-#: /noi/app/views.py:618
+#: /noi/app/views.py:628
 #, python-format
 msgid ""
 "%(user)s has invited you to join the Network of Innovators -- a new "
@@ -303,11 +303,11 @@ msgid ""
 "Build your network now at %(url)s."
 msgstr ""
 
-#: /noi/app/views.py:632
+#: /noi/app/views.py:642
 msgid "Invitation sent!"
 msgstr ""
 
-#: /noi/app/views.py:635
+#: /noi/app/views.py:645
 msgid "Your form submission was invalid."
 msgstr ""
 
@@ -364,7 +364,7 @@ msgstr ""
 msgid "My Profile"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:73 /noi/app/templates/settings.html:5
+#: /noi/app/templates/__base_ui__.html:73 /noi/app/templates/settings.html:6
 msgid "Settings"
 msgstr ""
 
@@ -382,7 +382,12 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:79
+#: /noi/app/templates/__base_ui__.html:79 /noi/app/templates/faq.html:30
+#: /noi/app/templates/main.html:95
+msgid "Terms of Service"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:80
 msgid "Sign Out"
 msgstr ""
 
@@ -469,12 +474,12 @@ msgstr[1] ""
 #: /noi/app/templates/_profile-questionnaire.html:22
 #: /noi/app/templates/activity.html:85 /noi/app/templates/activity.html:92
 #: /noi/app/templates/register-step-2.html:23
-#: /noi/app/templates/register-step-3.html:51
+#: /noi/app/templates/register-step-3.html:57
 msgid "Next"
 msgstr ""
 
 #: /noi/app/templates/_profile-questionnaire.html:53
-#: /noi/app/templates/register-step-3.html:73
+#: /noi/app/templates/register-step-3.html:81
 msgid "Skip this question"
 msgstr ""
 
@@ -685,10 +690,6 @@ msgstr ""
 msgid "Who can see my information?"
 msgstr ""
 
-#: /noi/app/templates/faq.html:30
-msgid "Terms and Conditions"
-msgstr ""
-
 #: /noi/app/templates/faq.html:32
 #, python-format
 msgid ""
@@ -852,7 +853,7 @@ msgstr ""
 msgid "Invite"
 msgstr ""
 
-#: /noi/app/templates/main.html:16 /noi/app/templates/settings.html:23
+#: /noi/app/templates/main.html:16 /noi/app/templates/settings.html:22
 msgid "Change Language"
 msgstr ""
 
@@ -860,73 +861,73 @@ msgstr ""
 msgid "The skill-sharing network for government & civic innovators worldwide"
 msgstr ""
 
-#: /noi/app/templates/main.html:23 /noi/app/templates/main.html:96
+#: /noi/app/templates/main.html:23 /noi/app/templates/main.html:93
 msgid "Get Started"
 msgstr ""
 
-#: /noi/app/templates/main.html:36
+#: /noi/app/templates/main.html:34
 msgid ""
 "<strong>Select an innovation area</strong> to answer questions about what"
 " you know and can share with others. Telling us about your innovation "
 "skills enables you to get matched to those with complementary expertise."
 msgstr ""
 
-#: /noi/app/templates/main.html:41 /noi/app/templates/translate.tmp.html:263
+#: /noi/app/templates/main.html:39 /noi/app/templates/translate.tmp.html:263
 msgid "Crowdsourcing"
 msgstr ""
 
-#: /noi/app/templates/main.html:44 /noi/app/templates/translate.tmp.html:171
+#: /noi/app/templates/main.html:42 /noi/app/templates/translate.tmp.html:171
 msgid "Data Science"
 msgstr ""
 
-#: /noi/app/templates/main.html:47 /noi/app/templates/translate.tmp.html:192
+#: /noi/app/templates/main.html:45 /noi/app/templates/translate.tmp.html:192
 msgid "Community Engagement"
 msgstr ""
 
-#: /noi/app/templates/main.html:50 /noi/app/templates/translate.tmp.html:230
+#: /noi/app/templates/main.html:48 /noi/app/templates/translate.tmp.html:230
 msgid "Lab Design"
 msgstr ""
 
-#: /noi/app/templates/main.html:53 /noi/app/templates/translate.tmp.html:105
+#: /noi/app/templates/main.html:51 /noi/app/templates/translate.tmp.html:105
 msgid "Citizen Science"
 msgstr ""
 
-#: /noi/app/templates/main.html:56 /noi/app/templates/translate.tmp.html:35
+#: /noi/app/templates/main.html:54 /noi/app/templates/translate.tmp.html:35
 msgid "Open Data"
 msgstr ""
 
-#: /noi/app/templates/main.html:59 /noi/app/templates/translate.tmp.html:66
+#: /noi/app/templates/main.html:57 /noi/app/templates/translate.tmp.html:66
 msgid "Prizes"
 msgstr ""
 
-#: /noi/app/templates/main.html:62
+#: /noi/app/templates/main.html:60
 msgid "Randomized Controlled Trials"
 msgstr ""
 
-#: /noi/app/templates/main.html:70
+#: /noi/app/templates/main.html:68
 msgid ""
 "<strong>Find Innovators</strong> who know what you don’t and who want to "
 "learn what you can share."
 msgstr ""
 
-#: /noi/app/templates/main.html:72
+#: /noi/app/templates/main.html:70
 msgid ""
 "<strong>Visualize your knowledge</strong> of innovative problem solving "
 "practices to see what you know, compare to others, and see the skillset "
 "of a 21st century innovator."
 msgstr ""
 
-#: /noi/app/templates/main.html:78
+#: /noi/app/templates/main.html:75
 msgid ""
 "<strong>Build your own network of innovators</strong> and find the right "
 "collaborators for your project!"
 msgstr ""
 
-#: /noi/app/templates/main.html:83
+#: /noi/app/templates/main.html:80
 msgid "in collaboration with innovation teams from governments of"
 msgstr ""
 
-#: /noi/app/templates/main.html:97
+#: /noi/app/templates/main.html:94
 msgid "Learn more"
 msgstr ""
 
@@ -973,6 +974,19 @@ msgid_plural "%(num)d Skill Matches"
 msgstr[0] ""
 msgstr[1] ""
 
+#: /noi/app/templates/match-me.html:54
+msgid "You currently have no matches."
+msgstr ""
+
+#: /noi/app/templates/match-me.html:55
+#, python-format
+msgid ""
+"Matches are created between users that want to learn and users that can "
+"do, explain, or connect. To get matched, go to the <a "
+"href=\"%(expertise_url)s\">Expertise</a> area of your profile and answer "
+"questions in areas you want to learn about."
+msgstr ""
+
 #: /noi/app/templates/my-profile.html:67
 msgid "Save"
 msgstr ""
@@ -1003,28 +1017,28 @@ msgstr ""
 msgid "My Expertise"
 msgstr ""
 
-#: /noi/app/templates/register-step-3.html:26
+#: /noi/app/templates/register-step-3.html:32
 msgid "Pick an innovation area that you're interested in:"
 msgstr ""
 
-#: /noi/app/templates/register-step-3.html:49
+#: /noi/app/templates/register-step-3.html:55
 #, python-format
 msgid ""
 "Now answer %(num)s questions about your experience in this area to join "
 "the network and get matched with other innovators!"
 msgstr ""
 
-#: /noi/app/templates/register-step-3.html:50
+#: /noi/app/templates/register-step-3.html:56
 msgid ""
 "You can always answer more questions by going to your profile page to get"
 " new and more relevant matches."
 msgstr ""
 
-#: /noi/app/templates/register-step-3.html:82
+#: /noi/app/templates/register-step-3.html:89
 msgid "Join"
 msgstr ""
 
-#: /noi/app/templates/register-step-3.html:88
+#: /noi/app/templates/register-step-3.html:95
 msgid "Choose another area"
 msgstr ""
 
@@ -1661,7 +1675,7 @@ msgid "legal concerns and barriers related to citizen science initiatives"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:150
-msgid "Identifying and mitigate privacy concerns relating to data collected"
+msgid "Identifying and mitigating privacy concerns relating to data collected"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:151
@@ -2433,7 +2447,7 @@ msgid ""
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:319
-msgid "Nudges: Randomized Control Trials (RCTs)"
+msgid "Nudges: RCTs"
 msgstr ""
 
 #: /noi/app/templates/translate.tmp.html:320
@@ -2605,47 +2619,47 @@ msgstr ""
 msgid "Expertise"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:71
+#: /noi/app/templates/user-profile.html:72
 msgid "You are an <strong>explainer</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:73
+#: /noi/app/templates/user-profile.html:74
 msgid "You are a <strong>practitioner</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:75
+#: /noi/app/templates/user-profile.html:76
 msgid "You are a <strong>connector</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:77
+#: /noi/app/templates/user-profile.html:78
 msgid "You are a <strong>peer</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:81
+#: /noi/app/templates/user-profile.html:82
 #, python-format
 msgid "Ask %(user)s to <strong>explain</strong>:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:83
+#: /noi/app/templates/user-profile.html:84
 #, python-format
 msgid "Ask %(user)s to <strong>share experiences</strong> in:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:85
+#: /noi/app/templates/user-profile.html:86
 #, python-format
 msgid "Ask %(user)s to <strong>connect you</strong> in:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:87
+#: /noi/app/templates/user-profile.html:88
 #, python-format
 msgid "Ask %(user)s to <strong>learn with you</strong> in:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:99
+#: /noi/app/templates/user-profile.html:98
 msgid "Projects I have done"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:103
+#: /noi/app/templates/user-profile.html:102
 msgid "No project information provided."
 msgstr ""
 
