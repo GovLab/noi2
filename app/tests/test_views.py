@@ -539,3 +539,9 @@ class ViewTests(ViewTestCase):
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
                              '/login?next=%2Fuser%2F1234')
+
+    def test_empty_match_results_are_ok(self):
+        self.login()
+        res = self.client.get('/match/connectors')
+        self.assert200(res)
+        assert 'You currently have no matches' in res.data

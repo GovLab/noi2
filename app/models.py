@@ -242,19 +242,23 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         else:
             raise Exception('Unknown aggregation function for DB {}'.format(
                 db.engine.name))
-        matched_users = User.query_in_deployment().\
-                add_column(agg(UserSkill.name, ',')).\
-                add_column(func.count(UserSkill.id)).\
-                filter(UserSkill.name.in_(
-                    [s.name for s in
-                     self.skills if s.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
-                    ])).\
-                filter(User.id == UserSkill.user_id).\
-                filter(UserSkill.level == level).\
-                filter(UserSkill.user_id != self.id).\
-                group_by(User).\
-                order_by(func.count().desc()).\
-                limit(limit)
+        skills_to_learn = [
+            s.name for s in
+            self.skills if s.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
+        ]
+        if skills_to_learn:
+            matched_users = User.query_in_deployment().\
+                            add_column(agg(UserSkill.name, ',')).\
+                            add_column(func.count(UserSkill.id)).\
+                            filter(UserSkill.name.in_(skills_to_learn)).\
+                            filter(User.id == UserSkill.user_id).\
+                            filter(UserSkill.level == level).\
+                            filter(UserSkill.user_id != self.id).\
+                            group_by(User).\
+                            order_by(func.count().desc()).\
+                            limit(limit)
+        else:
+            matched_users = []
 
         for user, question_ids_by_comma, count in matched_users:
             yield UserSkillMatch(user, question_ids_by_comma.split(','))

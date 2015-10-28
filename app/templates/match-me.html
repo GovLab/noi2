@@ -49,6 +49,9 @@
           {% endfor %}
         </ul>
       </div>
+    {% else %}
+      <p>{{ gettext("You currently have no matches.") }}</p>
+      <p>{{ gettext('Matches are created between users that want to learn and users that can do, explain, or connect. To get matched, go to the <a href="%(expertise_url)s">Expertise</a> area of your profile and answer questions in areas you want to learn about.', expertise_url=url_for('views.my_expertise', _anchor='expertise')) }}</p>
     {% endfor %}
   {% endcall %}
 {% endblock %}
