@@ -328,6 +328,15 @@ class MyExpertiseTests(ViewTestCase):
         self.assertRedirects(self.client.get('/my-expertise/opendata'),
                              '/my-expertise/opendata/2')
 
+    def test_with_areaid_and_skills_redirects_to_last_question(self):
+        for question in self.OPENDATA_QUESTIONNAIRE['questions']:
+            self.last_created_user.set_skill(question['id'], -1)
+        db.session.commit()
+        self.assertRedirects(
+            self.client.get('/my-expertise/opendata'),
+            '/my-expertise/opendata/%d' % self.NUM_OPENDATA_QUESTIONS
+        )
+
     def test_with_questionid_is_ok(self):
         self.assert200(self.client.get('/my-expertise/opendata/1'))
         self.assert200(self.client.get('/my-expertise/opendata/%d' % (

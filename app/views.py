@@ -370,6 +370,9 @@ def my_expertise_area(areaid):
         elif first_unanswered is None:
             first_unanswered = i+1
 
+    if first_unanswered is None:
+        first_unanswered = i + 1
+
     next_url = url_for('views.my_expertise_area_question',
                        areaid=areaid, questionid=str(first_unanswered))
 
