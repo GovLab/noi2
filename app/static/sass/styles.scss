@@ -91,3 +91,12 @@ body {
 
 @import 'desktop-hack';
 
+/* Useful for making blocks of content that we don't have time to style
+ * not look utterly unstyled and horrible. */
+.b-temporary-styling {
+  padding: 20px;
+  a {
+    color: $blue;
+    text-decoration: underline;
+  }
+}
