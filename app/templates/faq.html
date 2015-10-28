@@ -27,7 +27,7 @@
         <li class="e-faq-item">
             <p class="e-question">{{ gettext("Who can see my information?") }}</p>
             {% macro render_toc_link() -%}
-              <a href="{{ url_for('views.terms_and_conditions') }}">{{ gettext("Terms and Conditions") }}</a>
+              <a href="{{ url_for('views.terms_and_conditions') }}">{{ gettext("Terms of Service") }}</a>
             {%- endmacro %}
             <p class="e-answer">{{ gettext("Your NoI profile is visible to all other users of NoI – including innovators across governments and governance innovators outside in public sector. You can read more in the NoI %(toc_link)s. If you have received abusive, solicitous or otherwise irrelevant messages from other members of NoI, please report your issue to %(contact_link)s.", toc_link=render_toc_link(), contact_link=render_contact_govlab_link()) }}</p>
         </li>
