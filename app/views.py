@@ -12,7 +12,7 @@ from flask_login import login_required, current_user
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
                  LEVELS_BY_SCORE, mail)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
-                        UserSkill, Event, SharedMessageEvent)
+                        UserSkill, Event, SharedMessageEvent, Email)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm,
                        RegisterStep2Form, ChangeLocaleForm, InviteForm)
@@ -422,11 +422,18 @@ def email():
     '''
     emails = request.form.getlist('emails[]')
     if emails:
+        if len(emails) != 1:
+            abort(501)
         users = User.query_in_deployment().filter(User.email.in_(emails))
-        event = current_user.email_connect(users)
-        db.session.commit()
-        event.set_total_connections()
-        db.session.commit()
+        email = db.session.query(Email).filter(
+            Email.from_user_id == current_user.id,
+            Email.to_user_id == users[0].id
+        ).first()
+        if email is None:
+            event = current_user.email_connect(users)
+            db.session.commit()
+            event.set_total_connections()
+            db.session.commit()
     return ('', 204)
 
 @views.route('/tutorial', methods=['POST'])

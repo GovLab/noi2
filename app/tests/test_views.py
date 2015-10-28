@@ -239,18 +239,17 @@ class ActivityFeedTests(ViewTestCase):
 
     def test_email_connection_is_activity(self):
         UserFactory.create(email=u'sly@stone.com', connections=[])
-        UserFactory.create(email=u'paul@lennon.com', connections=[])
         self.login()
         res = self.client.post('/email', data={
-            'emails[]': ['sly@stone.com', 'paul@lennon.com']
+            'emails[]': ['sly@stone.com']
         })
         self.assertEquals(res.status, '204 NO CONTENT')
         self.assertEqual(ConnectionEvent.query_in_deployment().count(), 1)
 
         res = self.client.get('/activity')
         self.assert200(res)
-        assert '2 new connections made in NOI' in res.data
-        assert '2 connections' in res.data
+        assert '1 new connection made in NOI' in res.data
+        assert '1 connection' in res.data
 
     def test_activity_is_ok(self):
         self.login()
@@ -432,6 +431,34 @@ class MatchMeTests(ViewTestCase):
         self.assert200(res)
         assert 'practitioner stone' in res.data
 
+class EmailTests(ViewTestCase):
+    def setUp(self):
+        super(EmailTests, self).setUp()
+        UserFactory.create(email=u'sly@stone.com', connections=[])
+        self.login()
+
+    def test_email_generates_connection_and_connection_event(self):
+        res = self.client.post('/email', data={'emails[]': ['sly@stone.com']})
+        self.assertEquals(res.status, '204 NO CONTENT')
+        user = User.query_in_deployment()\
+                 .filter(User.email==u'test@example.org').one()
+        self.assertEquals(1, user.connections)
+
+    def test_repeat_email_does_not_generate_connection_event(self):
+        res = self.client.post('/email', data={'emails[]': ['sly@stone.com']})
+        self.assertEquals(res.status, '204 NO CONTENT')
+        self.assertEqual(ConnectionEvent.query_in_deployment().count(), 1)
+        res = self.client.post('/email', data={'emails[]': ['sly@stone.com']})
+        self.assertEquals(res.status, '204 NO CONTENT')
+        self.assertEqual(ConnectionEvent.query_in_deployment().count(), 1)
+
+    def test_email_with_multiple_emails_is_not_implemented(self):
+        UserFactory.create(email=u'paul@lennon.com')
+        res = self.client.post('/email', data={
+            'emails[]': ['sly@stone.com', 'paul@lennon.com']
+        })
+        self.assertEquals(res.status, '501 NOT IMPLEMENTED')
+
 class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):
         self.assert200(self.client.get('/'))
@@ -512,15 +539,3 @@ class ViewTests(ViewTestCase):
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),
                              '/login?next=%2Fuser%2F1234')
-
-    def test_email(self):
-        UserFactory.create(email=u'sly@stone.com')
-        UserFactory.create(email=u'paul@lennon.com')
-        self.login()
-        res = self.client.post('/email', data={
-            'emails[]': ['sly@stone.com', 'paul@lennon.com']
-        })
-        self.assertEquals(res.status, '204 NO CONTENT')
-        user = User.query_in_deployment()\
-                 .filter(User.email==u'test@example.org').one()
-        self.assertEquals(2, user.connections)
