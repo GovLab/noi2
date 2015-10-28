@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-10-26 17:16+0000\n"
-"PO-Revision-Date: 2015-10-27 02:41-0400\n"
+"PO-Revision-Date: 2015-10-27 23:25-0600\n"
 "Language: es\n"
 "Language-Team: es <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -742,6 +742,10 @@ msgid ""
 "have the ability to do something, to tell someone about it, or to connect "
 "someone to others knowledgeable about a topic."
 msgstr ""
+"NoI intenta captar lo que sabes preguntándote el tipo de preguntas que puedes "
+"contestar. Puedes especificar la experiencia que tienes y que quieres compartir: "
+"si tienes la habilidad para hacer algo, para explicarle a alguien o para referir "
+"a alguna persona que conoces y que sepa sobre esa materia."
 
 #: /noi/app/templates/faq.html:19
 msgid "Who is Network of Innovators for?"
@@ -754,6 +758,11 @@ msgid ""
 "problems. NoI is especially targeted at internal government innovators looking "
 "to connect with like-minded experts and practitioners."
 msgstr ""
+"NoI es una red para compartir habilidades entre innovadores gubernamentales y "
+"cívicos de todo el mundo que quieren buscar a otros para colaborar con ellos en "
+"la resolución de problemas públicos. NoI está enfocado específicamente en "
+"innovadores gubernamentales que estén buscando conectarse con otros colegas del "
+"área."
 
 #: /noi/app/templates/faq.html:23
 msgid "Why not just use LinkedIn?"
@@ -768,6 +777,13 @@ msgid ""
 "and search for more specific expertise within topic areas, defines expertise "
 "more broadly and aims to make skills, experiences, and know how searchable."
 msgstr ""
+"LinkedIn, como muchas otras redes, están hechas para ayudar a las personas a "
+"compartir su experiencia. Esas redes, sin embargo, se enfocan mayoritariamente "
+"en las formas tradicionales de medir la experiencia: las credenciales académicas "
+"y los cargos en el trabajo. El proyecto de la Red de Innovadores define la "
+"experiencia de forma más amplia y busca que facilitar la búsqueda de las "
+"habilidades, experiencia y el saber-hacer. Además ofrece la posibilidad de "
+"explicar y buscar habilidades específicas dentro de áreas temáticas."
 
 #: /noi/app/templates/faq.html:28
 msgid "Who can see my information?"
@@ -786,6 +802,10 @@ msgid ""
 "otherwise irrelevant messages from other members of NoI, please report your "
 "issue to %(contact_link)s."
 msgstr ""
+"Tu perfil de NoI es visible a todos los otros usuarios de NoI, incluyendo "
+"innovadores que están dentro y fuera del gobierno. Puedes leer más en "
+"%(toc_link)s. Si has recibido mensajes abusivos o irrelevantes de otros miembros "
+"del NoI, por favor repórtalo a %(contact_link)s."
 
 #: /noi/app/templates/faq.html:36
 msgid "How will my data be used?"
@@ -801,10 +821,16 @@ msgid ""
 "account. For more information on NoI’s data usage and control, please contact "
 "%(contact_link)s."
 msgstr ""
+"La información que compartirás en Noi será usada solamente para el propósito de "
+"la plataforma - facilitar conexiones entre innovadores gubernamentales y para "
+"análisis anónimos de uso del Noi. Tus datos no serán compartidos con terceras "
+"personas o entidades. Si decides eliminar tu cuenta, tu información no "
+"permanecerá en la base de datos del NoI. Para más información sobre el uso y "
+"control de datos en NoI, por favor contacta a %(contact_link)s."
 
 #: /noi/app/templates/faq.html:41
 msgid "How will you build and improve Network of Innovators?"
-msgstr ""
+msgstr "¿Cómo construirán y mejorarán a la Red de Innovadores?"
 
 #: /noi/app/templates/faq.html:42
 msgid ""
@@ -816,16 +842,26 @@ msgid ""
 "online media channels, and through direct outreach to innovation champions in "
 "institutions throughout the world."
 msgstr ""
+"Una red para compartir habilidades que está enfocada en facilitar el intercambio "
+"de conocimientos requiere participación tanto de personas buscando conocimientos "
+"como aquellas personas que están dispuestas a compartir lo que saben. Para "
+"asegurarnos de que NoI alcance este nivel óptimo de participación, y que "
+"continúe creciendo y evolucionando, The GovLab está contactándose constantemente "
+"con innovadores en conferencias y eventos pertinentes. También utiliza canales "
+"de comunicación online y comunicación directa a los líderes de innovación en "
+"diferentes instituciones en el mundo."
 
 #: /noi/app/templates/faq.html:43
 #, python-format
 msgid ""
 "You can <a href='%(invite_url)s'>invite an innovator</a> you know to join NoI."
 msgstr ""
+"Puedes <a href='%(invite_url)s'>invitar a un innovadorr</a> que conoces a unirse "
+"a NoI."
 
 #: /noi/app/templates/faq.html:47
 msgid "Why do I need to answer questions about what I know?"
-msgstr ""
+msgstr "¿Por qué necesito contestar preguntas sobre lo que sé?"
 
 #: /noi/app/templates/faq.html:48
 msgid ""
@@ -837,10 +873,18 @@ msgid ""
 "help you to better describe the range and nuance of your innovation expertise, "
 "and enable more fruitful connections with others on NoI."
 msgstr ""
+"NoI se basa en la premisa de que las etiquetas simples (por ej, mis habilidades "
+"son “datos abiertos” y “crowdsourcing”) no transmiten adecuadamente las "
+"habilidades y experiencias que tienen los innovadores en gobernanza. Para ir más "
+"allá de las etiquetas libres, NoI te pide que contestes una pregunta específica "
+"de innovación desde el punto de vista de alguien que quisiera acceder a tus "
+"conocimientos y experiencias. Creemos que este enfoque te ayudará a describir "
+"mejor el rango y las sutilezas de tu experiencia en innovación, y facilitará "
+"conexiones más fructíferas con otros en NoI."
 
 #: /noi/app/templates/faq.html:52
 msgid "How does your matching algorithm work?"
-msgstr ""
+msgstr "¿Cómo funciona el algoritmo que conecta a las personas?"
 
 #: /noi/app/templates/faq.html:53
 msgid ""
@@ -851,12 +895,21 @@ msgid ""
 "others who can learn the most from your expertise will be able to find and "
 "consult with you."
 msgstr ""
+"NoI usa las respuestas que das a las preguntas sobre habilidades de innovación "
+"para conectarte con otros de los cuales puedes aprender. Tomando como base todas "
+"las habilidades de innovación par las cuales contestas “Quiero aprender”, el "
+"algoritmo de NoI ordena los innovadores en la red que pueden hacer, explicar o "
+"referirte en la mayoría de las preguntas. Así también es como otros quienes "
+"pueden aprender más de tu experiencia podrán encontrarte a ti y hacerte "
+"consultas."
 
 #: /noi/app/templates/faq.html:57
 msgid ""
 "Why were these governance innovation topics chosen, and will more innovation "
 "areas be added to NoI?"
 msgstr ""
+"¿Por qué escogieron estas áreas de innovación en la gobernanza? ¿Agregarán más "
+"áreas al Noi?"
 
 #: /noi/app/templates/faq.html:58
 msgid ""
@@ -868,6 +921,12 @@ msgid ""
 "outreach and discussion with governance innovation practitioners around the "
 "world."
 msgstr ""
+"Los cuestionarios de innovación por área que están en NoI fueron identificados y "
+"desarrollados por The GovLab y sus socios de innovación en la gobernanza de ocho "
+"países. Las áreas de innovación y las preguntas para crear los perfiles fueron "
+"diseñadas cuidadosamente e iteradas a través de investigación acuciosa sobre el "
+"estado actual de la innovación en gobernanza en todo el mundo, y a través del "
+"contacto y discusión con ejecutores de innovación en gobernanza en el mundo."
 
 #: /noi/app/templates/faq.html:59
 #, python-format
@@ -1465,6 +1524,10 @@ msgid ""
 "innovation. When successfully executed, prize-backed challenges and competitions "
 "can also drive the adoption of innovations across an institution.\n"
 msgstr ""
+"Los concursos premiados ofrecen un incentivo para incentivar, reconocer y "
+"premiar la innovación. Cuando se implementan con éxito, los concursos premiados "
+"y las competencias pueden impulsar la adopción de innovaciones en una "
+"institución.\n"
 
 #: /noi/app/templates/translate.tmp.html:67
 #, fuzzy
@@ -1654,6 +1717,11 @@ msgid ""
 "researchers. Citizen science can provide an innovative method to help do better "
 "research and accomplish difficult objectives more effectively and efficiently.\n"
 msgstr ""
+"La ciencia ciudadana se refiere a las tareas científicas o de investigación que "
+"realizan en colaboración integrantes voluntarios del público general, "
+"científicos o investigadores. La ciencia ciudadana puede proveer una metodología "
+"innovadora para hace mejor investigación y lograr objetivos difíciles de manera "
+"más eficiente y efectiva.\n"
 
 #: /noi/app/templates/translate.tmp.html:106
 msgid "Tasks and Goals"
@@ -2374,6 +2442,9 @@ msgid ""
 "the creation of internal innovation labs. The growing labs movement is helping "
 "to uncover what works in practice.\n"
 msgstr ""
+"Los gobiernos buscan ser más experimentales y basados en la evidencia a través "
+"de la creación de laboratorios de innovación internos. El creciente movimiento "
+"de laboratorios está ayudando a descubrir qué funciona en la práctica.\n"
 
 #: /noi/app/templates/translate.tmp.html:231
 msgid "Lab Creation and Vision"
@@ -2588,6 +2659,12 @@ msgid ""
 "distributed and diverse collaboration in ways never before possible, they can "
 "improve a project’s efficiency, legitimacy and diversity.\n"
 msgstr ""
+"El crowdsourcing utiliza tecnologías de la comunicación que permiten a las "
+"instituciones aprovechar la sabiduría de la multitud.  Al obtener una "
+"colaboración más distribuida y diversa en maneras nunca antes posibles, las "
+"instituciones pueden mejorar la eficiencia de un proyecto, su legitimidad y "
+"diversidad. \n"
+"\n"
 
 #: /noi/app/templates/translate.tmp.html:264
 #, fuzzy
