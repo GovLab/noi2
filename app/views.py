@@ -110,6 +110,8 @@ def set_user_picture(user, picture):
 @full_registration_required
 def my_profile_upload_picture():
     form = PictureForm()
+    # TODO: Is it possible for 'X-Upload-Too-Big' to be in request.headers,
+    # and if so, should we deal with it?
     if form.validate():
         if form.picture.has_file():
             set_user_picture(current_user, form.picture)
