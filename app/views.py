@@ -14,7 +14,7 @@ from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email)
 
-from app.forms import (UserForm, SearchForm, SharedMessageForm,
+from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
                        RegisterStep2Form, ChangeLocaleForm, InviteForm)
 
 from sqlalchemy import func, desc
@@ -91,6 +91,34 @@ def faq():
     '''
     return render_template('faq.html')
 
+def set_user_picture(user, picture):
+    conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
+                        current_app.config['S3_SECRET_ACCESS_KEY'])
+    bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
+    bucket.make_public(recursive=False)
+
+    mimetype = mimetypes.guess_type(picture.data.filename)[0]
+
+    k = bucket.new_key(user.picture_path)
+    k.set_metadata('Content-Type', mimetype)
+    k.set_contents_from_file(picture.data)
+    k.make_public()
+
+    user.has_picture = True
+
+@views.route('/me/picture', methods=['POST'])
+@full_registration_required
+def my_profile_upload_picture():
+    form = PictureForm()
+    # TODO: Is it possible for 'X-Upload-Too-Big' to be in request.headers,
+    # and if so, should we deal with it?
+    if form.validate():
+        if form.picture.has_file():
+            set_user_picture(current_user, form.picture)
+            db.session.add(current_user)
+            db.session.commit()
+            return ('', 204)
+    abort(400)
 
 @views.route('/me', methods=['GET', 'POST'])
 @full_registration_required
@@ -109,19 +137,7 @@ def my_profile():
             form.populate_obj(current_user)
 
             if form.picture.has_file():
-                conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
-                                    current_app.config['S3_SECRET_ACCESS_KEY'])
-                bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
-                bucket.make_public(recursive=False)
-
-                mimetype = mimetypes.guess_type(form.picture.data.filename)[0]
-
-                k = bucket.new_key(current_user.picture_path)
-                k.set_metadata('Content-Type', mimetype)
-                k.set_contents_from_file(form.picture.data)
-                k.make_public()
-
-                current_user.has_picture = True
+                set_user_picture(current_user, form.picture)
 
             db.session.add(current_user)
             db.session.commit()
