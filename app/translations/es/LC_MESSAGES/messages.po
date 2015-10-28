@@ -427,7 +427,7 @@ msgstr "Acerca de"
 #: /noi/app/templates/__base_ui__.html:79 /noi/app/templates/faq.html:30
 #: /noi/app/templates/main.html:95
 msgid "Terms of Service"
-msgstr ""
+msgstr "Términos de Uso"
 
 #: /noi/app/templates/__base_ui__.html:80
 #, fuzzy
@@ -1189,7 +1189,7 @@ msgstr[1] "%(num)d conexiones de habilidades"
 
 #: /noi/app/templates/match-me.html:54
 msgid "You currently have no matches."
-msgstr ""
+msgstr "Actualmente no tienes conexiones."
 
 #: /noi/app/templates/match-me.html:55
 #, python-format
@@ -1198,7 +1198,7 @@ msgid ""
 "do, explain, or connect. To get matched, go to the <a "
 "href=\"%(expertise_url)s\">Expertise</a> area of your profile and answer "
 "questions in areas you want to learn about."
-msgstr ""
+msgstr "Las conexiones se crean entre usuarios que quieren aprender sobre un temay usuarios que pueden hacerlo, explicarlo o referir a alguien. Para obtener conexiones, ingresa a tu perfil, haz clic en “Mis Competencias” y contesta preguntas sobre las áreas que quieres aprender."
 
 #: /noi/app/templates/my-profile.html:67
 msgid "Save"
