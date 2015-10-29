@@ -27,8 +27,10 @@
         min-width: 50vw;
         width: auto;
         text-align: center;
-        @include breakpoint($desktop) {
-            min-width: 200px;
+        
+        @include breakpoint($tablet-up) {
+            min-width: 0;
+            padding: 20px 20px;
         }
 
         // Note that &.active is applied by Bootstrap's tab plugin.
@@ -42,14 +44,15 @@
         &:first-child { 
             margin-left: 25vw;
 
-            @include breakpoint($desktop) {
-                margin-left: 150px;    
+            @include breakpoint($tablet-up) {
+                margin-left: 0;    
             }
         }
         &:last-child { 
             margin-right: 25vw;
-            @include breakpoint($desktop) {
-                margin-right: 150px;    
+            
+            @include breakpoint($tablet-up) {
+                margin-right: 0;    
             }
         }
     }

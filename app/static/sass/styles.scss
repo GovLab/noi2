@@ -45,6 +45,7 @@ $main-font: 'proxima-nova', sans-serif;
 // Breakpoints
 $desktop: 1080px;
 $tablet: max-width 1079px;
+$tablet-up: min-width 601px;
 $mobile: max-width 600px;
 
 // Mixins
