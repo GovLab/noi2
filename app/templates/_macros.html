@@ -17,7 +17,7 @@
     {% set flashed_message_class = 'm-success' %}
   {% endif %}
   <div class="b-alert-message alert {{flashed_message_class}}">
-    <a href="#" data-dismiss="alert"><div class="material-icons">close</div></a>
+    <a href="#" data-dismiss="alert" class="material-icons b-close-button">close</a>
     <p>{{ message|safe }}</p>
   </div>
 {% endmacro %}

@@ -46,6 +46,7 @@
 <div class="b-post-update-wrapper m-update-active">
 <div class="e-post-update">
   <h3>{{ gettext('Post an update') }}</h3>
+  <a class="b-close-button material-icons" href="#" data-dismiss="modal">close</a>
   <form action="{{ url_for('views.activity') }}" method="post">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
 
@@ -64,6 +65,7 @@
 <div class="modal-dialog">
 <section class="b-profile-summary m-active">
     <header>
+        <a class="b-close-button material-icons" href="#" data-dismiss="modal">close</a>
         <a href="{{ url_for('views.get_user', userid=current_user.id) }}"><img class="e-user-picture" src="{{ get_user_avatar_url(current_user) }}" alt=""></a>
         <h3 class="e-name">{{ current_user.full_name }}</h3>
         <a class="e-edit-profile" href="{{ url_for('views.get_user', userid=current_user.id) }}">{{ gettext('My Profile') }}</a>
