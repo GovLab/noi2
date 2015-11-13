@@ -58,7 +58,8 @@ def getstats():
     Generate statistics about the current deployment.
     """
 
-    print stats.generate()
+    import json
+    print json.dumps(stats.generate(), sort_keys=True, indent=2)
 
 
 @manager.command

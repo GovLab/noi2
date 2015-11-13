@@ -31,9 +31,9 @@ def get_avg_num_questions_answered():
     ).filter(models.User.id == models.UserSkill.user_id).\
       group_by(models.User)
 
-    return db.session.query(
+    return float(db.session.query(
         func.avg(answers_per_user.subquery().columns.num_answers)
-    ).scalar()
+    ).scalar() or 0)
 
 def get_questionnaire_counts():
     counts = {}
