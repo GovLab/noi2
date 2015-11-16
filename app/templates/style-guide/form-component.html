@@ -1,0 +1,48 @@
+{% extends "style-guide/base_ui.html" %}
+{% block title %}Form{% endblock %}
+{% block content %}
+<nav class="b-contextual-nav">
+    <ul class="e-menu-items">
+        <li class="e-item">Overview</li>
+        <li class="e-item m-active">Expertise</li>
+    </ul>
+</nav>
+<form action="" class="b-form">
+    <section class="e-form-section">
+        <h3>Personal Information</h3>
+        <label for="">First Name</label>
+        <input type="text">
+        <label for="">Last Name</label>
+        <input type="text">
+        <label for="">Email</label>
+        <input type="email">
+        <label for="">Password</label>
+        <input type="password">
+        <label for="">Short Bio</label>
+        <textarea name="" id=""></textarea>
+        <div class="e-checkbox m-accept">
+            <input type="checkbox" id="checkbox-1"><label for="checkbox-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio deleniti maxime at ullam, soluta vel aliquam praesentium officia illo quam assumenda quo eveniet totam, voluptas, ut fugit aspernatur. Accusamus, laborum.</label>
+        </div>
+    </section>
+
+    <section class="e-form-section">
+        <h3>More Information</h3>
+        <label for="">First Name</label>
+        <input type="text">
+        <label for="">Last Name</label>
+        <input type="text">
+        <label for="">Email</label>
+        <input type="email">
+        <label for="">Password</label>
+        <input type="password">
+        <label for="">Short Bio</label>
+        <textarea name="" id=""></textarea>
+        <div class="e-checkbox m-accept">
+            <input type="checkbox" id="checkbox-1"><label for="checkbox-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio deleniti maxime at ullam, soluta vel aliquam praesentium officia illo quam assumenda quo eveniet totam, voluptas, ut fugit aspernatur. Accusamus, laborum.</label>
+        </div>
+    </section>
+
+    <input type="submit" value="Send email">
+</form>
+    
+{% endblock %}
