@@ -40,9 +40,14 @@ def get_questionnaire_counts():
     for questionnaire in QUESTIONNAIRES:
         if not questionnaire['questions']: continue
         qid = questionnaire['id']
-        counts[qid] = db.session.query(
+        counts[qid] = {}
+        query = db.session.query(
+            models.UserSkill.level,
             func.count(models.UserSkill.id)
-        ).filter(models.UserSkill.name.like(qid + "_%")).scalar()
+        ).filter(models.UserSkill.name.like(qid + "_%")).\
+          group_by(models.UserSkill.level)
+        for skill_level, count in query.all():
+            counts[qid][skill_level] = count
     return counts
 
 def generate():
