@@ -46,8 +46,23 @@ def get_questionnaire_counts():
             func.count(models.UserSkill.id)
         ).filter(models.UserSkill.name.like(qid + "_%")).\
           group_by(models.UserSkill.level)
-        for skill_level, count in query.all():
-            counts[qid][skill_level] = count
+        raw_counts = dict(query.all())
+        counts[qid]['learn'] = raw_counts.get(
+            LEVELS['LEVEL_I_WANT_TO_LEARN']['score'],
+            0
+        )
+        counts[qid]['explain'] = raw_counts.get(
+            LEVELS['LEVEL_I_CAN_EXPLAIN']['score'],
+            0
+        )
+        counts[qid]['connect'] = raw_counts.get(
+            LEVELS['LEVEL_I_CAN_REFER']['score'],
+            0
+        )
+        counts[qid]['do'] = raw_counts.get(
+            LEVELS['LEVEL_I_CAN_DO_IT']['score'],
+            0
+        )
     return counts
 
 def generate():

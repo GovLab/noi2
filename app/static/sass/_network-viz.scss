@@ -1,0 +1,57 @@
+.b-network-viz {
+  .e-questionnaire-area {
+    height: 5em;
+    position: relative;
+    color: white;
+
+    h2 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    p {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      color: rgba(255, 255, 255, 0.75);
+      top: auto;
+      margin: 0;
+      font-size: 12px;  
+    }
+
+    .e-skill-level, .e-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
+
+    .e-screen {
+      background: rgba(255, 255, 255, 0.25);
+      width: 100%;
+    }
+
+    &:nth-child(even) {
+      .e-screen {
+        background: rgba(255, 255, 255, 0.20);
+      }
+    }
+  }
+
+  .m-explain {
+    background-color: $purple;
+  }
+  .m-do {
+    background-color: $teal;
+  }
+  .m-connect {
+    background-color: $yellow;
+  }
+  .m-learn {
+    background-color: $orange;
+  }
+}

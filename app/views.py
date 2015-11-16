@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 LEVELS_BY_SCORE, mail)
+                 LEVELS_BY_SCORE, mail, stats)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email)
 
@@ -591,7 +591,24 @@ def network():
     View the network.
     '''
 
-    return render_template('network.html')
+    counts = stats.get_questionnaire_counts()
+
+    viz_data = []
+    for qid, s in counts.items():
+        total = s['learn'] + s['explain'] + s['connect'] + s['do']
+        area_info = {
+            'name': QUESTIONNAIRES_BY_ID[qid]['name'],
+            'total': total
+        }
+        for skill_level in ['learn', 'explain', 'connect', 'do']:
+            percentage = 0.0
+            if total > 0:
+                percentage = float(s[skill_level]) / total
+            area_info[skill_level] = int(percentage * 100)
+        viz_data.append(area_info)
+    viz_data = sorted(viz_data, key=lambda area_info: area_info['total'],
+                      reverse=True)
+    return render_template('network.html', viz_data=viz_data)
 
 @views.route('/feedback')
 def feedback():

@@ -1,7 +1,17 @@
 {% extends "__base_ui__.html" %}
 
 {% block content %}
-    <div class="b-network-viz-temp">
-        <p>{{ gettext("Sorry, this feature of the site is not yet available.") }}</p>
-    </div>
+  <div class="b-network-viz">
+    {% for area_info in viz_data %}
+        <div class="e-questionnaire-area">
+          <div class="e-skill-level m-do" style="width: 100%"></div>
+          <div class="e-skill-level m-connect" style="width: {{ area_info.learn + area_info.explain + area_info.connect }}%"></div>
+          <div class="e-skill-level m-explain" style="width: {{ area_info.learn + area_info.explain }}%"></div>
+          <div class="e-skill-level m-learn" style="width: {{ area_info.learn }}%"></div>
+          <div class="e-screen"></div>
+          <h2>{{ gettext(area_info.name) }}</h2>
+          <p>{{ gettext('%(count)d questions answered', count=area_info.total) }}</p>
+        </div>
+    {% endfor %}
+  </div>
 {% endblock %}
