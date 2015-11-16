@@ -4,7 +4,7 @@ NoI manage.py
 Scripts to run the server and perform maintenance operations
 '''
 
-from app import mail, models, sass, email_errors, LEVELS, ORG_TYPES
+from app import mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
@@ -50,6 +50,16 @@ def _make_context():
     Add certain variables to context for shell
     '''
     return dict(app=app, db=db, mail=mail, models=models)
+
+
+@manager.command
+def getstats():
+    """
+    Generate statistics about the current deployment.
+    """
+
+    import json
+    print json.dumps(stats.generate(), sort_keys=True, indent=2)
 
 
 @manager.command
