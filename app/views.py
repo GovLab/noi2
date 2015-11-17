@@ -161,8 +161,14 @@ def get_area_questionnaire_or_404(areaid):
 def render_register_step_3(**kwargs):
     questions_answered = len(current_user.skills)
 
-    if current_app.debug and 'qa' in request.args:
-        questions_answered = int(request.args['qa'])
+    if current_app.debug:
+        if 'qa' in request.args:
+            questions_answered = int(request.args['qa'])
+        # This will show up in the debug toolbar.
+        current_app.logger.debug(
+            "Use the 'qa' query string arg to tweak the number of questions "
+            "answered."
+        )
 
     return render_template(
         'register-step-3.html',
