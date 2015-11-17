@@ -71,10 +71,6 @@ input, select {
 <script src="{{ url_for('static', filename='vendor/load-image.all.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/canvas-to-blob.js') }}"></script>
 <script>
-var UPLOAD_PICTURE_URL = {{ url_for('views.my_profile_upload_picture')|tojson }};
-var UPLOAD_PICTURE_SUCCESS = {{ gettext("Your user picture has been changed.")|tojson }};
-var UPLOAD_PICTURE_ERROR = {{ gettext("An error occurred when uploading your user picture.")|tojson }};
-
 function upload(canvas, cb) {
   canvas.toBlob(function(blob) {
     var fd = new FormData();
@@ -82,17 +78,17 @@ function upload(canvas, cb) {
     fd.append('picture', blob, 'picture.jpg');
 
     $.ajax({
-      url: UPLOAD_PICTURE_URL,
+      url: pageConfig.UPLOAD_PICTURE_URL,
       type: 'POST',
       data: fd,
       processData: false,
       contentType: false,
       complete: cb,
       success: function(data, textStatus) {
-        alert(UPLOAD_PICTURE_SUCCESS);
+        alert(pageConfig.UPLOAD_PICTURE_SUCCESS);
       },
       error: function() {
-        alert(UPLOAD_PICTURE_ERROR);
+        alert(pageConfig.UPLOAD_PICTURE_ERROR);
       }
     });
   }, 'image/jpeg');

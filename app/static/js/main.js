@@ -4,6 +4,16 @@
 try{Typekit.load();}catch(e){}
 
 var csrftoken = $('meta[name=csrf-token]').attr('content');
+var pageConfig = $('meta[name=page-config-json]').attr('content');
+
+if (pageConfig) {
+  try {
+    pageConfig = JSON.parse(pageConfig);
+  } catch (e) {
+    // This is a pretty fatal error!
+    window.alert("Unable to parse page-config-json: " + e);
+  }
+}
 
 $.ajaxSetup({
   beforeSend: function(xhr, settings) {

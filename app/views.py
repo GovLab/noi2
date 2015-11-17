@@ -24,8 +24,18 @@ from boto.s3.connection import S3Connection
 
 import mimetypes
 import functools
+import json
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
+
+def json_blob(**kwargs):
+    '''
+    Converts the given keyword args into a serialized JSON blob. Useful
+    as an alternative to Jinja's tojson filter since the content is
+    still marked as unsafe (so it will be HTML-escaped).
+    '''
+
+    return json.dumps(kwargs)
 
 def get_best_registration_step_url(user):
     '''
@@ -129,9 +139,7 @@ def my_profile():
     form = UserForm(obj=current_user)
     if 'X-Upload-Too-Big' in request.headers:
         form.picture.errors = ('Sorry, the picture you tried to upload was too large',)
-    if request.method == 'GET':
-        return render_template('my-profile.html', form=form)
-    elif request.method == 'POST':
+    if request.method == 'POST':
 
         if form.validate():
             form.populate_obj(current_user)
@@ -146,7 +154,15 @@ def my_profile():
         else:
             flash(gettext(u'Could not save, please correct errors.'))
 
-        return render_template('my-profile.html', form=form)
+    return render_template(
+        'my-profile.html',
+        form=form,
+        page_config_json=json_blob(
+            UPLOAD_PICTURE_URL=url_for('views.my_profile_upload_picture'),
+            UPLOAD_PICTURE_SUCCESS=gettext("Your user picture has been changed."),
+            UPLOAD_PICTURE_ERROR=gettext("An error occurred when uploading your user picture.")
+        )
+    )
 
 def get_area_questionnaire_or_404(areaid):
     '''
