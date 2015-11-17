@@ -5,7 +5,7 @@ All views in the app, as a blueprint
 '''
 
 from flask import (Blueprint, render_template, request, flash,
-                   redirect, url_for, current_app, abort)
+                   redirect, url_for, current_app, abort, make_response)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
@@ -44,9 +44,22 @@ def add_csp(response):
         m.update("var DEBUG_TOOLBAR_STATIC_PATH = '/_debug_toolbar/static/'")
         script_src.append("'sha256-%s'" % b64encode(m.digest()))
 
+    if hasattr(response, '_csp_script_src'):
+        script_src += response._csp_script_src
+
     response.headers.add('Content-Security-Policy-Report-Only',
                          'script-src %s' % ' '.join(script_src))
     return response
+
+def csp_script_src(source_list):
+    def decorator(func):
+        @functools.wraps(func)
+        def func_wrapper(*args, **kwargs):
+            response = make_response(func(*args, **kwargs))
+            response._csp_script_src = ['*']
+            return response
+        return func_wrapper
+    return decorator
 
 def json_blob(**kwargs):
     '''
@@ -660,6 +673,9 @@ def network():
     return render_template('network.html', viz_data=viz_data)
 
 @views.route('/feedback')
+# Typeform injects all kinds of weird script tags into the page. :(
+# At least none of them are inline!
+@csp_script_src(['*'])
 def feedback():
     '''
     Feedback page.
