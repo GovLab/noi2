@@ -28,6 +28,22 @@ import json
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
+@views.after_request
+def add_csp(response):
+    script_src = ["'self'"]
+    if current_app.debug:
+        # https://github.com/mgood/flask-debugtoolbar/issues/88
+        from hashlib import sha256
+        from base64 import b64encode
+
+        m = sha256()
+        m.update("var DEBUG_TOOLBAR_STATIC_PATH = '/_debug_toolbar/static/'")
+        script_src.append("'sha256-%s'" % b64encode(m.digest()))
+
+    response.headers.add('Content-Security-Policy-Report-Only',
+                         'script-src %s' % ' '.join(script_src))
+    return response
+
 def json_blob(**kwargs):
     '''
     Converts the given keyword args into a serialized JSON blob. Useful
