@@ -5,12 +5,12 @@ All views in the app, as a blueprint
 '''
 
 from flask import (Blueprint, render_template, request, flash,
-                   redirect, url_for, current_app, abort, make_response)
+                   redirect, url_for, current_app, abort)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 LEVELS_BY_SCORE, mail, stats)
+                 LEVELS_BY_SCORE, mail, stats, csp)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email)
 
@@ -28,38 +28,7 @@ import json
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
-@views.after_request
-def add_csp(response):
-    script_src = [
-        "'self'",
-        "use.typekit.net"
-    ]
-
-    if current_app.debug:
-        # https://github.com/mgood/flask-debugtoolbar/issues/88
-        from hashlib import sha256
-        from base64 import b64encode
-
-        m = sha256()
-        m.update("var DEBUG_TOOLBAR_STATIC_PATH = '/_debug_toolbar/static/'")
-        script_src.append("'sha256-%s'" % b64encode(m.digest()))
-
-    if hasattr(response, '_csp_script_src'):
-        script_src += response._csp_script_src
-
-    response.headers.add('Content-Security-Policy-Report-Only',
-                         'script-src %s' % ' '.join(script_src))
-    return response
-
-def csp_script_src(source_list):
-    def decorator(func):
-        @functools.wraps(func)
-        def func_wrapper(*args, **kwargs):
-            response = make_response(func(*args, **kwargs))
-            response._csp_script_src = ['*']
-            return response
-        return func_wrapper
-    return decorator
+views.after_request(csp.add_header)
 
 def json_blob(**kwargs):
     '''
@@ -675,7 +644,7 @@ def network():
 @views.route('/feedback')
 # Typeform injects all kinds of weird script tags into the page. :(
 # At least none of them are inline!
-@csp_script_src(['*'])
+@csp.script_src(['*'])
 def feedback():
     '''
     Feedback page.
