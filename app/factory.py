@@ -27,7 +27,15 @@ from sqlalchemy.orm.exc import NoResultFound
 from celery import Task
 from slugify import slugify
 import yaml
+import json
 
+
+# App config vars that are exposed to client-side JavaScript code.
+EXPOSED_APP_CONFIG_VARS = [
+  'DEBUG',
+  'PINGDOM_RUM_ID',
+  'GA_TRACKING_CODE'
+]
 
 class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
     '''
@@ -133,8 +141,17 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.config['CONTACT_FORM_ID'] = this_deployment.get('contact_form_id',
                                                 default_deployment['contact_form_id'])
 
-    # Constant that should be available for all templates.
+    # Constants that should be available for all templates.
 
+    global_config_json = {}
+
+    for exposed_var in EXPOSED_APP_CONFIG_VARS:
+        if exposed_var in app.config:
+            global_config_json[exposed_var] = app.config[exposed_var]
+
+    global_config_json = json.dumps(global_config_json)
+
+    app.jinja_env.globals['global_config_json'] = global_config_json
     app.jinja_env.globals['get_locale'] = get_locale
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES

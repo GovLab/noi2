@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     {% block head %}
     {% block page_style_pre %}{% endblock %}
+    <meta name="global-config-json" content="{{ global_config_json }}">
     {% if page_config_json -%}
     <meta name="page-config-json" content="{{ page_config_json }}">
     {%- endif %}
@@ -18,14 +19,6 @@
     {% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
-
-{% if config.PINGDOM_RUM_ID %}
-{% include "pingdom-rum.html" %}
-{% endif %}
-
-{% if config.GA_TRACKING_CODE %}
-{% include "analytics.html" %}
-{% endif %}
 
 <!-- Display the Flash alerts. -->
 {# Regardless of where these appear visually on the page, they should
