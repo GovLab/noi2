@@ -106,15 +106,5 @@
 
 {% block page_script %}
 <script src="{{ url_for('static', filename='vendor/jquery.jscroll.js') }}"></script>
-<script>
-$(function() {
-  $('#activity').jscroll({
-    nextSelector: '.e-load-more a',
-    loadingHtml: '<div class="e-load-more">' +
-                 {{ gettext("Loading...")|tojson }} +
-                 '</div>',
-    autoTrigger: false
-  });
-});
-</script>
+<script src="{{ url_for('static', filename='js/pages/activity.js') }}"></script>
 {% endblock %}
