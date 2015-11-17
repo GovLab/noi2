@@ -30,7 +30,11 @@ views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
 @views.after_request
 def add_csp(response):
-    script_src = ["'self'"]
+    script_src = [
+        "'self'",
+        "use.typekit.net"
+    ]
+
     if current_app.debug:
         # https://github.com/mgood/flask-debugtoolbar/issues/88
         from hashlib import sha256
