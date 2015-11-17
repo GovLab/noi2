@@ -11,7 +11,7 @@ from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security,
-                 babel, celery, alchemydumps, sass, email_errors,
+                 babel, celery, alchemydumps, sass, email_errors, csp,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.config.schedule import CELERYBEAT_SCHEDULE
@@ -216,6 +216,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
         db.session.commit()
 
     sass.init_app(app)
+    csp.init_app(app)
 
     return app
 

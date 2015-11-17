@@ -1,4 +1,5 @@
-from flask import current_app, make_response
+from app import csrf
+from flask import current_app, make_response, request, Response
 
 from hashlib import sha256
 from base64 import b64encode
@@ -23,8 +24,13 @@ def add_header(response):
     if hasattr(response, '_csp_script_src'):
         script_src += response._csp_script_src
 
-    response.headers.add('Content-Security-Policy-Report-Only',
-                         'script-src %s' % ' '.join(script_src))
+    response.headers.add(
+        'Content-Security-Policy-Report-Only',
+        '; '.join([
+            'script-src %s' % ' '.join(script_src),
+            'report-uri /csp-report'
+        ])
+    )
     return response
 
 def script_src(source_list):
@@ -40,3 +46,10 @@ def script_src(source_list):
             return response
         return func_wrapper
     return decorator
+
+def init_app(app):
+    @app.route('/csp-report', methods=['POST'])
+    @csrf.exempt
+    def csp_report():
+        current_app.logger.error('CSP violation reported: %s' % request.data)
+        return Response('CSP violation reported.', mimetype='text/plain')
