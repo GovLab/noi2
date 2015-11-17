@@ -298,20 +298,24 @@ def render_user_profile(userid=None, **kwargs):
         user = current_user
     else:
         user = User.query_in_deployment().filter_by(id=userid).first_or_404()
-    kwargs['user'] = user
-    kwargs['radar_level_labels'] = [
-        gettext("Peer"),
-        gettext("Connector"),
-        gettext("Explainer"),
-        gettext("Practitioner"),
-        ""
-    ]
+
     area_scores = user.get_area_scores()
-    kwargs['radar_data'] = [
-        {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
-         "value": score_info['radar_score']}
-        for qid, score_info in area_scores.items()
-    ]
+
+    kwargs['user'] = user
+    kwargs['page_config_json'] = json_blob(
+        RADAR_LEVEL_LABELS=[
+            gettext("Peer"),
+            gettext("Connector"),
+            gettext("Explainer"),
+            gettext("Practitioner"),
+            ""
+        ],
+        RADAR_DATA=[
+            {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
+             "value": score_info['radar_score']}
+            for qid, score_info in area_scores.items()
+        ]
+    )
     overview_data = {}
     kwargs['overview_data'] = overview_data
     for qid, score_info in area_scores.items():
