@@ -70,52 +70,5 @@ input, select {
 {% block page_script %}
 <script src="{{ url_for('static', filename='vendor/load-image.all.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/canvas-to-blob.js') }}"></script>
-<script>
-var UPLOAD_PICTURE_URL = {{ url_for('views.my_profile_upload_picture')|tojson }};
-var UPLOAD_PICTURE_SUCCESS = {{ gettext("Your user picture has been changed.")|tojson }};
-var UPLOAD_PICTURE_ERROR = {{ gettext("An error occurred when uploading your user picture.")|tojson }};
-
-function upload(canvas, cb) {
-  canvas.toBlob(function(blob) {
-    var fd = new FormData();
-
-    fd.append('picture', blob, 'picture.jpg');
-
-    $.ajax({
-      url: UPLOAD_PICTURE_URL,
-      type: 'POST',
-      data: fd,
-      processData: false,
-      contentType: false,
-      complete: cb,
-      success: function(data, textStatus) {
-        alert(UPLOAD_PICTURE_SUCCESS);
-      },
-      error: function() {
-        alert(UPLOAD_PICTURE_ERROR);
-      }
-    });
-  }, 'image/jpeg');
-}
-
-$('#picture').on('change', function (evt) {
-  var self = this;
-  if (this.files) {
-    if (this.files[0]) {
-      loadImage(this.files[0], function(canvas) {
-        upload(canvas, function() {
-          $(self).val('');
-        });
-      }, {
-        maxWidth: 256,
-        maxHeight: 256,
-        crop: true,
-        orientation: true,
-        canvas: true
-      });
-    }
-  }
-});
-</script>
-
+<script src="{{ url_for('static', filename='js/pages/my-profile.js') }}"></script>
 {% endblock %}

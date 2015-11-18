@@ -36,10 +36,3 @@ redis
 libsass==0.8.3
 factory_boy==2.5.2
 fake-factory==0.5.3
-
-# Not really sure which of these Content Security Policy libraries
-# we'll use, and since it's such a hassle to update the Docker image,
-# why not include both for now?
-
-flask-secure-headers==0.6
-flask-csp==0.9

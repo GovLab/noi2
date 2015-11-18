@@ -1,3 +1,4 @@
+from app import csp
 from flask import (Blueprint, render_template, current_app,
                    send_from_directory, abort)
 from jinja2 import TemplateNotFound
@@ -17,6 +18,7 @@ def get_pages():
     return pages
 
 @views.route('/style-guide/')
+@csp.script_src(["'unsafe-inline'"])
 def home():
     '''
     Root page for the NOI Style Guide.
@@ -25,6 +27,7 @@ def home():
     return render_template('style-guide/index.html', pages=get_pages())
 
 @views.route('/style-guide/<pageid>')
+@csp.script_src(["'unsafe-inline'"])
 def page(pageid):
     '''
     Renders an individual template page for the NOI Style Guide.

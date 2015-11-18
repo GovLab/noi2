@@ -105,12 +105,5 @@
 {% endblock %}
 
 {% block page_script %}
-<script>
-$(function() {
-  $('[data-set-height-to]').each(function() {
-    var target = $($(this).data('set-height-to'));
-    $(this).height(target.height());
-  });
-});
-</script>
+<script src="{{ url_for('static', filename='js/pages/register-step-3.js') }}"></script>
 {% endblock %}

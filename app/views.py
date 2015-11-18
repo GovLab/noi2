@@ -24,8 +24,18 @@ from boto.s3.connection import S3Connection
 
 import mimetypes
 import functools
+import json
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
+
+def json_blob(**kwargs):
+    '''
+    Converts the given keyword args into a serialized JSON blob. Useful
+    as an alternative to Jinja's tojson filter since the content is
+    still marked as unsafe (so it will be HTML-escaped).
+    '''
+
+    return json.dumps(kwargs)
 
 def get_best_registration_step_url(user):
     '''
@@ -129,9 +139,7 @@ def my_profile():
     form = UserForm(obj=current_user)
     if 'X-Upload-Too-Big' in request.headers:
         form.picture.errors = ('Sorry, the picture you tried to upload was too large',)
-    if request.method == 'GET':
-        return render_template('my-profile.html', form=form)
-    elif request.method == 'POST':
+    if request.method == 'POST':
 
         if form.validate():
             form.populate_obj(current_user)
@@ -146,7 +154,15 @@ def my_profile():
         else:
             flash(gettext(u'Could not save, please correct errors.'))
 
-        return render_template('my-profile.html', form=form)
+    return render_template(
+        'my-profile.html',
+        form=form,
+        page_config_json=json_blob(
+            UPLOAD_PICTURE_URL=url_for('views.my_profile_upload_picture'),
+            UPLOAD_PICTURE_SUCCESS=gettext("Your user picture has been changed."),
+            UPLOAD_PICTURE_ERROR=gettext("An error occurred when uploading your user picture.")
+        )
+    )
 
 def get_area_questionnaire_or_404(areaid):
     '''
@@ -161,8 +177,14 @@ def get_area_questionnaire_or_404(areaid):
 def render_register_step_3(**kwargs):
     questions_answered = len(current_user.skills)
 
-    if current_app.debug and 'qa' in request.args:
-        questions_answered = int(request.args['qa'])
+    if current_app.debug:
+        if 'qa' in request.args:
+            questions_answered = int(request.args['qa'])
+        # This will show up in the debug toolbar.
+        current_app.logger.debug(
+            "Use the 'qa' query string arg to tweak the number of questions "
+            "answered."
+        )
 
     return render_template(
         'register-step-3.html',
@@ -276,20 +298,24 @@ def render_user_profile(userid=None, **kwargs):
         user = current_user
     else:
         user = User.query_in_deployment().filter_by(id=userid).first_or_404()
-    kwargs['user'] = user
-    kwargs['radar_level_labels'] = [
-        gettext("Peer"),
-        gettext("Connector"),
-        gettext("Explainer"),
-        gettext("Practitioner"),
-        ""
-    ]
+
     area_scores = user.get_area_scores()
-    kwargs['radar_data'] = [
-        {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
-         "value": score_info['radar_score']}
-        for qid, score_info in area_scores.items()
-    ]
+
+    kwargs['user'] = user
+    kwargs['page_config_json'] = json_blob(
+        RADAR_LEVEL_LABELS=[
+            gettext("Peer"),
+            gettext("Connector"),
+            gettext("Explainer"),
+            gettext("Practitioner"),
+            ""
+        ],
+        RADAR_DATA=[
+            {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
+             "value": score_info['radar_score']}
+            for qid, score_info in area_scores.items()
+        ]
+    )
     overview_data = {}
     kwargs['overview_data'] = overview_data
     for qid, score_info in area_scores.items():
@@ -580,6 +606,9 @@ def activity():
     return render_template('activity.html', **{
         'user': current_user,
         'events': events,
+        'page_config_json': json_blob(
+            LOADING_TEXT=gettext("Loading...")
+        ),
         'most_complete_profiles': User.get_most_complete_profiles(limit=5),
         'most_connected_profiles': User.get_most_connected_profiles(limit=5)
     })

@@ -42,6 +42,8 @@ main_css = Bundle('css/vendor/bootstrap.css',
 assets.register('main_css', main_css)
 
 main_js = Bundle('js/main.js',
+                 'js/pingdom-rum.js',
+                 'js/google-analytics.js',
                  'js/tutorial.js',
                  'vendor/bootstrap/js/alert.js',
                  'vendor/bootstrap/js/modal.js',
