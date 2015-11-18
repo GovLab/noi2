@@ -1,5 +1,15 @@
 {% extends "__base_ui__.html" %}
 
+{% block page_style_pre %}
+<style>
+#typeform {
+  width: 100%;
+  min-height: 500px;
+  border: none;
+}
+</style>
+{% endblock %}
+
 {% block title %}{{ gettext('Feedback') }}{% endblock %}
 
 {% block content %}
@@ -15,7 +25,10 @@
   {% set data_text = "NOI Feedback" %}
 {% endif %}
 
-<div class="typeform-widget" data-url="{{ data_url }}" data-text="{{ data_text }}" style="width:100%;height:500px;"></div>
-<script src="{{ url_for('static', filename='js/pages/feedback.js') }}"></script>
+<iframe id="typeform" src="{{ data_url }}"></iframe>
 </div>
+{% endblock %}
+
+{% block page_script %}
+<script src="{{ url_for('static', filename='js/pages/feedback.js') }}"></script>
 {% endblock %}

@@ -642,9 +642,6 @@ def network():
     return render_template('network.html', viz_data=viz_data)
 
 @views.route('/feedback')
-# Typeform injects all kinds of weird script tags into the page AND
-# inline script via onchange etc. handlers. Ugh.
-@csp.script_src(['*', "'unsafe-inline'"])
 def feedback():
     '''
     Feedback page.
