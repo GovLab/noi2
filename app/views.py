@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 LEVELS_BY_SCORE, mail, stats, csp)
+                 LEVELS_BY_SCORE, mail, stats)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email)
 
@@ -27,8 +27,6 @@ import functools
 import json
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
-
-views.after_request(csp.add_header)
 
 def json_blob(**kwargs):
     '''

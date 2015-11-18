@@ -48,6 +48,8 @@ def script_src(source_list):
     return decorator
 
 def init_app(app):
+    app.after_request(add_header)
+
     @app.route('/csp-report', methods=['POST'])
     @csrf.exempt
     def csp_report():
