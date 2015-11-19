@@ -50,7 +50,7 @@ $(document).ready(function () {
     var active = $('li.active', this);
     var offset = active.offset();
     if (!offset) return;
-    if (offset.left > window.innerWidth - 100) {
+    if (offset.left > $('body').width() - 100) {
       $(this).scrollLeft(offset.left);
     }
   });
