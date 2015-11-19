@@ -27,5 +27,5 @@ elif [ "$NOI_ENVIRONMENT" == celery ]; then
 else
     python /noi/manage.py db upgrade
     python /noi/manage.py translate_compile
-    NOI_ENVIRONMENT=development python /noi/manage.py runserver --host 0.0.0.0
+    NOI_ENVIRONMENT=development python /noi/develop.py
 fi
