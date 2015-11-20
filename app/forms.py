@@ -2,7 +2,7 @@
 NoI forms
 '''
 
-from app import LOCALES, QUESTIONNAIRES, l10n
+from app import LOCALES, QUESTIONNAIRES, LEVELS, l10n
 from app.models import User
 
 from flask import current_app
@@ -176,6 +176,13 @@ class SearchForm(Form):
         widget=Select(multiple=True),
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
 
+    # This doesn't actually appear as a field in a form, but as a tab
+    # in a result set, so it's a bit unusual.
+    skill_level = SelectField(
+        choices=[(level['score'], '') for level in LEVELS.values()],
+        coerce=int,
+        default=LEVELS['LEVEL_I_CAN_DO_IT']['score']
+    )
 
 class ChangeLocaleForm(Form):
     '''

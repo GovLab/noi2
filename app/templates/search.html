@@ -17,10 +17,11 @@
   </style>
 {% endblock %}
 
-{% from "_macros.html" import get_user_avatar_url, render_multi_select_instructions %}
+{% from "_macros.html" import get_user_avatar_url, render_multi_select_instructions, render_static_tab_bar, render_static_tab_panel %}
 
 {% block content %}
 <section class="b-filters">
+  {{ base_tabbed_results_url }}
   <form action="{{ url_for('views.search') }}" method="GET">
     <label for="questionnaire_area">{{ gettext('By expertise area') }}</label>
     <div class="b-dropdown">
@@ -45,7 +46,13 @@
 </section>
 
 {% if results %}
+<div id="results">
+{% if result_tabs %}
+  {{ render_static_tab_bar(result_tabs, active_result_tab) }}
+{% endif %}
 <section class="b-innovator-results">
+
+{% macro show_results() %}
   <div class="e-results-container">
     {% for user, score in results %}
     {% if user.display_in_search %}
@@ -58,7 +65,18 @@
     {% endif %}
     {% endfor %}
   </div>
+{% endmacro %}
+
+{% if result_tabs %}
+  {% call render_static_tab_panel() %}
+    {{ show_results() }}
+  {% endcall %}
+{% else %}
+  {{ show_results() }}
+{% endif %}
+
 </section>
+</div>
 {% endif %}
 
 {% endblock %}
