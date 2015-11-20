@@ -541,7 +541,7 @@ class ViewTests(ViewTestCase):
 
     def test_search_results_is_ok(self):
         self.login()
-        res = self.client.get('/search?country=ZZ')
+        res = self.client.get('/search?country=ZZ&questionnaire_area=ZZ')
         self.assert200(res)
         assert "e-results-container" in res.data
 

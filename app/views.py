@@ -22,6 +22,7 @@ from sqlalchemy.dialects.postgres import array
 
 from boto.s3.connection import S3Connection
 
+from urllib import urlencode
 import mimetypes
 import functools
 import json
@@ -498,12 +499,49 @@ def search():
     '''
     Generic search page
     '''
-    form = SearchForm(request.args)
-    if not form.country.data:
+    form = SearchForm(request.args, csrf_enabled=False)
+    if not form.validate():
         return render_template('search.html', form=form)
     else:
-        # Add fake rank of 0 for now
-        query = User.query_in_deployment().add_column('0')  #pylint: disable=no-member
+        result_tabs = []
+        active_result_tab = None
+        query = User.query_in_deployment() #pylint: disable=no-member
+
+        if (form.questionnaire_area.data and
+            form.questionnaire_area.data != 'ZZ'):
+            questionnaire_id = form.questionnaire_area.data
+            num_skills_column = func.count(UserSkill.id).label('num_skills')
+            query = query.add_column(num_skills_column).\
+                filter(UserSkill.user_id == User.id).\
+                filter(UserSkill.name.like(questionnaire_id + "_%")).\
+                filter(UserSkill.level == form.skill_level.data).\
+                group_by(User).\
+                order_by(num_skills_column.desc())
+
+            base_args = request.args.copy()
+            if 'skill_level' in base_args:
+                del base_args['skill_level']
+
+            tab_names = (
+                ('LEVEL_I_CAN_DO_IT', gettext('Practitioners')),
+                ('LEVEL_I_CAN_EXPLAIN', gettext('Explainers')),
+                ('LEVEL_I_CAN_REFER', gettext('Connectors')),
+                ('LEVEL_I_WANT_TO_LEARN', gettext('Peers')),
+            )
+
+            for level_id, tab_label in tab_names:
+                tab_args = base_args.copy()
+                tab_args['skill_level'] = str(LEVELS[level_id]['score'])
+                tab_url = '%s?%s#results' % (
+                    url_for('views.search'),
+                    urlencode(tab_args)
+                )
+                if form.skill_level.data == LEVELS[level_id]['score']:
+                    active_result_tab = level_id
+                result_tabs.append((level_id, tab_label, tab_url))
+        else:
+            # Add fake rank of 0 for now
+            query = query.add_column('0')
 
         if form.country.data and form.country.data != 'ZZ':
             query = query.filter(User.country == form.country.data)
@@ -516,8 +554,9 @@ def search():
             query = query.join(User.expertise_domains).filter(UserExpertiseDomain.name.in_(
                 form.expertise_domain_names.data))
 
-        # TODO ordering by relevance
         return render_template('search.html',
+                               result_tabs=result_tabs,
+                               active_result_tab=active_result_tab,
                                form=form,
                                results=query.limit(20).all())
 
