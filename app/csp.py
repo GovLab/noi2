@@ -15,6 +15,12 @@ def add_header(response):
         "use.typekit.net"
     ]
 
+    if current_app.config.get('GA_TRACKING_CODE'):
+        script_src.append('www.google-analytics.com')
+
+    if current_app.config.get('PINGDOM_RUM_ID'):
+        script_src.append('rum-static.pingdom.net')
+
     if hasattr(response, '_csp_script_src'):
         script_src += response._csp_script_src
 
