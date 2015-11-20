@@ -22,6 +22,10 @@
 {% block content %}
 <section class="b-filters">
   <form action="{{ url_for('views.search') }}" method="GET">
+    <label for="questionnaire_area">{{ gettext('By expertise area') }}</label>
+    <div class="b-dropdown">
+      {{ form.questionnaire_area() }}
+    </div>
     <label for="country">{{ gettext('By country') }}</label>
     <div class="b-dropdown">
       {{ form.country() }}
@@ -45,6 +49,7 @@
   <div class="e-results-container">
     {% for user, score in results %}
     {% if user.display_in_search %}
+      <!-- Score: {{ score }} -->
       <a class="e-result-item" href="{{ url_for('views.get_user', userid=user.id) }}">
         <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
         <p class="e-name">{{ user.full_name }}</p>

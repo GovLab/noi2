@@ -498,12 +498,24 @@ def search():
     '''
     Generic search page
     '''
-    form = SearchForm(request.args)
-    if not form.country.data:
+    form = SearchForm(request.args, csrf_enabled=False)
+    if not form.validate():
         return render_template('search.html', form=form)
     else:
-        # Add fake rank of 0 for now
-        query = User.query_in_deployment().add_column('0')  #pylint: disable=no-member
+        query = User.query_in_deployment() #pylint: disable=no-member
+
+        if (form.questionnaire_area.data and
+            form.questionnaire_area.data != 'ZZ'):
+            questionnaire_id = form.questionnaire_area.data
+            num_skills_column = func.count(UserSkill.id).label('num_skills')
+            query = query.add_column(num_skills_column).\
+                filter(UserSkill.user_id == User.id).\
+                filter(UserSkill.name.like(questionnaire_id + "_%")).\
+                group_by(User).\
+                order_by(num_skills_column.desc())
+        else:
+            # Add fake rank of 0 for now
+            query = query.add_column('0')
 
         if form.country.data and form.country.data != 'ZZ':
             query = query.filter(User.country == form.country.data)
@@ -516,7 +528,6 @@ def search():
             query = query.join(User.expertise_domains).filter(UserExpertiseDomain.name.in_(
                 form.expertise_domain_names.data))
 
-        # TODO ordering by relevance
         return render_template('search.html',
                                form=form,
                                results=query.limit(20).all())
