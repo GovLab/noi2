@@ -2,7 +2,7 @@
 NoI forms
 '''
 
-from app import LOCALES, l10n
+from app import LOCALES, QUESTIONNAIRES, LEVELS, l10n
 from app.models import User
 
 from flask import current_app
@@ -33,6 +33,18 @@ import re
 #from app.models import db
 
 ModelForm = model_form_factory(Form)
+
+
+class CallableChoicesSelectField(SelectField):
+    '''
+    Subclass of SelectField that can take a callable for `choices`.
+
+    The function is only executed at instantiatino.
+    '''
+    def __init__(self, *args, **kwargs):
+        if 'choices' in kwargs and hasattr(kwargs['choices'], '__call__'):
+            kwargs['choices'] = kwargs['choices']()
+        super(CallableChoicesSelectField, self).__init__(*args, **kwargs)
 
 
 class CallableChoicesSelectMultipleField(SelectMultipleField):
@@ -145,6 +157,16 @@ class SearchForm(Form):
     '''
     Form for searching the user database.
     '''
+
+    questionnaire_area = CallableChoicesSelectField(
+        choices=lambda: [
+            ('ZZ', lazy_gettext('Choose an expertise area'))
+        ] + [
+            (q['id'], lazy_gettext(q['name']))
+            for q in QUESTIONNAIRES
+            if q['questions']
+        ]
+    )
     country = CountryField()
     locales = CallableChoicesSelectMultipleField(
         widget=Select(multiple=True),
@@ -154,6 +176,13 @@ class SearchForm(Form):
         widget=Select(multiple=True),
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
 
+    # This doesn't actually appear as a field in a form, but as a tab
+    # in a result set, so it's a bit unusual.
+    skill_level = SelectField(
+        choices=[(level['score'], '') for level in LEVELS.values()],
+        coerce=int,
+        default=LEVELS['LEVEL_I_CAN_DO_IT']['score']
+    )
 
 class ChangeLocaleForm(Form):
     '''
