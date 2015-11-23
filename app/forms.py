@@ -168,13 +168,23 @@ class SearchForm(Form):
         ]
     )
     country = CountryField()
-    locales = CallableChoicesSelectMultipleField(
-        widget=Select(multiple=True),
-        choices=lambda: [(l.language, l.get_language_name(get_locale()))
-                         for l in LOCALES])
-    expertise_domain_names = CallableChoicesSelectMultipleField(
-        widget=Select(multiple=True),
-        choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
+    locale = CallableChoicesSelectField(
+        choices=lambda: [
+            ('ZZ', lazy_gettext('Choose a language'))
+        ] + [
+            (l.language, l.get_language_name(get_locale()))
+             for l in LOCALES
+        ],
+        default='ZZ'
+    )
+    expertise_domain_name = CallableChoicesSelectField(
+        choices=lambda: [
+            ('ZZ', lazy_gettext('Choose a field of work'))
+        ] + [
+            (v, lazy_gettext(v)) for v in current_app.config['DOMAINS']
+        ],
+        default='ZZ'
+    )
 
     # This doesn't actually appear as a field in a form, but as a tab
     # in a result set, so it's a bit unusual.

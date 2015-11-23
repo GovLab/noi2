@@ -31,15 +31,13 @@
     <div class="b-dropdown">
       {{ form.country() }}
     </div>
-    <label for="locales">{{ gettext('By language(s)') }}</label>
+    <label for="locale">{{ gettext('By language') }}</label>
     <div class="b-dropdown">
-      {{ form.locales() }}
-      {{ render_multi_select_instructions(style="color: lightgray") }}
+      {{ form.locale() }}
     </div>
-    <label for="expertise_domain_names">{{ gettext('By field(s) of work') }}</label>
+    <label for="expertise_domain_name">{{ gettext('By field of work') }}</label>
     <div class="b-dropdown">
-      {{ form.expertise_domain_names() }}
-      {{ render_multi_select_instructions(style="color: lightgray") }}
+      {{ form.expertise_domain_name() }}
     </div>
   <input class="b-button" type="submit" value="{{ gettext('Find Innovators') }}">
   </form>

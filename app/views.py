@@ -546,13 +546,17 @@ def search():
         if form.country.data and form.country.data != 'ZZ':
             query = query.filter(User.country == form.country.data)
 
-        if form.locales.data:
+        if form.locale.data and form.locale.data != 'ZZ':
             query = query.join(User.languages).filter(UserLanguage.locale.in_(
-                form.locales.data))
+                [form.locale.data]))
 
-        if form.expertise_domain_names.data:
-            query = query.join(User.expertise_domains).filter(UserExpertiseDomain.name.in_(
-                form.expertise_domain_names.data))
+        if (form.expertise_domain_name.data and
+            form.expertise_domain_name.data != 'ZZ'):
+            query = query.join(User.expertise_domains).filter(
+                UserExpertiseDomain.name.in_(
+                    [form.expertise_domain_name.data]
+                )
+            )
 
         return render_template('search.html',
                                result_tabs=result_tabs,
