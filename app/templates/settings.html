@@ -2,8 +2,9 @@
 
 {% block content %}
 
-<div class="b-settings">
-  <h1 class="b-header">{{ gettext('Settings') }}</h1>
+<h1 class="b-header">{{ gettext('Settings') }}</h1>
+
+<div class="b-form">
   <p>
     <a href="{{ url_for_security('change_password') }}" class="b-button">{{ gettext('Change Password') }}</a>
   </p>
@@ -13,8 +14,9 @@
   </p>
   <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form" data-submit-on-change>
     {{ change_locale_form.hidden_tag() }}
-    <div class="b-dropdown">
-      {{ change_locale_form.locale.label(class="sr-only") }}
+
+    {{ change_locale_form.locale.label() }}
+    <div class="e-dropdown">
       {{ change_locale_form.locale() }}
     </div>
 
