@@ -4,48 +4,29 @@
 
 {% block title %}{{ gettext('My Profile') }}{% endblock %}
 
-{% block page_style_post %}
-<style>
-/* TODO: These styles are temporary until we have style-guide HTML mocks
- * for this view. */
-
-form {
-  padding: 0 2em 1em 2em;
-}
-
-.temporary-form-input {
-  padding-top: 1em;
-}
-
-input, select {
-  display: block;
-  width: 100%;
-}
-</style>
-{% endblock %}
-
 {% block content %}
 <h1 class="b-header">{{ gettext('My Profile') }}</h1>
 
-<form action="#" method="post" enctype="multipart/form-data">
+<form class="b-form" action="#" method="post" enctype="multipart/form-data">
 {{ form.csrf_token }}
 
 {% macro input(name) -%}
-<div class="temporary-form-input">
-  {{ form[name].label }}
+{{ form[name].label }}
+{% if form[name].type in ["SelectField", "CountryField"] %}
+  <div class="e-dropdown">
+  {{ form[name]() }}
+  </div>
+{% else %}
   {{ form[name](placeholder=form[name].description) }}
-  {% if form[name].errors %}
-    <ul class="list-unstyled">
-    {% for error in form[name].errors %}
-    <li>{{ error }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-</div>
+{% endif %}
+{% if form[name].errors %}
+  <ul class="list-unstyled">
+  {% for error in form[name].errors %}
+  <li>{{ error }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
 {%- endmacro %}
-
-<!-- Form Name -->
-<legend></legend>
 
 {{ input("picture") }}
 {{ input("first_name") }}
@@ -61,7 +42,7 @@ input, select {
 {{ render_multi_select_instructions() }}
 {{ input("projects") }}
 
-<button class="b-button" type="submit">{{ gettext('Save') }}</button>
+<button type="submit">{{ gettext('Save') }}</button>
 
 </form>
 
