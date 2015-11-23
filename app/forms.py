@@ -194,6 +194,9 @@ class SearchForm(Form):
         default=LEVELS['LEVEL_I_CAN_DO_IT']['score']
     )
 
+    fulltext = StringField()
+
+
 class ChangeLocaleForm(Form):
     '''
     Form that allows the user to change the locale of the site.

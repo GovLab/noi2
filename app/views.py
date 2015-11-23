@@ -558,6 +558,13 @@ def search():
                 )
             )
 
+        if form.fulltext.data:
+            query = query.filter(func.to_tsvector(func.array_to_string(array([
+                User.first_name, User.last_name, User.organization,
+                User.position, User.projects, UserSkill.name]), ' ')).op('@@')(
+                    func.plainto_tsquery(form.fulltext.data))).filter(
+                        UserSkill.user_id == User.id)
+
         return render_template('search.html',
                                result_tabs=result_tabs,
                                active_result_tab=active_result_tab,

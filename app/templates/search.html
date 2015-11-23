@@ -6,6 +6,7 @@
   <style>
   /* TODO: This styling is temporary. */
   .b-filters .b-button {
+    margin-top: 1em;
     color: white;
   }
 
@@ -39,6 +40,8 @@
     <div class="b-dropdown">
       {{ form.expertise_domain_name() }}
     </div>
+    <label for="fulltext">{{ gettext('Search terms') }}</label>
+    {{ form.fulltext(class="b-textfield", placeholder=gettext("Enter organization, name, or keywords here")) }}
   <input class="b-button" type="submit" value="{{ gettext('Find Innovators') }}">
   </form>
 </section>
