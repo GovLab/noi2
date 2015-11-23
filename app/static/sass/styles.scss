@@ -55,6 +55,10 @@ $mobile: max-width 600px;
     overflow: hidden;
 }
 
+@mixin transition {
+    transition: all .5s ease;
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -69,6 +73,7 @@ body {
 @import 'bootstrap-type';
 @import 'bootstrap-modal';
 @import 'components';
+@import 'form';
 @import 'nav';
 @import 'off-canvas';
 @import 'progress';
