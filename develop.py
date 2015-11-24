@@ -27,11 +27,12 @@ def write(message):
     sys.stdout.write(message + '\n')
     sys.stdout.flush()
 
-while True:
-    retval = run_server()
-    write("Development server exited with code %d. " % retval)
-    for i in [3, 2]:
-        write("Restarting development server in %d seconds... " % i)
+if __name__ == '__main__':
+    while True:
+        retval = run_server()
+        write("Development server exited with code %d. " % retval)
+        for i in [3, 2]:
+            write("Restarting development server in %d seconds... " % i)
+            time.sleep(1)
+        write("Restarting development server in 1 second... ")
         time.sleep(1)
-    write("Restarting development server in 1 second... ")
-    time.sleep(1)

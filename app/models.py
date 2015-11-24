@@ -26,6 +26,47 @@ import os
 db = SQLAlchemy()  #pylint: disable=invalid-name
 
 
+def skills_to_percentages(s):
+    '''
+    >>> skills_to_percentages(dict(learn=5, explain=5, connect=0, do=0))
+    {'do': 0, 'explain': 50, 'connect': 0, 'learn': 50}
+    '''
+
+    total = s['learn'] + s['explain'] + s['connect'] + s['do']
+    percentages = {}
+    for skill_level in ['learn', 'explain', 'connect', 'do']:
+        percentage = 0.0
+        if total > 0:
+            percentage = float(s[skill_level]) / total
+        percentages[skill_level] = int(percentage * 100)
+    return percentages
+
+
+def scores_to_skills(score_dict):
+    '''
+    >>> scores_to_skills({-1: 5})
+    {'do': 0, 'explain': 0, 'connect': 0, 'learn': 5}
+    '''
+
+    return {
+        'learn': score_dict.get(
+            LEVELS['LEVEL_I_WANT_TO_LEARN']['score'],
+            0
+        ),
+        'explain': score_dict.get(
+            LEVELS['LEVEL_I_CAN_EXPLAIN']['score'],
+            0
+        ),
+        'connect': score_dict.get(
+            LEVELS['LEVEL_I_CAN_REFER']['score'],
+            0
+        ),
+        'do': score_dict.get(
+            LEVELS['LEVEL_I_CAN_DO_IT']['score'],
+            0
+        )
+    }
+
 class DeploymentMixin(object):
     '''
     Mixin class for any model that is accessible on a per-deployment
@@ -504,14 +545,6 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         result = {}
 
         NO_ANSWER = -999
-        FINAL_SCORE_SCALER = 80
-
-        base_final_scores = {
-            LEVELS['LEVEL_I_WANT_TO_LEARN']['score']: 100,
-            LEVELS['LEVEL_I_CAN_REFER']['score']: 200,
-            LEVELS['LEVEL_I_CAN_EXPLAIN']['score']: 300,
-            LEVELS['LEVEL_I_CAN_DO_IT']['score']: 400
-        }
 
         for questionnaire in QUESTIONNAIRES:
             if not questionnaire['questions']:
@@ -526,16 +559,11 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                     if score not in answers_with_score:
                         answers_with_score[score] = 0
                     answers_with_score[score] += 1
-            final_score = 0
             reported_max_score = None
             if max_score != NO_ANSWER:
-                final_score = base_final_scores[max_score] + \
-                              (float(answers_with_score[max_score]) /
-                               len(questionnaire['questions'])) * \
-                              FINAL_SCORE_SCALER
                 reported_max_score = max_score
             result[questionnaire['id']] = {
-                'radar_score': final_score,
+                'skills': scores_to_skills(answers_with_score),
                 'max_score': reported_max_score
             }
 

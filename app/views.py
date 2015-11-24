@@ -12,7 +12,8 @@ from flask_login import login_required, current_user
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
                  LEVELS_BY_SCORE, mail, stats)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
-                        UserSkill, Event, SharedMessageEvent, Email)
+                        UserSkill, Event, SharedMessageEvent, Email,
+                        skills_to_percentages)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
                        RegisterStep2Form, ChangeLocaleForm, InviteForm)
@@ -303,28 +304,35 @@ def render_user_profile(userid=None, **kwargs):
     area_scores = user.get_area_scores()
 
     kwargs['user'] = user
-    kwargs['page_config_json'] = json_blob(
-        RADAR_LEVEL_LABELS=[
-            gettext("Peer"),
-            gettext("Connector"),
-            gettext("Explainer"),
-            gettext("Practitioner"),
-            ""
-        ],
-        RADAR_DATA=[
-            {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
-             "value": score_info['radar_score']}
-            for qid, score_info in area_scores.items()
-        ]
-    )
     overview_data = {}
+    viz_data = []
     kwargs['overview_data'] = overview_data
     for qid, score_info in area_scores.items():
         score = score_info['max_score']
         if score is not None:
+            # Update overview data.
             if score not in overview_data:
                 overview_data[score] = []
             overview_data[score].append(QUESTIONNAIRES_BY_ID[qid])
+
+            # Update visualization data.
+
+            # TODO: This is very similar to the treemap code in
+            # views.network, consider refactoring.
+
+            s = score_info['skills']
+            area_info = {
+                'name': QUESTIONNAIRES_BY_ID[qid]['name'],
+                'questionnaire_id': qid,
+                'total': s['learn'] + s['explain'] + s['connect'] + s['do']
+            }
+            area_info.update(skills_to_percentages(s))
+            viz_data.append(area_info)
+    kwargs['viz_data'] = sorted(
+        viz_data,
+        key=lambda area_info: area_info['total'],
+        reverse=True
+    )
 
     return render_template('user-profile.html', **kwargs)
 
@@ -674,16 +682,11 @@ def network():
 
     viz_data = []
     for qid, s in counts.items():
-        total = s['learn'] + s['explain'] + s['connect'] + s['do']
         area_info = {
             'name': QUESTIONNAIRES_BY_ID[qid]['name'],
-            'total': total
+            'total': s['learn'] + s['explain'] + s['connect'] + s['do']
         }
-        for skill_level in ['learn', 'explain', 'connect', 'do']:
-            percentage = 0.0
-            if total > 0:
-                percentage = float(s[skill_level]) / total
-            area_info[skill_level] = int(percentage * 100)
+        area_info.update(skills_to_percentages(s))
         viz_data.append(area_info)
     viz_data = sorted(viz_data, key=lambda area_info: area_info['total'],
                       reverse=True)

@@ -62,10 +62,9 @@ b-public-profile
 
 {{ render_tab_bar(tabs, active_tab) }}
 
-<div class="b-pofile-tabs"> <!-- Start of tab panel container -->
-
 {% call render_tab_panel('overview', active_tab) %}
 
+<div class="b-temporary-styling">
 {% for skill_level, questionnaires in overview_data.items() %}
   {% if is_current_user_profile %}
     {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
@@ -94,14 +93,38 @@ b-public-profile
     {% endfor %}
   </ul>
 {% endfor %}
-  <div class="radarChart"></div>
+</div>
+
+  <div class="b-network-viz">
+    {# TODO: This is very similar to the treemap code in network.html,
+       consider refactoring. #}
+    {% for area_info in viz_data %}
+        <div class="e-questionnaire-area">
+          {% if is_current_user_profile %}
+          <a href="{{ url_for('views.my_expertise_area', areaid=area_info.questionnaire_id, _anchor='expertise') }}">
+          {% else %}
+          <a href="{{ url_for('views.get_user_expertise_area', userid=user.id, areaid=area_info.questionnaire_id, _anchor='expertise') }}">
+          {% endif %}
+          <div class="e-skill-level m-do" style="width: 100%"></div>
+          <div class="e-skill-level m-connect" style="width: {{ area_info.learn + area_info.explain + area_info.connect }}%"></div>
+          <div class="e-skill-level m-explain" style="width: {{ area_info.learn + area_info.explain }}%"></div>
+          <div class="e-skill-level m-learn" style="width: {{ area_info.learn }}%"></div>
+          <div class="e-screen"></div>
+          <h2>{{ gettext(area_info.name) }}</h2>
+          <p>{{ gettext('%(count)d questions answered', count=area_info.total) }}</p>
+          </a>
+        </div>
+    {% endfor %}
+  </div>
+
+<div class="b-temporary-styling">
   <h3>{{ gettext('Projects I have done') }}</h3>
   {% if user.projects %}
-  <pre>{{ user.projects }}</pre>
+  <div class="e-user-projects">{{ user.projects }}</div>
   {% else %}
   {{ gettext("No project information provided.") }}
   {% endif %}
-
+</div>
   {% endcall %}
 
 {% if is_current_user_profile %}
@@ -130,14 +153,9 @@ b-public-profile
 
 {% endif %}
 
-</div> <!-- End of tab panel container -->
-
 {% endblock %}
 
 {% block page_script %}
-<script src="{{ url_for('static', filename='vendor/d3.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/pages/user-profile/radarchart.js') }}"></script>
-<script src="{{ url_for('static', filename='js/pages/user-profile/user-profile.js') }}"></script>
 {% if in_questionnaire %}
 <script src="{{ url_for('static', filename='js/pages/user-profile/questionnaire.js') }}"></script>
 {% endif %}

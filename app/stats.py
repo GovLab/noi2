@@ -47,22 +47,7 @@ def get_questionnaire_counts():
         ).filter(models.UserSkill.name.like(qid + "_%")).\
           group_by(models.UserSkill.level)
         raw_counts = dict(query.all())
-        counts[qid]['learn'] = raw_counts.get(
-            LEVELS['LEVEL_I_WANT_TO_LEARN']['score'],
-            0
-        )
-        counts[qid]['explain'] = raw_counts.get(
-            LEVELS['LEVEL_I_CAN_EXPLAIN']['score'],
-            0
-        )
-        counts[qid]['connect'] = raw_counts.get(
-            LEVELS['LEVEL_I_CAN_REFER']['score'],
-            0
-        )
-        counts[qid]['do'] = raw_counts.get(
-            LEVELS['LEVEL_I_CAN_DO_IT']['score'],
-            0
-        )
+        counts[qid].update(models.scores_to_skills(raw_counts))
     return counts
 
 def generate():
