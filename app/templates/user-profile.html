@@ -100,6 +100,11 @@ b-public-profile
        consider refactoring. #}
     {% for area_info in viz_data %}
         <div class="e-questionnaire-area">
+          {% if is_current_user_profile %}
+          <a href="{{ url_for('views.my_expertise_area', areaid=area_info.questionnaire_id, _anchor='expertise') }}">
+          {% else %}
+          <a href="{{ url_for('views.get_user_expertise_area', userid=user.id, areaid=area_info.questionnaire_id, _anchor='expertise') }}">
+          {% endif %}
           <div class="e-skill-level m-do" style="width: 100%"></div>
           <div class="e-skill-level m-connect" style="width: {{ area_info.learn + area_info.explain + area_info.connect }}%"></div>
           <div class="e-skill-level m-explain" style="width: {{ area_info.learn + area_info.explain }}%"></div>
@@ -107,6 +112,7 @@ b-public-profile
           <div class="e-screen"></div>
           <h2>{{ gettext(area_info.name) }}</h2>
           <p>{{ gettext('%(count)d questions answered', count=area_info.total) }}</p>
+          </a>
         </div>
     {% endfor %}
   </div>

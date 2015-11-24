@@ -323,6 +323,7 @@ def render_user_profile(userid=None, **kwargs):
             total = s['learn'] + s['explain'] + s['connect'] + s['do']
             area_info = {
                 'name': QUESTIONNAIRES_BY_ID[qid]['name'],
+                'questionnaire_id': qid,
                 'total': total
             }
             for skill_level in ['learn', 'explain', 'connect', 'do']:
