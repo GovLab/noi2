@@ -26,6 +26,22 @@ import os
 db = SQLAlchemy()  #pylint: disable=invalid-name
 
 
+def skills_to_percentages(s):
+    '''
+    >>> skills_to_percentages(dict(learn=5, explain=5, connect=0, do=0))
+    {'do': 0, 'explain': 50, 'connect': 0, 'learn': 50}
+    '''
+
+    total = s['learn'] + s['explain'] + s['connect'] + s['do']
+    percentages = {}
+    for skill_level in ['learn', 'explain', 'connect', 'do']:
+        percentage = 0.0
+        if total > 0:
+            percentage = float(s[skill_level]) / total
+        percentages[skill_level] = int(percentage * 100)
+    return percentages
+
+
 def scores_to_skills(score_dict):
     '''
     >>> scores_to_skills({-1: 5})

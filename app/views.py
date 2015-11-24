@@ -12,7 +12,8 @@ from flask_login import login_required, current_user
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
                  LEVELS_BY_SCORE, mail, stats)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
-                        UserSkill, Event, SharedMessageEvent, Email)
+                        UserSkill, Event, SharedMessageEvent, Email,
+                        skills_to_percentages)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
                        RegisterStep2Form, ChangeLocaleForm, InviteForm)
@@ -320,17 +321,12 @@ def render_user_profile(userid=None, **kwargs):
             # views.network, consider refactoring.
 
             s = score_info['skills']
-            total = s['learn'] + s['explain'] + s['connect'] + s['do']
             area_info = {
                 'name': QUESTIONNAIRES_BY_ID[qid]['name'],
                 'questionnaire_id': qid,
-                'total': total
+                'total': s['learn'] + s['explain'] + s['connect'] + s['do']
             }
-            for skill_level in ['learn', 'explain', 'connect', 'do']:
-                percentage = 0.0
-                if total > 0:
-                    percentage = float(s[skill_level]) / total
-                area_info[skill_level] = int(percentage * 100)
+            area_info.update(skills_to_percentages(s))
             viz_data.append(area_info)
     kwargs['viz_data'] = sorted(
         viz_data,
@@ -686,16 +682,11 @@ def network():
 
     viz_data = []
     for qid, s in counts.items():
-        total = s['learn'] + s['explain'] + s['connect'] + s['do']
         area_info = {
             'name': QUESTIONNAIRES_BY_ID[qid]['name'],
-            'total': total
+            'total': s['learn'] + s['explain'] + s['connect'] + s['do']
         }
-        for skill_level in ['learn', 'explain', 'connect', 'do']:
-            percentage = 0.0
-            if total > 0:
-                percentage = float(s[skill_level]) / total
-            area_info[skill_level] = int(percentage * 100)
+        area_info.update(skills_to_percentages(s))
         viz_data.append(area_info)
     viz_data = sorted(viz_data, key=lambda area_info: area_info['total'],
                       reverse=True)
