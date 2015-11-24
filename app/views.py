@@ -18,8 +18,7 @@ from app.models import (db, User, UserLanguage, UserExpertiseDomain,
 from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
                        RegisterStep2Form, ChangeLocaleForm, InviteForm)
 
-from sqlalchemy import func, desc
-from sqlalchemy.dialects.postgres import array
+from sqlalchemy import func, desc, or_
 
 from boto.s3.connection import S3Connection
 
@@ -567,11 +566,15 @@ def search():
             )
 
         if form.fulltext.data:
-            query = query.filter(func.to_tsvector(func.array_to_string(array([
-                User.first_name, User.last_name, User.organization,
-                User.position, User.projects, UserSkill.name]), ' ')).op('@@')(
-                    func.plainto_tsquery(form.fulltext.data))).filter(
-                        UserSkill.user_id == User.id)
+            ftquery = "%" + form.fulltext.data + "%"
+            query = query.filter(or_(
+                User.first_name.ilike(ftquery),
+                User.last_name.ilike(ftquery),
+                User.organization.ilike(ftquery),
+                User.position.ilike(ftquery),
+                User.projects.ilike(ftquery),
+                (User.first_name + ' ' + User.last_name).ilike(ftquery)
+            ))
 
         return render_template('search.html',
                                result_tabs=result_tabs,

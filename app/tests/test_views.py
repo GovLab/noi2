@@ -4,7 +4,7 @@ from app.factory import create_app
 from app.views import get_best_registration_step_url
 from app.models import User, SharedMessageEvent, ConnectionEvent, db
 
-from .test_models import DbTestCase, USE_POSTGRES
+from .test_models import DbTestCase
 from .factories import UserFactory, UserSkillFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
@@ -533,10 +533,15 @@ class SearchTests(ViewTestCase):
         assert "practitioner stone" in res.data
         assert "somebody else" not in res.data
 
-    def test_fulltext_search_works(self):
-        if not USE_POSTGRES:
-            self.skipTest("Fulltext search only works with postgres")
+    def test_fulltext_search_finds_last_name(self):
         res = self.client.get('/search?country=ZZ&fulltext=practitioner')
+        self.assert200(res)
+        assert "practitioner stone" in res.data
+        assert "somebody else" not in res.data
+
+    def test_fulltext_search_finds_full_name(self):
+        res = self.client.get('/search?country=ZZ&fulltext='
+                              'practitioner+stone')
         self.assert200(res)
         assert "practitioner stone" in res.data
         assert "somebody else" not in res.data
