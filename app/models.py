@@ -27,6 +27,11 @@ db = SQLAlchemy()  #pylint: disable=invalid-name
 
 
 def scores_to_skills(score_dict):
+    '''
+    >>> scores_to_skills({-1: 5})
+    {'do': 0, 'explain': 0, 'connect': 0, 'learn': 5}
+    '''
+
     return {
         'learn': score_dict.get(
             LEVELS['LEVEL_I_WANT_TO_LEARN']['score'],
