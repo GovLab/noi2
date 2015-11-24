@@ -4,7 +4,7 @@ from app.factory import create_app
 from app.views import get_best_registration_step_url
 from app.models import User, SharedMessageEvent, ConnectionEvent, db
 
-from .test_models import DbTestCase
+from .test_models import DbTestCase, USE_POSTGRES
 from .factories import UserFactory, UserSkillFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
@@ -468,6 +468,80 @@ class EmailTests(ViewTestCase):
         })
         self.assertEquals(res.status, '501 NOT IMPLEMENTED')
 
+
+class SearchTests(ViewTestCase):
+    def setUp(self):
+        super(SearchTests, self).setUp()
+        self.login()
+
+        UserFactory.create(
+            first_name=u"practitioner",
+            last_name=u"stone",
+            connections=[],
+            languages=['en'],
+            expertise_domains=['Labor'],
+            country='US',
+            skills=[UserSkillFactory.create(
+                name="opendata-open-data-policy-core-mission",
+                level=LEVELS['LEVEL_I_CAN_DO_IT']['score']
+            )]
+        )
+
+        UserFactory.create(
+            first_name=u"somebody",
+            last_name=u"else",
+            connections=[],
+            languages=['es'],
+            expertise_domains=['Agriculture'],
+            country='CA',
+            skills=[]
+        )
+
+        db.session.commit()
+
+    def test_get_is_ok(self):
+        res = self.client.get('/search')
+        self.assert200(res)
+        assert "Find Innovator" in res.data
+
+    def test_results_is_ok(self):
+        res = self.client.get('/search?country=ZZ')
+        self.assert200(res)
+        assert "e-results-container" in res.data
+
+    def test_expertise_search_contains_practitioners(self):
+        res = self.client.get('/search?country=ZZ&questionnaire_area=opendata')
+        self.assert200(res)
+        assert "practitioner stone" in res.data
+        assert "somebody else" not in res.data
+
+    def test_country_search_works(self):
+        res = self.client.get('/search?country=US')
+        self.assert200(res)
+        assert "practitioner stone" in res.data
+        assert "somebody else" not in res.data
+
+    def test_locale_search_works(self):
+        res = self.client.get('/search?country=ZZ&locale=en')
+        self.assert200(res)
+        assert "practitioner stone" in res.data
+        assert "somebody else" not in res.data
+
+    def test_expertise_domain_search_works(self):
+        res = self.client.get('/search?country=ZZ&expertise_domain_name=Labor')
+        self.assert200(res)
+        assert "practitioner stone" in res.data
+        assert "somebody else" not in res.data
+
+    def test_fulltext_search_works(self):
+        if not USE_POSTGRES:
+            self.skipTest("Fulltext search only works with postgres")
+        res = self.client.get('/search?country=ZZ&fulltext=practitioner')
+        self.assert200(res)
+        assert "practitioner stone" in res.data
+        assert "somebody else" not in res.data
+
+
 class ViewTests(ViewTestCase):
     def test_main_page_is_ok(self):
         self.assert200(self.client.get('/'))
@@ -523,12 +597,6 @@ class ViewTests(ViewTestCase):
         self.login()
         self.assert404(self.client.get('/user/1234'))
 
-    def test_search_is_ok(self):
-        self.login()
-        res = self.client.get('/search')
-        self.assert200(res)
-        assert "Find Innovator" in res.data
-
     def test_settings_is_ok(self):
         self.login()
         res = self.client.get('/settings')
@@ -538,12 +606,6 @@ class ViewTests(ViewTestCase):
         self.login()
         res = self.client.get('/network')
         self.assert200(res)
-
-    def test_search_results_is_ok(self):
-        self.login()
-        res = self.client.get('/search?country=ZZ&questionnaire_area=ZZ')
-        self.assert200(res)
-        assert "e-results-container" in res.data
 
     def test_user_profiles_require_login(self):
         self.assertRedirects(self.client.get('/user/1234'),

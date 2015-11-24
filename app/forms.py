@@ -165,7 +165,8 @@ class SearchForm(Form):
             (q['id'], lazy_gettext(q['name']))
             for q in QUESTIONNAIRES
             if q['questions']
-        ]
+        ],
+        default='ZZ'
     )
     country = CountryField()
     locale = CallableChoicesSelectField(

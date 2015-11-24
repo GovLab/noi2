@@ -121,6 +121,10 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
 
         if extracted is not None:
             for expertise_domain in extracted:
+                if isinstance(expertise_domain, basestring):
+                    expertise_domain = UserExpertiseDomain(
+                        name=expertise_domain
+                    )
                 expertise_domain.user = self
             return
 
@@ -138,6 +142,8 @@ class UserFactory(SQLAlchemyModelFactory): # pylint: disable=no-init,too-few-pub
 
         if extracted is not None:
             for language in extracted:
+                if isinstance(language, basestring):
+                    language = UserLanguage(locale=unicode(language))
                 language.user = self
             return
 
