@@ -303,28 +303,39 @@ def render_user_profile(userid=None, **kwargs):
     area_scores = user.get_area_scores()
 
     kwargs['user'] = user
-    kwargs['page_config_json'] = json_blob(
-        RADAR_LEVEL_LABELS=[
-            gettext("Peer"),
-            gettext("Connector"),
-            gettext("Explainer"),
-            gettext("Practitioner"),
-            ""
-        ],
-        RADAR_DATA=[
-            {"axis": gettext(QUESTIONNAIRES_BY_ID[qid]['name']),
-             "value": score_info['radar_score']}
-            for qid, score_info in area_scores.items()
-        ]
-    )
     overview_data = {}
+    viz_data = []
     kwargs['overview_data'] = overview_data
     for qid, score_info in area_scores.items():
         score = score_info['max_score']
         if score is not None:
+            # Update overview data.
             if score not in overview_data:
                 overview_data[score] = []
             overview_data[score].append(QUESTIONNAIRES_BY_ID[qid])
+
+            # Update visualization data.
+
+            # TODO: This is very similar to the treemap code in
+            # views.network, consider refactoring.
+
+            s = score_info['skills']
+            total = s['learn'] + s['explain'] + s['connect'] + s['do']
+            area_info = {
+                'name': QUESTIONNAIRES_BY_ID[qid]['name'],
+                'total': total
+            }
+            for skill_level in ['learn', 'explain', 'connect', 'do']:
+                percentage = 0.0
+                if total > 0:
+                    percentage = float(s[skill_level]) / total
+                area_info[skill_level] = int(percentage * 100)
+            viz_data.append(area_info)
+    kwargs['viz_data'] = sorted(
+        viz_data,
+        key=lambda area_info: area_info['total'],
+        reverse=True
+    )
 
     return render_template('user-profile.html', **kwargs)
 
