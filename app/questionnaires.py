@@ -70,6 +70,9 @@ class Questionnaires(list):
                 other = [oq for oq in other_qnaire['questions']
                          if oq['question'] == question['question']][0]
                 if question['id'] != oq['id']:
+                    if oq['id'] in self.questions_by_id:
+                        raise Exception("Duplicate skill id {}".\
+                                        format(oq['id']))
                     result[question['id']] = oq['id']
 
         return result
