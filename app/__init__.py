@@ -16,10 +16,10 @@ from flask_mail import Mail
 from flask_s3 import FlaskS3
 from flask_wtf.csrf import CsrfProtect
 
-from slugify import slugify
 from babel import Locale, UnknownLocaleError
-import yaml
 import locale
+
+from .questionnaires import Questionnaires
 
 s3 = FlaskS3()
 mail = Mail()
@@ -95,24 +95,8 @@ ORG_TYPES = {'edu': 'Academia',
              'other': 'Other'}
 
 # Process YAML files
-QUESTIONNAIRES = yaml.load(open('/noi/app/data/questions.yaml'))
-QUESTIONNAIRES_BY_ID = {}
-QUESTIONS_BY_ID = {}
 MIN_QUESTIONS_TO_JOIN = 3
-for questionnaire in QUESTIONNAIRES:
-    QUESTIONNAIRES_BY_ID[questionnaire['id']] = questionnaire
-    area_questions = []
-    questionnaire['questions'] = area_questions
-    for topic in questionnaire.get('topics', []):
-        for question in topic['questions']:
-            question_id = slugify('_'.join([questionnaire['id'],
-                                            topic['topic'], question['label']]))
-            question['id'] = question_id
-            question['area_id'] = questionnaire['id']
-            question['topic'] = topic['topic']
-            question['questionnaire'] = questionnaire
-            if question_id in QUESTIONS_BY_ID:
-                raise Exception("Duplicate skill id {}".format(question_id))
-            else:
-                QUESTIONS_BY_ID[question_id] = question
-            area_questions.append(question)
+
+QUESTIONNAIRES = Questionnaires()
+QUESTIONNAIRES_BY_ID = QUESTIONNAIRES.by_id
+QUESTIONS_BY_ID = QUESTIONNAIRES.questions_by_id
