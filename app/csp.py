@@ -34,7 +34,8 @@ def add_header(response):
         'Content-Security-Policy-Report-Only',
         '; '.join([
             'script-src %s' % ' '.join(script_src),
-            'report-uri /csp-report'
+            'report-uri %s' % current_app.config.get('CSP_REPORT_URI',
+                                                     '/csp-report')
         ])
     )
     return response
