@@ -59,10 +59,20 @@ def init_app(app):
     @app.route('/csp-report', methods=['POST'])
     @csrf.exempt
     def csp_report():
-        if (current_app.debug and request.data
-            and 'DEBUG_TOOLBAR_STATIC_PATH' in request.data):
-            # https://bugzilla.mozilla.org/show_bug.cgi?id=1026520
+        report = True
+        if request.data:
+            if 'safari-extension://' in request.data:
+                report = False
+            if (current_app.debug
+                and 'DEBUG_TOOLBAR_STATIC_PATH' in request.data):
+                # https://bugzilla.mozilla.org/show_bug.cgi?id=1026520
+                report = False
+        else:
+            report = False
+
+        if not report:
             return Response('CSP violation NOT reported.',
                             mimetype='text/plain')
+
         current_app.logger.error('CSP violation reported: %s' % request.data)
         return Response('CSP violation reported.', mimetype='text/plain')

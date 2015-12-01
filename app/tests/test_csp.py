@@ -12,6 +12,16 @@ class ContentSecurityPolicyTests(ViewTestCase):
         assert CSP_HEADER in resp.headers
 
     def test_report_endpoint_is_ok(self):
-        resp = self.client.post('/csp-report')
+        resp = self.client.post('/csp-report', data='blah')
         self.assertEqual('CSP violation reported.', resp.data)
+        self.assert200(resp)
+
+    def test_report_endpoint_ignores_safari_extensions(self):
+        resp = self.client.post('/csp-report', data='safari-extension://')
+        self.assertEqual('CSP violation NOT reported.', resp.data)
+        self.assert200(resp)
+
+    def test_report_endpoint_ignores_empty_requests(self):
+        resp = self.client.post('/csp-report')
+        self.assertEqual('CSP violation NOT reported.', resp.data)
         self.assert200(resp)
