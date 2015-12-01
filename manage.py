@@ -4,7 +4,8 @@ NoI manage.py
 Scripts to run the server and perform maintenance operations
 '''
 
-from app import mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats
+from app import (mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats,
+                 questionnaires)
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
@@ -24,6 +25,7 @@ import string
 import subprocess
 import yaml
 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = create_app() #pylint: disable=invalid-name
 migrate = Migrate(app, db) #pylint: disable=invalid-name
@@ -233,6 +235,21 @@ def build_sass():
     sass.build_files()
     print "Done. Built SASS files are in app/%s." % sass.CSS_DIR
     return 0
+
+@manager.command
+@manager.option('-f', '--from', dest='from_yaml')
+@manager.option('-t', '--to', dest='to_yaml')
+def generate_question_id_migration(from_yaml, to_yaml):
+    """
+    Generate an Alembic migration script for YAML question id changes.
+    """
+
+    from_yaml = os.path.normpath(os.path.join(ROOT_DIR, from_yaml))
+    to_yaml = os.path.normpath(os.path.join(ROOT_DIR, to_yaml))
+    from_q = questionnaires.Questionnaires(yaml.load(open(from_yaml)))
+    to_q = questionnaires.Questionnaires(yaml.load(open(to_yaml)))
+    print from_q.generate_question_id_migration_script(to_q)
+
 
 if __name__ == '__main__':
     subprocess.call('../symlink-hooks.sh', shell=True)

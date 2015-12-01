@@ -1,4 +1,5 @@
 import yaml
+import json
 from slugify import slugify
 from copy import deepcopy
 
@@ -67,8 +68,8 @@ class Questionnaires(list):
                 raise Exception('Question text in questionnaires differs')
 
             for question in questionnaire['questions']:
-                other = [oq for oq in other_qnaire['questions']
-                         if oq['question'] == question['question']][0]
+                oq = [oq for oq in other_qnaire['questions']
+                      if oq['question'] == question['question']][0]
                 if question['id'] != oq['id']:
                     if oq['id'] in self.questions_by_id:
                         raise Exception("Duplicate skill id {}".\
@@ -76,3 +77,42 @@ class Questionnaires(list):
                     result[question['id']] = oq['id']
 
         return result
+
+    def generate_question_id_migration_script(self, other_questionnaires):
+        '''
+        Like get_question_id_changes() but returns an Alembic migration
+        script to implement the changes.
+        '''
+
+        changes = self.get_question_id_changes(other_questionnaires)
+        changes = json.dumps(
+            changes,
+            sort_keys=True,
+            indent=4
+        )
+        return QUESTION_ID_MIGRATION_SCRIPT % changes
+
+
+QUESTION_ID_MIGRATION_SCRIPT = """\
+from alembic import op
+import sqlalchemy as sa
+
+QUESTION_ID_CHANGES = %s
+
+user_skills = sa.sql.table('user_skills', sa.sql.column('name', sa.String))
+
+def rename_user_skill(from_id, to_id):
+    op.execute(
+        user_skills.update().\\
+            where(user_skills.c.name == op.inline_literal(from_id)).\\
+            values({'name': op.inline_literal(to_id)})
+        )
+
+def upgrade():
+    for from_id, to_id in QUESTION_ID_CHANGES.items():
+        rename_user_skill(from_id, to_id)
+
+def downgrade():
+    for to_id, from_id in QUESTION_ID_CHANGES.items():
+        rename_user_skill(from_id, to_id)
+"""

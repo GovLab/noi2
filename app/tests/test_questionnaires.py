@@ -54,11 +54,20 @@ class QuestionnairesTests(TestCase):
                                      'Duplicate skill id foo-bar-baz'):
             q = Questionnaires(raw_data)
 
-    def test_question_id_changes_works(self):
+class MigrationTests(TestCase):
+    def setUp(self):
+        self.q1 = Questionnaires(RAW_DATA)
+
         raw_data_2 = deepcopy(RAW_DATA)
         raw_data_2[0]['topics'][0]['topic'] = 'blop'
-        q1 = Questionnaires(RAW_DATA)
-        changes = q1.get_question_id_changes(Questionnaires(raw_data_2))
+        self.q2 = Questionnaires(raw_data_2)
+
+    def test_question_id_changes_works(self):
+        changes = self.q1.get_question_id_changes(self.q2)
         self.assertEqual(changes, {
             'foo-bar-baz': 'foo-blop-baz'
         })
+
+    def test_generate_question_id_migration_script_is_valid_python(self):
+        code = self.q1.generate_question_id_migration_script(self.q2)
+        exec code
