@@ -25,6 +25,16 @@ def get_skill_counts():
         "do": get_skill_count(LEVELS['LEVEL_I_CAN_DO_IT']['score'])
     }
 
+def get_top_countries():
+    count = func.count(models.User.id)
+    query = db.session.query(models.User.country, count).\
+        group_by(models.User.country).\
+        order_by(count.desc()).\
+        limit(10).all()
+    return [
+        (str(item[0]), item[1]) for item in query
+    ]
+
 def get_avg_num_questions_answered():
     answers_per_user = db.session.query(
         func.count(models.UserSkill.id).label('num_answers')
@@ -55,6 +65,7 @@ def generate():
         "users": db.session.query(func.count(models.User.id)).scalar(),
         "connections": models.ConnectionEvent.connections_in_deployment(),
         "messages": get_shared_message_count(),
+        "countries": get_top_countries(),
         "avg_num_questions_answered": get_avg_num_questions_answered(),
         "total_questions_answered": get_total_questions_answered(),
         "questionnaire_counts": get_questionnaire_counts(),
