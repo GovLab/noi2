@@ -32,7 +32,7 @@ def get_top_countries():
         order_by(count.desc()).\
         limit(10).all()
     return [
-        (str(item[0]), item[1]) for item in query
+        ("%s (%s)" % (item[0].name, item[0].code), item[1]) for item in query
     ]
 
 def get_avg_num_questions_answered():
