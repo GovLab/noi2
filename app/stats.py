@@ -1,6 +1,6 @@
 from app import models, LEVELS, QUESTIONNAIRES
 
-from sqlalchemy import func
+from sqlalchemy import func, cast, String
 
 db = models.db
 
@@ -36,6 +36,14 @@ def get_countries():
         for item in query if item[0] is not None
     ]
 
+def get_total_unique_skills():
+    return db.session.query(func.count(
+        func.distinct(cast(models.UserSkill.level, String) + '-' +
+                      cast(models.UserSkill.name, String))
+    )).\
+    filter(models.UserSkill.level != \
+           LEVELS['LEVEL_I_WANT_TO_LEARN']['score']).scalar()
+
 def get_avg_num_questions_answered():
     answers_per_user = db.session.query(
         func.count(models.UserSkill.id).label('num_answers')
@@ -67,6 +75,7 @@ def generate():
         "connections": models.ConnectionEvent.connections_in_deployment(),
         "messages": get_shared_message_count(),
         "countries": get_countries(),
+        "total_unique_skills": get_total_unique_skills(),
         "avg_num_questions_answered": get_avg_num_questions_answered(),
         "total_questions_answered": get_total_questions_answered(),
         "questionnaire_counts": get_questionnaire_counts(),
