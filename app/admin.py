@@ -28,8 +28,10 @@ class NoiModelView(ModelView):
 
 
 class UserModelView(NoiModelView):
-    column_list = ('first_name', 'last_name', 'email')
-    form_columns = column_list
+    column_list = ('first_name', 'last_name', 'email', 'last_login_at',
+                   'login_count')
+    form_columns = ('first_name', 'last_name', 'email', 'position',
+                    'organization', 'city', 'projects')
     column_searchable_list = ('first_name', 'last_name', 'email')
 
     def scaffold_form(self):
