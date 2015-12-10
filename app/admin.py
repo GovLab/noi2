@@ -46,7 +46,10 @@ class UserModelView(NoiModelView):
 
     def scaffold_form(self):
         form_class = super(UserModelView, self).scaffold_form()
+
+        # https://github.com/flask-admin/flask-admin/issues/1134
         form_class.email = TextField('Email')
+
         return form_class
 
 

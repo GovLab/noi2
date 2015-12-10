@@ -14,6 +14,8 @@ def add_header(response):
         # Ugh, flask-admin has inline scripts. Since only a handful of
         # users will have access to this view anyways, just disable CSP
         # for it.
+        #
+        # https://github.com/flask-admin/flask-admin/issues/1135
         return response
 
     script_src = [
