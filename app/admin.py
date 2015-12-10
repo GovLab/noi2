@@ -10,14 +10,15 @@ from .models import User, db
 
 class NoiModelView(ModelView):
     # The latest docs for flask-admin document a SecureForm class, but
-    # this hasn't yet been added to the latest release, so we'll use
-    # the "old" way of enabling CSRF support, documented here:
+    # it doesn't seem to work, so we'll use the "old" way of enabling
+    # CSRF support, documented here:
     #
     # http://flask-admin.readthedocs.org/en/v1.3.0/introduction/
     form_base_class = flask_wtf.Form
 
     can_delete = False
     can_create = False
+    can_export = True
 
     def is_accessible(self):
         return current_user.is_authenticated() and current_user.is_admin()
