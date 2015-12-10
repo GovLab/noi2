@@ -56,11 +56,6 @@ you're using a pip library wrong.
 If you have a global `pylint` installed, you should remove it as it won't be
 able to track dependencies properly.
 
-Then, you need to pull the images.  This will take a minute the first time.
-If requirements change, you need to do this again.
-
-    docker-compose pull
-
 Then you need to build necessary images with:
 
     docker-compose build
