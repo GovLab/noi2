@@ -1,5 +1,6 @@
 import json
 
+from werkzeug.wrappers import Request, Response
 from flask import redirect, request
 from flask_login import current_user
 from flask_security.utils import url_for_security
@@ -10,6 +11,43 @@ from wtforms import TextField
 
 from .models import User, db
 from . import stats
+
+NAME = 'NoI Admin'
+
+class PrefixedHttpBasicAuthMiddleware(object):
+    '''
+    Protect all paths starting with a given prefix behind HTTP Basic Auth.
+
+    Based on:
+
+    https://github.com/mitsuhiko/werkzeug/blob/master/examples/httpbasicauth.py
+    '''
+
+    def __init__(self, app, prefix, username, password, realm):
+        self.prefix = prefix
+        self.username = username
+        self.password = password
+        self.realm = realm
+        self.app = app
+
+    def check_auth(self, username, password):
+        return username == self.username and password == self.password
+
+    def auth_required(self, request):
+        return Response('Could not verify your access level for that URL.\n'
+                        'You have to login with proper credentials', 401,
+                        {'WWW-Authenticate': 'Basic realm="%s"' % self.realm})
+
+    def __call__(self, environ, start_response):
+        path = environ.get('PATH_INFO', '/')
+        if path.startswith(self.prefix):
+            request = Request(environ)
+            auth = request.authorization
+            if not auth or not self.check_auth(auth.username, auth.password):
+                response = self.auth_required(request)
+                return response(environ, start_response)
+        return self.app(environ, start_response)
+
 
 class StatsView(BaseView):
     @expose('/')
@@ -54,6 +92,17 @@ class UserModelView(NoiModelView):
 
 
 def init_app(app):
-    admin = Admin(app, name='NoI Admin', template_mode='bootstrap3')
+    admin = Admin(app, name=NAME, template_mode='bootstrap3')
     admin.add_view(UserModelView(User, db.session))
     admin.add_view(StatsView(name='Stats', endpoint='stats'))
+
+    basic_auth = app.config.get('ADMIN_UI_BASIC_AUTH')
+    if basic_auth:
+        username, password = basic_auth.split(':')
+        app.wsgi_app = PrefixedHttpBasicAuthMiddleware(
+            app.wsgi_app,
+            prefix='/admin/',
+            username=username,
+            password=password,
+            realm=NAME
+        )
