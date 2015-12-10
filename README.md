@@ -56,10 +56,9 @@ you're using a pip library wrong.
 If you have a global `pylint` installed, you should remove it as it won't be
 able to track dependencies properly.
 
-Then, you need to pul the images.  This will take a minute the first time.
-If requirements change, you need to do this again.
+Then you need to build necessary images with:
 
-    docker-compose pull
+    docker-compose build
 
 You may also want to seed the database with a bunch of random users and
 other data, which can be done via:
@@ -136,23 +135,47 @@ Tests are located in `app/tests`. Please feel free to add more!
 
 ### Changing the Dockerfile
 
-The primary container for the app is hosted on [Docker Hub][].
+This app uses *two* different Dockerfiles:
+
+* `app/Dockerfile` is the "base" container for the app; it's hosted on
+  [Docker Hub][] and retrieved from there. It's fairly large, takes a long
+  time to build; it's also versioned and shouldn't change very often.
+* `app/docker-quick/Dockerfile` sits atop the base container and is
+  built on development/production infrastructure. It shouldn't take
+  long to build, and its contents should regularly be moved over to
+  `app/Dockerfile` and tagged as a new version on Docker Hub.
 
 This is done to make it fast to get new deploys and Travis CI builds
-up and running. However, when you need to change the container, you
-won't want to pull the image from Docker Hub; instead, you'll want to:
+up and running, while also making it easy to experiment with new
+dependencies.
 
-  1. Edit `docker-compose.yml` and change the line
-     `image: thegovlab/noi2:latest` to be `build: app/`.
-  2. Make any changes you need to `app/Dockerfile`.
-  3. Run `docker-compose build`.
+#### Updating app/docker-quick/Dockerfile
+
+This Dockerfile is easy to update; just change the file or
+`requirements.quick.txt` as needed and re-run `docker-compose build` to
+rebuild the container.
 
 You may want to run `docker-compose run app bash` to poke into your
-newly-built container and make sure things work. Once you're satisfied,
-you'll want to commit the new Dockerfile and push the changes to
-GitHub; at this point, Docker Hub will build a new image for others
-to download. You can monitor the status of the build on Docker Hub's
-[Build Details][] page.
+newly-built container and make sure things work.
+
+#### Updating app/Dockerfile
+
+Updating this Dockerfile takes more work:
+
+1. Find the current version of the base dockerfile by looking at
+   the `FROM` directive of `app/docker-quick/Dockerfile`. The rest
+   of these instructions assume it is `docker-base-0.1` for the sake of
+   example.
+2. Move lines from `app/docker-quick/Dockerfile` and 
+   `requirements.quick.txt` over to `app/Dockerfile` and `requirements.txt`
+   as needed.
+3. Commit the changes and tag the revision with `git tag docker-base-0.2`.
+4. Push the changes to GovLab/noi2 on GitHub with
+   `git push git@github.com:GovLab/noi2.git docker-base-0.2`. This will
+   trigger a new build of the container on Docker Hub, which you can
+   monitor at Docker Hub's [Build Details][] page.
+5. Once Docker Hub is finished, update the `FROM` directive of
+   `app/docker-quick/Dockerfile` to point to `docker-base-0.2`.
 
 ### Editing CSS
 
