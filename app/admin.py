@@ -1,12 +1,22 @@
+import json
+
 from flask import redirect, request
 from flask_login import current_user
 from flask_security.utils import url_for_security
-from flask_admin import Admin
+from flask_admin import Admin, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 import flask_wtf
 from wtforms import TextField
 
 from .models import User, db
+from . import stats
+
+class StatsView(BaseView):
+    @expose('/')
+    def index(self):
+        return self.render('admin/stats_index.html',
+                           stats=json.dumps(stats.generate(), indent=2))
+
 
 class NoiModelView(ModelView):
     # The latest docs for flask-admin document a SecureForm class, but
@@ -39,6 +49,8 @@ class UserModelView(NoiModelView):
         form_class.email = TextField('Email')
         return form_class
 
+
 def init_app(app):
-    admin = Admin(app, template_mode='bootstrap3')
+    admin = Admin(app, name='NoI Admin', template_mode='bootstrap3')
     admin.add_view(UserModelView(User, db.session))
+    admin.add_view(StatsView(name='Stats', endpoint='stats'))
