@@ -1,1 +1,1 @@
-git+git://github.com/flask-admin/flask-admin@47d965fbae473e0dd6755ef4a79f34c1d493d1a0#egg=Flask-Admin
+https://github.com/flask-admin/flask-admin/zipball/47d965fbae473e0dd6755ef4a79f34c1d493d1a0#egg=Flask-Admin
