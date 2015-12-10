@@ -4,7 +4,7 @@
 # https://github.com/govlab/noi2
 #
 
-FROM thegovlab/noi2:latest
+FROM thegovlab/noi2:docker-base-0.1
 MAINTAINER Atul Varma <atul@thegovlab.org>
 
 COPY requirements.quick.txt /noi/app/

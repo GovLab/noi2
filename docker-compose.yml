@@ -1,6 +1,5 @@
 app:
     build: app/docker-quick/
-#    image: thegovlab/noi2:latest
     command: /noi/run.sh
     links:
         - db
