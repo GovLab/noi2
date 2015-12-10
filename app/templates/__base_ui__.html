@@ -79,6 +79,9 @@
         <a href="{{ url_for('views.faq') }}">{{ gettext('FAQ') }}</a>
         <a href="{{ url_for('views.about_page') }}">{{ gettext('About') }}</a>
         <a href="{{ url_for('views.terms_and_conditions') }}">{{ gettext("Terms of Service") }}</a>
+        {% if current_user.is_admin() -%}
+        <a href="{{ url_for('admin.index') }}">{{ gettext('Admin Panel') }}</a>
+        {%- endif %}
         <a href="{{ url_for_security('logout') }}">{{ gettext('Sign Out') }}</a>
     </section>
 

@@ -1,5 +1,5 @@
 from app import csrf
-from flask import current_app, make_response, request, Response
+from flask import current_app, make_response, request, Response, url_for
 
 from hashlib import sha256
 from base64 import b64encode
@@ -9,6 +9,12 @@ def add_header(response):
     '''
     Add a Content Security Policy (CSP) header to the given response.
     '''
+
+    if request.path.startswith(url_for('admin.index')):
+        # Ugh, flask-admin has inline scripts. Since only a handful of
+        # users will have access to this view anyways, just disable CSP
+        # for it.
+        return response
 
     script_src = [
         "'self'",
