@@ -1,9 +1,8 @@
 import json
 
 from werkzeug.wrappers import Request, Response
-from flask import redirect, request
+from flask import request, current_app, abort
 from flask_login import current_user
-from flask_security.utils import url_for_security
 from flask_admin import Admin, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 import flask_wtf
@@ -49,14 +48,24 @@ class PrefixedHttpBasicAuthMiddleware(object):
         return self.app(environ, start_response)
 
 
-class StatsView(BaseView):
+class AdminPermissionRequiredMixin(object):
+    def is_accessible(self):
+        return current_user.is_authenticated() and current_user.is_admin()
+
+    def inaccessible_callback(self, name, **kwargs):
+        if not current_user.is_authenticated():
+            return current_app.login_manager.unauthorized()
+        return abort(403)
+
+
+class StatsView(AdminPermissionRequiredMixin, BaseView):
     @expose('/')
     def index(self):
         return self.render('admin/stats_index.html',
                            stats=json.dumps(stats.generate(), indent=2))
 
 
-class NoiModelView(ModelView):
+class NoiModelView(AdminPermissionRequiredMixin, ModelView):
     # The latest docs for flask-admin document a SecureForm class, but
     # it doesn't seem to work, so we'll use the "old" way of enabling
     # CSRF support, documented here:
@@ -67,12 +76,6 @@ class NoiModelView(ModelView):
     can_delete = False
     can_create = False
     can_export = True
-
-    def is_accessible(self):
-        return current_user.is_authenticated() and current_user.is_admin()
-
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(url_for_security('login', next=request.url))
 
 
 class UserModelView(NoiModelView):
@@ -96,6 +99,10 @@ def init_app(app):
     admin.add_view(UserModelView(User, db.session))
     admin.add_view(StatsView(name='Stats', endpoint='stats'))
 
+    _init_basic_auth(app)
+
+
+def _init_basic_auth(app):
     basic_auth = app.config.get('ADMIN_UI_BASIC_AUTH')
     if basic_auth:
         username, password = basic_auth.split(':')
