@@ -24,8 +24,20 @@ following in `noi/app/config/local_config.yml`:
     SERVER_NAME:
     GA_TRACKING_CODE:
     SECRET_KEY:
+
+    # A list of email addresses to send error reports to.
     ADMINS:
       - admin@example.org
+      - error_reports@example.org
+
+    # A list of email addresses corresponding to users who will be
+    # able to access the admin panel.
+    ADMIN_UI_USERS:
+      - admin@example.org
+
+    # A string of the form username:password that will add an extra layer
+    # of HTTP Basic Authentication to the admin UI.
+    ADMIN_UI_BASIC_AUTH: stay_away:uninvited_guests
 
 If you want SSL to work, you'll need to uncomment the lines in
 `/conf/ssl/ssl.conf`, and add the secret key and certificate of the same name
