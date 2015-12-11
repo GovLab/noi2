@@ -157,6 +157,9 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
 
+    def is_admin(self):
+        return self.email in current_app.config.get('ADMIN_UI_USERS', [])
+
     @property
     def full_name(self):
         return u"%s %s" % (self.first_name, self.last_name)

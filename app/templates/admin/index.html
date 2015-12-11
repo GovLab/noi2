@@ -1,0 +1,9 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+  {% if current_user.is_authenticated() and current_user.is_admin() %}
+    <p>Welcome to the NoI admin panel.</p>
+  {% else %}
+    <p>You probably shouldn't be here.</p>
+  {% endif %}
+{% endblock %}

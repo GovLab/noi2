@@ -10,7 +10,7 @@ from flask.ext.babel import get_locale
 from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
-from app import (csrf, cache, mail, bcrypt, s3, assets, security,
+from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
                  babel, celery, alchemydumps, sass, email_errors, csp,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
@@ -134,6 +134,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.config['SEARCH_DEPLOYMENTS'].append(noi_deploy)
     babel.init_app(app)
     l10n.init_app(app)
+    admin.init_app(app)
 
     app.config['DOMAINS'] = this_deployment.get('domains',
                                                 default_deployment['domains'])
