@@ -53,24 +53,13 @@ To run the site in deploy mode:
 
 ## Development
 
-To develop, install the pip requirements into a virtualenv.  You will need Docker.
-
-    virtualenv .env
-    source .env/bin/activate
-    pip install -r requirements.txt
-
-If you're using `pylint` (which you should) you'll also want to install the
-app's dependencies into your virtualenv.  This will allow pylint to tell you if
-you're using a pip library wrong.
-
-    pip install -r app/requirements.txt
-
-If you have a global `pylint` installed, you should remove it as it won't be
-able to track dependencies properly.
-
-Then you need to build necessary images with:
+Build necessary images with:
 
     docker-compose build
+
+Then, get the database ready:
+
+    ./manage.sh db upgrade
 
 You may also want to seed the database with a bunch of random users and
 other data, which can be done via:
