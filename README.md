@@ -55,6 +55,12 @@ Since Docker Machine doesn't expose containers to `localhost` or
 
 The server should be running on port 80.
 
+### Windows Notes
+
+Unfortunately, because Docker Compose isn't currently available for
+Windows at the time of this writing, the only way to develop NoI is
+to set up a Linux virtual machine using a tool like [VirtualBox][].
+
 ### Database migrations
 
 Whenever you make changes to `model.py`, you will need to generate a migration
@@ -176,3 +182,4 @@ For more details on how we write our SASS, see the project's
   [SASS README]: https://github.com/GovLab/noi2/blob/master/app/static/sass/README.md
   [Docker Hub]: https://hub.docker.com/r/thegovlab/noi2/
   [`DEPLOYING.md`]: https://github.com/GovLab/noi2/blob/master/DEPLOYING.md
+  [VirtualBox]: https://www.virtualbox.org/
