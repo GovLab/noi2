@@ -11,45 +11,9 @@ installed (for example, a DigitalOcean droplet), run the following in terminal:
     chmod +x /usr/local/bin/docker-compose
     git clone https://github.com/GovLab/noi2.git
     cd noi2
+    cp app/config/local_config.sample.yml app/config/local_config.yml
 
-In order to enable full site functionality, you will need to specify the
-following in `noi/app/config/local_config.yml`:
-
-    MAIL_USERNAME:
-    MAIL_PASSWORD:
-    NOI_DEPLOY:
-    S3_ACCESS_KEY_ID:
-    S3_SECRET_ACCESS_KEY:
-    DEBUG: False
-    SERVER_NAME:
-    GA_TRACKING_CODE:
-    SECRET_KEY:
-
-    # A list of email addresses to send error reports to.
-    ADMINS:
-      - admin@example.org
-      - error_reports@example.org
-
-    # A list of email addresses corresponding to users who will be
-    # able to access the admin panel.
-    ADMIN_UI_USERS:
-      - admin@example.org
-
-    # A string of the form username:password that will add an extra layer
-    # of HTTP Basic Authentication to the admin UI.
-    ADMIN_UI_BASIC_AUTH: stay_away:uninvited_guests
-
-If you want SSL to work, you'll need to uncomment the lines in
-`/conf/ssl/ssl.conf`, and add the secret key and certificate of the same name
-to the `.keys` directory.
-
-Then, get the database ready:
-
-    ./manage.sh db upgrade
-
-To run the site in deploy mode:
-
-    ./deploy.sh
+Now read `app/config/local_config.yml` and optionally edit it to taste.
 
 ## Development
 
@@ -71,6 +35,11 @@ other data, which can be done via:
 To get everything running:
 
     docker-compose up
+
+### Production deployment
+
+For information on deploying to production, including setting up SSL
+and more, see [`DEPLOYING.md`][].
 
 ### OS X Notes
 
@@ -206,3 +175,4 @@ For more details on how we write our SASS, see the project's
   [PostCSS Autoprefixer]: https://github.com/postcss/autoprefixer
   [SASS README]: https://github.com/GovLab/noi2/blob/master/app/static/sass/README.md
   [Docker Hub]: https://hub.docker.com/r/thegovlab/noi2/
+  [`DEPLOYING.md`]: https://github.com/GovLab/noi2/blob/master/DEPLOYING.md

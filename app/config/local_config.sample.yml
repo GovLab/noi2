@@ -1,0 +1,90 @@
+# Local Configuration SAMPLE
+#
+# This file contains sensible defaults for development, with additional
+# notes for production deployment and optional features.
+#
+# Everything here overrides the base settings specified in config.yml.
+
+# DEBUG should be set to True for development, but it is VERY IMPORTANT
+# to set it to False for production.
+
+DEBUG: True
+
+# SECRET_KEY can be set to any non-empty value for development. For
+# production, however, set it to something unguessable. Running the
+# following in the shell can do this for you:
+#
+# cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1
+
+SECRET_KEY: i_am_insecure
+
+# Set this to the hostname of your deployment.
+#
+# NOI_DEPLOY: www.mynoi.org
+
+# Amazon S3
+# ---------
+
+# NoI uses S3 to store user profile pictures (and possibly other things).
+# If these aren't uncommented and filed out, then the functionality
+# that depends on it won't work.
+#
+# For details on how to retrieve this information, see:
+# 
+# blogs.aws.amazon.com/security/post/Tx1R9KDN9ISZ0HF/
+#
+# S3_ACCESS_KEY_ID: someaccesskeyid
+# S3_SECRET_ACCESS_KEY: somesecretaccesskey
+
+# Mail
+# ----
+
+# Uncomment these lines to enable the sending of email. If left
+# unspecified, email will not be sent. For documentation on these
+# configuration options, see https://pythonhosted.org/Flask-Mail/.
+#
+# MAIL_SERVER: 'smtp.gmail.com'
+# MAIL_PORT: 587
+# MAIL_USE_SSL: False
+# MAIL_USE_TLS: True
+# MAIL_USERNAME: somebody@gmail.com
+# MAIL_PASSWORD: somepassword
+
+# This is a list of email addresses to send error reports to. Mail must be
+# configured in order for it to work.
+#
+# ADMINS:
+#   - admin@example.org
+#   - error_reports@example.org
+
+# Admin UI
+# --------
+
+# This is a list of email addresses corresponding to users
+# who will be able to access the admin panel.
+#
+# ADMIN_UI_USERS:
+#   - admin@example.org
+
+# This is a string of the form username:password that will add an extra
+# layer of HTTP Basic Authentication to the admin UI.
+#
+# ADMIN_UI_BASIC_AUTH: stay_away:uninvited_guests
+
+# Content Security Policy (CSP)
+# -----------------------------
+
+# This specifies a third-party service to report CSP violations to.
+#
+# CSP_REPORT_URI: https://report-uri.io/blahblahblah
+
+# Analytics
+# ---------
+
+# This specifies a Google Analytics tracking code.
+#
+# GA_TRACKING_CODE: 'UA-blahblah-1'
+
+# This specifies a Pingdom Real User Monitoring (RUM) ID.
+#
+# PINGDOM_RUM_ID: blahblahblah

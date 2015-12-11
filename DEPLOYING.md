@@ -24,23 +24,11 @@
 4. Configure the site
 
   * Open up `app/config/local_config.yml` in your text editor of choice
-  * Add the following lines, substituting those in carrots:
-
-  ```
-MAIL_USERNAME: <Gmail or Gmail-hosted user to send mail from>
-MAIL_PASSWORD: <One-off password for that account>
-NOI_DEPLOY: <Hostname of this deployment>
-S3_ACCESS_KEY_ID: <S3 key for image uploads>
-S3_SECRET_ACCESS_KEY: <S3 secret for that key>
-DEBUG: False
-GA_TRACKING_CODE: <Google Analytics tracking code>
-SECRET_KEY: <Encryption key for this deployment, `cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1` in shell will work>
-ADMINS:
-  - admin@example.org
-  - <Other emails to send error reports to>
-  ```
-
-  * Some of these credentials can be obtained from prior installations.
+    and edit it to taste, using [`local_config.sample.yml`](https://github.com/GovLab/noi2/blob/master/app/config/local_config.sample.yml) as a guide.
+    Make sure that you've at least set `DEBUG` to `False`, specified an
+    unguessable `SECRET_KEY`, and set `NOI_DEPLOY`. You'll probably also
+    want to configure mail and S3.
+  * Some credentials can be obtained from prior installations.
   * Other customizations (about text, questionnaire ordering, language, etc.) should be made in [deployments.yaml](https://github.com/GovLab/noi2/blob/master/app/data/deployments.yaml).  You'll need to branch these changes off of `stable`, and make sure to re-tag the new commit as `stable`.
 
 5. Set up https
