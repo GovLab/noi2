@@ -24,7 +24,13 @@ class Questionnaires(list):
             area_questions = []
             questionnaire['questions'] = area_questions
             for topic in questionnaire.get('topics', []):
+                if topic['questions'] is None:
+                    raise Exception('topic %s -> %s has no questions' % \
+                                    (questionnaire['id'], topic['topic']))
                 for question in topic['questions']:
+                    if 'label' not in question:
+                        raise Exception("Question has no label {}".\
+                                        format(repr(question['question'])))
                     if question['question'] in question_texts:
                         raise Exception("Duplicate question text {}".\
                                         format(repr(question['question'])))
@@ -61,8 +67,10 @@ class Questionnaires(list):
             qid = questionnaire['id']
             other_qnaire = other_questionnaires.by_id[qid]
 
-            txt1 = [q['question'] for q in questionnaire['questions']]
-            txt2 = [q['question'] for q in other_qnaire['questions']]
+            # The two questionnaires should have the same question text,
+            # although the order can be rearranged.
+            txt1 = set(q['question'] for q in questionnaire['questions'])
+            txt2 = set(q['question'] for q in other_qnaire['questions'])
 
             if txt1 != txt2:
                 raise Exception('Question text in questionnaires differs')
