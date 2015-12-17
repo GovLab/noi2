@@ -35,6 +35,7 @@ SECRET_KEY: i_am_insecure
 #
 # S3_ACCESS_KEY_ID: someaccesskeyid
 # S3_SECRET_ACCESS_KEY: somesecretaccesskey
+# S3_BUCKET_NAME: 'some-bucket-name'
 
 # Mail
 # ----
