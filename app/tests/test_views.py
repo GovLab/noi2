@@ -1,3 +1,7 @@
+from StringIO import StringIO
+from moto import mock_s3
+import boto
+
 from app import (QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS,
                  QUESTIONNAIRES_BY_ID, mail)
 from app.factory import create_app
@@ -545,6 +549,42 @@ class SearchTests(ViewTestCase):
         self.assert200(res)
         assert "practitioner stone" in res.data
         assert "somebody else" not in res.data
+
+
+class UploadPictureTests(ViewTestCase):
+    BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()
+
+    BASE_APP_CONFIG.update(
+        S3_ACCESS_KEY_ID='my_access_key',
+        S3_SECRET_ACCESS_KEY='my_secret_access_key',
+        S3_BUCKET_NAME='my_bucket'
+    )
+
+    def test_invalid_form_is_bad_request(self):
+        self.login()
+        res = self.client.post('/me/picture')
+        self.assert400(res)
+
+    @mock_s3
+    def test_valid_form_sets_picture(self):
+        conn = boto.connect_s3()
+        conn.create_bucket('my_bucket')
+
+        self.login()
+        res = self.client.post(
+            '/me/picture',
+            data={
+                'picture': (StringIO('hi'), 'me.png')
+            },
+            content_type='multipart/form-data'
+        )
+        self.assertEqual(res.status_code, 204)
+
+        key = conn.get_bucket('my_bucket').\
+            get_key(self.last_created_user.picture_path)
+
+        self.assertEqual(key.get_contents_as_string(), 'hi')
+        self.assertEqual(key.content_type, 'image/png')
 
 
 class ViewTests(ViewTestCase):
