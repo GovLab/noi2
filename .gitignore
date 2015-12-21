@@ -2,6 +2,7 @@
 *.pyc
 app/config/local_config.yml
 app/static/css
+app/noi1/
 *.mo
 .keys
 backups

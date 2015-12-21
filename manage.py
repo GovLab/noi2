@@ -10,16 +10,19 @@ from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
 from app.tests.factories import UserFactory
+from app.noi1 import Noi1Command
 
 from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_security.recoverable import send_reset_password_instructions
+from flask.ext.script.commands import InvalidCommand
 
 from random import choice
 from sqlalchemy.exc import IntegrityError
 
 import codecs
+import sys
 import os
 import string
 import subprocess
@@ -32,6 +35,7 @@ migrate = Migrate(app, db) #pylint: disable=invalid-name
 
 manager = Manager(app) #pylint: disable=invalid-name
 
+manager.add_command('noi1', Noi1Command)
 manager.add_command('db', MigrateCommand)
 #manager.add_command("assets", ManageAssets)
 
@@ -252,5 +256,10 @@ def generate_question_id_migration(from_yaml, to_yaml):
 
 
 if __name__ == '__main__':
-    subprocess.call('../symlink-hooks.sh', shell=True)
-    manager.run()
+    if os.path.exists('../symlink-hooks.sh'):
+        subprocess.call('../symlink-hooks.sh', shell=True)
+    try:
+        manager.run()
+    except InvalidCommand as err:
+        sys.stderr.write(str(err) + '\n')
+        sys.exit(1)
