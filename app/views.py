@@ -20,8 +20,6 @@ from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
 
 from sqlalchemy import func, desc, or_
 
-from boto.s3.connection import S3Connection
-
 from urllib import urlencode
 import mimetypes
 import functools
@@ -103,19 +101,10 @@ def faq():
     return render_template('faq.html')
 
 def set_user_picture(user, picture):
-    conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
-                        current_app.config['S3_SECRET_ACCESS_KEY'])
-    bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
-    bucket.make_public(recursive=False)
-
-    mimetype = mimetypes.guess_type(picture.data.filename)[0]
-
-    k = bucket.new_key(user.picture_path)
-    k.set_metadata('Content-Type', mimetype)
-    k.set_contents_from_file(picture.data)
-    k.make_public()
-
-    user.has_picture = True
+    user.upload_picture(
+        picture.data,
+        mimetype=mimetypes.guess_type(picture.data.filename)[0]
+    )
 
 @views.route('/me/picture', methods=['POST'])
 @full_registration_required

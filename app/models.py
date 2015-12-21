@@ -18,6 +18,7 @@ from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
+from boto.s3.connection import S3Connection
 
 import base64
 import datetime
@@ -202,6 +203,24 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             bucket=current_app.config['S3_BUCKET_NAME'],
             path=self.picture_path
         )
+
+    def upload_picture(self, fileobj, mimetype):
+        '''
+        Upload the given file object with the given mime type to S3 and
+        mark the user as having a picture.
+        '''
+
+        conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
+                            current_app.config['S3_SECRET_ACCESS_KEY'])
+        bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
+        bucket.make_public(recursive=False)
+
+        k = bucket.new_key(self.picture_path)
+        k.set_metadata('Content-Type', mimetype)
+        k.set_contents_from_file(fileobj)
+        k.make_public()
+
+        self.has_picture = True
 
     @property
     def helpful_users(self, limit=10):

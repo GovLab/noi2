@@ -58,24 +58,6 @@ Noi1Command = manager = Noi1Manager(usage='Migrate NoI 1.0 users')
 def has_skills(user, min_skills=MIN_SKILLS):
     return user['skills'] and len(user['skills'].keys()) >= min_skills
 
-def set_user_picture(user, filename):
-    # This is largely copy/pasted from views.py, which we're not using
-    # directly because it's super complicated ugh.
-
-    conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
-                        current_app.config['S3_SECRET_ACCESS_KEY'])
-    bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
-    bucket.make_public(recursive=False)
-
-    mimetype = mimetypes.guess_type(filename)[0]
-
-    k = bucket.new_key(user.picture_path)
-    k.set_metadata('Content-Type', mimetype)
-    k.set_contents_from_file(open(filename, 'r'))
-    k.make_public()
-
-    user.has_picture = True
-
 def get_imported_users(users):
     for json_user in users:
         yield User.query_in_deployment().\
@@ -156,7 +138,11 @@ def import_pictures():
             cached_picture = find_cached_picture(json_user)
             if cached_picture:
                 print "Setting picture for %s." % user.email
-                set_user_picture(user, cached_picture)
+                with open(cached_picture, 'r') as f:
+                    user.upload_picture(
+                        f,
+                        mimetype=mimetypes.guess_type(cached_picture)[0]
+                    )
                 db.session.commit()
 
 @manager.command
