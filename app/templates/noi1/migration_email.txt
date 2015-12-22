@@ -1,0 +1,9 @@
+Hi {{ user.first_name }},
+
+Network of Innovators has just upgraded to version 2.0 and we've
+migrated your account over. You just need to set a password
+and you're good to go:
+
+  {{ reset_link }}
+
+- The GovLab Team

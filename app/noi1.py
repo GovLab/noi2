@@ -14,7 +14,10 @@ from slugify import slugify
 from sqlalchemy_utils import Country
 from flask_script import Manager
 from flask.ext.script.commands import InvalidCommand
-from flask import current_app
+from flask import current_app, render_template
+from flask_security.utils import url_for_security
+from flask_security.recoverable import generate_reset_password_token
+from flask_mail import Message
 
 import app
 from app.factory import create_app
@@ -87,11 +90,14 @@ manager.add_option(
 def has_skills(user, min_skills=MIN_SKILLS):
     return user['skills'] and len(user['skills'].keys()) >= min_skills
 
+def get_user_with_email(email):
+    return User.query_in_deployment().\
+           filter(User.email==email).\
+           one()
+
 def get_imported_users(users):
     for json_user in users:
-        yield User.query_in_deployment().\
-          filter(User.email==json_user['email']).\
-          one(), json_user
+        yield get_user_with_email(json_user['email']), json_user
 
 def generate_random_password(length=24):
     # http://stackoverflow.com/a/23728630
@@ -326,6 +332,34 @@ def csv_export(output_filename):
             writer.writerow(row)
 
     print "Wrote %s." % output_filename
+
+@manager.command
+def send_migration_instructions(email):
+    '''
+    Send migration instructions to the user with the given email.
+    '''
+
+    user = get_user_with_email(email)
+    token = generate_reset_password_token(user)
+
+    origin = 'https://%s' % current_app.config['NOI_DEPLOY']
+    path = url_for_security('reset_password', token=token)
+    reset_link = '%s%s' % (origin, path)
+    context = dict(
+        user=user,
+        reset_link=reset_link
+    )
+    subject = render_template('noi1/migration_email_subject.txt', **context)
+
+    msg = Message(
+        subject.strip(),
+        sender=current_app.config['SECURITY_EMAIL_SENDER'],
+        recipients=[user.email]
+    )
+    msg.body = render_template('noi1/migration_email.txt', **context)
+
+    mail = current_app.extensions.get('mail')
+    mail.send(msg)
 
 @manager.command
 def stats():

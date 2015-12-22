@@ -1,0 +1,1 @@
+{{ user.first_name }}, visit the all-new Network of Innovators 2.0!
