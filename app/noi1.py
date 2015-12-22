@@ -20,8 +20,11 @@ from app.factory import create_app
 from app.models import (db, User, UserExpertiseDomain, UserLanguage,
                         UserSkill, UserJoinedEvent)
 
-DATA_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'noi1')
+MY_DIR = os.path.abspath(os.path.dirname(__file__))
+ROOT_DIR = os.path.normpath(os.path.join(MY_DIR, '..'))
+DATA_DIR = os.path.join(MY_DIR, 'noi1')
 
+rootpath = lambda *x: os.path.join(ROOT_DIR, *x)
 datapath = lambda *x: os.path.join(DATA_DIR, *x)
 
 USERS_FILE = datapath('users.json')
@@ -33,8 +36,14 @@ users = None
 
 class Noi1Manager(Manager):
     @staticmethod
-    def __setup_globals():
+    def __setup_globals(users_file):
         global users, users_with_skills, users_with_email
+
+        if not os.path.isabs(users_file):
+            # We're probably being called in a docker container so
+            # make the path absolute based on the root directory, not
+            # our current directory.
+            users_file = rootpath(users_file)
 
         if users is not None:
             return
@@ -42,30 +51,27 @@ class Noi1Manager(Manager):
         if not os.path.exists(DATA_DIR):
             os.mkdir(DATA_DIR)
 
-        if not os.path.exists(USERS_FILE):
+        if not os.path.exists(users_file):
             raise InvalidCommand(
-                "Please export all NoI 1.0 users to %s." % USERS_FILE
+                "Please export NoI 1.0 users to %s." % users_file
             )
 
-        users = json.load(open(USERS_FILE, 'r'))
+        users = json.load(open(users_file, 'r'))
         users_with_skills = [user for user in users if has_skills(user)]
         users_with_email = [user for user in users if user['email']]
 
-    def __wrap(self, func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            self.__setup_globals()
-            func(*args, **kwargs)
-        return wrapper
-
-    def option(self, *args, **kwargs):
-        super_decorate = super(Noi1Manager, self).option(*args, **kwargs)
-        return lambda func: super_decorate(self.__wrap(func))
-
-    def command(self, func):
-        return super(Noi1Manager, self).command(self.__wrap(func))
+    def __call__(self, app=None, users_file=None):
+        self.__setup_globals(users_file)
+        return app
 
 Noi1Command = manager = Noi1Manager(usage='Migrate NoI 1.0 users')
+
+manager.add_option(
+    '--users-file',
+    required=False,
+    default=USERS_FILE,
+    help='Specify alternate location of NoI 1.0 user export JSON file'
+)
 
 def has_skills(user, min_skills=MIN_SKILLS):
     return user['skills'] and len(user['skills'].keys()) >= min_skills
