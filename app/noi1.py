@@ -5,6 +5,8 @@ import requests
 import mimetypes
 import datetime
 import functools
+import random
+import string
 from warnings import warn
 from boto.s3.connection import S3Connection
 from slugify import slugify
@@ -25,13 +27,17 @@ datapath = lambda *x: os.path.join(DATA_DIR, *x)
 USERS_FILE = datapath('users.json')
 PICTURES_DIR = datapath('pictures')
 PICTURE_EXTS = ['.jpg', '.png']
-MIN_SKILLS = 3
-FAKE_DEV_PASSWORD = 'foobar'
+MIN_SKILLS = app.MIN_QUESTIONS_TO_JOIN
+
+users = None
 
 class Noi1Manager(Manager):
     @staticmethod
     def __setup_globals():
         global users, users_with_skills, users_with_email
+
+        if users is not None:
+            return
 
         if not os.path.exists(DATA_DIR):
             os.mkdir(DATA_DIR)
@@ -45,13 +51,19 @@ class Noi1Manager(Manager):
         users_with_skills = [user for user in users if has_skills(user)]
         users_with_email = [user for user in users if user['email']]
 
-    def command(self, func):
+    def __wrap(self, func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             self.__setup_globals()
             func(*args, **kwargs)
+        return wrapper
 
-        return super(Noi1Manager, self).command(wrapper)
+    def option(self, *args, **kwargs):
+        super_decorate = super(Noi1Manager, self).option(*args, **kwargs)
+        return lambda func: super_decorate(self.__wrap(func))
+
+    def command(self, func):
+        return super(Noi1Manager, self).command(self.__wrap(func))
 
 Noi1Command = manager = Noi1Manager(usage='Migrate NoI 1.0 users')
 
@@ -64,7 +76,16 @@ def get_imported_users(users):
           filter(User.email==json_user['email']).\
           one(), json_user
 
-def add_user_to_db(user):
+def generate_random_password(length=24):
+    # http://stackoverflow.com/a/23728630
+    return ''.join(
+        random.SystemRandom().choice(string.ascii_uppercase + string.digits)
+        for _ in range(length)
+    )
+
+def add_user_to_db(user, password=''):
+    if not password:
+        password = generate_random_password()
     timestamp = datetime.datetime.strptime(
         user['timestamp'].split('.')[0],
         "%Y-%m-%dT%H:%M:%S"
@@ -79,8 +100,7 @@ def add_user_to_db(user):
         city=user['city'],
         created_at=timestamp,
         updated_at=timestamp,
-        # TODO: Change this for production!
-        password=FAKE_DEV_PASSWORD,
+        password=password,
         active=True
     )
     if user['org_type']:
@@ -160,8 +180,9 @@ def fully_register_users():
                 db.session.add(event)
     db.session.commit()
 
-@manager.command
-def import_users():
+@manager.option('--password',
+                help='Set password for users (defaults to random)')
+def import_users(password):
     '''
     Import users into the database.
     '''
@@ -172,7 +193,7 @@ def import_users():
             print "User with email %(email)s exists, skipping." % user
         else:
             print "Adding user %(email)s." % user
-            add_user_to_db(user)
+            add_user_to_db(user, password=password)
     db.session.commit()
 
 @manager.command
@@ -187,7 +208,7 @@ def validate():
         if user['email'] in user_emails:
             warn('multiple users exist with email %(email)s' % user)
         user_emails[user['email']] = True
-        add_user_to_db(user)
+        add_user_to_db(user, password='irrelevant')
     db.session.rollback()
     print "Validation complete."
 
