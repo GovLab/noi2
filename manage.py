@@ -15,6 +15,7 @@ from app.noi1 import Noi1Command
 from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+from flask_mail import Message
 from flask_security.recoverable import send_reset_password_instructions
 from flask.ext.script.commands import InvalidCommand
 
@@ -85,6 +86,22 @@ def translate_compile():
     for locale in locales:
         subprocess.check_call('pybabel compile -f -l {locale} -d /noi/app/translations/'.format(
             locale=locale), shell=True)
+
+
+@manager.command
+def send_test_email(recipient):
+    """
+    Send a test email to the given recipient.
+    """
+
+    msg = Message(
+        'Test Email',
+        sender=app.config['SECURITY_EMAIL_SENDER'],
+        recipients=[recipient]
+    )
+    msg.body = "Looks like sending email works!"
+    mail = app.extensions.get('mail')
+    mail.send(msg)
 
 
 @manager.command
