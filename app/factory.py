@@ -219,6 +219,12 @@ def create_app(config=None): #pylint: disable=too-many-statements
     sass.init_app(app)
     csp.init_app(app)
 
+    if app.config.get('BASIC_AUTH_FORCE'):
+        from flask.ext.basicauth import BasicAuth
+
+        basic_auth = BasicAuth()
+        basic_auth.init_app(app)
+
     return app
 
 def create_celery(app=None):
