@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import csv
 import requests
 import mimetypes
 import datetime
@@ -34,16 +35,26 @@ MIN_SKILLS = app.MIN_QUESTIONS_TO_JOIN
 
 users = None
 
+def make_path_absolute(filename):
+    '''
+    Convert the given user-supplied path to an absolute path.
+
+    Since we're probably being called in a docker container,
+    make the path absolute relative to the noi2 root directory, *not*
+    our current directory.
+    '''
+
+    if os.path.isabs(filename):
+        return filename
+
+    return rootpath(filename)
+
 class Noi1Manager(Manager):
     @staticmethod
     def __setup_globals(users_file):
         global users, users_with_skills, users_with_email
 
-        if not os.path.isabs(users_file):
-            # We're probably being called in a docker container so
-            # make the path absolute based on the root directory, not
-            # our current directory.
-            users_file = rootpath(users_file)
+        users_file = make_path_absolute(users_file)
 
         if users is not None:
             return
@@ -266,6 +277,55 @@ def cache_pictures():
             f.close()
         else:
             print "  got HTTP %d" % req.status_code
+
+@manager.command
+def csv_export(output_filename):
+    '''
+    Output information about users to a CSV file.
+    '''
+
+    fieldnames=[
+        'first_name',
+        'last_name',
+        'email',
+        'userid',
+        'skills',
+        'city',
+        'country',
+        'title',
+        'org',
+        'picture',
+        'domains',
+        'langs',
+        'projects',
+    ]
+    rows = []
+
+    for user in users:
+        row = {}
+        for fieldname in fieldnames:
+            if fieldname == 'skills':
+                if user['skills']:
+                    row['skills'] = len(user['skills'])
+                else:
+                    row['skills'] = 0
+            else:
+                value = user[fieldname]
+                if value is None:
+                    value = ''
+                if isinstance(value, list):
+                    value = ', '.join(value)
+                row[fieldname] = value.encode('utf-8')
+        rows.append(row)
+
+    with open(make_path_absolute(output_filename), 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames)
+        writer.writeheader()
+        for row in rows:
+            print "Exporting %s." % row['userid']
+            writer.writerow(row)
+
+    print "Wrote %s." % output_filename
 
 @manager.command
 def stats():
