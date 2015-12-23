@@ -74,6 +74,7 @@ def main_page():
         return redirect(url_for('views.activity'))
     else:
         return render_template('main.html',
+                               viz_data=get_network_viz_data(),
                                change_locale_form=ChangeLocaleForm())
 
 

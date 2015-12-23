@@ -70,15 +70,6 @@
     }
 }
 
-.b-treemap {
-    background-image: url($path-to-static + '/img/treemap.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 0;
-    padding-bottom: 125%;
-    width: 100%;
-}
-
 .b-categories {
     background-color: $blue;
     
