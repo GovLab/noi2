@@ -11,10 +11,11 @@ import string
 from warnings import warn
 from boto.s3.connection import S3Connection
 from slugify import slugify
+from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy_utils import Country
 from flask_script import Manager
 from flask.ext.script.commands import InvalidCommand
-from flask import current_app, render_template
+from flask import current_app, render_template, url_for
 from flask_security.utils import url_for_security
 from flask_security.recoverable import generate_reset_password_token
 from flask_mail import Message
@@ -295,6 +296,7 @@ def csv_export(output_filename):
         'last_name',
         'email',
         'userid',
+        'noi2_user_profile',
         'skills',
         'city',
         'country',
@@ -310,7 +312,18 @@ def csv_export(output_filename):
     for user in users:
         row = {}
         for fieldname in fieldnames:
-            if fieldname == 'skills':
+            if fieldname == 'noi2_user_profile':
+                row['noi2_user_profile'] = ''
+                if user['email']:
+                    try:
+                        noi2user = get_user_with_email(user['email'])
+                        row['noi2_user_profile'] = '%s%s' % (
+                            get_origin(),
+                            url_for('views.get_user', userid=noi2user.id)
+                        )
+                    except NoResultFound:
+                        pass
+            elif fieldname == 'skills':
                 if user['skills']:
                     row['skills'] = len(user['skills'])
                 else:
@@ -333,6 +346,9 @@ def csv_export(output_filename):
 
     print "Wrote %s." % output_filename
 
+def get_origin():
+    return 'https://%s' % current_app.config['NOI_DEPLOY']
+
 @manager.command
 def send_migration_instructions(email):
     '''
@@ -342,9 +358,8 @@ def send_migration_instructions(email):
     user = get_user_with_email(email)
     token = generate_reset_password_token(user)
 
-    origin = 'https://%s' % current_app.config['NOI_DEPLOY']
     path = url_for_security('reset_password', token=token)
-    reset_link = '%s%s' % (origin, path)
+    reset_link = '%s%s' % (get_origin(), path)
     context = dict(
         user=user,
         reset_link=reset_link
