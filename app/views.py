@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 LEVELS_BY_SCORE, mail, stats)
+                 LEVELS_BY_SCORE, mail, stats, cache)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email,
                         skills_to_percentages)
@@ -663,13 +663,8 @@ def activity():
         'most_connected_profiles': User.get_most_connected_profiles(limit=5)
     })
 
-@views.route('/network')
-@full_registration_required
-def network():
-    '''
-    View the network.
-    '''
-
+@cache.cached(key_prefix='network_viz_data', timeout=60)
+def get_network_viz_data():
     counts = stats.get_questionnaire_counts()
 
     viz_data = []
@@ -682,6 +677,16 @@ def network():
         viz_data.append(area_info)
     viz_data = sorted(viz_data, key=lambda area_info: area_info['total'],
                       reverse=True)
+    return viz_data
+
+@views.route('/network')
+@full_registration_required
+def network():
+    '''
+    View the network.
+    '''
+
+    viz_data = get_network_viz_data()
     return render_template('network.html', viz_data=viz_data)
 
 @views.route('/feedback')
