@@ -23,7 +23,7 @@ from flask_mail import Message
 import app
 from app.factory import create_app
 from app.models import (db, User, UserExpertiseDomain, UserLanguage,
-                        UserSkill, UserJoinedEvent)
+                        UserSkill, UserJoinedEvent, Noi1MigrationInfo)
 
 MY_DIR = os.path.abspath(os.path.dirname(__file__))
 ROOT_DIR = os.path.normpath(os.path.join(MY_DIR, '..'))
@@ -169,7 +169,12 @@ def add_user_to_db(user, password=''):
                     warn("unknown question id: %s" % skill_id)
             else:
                 warn("invalid score: %s" % score)
+    u.noi1_migration_info = Noi1MigrationInfo(
+        noi1_userid=user['userid'],
+        noi1_json=json.dumps(user)
+    )
     db.session.add(u)
+    return u
 
 @manager.command
 def import_pictures():
