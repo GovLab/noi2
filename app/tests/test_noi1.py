@@ -1,4 +1,7 @@
+from flask_script import Manager
+
 from .test_models import DbTestCase
+from .test_views import ViewTestCase
 from .factories import UserFactory
 
 from app import noi1
@@ -42,6 +45,7 @@ class Noi1MigrationInfoTests(DbTestCase):
         db.session.commit()
         self.assertEqual(user.noi1_migration_info.noi1_userid,
                          'twitter:123123123')
+        self.assertEqual(user.noi1_migration_info.email_sent_at, None)
 
     def test_is_deleted_along_with_user(self):
         user = noi1.add_user_to_db(SAMPLE_USER, password='foo')
@@ -53,3 +57,33 @@ class Noi1MigrationInfoTests(DbTestCase):
             Noi1MigrationInfo.noi1_userid == 'twitter:123123123'
         )
         self.assertEqual(len(query.all()), 0)
+
+class EmailSendingTests(ViewTestCase):
+    BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()
+
+    BASE_APP_CONFIG.update(
+        MAIL_USERNAME='foo@noi.org',
+        NOI_DEPLOY='noi.org',
+        SECURITY_EMAIL_SENDER='noreply@noi.org',
+        MAIL_SUPPRESS_SEND=True,
+    )
+
+    def test_it_works(self):
+        user = noi1.add_user_to_db(SAMPLE_USER, password='foo')
+        db.session.commit()
+
+        manager = Manager(self.app)
+        manager.add_command('noi1', noi1.manager)
+
+        noi1.set_users_from_json([])
+
+        with self.app.extensions.get('mail').record_messages() as outbox:
+            manager.handle('', [
+                'noi1',
+                'send_migration_instructions',
+                'foo@example.org',
+            ])
+            self.assertEqual(len(outbox), 1)
+            msg = outbox[0]
+            self.assertEqual(msg.sender, 'noreply@noi.org')
+            self.assertEqual(msg.recipients, ['foo@example.org'])

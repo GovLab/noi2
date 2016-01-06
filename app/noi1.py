@@ -53,11 +53,18 @@ def make_path_absolute(filename):
 
     return rootpath(filename)
 
+
+def set_users_from_json(json_users):
+    global users, users_with_skills, users_with_email
+
+    users = json_users
+    users_with_skills = [user for user in users if has_skills(user)]
+    users_with_email = [user for user in users if user['email']]
+
+
 class Noi1Manager(Manager):
     @staticmethod
     def __setup_globals(users_file):
-        global users, users_with_skills, users_with_email
-
         users_file = make_path_absolute(users_file)
 
         if users is not None:
@@ -71,9 +78,7 @@ class Noi1Manager(Manager):
                 "Please export NoI 1.0 users to %s." % users_file
             )
 
-        users = json.load(open(users_file, 'r'))
-        users_with_skills = [user for user in users if has_skills(user)]
-        users_with_email = [user for user in users if user['email']]
+        set_users_from_json(json.load(open(users_file, 'r')))
 
     def __call__(self, app=None, users_file=None):
         self.__setup_globals(users_file)
