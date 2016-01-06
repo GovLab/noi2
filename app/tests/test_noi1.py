@@ -1,3 +1,4 @@
+import datetime
 from flask_script import Manager
 
 from .test_models import DbTestCase
@@ -87,3 +88,9 @@ class EmailSendingTests(ViewTestCase):
             msg = outbox[0]
             self.assertEqual(msg.sender, 'noreply@noi.org')
             self.assertEqual(msg.recipients, ['foo@example.org'])
+            assert 'https://noi.org' in msg.body
+
+            delta = (datetime.datetime.now() -
+                     user.noi1_migration_info.email_sent_at)
+
+            assert delta.total_seconds() < 60

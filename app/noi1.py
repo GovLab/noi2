@@ -386,6 +386,11 @@ def send_migration_instructions(email):
     mail = current_app.extensions.get('mail')
     mail.send(msg)
 
+    if user.noi1_migration_info:
+        user.noi1_migration_info.email_sent_at = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
+
 @manager.command
 def stats():
     '''
