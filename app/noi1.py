@@ -360,6 +360,18 @@ def get_origin():
     return 'https://%s' % current_app.config['NOI_DEPLOY']
 
 @manager.command
+def send_all_migration_instructions():
+    '''
+    Send migration instructions to all imported users who have not yet
+    received one.
+    '''
+
+    for user, _ in get_imported_users(users_with_email):
+        if user.noi1_migration_info.email_sent_at is None:
+            print "sending migration instructions to %s" % user.email
+            send_migration_instructions(user.email)
+
+@manager.command
 def send_migration_instructions(email):
     '''
     Send migration instructions to the user with the given email.

@@ -69,21 +69,34 @@ class EmailSendingTests(ViewTestCase):
         MAIL_SUPPRESS_SEND=True,
     )
 
-    def test_it_works(self):
-        user = noi1.add_user_to_db(SAMPLE_USER, password='foo')
+    def setUp(self):
+        super(EmailSendingTests, self).setUp()
+        self.manager = Manager(self.app)
+        self.manager.add_command('noi1', noi1.Noi1Command)
+        self.mail = self.app.extensions.get('mail')
+
+        noi1.set_users_from_json([SAMPLE_USER])
+        self.user = noi1.add_user_to_db(SAMPLE_USER, password='foo')
         db.session.commit()
 
-        manager = Manager(self.app)
-        manager.add_command('noi1', noi1.manager)
+        assert self.user.noi1_migration_info.email_sent_at is None
 
-        noi1.set_users_from_json([])
+    def run_command(self, *args):
+        self.manager.handle('', ['noi1'] + list(args))
 
-        with self.app.extensions.get('mail').record_messages() as outbox:
-            manager.handle('', [
-                'noi1',
-                'send_migration_instructions',
-                'foo@example.org',
-            ])
+    def test_send_all_migration_instructions_works(self):
+        with self.mail.record_messages() as outbox:
+            self.run_command('send_all_migration_instructions')
+            self.assertEqual(len(outbox), 1)
+
+        with self.mail.record_messages() as outbox:
+            self.run_command('send_all_migration_instructions')
+            self.assertEqual(len(outbox), 0)
+
+    def test_send_migration_instructions_works(self):
+        with self.mail.record_messages() as outbox:
+            self.run_command('send_migration_instructions',
+                             'foo@example.org')
             self.assertEqual(len(outbox), 1)
             msg = outbox[0]
             self.assertEqual(msg.sender, 'noreply@noi.org')
@@ -91,6 +104,6 @@ class EmailSendingTests(ViewTestCase):
             assert 'https://noi.org' in msg.body
 
             delta = (datetime.datetime.now() -
-                     user.noi1_migration_info.email_sent_at)
+                     self.user.noi1_migration_info.email_sent_at)
 
             assert delta.total_seconds() < 60
