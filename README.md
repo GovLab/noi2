@@ -57,9 +57,9 @@ The server should be running on port 80.
 
 ### Windows Notes
 
-Unfortunately, because Docker Compose isn't currently available for
-Windows at the time of this writing, the only way to develop NoI is
-to set up a Linux virtual machine using a tool like [VirtualBox][].
+Docker Compose theoretically works on Windows at the time of this
+writing, but it's still probably easiest to develop NoI 
+by setting up a Linux virtual machine using a tool like [VirtualBox][].
 
 ### Database migrations
 
