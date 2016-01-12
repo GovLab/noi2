@@ -11,10 +11,9 @@ from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
-                 babel, celery, alchemydumps, sass, email_errors, csp,
+                 babel, alchemydumps, sass, email_errors, csp,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
-from app.config.schedule import CELERYBEAT_SCHEDULE
 from app.forms import (NOIForgotPasswordForm, NOILoginForm,
                        NOIResetPasswordForm, NOIChangePasswordForm,
                        NOIRegisterForm)
@@ -24,7 +23,6 @@ from app import style_guide, l10n
 
 from sqlalchemy.orm.exc import NoResultFound
 
-from celery import Task
 from slugify import slugify
 import yaml
 import json
@@ -64,8 +62,6 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     with open('/noi/app/config/config.yml', 'r') as config_file:
         app.config.update(yaml.load(config_file))
-
-    app.config['CELERYBEAT_SCHEDULE'] = CELERYBEAT_SCHEDULE
 
     if config is None:
         try:
@@ -226,26 +222,3 @@ def create_app(config=None): #pylint: disable=too-many-statements
         basic_auth.init_app(app)
 
     return app
-
-def create_celery(app=None):
-    '''
-    Create celery tasks
-    '''
-
-    app = app or create_app()
-
-    class ContextTask(Task): #pylint: disable=abstract-method
-        '''
-        Run tasks within app context.
-        '''
-        abstract = True
-        def __call__(self, *args, **kwargs):
-            with app.app_context():
-                return Task.__call__(self, *args, **kwargs)
-
-
-    celery.conf.update(app.config)
-    celery.Task = ContextTask
-
-    return celery
-

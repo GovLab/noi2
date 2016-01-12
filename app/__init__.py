@@ -11,7 +11,6 @@ from flask_cache import Cache
 from flask_babel import Babel
 from flask_bcrypt import Bcrypt
 from flask.ext.uploads import UploadSet, IMAGES
-from celery import Celery
 from flask_mail import Mail
 from flask_s3 import FlaskS3
 from flask_wtf.csrf import CsrfProtect
@@ -28,12 +27,6 @@ security = Security()
 csrf = CsrfProtect()
 babel = Babel()
 bcrypt = Bcrypt()
-
-celery = Celery(
-    __name__,
-    broker='redis://redis', #TODO this should be from config
-    include=['app.tasks']
-)
 
 assets = Environment()
 

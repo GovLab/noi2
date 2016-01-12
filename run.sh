@@ -20,10 +20,6 @@ if [ "$NOI_ENVIRONMENT" == production ]; then
     python manage.py translate_compile
     python manage.py build_sass
     gunicorn wsgi:application -b 0.0.0.0:5000
-elif [ "$NOI_ENVIRONMENT" == celery ]; then
-    #cd /noi && celery worker -Q celery -A celery_core.celery --loglevel=debug
-    #cd /noi && celery -A celery_core.celery beat --loglevel=debug
-    cd /noi && celery -A celery_core.celery worker -B --loglevel=debug
 else
     python /noi/manage.py db upgrade
     python /noi/manage.py translate_compile
