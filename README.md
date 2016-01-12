@@ -7,7 +7,7 @@
 To get an deployment of NOI running quickly on a Linux box with Docker
 installed (for example, a DigitalOcean droplet), run the following in terminal:
 
-    curl -L https://github.com/docker/compose/releases/download/1.4.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
     git clone https://github.com/GovLab/noi2.git
     cd noi2
