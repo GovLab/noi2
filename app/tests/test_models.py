@@ -1,3 +1,4 @@
+import time
 from flask import Flask
 from flask_testing import TestCase
 from nose.tools import eq_
@@ -15,14 +16,30 @@ PG_USER = 'postgres'
 PG_HOST = 'db'
 PG_DBNAME = 'noi_test'
 
-# We can't use postgres on Travis CI builds until
-# https://github.com/GovLab/noi2/issues/23 is fixed.
-USE_POSTGRES = False
+USE_POSTGRES = True
 
 if USE_POSTGRES:
     TEST_DB_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)
 else:
     TEST_DB_URL = 'sqlite://'
+
+def wait_until_db_is_ready(max_tries=20):
+    if not USE_POSTGRES: return
+
+    attempts = 0
+    connected = False
+
+    while not connected:
+        try:
+            psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
+            connected = True
+        except psycopg2.OperationalError, e:
+            if 'could not connect to server' not in str(e):
+                raise
+            attempts += 1
+            if attempts >= max_tries:
+                raise
+            time.sleep(0.5)
 
 def create_postgres_database():
     con = psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
@@ -916,7 +933,7 @@ class UserConnectionDbTests(DbTestCase):
         db.session.commit()
         self.assertEquals(models.Email.query.count(), 4)
         self.assertEquals([(u.email, score) for u, score in models.User.get_most_connected_profiles()],
-                          [(self.sly_less.email, 3),
-                           (dubya.email, 2),
-                           (lennon.email, 2),
-                           (stone.email, 1)])
+                          [(self.sly_less.email, 3L),
+                           (lennon.email, 2L),
+                           (dubya.email, 2L),
+                           (stone.email, 1L)])
