@@ -1,0 +1,8 @@
+# https://docs.docker.com/compose/production/
+app:
+    environment:
+        NOI_ENVIRONMENT: production
+web:
+    command: nginx -g "daemon off;" -c /etc/nginx/conf.d/noi-environments/noi-production.conf
+    ports:
+        - "443:443"

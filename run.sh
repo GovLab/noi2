@@ -23,5 +23,5 @@ if [ "$NOI_ENVIRONMENT" == production ]; then
 else
     python /noi/manage.py db upgrade
     python /noi/manage.py translate_compile
-    NOI_ENVIRONMENT=development python /noi/develop.py
+    python /noi/develop.py
 fi

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-NOI_ENVIRONMENT=production docker-compose stop
-NOI_ENVIRONMENT=production docker-compose up -d
+docker-compose -f docker-compose.yml -f production.yml stop
+docker-compose -f docker-compose.yml -f production.yml up -d
