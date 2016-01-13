@@ -1,4 +1,5 @@
 import time
+import contextlib
 from flask import Flask
 from flask_testing import TestCase
 from nose.tools import eq_
@@ -49,6 +50,34 @@ def create_postgres_database():
     cur.close()
     con.close()
 
+def db_test_request_context():
+    app = Flask('minimal_db_app')
+    app.config['SQLALCHEMY_DATABASE_URI'] = TEST_DB_URL
+    db.init_app(app)
+    return app.test_request_context()
+
+def create_tables():
+    try:
+        db.create_all()
+    except OperationalError, e:
+        db_noexist_msg = 'database "%s" does not exist' % PG_DBNAME
+        if USE_POSTGRES and db_noexist_msg in str(e):
+            create_postgres_database()
+            db.create_all()
+        else:
+            raise e
+
+def drop_tables():
+    db.drop_all()
+
+def empty_tables():
+    # http://stackoverflow.com/a/5003705/2422398
+    with contextlib.closing(db.engine.connect()) as conn:
+        transaction = conn.begin()
+        for table in reversed(db.Model.metadata.sorted_tables):
+            conn.execute(table.delete())
+        transaction.commit()
+
 class DbTestCase(TestCase):
     BASE_APP_CONFIG = dict(
         SQLALCHEMY_DATABASE_URI=TEST_DB_URL,
@@ -63,20 +92,9 @@ class DbTestCase(TestCase):
         db.init_app(app)
         return app
 
-    def setUp(self):
-        try:
-            db.create_all()
-        except OperationalError, e:
-            db_noexist_msg = 'database "%s" does not exist' % PG_DBNAME
-            if USE_POSTGRES and db_noexist_msg in str(e):
-                create_postgres_database()
-                db.create_all()
-            else:
-                raise e
-
     def tearDown(self):
         db.session.remove()
-        db.drop_all()
+        empty_tables()
 
 class UserDbTests(DbTestCase):
     def test_ensure_deployment_has_a_default_setting(self):
