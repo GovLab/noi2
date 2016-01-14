@@ -30,6 +30,19 @@
 <div> <!-- Start of tab panel container -->
 
 {% call render_tab_panel('activity', active_tab, class='b-activity-feed') %}
+<ul class="e-activity-feed-container">
+  {% for blog_post in blog_posts[:1] %}
+    <li class="e-feed-item m-blog-item">
+      <div class="e-feed-message">
+        <p><strong>{{ blog_post.title }}</strong></p>
+        <p>{{ blog_post.description }}</p>
+        <div class="e-actions">
+          <a href="{{ blog_post.link }}" target="_blank"><span class="material-icons">open_in_new</span> <span class="e-action-label">Read more at {{ blog_post.domain }}</span></a>
+        </div>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
   {% include "_activity_events.html" %}
 {% endcall %}
 

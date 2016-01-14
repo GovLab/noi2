@@ -83,6 +83,10 @@
         display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
     }
 
+    .m-blog-item {
+        border-left: 5px solid $teal;
+    }
+
     time {
         text-align: right;
         max-width: 80px;
