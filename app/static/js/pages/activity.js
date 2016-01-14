@@ -45,4 +45,9 @@ $(function() {
     });
   }
   $('time').timeago();
+
+  $('.e-feed-item.m-show-more-blog-items').click(function() {
+    $(this).slideUp('fast');
+    $('.e-more-blog-items').slideDown();
+  });
 });
