@@ -83,6 +83,14 @@
         display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
     }
 
+    time {
+        text-align: right;
+        max-width: 80px;
+        padding-left: 4px;
+        font-size: 10px;
+        color: gray;
+    }
+
     .e-feed-item:nth-of-type(even) { background-color: $gray-05; }
 
     .e-user-picture {
