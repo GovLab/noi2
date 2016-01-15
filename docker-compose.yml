@@ -1,6 +1,6 @@
 app:
     build: app/docker-quick/
-    command: /noi/run.sh
+    command: /bin/bash /noi/run.sh
     links:
         - db
           #- redis
