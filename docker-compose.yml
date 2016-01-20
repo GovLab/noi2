@@ -1,19 +1,22 @@
 app:
     build: app/docker-quick/
-    command: /noi/run.sh
+# Uncomment the following line when testing the base Dockerfile.
+#    build: app/
+    command: ./run.sh
+    working_dir: /noi
     links:
         - db
-          #- redis
     volumes:
         - .:/noi
         - ./migrations:/migrations
         - ./alchemydumps:/alchemydumps
     environment:
-        - NOI_ENVIRONMENT # unless production, assumed "development"
+        NOI_ENVIRONMENT: development
 db:
     image: postgres:9.4
 web:
     image: nginx
+    command: nginx -g "daemon off;" -c /etc/nginx/conf.d/noi-environments/noi-development.conf
     volumes:
         - ./conf/:/etc/nginx/conf.d/
         - ./app/static:/noi/app/static
@@ -22,19 +25,3 @@ web:
         - app
     ports:
         - "80:80"
-        - "443:443"
-#worker:
-#    build: app/
-#    command: /noi/run.sh
-#    links:
-#        - redis
-#        - db
-#    volumes:
-#        - .:/noi
-#        - migrations:/migrations
-#        - backups:/alchemydumps
-#    environment:
-#        - NOI_ENVIRONMENT=celery
-#        - C_FORCE_ROOT=True
-#redis:
-#    image: redis

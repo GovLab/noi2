@@ -26,10 +26,8 @@ from app.models import (db, User, UserExpertiseDomain, UserLanguage,
                         UserSkill, UserJoinedEvent, Noi1MigrationInfo)
 
 MY_DIR = os.path.abspath(os.path.dirname(__file__))
-ROOT_DIR = os.path.normpath(os.path.join(MY_DIR, '..'))
 DATA_DIR = os.path.join(MY_DIR, 'noi1')
 
-rootpath = lambda *x: os.path.join(ROOT_DIR, *x)
 datapath = lambda *x: os.path.join(DATA_DIR, *x)
 
 USERS_FILE = datapath('users.json')
@@ -39,21 +37,6 @@ MIN_SKILLS = app.MIN_QUESTIONS_TO_JOIN
 
 users = None
 
-def make_path_absolute(filename):
-    '''
-    Convert the given user-supplied path to an absolute path.
-
-    Since we're probably being called in a docker container,
-    make the path absolute relative to the noi2 root directory, *not*
-    our current directory.
-    '''
-
-    if os.path.isabs(filename):
-        return filename
-
-    return rootpath(filename)
-
-
 def set_users_from_json(json_users):
     global users, users_with_skills, users_with_email
 
@@ -61,12 +44,9 @@ def set_users_from_json(json_users):
     users_with_skills = [user for user in users if has_skills(user)]
     users_with_email = [user for user in users if user['email']]
 
-
 class Noi1Manager(Manager):
     @staticmethod
     def __setup_globals(users_file):
-        users_file = make_path_absolute(users_file)
-
         if users is not None:
             return
 
@@ -347,7 +327,7 @@ def csv_export(output_filename):
                 row[fieldname] = value.encode('utf-8')
         rows.append(row)
 
-    with open(make_path_absolute(output_filename), 'w') as csvfile:
+    with open(output_filename, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames)
         writer.writeheader()
         for row in rows:

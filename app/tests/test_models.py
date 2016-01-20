@@ -1,3 +1,5 @@
+import time
+import contextlib
 from flask import Flask
 from flask_testing import TestCase
 from nose.tools import eq_
@@ -15,14 +17,31 @@ PG_USER = 'postgres'
 PG_HOST = 'db'
 PG_DBNAME = 'noi_test'
 
-# We can't use postgres on Travis CI builds until
-# https://github.com/GovLab/noi2/issues/23 is fixed.
-USE_POSTGRES = False
+USE_POSTGRES = True
 
 if USE_POSTGRES:
     TEST_DB_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)
 else:
     TEST_DB_URL = 'sqlite://'
+
+def wait_until_db_is_ready(max_tries=20):
+    if not USE_POSTGRES: return
+
+    attempts = 0
+    connected = False
+
+    while not connected:
+        try:
+            psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
+            connected = True
+        except psycopg2.OperationalError, e:
+            if ('could not connect to server' not in str(e) and
+                'the database system is starting up' not in str(e)):
+                raise
+            attempts += 1
+            if attempts >= max_tries:
+                raise
+            time.sleep(0.5)
 
 def create_postgres_database():
     con = psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
@@ -31,6 +50,34 @@ def create_postgres_database():
     cur.execute('CREATE DATABASE ' + PG_DBNAME)
     cur.close()
     con.close()
+
+def db_test_request_context():
+    app = Flask('minimal_db_app')
+    app.config['SQLALCHEMY_DATABASE_URI'] = TEST_DB_URL
+    db.init_app(app)
+    return app.test_request_context()
+
+def create_tables():
+    try:
+        db.create_all()
+    except OperationalError, e:
+        db_noexist_msg = 'database "%s" does not exist' % PG_DBNAME
+        if USE_POSTGRES and db_noexist_msg in str(e):
+            create_postgres_database()
+            db.create_all()
+        else:
+            raise e
+
+def drop_tables():
+    db.drop_all()
+
+def empty_tables():
+    # http://stackoverflow.com/a/5003705/2422398
+    with contextlib.closing(db.engine.connect()) as conn:
+        transaction = conn.begin()
+        for table in reversed(db.Model.metadata.sorted_tables):
+            conn.execute(table.delete())
+        transaction.commit()
 
 class DbTestCase(TestCase):
     BASE_APP_CONFIG = dict(
@@ -46,20 +93,9 @@ class DbTestCase(TestCase):
         db.init_app(app)
         return app
 
-    def setUp(self):
-        try:
-            db.create_all()
-        except OperationalError, e:
-            db_noexist_msg = 'database "%s" does not exist' % PG_DBNAME
-            if USE_POSTGRES and db_noexist_msg in str(e):
-                create_postgres_database()
-                db.create_all()
-            else:
-                raise e
-
     def tearDown(self):
         db.session.remove()
-        db.drop_all()
+        empty_tables()
 
 class UserDbTests(DbTestCase):
     def test_ensure_deployment_has_a_default_setting(self):
@@ -916,7 +952,7 @@ class UserConnectionDbTests(DbTestCase):
         db.session.commit()
         self.assertEquals(models.Email.query.count(), 4)
         self.assertEquals([(u.email, score) for u, score in models.User.get_most_connected_profiles()],
-                          [(self.sly_less.email, 3),
-                           (dubya.email, 2),
-                           (lennon.email, 2),
-                           (stone.email, 1)])
+                          [(self.sly_less.email, 3L),
+                           (lennon.email, 2L),
+                           (dubya.email, 2L),
+                           (stone.email, 1L)])

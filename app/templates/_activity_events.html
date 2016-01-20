@@ -4,7 +4,6 @@
 <ul class="e-activity-feed-container">
 {% for event in events.items %}
   <li class="e-feed-item">
-  <time datetime="{{ event.created_at }}"></time>
   {% if event.type == 'shared_message' %}
     {{ user_avatar(event.user) }}
     <div class="e-feed-message">
@@ -31,6 +30,7 @@
       UNKNOWN EVENT TYPE: {{ event.type }}
     </div>
   {% endif %}
+  <time datetime="{{ event.created_at.isoformat() }}Z"></time>
   </li>
 {% endfor %}
 </ul>

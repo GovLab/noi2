@@ -10,8 +10,6 @@ from flask_security import Security
 from flask_cache import Cache
 from flask_babel import Babel
 from flask_bcrypt import Bcrypt
-from flask.ext.uploads import UploadSet, IMAGES
-from celery import Celery
 from flask_mail import Mail
 from flask_s3 import FlaskS3
 from flask_wtf.csrf import CsrfProtect
@@ -29,12 +27,6 @@ csrf = CsrfProtect()
 babel = Babel()
 bcrypt = Bcrypt()
 
-celery = Celery(
-    __name__,
-    broker='redis://redis', #TODO this should be from config
-    include=['app.tasks']
-)
-
 assets = Environment()
 
 main_css = Bundle('css/vendor/bootstrap.css',
@@ -51,8 +43,6 @@ main_js = Bundle('js/main.js',
                  #filters='jsmin',
                  output='gen/main_packed.%(version)s.js')
 assets.register('main_js', main_js)
-
-#photos = UploadSet('photos', IMAGES)
 
 cache = Cache()
 

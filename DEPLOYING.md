@@ -33,10 +33,8 @@
 
 5. Set up https
 
-  * Make sure you have a cert that will work for your subdomain, or are using a wildcard
-  * Uncomment all the lines in [conf/ssl/ssl.conf](https://github.com/GovLab/noi2/blob/master/conf/ssl/ssl.conf).
-  * Add additional `ssl_ciphers`, `ssl_prefer_server_ciphers`, and `ssl_dhparam` from another deployment if they're available.
-  * Create a directory `.keys` if it does not yet exist, and add the files `dhparams.pem`, `noi-ssl-certificate`, and `noi-ssl-key` with relevant keys and certs.
+  * Make sure you have a cert that will work for your subdomain, or are using a wildcard.
+  * Create a directory `.keys` if it does not yet exist, and add the files `dhparams.pem`, `noi-ssl-certificate`, and `noi-ssl-key` with relevant keys and certs. See [conf/ssl/ssl.conf](https://github.com/GovLab/noi2/blob/master/conf/ssl/ssl.conf) for reference.
 
 6. Run it!
 
