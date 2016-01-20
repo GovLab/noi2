@@ -4,20 +4,15 @@
 # https://github.com/govlab/noi2
 #
 
-FROM debian:jessie
-MAINTAINER John Krauss <john@thegovlab.org>
+FROM python:2.7
+MAINTAINER Atul Varma <atul@thegovlab.org>
 
-RUN apt-get update && apt-get -y dist-upgrade
-RUN apt-get install -y python-pip libpq-dev python-dev postgresql-client-9.4 libffi-dev curl
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - && \
+  apt-get install -y nodejs && \
+  npm install -g postcss-cli autoprefixer
 
-RUN mkdir -p /noi/app
-COPY . /noi/app
+COPY requirements.txt /
 
-RUN pip install --upgrade pip
-RUN pip install -r /noi/app/requirements.txt
-
-RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
-RUN apt-get install -y nodejs
-RUN npm install -g postcss-cli autoprefixer
+RUN pip install -r /requirements.txt
 
 EXPOSE 5000

@@ -35,7 +35,8 @@ def wait_until_db_is_ready(max_tries=20):
             psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
             connected = True
         except psycopg2.OperationalError, e:
-            if 'could not connect to server' not in str(e):
+            if ('could not connect to server' not in str(e) and
+                'the database system is starting up' not in str(e)):
                 raise
             attempts += 1
             if attempts >= max_tries:

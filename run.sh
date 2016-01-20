@@ -1,17 +1,6 @@
 #!/bin/bash
 
-function pg_wait {
-  while : ; do
-    pg_isready --host db --user postgres
-    if [ $? == 0 ]; then
-      break
-    else
-      sleep 0.1
-    fi
-  done
-}
-
-pg_wait
+python /noi/manage.py wait_for_db
 
 set -e
 if [ "$NOI_ENVIRONMENT" == production ]; then

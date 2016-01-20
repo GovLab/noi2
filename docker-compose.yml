@@ -1,9 +1,10 @@
 app:
     build: app/docker-quick/
+# Uncomment the following line when testing the base Dockerfile.
+#    build: app/
     command: /noi/run.sh
     links:
         - db
-          #- redis
     volumes:
         - .:/noi
         - ./migrations:/migrations

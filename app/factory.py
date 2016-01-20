@@ -5,7 +5,6 @@ Creates the app
 '''
 
 from flask import Flask, current_app
-#from flask.ext.uploads import configure_uploads
 from flask.ext.babel import get_locale
 from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
@@ -99,7 +98,6 @@ def create_app(config=None): #pylint: disable=too-many-statements
     mail.init_app(app)
     bcrypt.init_app(app)
     s3.init_app(app)
-    #configure_uploads(app, (photos))
 
     # Setup Flask-Security
     user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
