@@ -25,6 +25,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from slugify import slugify
 import yaml
 import json
+import os
 
 
 # App config vars that are exposed to client-side JavaScript code.
@@ -53,6 +54,11 @@ class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
             if rv is not None:
                 return rv
 
+def configure_from_os_environment(config, env=os.environ):
+    if not config.get('MAIL_SERVER') and env.get('MAIL_SERVER'):
+        config['MAIL_SERVER'] = env['MAIL_SERVER']
+        config['MAIL_PORT'] = int(env['MAIL_PORT'])
+
 def create_app(config=None): #pylint: disable=too-many-statements
     '''
     Create an instance of the app.
@@ -68,6 +74,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
                 app.config.update(yaml.load(config_file))
         except IOError:
             app.logger.warn("No local_config.yml file")
+        configure_from_os_environment(app.config)
     else:
         app.config.update(config)
 
@@ -159,7 +166,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.jinja_env.globals['ABOUT'] = this_deployment.get('about',
                                                          default_deployment['about'])
 
-    if not app.config.get('MAIL_USERNAME') or not app.config.get('MAIL_PASSWORD'):
+    if not app.config.get('MAIL_SERVER'):
         app.logger.warn('No MAIL_SERVER found in config, password reset will '
                         'not work.')
 

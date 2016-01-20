@@ -36,6 +36,18 @@ To get everything running:
 
     docker-compose up
 
+### Optional maildump integration
+
+You may want to enable optional [maildump][] integration to be able
+to easily test email during development. To do this, run:
+
+```terminal
+$ ln -s development.yml docker-compose.override.yml
+```
+
+When you run `docker-compose up`, you'll be able to visit port 1080
+on your Docker host to see any emails that NoI sends.
+
 ### Production deployment
 
 For information on deploying to production, including setting up SSL
@@ -183,3 +195,4 @@ For more details on how we write our SASS, see the project's
   [Docker Hub]: https://hub.docker.com/r/thegovlab/noi2/
   [`DEPLOYING.md`]: https://github.com/GovLab/noi2/blob/master/DEPLOYING.md
   [VirtualBox]: https://www.virtualbox.org/
+  [maildump]: https://github.com/ThiefMaster/maildump
