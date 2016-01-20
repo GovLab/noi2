@@ -1,3 +1,0 @@
-Flask-Admin==1.4.0
-moto==0.4.19
-Flask-BasicAuth==0.2.0
