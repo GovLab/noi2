@@ -178,6 +178,18 @@ def translate():
 
 
 @manager.command
+def wait_for_db():
+    """
+    Wait for the database to be ready.
+    """
+
+    from app.tests.test_models import wait_until_db_is_ready
+
+    print "Waiting for database to be ready..."
+    wait_until_db_is_ready()
+    print "Database is ready!"
+
+@manager.command
 @manager.option('-v', '--verbose', dest='verbose', default=False)
 def drop_db(verbose=False):
     """
