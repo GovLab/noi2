@@ -2,7 +2,8 @@ app:
     build: app/docker-quick/
 # Uncomment the following line when testing the base Dockerfile.
 #    build: app/
-    command: /noi/run.sh
+    command: ./run.sh
+    working_dir: /noi
     links:
         - db
     volumes:
