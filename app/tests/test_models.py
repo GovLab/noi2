@@ -719,6 +719,12 @@ class UserRegistrationDbTests(DbTestCase):
         self.user.set_fully_registered()
         eq_(self.user.has_fully_registered, True)
 
+    def test_user_joined_event_is_deleted_with_user(self):
+        self.user.set_fully_registered()
+        db.session.delete(self.user)
+        db.session.commit()
+        self.assertEqual(models.UserJoinedEvent.query.all(), [])
+
     def test_multiple_join_events_are_not_created(self):
         self.user.set_fully_registered()
         self.user.set_fully_registered()
@@ -726,6 +732,26 @@ class UserRegistrationDbTests(DbTestCase):
                       filter_by(user_id=self.user.id).\
                       all()
         eq_(len(join_events), 1)
+
+class UserEventDbTests(DbTestCase):
+    def test_related_events_are_deleted_with_user(self):
+        user = models.User(email=u'a@example.org', password='a', active=True)
+        db.session.add(user)
+        db.session.commit()
+
+        self.assertEqual(models.UserEvent.query.all(), [])
+
+        event = models.UserEvent.from_user(user)
+        db.session.add(event)
+        db.session.commit()
+
+        self.assertEqual(models.Event.query.all(), [event])
+
+        db.session.delete(user)
+        db.session.commit()
+
+        self.assertEqual(models.UserEvent.query.all(), [])
+        self.assertEqual(models.Event.query.all(), [])
 
 class SharedMessageDbTests(DbTestCase):
     def test_only_events_in_deployments_are_seen(self):
@@ -857,6 +883,23 @@ class ConnectionEventDbTests(DbTestCase):
         self.assertEquals(connection_event.emails.count(), 2)
         self.assertEquals(models.ConnectionEvent.connections_in_deployment(), 3)
         self.assertEquals(connection_event.total_connections, 3)
+
+class UserDeletionDbTests(DbTestCase):
+    def test_deleting_users_works(self):
+        # Increasing this number much will make the test run much slower,
+        # but can be used to find bugs in our model constraints.
+        count = 1
+
+        UserFactory.create_batch(count)
+        db.session.commit()
+
+        users = models.User.query_in_deployment().all()
+        self.assertEqual(len(users), count)
+        for user in users:
+            db.session.delete(user)
+            db.session.commit()
+
+        self.assertEqual(models.User.query_in_deployment().all(), [])
 
 class UserConnectionDbTests(DbTestCase):
     '''

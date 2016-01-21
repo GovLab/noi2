@@ -772,7 +772,8 @@ class UserEvent(Event):
 
     id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
     user_id = Column(types.Integer, ForeignKey('users.id'))
-    user = orm.relationship('User', backref='events')
+    user = orm.relationship('User',
+        backref=orm.backref('events', cascade='delete-orphan,all'))
 
     __mapper_args__ = {
         'polymorphic_identity': 'user_event'
