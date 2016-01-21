@@ -23,6 +23,8 @@
 
 4. Configure the site
 
+  * Run `ln -s production.yml docker-compose.override.yml` to ensure that
+    production settings are used for all Docker containers.
   * Open up `app/config/local_config.yml` in your text editor of choice
     and edit it to taste, using [`local_config.sample.yml`](https://github.com/GovLab/noi2/blob/master/app/config/local_config.sample.yml) as a guide.
     Make sure that you've at least set `DEBUG` to `False`, specified an
