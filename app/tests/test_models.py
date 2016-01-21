@@ -902,6 +902,30 @@ class UserConnectionDbTests(DbTestCase):
         db.session.commit()
         self.assertEquals(self.sly_less.connections, 1)
 
+    def test_user_disconnect_on_sender_deletion(self):
+        '''
+        When a sender is deleted, their related connections disappear.
+        '''
+
+        self.sly_less.email_connect([self.dubya_shrub])
+        db.session.commit()
+
+        db.session.delete(self.sly_less)
+        db.session.commit()
+        self.assertEquals(self.dubya_shrub.connections, 0)
+
+    def test_user_disconnect_on_recipient_deletion(self):
+        '''
+        When a recipient is deleted, their related connections disappear.
+        '''
+
+        self.sly_less.email_connect([self.dubya_shrub])
+        db.session.commit()
+
+        db.session.delete(self.dubya_shrub)
+        db.session.commit()
+        self.assertEquals(self.sly_less.connections, 0)
+
     def test_user_connect_on_email_several(self):
         '''
         A user gains several connections on emailing several people.
