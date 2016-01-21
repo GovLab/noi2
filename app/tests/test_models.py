@@ -1,8 +1,10 @@
 import time
+import StringIO
 import contextlib
 from flask import Flask
 from flask_testing import TestCase
 from nose.tools import eq_
+from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError, IntegrityError
 from sqlalchemy_utils import Country
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
@@ -42,6 +44,17 @@ def wait_until_db_is_ready(max_tries=20):
             if attempts >= max_tries:
                 raise
             time.sleep(0.5)
+
+def get_postgres_create_table_sql():
+    output = StringIO.StringIO()
+
+    def dump(sql, *multiparams, **params):
+        output.write(sql.compile(dialect=engine.dialect))
+
+    engine = create_engine('postgresql://', strategy='mock', executor=dump)
+    db.metadata.create_all(engine, checkfirst=False)
+
+    return output.getvalue()
 
 def create_postgres_database():
     con = psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
@@ -902,6 +915,30 @@ class UserConnectionDbTests(DbTestCase):
         db.session.commit()
         self.assertEquals(self.sly_less.connections, 1)
 
+    def test_user_disconnect_on_sender_deletion(self):
+        '''
+        When a sender is deleted, their related connections disappear.
+        '''
+
+        self.sly_less.email_connect([self.dubya_shrub])
+        db.session.commit()
+
+        db.session.delete(self.sly_less)
+        db.session.commit()
+        self.assertEquals(self.dubya_shrub.connections, 0)
+
+    def test_user_disconnect_on_recipient_deletion(self):
+        '''
+        When a recipient is deleted, their related connections disappear.
+        '''
+
+        self.sly_less.email_connect([self.dubya_shrub])
+        db.session.commit()
+
+        db.session.delete(self.dubya_shrub)
+        db.session.commit()
+        self.assertEquals(self.sly_less.connections, 0)
+
     def test_user_connect_on_email_several(self):
         '''
         A user gains several connections on emailing several people.
@@ -956,3 +993,6 @@ class UserConnectionDbTests(DbTestCase):
                            (lennon.email, 2L),
                            (dubya.email, 2L),
                            (stone.email, 1L)])
+
+def test_get_postgres_create_table_sql_does_not_explode():
+    get_postgres_create_table_sql()

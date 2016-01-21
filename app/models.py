@@ -709,6 +709,11 @@ class Email(db.Model): #pylint: disable=no-init,too-few-public-methods
 
     from_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
     to_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+    from_user = orm.relationship('User', foreign_keys=[from_user_id],
+        backref=orm.backref('emails_sent', cascade='all, delete-orphan'))
+    to_user = orm.relationship('User', foreign_keys=[to_user_id],
+        backref=orm.backref('emails_received', cascade='all, delete-orphan'))
+
     connection_event_id = Column(types.Integer, ForeignKey('events.id'),
                                  nullable=False)
     connection_event = orm.relationship('ConnectionEvent', backref=orm.backref(
