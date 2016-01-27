@@ -4,8 +4,37 @@ NoI Utils
 Utility Functions
 '''
 
-from app import QUESTIONS_BY_ID
+import os
+import posixpath
+import hashlib
 import csv
+from flask import current_app, url_for
+
+from app import QUESTIONS_BY_ID
+
+
+NOPIC_AVATAR_DIR = ['img', 'nopic-avatars']
+
+def get_nopic_avatar(email):
+    # TODO: We might want to cache/memoize the results of this
+    # function if it becomes too resource-intensive.
+
+    images = os.listdir(os.path.join(current_app.static_folder,
+                                     *NOPIC_AVATAR_DIR))
+
+    try:
+        # http://stackoverflow.com/a/2511075/2422398
+        index = int(hashlib.md5(email).hexdigest(), 16) % len(images)
+    except TypeError:
+        # This could be because e.g. jinja2.Undefined was passed to us.
+        # Just fall-back to a reasonable default.
+        index = 0
+
+    filename = images[index]
+    return url_for(
+        'static',
+        filename=posixpath.join(*(NOPIC_AVATAR_DIR + [filename]))
+    )
 
 
 def csv_reader(path_to_file):
