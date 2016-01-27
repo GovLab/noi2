@@ -6,7 +6,9 @@
 
 This project's git repository uses [Git Large File Storage][git-lfs].
 Please install it before cloning. If you're on Linux, this can be
-done conveniently via [packagecloud][].
+done conveniently via [packagecloud][]. (If you've already cloned the
+repository, you can obtain the large files after installing Git LFS by
+running `git lfs pull`.)
 
 To get an deployment of NOI running quickly on a Linux box with Docker
 installed (for example, a DigitalOcean droplet), run the following in terminal:
