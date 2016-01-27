@@ -3,6 +3,19 @@ import bleach
 from flask import Markup
 
 def truncate(text, max_words):
+    '''
+    Truncates the given text with an ellipsis if it's more than the given
+    number of words long.
+
+    Examples:
+
+        >>> truncate('bop', 1)
+        'bop'
+
+        >>> truncate('bop bap', 1)
+        u'bop\u2026'
+    '''
+
     words = text.split(' ')
     if len(words) <= max_words:
         return text
