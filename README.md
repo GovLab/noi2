@@ -4,6 +4,9 @@
 
 ## Quick install
 
+This project's git repository uses [Git Large File Storage][git-lfs].
+Please install it before cloning.
+
 To get an deployment of NOI running quickly on a Linux box with Docker
 installed (for example, a DigitalOcean droplet), run the following in terminal:
 
@@ -186,6 +189,7 @@ to use the `COMPILED_SASS_ROOT` global, while links to static assets
 For more details on how we write our SASS, see the project's
 [SASS README][].
 
+  [git-lfs]: https://git-lfs.github.com/
   [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
   [Docker Toolbox]: https://www.docker.com/toolbox
   [Build Details]: https://hub.docker.com/r/thegovlab/noi2/builds/
