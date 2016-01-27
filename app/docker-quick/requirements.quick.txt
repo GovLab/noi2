@@ -1,0 +1,2 @@
+feedparser==5.2.1
+bleach==1.4.2

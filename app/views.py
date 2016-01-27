@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 LEVELS_BY_SCORE, mail, stats, cache)
+                 LEVELS_BY_SCORE, mail, stats, cache, blog_posts)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email,
                         skills_to_percentages)
@@ -24,6 +24,7 @@ from urllib import urlencode
 import mimetypes
 import functools
 import json
+import feedparser
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
@@ -657,12 +658,20 @@ def activity():
     return render_template('activity.html', **{
         'user': current_user,
         'events': events,
+        'blog_posts': get_blog_posts(),
         'page_config_json': json_blob(
             LOADING_TEXT=gettext("Loading...")
         ),
         'most_complete_profiles': User.get_most_complete_profiles(limit=5),
         'most_connected_profiles': User.get_most_connected_profiles(limit=5)
     })
+
+@cache.cached(key_prefix='blog_posts', timeout=60*5)
+def get_blog_posts():
+    url = current_app.config.get('BLOG_POSTS_RSS_URL')
+    if url is None: return []
+    d = feedparser.parse(url)
+    return blog_posts.summarize(d)
 
 @cache.cached(key_prefix='network_viz_data', timeout=60)
 def get_network_viz_data():
