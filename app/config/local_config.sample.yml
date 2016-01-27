@@ -22,6 +22,11 @@ SECRET_KEY: i_am_insecure
 #
 # NOI_DEPLOY: www.mynoi.org
 
+# Set this to the URL of an RSS feed to display blog posts at the
+# top of the activity feed.
+#
+# BLOG_POSTS_RSS_URL: http://thegovlab.org/feed/
+
 # Amazon S3
 # ---------
 
