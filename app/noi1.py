@@ -23,7 +23,7 @@ from flask_mail import Message
 import app
 from app.factory import create_app
 from app.models import (db, User, UserExpertiseDomain, UserLanguage,
-                        UserSkill, UserJoinedEvent)
+                        UserSkill, UserJoinedEvent, Noi1MigrationInfo)
 
 MY_DIR = os.path.abspath(os.path.dirname(__file__))
 DATA_DIR = os.path.join(MY_DIR, 'noi1')
@@ -37,11 +37,16 @@ MIN_SKILLS = app.MIN_QUESTIONS_TO_JOIN
 
 users = None
 
+def set_users_from_json(json_users):
+    global users, users_with_skills, users_with_email
+
+    users = json_users
+    users_with_skills = [user for user in users if has_skills(user)]
+    users_with_email = [user for user in users if user['email']]
+
 class Noi1Manager(Manager):
     @staticmethod
     def __setup_globals(users_file):
-        global users, users_with_skills, users_with_email
-
         if users is not None:
             return
 
@@ -53,9 +58,7 @@ class Noi1Manager(Manager):
                 "Please export NoI 1.0 users to %s." % users_file
             )
 
-        users = json.load(open(users_file, 'r'))
-        users_with_skills = [user for user in users if has_skills(user)]
-        users_with_email = [user for user in users if user['email']]
+        set_users_from_json(json.load(open(users_file, 'r')))
 
     def __call__(self, app=None, users_file=None):
         self.__setup_globals(users_file)
@@ -151,7 +154,12 @@ def add_user_to_db(user, password=''):
                     warn("unknown question id: %s" % skill_id)
             else:
                 warn("invalid score: %s" % score)
+    u.noi1_migration_info = Noi1MigrationInfo(
+        noi1_userid=user['userid'],
+        noi1_json=json.dumps(user)
+    )
     db.session.add(u)
+    return u
 
 @manager.command
 def import_pictures():
@@ -332,6 +340,18 @@ def get_origin():
     return 'https://%s' % current_app.config['NOI_DEPLOY']
 
 @manager.command
+def send_all_migration_instructions():
+    '''
+    Send migration instructions to all imported users who have not yet
+    received one.
+    '''
+
+    for user, _ in get_imported_users(users_with_email):
+        if user.noi1_migration_info.email_sent_at is None:
+            print "sending migration instructions to %s" % user.email
+            send_migration_instructions(user.email)
+
+@manager.command
 def send_migration_instructions(email):
     '''
     Send migration instructions to the user with the given email.
@@ -357,6 +377,11 @@ def send_migration_instructions(email):
 
     mail = current_app.extensions.get('mail')
     mail.send(msg)
+
+    if user.noi1_migration_info:
+        user.noi1_migration_info.email_sent_at = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
 
 @manager.command
 def stats():

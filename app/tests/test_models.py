@@ -1,8 +1,10 @@
 import time
+import StringIO
 import contextlib
 from flask import Flask
 from flask_testing import TestCase
 from nose.tools import eq_
+from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError, IntegrityError
 from sqlalchemy_utils import Country
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
@@ -42,6 +44,17 @@ def wait_until_db_is_ready(max_tries=20):
             if attempts >= max_tries:
                 raise
             time.sleep(0.5)
+
+def get_postgres_create_table_sql():
+    output = StringIO.StringIO()
+
+    def dump(sql, *multiparams, **params):
+        output.write(sql.compile(dialect=engine.dialect))
+
+    engine = create_engine('postgresql://', strategy='mock', executor=dump)
+    db.metadata.create_all(engine, checkfirst=False)
+
+    return output.getvalue()
 
 def create_postgres_database():
     con = psycopg2.connect(user=PG_USER, host=PG_HOST, dbname='postgres')
@@ -706,6 +719,12 @@ class UserRegistrationDbTests(DbTestCase):
         self.user.set_fully_registered()
         eq_(self.user.has_fully_registered, True)
 
+    def test_user_joined_event_is_deleted_with_user(self):
+        self.user.set_fully_registered()
+        db.session.delete(self.user)
+        db.session.commit()
+        self.assertEqual(models.UserJoinedEvent.query.all(), [])
+
     def test_multiple_join_events_are_not_created(self):
         self.user.set_fully_registered()
         self.user.set_fully_registered()
@@ -713,6 +732,26 @@ class UserRegistrationDbTests(DbTestCase):
                       filter_by(user_id=self.user.id).\
                       all()
         eq_(len(join_events), 1)
+
+class UserEventDbTests(DbTestCase):
+    def test_related_events_are_deleted_with_user(self):
+        user = models.User(email=u'a@example.org', password='a', active=True)
+        db.session.add(user)
+        db.session.commit()
+
+        self.assertEqual(models.UserEvent.query.all(), [])
+
+        event = models.UserEvent.from_user(user)
+        db.session.add(event)
+        db.session.commit()
+
+        self.assertEqual(models.Event.query.all(), [event])
+
+        db.session.delete(user)
+        db.session.commit()
+
+        self.assertEqual(models.UserEvent.query.all(), [])
+        self.assertEqual(models.Event.query.all(), [])
 
 class SharedMessageDbTests(DbTestCase):
     def test_only_events_in_deployments_are_seen(self):
@@ -845,6 +884,23 @@ class ConnectionEventDbTests(DbTestCase):
         self.assertEquals(models.ConnectionEvent.connections_in_deployment(), 3)
         self.assertEquals(connection_event.total_connections, 3)
 
+class UserDeletionDbTests(DbTestCase):
+    def test_deleting_users_works(self):
+        # Increasing this number much will make the test run much slower,
+        # but can be used to find bugs in our model constraints.
+        count = 1
+
+        UserFactory.create_batch(count)
+        db.session.commit()
+
+        users = models.User.query_in_deployment().all()
+        self.assertEqual(len(users), count)
+        for user in users:
+            db.session.delete(user)
+            db.session.commit()
+
+        self.assertEqual(models.User.query_in_deployment().all(), [])
+
 class UserConnectionDbTests(DbTestCase):
     '''
     Tests for connections between users.
@@ -902,6 +958,30 @@ class UserConnectionDbTests(DbTestCase):
         db.session.commit()
         self.assertEquals(self.sly_less.connections, 1)
 
+    def test_user_disconnect_on_sender_deletion(self):
+        '''
+        When a sender is deleted, their related connections disappear.
+        '''
+
+        self.sly_less.email_connect([self.dubya_shrub])
+        db.session.commit()
+
+        db.session.delete(self.sly_less)
+        db.session.commit()
+        self.assertEquals(self.dubya_shrub.connections, 0)
+
+    def test_user_disconnect_on_recipient_deletion(self):
+        '''
+        When a recipient is deleted, their related connections disappear.
+        '''
+
+        self.sly_less.email_connect([self.dubya_shrub])
+        db.session.commit()
+
+        db.session.delete(self.dubya_shrub)
+        db.session.commit()
+        self.assertEquals(self.sly_less.connections, 0)
+
     def test_user_connect_on_email_several(self):
         '''
         A user gains several connections on emailing several people.
@@ -956,3 +1036,6 @@ class UserConnectionDbTests(DbTestCase):
                            (lennon.email, 2L),
                            (dubya.email, 2L),
                            (stone.email, 1L)])
+
+def test_get_postgres_create_table_sql_does_not_explode():
+    get_postgres_create_table_sql()

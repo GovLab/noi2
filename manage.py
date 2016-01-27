@@ -259,6 +259,12 @@ def populate_db(count=50):
     return 0
 
 @manager.command
+def show_db_create_table_sql():
+    from app.tests.test_models import get_postgres_create_table_sql
+
+    print get_postgres_create_table_sql()
+
+@manager.command
 def build_sass():
     """
     Build SASS files.

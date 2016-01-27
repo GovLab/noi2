@@ -4,6 +4,12 @@
 
 ## Quick install
 
+This project's git repository uses [Git Large File Storage][git-lfs].
+Please install it before cloning. If you're on Linux, this can be
+done conveniently via [packagecloud][]. (If you've already cloned the
+repository, you can obtain the large files after installing Git LFS by
+running `git lfs pull`.)
+
 To get an deployment of NOI running quickly on a Linux box with Docker
 installed (for example, a DigitalOcean droplet), run the following in terminal:
 
@@ -35,6 +41,18 @@ other data, which can be done via:
 To get everything running:
 
     docker-compose up
+
+### Optional maildump integration
+
+You may want to enable optional [maildump][] integration to be able
+to easily test email during development. To do this, run:
+
+```terminal
+$ ln -s development.yml docker-compose.override.yml
+```
+
+When you run `docker-compose up`, you'll be able to visit port 1080
+on your Docker host to see any emails that NoI sends.
 
 ### Production deployment
 
@@ -174,6 +192,8 @@ to use the `COMPILED_SASS_ROOT` global, while links to static assets
 For more details on how we write our SASS, see the project's
 [SASS README][].
 
+  [git-lfs]: https://git-lfs.github.com/
+  [packagecloud]: https://packagecloud.io/github/git-lfs/install
   [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
   [Docker Toolbox]: https://www.docker.com/toolbox
   [Build Details]: https://hub.docker.com/r/thegovlab/noi2/builds/
@@ -183,3 +203,4 @@ For more details on how we write our SASS, see the project's
   [Docker Hub]: https://hub.docker.com/r/thegovlab/noi2/
   [`DEPLOYING.md`]: https://github.com/GovLab/noi2/blob/master/DEPLOYING.md
   [VirtualBox]: https://www.virtualbox.org/
+  [maildump]: https://github.com/ThiefMaster/maildump

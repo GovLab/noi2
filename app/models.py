@@ -709,6 +709,11 @@ class Email(db.Model): #pylint: disable=no-init,too-few-public-methods
 
     from_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
     to_user_id = Column(types.Integer, ForeignKey('users.id'), nullable=False)
+    from_user = orm.relationship('User', foreign_keys=[from_user_id],
+        backref=orm.backref('emails_sent', cascade='all, delete-orphan'))
+    to_user = orm.relationship('User', foreign_keys=[to_user_id],
+        backref=orm.backref('emails_received', cascade='all, delete-orphan'))
+
     connection_event_id = Column(types.Integer, ForeignKey('events.id'),
                                  nullable=False)
     connection_event = orm.relationship('ConnectionEvent', backref=orm.backref(
@@ -767,7 +772,8 @@ class UserEvent(Event):
 
     id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
     user_id = Column(types.Integer, ForeignKey('users.id'))
-    user = orm.relationship('User', backref='events')
+    user = orm.relationship('User',
+        backref=orm.backref('events', cascade='delete-orphan,all'))
 
     __mapper_args__ = {
         'polymorphic_identity': 'user_event'
@@ -802,3 +808,18 @@ class SharedMessageEvent(UserEvent):
     __mapper_args__ = {
         'polymorphic_identity': 'shared_message'
     }
+
+
+class Noi1MigrationInfo(db.Model):
+    __tablename__ = 'noi1_migration_info'
+
+    id = Column(types.Integer, primary_key=True)
+    user_id = Column(types.Integer, ForeignKey('users.id'))
+    user = orm.relationship(
+        'User',
+        backref=orm.backref('noi1_migration_info', cascade='all,delete-orphan', uselist=False)
+    )
+
+    noi1_userid = Column(types.String)
+    noi1_json = Column(types.Text)
+    email_sent_at = Column(types.DateTime())

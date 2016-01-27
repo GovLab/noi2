@@ -2,7 +2,7 @@
 {% if user.has_picture -%}
 {{ user.picture_url }}
 {%- else -%}
-/static/img/user-picture.jpg
+{{ get_nopic_avatar(user.email) }}
 {%- endif %}
 {%- endmacro %}
 

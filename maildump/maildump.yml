@@ -1,0 +1,5 @@
+maildump:
+  build: .
+  command: maildump --smtp-ip 0.0.0.0 --http-ip 0.0.0.0
+  ports:
+    - "1080:1080"

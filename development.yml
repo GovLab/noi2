@@ -1,0 +1,12 @@
+app:
+  links:
+    - maildump
+    - db
+  environment:
+    MAIL_SERVER: maildump
+    MAIL_PORT: 1025
+
+maildump:
+  extends:
+    file: maildump/maildump.yml
+    service: maildump

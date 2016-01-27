@@ -30,11 +30,6 @@ SECURITY_EMAIL_SUBJECT_PASSWORD_CHANGE_NOTICE: 'Your Network of Innovators passw
 SECURITY_EMAIL_SUBJECT_PASSWORD_RESET: 'Network of Innovators password reset instructions'
 SECURITY_EMAIL_SUBJECT_CONFIRM: 'Please confirm your email for Network of Innovators'
 
-MAIL_SERVER: 'smtp.gmail.com'
-MAIL_PORT: 587
-MAIL_USE_SSL: False
-MAIL_USE_TLS: True
-
 S3_BUCKET_NAME: 'network-of-innovators'
 USE_S3: False
 
