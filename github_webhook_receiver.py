@@ -11,6 +11,8 @@
              -d '{"zen":"Design for failure."}' http://localhost:8320
 '''
 
+# This script requires Python 2.7 and has no other dependencies.
+
 import os
 import sys
 import json
