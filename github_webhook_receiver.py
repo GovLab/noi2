@@ -1,8 +1,8 @@
 '''
     This script can be used to run 'docker-compose up' along with a
     webserver that waits for a GitHub webhook. When a webhook
-    is triggered, docker-compose gracefully shuts down, 'git pull' is
-    called, and docker-compose is started up again.
+    is triggered, docker-compose gracefully shuts down, the deployment
+    is upgraded, and docker-compose is started up again.
 
     Assuming this script was started with its default options, 
     you can run the following to test it manually:
@@ -32,6 +32,8 @@ import StringIO
 
 DEFAULT_PORT = 8320
 
+DEFAULT_UPGRADE_CMD = 'git pull && docker-compose build'
+
 MAX_CONTENT_LENGTH = 5 * 1024 * 1024
 
 MY_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -57,7 +59,7 @@ def process_payload(payload):
 
     global webhook_activated
 
-    if (payload.get('zen') != 'Design for failure.' and \
+    if (not payload.get('zen') and \
         payload.get('ref') != get_current_git_head()):
         return "Thanks, but no thanks."
     if docker_compose is None or webhook_activated:
@@ -168,7 +170,7 @@ def run_everything(args):
     while True:
         returncode = run_docker_compose()
         if webhook_activated:
-            subprocess.check_call(['git', 'pull'])
+            subprocess.check_call(args.upgrade_cmd, shell=True)
             webhook_activated = False
         else:
             print "Webhook not activated, exiting with code %d." % returncode
@@ -193,6 +195,11 @@ def main():
     parser.add_argument(
         '--port', default=DEFAULT_PORT, type=int,
         help='Port to listen on for webhook (default is %d)' % DEFAULT_PORT
+    )
+    parser.add_argument(
+        '--upgrade-cmd', default=DEFAULT_UPGRADE_CMD,
+        help='set upgrade command to run on webhook '
+             '(default is "%s")' % DEFAULT_UPGRADE_CMD
     )
     parser.add_argument(
         '--test', action='store_true', help='run test suite and exit'
