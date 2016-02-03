@@ -1,6 +1,7 @@
 import urlparse
 import bleach
 from flask import Markup
+import feedparser
 
 def truncate(text, max_words):
     '''
@@ -33,3 +34,7 @@ def summarize(feed, max_entries=3, max_words_per_entry=20):
         )
         posts.append(post)
     return posts
+
+def get_and_summarize(url):
+    d = feedparser.parse(url)
+    return summarize(d)

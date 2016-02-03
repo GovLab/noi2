@@ -24,7 +24,6 @@ from urllib import urlencode
 import mimetypes
 import functools
 import json
-import feedparser
 
 views = Blueprint('views', __name__)  # pylint: disable=invalid-name
 
@@ -670,8 +669,7 @@ def activity():
 def get_blog_posts():
     url = current_app.config.get('BLOG_POSTS_RSS_URL')
     if url is None: return []
-    d = feedparser.parse(url)
-    return blog_posts.summarize(d)
+    return blog_posts.get_and_summarize(url)
 
 @cache.cached(key_prefix='network_viz_data', timeout=60)
 def get_network_viz_data():

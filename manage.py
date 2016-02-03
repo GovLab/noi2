@@ -5,7 +5,7 @@ Scripts to run the server and perform maintenance operations
 '''
 
 from app import (mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats,
-                 questionnaires)
+                 questionnaires, blog_posts)
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
@@ -27,6 +27,7 @@ import sys
 import os
 import string
 import subprocess
+import pprint
 import yaml
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -263,6 +264,15 @@ def show_db_create_table_sql():
     from app.tests.test_models import get_postgres_create_table_sql
 
     print get_postgres_create_table_sql()
+
+@manager.command
+def show_blog_posts():
+    """
+    Show recent blog posts from BLOG_POSTS_RSS_URL.
+    """
+
+    summ = blog_posts.get_and_summarize(app.config['BLOG_POSTS_RSS_URL'])
+    pprint.pprint(summ)
 
 @manager.command
 def build_sass():
