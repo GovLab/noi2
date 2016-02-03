@@ -25,7 +25,7 @@ SECRET_KEY: i_am_insecure
 # Set this to the URL of an RSS feed to display blog posts at the
 # top of the activity feed.
 #
-# BLOG_POSTS_RSS_URL: http://thegovlab.org/feed/
+# BLOG_POSTS_RSS_URL: http://thegovlab.org/category/featured-noi/feed/
 
 # Amazon S3
 # ---------
