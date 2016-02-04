@@ -110,6 +110,9 @@
         }
 
         textarea {
+            width: 100%;
+            border: none;
+            padding: 10px;
             height: 20vh;
             background-color: $white-10;
             margin-bottom: 10px;
