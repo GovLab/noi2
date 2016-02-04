@@ -46,8 +46,17 @@ $(function() {
   }
   $('time').timeago();
 
-  $('.e-feed-item.m-show-more-blog-items').click(function() {
-    $(this).slideUp('fast');
-    $('.e-more-blog-items').slideDown();
+  var $showMoreBlogItems = $('.e-feed-item.m-show-more-blog-items');
+  var $showLessBlogItems = $('.e-feed-item.m-show-less-blog-items');
+  var $moreBlogItems = $('.e-more-blog-items');
+
+  $showMoreBlogItems.click(function() {
+    $showMoreBlogItems.slideUp('fast');
+    $moreBlogItems.slideDown();
+  });
+
+  $showLessBlogItems.click(function() {
+    $moreBlogItems.slideUp('fast');
+    $showMoreBlogItems.slideDown();
   });
 });

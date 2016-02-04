@@ -95,7 +95,8 @@
             border-left: 5px solid $teal;
         }
 
-        li.m-blog-item.m-show-more-blog-items {
+        li.m-blog-item.m-show-more-blog-items,
+        li.m-blog-item.m-show-less-blog-items {
             text-align: center;
             padding: 0;
             a {
