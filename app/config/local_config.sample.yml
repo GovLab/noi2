@@ -94,3 +94,19 @@ SECRET_KEY: i_am_insecure
 # This specifies a Pingdom Real User Monitoring (RUM) ID.
 #
 # PINGDOM_RUM_ID: blahblahblah
+
+# LinkedIn Connectivity
+# ---------------------
+
+# This specifies the LinkedIn credentials for optional LinkedIn
+# connectivity.
+#
+# To obtain these, you will need to set up a new LinkedIn third-party
+# app at https://developer.linkedin.com/my-apps. The app should have
+# the following permissions:
+#
+#   * r_basicprofile
+#
+# LINKEDIN:
+#   consumer_key: something
+#   consumer_secret: somethingelse

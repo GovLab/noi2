@@ -10,7 +10,8 @@ from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
-                 babel, alchemydumps, sass, email_errors, csp,
+                 babel, alchemydumps, sass, email_errors, csp, oauth,
+                 linkedin,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.forms import (NOIForgotPasswordForm, NOILoginForm,
@@ -100,6 +101,11 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     if not app.config['DEBUG'] and app.config.get('ADMINS'):
         email_errors.init_app(app)
+
+    oauth.init_app(app)
+    if 'LINKEDIN' in app.config:
+        app.jinja_env.globals['LINKEDIN_ENABLED'] = True
+        app.register_blueprint(linkedin.views)
 
     cache.init_app(app)
     csrf.init_app(app)
