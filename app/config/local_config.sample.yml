@@ -107,6 +107,10 @@ SECRET_KEY: i_am_insecure
 #
 #   * r_basicprofile
 #
+# You will also need to add the absolute URL to /linkedin/callback on
+# your NoI installation to the list of OAuth 2.0 Authorized Redirect URLs
+# in your app's configuration screen.
+#
 # LINKEDIN:
 #   consumer_key: something
 #   consumer_secret: somethingelse
