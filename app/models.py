@@ -298,20 +298,14 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
         Returns a list of UserSkillMatch objects, in descending order of number
         of skills matched for each user.
         '''
-        if db.engine.name == 'sqlite':
-            agg = func.group_concat
-        elif db.engine.name == 'postgresql':
-            agg = func.string_agg
-        else:
-            raise Exception('Unknown aggregation function for DB {}'.format(
-                db.engine.name))
+
         skills_to_learn = [
             s.name for s in
             self.skills if s.level == LEVELS['LEVEL_I_WANT_TO_LEARN']['score']
         ]
         if skills_to_learn:
             matched_users = User.query_in_deployment().\
-                            add_column(agg(UserSkill.name, ',')).\
+                            add_column(func.string_agg(UserSkill.name, ',')).\
                             add_column(func.count(UserSkill.id)).\
                             filter(UserSkill.name.in_(skills_to_learn)).\
                             filter(User.id == UserSkill.user_id).\
