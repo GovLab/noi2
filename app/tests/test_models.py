@@ -17,18 +17,13 @@ db = models.db
 
 PG_USER = 'postgres'
 PG_HOST = 'db'
+
+# This should be all-lowercase or weird things will happen.
 PG_DBNAME = 'noi_test'
 
-USE_POSTGRES = True
-
-if USE_POSTGRES:
-    TEST_DB_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)
-else:
-    TEST_DB_URL = 'sqlite://'
+TEST_DB_URL = 'postgres://%s:@%s:5432/%s' % (PG_USER, PG_HOST, PG_DBNAME)
 
 def wait_until_db_is_ready(max_tries=20):
-    if not USE_POSTGRES: return
-
     attempts = 0
     connected = False
 
@@ -75,7 +70,7 @@ def create_tables():
         db.create_all()
     except OperationalError, e:
         db_noexist_msg = 'database "%s" does not exist' % PG_DBNAME
-        if USE_POSTGRES and db_noexist_msg in str(e):
+        if db_noexist_msg in str(e):
             create_postgres_database()
             db.create_all()
         else:
