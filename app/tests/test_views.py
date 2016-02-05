@@ -1,4 +1,5 @@
 from StringIO import StringIO
+from urllib import urlencode
 from moto import mock_s3
 import boto
 
@@ -75,6 +76,11 @@ class ViewTestCase(DbTestCase):
         self.assert200(res)
         assert LOGGED_IN_SENTINEL in res.data
         return res
+
+    def assertRequiresLogin(self, path, method='get'):
+        method = getattr(self.client, method)
+        self.assertRedirects(method(path),
+                             '/login?%s' % urlencode({'next': path}))
 
 class InviteTests(ViewTestCase):
     BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()
@@ -653,8 +659,7 @@ class ViewTests(ViewTestCase):
         self.assert200(res)
 
     def test_user_profiles_require_login(self):
-        self.assertRedirects(self.client.get('/user/1234'),
-                             '/login?next=%2Fuser%2F1234')
+        self.assertRequiresLogin('/user/1234')
 
     def test_empty_match_results_are_ok(self):
         self.login()

@@ -817,3 +817,15 @@ class Noi1MigrationInfo(db.Model):
     noi1_userid = Column(types.String)
     noi1_json = Column(types.Text)
     email_sent_at = Column(types.DateTime())
+
+
+class LinkedinInfo(db.Model):
+    __tablename__ = 'linkedin_info'
+
+    id = Column(types.Integer, primary_key=True)
+    user_id = Column(types.Integer, ForeignKey('users.id'))
+    user = orm.relationship(
+        'User',
+        backref=orm.backref('linkedin_info', cascade='all,delete-orphan',
+                            uselist=False)
+    )

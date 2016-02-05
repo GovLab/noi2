@@ -1,4 +1,5 @@
 from flask import Blueprint, flash, redirect, url_for, session
+from flask_login import login_required, current_user
 from flask_babel import gettext
 from werkzeug.security import gen_salt
 
@@ -23,6 +24,7 @@ linkedin = oauth.remote_app(
 views = Blueprint('linkedin', __name__)
 
 @views.route('/linkedin/authorize')
+@login_required
 def authorize():
     session['linkedin_state'] = gen_salt(10)
     return linkedin.authorize(
@@ -30,6 +32,7 @@ def authorize():
     )
 
 @views.route('/linkedin/callback')
+@login_required
 def callback():
     state = request.args.get('state')
     if not state or session.get('linkedin_state') != state:

@@ -24,6 +24,7 @@ class LinkedInTests(ViewTestCase):
 
     @mock.patch.object(linkedin, 'gen_salt', return_value='boop')
     def test_authorize_redirects_to_linkedin(self, gen_salt):
+        self.login()
         res = self.client.get('/linkedin/authorize')
         self.assertEqual(res.status_code, 302)
         self.assertEqual(
@@ -36,6 +37,7 @@ class LinkedInTests(ViewTestCase):
         gen_salt.assert_called_with(10)
 
     def get_callback(self, fake_response):
+        self.login()
         with self.client.session_transaction() as sess:
             sess['linkedin_state'] = 'b'
         with mock.patch.object(
@@ -48,16 +50,19 @@ class LinkedInTests(ViewTestCase):
             return res
 
     def test_callback_with_mismatched_state_fails(self):
+        self.login()
         with self.client.session_transaction() as sess:
             sess['linkedin_state'] = 'hi'
         res = self.client.get('/linkedin/callback?state=blorp')
         self.assertEqual(res.data, 'Invalid state')
 
     def test_callback_with_no_session_state_fails(self):
+        self.login()
         res = self.client.get('/linkedin/callback?state=blorp')
         self.assertEqual(res.data, 'Invalid state')
 
     def test_callback_with_no_state_fails(self):
+        self.login()
         res = self.client.get('/linkedin/callback')
         self.assertEqual(res.data, 'Invalid state')
 
@@ -70,3 +75,9 @@ class LinkedInTests(ViewTestCase):
         res = self.get_callback(fake_response={'something': True})
         self.assert200(res)
         assert "Connection to LinkedIn established" in res.data
+
+    def test_authorize_requires_login(self):
+        self.assertRequiresLogin('/linkedin/authorize')
+
+    def test_callback_requires_login(self):
+        self.assertRequiresLogin('/linkedin/callback')
