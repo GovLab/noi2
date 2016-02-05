@@ -819,13 +819,20 @@ class Noi1MigrationInfo(db.Model):
     email_sent_at = Column(types.DateTime())
 
 
-class LinkedinInfo(db.Model):
-    __tablename__ = 'linkedin_info'
+class UserLinkedinInfo(db.Model):
+    __tablename__ = 'user_linkedin_info'
 
     id = Column(types.Integer, primary_key=True)
     user_id = Column(types.Integer, ForeignKey('users.id'))
     user = orm.relationship(
         'User',
-        backref=orm.backref('linkedin_info', cascade='all,delete-orphan',
+        backref=orm.backref('linkedin', cascade='all,delete-orphan',
                             uselist=False)
     )
+
+    access_token = Column(types.String, nullable=False)
+    access_token_expiry = Column(types.DateTime(), nullable=False)
+
+    @property
+    def expires_in(self):
+        return self.access_token_expiry - datetime.datetime.now()

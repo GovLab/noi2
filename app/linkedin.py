@@ -1,11 +1,22 @@
+import datetime
+
 from flask import Blueprint, flash, redirect, url_for, session
 from flask_login import login_required, current_user
 from flask_babel import gettext
 from werkzeug.security import gen_salt
 
 from app import oauth
+from app.models import db, UserLinkedinInfo
 
 from flask import current_app, request
+
+# Minimum amount of time, in seconds, that we think a token has to live.
+# Because the LinkedIn server gives us an `expires_in` based on the time
+# *they* sent their response, we should account for the amount of time it took
+# for the response to get back to us. We should also account for the
+# amount of time it might take for our OAuth2 request to reach their
+# server.
+MIN_TOKEN_LIFETIME = 120
 
 linkedin = oauth.remote_app(
     'linkedin',
@@ -22,6 +33,29 @@ linkedin = oauth.remote_app(
 )
 
 views = Blueprint('linkedin', __name__)
+
+def retrieve_access_token(user):
+    if user.linkedin is not None:
+        if user.linkedin.expires_in.total_seconds() > MIN_TOKEN_LIFETIME:
+            return (user.linkedin.access_token, '')
+
+def store_access_token(user, resp):
+    expiry = datetime.datetime.now() + datetime.timedelta(
+        seconds=resp['expires_in']
+    )
+
+    if user.linkedin is None:
+        user.linkedin = UserLinkedinInfo()
+    user.linkedin.access_token = resp['access_token']
+    user.linkedin.access_token_expiry = expiry
+    db.session.add(user)
+    db.session.commit()
+
+def get_user_info(user):
+    return linkedin.get(
+        'v1/people/~?format=json',
+        token=retrieve_access_token(user)
+    ).data
 
 @views.route('/linkedin/authorize')
 @login_required
@@ -43,5 +77,6 @@ def callback():
     if resp is None:
         flash(gettext(u'Connection with LinkedIn canceled.'), 'error')
     else:
+        store_access_token(current_user, resp)
         flash(gettext(u'Connection to LinkedIn established.'))
     return redirect(url_for('views.my_profile'))

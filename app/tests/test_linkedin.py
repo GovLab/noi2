@@ -1,3 +1,4 @@
+import datetime
 import mock
 
 from .. import linkedin
@@ -72,8 +73,17 @@ class LinkedInTests(ViewTestCase):
         assert "Connection with LinkedIn canceled" in res.data
 
     def test_successful_callback_works(self):
-        res = self.get_callback(fake_response={'something': True})
+        res = self.get_callback(fake_response={
+            'access_token': 'blorp',
+            'expires_in': 10000
+        })
         self.assert200(res)
+
+        user = self.last_created_user
+        self.assertEqual(user.linkedin.access_token, 'blorp')
+        self.assertAlmostEqual(user.linkedin.expires_in.total_seconds(),
+                               10000, delta=120)
+
         assert "Connection to LinkedIn established" in res.data
 
     def test_authorize_requires_login(self):
