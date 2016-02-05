@@ -3,6 +3,7 @@ import datetime
 from flask import Blueprint, flash, redirect, url_for, session
 from flask_login import login_required, current_user
 from flask_babel import gettext
+from flask_oauthlib.client import OAuthException
 from werkzeug.security import gen_salt
 
 from app import oauth
@@ -85,7 +86,15 @@ def get_user_info(user):
     # https://developer-programs.linkedin.com/documents/field-selectors
     url = 'v1/people/~:(%s)?format=json' % ','.join(USER_INFO_FIELDS)
 
-    return linkedin.get(url, token=retrieve_access_token(user)).data
+    res = linkedin.get(url, token=retrieve_access_token(user))
+
+    if res.status != 200:
+        raise OAuthException('Server returned HTTP %d: %s' % (
+            res.status,
+            repr(res.data)
+        ), data=res.data)
+
+    return res.data
 
 @views.route('/linkedin/authorize')
 @login_required
