@@ -35,18 +35,38 @@ class LinkedInTests(ViewTestCase):
         )
         gen_salt.assert_called_with(10)
 
-    @mock.patch.object(linkedin.linkedin, 'authorized_response',
-                       return_value=None)
-    def test_failed_callback_flashes_error(self, authorized_response):
-        res = self.client.get('/linkedin/callback', follow_redirects=True)
+    def get_callback(self, fake_response):
+        with self.client.session_transaction() as sess:
+            sess['linkedin_state'] = 'b'
+        with mock.patch.object(
+            linkedin.linkedin, 'authorized_response',
+            return_value=fake_response
+        ) as authorized_response:
+            res = self.client.get('/linkedin/callback?state=b',
+                                  follow_redirects=True)
+            authorized_response.assert_called_once_with()
+            return res
+
+    def test_callback_with_mismatched_state_fails(self):
+        with self.client.session_transaction() as sess:
+            sess['linkedin_state'] = 'hi'
+        res = self.client.get('/linkedin/callback?state=blorp')
+        self.assertEqual(res.data, 'Invalid state')
+
+    def test_callback_with_no_session_state_fails(self):
+        res = self.client.get('/linkedin/callback?state=blorp')
+        self.assertEqual(res.data, 'Invalid state')
+
+    def test_callback_with_no_state_fails(self):
+        res = self.client.get('/linkedin/callback')
+        self.assertEqual(res.data, 'Invalid state')
+
+    def test_failed_callback_flashes_error(self):
+        res = self.get_callback(fake_response=None)
         self.assert200(res)
-        authorized_response.assert_called_once_with()
         assert "Connection with LinkedIn canceled" in res.data
 
-    @mock.patch.object(linkedin.linkedin, 'authorized_response',
-                       return_value={'something': True})
-    def test_successful_callback_works(self, authorized_response):
-        res = self.client.get('/linkedin/callback', follow_redirects=True)
+    def test_successful_callback_works(self):
+        res = self.get_callback(fake_response={'something': True})
         self.assert200(res)
-        authorized_response.assert_called_once_with()
         assert "Connection to LinkedIn established" in res.data
