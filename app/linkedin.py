@@ -18,6 +18,36 @@ from flask import current_app, request
 # server.
 MIN_TOKEN_LIFETIME = 120
 
+# These are the user info fields to retrieve for users from LinkedIn.
+# For more information, see:
+#
+#     https://developer.linkedin.com/docs/fields/basic-profile
+#
+USER_INFO_FIELDS = [
+    'id',
+    'first-name',
+    'last-name',
+    'maiden-name',
+    'formatted-name',
+    'phonetic-first-name',
+    'phonetic-last-name',
+    'formatted-phonetic-name',
+    'headline',
+    'location',
+    'industry',
+    'current-share',
+    'num-connections',
+    'num-connections-capped',
+    'summary',
+    'specialties',
+    'positions',
+    'picture-url',
+    'picture-urls::(original)',
+    'site-standard-profile-request',
+    'api-standard-profile-request',
+    'public-profile-url',
+]
+
 linkedin = oauth.remote_app(
     'linkedin',
     app_key='LINKEDIN',
@@ -52,10 +82,10 @@ def store_access_token(user, resp):
     db.session.commit()
 
 def get_user_info(user):
-    return linkedin.get(
-        'v1/people/~?format=json',
-        token=retrieve_access_token(user)
-    ).data
+    # https://developer-programs.linkedin.com/documents/field-selectors
+    url = 'v1/people/~:(%s)?format=json' % ','.join(USER_INFO_FIELDS)
+
+    return linkedin.get(url, token=retrieve_access_token(user)).data
 
 @views.route('/linkedin/authorize')
 @login_required
