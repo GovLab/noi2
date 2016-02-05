@@ -2,17 +2,31 @@ from StringIO import StringIO
 from urllib import urlencode
 from moto import mock_s3
 import boto
+from flask_login import current_user
 
 from app import (QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS,
                  QUESTIONNAIRES_BY_ID, mail)
 from app.factory import create_app
-from app.views import get_best_registration_step_url
+from app.views import views, get_best_registration_step_url
 from app.models import User, SharedMessageEvent, ConnectionEvent, db
 
 from .test_models import DbTestCase
 from .factories import UserFactory, UserSkillFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
+
+@views.route('/__blank')
+def blank_page():
+    '''
+    This is just a really simple page to redirect fake users to after
+    login; because the page takes so little time to render, it actually
+    improves the speed of tests that require login.
+    '''
+
+    if current_user.is_authenticated():
+        # Just make sure LOGGED_IN_SENTINEL is in the page.
+        return '<a href="/logout">logout</a>'
+    return ''
 
 class ViewTestCase(DbTestCase):
     BASE_APP_CONFIG = DbTestCase.BASE_APP_CONFIG.copy()
@@ -28,7 +42,7 @@ class ViewTestCase(DbTestCase):
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
-            next='/',
+            next='/__blank',
             first_name=u'John',
             last_name=u'Doe',
             email=username,
@@ -68,7 +82,7 @@ class ViewTestCase(DbTestCase):
             self.create_user(email=email, password=password,
                              fully_register=fully_register, **kwargs)
         res = self.client.post('/login', data=dict(
-            next='/',
+            next='/__blank',
             submit="Login",
             email=email,
             password=password
