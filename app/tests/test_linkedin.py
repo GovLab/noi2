@@ -1,5 +1,6 @@
 import datetime
 import mock
+from unittest import TestCase
 
 from .. import linkedin
 from ..models import User, db, UserLinkedinInfo
@@ -19,7 +20,33 @@ class LinkedinDisabledTests(ViewTestCase):
         res = self.client.get('/linkedin/authorize')
         self.assert404(res)
 
-class LinkedinModelTests(DbTestCase):
+class UserLinkedinInfoTests(TestCase):
+    def test_profile_url_is_none_if_not_available(self):
+        info = UserLinkedinInfo()
+        self.assertEqual(info.profile_url, None)
+
+    def test_profile_url_works(self):
+        info = UserLinkedinInfo(user_info={'publicProfileUrl': 'http://u'})
+        self.assertEqual(info.profile_url, 'http://u')
+
+    def test_picture_url_is_high_res_if_available(self):
+        info = UserLinkedinInfo(user_info={
+            'pictureUrls': {
+                'values': ['http://a', 'http://b']
+            },
+            'pictureUrl': 'http://c'
+        })
+        self.assertEqual(info.picture_url, 'http://a')
+
+    def test_picture_url_falls_back_to_low_res(self):
+        info = UserLinkedinInfo(user_info={'pictureUrl': 'http://c'})
+        self.assertEqual(info.picture_url, 'http://c')
+
+    def test_picture_url_is_none_if_not_available(self):
+        info = UserLinkedinInfo()
+        self.assertEqual(info.picture_url, None)
+
+class LinkedinDbTests(DbTestCase):
     def setUp(self):
         super(LinkedinModelTests, self).setUp()
         self.user = User(email=u'a@example.org', password='a', active=True)

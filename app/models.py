@@ -853,3 +853,18 @@ class UserLinkedinInfo(db.Model):
     def profile_url(self):
         if self.user_info:
             return self.user_info.get('publicProfileUrl')
+
+    @property
+    def picture_url(self):
+        info = self.user_info
+        if info:
+            # Attempt to get a high-resolution image first.
+            if 'pictureUrls' in info:
+                picture_urls = info['pictureUrls']
+                if picture_urls.get('values'):
+                    # Not really sure which one will be highest-res, so
+                    # we'll just pick the first.
+                    return picture_urls['values'][0]
+
+            # This is generally *really* low-res.
+            return info.get('pictureUrl')
