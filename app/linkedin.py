@@ -86,8 +86,14 @@ def store_access_token(user, resp):
 def get_user_info(user):
     # https://developer-programs.linkedin.com/documents/field-selectors
     url = 'v1/people/~:(%s)?format=json' % ','.join(USER_INFO_FIELDS)
+    token = retrieve_access_token(user)
 
-    res = linkedin.get(url, token=retrieve_access_token(user))
+    if token is None:
+        raise OAuthException(
+            'Access token unavailable or expired for %s' % user.email
+        )
+
+    res = linkedin.get(url, token=token)
 
     if res.status != 200:
         raise OAuthException('Server returned HTTP %d: %s' % (

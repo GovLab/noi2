@@ -1,6 +1,8 @@
 import datetime
 import mock
+import datetime
 from unittest import TestCase
+from flask_oauthlib.client import OAuthException
 
 from .. import linkedin
 from ..models import User, db, UserLinkedinInfo
@@ -12,6 +14,9 @@ FAKE_AUTHORIZED_RESPONSE = {
     'expires_in': 10000
 }
 
+FAR_IN_THE_PAST = datetime.datetime.now() - datetime.timedelta(days=50)
+FAR_IN_THE_FUTURE = datetime.datetime.now() + datetime.timedelta(days=50)
+
 class LinkedinDisabledTests(ViewTestCase):
     def test_linkedin_is_disabled_if_setting_not_present(self):
         self.assertTrue('LINKEDIN_ENABLED' not in self.app.jinja_env.globals)
@@ -21,6 +26,39 @@ class LinkedinDisabledTests(ViewTestCase):
         self.assert404(res)
 
 class UserLinkedinInfoTests(TestCase):
+    def test_get_user_info_raises_exception_if_no_access_token(self):
+        user = User(email='foo@bar')
+        with self.assertRaisesRegexp(OAuthException,
+                                     'Access token unavailable or expired'):
+            linkedin.get_user_info(user)
+
+    def test_get_user_info_raises_exception_if_token_is_invalid(self):
+        info = UserLinkedinInfo(access_token='b',
+                                access_token_expiry=FAR_IN_THE_FUTURE)
+        user = User(linkedin=info)
+        with self.assertRaisesRegexp(OAuthException,
+                                     'Server returned HTTP 401.*blah'):
+            mock_response = mock.Mock(status=401, data={'blah': 1})
+            with mock.patch.object(linkedin.linkedin, 'get',
+                                   return_value=mock_response):
+                linkedin.get_user_info(user)
+
+    def test_retrieve_access_token_is_none_if_linkedin_is_none(self):
+        user = User()
+        self.assertEqual(linkedin.retrieve_access_token(user), None)
+
+    def test_retrieve_access_token_is_none_if_token_is_expired(self):
+        info = UserLinkedinInfo(access_token='b',
+                                access_token_expiry=FAR_IN_THE_PAST)
+        user = User(linkedin=info)
+        self.assertEqual(linkedin.retrieve_access_token(user), None)
+
+    def test_retrieve_access_token_works(self):
+        info = UserLinkedinInfo(access_token='b',
+                                access_token_expiry=FAR_IN_THE_FUTURE)
+        user = User(linkedin=info)
+        self.assertEqual(linkedin.retrieve_access_token(user), ('b', ''))
+
     def test_profile_url_is_none_if_not_available(self):
         info = UserLinkedinInfo()
         self.assertEqual(info.profile_url, None)
