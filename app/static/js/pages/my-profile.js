@@ -44,17 +44,17 @@ $('#picture').on('change', function (evt) {
 var $removePicture = $('[data-remove-picture]');
 
 $removePicture.on('click', function(evt) {
-  if (!window.confirm("Do you really want to remove your profile picture?"))
+  if (!window.confirm(pageConfig.REMOVE_PICTURE_CONFIRM))
     return;
   $.ajax({
-    url: '/me/picture/remove',
+    url: pageConfig.REMOVE_PICTURE_URL,
     type: 'POST',
     success: function(data, textStatus) {
-      alert('Your profile picture has been removed.');
+      alert(pageConfig.REMOVE_PICTURE_SUCCESS);
       $removePicture.fadeOut();
     },
     error: function() {
-      alert('An error occurred when deleting your profile picture.');
+      alert(pageConfig.REMOVE_PICTURE_ERROR);
     }
   });
 });
