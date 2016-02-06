@@ -48,7 +48,7 @@ class UserLinkedinInfoTests(TestCase):
 
 class LinkedinDbTests(DbTestCase):
     def setUp(self):
-        super(LinkedinModelTests, self).setUp()
+        super(LinkedinDbTests, self).setUp()
         self.user = User(email=u'a@example.org', password='a', active=True)
         db.session.add(self.user)
         db.session.commit()
