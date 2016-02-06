@@ -28,6 +28,22 @@
 {% endif %}
 {%- endmacro %}
 
+{% if LINKEDIN_ENABLED and not current_user.linkedin %}
+<p>
+  <a class="b-button" href="{{ url_for('linkedin.authorize') }}">
+    Connect to <img alt="LinkedIn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" width="16" style="vertical-align: bottom; margin-bottom: 4px;">
+  </a>
+</p>
+
+<p>
+  <small>
+  Connecting your account to LinkedIn&trade; will allow you to pre-fill some of
+  the form fields below. It will also allow others to see your LinkedIn&trade;
+  profile.
+  </small>
+</p>
+{% endif %}
+
 {{ input("picture") }}
 {{ input("first_name") }}
 {{ input("last_name") }}
@@ -45,6 +61,14 @@
 <button type="submit">{{ gettext('Save') }}</button>
 
 </form>
+
+{% if LINKEDIN_ENABLED and current_user.linkedin %}
+<div class="b-temporary-styling">
+  <small>
+  Your account is currently connected to LinkedIn&trade;, which allows others to see your LinkedIn&trade; profile. You can <a style="text-decoration: underline" href="{{ url_for('linkedin.deauthorize') }}">disconnect from LinkedIn&trade;</a> at any time to disable this.
+  </small>
+</div>
+{% endif %}
 
 {% endblock %}
 

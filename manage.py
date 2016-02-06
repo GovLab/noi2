@@ -266,9 +266,9 @@ def show_db_create_table_sql():
     print get_postgres_create_table_sql()
 
 @manager.command
-def show_linkedin_info(email):
+def refresh_linkedin_info(email):
     """
-    Retrieve and display LinkedIn information for a user.
+    Refresh and display LinkedIn information for a user.
     """
 
     user = User.query_in_deployment().filter_by(email=email).one()
@@ -276,7 +276,8 @@ def show_linkedin_info(email):
         raise InvalidCommand(
             'The user must first (re)connect to LinkedIn on the website.'
         )
-    pprint.pprint(linkedin.get_user_info(user))
+    linkedin.update_user_info(user)
+    pprint.pprint(user.linkedin.user_info)
 
 @manager.command
 def show_blog_posts():

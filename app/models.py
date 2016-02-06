@@ -15,6 +15,7 @@ from flask_babel import lazy_gettext
 
 from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
                         desc, cast, String)
+from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -833,6 +834,13 @@ class UserLinkedinInfo(db.Model):
     access_token = Column(types.String, nullable=False)
     access_token_expiry = Column(types.DateTime(), nullable=False)
 
+    user_info = Column(JSON)
+
     @property
     def expires_in(self):
         return self.access_token_expiry - datetime.datetime.now()
+
+    @property
+    def profile_url(self):
+        if self.user_info:
+            return self.user_info.get('publicProfileUrl')

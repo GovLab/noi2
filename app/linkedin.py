@@ -5,6 +5,7 @@ from flask_login import login_required, current_user
 from flask_babel import gettext
 from flask_oauthlib.client import OAuthException
 from werkzeug.security import gen_salt
+from sqlalchemy_utils import Country
 
 from app import oauth
 from app.models import db, UserLinkedinInfo
@@ -96,6 +97,33 @@ def get_user_info(user):
 
     return res.data
 
+def update_user_fields_from_profile(user, info):
+    location = info.get('location')
+    if location:
+        if 'name' in location and user.city is None:
+            user.city = location['name']
+        if 'country' in location and 'code' in location['country']:
+            country_code = location['country']['code'].upper()
+            try:
+                user.country = Country(country_code)
+            except ValueError:
+                pass
+
+def update_user_info(user):
+    info = get_user_info(user)
+    user.linkedin.user_info = info
+    update_user_fields_from_profile(user, info)
+    db.session.commit()
+
+@views.route('/linkedin/deauthorize')
+@login_required
+def deauthorize():
+    if current_user.linkedin:
+        db.session.delete(current_user.linkedin)
+        db.session.commit()
+    flash(gettext(u'Disconnected from LinkedIn.'))
+    return redirect(url_for('views.my_profile'))
+
 @views.route('/linkedin/authorize')
 @login_required
 def authorize():
@@ -117,5 +145,6 @@ def callback():
         flash(gettext(u'Connection with LinkedIn canceled.'), 'error')
     else:
         store_access_token(current_user, resp)
+        update_user_info(current_user)
         flash(gettext(u'Connection to LinkedIn established.'))
     return redirect(url_for('views.my_profile'))

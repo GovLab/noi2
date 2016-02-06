@@ -31,6 +31,11 @@ b-public-profile
         <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
         {% call render_user_mailto_link(user) %}<span class="e-send material-icons">send</span>{% endcall %}
         {% endif %}
+
+        {% if user.linkedin and user.linkedin.profile_url %}
+        <a href="{{ user.linkedin.profile_url }}" target="_blank" class="e-edit"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" width="24"></a>
+        {% endif %}
+
     </div>
     <div class="e-right">
         <h2 class="e-name">{{ user.full_name }}</h2>
