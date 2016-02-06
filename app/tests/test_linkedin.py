@@ -53,6 +53,13 @@ class LinkedinDbTests(DbTestCase):
         db.session.add(self.user)
         db.session.commit()
 
+    def test_linkedin_is_deleted_with_user(self):
+        linkedin.store_access_token(self.user, FAKE_AUTHORIZED_RESPONSE)
+        self.assertEqual(UserLinkedinInfo.query.count(), 1)
+        db.session.delete(self.user)
+        db.session.commit()
+        self.assertEqual(UserLinkedinInfo.query.count(), 0)
+
     def test_only_one_linkedin_per_user_is_created(self):
         self.assertEqual(UserLinkedinInfo.query.count(), 0)
         linkedin.store_access_token(self.user, FAKE_AUTHORIZED_RESPONSE)
