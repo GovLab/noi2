@@ -205,6 +205,15 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             path=self.picture_path
         )
 
+    def remove_picture(self):
+        conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
+                            current_app.config['S3_SECRET_ACCESS_KEY'])
+        bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
+
+        bucket.delete_key(self.picture_path)
+
+        self.has_picture = False
+
     def upload_picture(self, fileobj, mimetype):
         '''
         Upload the given file object with the given mime type to S3 and

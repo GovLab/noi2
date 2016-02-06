@@ -107,6 +107,13 @@ def set_user_picture(user, picture):
         mimetype=mimetypes.guess_type(picture.data.filename)[0]
     )
 
+@views.route('/me/picture/remove', methods=['POST'])
+@full_registration_required
+def my_profile_remove_picture():
+    current_user.remove_picture()
+    db.session.commit()
+    return ('', 204)
+
 @views.route('/me/picture', methods=['POST'])
 @full_registration_required
 def my_profile_upload_picture():

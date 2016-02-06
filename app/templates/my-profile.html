@@ -19,6 +19,9 @@
 {% else %}
   {{ form[name](placeholder=form[name].description) }}
 {% endif %}
+{% if name == "picture" %}
+<a data-remove-picture href="#" class="material-icons" style="float: right;{% if not current_user.has_picture %}display: none{% endif %}">clear</a>
+{% endif %}
 {% if form[name].errors %}
   <ul class="list-unstyled">
   {% for error in form[name].errors %}

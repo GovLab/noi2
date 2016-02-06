@@ -28,6 +28,7 @@ $('#picture').on('change', function (evt) {
       loadImage(this.files[0], function(canvas) {
         upload(canvas, function() {
           $(self).val('');
+          $removePicture.fadeIn();
         });
       }, {
         maxWidth: 256,
@@ -38,4 +39,22 @@ $('#picture').on('change', function (evt) {
       });
     }
   }
+});
+
+var $removePicture = $('[data-remove-picture]');
+
+$removePicture.on('click', function(evt) {
+  if (!window.confirm("Do you really want to remove your profile picture?"))
+    return;
+  $.ajax({
+    url: '/me/picture/remove',
+    type: 'POST',
+    success: function(data, textStatus) {
+      alert('Your profile picture has been removed.');
+      $removePicture.fadeOut();
+    },
+    error: function() {
+      alert('An error occurred when deleting your profile picture.');
+    }
+  });
 });
