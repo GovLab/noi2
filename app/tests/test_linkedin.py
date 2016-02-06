@@ -207,3 +207,41 @@ class LinkedinViewTests(ViewTestCase):
 
     def test_callback_requires_login(self):
         self.assertRequiresLogin('/linkedin/callback')
+
+    def test_connect_to_linkedin_is_shown_in_edit_profile(self):
+        self.login()
+        res = self.client.get('/me')
+        self.assert200(res)
+
+        assert 'href="/linkedin/authorize"' in res.data
+        assert 'href="/linkedin/deauthorize"' not in res.data
+
+    def test_disconnect_from_linkedin_is_shown_in_edit_profile(self):
+        self.login()
+        linkedin.store_access_token(self.last_created_user,
+                                    FAKE_AUTHORIZED_RESPONSE)
+        res = self.client.get('/me')
+        self.assert200(res)
+
+        assert 'href="/linkedin/authorize"' not in res.data
+        assert 'href="/linkedin/deauthorize"' in res.data
+
+    def test_linkedin_profile_url_is_shown_in_public_profile(self):
+        self.login()
+        linkedin.store_access_token(self.last_created_user,
+                                    FAKE_AUTHORIZED_RESPONSE)
+        self.last_created_user.linkedin.user_info = {
+            'publicProfileUrl': 'http://linkedin.com/blarg'
+        }
+        res = self.client.get('/user/%d' % self.last_created_user.id)
+        self.assert200(res)
+
+        assert 'href="http://linkedin.com/blarg"' in res.data
+        assert 'LinkedIn' in res.data
+
+    def test_linkedin_is_not_shown_in_public_profile(self):
+        self.login()
+        res = self.client.get('/user/%d' % self.last_created_user.id)
+        self.assert200(res)
+
+        assert 'LinkedIn' not in res.data
