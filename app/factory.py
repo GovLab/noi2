@@ -8,6 +8,7 @@ from flask import Flask, current_app
 from flask.ext.babel import get_locale
 from flask_security import SQLAlchemyUserDatastore, user_registered
 from flask_security.utils import get_identity_attributes
+from werkzeug.contrib.fixers import ProxyFix
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
                  babel, alchemydumps, sass, email_errors, csp, oauth,
@@ -233,5 +234,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
         basic_auth = BasicAuth()
         basic_auth.init_app(app)
+
+    app.wsgi_app = ProxyFix(app.wsgi_app)
 
     return app
