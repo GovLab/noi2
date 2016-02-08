@@ -603,11 +603,15 @@ class UploadPictureTests(ViewTestCase):
     @mock_s3
     def test_remove_picture_works_if_picture_exists(self):
         self.init_s3()
+
+        self.last_created_user.has_picture = True
         k = self.bucket.new_key(self.picture_path)
         k.set_contents_from_string('hi')
+
         res = self.client.post('/me/picture/remove')
         self.assertEqual(res.status_code, 204)
         self.assertIsNone(self.bucket.get_key(self.picture_path))
+        self.assertFalse(self.last_created_user.has_picture)
 
     @mock_s3
     def test_valid_form_sets_picture(self):
