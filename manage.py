@@ -14,7 +14,7 @@ from app.noi1 import Noi1Command
 
 from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
 from flask_migrate import Migrate, MigrateCommand
-from flask_script import Manager
+from flask_script import Manager, prompt_bool
 from flask_mail import Message
 from flask_security.recoverable import send_reset_password_instructions
 from flask.ext.script.commands import InvalidCommand
@@ -28,6 +28,7 @@ import os
 import string
 import subprocess
 import pprint
+import functools
 import yaml
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -44,6 +45,30 @@ manager.add_command('db', MigrateCommand)
 alchemydumps = AlchemyDumps(app, db)
 manager.add_command('alchemydumps', AlchemyDumpsCommand)
 
+
+def development_only(fn):
+    '''
+    Designate a command for being intended for use in development mode
+    only. If we're not in development mode, we'll prompt the user to
+    continue the operation.
+    '''
+
+    DEV_ENVIRONMENT = 'development'
+    NOI_ENVIRONMENT = os.environ['NOI_ENVIRONMENT']
+
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        if NOI_ENVIRONMENT != DEV_ENVIRONMENT:
+            print (
+                "WARNING: The '%s' command was designed for use *only* in \n"
+                "%s mode, but you seem to be in %s mode."
+            ) % (fn.__name__, DEV_ENVIRONMENT, NOI_ENVIRONMENT)
+            if not prompt_bool("Are you sure you want to proceed?"):
+                print "Aborting operation."
+                return
+        fn(*args, **kwargs)
+
+    return wrapper
 
 def gettext_for(text):
     '''
@@ -192,6 +217,7 @@ def wait_for_db():
 
 @manager.command
 @manager.option('-v', '--verbose', dest='verbose', default=False)
+@development_only
 def drop_db(verbose=False):
     """
     Drops database
@@ -251,6 +277,7 @@ def send_bulk_password_reset_links(users_csv):
 
 @manager.command
 @manager.option('-c', '--count', dest='count', default=100)
+@development_only
 def populate_db(count=50):
     """
     Populate DB with random data.
