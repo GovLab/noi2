@@ -210,7 +210,8 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                             current_app.config['S3_SECRET_ACCESS_KEY'])
         bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
 
-        bucket.delete_key(self.picture_path)
+        if bucket.get_key(self.picture_path):
+            bucket.delete_key(self.picture_path)
 
         self.has_picture = False
 
