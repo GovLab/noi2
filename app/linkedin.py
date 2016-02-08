@@ -106,7 +106,7 @@ def get_user_info(user):
 def update_user_fields_from_profile(user, info):
     location = info.get('location')
     if location:
-        if 'name' in location and user.city is None:
+        if 'name' in location and not user.city:
             user.city = location['name']
         if 'country' in location and 'code' in location['country']:
             country_code = location['country']['code'].upper()
@@ -114,6 +114,8 @@ def update_user_fields_from_profile(user, info):
                 user.country = Country(country_code)
             except ValueError:
                 pass
+    if info.get('headline') and not user.position:
+        user.position = info['headline']
 
 def update_user_info(user):
     info = get_user_info(user)

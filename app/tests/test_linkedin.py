@@ -104,6 +104,12 @@ class LinkedinDbTests(DbTestCase):
         linkedin.store_access_token(self.user, FAKE_AUTHORIZED_RESPONSE)
         self.assertEqual(UserLinkedinInfo.query.count(), 1)
 
+    def test_headline_is_imported_from_profile(self):
+        linkedin.update_user_fields_from_profile(self.user, {
+            u'headline': 'Awesome Person'
+        })
+        self.assertEqual(self.user.position, 'Awesome Person')
+
     def test_unrecognized_country_name_in_profile_is_ignored(self):
         linkedin.update_user_fields_from_profile(self.user, {
             u'location': {u'country': {u'code': u'lolol'}},
