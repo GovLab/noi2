@@ -107,6 +107,13 @@ def set_user_picture(user, picture):
         mimetype=mimetypes.guess_type(picture.data.filename)[0]
     )
 
+@views.route('/me/picture/remove', methods=['POST'])
+@full_registration_required
+def my_profile_remove_picture():
+    current_user.remove_picture()
+    db.session.commit()
+    return ('', 204)
+
 @views.route('/me/picture', methods=['POST'])
 @full_registration_required
 def my_profile_upload_picture():
@@ -151,7 +158,11 @@ def my_profile():
         page_config_json=json_blob(
             UPLOAD_PICTURE_URL=url_for('views.my_profile_upload_picture'),
             UPLOAD_PICTURE_SUCCESS=gettext("Your user picture has been changed."),
-            UPLOAD_PICTURE_ERROR=gettext("An error occurred when uploading your user picture.")
+            UPLOAD_PICTURE_ERROR=gettext("An error occurred when uploading your user picture."),
+            REMOVE_PICTURE_URL=url_for('views.my_profile_remove_picture'),
+            REMOVE_PICTURE_CONFIRM=gettext("Do you really want to remove your profile picture?"),
+            REMOVE_PICTURE_SUCCESS=gettext("Your profile picture has been removed."),
+            REMOVE_PICTURE_ERROR=gettext("An error occurred when removing your profile picture."),
         )
     )
 

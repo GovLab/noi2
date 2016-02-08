@@ -13,6 +13,7 @@ from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 from flask_s3 import FlaskS3
 from flask_wtf.csrf import CsrfProtect
+from flask_oauthlib.client import OAuth
 
 from babel import Locale, UnknownLocaleError
 import locale
@@ -26,6 +27,7 @@ security = Security()
 csrf = CsrfProtect()
 babel = Babel()
 bcrypt = Bcrypt()
+oauth = OAuth()
 
 assets = Environment()
 

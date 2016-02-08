@@ -28,6 +28,7 @@ $('#picture').on('change', function (evt) {
       loadImage(this.files[0], function(canvas) {
         upload(canvas, function() {
           $(self).val('');
+          $removePicture.fadeIn();
         });
       }, {
         maxWidth: 256,
@@ -38,4 +39,22 @@ $('#picture').on('change', function (evt) {
       });
     }
   }
+});
+
+var $removePicture = $('[data-remove-picture]');
+
+$removePicture.on('click', function(evt) {
+  if (!window.confirm(pageConfig.REMOVE_PICTURE_CONFIRM))
+    return;
+  $.ajax({
+    url: pageConfig.REMOVE_PICTURE_URL,
+    type: 'POST',
+    success: function(data, textStatus) {
+      alert(pageConfig.REMOVE_PICTURE_SUCCESS);
+      $removePicture.fadeOut();
+    },
+    error: function() {
+      alert(pageConfig.REMOVE_PICTURE_ERROR);
+    }
+  });
 });

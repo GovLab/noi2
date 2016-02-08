@@ -15,6 +15,7 @@ from flask_babel import lazy_gettext
 
 from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
                         desc, cast, String)
+from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -203,6 +204,16 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             bucket=current_app.config['S3_BUCKET_NAME'],
             path=self.picture_path
         )
+
+    def remove_picture(self):
+        conn = S3Connection(current_app.config['S3_ACCESS_KEY_ID'],
+                            current_app.config['S3_SECRET_ACCESS_KEY'])
+        bucket = conn.get_bucket(current_app.config['S3_BUCKET_NAME'])
+
+        if bucket.get_key(self.picture_path):
+            bucket.delete_key(self.picture_path)
+
+        self.has_picture = False
 
     def upload_picture(self, fileobj, mimetype):
         '''
@@ -817,3 +828,44 @@ class Noi1MigrationInfo(db.Model):
     noi1_userid = Column(types.String)
     noi1_json = Column(types.Text)
     email_sent_at = Column(types.DateTime())
+
+
+class UserLinkedinInfo(db.Model):
+    __tablename__ = 'user_linkedin_info'
+
+    id = Column(types.Integer, primary_key=True)
+    user_id = Column(types.Integer, ForeignKey('users.id'))
+    user = orm.relationship(
+        'User',
+        backref=orm.backref('linkedin', cascade='all,delete-orphan',
+                            uselist=False)
+    )
+
+    access_token = Column(types.String, nullable=False)
+    access_token_expiry = Column(types.DateTime(), nullable=False)
+
+    user_info = Column(JSON)
+
+    @property
+    def expires_in(self):
+        return self.access_token_expiry - datetime.datetime.now()
+
+    @property
+    def profile_url(self):
+        if self.user_info:
+            return self.user_info.get('publicProfileUrl')
+
+    @property
+    def picture_url(self):
+        info = self.user_info
+        if info:
+            # Attempt to get a high-resolution image first.
+            if 'pictureUrls' in info:
+                picture_urls = info['pictureUrls']
+                if picture_urls.get('values'):
+                    # Not really sure which one will be highest-res, so
+                    # we'll just pick the first.
+                    return picture_urls['values'][0]
+
+            # This is generally *really* low-res.
+            return info.get('pictureUrl')

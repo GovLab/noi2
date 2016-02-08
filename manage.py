@@ -5,7 +5,7 @@ Scripts to run the server and perform maintenance operations
 '''
 
 from app import (mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats,
-                 questionnaires, blog_posts)
+                 questionnaires, blog_posts, linkedin)
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
@@ -264,6 +264,20 @@ def show_db_create_table_sql():
     from app.tests.test_models import get_postgres_create_table_sql
 
     print get_postgres_create_table_sql()
+
+@manager.command
+def refresh_linkedin_info(email):
+    """
+    Refresh and display LinkedIn information for a user.
+    """
+
+    user = User.query_in_deployment().filter_by(email=email).one()
+    if linkedin.retrieve_access_token(user) is None:
+        raise InvalidCommand(
+            'The user must first (re)connect to LinkedIn on the website.'
+        )
+    linkedin.update_user_info(user)
+    pprint.pprint(user.linkedin.user_info)
 
 @manager.command
 def show_blog_posts():

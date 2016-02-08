@@ -1,17 +1,32 @@
 from StringIO import StringIO
+from urllib import urlencode
 from moto import mock_s3
 import boto
+from flask_login import current_user
 
 from app import (QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS,
                  QUESTIONNAIRES_BY_ID, mail)
 from app.factory import create_app
-from app.views import get_best_registration_step_url
+from app.views import views, get_best_registration_step_url
 from app.models import User, SharedMessageEvent, ConnectionEvent, db
 
 from .test_models import DbTestCase
 from .factories import UserFactory, UserSkillFactory
 
 LOGGED_IN_SENTINEL = '<a href="/logout"'
+
+@views.route('/__blank')
+def blank_page():
+    '''
+    This is just a really simple page to redirect fake users to after
+    login; because the page takes so little time to render, it actually
+    improves the speed of tests that require login.
+    '''
+
+    if current_user.is_authenticated():
+        # Just make sure LOGGED_IN_SENTINEL is in the page.
+        return '<a href="/logout">logout</a>'
+    return ''
 
 class ViewTestCase(DbTestCase):
     BASE_APP_CONFIG = DbTestCase.BASE_APP_CONFIG.copy()
@@ -27,7 +42,7 @@ class ViewTestCase(DbTestCase):
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
-            next='/',
+            next='/__blank',
             first_name=u'John',
             last_name=u'Doe',
             email=username,
@@ -67,7 +82,7 @@ class ViewTestCase(DbTestCase):
             self.create_user(email=email, password=password,
                              fully_register=fully_register, **kwargs)
         res = self.client.post('/login', data=dict(
-            next='/',
+            next='/__blank',
             submit="Login",
             email=email,
             password=password
@@ -75,6 +90,11 @@ class ViewTestCase(DbTestCase):
         self.assert200(res)
         assert LOGGED_IN_SENTINEL in res.data
         return res
+
+    def assertRequiresLogin(self, path, method='get'):
+        method = getattr(self.client, method)
+        self.assertRedirects(method(path),
+                             '/login?%s' % urlencode({'next': path}))
 
 class InviteTests(ViewTestCase):
     BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()
@@ -560,17 +580,42 @@ class UploadPictureTests(ViewTestCase):
         S3_BUCKET_NAME='my_bucket'
     )
 
-    def test_invalid_form_is_bad_request(self):
+    def setUp(self):
+        super(UploadPictureTests, self).setUp()
         self.login()
+        self.picture_path = self.last_created_user.picture_path
+
+    def init_s3(self):
+        self.conn = boto.connect_s3()
+        self.bucket = self.conn.create_bucket('my_bucket')
+
+    def test_invalid_form_is_bad_request(self):
         res = self.client.post('/me/picture')
         self.assert400(res)
 
     @mock_s3
-    def test_valid_form_sets_picture(self):
-        conn = boto.connect_s3()
-        conn.create_bucket('my_bucket')
+    def test_remove_picture_works_if_picture_does_not_exist(self):
+        self.init_s3()
+        res = self.client.post('/me/picture/remove')
+        self.assertEqual(res.status_code, 204)
+        self.assertIsNone(self.bucket.get_key(self.picture_path))
 
-        self.login()
+    @mock_s3
+    def test_remove_picture_works_if_picture_exists(self):
+        self.init_s3()
+
+        self.last_created_user.has_picture = True
+        k = self.bucket.new_key(self.picture_path)
+        k.set_contents_from_string('hi')
+
+        res = self.client.post('/me/picture/remove')
+        self.assertEqual(res.status_code, 204)
+        self.assertIsNone(self.bucket.get_key(self.picture_path))
+        self.assertFalse(self.last_created_user.has_picture)
+
+    @mock_s3
+    def test_valid_form_sets_picture(self):
+        self.init_s3()
         res = self.client.post(
             '/me/picture',
             data={
@@ -580,9 +625,7 @@ class UploadPictureTests(ViewTestCase):
         )
         self.assertEqual(res.status_code, 204)
 
-        key = conn.get_bucket('my_bucket').\
-            get_key(self.last_created_user.picture_path)
-
+        key = self.bucket.get_key(self.picture_path)
         self.assertEqual(key.get_contents_as_string(), 'hi')
         self.assertEqual(key.content_type, 'image/png')
 
@@ -653,8 +696,7 @@ class ViewTests(ViewTestCase):
         self.assert200(res)
 
     def test_user_profiles_require_login(self):
-        self.assertRedirects(self.client.get('/user/1234'),
-                             '/login?next=%2Fuser%2F1234')
+        self.assertRequiresLogin('/user/1234')
 
     def test_empty_match_results_are_ok(self):
         self.login()

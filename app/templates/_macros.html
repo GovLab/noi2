@@ -1,6 +1,8 @@
 {% macro get_user_avatar_url(user) -%}
 {% if user.has_picture -%}
 {{ user.picture_url }}
+{%- elif user.linkedin and user.linkedin.picture_url -%}
+{{ user.linkedin.picture_url }}
 {%- else -%}
 {{ get_nopic_avatar(user.email) }}
 {%- endif %}
