@@ -104,8 +104,26 @@ class LinkedinDbTests(DbTestCase):
         linkedin.store_access_token(self.user, FAKE_AUTHORIZED_RESPONSE)
         self.assertEqual(UserLinkedinInfo.query.count(), 1)
 
-    def test_headline_is_imported_from_profile(self):
+    def test_position_and_org_are_imported_from_profile(self):
         linkedin.update_user_fields_from_profile(self.user, {
+            u'positions': {
+                u'_total': 1,
+                u'values': [{u'company': {u'name': u'Self-Employed'},
+                             u'id': 768900354,
+                             u'isCurrent': True,
+                             u'location': {},
+                             u'startDate': {u'month': 7, u'year': 2015},
+                             u'summary': u'I currently freelance.',
+                             u'title': u'Tinkerer'}],
+            },
+            u'headline': 'Do not use this'
+        })
+        self.assertEqual(self.user.position, 'Tinkerer')
+        self.assertEqual(self.user.organization, 'Self-Employed')
+
+    def test_headline_is_imported_from_profile_when_position_is_empty(self):
+        linkedin.update_user_fields_from_profile(self.user, {
+            u'positions': {u'_total': 0},
             u'headline': 'Awesome Person'
         })
         self.assertEqual(self.user.position, 'Awesome Person')

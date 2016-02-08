@@ -114,6 +114,16 @@ def update_user_fields_from_profile(user, info):
                 user.country = Country(country_code)
             except ValueError:
                 pass
+
+    positions = info.get('positions')
+    if positions and len(positions.get('values', [])) >= 1:
+        position = positions['values'][0]
+        org = position.get('company') and position['company'].get('name')
+        if org and not user.organization:
+            user.organization = org
+        if position.get('title') and not user.position:
+            user.position = position['title']
+
     if info.get('headline') and not user.position:
         user.position = info['headline']
 

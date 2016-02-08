@@ -10,7 +10,9 @@ app:
         - .:/noi
         - ./migrations:/migrations
         - ./alchemydumps:/alchemydumps
+    entrypoint: python /noi/entrypoint.py
     environment:
+        HOST_USER: $USER
         NOI_ENVIRONMENT: development
 db:
     image: postgres:9.4
