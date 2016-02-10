@@ -3,9 +3,9 @@ from babel.messages.pofile import read_po
 from babel.messages.catalog import TranslationError, Message
 from babel.messages import checkers
 from flask import Flask
-from nose.tools import eq_
 
 from .test_views import ViewTestCase
+from .util import eq_
 from app import l10n
 
 def test_flask_security_strings_do_not_interpolate():

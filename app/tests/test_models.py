@@ -3,13 +3,13 @@ import StringIO
 import contextlib
 from flask import Flask
 from flask_testing import TestCase
-from nose.tools import eq_
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError, IntegrityError
 from sqlalchemy_utils import Country
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import psycopg2
 
+from .util import eq_
 from .factories import UserFactory, UserSkillFactory
 from .. import models, LEVELS, babel
 

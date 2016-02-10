@@ -10,7 +10,7 @@ before_install:
 
 script:
   - docker-compose pull
-  - ./nosetests.sh
+  - docker-compose run app py.test
 
 notifications:
   slack: govlab:FhXXpjcwabyHAV35OjQeKFTR
