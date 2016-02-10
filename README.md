@@ -118,11 +118,11 @@ control.
 
 ### Unit Testing
 
-To run the unit tests, simply run:
+To run the unit tests, run:
 
-    ./nosetests.sh
+    docker-compose run app py.test
 
-This just executes [`nosetests`][] inside the web application's Docker
+This just executes [`py.test`][] inside the web application's Docker
 container.
 
 Tests are located in `app/tests`. Please feel free to add more!
@@ -194,7 +194,7 @@ For more details on how we write our SASS, see the project's
 
   [git-lfs]: https://git-lfs.github.com/
   [packagecloud]: https://packagecloud.io/github/git-lfs/install
-  [`nosetests`]: https://nose.readthedocs.org/en/latest/usage.html
+  [`py.test`]: http://pytest.org/latest/usage.html
   [Docker Toolbox]: https://www.docker.com/toolbox
   [Build Details]: https://hub.docker.com/r/thegovlab/noi2/builds/
   [SASS]: http://sass-lang.com/
