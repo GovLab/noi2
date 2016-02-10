@@ -33,6 +33,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, prompt_bool
 from flask_mail import Message
 from flask_security.recoverable import send_reset_password_instructions
+from flask.ext.script import Command
 from flask.ext.script.commands import InvalidCommand
 
 from random import choice
@@ -339,6 +340,26 @@ def build_sass():
     sass.build_files()
     print "Done. Built SASS files are in app/%s." % sass.CSS_DIR
     return 0
+
+class RunTests(Command):
+    '''
+    Run unit tests via py.test.
+    '''
+
+    # We want py.test to handle --help, not Flask-Script.
+    help_args = tuple()
+
+    # http://stackoverflow.com/a/35318409/2422398
+    capture_all_args = True
+
+    def run(self, args):
+        import pytest
+
+        sys.argv[0] = sys.argv[0] + ' test'
+
+        raise SystemExit(pytest.main(args))
+
+manager.add_command('test', RunTests())
 
 @manager.command
 @manager.option('-f', '--from', dest='from_yaml')
