@@ -2,12 +2,9 @@
     position: relative;
     color: $white;
     overflow: hidden;
-    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-    display: -ms-flexbox;  /* TWEENER - IE 10 */
-    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
     display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
     background-color: $gray-70;
-    
+
     .e-send {display: none;} // @Toolness - this is my hack for the button switcher.
 
     .e-bg {
@@ -27,9 +24,6 @@
     }
 
     .e-left {
-        -webkit-box-flex: 2;   /* OLD - iOS 6-, Safari 3.1-6 */
-        -webkit-flex: 2;       /* Safari 6.1+. iOS 7.1+, BB10 */
-        -ms-flex: 2;           /* IE 10 */
         flex: 2;               /* NEW, Spec - Firefox, Chrome, Opera */
         text-align: center;
         padding: 20px 10px;
@@ -47,9 +41,6 @@
 
     .e-right {
         padding: 30px 10px 10px;
-        -webkit-box-flex: 3;   /* OLD - iOS 6-, Safari 3.1-6 */
-        -webkit-flex: 3;       /* Safari 6.1+. iOS 7.1+, BB10 */
-        -ms-flex: 3;           /* IE 10 */
         flex: 3;               /* NEW, Spec - Firefox, Chrome, Opera */
 
         .e-name {
@@ -109,7 +100,7 @@
         margin-top: 3px;
     }
 
-    .e-prev { float: left; } 
+    .e-prev { float: left; }
     .e-next { float: right; }
 
     .e-question-text {
@@ -120,7 +111,7 @@
     }
 
     .e-questionnaire-answers {
-        padding: 0 20px;   
+        padding: 0 20px;
     }
 
     .m-start {
@@ -151,7 +142,7 @@
             left: 20px;
         }
     }
-    
+
     .b-contextual-nav.m-roles {
         background-color: $gray-20;
 
@@ -182,8 +173,8 @@
     padding: 0;
 
 
-    .e-question-item { 
-        list-style-type: none; 
+    .e-question-item {
+        list-style-type: none;
         padding: 10px 20px 20px;
     }
     .e-question-item:nth-of-type(odd) { background-color: $gray-05; }
@@ -199,7 +190,7 @@
         width: 80%;
         margin: 0 auto;
         left: 25px;
-        
+
         img {
             @include circle;
             width: 50px;
@@ -207,7 +198,7 @@
             left: 0;
 
         }
-        
+
         .e-user-answer-text {
             padding: 6px 20px 6px 30px;
             margin: 8px 0 10px -35px;
