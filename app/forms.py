@@ -248,6 +248,11 @@ class NOIRegisterForm(RegisterForm):
     last_name = StringField(lazy_gettext('Last Name'),
                             validators=[Required()])
 
+    # TODO: Add more validators to e.g. ensure that the username isn't
+    # taken, conforms to Discourse's username rules, etc.
+    username = StringField(lazy_gettext('Username'),
+                           validators=[Required()])
+
     email = StringField(
         lazy_gettext('Email'),
         validators=[email_required, email_validator, unique_user_email])

@@ -79,11 +79,11 @@ class NoiModelView(AdminPermissionRequiredMixin, ModelView):
 
 
 class UserModelView(NoiModelView):
-    column_list = ('first_name', 'last_name', 'email', 'last_login_at',
-                   'login_count')
-    form_columns = ('first_name', 'last_name', 'email', 'position',
-                    'organization', 'city', 'projects')
-    column_searchable_list = ('first_name', 'last_name', 'email')
+    column_list = ('username', 'first_name', 'last_name', 'email',
+                   'last_login_at', 'login_count')
+    form_columns = ('username', 'first_name', 'last_name', 'email',
+                    'position', 'organization', 'city', 'projects')
+    column_searchable_list = ('username', 'first_name', 'last_name', 'email')
 
     def scaffold_form(self):
         form_class = super(UserModelView, self).scaffold_form()
