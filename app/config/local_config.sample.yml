@@ -114,3 +114,12 @@ SECRET_KEY: i_am_insecure
 # LINKEDIN:
 #   consumer_key: something
 #   consumer_secret: somethingelse
+
+# Discourse Integration
+# ---------------------
+
+# This specifies optional Discourse integration information.
+#
+# DISCOURSE:
+#   api_key: putyourdiscourseapikeyhere
+#   origin: http://discourse-dev.networkofinnovators.org
