@@ -123,3 +123,5 @@ SECRET_KEY: i_am_insecure
 # DISCOURSE:
 #   api_key: putyourdiscourseapikeyhere
 #   origin: http://discourse-dev.networkofinnovators.org
+#   sso_secret: putyourssosecrethere
+#   admin_username: admin
