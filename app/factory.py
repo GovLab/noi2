@@ -12,7 +12,7 @@ from werkzeug.contrib.fixers import ProxyFix
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
                  babel, alchemydumps, sass, email_errors, csp, oauth,
-                 linkedin,
+                 linkedin, discourse,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.forms import (NOIForgotPasswordForm, NOILoginForm,
@@ -107,6 +107,8 @@ def create_app(config=None): #pylint: disable=too-many-statements
     if 'LINKEDIN' in app.config:
         app.jinja_env.globals['LINKEDIN_ENABLED'] = True
         app.register_blueprint(linkedin.views)
+    if 'DISCOURSE' in app.config:
+        discourse.init_app(app)
 
     cache.init_app(app)
     csrf.init_app(app)
