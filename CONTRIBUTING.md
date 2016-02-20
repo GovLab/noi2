@@ -62,12 +62,10 @@ where anything goes.
 
 ### HTML
 
-- 2 space indentation
 - Class names use hypenated case (e.g. `my-class-name`)
 
 ### SASS / CSS
 
-- 2 space indentation
 - Always a space after a property's colon (e.g. `display: block;`
   *not* `display:block;`)
 - End all lines with a semicolon
