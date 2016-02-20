@@ -7,18 +7,11 @@ Scripts to run the server and perform maintenance operations
 import os
 import sys
 
-try:
-    import flask
-except ImportError, e:
+if os.environ.get('RUNNING_IN_DOCKER') != 'yup':
     # Assume the user wants to run us in docker.
-    try:
-        os.execvp('docker-compose', [
-            'docker-compose', 'run', 'app', 'python'
-        ] + sys.argv)
-    except OSError:
-        # Apparently docker-compose isn't installed, so just raise
-        # the original ImportError.
-        raise e
+    os.execvp('docker-compose', [
+        'docker-compose', 'run', 'app', 'python'
+    ] + sys.argv)
 
 from app import (mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats,
                  questionnaires, blog_posts, linkedin)

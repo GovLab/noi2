@@ -14,6 +14,7 @@ app:
     environment:
         HOST_USER: $USER
         NOI_ENVIRONMENT: development
+        RUNNING_IN_DOCKER: yup
 db:
     image: postgres:9.4
 web:
