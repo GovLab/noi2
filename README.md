@@ -257,6 +257,7 @@ For more details on how we write our SASS, see the project's
 
   [What is Docker?]: https://www.docker.com/what-docker
   [Docker Engine]: https://docs.docker.com/engine/installation/
+  [Docker Machine]: https://docs.docker.com/machine/
   [`CONTRIBUTING.md`]: https://github.com/GovLab/noi2/blob/master/CONTRIBUTING.md
   [Network of Innovators]: https://networkofinnovators.org/
   [git-lfs]: https://git-lfs.github.com/
