@@ -25,7 +25,28 @@ def hmac_sign(payload, secret=None):
     return hmac.new(secret, payload, sha256)
 
 def unpack_and_verify_payload(query_dict):
-    payload = query_dict['sso']
+    # One really annoying thing about the `sso` parameter is that it
+    # includes linefeeds. When included as a `next` hidden field in
+    # login redirects, this can be output as a literal linefeed in the
+    # HTML output, e.g. instead of:
+    #
+    #   <input type="hidden" name="next" value"?sso=foo%0Abar">
+    #
+    # It gets output as:
+    #
+    #   <input type="hidden" name="next" value"?sso=foo
+    #   bar">
+    #
+    # This causes the browser to convert the linefeed into a
+    # linefeed + carriage return when submitting the form.
+    #
+    # Ideally we'd fix this by simply having the linefeeds in the value
+    # stay percent-encoded rather than being rendered as actual linefeeds,
+    # but this functionality appears to be buried under layers of
+    # third-party code, so instead we'll just "undo" the corruption here
+    # by removing any occurrence of carriage returns.
+    payload = query_dict['sso'].replace('\r', '')
+
     their_sig = query_dict['sig'].decode('hex')
     our_sig = hmac_sign(payload).digest()
 

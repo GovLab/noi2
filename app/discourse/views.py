@@ -6,11 +6,6 @@ from .config import config
 
 views = Blueprint('discourse', __name__)
 
-# TODO: For some reason this does NOT work when the login_required
-# decorator redirects the user to sign in first; the SSO payload is
-# somehow being corrupted through the redirects, and by the time the
-# user's browser gets back to this endpoint, the signature is invalid.
-
 @views.route('/discourse/sso')
 @login_required
 def sso_endpoint():
