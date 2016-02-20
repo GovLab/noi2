@@ -39,12 +39,6 @@ Then install Docker Compose:
 
 #### Other Platforms
 
-**Note to Windows Users:** Due to
-[various Windows issues](https://github.com/GovLab/noi2/pull/255), it's
-still probably easiest to develop NoI by setting up a Linux virtual
-machine using a tool like [VirtualBox][], rather than using Docker Toolbox.
-However, you're welcome to give it a shot!
-
 Please install [Docker Toolbox][]. This will ensure that you have
 Docker, Docker Machine, and Docker Compose on your system.
 
@@ -59,6 +53,12 @@ behind-the-scenes by a Linux-based virtual machine. The software used
 to communicate between your OS and the VM is called [Docker Machine][].
 This indirection can sometimes cause confusion and difficulties, but
 this README will try to address potential issues when they may arise.
+
+**Note to Windows Users:** Due to
+[various Windows issues](https://github.com/GovLab/noi2/pull/255), it's
+still probably easiest to develop NoI by setting up a Linux virtual
+machine using a tool like [VirtualBox][], rather than using Docker Toolbox.
+However, you're welcome to give it a shot!
 
 ### Python
 
