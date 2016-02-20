@@ -2,6 +2,12 @@
 
 # Network of Innovators
 
+[Network of Innovators][] (NoI) is a skill-sharing network for government &
+civic innovators worldwide.
+
+Contributions to the project are welcome! Please see [`CONTRIBUTING.md`][]
+for more details.
+
 ## Quick install
 
 This project's git repository uses [Git Large File Storage][git-lfs].
@@ -29,12 +35,12 @@ Build necessary images with:
 
 Then, get the database ready:
 
-    ./manage.sh db upgrade
+    python manage.py db upgrade
 
 You may also want to seed the database with a bunch of random users and
 other data, which can be done via:
 
-    ./manage.sh populate_db
+    python manage.py populate_db
 
 ### Running the server
 
@@ -85,7 +91,7 @@ Whenever you make changes to `model.py`, you will need to generate a migration
 for the database.  Alembic can generate one automatically, which you will most
 likely need to tweak:
 
-    ./manage.sh db migrate
+    python manage.py db migrate
 
 If the generation is successful, you should receive a message like:
 
@@ -105,12 +111,12 @@ Don't forget to commit the migration in git with your new code!
 Running this will generate all necessary translation files for locales that are
 in `deployments.yaml`.
 
-    ./manage.sh translate
+    python manage.py translate
 
 You'll need to populate the resulting `.po` file for each locale in
 `translations/<locale>/LC_MESSAGES/messages.po`, then run
 
-    ./manage.sh translate_compile
+    python manage.py translate_compile
 
 To generate the `.mo` file used in actual translation.  Successive runs of the
 script won't destroy any data in the `.po` file, which is kept in version
@@ -118,14 +124,24 @@ control.
 
 ### Unit Testing
 
+Tests are located in `app/tests`, and [doctests][] in Python modules are
+automatically found and tested too. Please feel free to add more!
+
 To run the unit tests, run:
+
+    python manage.py test
+
+To run an individual test, e.g. `app/tests/test_models.py`, run:
+
+    python manage.py test app/tests/test_models.py
+
+If you want to do anything more advanced with test-running, consider
+using:
 
     docker-compose run app py.test
 
 This just executes [`py.test`][] inside the web application's Docker
 container.
-
-Tests are located in `app/tests`. Please feel free to add more!
 
 ### Changing the Dockerfile
 
@@ -192,6 +208,8 @@ to use the `COMPILED_SASS_ROOT` global, while links to static assets
 For more details on how we write our SASS, see the project's
 [SASS README][].
 
+  [`CONTRIBUTING.md`]: https://github.com/GovLab/noi2/blob/master/CONTRIBUTING.md
+  [Network of Innovators]: https://networkofinnovators.org/
   [git-lfs]: https://git-lfs.github.com/
   [packagecloud]: https://packagecloud.io/github/git-lfs/install
   [`py.test`]: http://pytest.org/latest/usage.html
@@ -204,3 +222,4 @@ For more details on how we write our SASS, see the project's
   [`DEPLOYING.md`]: https://github.com/GovLab/noi2/blob/master/DEPLOYING.md
   [VirtualBox]: https://www.virtualbox.org/
   [maildump]: https://github.com/ThiefMaster/maildump
+  [doctests]: https://docs.python.org/2/library/doctest.html
