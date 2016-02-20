@@ -6,7 +6,7 @@ class DiscourseConfig(object):
         self.api_key = config['api_key']
         self.origin = config['origin']
         self.sso_secret = config['sso_secret']
-        self.admin_username = config['admin_username']
+        self.admin_username = 'system'
 
     def url(self, path):
         return self.origin + path
