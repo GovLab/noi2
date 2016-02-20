@@ -95,10 +95,6 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
     id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
 
-    # TODO: Validate username to ensure that it's in-line with Discourse's
-    # username rules:
-    #
-    # https://meta.discourse.org/t/what-are-the-rules-for-usernames/13458/6
     username = Column(types.String, unique=True, index=True, info={
         'label': lazy_gettext('Username'),
     })

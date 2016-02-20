@@ -23,6 +23,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields import (SelectMultipleField, TextField, TextAreaField,
                             SelectField)
 from wtforms.widgets import Select
+from wtforms import validators
 from wtforms.validators import ValidationError, Required
 
 import re
@@ -232,6 +233,36 @@ class NOILoginForm(LoginForm):
     remember = BooleanField(lazy_gettext('Remember Me'))
     submit = SubmitField(lazy_gettext('Log in'))
 
+# The following validators can be added to any field that checks
+# usernames.
+#
+# We're using a subset of the Discourse username rules to ensure that
+# we can integrate with Discourse:
+#
+#   https://meta.discourse.org/t/what-are-the-rules-for-usernames/13458/6
+#
+# But we're also staying on the conservative side, just in case we want
+# to integrate with other third-party software in the future that might
+# have their own username rules.
+
+# TODO: Validation error messages are tricky to translate with
+# lazy_gettext; see https://github.com/flask-admin/flask-admin/issues/1042.
+
+USERNAME_VALIDATORS = [
+    validators.Length(min=3, max=15),
+    validators.Regexp(
+        '^[A-Za-z0-9]+$',
+        message='Usernames must consist of only numbers and letters.'
+    ),
+    # TODO: Add a validator to ensure that the username isn't taken.
+    # The Unique() validator below fails with the following error:
+    #
+    #   Couldn't access Form._obj attribute. Either make your form
+    #   inherit WTForms-Alchemy ModelForm or WTForms-Components ModelForm
+    #   or make this attribute available in your form.
+    #
+    # wtforms_alchemy.Unique(User.username),
+]
 
 class NOIRegisterForm(RegisterForm):
     '''
@@ -248,10 +279,10 @@ class NOIRegisterForm(RegisterForm):
     last_name = StringField(lazy_gettext('Last Name'),
                             validators=[Required()])
 
-    # TODO: Add more validators to e.g. ensure that the username isn't
-    # taken, conforms to Discourse's username rules, etc.
-    username = StringField(lazy_gettext('Username'),
-                           validators=[Required()])
+    username = StringField(
+        lazy_gettext('Username'),
+        validators=[Required()] + USERNAME_VALIDATORS
+    )
 
     email = StringField(
         lazy_gettext('Email'),

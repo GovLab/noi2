@@ -9,6 +9,7 @@ import flask_wtf
 from wtforms import TextField
 
 from .models import User, db
+from .forms import USERNAME_VALIDATORS
 from . import stats
 
 NAME = 'NoI Admin'
@@ -84,6 +85,12 @@ class UserModelView(NoiModelView):
     form_columns = ('username', 'first_name', 'last_name', 'email',
                     'position', 'organization', 'city', 'projects')
     column_searchable_list = ('username', 'first_name', 'last_name', 'email')
+
+    form_args = dict(
+        username=dict(
+            validators=USERNAME_VALIDATORS
+        )
+    )
 
     def scaffold_form(self):
         form_class = super(UserModelView, self).scaffold_form()
