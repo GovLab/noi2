@@ -1,3 +1,4 @@
+import logging
 from StringIO import StringIO
 from urllib import urlencode
 from moto import mock_s3
@@ -38,7 +39,13 @@ class ViewTestCase(DbTestCase):
     )
 
     def create_app(self):
-        return create_app(config=self.BASE_APP_CONFIG.copy())
+        app = create_app(config=self.BASE_APP_CONFIG.copy())
+
+        handler = logging.StreamHandler()
+        handler.setLevel(logging.DEBUG)
+        app.logger.addHandler(handler)
+
+        return app
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
