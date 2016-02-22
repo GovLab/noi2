@@ -5,6 +5,7 @@ import urllib
 from hashlib import sha256
 
 from .config import config
+from ..utils import get_user_avatar_url
 
 if hasattr(hmac, 'compare_digest'):
     compare_digest = hmac.compare_digest
@@ -70,6 +71,8 @@ def user_info_qs(user, nonce):
         'email': str(user.email),
         'external_id': str(user.id),
         'username': str(user.username),
+        'avatar_url': get_user_avatar_url(user, _external=True),
+        'avatar_force_update': 'true',
         'name': user.full_name.encode('utf8')
     }))
 
