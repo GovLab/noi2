@@ -12,7 +12,11 @@ class DiscourseConfig(object):
         return self.origin + path
 
     @classmethod
+    def from_app(cls, app):
+        return cls(app.config['DISCOURSE'])
+
+    @classmethod
     def from_current_app(cls):
-        return cls(current_app.config['DISCOURSE'])
+        return cls.from_app(current_app)
 
 config = LocalProxy(DiscourseConfig.from_current_app)

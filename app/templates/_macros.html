@@ -53,7 +53,11 @@
 {% endmacro %}
 
 {% macro render_user_mailto_link(user, class='') %}
+{% if DISCOURSE_ENABLED and user.username %}
+  <a class="{{ class }}" href="{{ discourse_url('/new-message?username=' + user.username + '&title=Contact%20request&body=Dear%20' + user.first_name) }}" target="_blank">{{ caller() }}</a>
+{% else %}
   <a class="{{ class }}" href="mailto:{{ user.email }}?subject=Contact%20request%20via%20Network%20Of%20Innovators&body=Dear%20{{user.first_name}}" data-connect-to="{{ user.email }}">{{ caller() }}</a>
+{% endif %}
 {% endmacro %}
 
 {% set CONTACT_EMAIL = "noi@thegovlab.org" %}
