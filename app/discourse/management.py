@@ -38,16 +38,6 @@ class CustomOriginCommand(Command):
         with app.test_request_context(base_url=origin):
             return self.run(*args, **kwargs)
 
-def sync_user_with_discourse(user):
-    r = requests.post(
-        config.url("/admin/users/sync_sso"),
-        params=dict(api_key=config.api_key,
-                    api_username=config.admin_username),
-        data=sso.user_info_qs(user, nonce='does not matter')
-    )
-    if r.status_code != 200:
-        r.raise_for_status()
-
 def get_categories(username):
     r = requests.get(config.url("/categories.json"), params=dict(
         api_key=config.api_key,
@@ -78,7 +68,7 @@ class SyncUserCommand(CustomOriginCommand):
 
         user = User.query_in_deployment().filter(User.username==username)[0]
 
-        sync_user_with_discourse(user)
+        sso.sync_user(user)
 
         print "User %s (%s) synchronized." % (user.username, user.full_name)
 

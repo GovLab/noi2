@@ -3,6 +3,7 @@ import base64
 import urlparse
 import urllib
 from hashlib import sha256
+import requests
 
 from .config import config
 from ..utils import get_user_avatar_url
@@ -64,8 +65,6 @@ def pack_and_sign_payload(payload_dict, secret=None):
     }
 
 def user_info_qs(user, nonce):
-    # TODO: Include avatar_url.
-
     return urllib.urlencode(pack_and_sign_payload({
         'nonce': nonce,
         'email': str(user.email),
@@ -75,6 +74,16 @@ def user_info_qs(user, nonce):
         'avatar_force_update': 'true',
         'name': user.full_name.encode('utf8')
     }))
+
+def sync_user(user):
+    r = requests.post(
+        config.url("/admin/users/sync_sso"),
+        params=dict(api_key=config.api_key,
+                    api_username=config.admin_username),
+        data=user_info_qs(user, nonce='does not matter')
+    )
+    if r.status_code != 200:
+        r.raise_for_status()
 
 class InvalidSignatureError(Exception):
     pass
