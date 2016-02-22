@@ -20,7 +20,7 @@ from app.forms import (NOIForgotPasswordForm, NOILoginForm,
                        NOIRegisterForm)
 from app.models import db, User, Role
 from app.views import views
-from app.utils import get_nopic_avatar
+from app.utils import get_user_avatar_url
 from app import style_guide, l10n
 
 from sqlalchemy.orm.exc import NoResultFound
@@ -165,7 +165,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     app.jinja_env.globals['global_config_json'] = global_config_json
     app.jinja_env.globals['get_locale'] = get_locale
-    app.jinja_env.globals['get_nopic_avatar'] = get_nopic_avatar
+    app.jinja_env.globals['_get_user_avatar_url'] = get_user_avatar_url
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS

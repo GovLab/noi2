@@ -15,7 +15,16 @@ from app import QUESTIONS_BY_ID
 
 NOPIC_AVATAR_DIR = ['img', 'nopic-avatars']
 
-def get_nopic_avatar(email):
+def get_user_avatar_url(user, _external=False):
+    if user is None:
+        return get_nopic_avatar('nobody@example.com', _external=_external)
+    if user.has_picture:
+        return user.picture_url
+    if user.linkedin and user.linkedin.picture_url:
+        return user.linkedin.picture_url
+    return get_nopic_avatar(user.email, _external=_external)
+
+def get_nopic_avatar(email, _external=False):
     # TODO: We might want to cache/memoize the results of this
     # function if it becomes too resource-intensive.
 
@@ -33,7 +42,8 @@ def get_nopic_avatar(email):
     filename = images[index]
     return url_for(
         'static',
-        filename=posixpath.join(*(NOPIC_AVATAR_DIR + [filename]))
+        filename=posixpath.join(*(NOPIC_AVATAR_DIR + [filename])),
+        _external=_external
     )
 
 
