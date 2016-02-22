@@ -128,7 +128,7 @@ SECRET_KEY: i_am_insecure
 #   * "sso url" should be set to the `/discourse/sso` endpoint of your
 #     NoI instance, as an absolute URL. For example,
 #     `http://mynoi.com/discourse/sso`.
-#   * You'll probably also want to check the followingo overrides:
+#   * You'll probably also want to check the following overrides:
 #     * "sso overrides email"
 #     * "sso overrides username"
 #     * "sso overrides name"
