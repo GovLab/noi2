@@ -118,7 +118,26 @@ SECRET_KEY: i_am_insecure
 # Discourse Integration
 # ---------------------
 
-# This specifies optional Discourse integration information.
+# This specifies optional Discourse integration information. Note that
+# in order to integrate with Discourse, you will need to configure the
+# following on the Discourse side:
+#
+#   * Under **Settings > Login** in Discourse's admin panel:
+#     * "sso secret" should be identical to `DISCOURSE.sso_secret`.
+#     * "enable sso" should be checked.
+#   * "sso url" should be set to the `/discourse/sso` endpoint of your
+#     NoI instance, as an absolute URL. For example,
+#     `http://mynoi.com/discourse/sso`.
+#   * You'll probably also want to check the followingo overrides:
+#     * "sso overrides email"
+#     * "sso overrides username"
+#     * "sso overrides name"
+#     * "sso overrides avatar"
+#
+#   * Under **Settings > Users** in Discourse's admin panel:
+#     * "logout redirect" should be set to the `/logout` endpoint of your
+#       NoI instance, as an absolute URL. For example,
+#       `http://mynoi.com/logout`.
 #
 # DISCOURSE:
 #   api_key: putyourdiscourseapikeyhere
