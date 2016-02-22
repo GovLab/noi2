@@ -10,8 +10,8 @@ from .config import config
 DiscourseCommand = manager = Manager(usage='Manage Discourse integration.')
 
 class CustomOriginCommand(Command):
-    def __init__(self):
-        super(CustomOriginCommand, self).__init__(self.run_command)
+    def __init__(self, *args, **kwargs):
+        super(CustomOriginCommand, self).__init__(*args, **kwargs)
         self.option_list.append(Option(
             '--origin',
             dest='origin',
@@ -30,9 +30,6 @@ class CustomOriginCommand(Command):
                     'with the --origin option.'
                 )
         return origin
-
-    def run_command(self):
-        raise NotImplementedError()
 
     def __call__(self, app=None, *args, **kwargs):
         origin = self.get_origin(app, kwargs.get('origin'))
@@ -70,7 +67,11 @@ def test_api():
     print "Discourse integration works!"
 
 class SyncUserCommand(CustomOriginCommand):
-    def run_command(self, username):
+    option_list = [
+        Option('username', help='Username to sync with Discourse')
+    ]
+
+    def run(self, username):
         '''
         Sync Discourse SSO information about the given user.
         '''
