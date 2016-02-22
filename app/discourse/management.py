@@ -47,6 +47,14 @@ def get_categories(username):
         r.raise_for_status()
     return r.json()
 
+def get_user_by_username(username):
+    users = User.query_in_deployment().filter(User.username==username)
+
+    if not users:
+        raise InvalidCommand('Unable to find username %s.' % username)
+
+    return users[0]
+
 @manager.command
 def test_api():
     '''
@@ -55,6 +63,18 @@ def test_api():
 
     get_categories(config.admin_username)
     print "Discourse integration works!"
+
+@manager.command
+def logout_user(username):
+    '''
+    Logout a user from Discourse.
+    '''
+
+    user = get_user_by_username(username)
+
+    sso.logout_user(user)
+
+    print "User %s (%s) logged out." % (user.username, user.full_name)
 
 class SyncUserCommand(CustomOriginCommand):
     option_list = [
@@ -66,7 +86,7 @@ class SyncUserCommand(CustomOriginCommand):
         Sync Discourse SSO information about the given user.
         '''
 
-        user = User.query_in_deployment().filter(User.username==username)[0]
+        user = get_user_by_username(username)
 
         sso.sync_user(user)
 

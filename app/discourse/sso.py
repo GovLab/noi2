@@ -75,6 +75,32 @@ def user_info_qs(user, nonce):
         'name': user.full_name.encode('utf8')
     }))
 
+def logout_user(user):
+    if not user.username:
+        return False
+
+    r = requests.get(
+        config.url('/users/by-external/%d.json' % user.id),
+        params=dict(api_key=config.api_key,
+                    api_username=config.admin_username)
+    )
+    if r.status_code == 404:
+        return False
+    if r.status_code != 200:
+        r.raise_for_status()
+
+    discourse_user_id = r.json()['user']['id']
+
+    r = requests.post(
+        config.url("/admin/users/%d/log_out" % discourse_user_id),
+        params=dict(api_key=config.api_key,
+                    api_username=config.admin_username),
+    )
+    if r.status_code != 200:
+        r.raise_for_status()
+
+    return True
+
 def sync_user(user):
     r = requests.post(
         config.url("/admin/users/sync_sso"),
