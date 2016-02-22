@@ -33,10 +33,17 @@
                 <span class="material-icons">language</span>
                 {{ gettext('View Network') }}
             </a>
+            {% if DISCOURSE_ENABLED %}
+            <a href="{{ discourse_url('/') }}" target="_blank" class="e-nav-item">
+                <span class="material-icons">feedback</span>
+                {{ gettext('Discourse') }}
+            </a>
+            {% else %}
             <a href="{{ url_for('views.feedback') }}" class="e-nav-item">
                 <span class="material-icons">feedback</span>
                 {{ gettext('Share Feedback') }}
             </a>
+            {% endif %}
     </nav>
 </header>
 
