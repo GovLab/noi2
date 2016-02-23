@@ -3,8 +3,8 @@ import base64
 import urlparse
 import urllib
 from hashlib import sha256
-import requests
 
+from . import api
 from .config import config
 from ..utils import get_user_avatar_url
 
@@ -81,11 +81,7 @@ def logout_user(user):
     if not user.username:
         return False
 
-    r = requests.get(
-        config.url('/users/by-external/%d.json' % user.id),
-        params=dict(api_key=config.api_key,
-                    api_username=config.admin_username)
-    )
+    r = api.get('/users/by-external/%d.json' % user.id)
     if r.status_code == 404:
         return False
     if r.status_code != 200:
@@ -93,21 +89,15 @@ def logout_user(user):
 
     discourse_user_id = r.json()['user']['id']
 
-    r = requests.post(
-        config.url("/admin/users/%d/log_out" % discourse_user_id),
-        params=dict(api_key=config.api_key,
-                    api_username=config.admin_username),
-    )
+    r = api.post('/admin/users/%d/log_out' % discourse_user_id)
     if r.status_code != 200:
         r.raise_for_status()
 
     return True
 
 def sync_user(user, avatar_force_update=False):
-    r = requests.post(
-        config.url("/admin/users/sync_sso"),
-        params=dict(api_key=config.api_key,
-                    api_username=config.admin_username),
+    r = api.post(
+        '/admin/users/sync_sso',
         data=user_info_qs(user, nonce='does not matter',
                           avatar_force_update=avatar_force_update)
     )

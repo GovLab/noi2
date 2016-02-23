@@ -1,10 +1,9 @@
 import os
-import requests
 from flask.ext.script.commands import InvalidCommand, Command, Option
 from flask_script import Manager
 
 from ..models import User
-from . import sso
+from . import sso, api
 from .config import config
 
 DiscourseCommand = manager = Manager(usage='Manage Discourse integration.')
@@ -38,15 +37,6 @@ class CustomOriginCommand(Command):
         with app.test_request_context(base_url=origin):
             return self.run(*args, **kwargs)
 
-def get_categories(username):
-    r = requests.get(config.url("/categories.json"), params=dict(
-        api_key=config.api_key,
-        api_username=username
-    ))
-    if r.status_code != 200:
-        r.raise_for_status()
-    return r.json()
-
 def get_user_by_username(username):
     users = User.query_in_deployment().filter(User.username==username)
 
@@ -61,7 +51,11 @@ def test_api():
     Test Discourse API integration.
     '''
 
-    get_categories(config.admin_username)
+    req = api.get('/categories.json')
+    if req.status_code != 200:
+        req.raise_for_status()
+    req.json()
+
     print "Discourse integration works!"
 
 @manager.command
