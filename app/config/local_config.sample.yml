@@ -120,26 +120,10 @@ SECRET_KEY: i_am_insecure
 
 # This specifies optional Discourse integration information. Note that
 # in order to integrate with Discourse, you will need to configure the
-# following on the Discourse side:
-#
-#   * Under **Settings > Login** in Discourse's admin panel:
-#     * "sso secret" should be identical to `DISCOURSE.sso_secret`.
-#     * "enable sso" should be checked.
-#   * "sso url" should be set to the `/discourse/sso` endpoint of your
-#     NoI instance, as an absolute URL. For example,
-#     `http://mynoi.com/discourse/sso`.
-#   * You'll probably also want to check the following overrides:
-#     * "sso overrides email"
-#     * "sso overrides username"
-#     * "sso overrides name"
-#     * "sso overrides avatar"
-#
-#   * Under **Settings > Users** in Discourse's admin panel:
-#     * "logout redirect" should be set to the `/logout` endpoint of your
-#       NoI instance, as an absolute URL. For example,
-#       `http://mynoi.com/logout`.
+# Discourse side properly. See the file "discourse_config.sample.rb" for
+# more details.
 #
 # DISCOURSE:
-#   api_key: putyourdiscourseapikeyhere
+#   api_key: PUT_YOUR_DISCOURSE_API_KEY_HERE
 #   origin: http://discourse-dev.networkofinnovators.org
-#   sso_secret: putyourssosecrethere
+#   sso_secret: PUT_YOUR_SSO_SECRET_HERE
