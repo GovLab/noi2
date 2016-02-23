@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 LEVELS_BY_SCORE, mail, stats, cache, blog_posts)
+                 LEVELS_BY_SCORE, mail, stats, cache, blog_posts, signals)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email,
                         skills_to_percentages)
@@ -112,6 +112,10 @@ def set_user_picture(user, picture):
 def my_profile_remove_picture():
     current_user.remove_picture()
     db.session.commit()
+    signals.user_changed_profile.send(
+        current_app._get_current_object(),
+        user=current_user._get_current_object()
+    )
     return ('', 204)
 
 @views.route('/me/picture', methods=['POST'])
@@ -125,6 +129,10 @@ def my_profile_upload_picture():
             set_user_picture(current_user, form.picture)
             db.session.add(current_user)
             db.session.commit()
+            signals.user_changed_profile.send(
+                current_app._get_current_object(),
+                user=current_user._get_current_object()
+            )
             return ('', 204)
     abort(400)
 
@@ -147,6 +155,10 @@ def my_profile():
 
             db.session.add(current_user)
             db.session.commit()
+            signals.user_changed_profile.send(
+                current_app._get_current_object(),
+                user=current_user._get_current_object()
+            )
             flash(gettext('Your profile has been saved.'))
             return redirect(url_for('views.my_expertise'))
         else:
