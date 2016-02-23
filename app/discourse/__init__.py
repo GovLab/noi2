@@ -13,8 +13,9 @@ def init_app(app):
     app.register_blueprint(views.views)
 
     @user_changed_profile.connect_via(app)
-    def when_user_changed_profile(sender, user, **extra):
-        sso.sync_user(user)
+    def when_user_changed_profile(sender, user, avatar_changed=False,
+                                  **extra):
+        sso.sync_user(user, avatar_force_update=avatar_changed)
 
     @user_logged_out.connect_via(app)
     def when_user_logged_out(sender, user, **extra):

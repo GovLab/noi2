@@ -64,16 +64,18 @@ def pack_and_sign_payload(payload_dict, secret=None):
         'sig': hmac_sign(payload, secret).hexdigest()
     }
 
-def user_info_qs(user, nonce):
-    return urllib.urlencode(pack_and_sign_payload({
+def user_info_qs(user, nonce, avatar_force_update=False):
+    payload = {
         'nonce': nonce,
         'email': str(user.email),
         'external_id': str(user.id),
         'username': str(user.username),
         'avatar_url': get_user_avatar_url(user, _external=True),
-        'avatar_force_update': 'true',
         'name': user.full_name.encode('utf8')
-    }))
+    }
+    if avatar_force_update:
+        payload['avatar_force_update'] ='true'
+    return urllib.urlencode(pack_and_sign_payload(payload))
 
 def logout_user(user):
     if not user.username:
@@ -101,12 +103,13 @@ def logout_user(user):
 
     return True
 
-def sync_user(user):
+def sync_user(user, avatar_force_update=False):
     r = requests.post(
         config.url("/admin/users/sync_sso"),
         params=dict(api_key=config.api_key,
                     api_username=config.admin_username),
-        data=user_info_qs(user, nonce='does not matter')
+        data=user_info_qs(user, nonce='does not matter',
+                          avatar_force_update=avatar_force_update)
     )
     if r.status_code != 200:
         r.raise_for_status()

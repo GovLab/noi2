@@ -78,17 +78,20 @@ def logout_user(username):
 
 class SyncUserCommand(CustomOriginCommand):
     option_list = [
-        Option('username', help='Username to sync with Discourse')
+        Option('username', help='Username to sync with Discourse'),
+        Option('-a', '--avatar-force-update',
+               help='Force update of avatar image',
+               action='store_true', default=False)
     ]
 
-    def run(self, username):
+    def run(self, username, avatar_force_update):
         '''
         Sync Discourse SSO information about the given user.
         '''
 
         user = get_user_by_username(username)
 
-        sso.sync_user(user)
+        sso.sync_user(user, avatar_force_update=avatar_force_update)
 
         print "User %s (%s) synchronized." % (user.username, user.full_name)
 

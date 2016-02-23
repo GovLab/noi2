@@ -114,7 +114,8 @@ def my_profile_remove_picture():
     db.session.commit()
     signals.user_changed_profile.send(
         current_app._get_current_object(),
-        user=current_user._get_current_object()
+        user=current_user._get_current_object(),
+        avatar_changed=True
     )
     return ('', 204)
 
@@ -131,7 +132,8 @@ def my_profile_upload_picture():
             db.session.commit()
             signals.user_changed_profile.send(
                 current_app._get_current_object(),
-                user=current_user._get_current_object()
+                user=current_user._get_current_object(),
+                avatar_changed=True
             )
             return ('', 204)
     abort(400)
@@ -152,12 +154,16 @@ def my_profile():
 
             if form.picture.has_file():
                 set_user_picture(current_user, form.picture)
+                avatar_changed = True
+            else:
+                avatar_changed = False
 
             db.session.add(current_user)
             db.session.commit()
             signals.user_changed_profile.send(
                 current_app._get_current_object(),
-                user=current_user._get_current_object()
+                user=current_user._get_current_object(),
+                avatar_changed=avatar_changed
             )
             flash(gettext('Your profile has been saved.'))
             return redirect(url_for('views.my_expertise'))
