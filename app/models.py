@@ -518,6 +518,10 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     skills = orm.relationship('UserSkill', cascade='all,delete-orphan', backref='user')
 
     @classmethod
+    def is_username_taken(cls, username):
+        return bool(cls.query.filter(cls.username==username).first())
+
+    @classmethod
     def get_most_complete_profiles(cls, limit=10):
         '''
         Obtain a list of most complete profiles, as (User, score) tuples.

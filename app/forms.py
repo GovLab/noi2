@@ -17,7 +17,7 @@ from flask_security.forms import (LoginForm, RegisterForm,
                                   valid_user_email,
                                   password_required, password_length, EqualTo)
 
-from flask_babel import lazy_gettext
+from flask_babel import lazy_gettext, gettext
 from wtforms_alchemy import model_form_factory, CountryField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields import (SelectMultipleField, TextField, TextAreaField,
@@ -248,20 +248,17 @@ class NOILoginForm(LoginForm):
 # TODO: Validation error messages are tricky to translate with
 # lazy_gettext; see https://github.com/flask-admin/flask-admin/issues/1042.
 
+def unique_username(form, field):
+    if User.is_username_taken(field.data):
+        raise ValidationError(gettext("That username is already taken."))
+
 USERNAME_VALIDATORS = [
     validators.Length(min=3, max=15),
     validators.Regexp(
         '^[A-Za-z0-9]+$',
         message='Usernames must consist of only numbers and letters.'
     ),
-    # TODO: Add a validator to ensure that the username isn't taken.
-    # The Unique() validator below fails with the following error:
-    #
-    #   Couldn't access Form._obj attribute. Either make your form
-    #   inherit WTForms-Alchemy ModelForm or WTForms-Components ModelForm
-    #   or make this attribute available in your form.
-    #
-    # wtforms_alchemy.Unique(User.username),
+    unique_username
 ]
 
 class NOIRegisterForm(RegisterForm):
