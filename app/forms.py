@@ -248,7 +248,7 @@ class NOILoginForm(LoginForm):
 # TODO: Validation error messages are tricky to translate with
 # lazy_gettext; see https://github.com/flask-admin/flask-admin/issues/1042.
 
-def unique_username(form, field):
+def unique_new_username(form, field):
     if User.is_username_taken(field.data):
         raise ValidationError(gettext("That username is already taken."))
 
@@ -258,7 +258,6 @@ USERNAME_VALIDATORS = [
         '^[A-Za-z0-9]+$',
         message='Usernames must consist of only numbers and letters.'
     ),
-    unique_username
 ]
 
 class NOIRegisterForm(RegisterForm):
@@ -278,7 +277,7 @@ class NOIRegisterForm(RegisterForm):
 
     username = StringField(
         lazy_gettext('Username'),
-        validators=[Required()] + USERNAME_VALIDATORS
+        validators=[Required(), unique_new_username] + USERNAME_VALIDATORS
     )
 
     email = StringField(
