@@ -86,6 +86,12 @@ class ViewTests(ViewTestCase):
 
         self.assertEqual(response.status_code, 400)
 
+    def assertStartsWith(self, text, prefix):
+        if not text.startswith(prefix):
+            raise AssertionError('Expected "%s" to start with "%s"' % (
+                text, prefix
+            ))
+
     def test_discourse_sso_redirects_to_discourse(self):
         user = self.create_user(
             email='boop@example.com',
@@ -108,8 +114,15 @@ class ViewTests(ViewTestCase):
         self.assertEqual(loc.path, '/session/sso_login')
 
         query_dict = dict(urlparse.parse_qsl(loc.query))
-        self.assertEqual(sso.unpack_and_verify_payload(query_dict), {
-            'avatar_url': 'http://localhost/static/img/nopic-avatars/nopic-avatar9.jpg',
+        payload = sso.unpack_and_verify_payload(query_dict)
+
+        self.assertStartsWith(
+            payload['avatar_url'],
+             'http://localhost/static/img/nopic-avatars/nopic-avatar'
+        )
+        del payload['avatar_url']
+
+        self.assertEqual(payload, {
             'email': 'boop@example.com',
             'external_id': str(user.id),
             'name': 'Boop Jones',
