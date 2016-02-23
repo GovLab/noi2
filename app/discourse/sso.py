@@ -26,7 +26,7 @@ def hmac_sign(payload, secret=None):
     if secret is None: secret = config.sso_secret
     return hmac.new(secret, payload, sha256)
 
-def unpack_and_verify_payload(query_dict):
+def unpack_and_verify_payload(query_dict, secret=None):
     # One really annoying thing about the `sso` parameter is that it
     # includes linefeeds. When included as a `next` hidden field in
     # login redirects, this can be output as a literal linefeed in the
@@ -50,7 +50,7 @@ def unpack_and_verify_payload(query_dict):
     payload = query_dict['sso'].replace('\r', '')
 
     their_sig = query_dict['sig'].decode('hex')
-    our_sig = hmac_sign(payload).digest()
+    our_sig = hmac_sign(payload, secret).digest()
 
     if not compare_digest(our_sig, their_sig):
         raise InvalidSignatureError('invalid signature')
