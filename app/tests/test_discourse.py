@@ -70,8 +70,8 @@ class ApiTests(flask_testing.TestCase):
         )
 
 @mock.patch('app.discourse.api.post')
+@mock.patch('app.discourse.sso.get_user_avatar_url')
 class SyncUserTests(TestCase):
-    @mock.patch('app.discourse.sso.get_user_avatar_url')
     def test_it_works(self, get_user_avatar_url, post):
         get_user_avatar_url.return_value = 'http://blarg/avatar.png'
         post.return_value.status_code = 200
@@ -101,11 +101,12 @@ class SyncUserTests(TestCase):
             'username': 'bop'
         })
 
-    def test_raises_error_if_status_is_not_ok(self, post):
+    def test_raises_error_if_status_is_not_ok(self, get_user_avatar_url,
+                                              post):
         post.return_value.raise_for_status.side_effect = Exception('blam')
 
         with self.assertRaisesRegexp(Exception, 'blam'):
-            sso.sync_user(User(username='bop', id=321))
+            sso.sync_user(User(username='bop', id=321), secret='hi')
 
 class LogoutUserTests(TestCase):
     def test_returns_false_if_user_has_no_username(self):

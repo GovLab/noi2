@@ -355,6 +355,12 @@ class RunTests(Command):
     capture_all_args = True
 
     def run(self, args):
+        # TODO: We actually might want to run py.test in a subprocess,
+        # because right now we are actually in the deployment's Flask
+        # application context, which introduces unpredictability and
+        # could cause some tests to behave differently than they would
+        # if run directly from py.test.
+
         import pytest
 
         sys.argv[0] = sys.argv[0] + ' test'
