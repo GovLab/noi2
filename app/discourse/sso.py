@@ -64,7 +64,7 @@ def pack_and_sign_payload(payload_dict, secret=None):
         'sig': hmac_sign(payload, secret).hexdigest()
     }
 
-def user_info_qs(user, nonce, avatar_force_update=False):
+def user_info_qs(user, nonce, avatar_force_update=False, secret=None):
     payload = {
         'nonce': nonce,
         'email': str(user.email),
@@ -75,7 +75,7 @@ def user_info_qs(user, nonce, avatar_force_update=False):
     }
     if avatar_force_update:
         payload['avatar_force_update'] ='true'
-    return urllib.urlencode(pack_and_sign_payload(payload))
+    return urllib.urlencode(pack_and_sign_payload(payload, secret=secret))
 
 def logout_user(user):
     if not user.username:
@@ -85,20 +85,20 @@ def logout_user(user):
     if r.status_code == 404:
         return False
     if r.status_code != 200:
-        r.raise_for_status()
+        return r.raise_for_status()
 
     discourse_user_id = r.json()['user']['id']
 
     r = api.post('/admin/users/%d/log_out' % discourse_user_id)
     if r.status_code != 200:
-        r.raise_for_status()
+        return r.raise_for_status()
 
     return True
 
-def sync_user(user, avatar_force_update=False):
+def sync_user(user, avatar_force_update=False, secret=None):
     r = api.post(
         '/admin/users/sync_sso',
-        data=user_info_qs(user, nonce='does not matter',
+        data=user_info_qs(user, nonce='does not matter', secret=secret,
                           avatar_force_update=avatar_force_update)
     )
     if r.status_code != 200:
