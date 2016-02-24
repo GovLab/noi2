@@ -3,8 +3,11 @@ from unittest import TestCase
 import mock
 import flask_testing
 from flask import Flask
+from flask_security.signals import user_registered
+from flask.ext.login import user_logged_out
 
 from .test_views import ViewTestCase
+from ..signals import user_changed_profile
 from ..discourse import sso, api
 
 FAKE_DISCOURSE_CONFIG = dict(
@@ -75,6 +78,24 @@ class ViewTests(ViewTestCase):
         self.assertEqual(jinja_globals['DISCOURSE_ENABLED'], True)
         self.assertEqual(jinja_globals['discourse_url']('/hi'),
                          'http://discourse/hi')
+
+    @mock.patch('app.discourse.sso.sync_user')
+    def test_sync_user_called_when_user_changed_profile(self, sync_user):
+        user = self.create_user('foo@example.com', 'passwd')
+        user_changed_profile.send(self.app, user=user, avatar_changed=True)
+        sync_user.assert_called_once_with(user, avatar_force_update=True)
+
+    @mock.patch('app.discourse.sso.logout_user')
+    def test_logout_user_called_when_user_logged_out(self, logout_user):
+        user = self.create_user('foo@example.com', 'passwd')
+        user_logged_out.send(self.app, user=user)
+        logout_user.assert_called_once_with(user)
+
+    @mock.patch('app.discourse.sso.sync_user')
+    def test_sync_user_called_when_user_registered(self, sync_user):
+        user = self.create_user('foo@example.com', 'passwd')
+        user_registered.send(self.app, user=user, confirm_token='u')
+        sync_user.assert_called_once_with(user)
 
     def test_discourse_sso_requires_login(self):
         self.assertRequiresLogin('/discourse/sso')
