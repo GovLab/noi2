@@ -30,6 +30,12 @@ def configure_app(app):
 
     app.config['SECURITY_MSG_UNAUTHORIZED'] = (
         lazy_gettext('You do not have permission to view this resource.'), 'error')
+    app.config['SECURITY_MSG_EMAIL_CONFIRMED'] = (
+        lazy_gettext('Thank you. Your email has been confirmed.'), 'success')
+    app.config['SECURITY_MSG_ALREADY_CONFIRMED'] = (
+        lazy_gettext('Your email has already been confirmed.'), 'info')
+    app.config['SECURITY_MSG_INVALID_CONFIRMATION_TOKEN'] = (
+        lazy_gettext('Invalid confirmation token.'), 'error')
     app.config['SECURITY_MSG_EMAIL_ALREADY_ASSOCIATED'] = (
         lazy_gettext('%(email)s is already associated with an account.'), 'error')
     app.config['SECURITY_MSG_PASSWORD_MISMATCH'] = (
@@ -45,6 +51,14 @@ def configure_app(app):
                      'instructions have been sent to %(email)s.'), 'error')
     app.config['SECURITY_MSG_INVALID_RESET_PASSWORD_TOKEN'] = (
         lazy_gettext('Invalid reset password token.'), 'error')
+    app.config['SECURITY_MSG_CONFIRMATION_REQUIRED'] = (
+        lazy_gettext('Email requires confirmation.'), 'error')
+    app.config['SECURITY_MSG_CONFIRMATION_REQUEST'] = (
+        lazy_gettext('Confirmation instructions have been sent to %(email)s.'), 'info')
+    app.config['SECURITY_MSG_CONFIRMATION_EXPIRED'] = (
+        lazy_gettext('You did not confirm your email within %(within)s. New '
+                     'instructions to confirm your email have been sent to '
+                     '%(email)s.'), 'error')
     app.config['SECURITY_MSG_LOGIN_EXPIRED'] = (
         lazy_gettext('You did not login within %(within)s. New instructions to '
                      'login have been sent to %(email)s.'), 'error')

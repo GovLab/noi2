@@ -17,7 +17,7 @@ from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.forms import (NOIForgotPasswordForm, NOILoginForm,
                        NOIResetPasswordForm, NOIChangePasswordForm,
-                       NOIRegisterForm)
+                       NOIConfirmRegisterForm, NOISendConfirmationForm)
 from app.models import db, User, Role
 from app.views import views
 from app.utils import get_nopic_avatar
@@ -81,9 +81,6 @@ def create_app(config=None): #pylint: disable=too-many-statements
     else:
         app.config.update(config)
 
-    # Confirming email is currently unsupported.
-    app.config['SECURITY_CONFIRMABLE'] = False
-
     with open('/noi/app/data/deployments.yaml') as deployments_yaml:
         deployments = yaml.load(deployments_yaml)
 
@@ -118,10 +115,11 @@ def create_app(config=None): #pylint: disable=too-many-statements
     user_datastore = DeploySQLAlchemyUserDatastore(db, User, Role)
     security.init_app(app, datastore=user_datastore,
                       login_form=NOILoginForm,
-                      register_form=NOIRegisterForm,
+                      confirm_register_form=NOIConfirmRegisterForm,
                       forgot_password_form=NOIForgotPasswordForm,
                       reset_password_form=NOIResetPasswordForm,
-                      change_password_form=NOIChangePasswordForm)
+                      change_password_form=NOIChangePasswordForm,
+                      send_confirmation_form=NOISendConfirmationForm)
 
     db.init_app(app)
     alchemydumps.init_app(app, db)

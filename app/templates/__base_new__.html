@@ -27,7 +27,13 @@
 
 {% from "_macros.html" import render_alert %}
 {% for category, message in get_flashed_messages(with_categories=true) %}
+  {# Some flashed messages come from third-party code and we don't want
+     them to be displayed. The only way we can disable them from being
+     displayed, unfortunately, is to set their message text to something
+     we detect for here. #}
+  {%- if message != 'DO_NOT_DISPLAY_ME' -%}
   {{ render_alert(message=message, category=category) }}
+  {%- endif -%}
 {% endfor %}
 
     {% block header %}{% endblock %}

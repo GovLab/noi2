@@ -295,6 +295,14 @@ def register_step_2():
     return render_template('register-step-2.html', form=form)
 
 
+@views.route('/confirm/success')
+@login_required
+def confirmation_success():
+    # In the future, we can make this view redirect the user to
+    # whatever they wanted to do that required confirmation.
+    return redirect(url_for('views.activity'))
+
+
 def render_user_profile(userid=None, **kwargs):
     if userid is None:
         user = current_user
