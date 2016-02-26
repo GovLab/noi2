@@ -5,8 +5,5 @@
   {% if security.recoverable %}
   <li><a href="{{ url_for_security('forgot_password') }}">{{ gettext('Forgot password') }}</a><br/></li>
   {% endif %}
-  {% if security.confirmable %}
-  <li><a href="{{ url_for_security('send_confirmation') }}">{{ gettext('Confirm account') }}</a></li>
-  {% endif %}
 </ul>
 {% endif %}
