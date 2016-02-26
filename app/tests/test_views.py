@@ -1,8 +1,10 @@
+import re
 import logging
 from StringIO import StringIO
 from urllib import urlencode
 from moto import mock_s3
 import boto
+from flask import url_for
 from flask_login import current_user
 
 from app import (QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS,
@@ -104,7 +106,8 @@ class ViewTestCase(DbTestCase):
         self.assertRedirects(method(path),
                              '/login?%s' % urlencode({'next': path}))
 
-class InviteTests(ViewTestCase):
+
+class EmailTestCase(ViewTestCase):
     BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()
 
     BASE_APP_CONFIG.update(
@@ -113,6 +116,8 @@ class InviteTests(ViewTestCase):
         MAIL_SUPPRESS_SEND=True,
     )
 
+
+class InviteTests(EmailTestCase):
     def setUp(self):
         super(ViewTestCase, self).setUp()
         self.login()
@@ -638,7 +643,48 @@ class UploadPictureTests(ViewTestCase):
         self.assertEqual(key.content_type, 'image/png')
 
 
+class EmailConfirmationTests(EmailTestCase):
+    def test_confirmation_works(self):
+        self.register_and_login('foo@example.org', 'test123')
+
+        with mail.record_messages() as outbox:
+            res = self.client.post('/confirm', data=dict(
+                email=u'foo@example.org'
+            ))
+            self.assertEqual(len(outbox), 1)
+            msg = outbox[0]
+            self.assertEqual(msg.sender, 'noreply@networkofinnovators.org')
+            self.assertEqual(msg.recipients, ['foo@example.org'])
+            assert 'http://localhost/confirm/' in msg.body
+            assert ('Confirmation instructions have been '
+                    'sent to foo@example.org') in res.data
+
+        token = re.search(
+            r'http:\/\/localhost\/confirm\/(.+)',
+            msg.body,
+            flags=re.MULTILINE
+        ).group(1)
+
+        res = self.client.get('/confirm/%s' % token)
+        self.assertRedirects(res, '/confirm/success')
+
+        res = self.client.get('/confirm/success')
+        self.assertRedirects(res, '/activity')
+
+        res = self.client.get('/activity')
+        self.assert200(res)
+        assert 'Your email has been confirmed' in res.data
+
 class ViewTests(ViewTestCase):
+    def test_security_post_views_exist(self):
+        view_names = [
+            self.app.config['SECURITY_POST_REGISTER_VIEW'],
+            self.app.config['SECURITY_POST_CONFIRM_VIEW'],
+            self.app.config['SECURITY_POST_LOGIN_VIEW'],
+        ]
+        for view_name in view_names:
+            url_for(view_name)
+
     def test_main_page_is_ok(self):
         self.assert200(self.client.get('/'))
 

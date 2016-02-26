@@ -19,10 +19,16 @@ SECURITY_CHANGEABLE: True
 SECURITY_PASSWORD_HASH: bcrypt
 SECURITY_PASSWORD_SALT: 'bb83d6fa8d0a4adc'
 SECURITY_SEND_REGISTER_EMAIL: False
+SECURITY_CONFIRMABLE: True
+SECURITY_LOGIN_WITHOUT_CONFIRMATION: True
+
+# This is a workaround for
+# https://github.com/mattupstate/flask-security/pull/489.
+SECURITY_MSG_CONFIRM_REGISTRATION: ['DO_NOT_DISPLAY_ME', 'success']
 
 SECURITY_EMAIL_SENDER: noreply@networkofinnovators.org
 SECURITY_POST_REGISTER_VIEW: 'views.register_step_2'
-SECURITY_POST_CONFIRM_VIEW: 'views.register_step_2'
+SECURITY_POST_CONFIRM_VIEW: 'views.confirmation_success'
 SECURITY_POST_LOGIN_VIEW: 'views.activity'
 SECURITY_EMAIL_SUBJECT_REGISTER: 'Welcome to the Network of Innovators!'
 SECURITY_EMAIL_SUBJECT_PASSWORD_NOTICE: 'Your Network of Innovators password has been reset'

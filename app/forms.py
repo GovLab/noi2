@@ -9,9 +9,10 @@ from flask import current_app
 from flask.ext.babel import get_locale
 from flask_wtf import Form
 from flask_wtf.file import FileField, FileAllowed
-from flask_security.forms import (LoginForm, RegisterForm,
+from flask_security.forms import (LoginForm, ConfirmRegisterForm,
                                   ForgotPasswordForm, ChangePasswordForm,
                                   ResetPasswordForm,
+                                  SendConfirmationForm,
                                   email_required,
                                   email_validator, unique_user_email,
                                   valid_user_email,
@@ -214,6 +215,13 @@ class ChangeLocaleForm(Form):
     )
 
 
+class NOISendConfirmationForm(SendConfirmationForm):
+    '''
+    Localizeable version of Flask-Security's SendConfirmationForm
+    '''
+    submit = SubmitField(lazy_gettext('Resend Confirmation Instructions'))
+
+
 class NOIForgotPasswordForm(ForgotPasswordForm):
     '''
     Localizeable version of Flask-Security's ForgotPasswordForm
@@ -260,9 +268,9 @@ USERNAME_VALIDATORS = [
     ),
 ]
 
-class NOIRegisterForm(RegisterForm):
+class NOIConfirmRegisterForm(ConfirmRegisterForm):
     '''
-    Localizeable version of Flask-Security's RegisterForm
+    Localizeable version of Flask-Security's ConfirmRegisterForm
     '''
 
     # Note that extra fields in this registration form are passed
@@ -286,7 +294,6 @@ class NOIRegisterForm(RegisterForm):
     password = PasswordField(
         lazy_gettext('Password'), validators=[password_required,
                                               password_length])
-    password_confirm = None
     submit = SubmitField(lazy_gettext('Sign up'))
 
 
