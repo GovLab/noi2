@@ -2,14 +2,13 @@ import os
 from babel.messages.pofile import read_po
 from babel.messages.catalog import TranslationError, Message
 from babel.messages import checkers
-from flask import Flask
 
 from .test_views import ViewTestCase
-from .util import eq_
+from .util import eq_, create_empty_flask_app
 from app import l10n
 
 def test_flask_security_strings_do_not_interpolate():
-    app = Flask('test')
+    app = create_empty_flask_app()
     l10n.configure_app(app)
     eq_(unicode(app.config['SECURITY_MSG_EMAIL_ALREADY_ASSOCIATED'][0]),
         '%(email)s is already associated with an account.')

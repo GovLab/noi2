@@ -1,8 +1,8 @@
 from base64 import b64encode
 
-from flask import Flask
 from flask_testing import TestCase
 
+from .util import create_empty_flask_app
 from .test_views import ViewTestCase
 from ..admin import _init_basic_auth as init_basic_auth
 
@@ -47,7 +47,7 @@ class StatsViewTests(AdminTestCase):
 
 class BasicAuthTests(TestCase):
     def create_app(self):
-        app = Flask('test')
+        app = create_empty_flask_app()
         app.config.update({'ADMIN_UI_BASIC_AUTH': 'foo:bar'})
 
         @app.route('/foo/bar')

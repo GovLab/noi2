@@ -1,5 +1,4 @@
 import re
-import logging
 from StringIO import StringIO
 from urllib import urlencode
 from moto import mock_s3
@@ -9,10 +8,10 @@ from flask_login import current_user
 
 from app import (QUESTIONS_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS,
                  QUESTIONNAIRES_BY_ID, mail)
-from app.factory import create_app
 from app.views import views, get_best_registration_step_url
 from app.models import User, SharedMessageEvent, ConnectionEvent, db
 
+from .util import create_app
 from .test_models import DbTestCase
 from .factories import UserFactory, UserSkillFactory
 
@@ -41,13 +40,7 @@ class ViewTestCase(DbTestCase):
     )
 
     def create_app(self):
-        app = create_app(config=self.BASE_APP_CONFIG.copy())
-
-        handler = logging.StreamHandler()
-        handler.setLevel(logging.DEBUG)
-        app.logger.addHandler(handler)
-
-        return app
+        return create_app(config=self.BASE_APP_CONFIG.copy())
 
     def register_and_login(self, username, password):
         res = self.client.post('/register', data=dict(
