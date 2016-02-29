@@ -11,6 +11,10 @@ def parse_iso_datetime(text):
     return datetime.datetime.strptime(text, "%Y-%m-%dT%H:%M:%S.%fZ")
 
 class DiscourseTopicEvent(models.Event):
+    __tablename__ = 'discourse_topics'
+
+    id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
+
     discourse_id = Column(types.Integer, unique=True)
 
     slug = Column(types.Text)
@@ -72,8 +76,15 @@ class DiscourseTopicEvent(models.Event):
 
     @classmethod
     def delete_all(cls):
+        # TODO: It's really weird that we need to manually delete the
+        # row from our own table and our parent class table. There
+        # ought to be a way to do this via e.g. cascade.
+
+        db.session.query(cls).delete()
+
         type_name = cls.__mapper_args__['polymorphic_identity']
         db.session.query(models.Event).\
           filter(models.Event.type==type_name).\
           delete()
+
         db.session.commit()
