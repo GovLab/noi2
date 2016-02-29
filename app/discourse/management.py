@@ -5,7 +5,7 @@ from flask.ext.script.commands import InvalidCommand, Command, Option
 from flask_script import Manager
 
 from ..models import User
-from . import sso, api
+from . import sso, api, models
 from .config import config
 
 DiscourseCommand = manager = Manager(usage='Manage Discourse integration.')
@@ -62,6 +62,19 @@ def http_get(path, username=None):
         req.raise_for_status()
 
     sys.stdout.write(json.dumps(req.json(), indent=2))
+
+@manager.command
+def update_topics(recache=False):
+    '''
+    Update Discourse topics.
+    '''
+
+    if recache:
+        print "Deleting all cached topics."
+        models.DiscourseTopicEvent.delete_all()
+
+    print "Updating topics."
+    models.DiscourseTopicEvent.update()
 
 @manager.command
 def logout_user(username):

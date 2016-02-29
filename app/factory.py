@@ -23,6 +23,9 @@ from app.views import views
 from app.utils import get_user_avatar_url
 from app import style_guide, l10n
 
+# We need to import this in order to register its models.
+import app.discourse.models
+
 from sqlalchemy.orm.exc import NoResultFound
 
 from slugify import slugify
