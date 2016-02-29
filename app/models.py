@@ -20,10 +20,12 @@ from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 from boto.s3.connection import S3Connection
+from slugify import slugify
 
 import base64
 import datetime
 import os
+import re
 
 db = SQLAlchemy()  #pylint: disable=invalid-name
 
@@ -68,6 +70,109 @@ def scores_to_skills(score_dict):
             0
         )
     }
+
+class Username(object):
+    '''
+    Just a place to hold username requirements and methods regarding
+    them. It is *not* used to store actual usernames and should not
+    be instantiated.
+
+    We're using a subset of the Discourse username rules to ensure that
+    we can integrate with Discourse:
+
+    https://meta.discourse.org/t/what-are-the-rules-for-usernames/13458/6
+
+    But we're also staying on the conservative side, just in case we want
+    to integrate with other third-party software in the future that might
+    have their own username rules.
+    '''
+
+    MIN_LENGTH = 3
+    MAX_LENGTH = 15
+    REGEXP = re.compile('^[A-Za-z0-9]+$')
+
+    @classmethod
+    def validate(cls, text):
+        '''
+        Validate the given username.
+
+            >>> Username.validate('abc')
+            'abc'
+
+            >>> Username.validate('a')
+            Traceback (most recent call last):
+            ...
+            ValueError: username is too short
+
+            >>> Username.validate('abcdefghijklmnopqrstuv')
+            Traceback (most recent call last):
+            ...
+            ValueError: username is too long
+
+            >>> Username.validate('$#$%#$%')
+            Traceback (most recent call last):
+            ...
+            ValueError: username contains invalid characters
+        '''
+
+        if len(text) < cls.MIN_LENGTH:
+            raise ValueError('username is too short')
+        if len(text) > cls.MAX_LENGTH:
+            raise ValueError('username is too long')
+        if not cls.REGEXP.match(text):
+            raise ValueError('username contains invalid characters')
+        return text
+
+    @classmethod
+    def usernameify(cls, username):
+        '''
+        Convert the given candidate username into something that will
+        be a valid username.
+
+            >>> Username.usernameify('blarg person')
+            'blargperson'
+
+            >>> Username.usernameify('i am really way too long')
+            'iamreallywaytoo'
+
+            >>> Username.usernameify('a')
+            '00a'
+        '''
+
+        username = slugify(username).\
+          replace('-', '')[:cls.MAX_LENGTH].\
+          zfill(cls.MIN_LENGTH)
+
+        return cls.validate(username)
+
+    @classmethod
+    def generate_candidates(cls, first_name, last_name):
+        '''
+        Generator for candidate usernames.
+
+            >>> gen = Username.generate_candidates('Boop', 'Jonesitronn')
+            >>> gen.next()
+            'boop'
+            >>> gen.next()
+            'boopjonesitronn'
+            >>> gen.next()
+            'boopjonesitron2'
+            >>> gen.next()
+            'boopjonesitron3'
+        '''
+
+        yield cls.usernameify(first_name)
+
+        base_name = first_name + last_name
+
+        yield cls.usernameify(base_name)
+
+        for i in range(2, 999):
+            num = unicode(i)
+            yield cls.usernameify(base_name[:cls.MAX_LENGTH - len(num)] +
+                                  num)
+
+        raise Exception('Ran out of username candidates!')
 
 class DeploymentMixin(object):
     '''

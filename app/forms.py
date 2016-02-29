@@ -3,7 +3,7 @@ NoI forms
 '''
 
 from app import LOCALES, QUESTIONNAIRES, LEVELS, l10n
-from app.models import User
+from app.models import User, Username
 
 from flask import current_app
 from flask.ext.babel import get_locale
@@ -243,15 +243,6 @@ class NOILoginForm(LoginForm):
 
 # The following validators can be added to any field that checks
 # usernames.
-#
-# We're using a subset of the Discourse username rules to ensure that
-# we can integrate with Discourse:
-#
-#   https://meta.discourse.org/t/what-are-the-rules-for-usernames/13458/6
-#
-# But we're also staying on the conservative side, just in case we want
-# to integrate with other third-party software in the future that might
-# have their own username rules.
 
 # TODO: Validation error messages are tricky to translate with
 # lazy_gettext; see https://github.com/flask-admin/flask-admin/issues/1042.
@@ -261,9 +252,9 @@ def unique_new_username(form, field):
         raise ValidationError(gettext("That username is already taken."))
 
 USERNAME_VALIDATORS = [
-    validators.Length(min=3, max=15),
+    validators.Length(min=Username.MIN_LENGTH, max=Username.MAX_LENGTH),
     validators.Regexp(
-        '^[A-Za-z0-9]+$',
+        Username.REGEXP,
         message='Usernames must consist of only numbers and letters.'
     ),
 ]
