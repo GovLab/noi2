@@ -647,7 +647,7 @@ def match():
     return redirect(url_for('views.match_practitioners'))
 
 def get_latest_events(pageid=1):
-    return Event.query_in_deployment().order_by(desc(Event.created_at)).\
+    return Event.query_in_deployment().order_by(desc(Event.updated_at)).\
            paginate(pageid)
 
 @views.route('/activity/page/<pageid>')
