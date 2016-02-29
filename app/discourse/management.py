@@ -1,4 +1,6 @@
 import os
+import sys
+import json
 from flask.ext.script.commands import InvalidCommand, Command, Option
 from flask_script import Manager
 
@@ -46,17 +48,20 @@ def get_user_by_username(username):
     return users[0]
 
 @manager.command
-def test_api():
+def http_get(path, username=None):
     '''
-    Test Discourse API integration.
+    Perform a HTTP GET using the Discourse API.
+
+    For more information, see:
+
+    https://meta.discourse.org/t/discourse-api-documentation/22706/1
     '''
 
-    req = api.get('/categories.json')
+    req = api.get(path, username=username)
     if req.status_code != 200:
         req.raise_for_status()
-    req.json()
 
-    print "Discourse integration works!"
+    sys.stdout.write(json.dumps(req.json(), indent=2))
 
 @manager.command
 def logout_user(username):
