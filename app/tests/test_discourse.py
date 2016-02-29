@@ -7,9 +7,11 @@ from flask_security.signals import user_registered
 from flask.ext.login import user_logged_out
 
 from .test_views import ViewTestCase
-from ..models import User
+from .test_models import DbTestCase
+from ..models import User,  Event, db
 from ..signals import user_changed_profile
 from ..discourse import sso, api
+from ..discourse.models import DiscourseTopicEvent
 
 FAKE_DISCOURSE_CONFIG = dict(
     api_key='abcd',
@@ -150,6 +152,49 @@ class LogoutUserTests(TestCase):
         post.assert_called_once_with('/admin/users/999/log_out')
         get.return_value.raise_for_status.assert_not_called()
         post.return_value.raise_for_status.assert_not_called()
+
+class DiscourseTopicEventTests(DbTestCase):
+    BASE_APP_CONFIG = DbTestCase.BASE_APP_CONFIG.copy()
+
+    BASE_APP_CONFIG.update(DISCOURSE=FAKE_DISCOURSE_CONFIG)
+
+    def test_url_works(self):
+        evt = DiscourseTopicEvent(discourse_id=5, slug='beep-boop')
+        self.assertEqual(evt.url, 'http://discourse/t/beep-boop/5')
+
+    def test_get_or_create_can_get_existing(self):
+        evt = DiscourseTopicEvent(discourse_id=15)
+        db.session.add(evt)
+        db.session.commit()
+        self.assertEqual(DiscourseTopicEvent._get_or_create(15), evt)
+
+    def test_get_or_create_can_create_new(self):
+        evt = DiscourseTopicEvent._get_or_create(5)
+        self.assertEqual(evt.discourse_id, 5)
+
+    def test_delete_all_deletes_parent_events(self):
+        db.session.add(DiscourseTopicEvent())
+        db.session.add(DiscourseTopicEvent())
+        db.session.commit()
+
+        self.assertEqual(db.session.query(Event).count(), 2)
+
+        DiscourseTopicEvent.delete_all()
+
+        self.assertEqual(db.session.query(Event).count(), 0)
+
+    def test_parent_event_is_deleted(self):
+        evt = DiscourseTopicEvent()
+
+        db.session.add(evt)
+        db.session.commit()
+
+        self.assertEqual(db.session.query(Event).count(), 1)
+
+        db.session.delete(evt)
+        db.session.commit()
+
+        self.assertEqual(db.session.query(Event).count(), 0)
 
 class ViewTests(ViewTestCase):
     BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()
