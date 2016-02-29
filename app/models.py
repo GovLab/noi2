@@ -129,7 +129,7 @@ class Username(object):
         Convert the given candidate username into something that will
         be a valid username.
 
-            >>> Username.usernameify('blarg person')
+            >>> Username.usernameify(u'blarg person\u2026')
             'blargperson'
 
             >>> Username.usernameify('i am really way too long')
