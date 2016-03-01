@@ -23,7 +23,7 @@ class DiscourseTopicEvent(models.UserEvent):
 
     title = Column(types.Text)
 
-    reply_count = Column(types.Integer)
+    posts_count = Column(types.Integer)
 
     __mapper_args__ = {
         'polymorphic_identity': 'discourse_topic_event'
@@ -61,7 +61,7 @@ class DiscourseTopicEvent(models.UserEvent):
             msg.excerpt = topic.get('excerpt')
 
             msg.title = topic['title']
-            msg.reply_count = topic['reply_count']
+            msg.posts_count = topic['posts_count']
             db.session.add(msg)
 
     @classmethod

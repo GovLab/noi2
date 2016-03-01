@@ -39,7 +39,13 @@
       {% endif %}
       <div class="e-actions">
         <a href="{{ event.url }}" target="_blank"><span class="material-icons">open_in_new</span>
-        <span class="e-action-label">{{ gettext("Read more on Discourse") }}</span></a>
+        <span class="e-action-label">
+          {% if event.posts_count > 1 %}
+            {{ gettext("Read %(posts_count)s replies on Discourse", posts_count=event.posts_count) }}
+          {% else %}
+            {{ gettext("Read more on Discourse") }}
+          {% endif %}
+        </span></a>
       </div>
     </div>
   {% else %}
