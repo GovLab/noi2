@@ -1,10 +1,19 @@
 from flask import Blueprint, request, redirect, abort
 from flask_login import login_required, current_user
 
-from . import sso
+from .. import csrf
+from . import sso, models
 from .config import config
 
 views = Blueprint('discourse', __name__)
+
+@views.route('/discourse/webhook/<event_name>', methods=['POST'])
+@csrf.exempt
+def webhook(event_name):
+    # TODO: Consider checking the payload to ensure the API key is
+    # valid.
+    models.DiscourseTopicEvent.update()
+    return "Thanks!"
 
 @views.route('/discourse/sso')
 @login_required

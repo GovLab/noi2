@@ -241,6 +241,13 @@ class ViewTests(ViewTestCase):
                 text, prefix
             ))
 
+    @mock.patch('app.discourse.models.DiscourseTopicEvent.update')
+    def test_webhook_works(self, update):
+        response = self.client.post('/discourse/webhook/post_created')
+        self.assert200(response)
+        self.assertEqual(response.data, 'Thanks!')
+        update.assert_called_once_with()
+
     def test_discourse_sso_redirects_to_discourse(self):
         user = self.create_user(
             email='boop@example.com',

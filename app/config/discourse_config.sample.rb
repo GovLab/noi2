@@ -33,3 +33,15 @@ SiteSetting.sso_overrides_username = true
 SiteSetting.sso_overrides_name = true
 SiteSetting.sso_overrides_avatar = true
 SiteSetting.logout_redirect = "#{NOI_ORIGIN}/logout"
+
+# It's strongly recommended that you install the Discourse-Webhooks plugin:
+#
+#   https://github.com/rcfox/Discourse-Webhooks
+#
+# This will ensure that NoI's reflection of Discourse activity remains
+# accurate.
+if SiteSetting.respond_to? :webhooks_enabled
+  SiteSetting.webhooks_enabled = true
+  SiteSetting.webhooks_registered_events = "topic_created|post_created"
+  SiteSetting.webhooks_url_format = "#{NOI_ORIGIN}/discourse/webhook/%{event_name}"
+end
