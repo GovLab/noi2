@@ -106,6 +106,18 @@ class DbTestCase(TestCase):
         empty_tables()
 
 class UserDbTests(DbTestCase):
+    def test_username_class_methods_work(self):
+        u = models.User(email=u'a@bop', password='a', username='blah',
+                        active=True)
+        db.session.add(u)
+        db.session.commit()
+
+        self.assertTrue(models.User.is_username_taken('blah'))
+        self.assertFalse(models.User.is_username_taken('other'))
+
+        self.assertEqual(models.User.find_by_username('blah'), u)
+        self.assertIsNone(models.User.find_by_username('other'))
+
     def test_ensure_deployment_has_a_default_setting(self):
         u = models.User(email=u'a@example.org', password='a', active=True)
         db.session.add(u)

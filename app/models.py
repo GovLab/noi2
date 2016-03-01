@@ -624,7 +624,11 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
     @classmethod
     def is_username_taken(cls, username):
-        return bool(cls.query.filter(cls.username==username).first())
+        return bool(cls.find_by_username(username))
+
+    @classmethod
+    def find_by_username(cls, username):
+        return cls.query.filter(cls.username==username).first()
 
     @classmethod
     def get_most_complete_profiles(cls, limit=10):

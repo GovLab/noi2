@@ -40,12 +40,12 @@ class CustomOriginCommand(Command):
             return self.run(*args, **kwargs)
 
 def get_user_by_username(username):
-    users = User.query_in_deployment().filter(User.username==username)
+    user = User.find_by_username(username)
 
-    if not users:
+    if not user:
         raise InvalidCommand('Unable to find username %s.' % username)
 
-    return users[0]
+    return user
 
 @manager.command
 def http_get(path, username=None):
