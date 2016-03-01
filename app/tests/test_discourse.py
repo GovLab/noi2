@@ -1,4 +1,5 @@
 import urlparse
+import datetime
 from unittest import TestCase
 import mock
 import flask_testing
@@ -161,6 +162,77 @@ class DiscourseTopicEventTests(DbTestCase):
     def test_url_works(self):
         evt = DiscourseTopicEvent(discourse_id=5, slug='beep-boop')
         self.assertEqual(evt.url, 'http://discourse/t/beep-boop/5')
+
+    @mock.patch('app.discourse.api.get')
+    def test_update_works(self, get):
+        fake_topics = [
+            {
+                # This will be ignored b/c it's not visible.
+                'visible': False
+            },
+            {
+                'visible': True,
+                'id': 14,
+                'bumped_at': '2016-02-18T14:27:48.103Z',
+                'created_at': '2016-02-15T14:27:48.062Z',
+                'posts_count': 6,
+                'last_poster': {
+                    'username': 'system'
+                },
+                'title': 'Hello There',
+                'slug': 'hello-there',
+            }
+        ]
+        fake_categories = {
+            'category_list': {
+                'categories': [
+                    {
+                        # This will be ignored b/c it's not public.
+                        'read_restricted': True
+                    },
+                    {
+                        'read_restricted': False,
+                        'topics': fake_topics
+                    }
+                ]
+            }
+        }
+
+        get.return_value.status_code = 200
+        get.return_value.json.return_value = fake_categories
+
+        DiscourseTopicEvent.update()
+
+        get.assert_called_once_with('/categories.json')
+        get.return_value.raise_for_status.assert_not_called()
+
+        events = db.session.query(Event).all()
+        self.assertEqual(len(events), 1)
+        event = events[0]
+
+        self.assertEqual(event.type, 'discourse_topic_event')
+        self.assertEqual(event.discourse_id, 14)
+        self.assertEqual(event.created_at,
+                         datetime.datetime(2016, 2, 15, 14, 27, 48, 62000))
+        self.assertEqual(event.updated_at,
+                         datetime.datetime(2016, 2, 18, 14, 27, 48, 103000))
+        self.assertEqual(event.slug, 'hello-there')
+        self.assertIsNone(event.user)
+        self.assertIsNone(event.excerpt)
+        self.assertEqual(event.title, 'Hello There')
+        self.assertEqual(event.posts_count, 6)
+
+        # Now simulate a new reply.
+
+        fake_topics[1]['bumped_at'] = '2016-02-20T14:27:48.103Z'
+        fake_topics[1]['posts_count'] += 1
+
+        DiscourseTopicEvent.update()
+
+        self.assertEqual(db.session.query(Event).all(), [event])
+        self.assertEqual(event.updated_at,
+                         datetime.datetime(2016, 2, 20, 14, 27, 48, 103000))
+        self.assertEqual(event.posts_count, 7)
 
     def test_get_or_create_can_get_existing(self):
         evt = DiscourseTopicEvent(discourse_id=15)

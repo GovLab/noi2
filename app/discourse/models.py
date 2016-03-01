@@ -8,6 +8,11 @@ from .config import config
 
 # http://stackoverflow.com/a/127972/2422398
 def parse_iso_datetime(text):
+    '''
+    >>> parse_iso_datetime('2016-02-18T14:27:48.218Z')
+    datetime.datetime(2016, 2, 18, 14, 27, 48, 218000)
+    '''
+
     return datetime.datetime.strptime(text, "%Y-%m-%dT%H:%M:%S.%fZ")
 
 class DiscourseTopicEvent(models.UserEvent):
