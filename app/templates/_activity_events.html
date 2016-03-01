@@ -26,7 +26,13 @@
       <p>{{ gettext('%(total)s connections!', total=event.total_connections) }}</p>
     </div>
   {% elif event.type == 'discourse_topic_event' %}
+    {% if event.user %}
+    {{ user_avatar(event.user) }}
+    {% endif %}
     <div class="e-feed-message">
+      {% if event.user %}
+      <p>{{ gettext('%(user)s posted in Discourse.', user=user_link(event.user)) }}</p>
+      {% endif %}
       <p><strong>{{ event.title }}</strong></p>
       {% if event.excerpt %}
       <p>{{ event.excerpt|safe }}</p>

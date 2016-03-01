@@ -1,7 +1,7 @@
 import datetime
 from sqlalchemy import types, Column, ForeignKey
 
-from ..models import db
+from ..models import db, User
 from .. import models
 from . import api
 from .config import config
@@ -10,10 +10,10 @@ from .config import config
 def parse_iso_datetime(text):
     return datetime.datetime.strptime(text, "%Y-%m-%dT%H:%M:%S.%fZ")
 
-class DiscourseTopicEvent(models.Event):
+class DiscourseTopicEvent(models.UserEvent):
     __tablename__ = 'discourse_topics'
 
-    id = Column(types.Integer, ForeignKey('events.id'), primary_key=True)
+    id = Column(types.Integer, ForeignKey('user_events.id'), primary_key=True)
 
     discourse_id = Column(types.Integer, unique=True)
 
@@ -51,6 +51,9 @@ class DiscourseTopicEvent(models.Event):
             msg.updated_at = parse_iso_datetime(topic['bumped_at'])
             msg.slug = topic['slug']
 
+            user = User.find_by_username(topic['last_poster']['username'])
+            msg.user = user
+
             # Argh, it looks like only pinned topics have excerpts
             # for now:
             #
@@ -76,15 +79,10 @@ class DiscourseTopicEvent(models.Event):
 
     @classmethod
     def delete_all(cls):
-        # TODO: It's really weird that we need to manually delete the
-        # row from our own table and our parent class table. There
-        # ought to be a way to do this via e.g. cascade.
+        # Note that db.session.query(cls).delete() doesn't work because
+        # it won't delete the "parent" rows from our superclass table(s).
 
-        db.session.query(cls).delete()
-
-        type_name = cls.__mapper_args__['polymorphic_identity']
-        db.session.query(models.Event).\
-          filter(models.Event.type==type_name).\
-          delete()
+        for obj in db.session.query(cls):
+            db.session.delete(obj)
 
         db.session.commit()
