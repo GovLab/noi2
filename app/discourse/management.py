@@ -10,7 +10,27 @@ from .config import config
 
 DiscourseCommand = manager = Manager(usage='Manage Discourse integration.')
 
+class CustomManager(Manager):
+    def command_with_name(self, name):
+        '''
+        Easily allow a command to have a different name from its function.
+        '''
+
+        def decorate(func):
+            func.__name__ = name
+            return self.command(func)
+
+        return decorate
+
 class CustomOriginCommand(Command):
+    '''
+    The request context Flask-Script normally provides doesn't give us a
+    useful base URL for the request, which messes up code that examines
+    it to obtain an absolute URL to the server.
+
+    This class attempts to provide a solution to this problem.
+    '''
+
     def __init__(self, *args, **kwargs):
         super(CustomOriginCommand, self).__init__(*args, **kwargs)
         self.option_list.append(Option(
@@ -63,15 +83,23 @@ def http_get(path, username=None):
 
     sys.stdout.write(json.dumps(req.json(), indent=2))
 
-@manager.command
-def update_topics(recache=False):
+TopicsCommand = CustomManager(usage='Manage Discourse topics.')
+manager.add_command('topics', TopicsCommand)
+
+@TopicsCommand.command_with_name('uncache')
+def topics_uncache():
     '''
-    Update Discourse topics.
+    Empty Discourse topic cache.
     '''
 
-    if recache:
-        print "Deleting all cached topics."
-        models.DiscourseTopicEvent.delete_all()
+    print "Deleting all cached topics."
+    models.DiscourseTopicEvent.delete_all()
+
+@TopicsCommand.command_with_name('recache')
+def topics_recache():
+    '''
+    Re-cache Discourse topics.
+    '''
 
     print "Updating topics."
     models.DiscourseTopicEvent.update()
