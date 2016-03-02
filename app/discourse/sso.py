@@ -64,7 +64,7 @@ def pack_and_sign_payload(payload_dict, secret=None):
         'sig': hmac_sign(payload, secret).hexdigest()
     }
 
-def user_info_qs(user, nonce, avatar_force_update=False, secret=None):
+def user_info_payload(user, nonce, avatar_force_update):
     payload = {
         'nonce': nonce,
         'email': str(user.email),
@@ -73,8 +73,14 @@ def user_info_qs(user, nonce, avatar_force_update=False, secret=None):
         'avatar_url': get_user_avatar_url(user, _external=True),
         'name': user.full_name.encode('utf8')
     }
+    if not user.confirmed_at:
+        payload['require_activation'] = 'true'
     if avatar_force_update:
         payload['avatar_force_update'] ='true'
+    return payload
+
+def user_info_qs(user, nonce, avatar_force_update=False, secret=None):
+    payload = user_info_payload(user, nonce, avatar_force_update)
     return urllib.urlencode(pack_and_sign_payload(payload, secret=secret))
 
 def logout_user(user):

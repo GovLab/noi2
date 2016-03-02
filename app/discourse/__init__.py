@@ -1,4 +1,4 @@
-from flask_security.signals import user_registered
+from flask_security.signals import user_registered, user_confirmed
 from flask.ext.login import user_logged_out
 
 from ..signals import user_changed_profile
@@ -23,4 +23,8 @@ def init_app(app):
 
     @user_registered.connect_via(app)
     def when_user_registered(sender, user, confirm_token, **extra):
+        sso.sync_user(user)
+
+    @user_confirmed.connect_via(app)
+    def when_user_confirmed(sender, user, **extra):
         sso.sync_user(user)

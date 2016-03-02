@@ -4,7 +4,7 @@ from unittest import TestCase
 import mock
 import flask_testing
 from flask import Flask
-from flask_security.signals import user_registered
+from flask_security.signals import user_registered, user_confirmed
 from flask.ext.login import user_logged_out
 
 from .test_views import ViewTestCase
@@ -72,6 +72,18 @@ class ApiTests(flask_testing.TestCase):
             extra=1
         )
 
+@mock.patch('app.discourse.sso.get_user_avatar_url')
+class UserInfoPayloadTests(TestCase):
+    def test_requires_activation_if_user_is_not_confirmed(self, _):
+        user = User(confirmed_at=None)
+        payload = sso.user_info_payload(user, 'blah', False)
+        self.assertEqual(payload['require_activation'], 'true')
+
+    def test_does_not_require_activation_if_user_is_confirmed(self, _):
+        user = User(confirmed_at=datetime.datetime.now())
+        payload = sso.user_info_payload(user, 'blah', False)
+        self.assertFalse('require_activation' in payload)
+
 @mock.patch('app.discourse.api.post')
 @mock.patch('app.discourse.sso.get_user_avatar_url')
 class SyncUserTests(TestCase):
@@ -83,6 +95,7 @@ class SyncUserTests(TestCase):
             first_name='John',
             last_name='Doe',
             email='boop@example.com',
+            confirmed_at=datetime.datetime.now(),
             id=321
         ), avatar_force_update=True, secret='blarg')
 
@@ -295,6 +308,12 @@ class ViewTests(ViewTestCase):
     def test_sync_user_called_when_user_registered(self, sync_user):
         user = self.create_user('foo@example.com', 'passwd')
         user_registered.send(self.app, user=user, confirm_token='u')
+        sync_user.assert_called_once_with(user)
+
+    @mock.patch('app.discourse.sso.sync_user')
+    def test_sync_user_called_when_user_confirmed(self, sync_user):
+        user = self.create_user('foo@example.com', 'passwd')
+        user_confirmed.send(self.app, user=user)
         sync_user.assert_called_once_with(user)
 
     def test_discourse_sso_requires_login(self):
