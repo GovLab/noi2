@@ -10,7 +10,7 @@ from app.utils import UserSkillMatch
 
 from flask import current_app
 from flask_sqlalchemy import SQLAlchemy
-from flask_security import UserMixin, RoleMixin
+from flask_security import UserMixin, RoleMixin, confirmable
 from flask_babel import lazy_gettext
 
 from sqlalchemy import (orm, types, Column, ForeignKey, UniqueConstraint, func,
@@ -393,11 +393,29 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                 limit(limit)
 
     @property
+    def requires_confirmation(self):
+        '''
+        Returns whether or not the user has confirmed their e-mail yet.
+        '''
+
+        return self.confirmed_at is None
+
+    def confirm(self):
+        '''
+        Marks the user's email as being confirmed.
+        '''
+
+        return confirmable.confirm_user(self)
+
+    @property
     def has_fully_registered(self):
         '''
         Returns whether the user has fully completed the registration/signup
         flow.
         '''
+
+        if self.requires_confirmation:
+            return False
 
         return db.session.query(UserJoinedEvent).\
                filter_by(user_id=self.id).\
@@ -411,6 +429,10 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
         if self.has_fully_registered:
             return
+
+        if self.requires_confirmation:
+            self.confirm()
+
         db.session.add(UserJoinedEvent.from_user(self))
 
     def match(self, level, limit=10):

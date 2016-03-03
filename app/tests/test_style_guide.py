@@ -2,12 +2,13 @@ from app import style_guide
 from app import assets, csrf
 from app.views import views
 
-from flask import Flask
 from flask.ext.testing import TestCase
+
+from .util import create_empty_flask_app
 
 class StyleGuideTests(TestCase):
     def create_app(self):
-        app = Flask('app')
+        app = create_empty_flask_app()
         app.config['SECRET_KEY'] = 'test'
         app.register_blueprint(views)
         app.register_blueprint(style_guide.views)
