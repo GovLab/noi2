@@ -106,6 +106,46 @@ class DbTestCase(TestCase):
         empty_tables()
 
 class UserDbTests(DbTestCase):
+    def test_generate_username_candidate_works(self):
+        john1 = models.User(email=u'john@doe.com', password='a', active=True,
+                            first_name='john', last_name='doe')
+        john1.username = john1.generate_username_candidate()
+        self.assertEqual(john1.username, 'john')
+        db.session.add(john1)
+        db.session.commit()
+
+        john2 = models.User(email=u'john@doe.org', password='a', active=True,
+                            first_name='john', last_name='doe')
+        john2.username = john2.generate_username_candidate()
+        self.assertEqual(john2.username, 'johndoe')
+        db.session.add(john2)
+        db.session.commit()
+
+    def test_autogenerate_and_commit_username_works(self):
+        john1 = models.User(email=u'john@doe.com', password='a', active=True,
+                            first_name='john', last_name='doe')
+        db.session.add(john1)
+        john1.autogenerate_and_commit_username()
+        self.assertEqual(john1.username, 'john')
+
+        john2 = models.User(email=u'john@doe.org', password='a', active=True,
+                            first_name='john', last_name='doe')
+        db.session.add(john2)
+        john2.autogenerate_and_commit_username()
+        self.assertEqual(john2.username, 'johndoe')
+
+    def test_username_class_methods_work(self):
+        u = models.User(email=u'a@bop', password='a', username='blah',
+                        active=True)
+        db.session.add(u)
+        db.session.commit()
+
+        self.assertTrue(models.User.is_username_taken('blah'))
+        self.assertFalse(models.User.is_username_taken('other'))
+
+        self.assertEqual(models.User.find_by_username('blah'), u)
+        self.assertIsNone(models.User.find_by_username('other'))
+
     def test_ensure_deployment_has_a_default_setting(self):
         u = models.User(email=u'a@example.org', password='a', active=True)
         db.session.add(u)

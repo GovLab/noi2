@@ -20,10 +20,12 @@ from sqlalchemy.orm import aliased
 from sqlalchemy_utils import EmailType, CountryType, LocaleType
 from sqlalchemy.ext.hybrid import hybrid_property
 from boto.s3.connection import S3Connection
+from slugify import slugify
 
 import base64
 import datetime
 import os
+import re
 
 db = SQLAlchemy()  #pylint: disable=invalid-name
 
@@ -69,6 +71,109 @@ def scores_to_skills(score_dict):
         )
     }
 
+class Username(object):
+    '''
+    Just a place to hold username requirements and methods regarding
+    them. It is *not* used to store actual usernames and should not
+    be instantiated.
+
+    We're using a subset of the Discourse username rules to ensure that
+    we can integrate with Discourse:
+
+    https://meta.discourse.org/t/what-are-the-rules-for-usernames/13458/6
+
+    But we're also staying on the conservative side, just in case we want
+    to integrate with other third-party software in the future that might
+    have their own username rules.
+    '''
+
+    MIN_LENGTH = 3
+    MAX_LENGTH = 15
+    REGEXP = re.compile('^[A-Za-z0-9]+$')
+
+    @classmethod
+    def validate(cls, text):
+        '''
+        Validate the given username.
+
+            >>> Username.validate('abc')
+            'abc'
+
+            >>> Username.validate('a')
+            Traceback (most recent call last):
+            ...
+            ValueError: username is too short
+
+            >>> Username.validate('abcdefghijklmnopqrstuv')
+            Traceback (most recent call last):
+            ...
+            ValueError: username is too long
+
+            >>> Username.validate('$#$%#$%')
+            Traceback (most recent call last):
+            ...
+            ValueError: username contains invalid characters
+        '''
+
+        if len(text) < cls.MIN_LENGTH:
+            raise ValueError('username is too short')
+        if len(text) > cls.MAX_LENGTH:
+            raise ValueError('username is too long')
+        if not cls.REGEXP.match(text):
+            raise ValueError('username contains invalid characters')
+        return text
+
+    @classmethod
+    def usernameify(cls, username):
+        '''
+        Convert the given candidate username into something that will
+        be a valid username.
+
+            >>> Username.usernameify(u'blarg person\u2026')
+            'blargperson'
+
+            >>> Username.usernameify('i am really way too long')
+            'iamreallywaytoo'
+
+            >>> Username.usernameify('a')
+            '00a'
+        '''
+
+        username = slugify(username).\
+          replace('-', '')[:cls.MAX_LENGTH].\
+          zfill(cls.MIN_LENGTH)
+
+        return cls.validate(username)
+
+    @classmethod
+    def generate_candidates(cls, first_name, last_name):
+        '''
+        Generator for candidate usernames.
+
+            >>> gen = Username.generate_candidates('Boop', 'Jonesitronn')
+            >>> gen.next()
+            'boop'
+            >>> gen.next()
+            'boopjonesitronn'
+            >>> gen.next()
+            'boopjonesitron2'
+            >>> gen.next()
+            'boopjonesitron3'
+        '''
+
+        yield cls.usernameify(first_name)
+
+        base_name = first_name + last_name
+
+        yield cls.usernameify(base_name)
+
+        for i in range(2, 999):
+            num = unicode(i)
+            yield cls.usernameify(base_name[:cls.MAX_LENGTH - len(num)] +
+                                  num)
+
+        raise Exception('Ran out of username candidates!')
+
 class DeploymentMixin(object):
     '''
     Mixin class for any model that is accessible on a per-deployment
@@ -94,6 +199,10 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     __tablename__ = 'users'
 
     id = Column(types.Integer, autoincrement=True, primary_key=True)  #pylint: disable=invalid-name
+
+    username = Column(types.String, unique=True, index=True, info={
+        'label': lazy_gettext('Username'),
+    })
 
     picture_id = Column(types.String,
                         default=lambda: base64.urlsafe_b64encode(os.urandom(20))[0:-2])
@@ -158,6 +267,18 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     created_at = Column(types.DateTime(), default=datetime.datetime.now)
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
+
+    def generate_username_candidate(self):
+        for username in Username.generate_candidates(self.first_name,
+                                                     self.last_name):
+            if not self.__class__.is_username_taken(username):
+                return username
+
+    def autogenerate_and_commit_username(self):
+        if self.username:
+            raise AssertionError('user already has a username')
+        self.username = self.generate_username_candidate()
+        db.session.commit()
 
     def is_admin(self):
         return self.email in current_app.config.get('ADMIN_UI_USERS', [])
@@ -534,6 +655,14 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan', backref='user')
     languages = orm.relationship('UserLanguage', cascade='all,delete-orphan', backref='user')
     skills = orm.relationship('UserSkill', cascade='all,delete-orphan', backref='user')
+
+    @classmethod
+    def is_username_taken(cls, username):
+        return bool(cls.find_by_username(username))
+
+    @classmethod
+    def find_by_username(cls, username):
+        return cls.query.filter(cls.username==username).first()
 
     @classmethod
     def get_most_complete_profiles(cls, limit=10):

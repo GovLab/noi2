@@ -12,7 +12,7 @@ from werkzeug.contrib.fixers import ProxyFix
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
                  babel, alchemydumps, sass, email_errors, csp, oauth,
-                 linkedin,
+                 linkedin, discourse,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.forms import (NOIForgotPasswordForm, NOILoginForm,
@@ -20,8 +20,11 @@ from app.forms import (NOIForgotPasswordForm, NOILoginForm,
                        NOIConfirmRegisterForm, NOISendConfirmationForm)
 from app.models import db, User, Role
 from app.views import views
-from app.utils import get_nopic_avatar
+from app.utils import get_user_avatar_url
 from app import style_guide, l10n
+
+# We need to import this in order to register its models.
+import app.discourse.models
 
 from sqlalchemy.orm.exc import NoResultFound
 
@@ -104,6 +107,8 @@ def create_app(config=None): #pylint: disable=too-many-statements
     if 'LINKEDIN' in app.config:
         app.jinja_env.globals['LINKEDIN_ENABLED'] = True
         app.register_blueprint(linkedin.views)
+    if 'DISCOURSE' in app.config:
+        discourse.init_app(app)
 
     cache.init_app(app)
     csrf.init_app(app)
@@ -161,7 +166,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     app.jinja_env.globals['global_config_json'] = global_config_json
     app.jinja_env.globals['get_locale'] = get_locale
-    app.jinja_env.globals['get_nopic_avatar'] = get_nopic_avatar
+    app.jinja_env.globals['_get_user_avatar_url'] = get_user_avatar_url
     app.jinja_env.globals['NOI_DEPLOY'] = noi_deploy
     app.jinja_env.globals['ORG_TYPES'] = ORG_TYPES
     app.jinja_env.globals['NOI_COLORS'] = NOI_COLORS

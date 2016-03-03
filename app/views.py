@@ -11,7 +11,7 @@ from flask_login import login_required, current_user
 from flask_security import confirmable
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
-                 LEVELS_BY_SCORE, mail, stats, cache, blog_posts)
+                 LEVELS_BY_SCORE, mail, stats, cache, blog_posts, signals)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         UserSkill, Event, SharedMessageEvent, Email,
                         skills_to_percentages)
@@ -125,6 +125,11 @@ def set_user_picture(user, picture):
 def my_profile_remove_picture():
     current_user.remove_picture()
     db.session.commit()
+    signals.user_changed_profile.send(
+        current_app._get_current_object(),
+        user=current_user._get_current_object(),
+        avatar_changed=True
+    )
     return ('', 204)
 
 @views.route('/me/picture', methods=['POST'])
@@ -138,6 +143,11 @@ def my_profile_upload_picture():
             set_user_picture(current_user, form.picture)
             db.session.add(current_user)
             db.session.commit()
+            signals.user_changed_profile.send(
+                current_app._get_current_object(),
+                user=current_user._get_current_object(),
+                avatar_changed=True
+            )
             return ('', 204)
     abort(400)
 
@@ -157,9 +167,17 @@ def my_profile():
 
             if form.picture.has_file():
                 set_user_picture(current_user, form.picture)
+                avatar_changed = True
+            else:
+                avatar_changed = False
 
             db.session.add(current_user)
             db.session.commit()
+            signals.user_changed_profile.send(
+                current_app._get_current_object(),
+                user=current_user._get_current_object(),
+                avatar_changed=avatar_changed
+            )
             flash(gettext('Your profile has been saved.'))
             return redirect(url_for('views.my_expertise'))
         else:
@@ -661,7 +679,7 @@ def match():
     return redirect(url_for('views.match_practitioners'))
 
 def get_latest_events(pageid=1):
-    return Event.query_in_deployment().order_by(desc(Event.created_at)).\
+    return Event.query_in_deployment().order_by(desc(Event.updated_at)).\
            paginate(pageid)
 
 @views.route('/activity/page/<pageid>')

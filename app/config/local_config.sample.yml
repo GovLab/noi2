@@ -114,3 +114,16 @@ SECRET_KEY: i_am_insecure
 # LINKEDIN:
 #   consumer_key: something
 #   consumer_secret: somethingelse
+
+# Discourse Integration
+# ---------------------
+
+# This specifies optional Discourse integration information. Note that
+# in order to integrate with Discourse, you will need to configure the
+# Discourse side properly. See the file "discourse_config.sample.rb" for
+# more details.
+#
+# DISCOURSE:
+#   api_key: PUT_YOUR_DISCOURSE_API_KEY_HERE
+#   origin: http://discourse-dev.networkofinnovators.org
+#   sso_secret: PUT_YOUR_SSO_SECRET_HERE

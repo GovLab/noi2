@@ -7,7 +7,7 @@ from flask_oauthlib.client import OAuthException
 from werkzeug.security import gen_salt
 from sqlalchemy_utils import Country
 
-from app import oauth
+from app import oauth, signals
 from app.models import db, UserLinkedinInfo
 
 from flask import current_app, request
@@ -139,6 +139,11 @@ def deauthorize():
     if current_user.linkedin:
         db.session.delete(current_user.linkedin)
         db.session.commit()
+        signals.user_changed_profile.send(
+            current_app._get_current_object(),
+            user=current_user._get_current_object(),
+            avatar_changed=True
+        )
     flash(gettext(u'Disconnected from LinkedIn.'))
     return redirect(url_for('views.my_profile'))
 
@@ -164,5 +169,10 @@ def callback():
     else:
         store_access_token(current_user, resp)
         update_user_info(current_user)
+        signals.user_changed_profile.send(
+            current_app._get_current_object(),
+            user=current_user._get_current_object(),
+            avatar_changed=True
+        )
         flash(gettext(u'Connection to LinkedIn established.'))
     return redirect(url_for('views.my_profile'))

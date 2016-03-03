@@ -9,7 +9,8 @@ import flask_wtf
 from wtforms import TextField
 
 from .models import User, db
-from . import stats
+from .forms import USERNAME_VALIDATORS
+from . import stats, signals
 
 NAME = 'NoI Admin'
 
@@ -65,13 +66,25 @@ class StatsView(AdminPermissionRequiredMixin, BaseView):
                            stats=json.dumps(stats.generate(), indent=2))
 
 
-class NoiModelView(AdminPermissionRequiredMixin, ModelView):
+class NoIForm(flask_wtf.Form):
     # The latest docs for flask-admin document a SecureForm class, but
     # it doesn't seem to work, so we'll use the "old" way of enabling
     # CSRF support, documented here:
     #
     # http://flask-admin.readthedocs.org/en/v1.3.0/introduction/
-    form_base_class = flask_wtf.Form
+
+    # This is *also* a workaround for the fact that unique field validators
+    # don't work by default. The workaround is documented here:
+    #
+    # https://github.com/flask-admin/flask-admin/issues/486#issuecomment-38859637
+    def __init__(self, formdata=None, obj=None, prefix=u'', **kwargs):
+        self._obj = obj
+        super(NoIForm, self).__init__(formdata=formdata, obj=obj,
+                                     prefix=prefix, **kwargs)
+
+
+class NoiModelView(AdminPermissionRequiredMixin, ModelView):
+    form_base_class = NoIForm
 
     can_delete = False
     can_create = False
@@ -79,11 +92,23 @@ class NoiModelView(AdminPermissionRequiredMixin, ModelView):
 
 
 class UserModelView(NoiModelView):
-    column_list = ('first_name', 'last_name', 'email', 'last_login_at',
-                   'login_count')
-    form_columns = ('first_name', 'last_name', 'email', 'position',
-                    'organization', 'city', 'projects')
-    column_searchable_list = ('first_name', 'last_name', 'email')
+    column_list = ('username', 'first_name', 'last_name', 'email',
+                   'last_login_at', 'login_count')
+    form_columns = ('username', 'first_name', 'last_name', 'email',
+                    'position', 'organization', 'city', 'projects')
+    column_searchable_list = ('username', 'first_name', 'last_name', 'email')
+
+    form_args = dict(
+        username=dict(
+            validators=USERNAME_VALIDATORS
+        )
+    )
+
+    def after_model_change(self, form, model, is_created):
+        signals.user_changed_profile.send(
+            current_app._get_current_object(),
+            user=model
+        )
 
     def scaffold_form(self):
         form_class = super(UserModelView, self).scaffold_form()

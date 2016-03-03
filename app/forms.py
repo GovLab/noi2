@@ -3,7 +3,7 @@ NoI forms
 '''
 
 from app import LOCALES, QUESTIONNAIRES, LEVELS, l10n
-from app.models import User
+from app.models import User, Username
 
 from flask import current_app
 from flask.ext.babel import get_locale
@@ -18,12 +18,13 @@ from flask_security.forms import (LoginForm, ConfirmRegisterForm,
                                   valid_user_email,
                                   password_required, password_length, EqualTo)
 
-from flask_babel import lazy_gettext
+from flask_babel import lazy_gettext, gettext
 from wtforms_alchemy import model_form_factory, CountryField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.fields import (SelectMultipleField, TextField, TextAreaField,
                             SelectField)
 from wtforms.widgets import Select
+from wtforms import validators
 from wtforms.validators import ValidationError, Required
 
 import re
@@ -240,6 +241,19 @@ class NOILoginForm(LoginForm):
     remember = BooleanField(lazy_gettext('Remember Me'))
     submit = SubmitField(lazy_gettext('Log in'))
 
+# The following validators can be added to any field that checks
+# usernames.
+
+# TODO: Validation error messages are tricky to translate with
+# lazy_gettext; see https://github.com/flask-admin/flask-admin/issues/1042.
+
+USERNAME_VALIDATORS = [
+    validators.Length(min=Username.MIN_LENGTH, max=Username.MAX_LENGTH),
+    validators.Regexp(
+        Username.REGEXP,
+        message='Usernames must consist of only numbers and letters.'
+    ),
+]
 
 class NOIConfirmRegisterForm(ConfirmRegisterForm):
     '''

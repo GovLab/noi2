@@ -20,6 +20,7 @@ from app.models import db, User
 from app.utils import csv_reader
 from app.tests.factories import UserFactory
 from app.noi1 import Noi1Command
+from app.discourse.management import DiscourseCommand
 
 from flask_alchemydumps import AlchemyDumps, AlchemyDumpsCommand
 from flask_migrate import Migrate, MigrateCommand
@@ -46,6 +47,7 @@ migrate = Migrate(app, db) #pylint: disable=invalid-name
 
 manager = Manager(app) #pylint: disable=invalid-name
 
+manager.add_command('discourse', DiscourseCommand)
 manager.add_command('noi1', Noi1Command)
 manager.add_command('db', MigrateCommand)
 #manager.add_command("assets", ManageAssets)
@@ -346,6 +348,12 @@ class RunTests(Command):
     capture_all_args = True
 
     def run(self, args):
+        # TODO: We actually might want to run py.test in a subprocess,
+        # because right now we are actually in the deployment's Flask
+        # application context, which introduces unpredictability and
+        # could cause some tests to behave differently than they would
+        # if run directly from py.test.
+
         import pytest
 
         sys.argv[0] = sys.argv[0] + ' test'
