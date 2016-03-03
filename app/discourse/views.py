@@ -19,14 +19,6 @@ def webhook(event_name):
 @views.route('/discourse/sso')
 @full_registration_required
 def sso_endpoint():
-    # TODO: If the current user doesn't have a username, they can't
-    # actually log into Discourse yet. We may want to prompt them to
-    # create a username before continuing into discourse, or we could
-    # just deny the request, but we ought to do something.
-
-    # TODO: Ensure that the user's email address is validated, or
-    # else our discourse installation will be "extremely vulnerable".
-
     try:
         nonce = sso.unpack_and_verify_payload(request.args)['nonce']
     except sso.InvalidSignatureError:
