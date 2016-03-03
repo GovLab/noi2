@@ -285,9 +285,17 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
 
     @property
     def requires_confirmation(self):
+        '''
+        Returns whether or not the user has confirmed their e-mail yet.
+        '''
+
         return self.confirmed_at is None
 
     def confirm(self):
+        '''
+        Marks the user's email as being confirmed.
+        '''
+
         return confirmable.confirm_user(self)
 
     @property

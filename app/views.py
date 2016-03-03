@@ -39,6 +39,11 @@ def json_blob(**kwargs):
     return json.dumps(kwargs)
 
 def has_user_done_register_step_2(user):
+    '''
+    Returns whether or not, to the best of our knowledge, the user
+    has completed step 2 (or a later step) of registration yet.
+    '''
+
     return len(user.skills) > 0 or RegisterStep2Form.is_not_empty(user)
 
 def get_best_registration_step_url(user):
@@ -285,13 +290,28 @@ def register_step_3_area_question(areaid, questionid):
 @views.route('/register/step/1.5', methods=['GET', 'POST'])
 @login_required
 def register_step_1_point_5():
+    '''
+    Tell the user to confirm their email address, with a button to
+    send/re-send confirmation instructions.
+
+    Note that users may have arrived here in one of two ways:
+
+      1. They're a brand-new user, in which case flask-security
+         has already sent them confirmation instructions.
+      2. They're a legacy user, in which case they've already
+         completed the subsequent registration steps, and need
+         to be informed that the site now requires e-mail confirmation.
+
+    If they user has already confirmed their address, move on.
+    '''
+
     if not current_user.requires_confirmation:
         return redirect(url_for('views.activity'))
     if request.method == 'POST':
         confirmable.send_confirmation_instructions(current_user)
         flash(gettext(u'Confirmation instructions sent.'))
     return render_template('register-step-1.5.html',
-        is_legacy_user = has_user_done_register_step_2(current_user),
+        is_legacy_user=has_user_done_register_step_2(current_user),
         form=Form()
     )
 
@@ -664,12 +684,13 @@ def activity_page(pageid):
 def activity():
     '''
     View for the activity feed of recent events.
+
+    Note that we want anonymous users to be able to get a "sneak peek" at
+    this page, so we allow them in; however, if the user has
+    logged in but hasn't yet completed the registration process,
+    we want them to finish it first.
     '''
 
-    # We want anonymous users to be able to get a "sneak peek" at
-    # this page, so we'll allow them in; however, if the user has
-    # logged in but hasn't yet completed the registration process,
-    # we want them to finish it first.
     if (current_user.is_authenticated()
         and not current_user.has_fully_registered):
         return redirect(get_best_registration_step_url(current_user))
