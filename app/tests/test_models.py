@@ -2,6 +2,7 @@ import time
 import StringIO
 import contextlib
 from flask_testing import TestCase
+from flask_security import Security
 from sqlalchemy import create_engine
 from sqlalchemy.exc import OperationalError, IntegrityError
 from sqlalchemy_utils import Country
@@ -11,8 +12,8 @@ import psycopg2
 from .util import eq_, create_empty_flask_app
 from .factories import UserFactory, UserSkillFactory
 from .. import models, LEVELS, babel
-
-db = models.db
+from ..factory import DeploySQLAlchemyUserDatastore
+from ..models import User, Role, db
 
 PG_USER = 'postgres'
 PG_HOST = 'db'
@@ -699,6 +700,16 @@ class UserSkillDbTests(DbTestCase):
 
 
 class UserRegistrationDbTests(DbTestCase):
+    def create_app(self):
+        app = super(UserRegistrationDbTests, self).create_app()
+
+        security = Security()
+        security.init_app(app, datastore=DeploySQLAlchemyUserDatastore(
+            db, User, Role
+        ))
+
+        return app
+
     def setUp(self):
         super(UserRegistrationDbTests, self).setUp()
         user = models.User(email=u'a@example.org', password='a', active=True)

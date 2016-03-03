@@ -658,14 +658,30 @@ class EmailConfirmationTests(EmailTestCase):
         ).group(1)
 
         res = self.client.get('/confirm/%s' % token)
-        self.assertRedirects(res, '/confirm/success')
-
-        res = self.client.get('/confirm/success')
         self.assertRedirects(res, '/activity')
 
         res = self.client.get('/activity')
+        self.assertRedirects(res, '/register/step/2')
+
+        res = self.client.get('/register/step/2')
         self.assert200(res)
+
         assert 'Your email has been confirmed' in res.data
+
+class FirstStepRegistrationTests(EmailTestCase):
+    def test_registration_complains_if_email_is_taken(self):
+        self.register_and_login('foo@example.org', 'test123')
+        self.logout()
+        res = self.client.post('/register', data=dict(
+            email=u'foo@example.org'
+        ))
+        assert ('foo@example.org is already '
+                'associated with an account') in res.data
+
+    def test_registration_works(self):
+        self.register_and_login('foo@example.org', 'test123')
+        self.logout()
+        self.login('foo@example.org', 'test123')
 
 class ViewTests(ViewTestCase):
     def test_security_post_views_exist(self):
@@ -707,20 +723,6 @@ class ViewTests(ViewTestCase):
 
     def test_nonexistent_page_is_not_found(self):
         self.assert404(self.client.get('/nonexistent'))
-
-    def test_registration_complains_if_email_is_taken(self):
-        self.register_and_login('foo@example.org', 'test123')
-        self.logout()
-        res = self.client.post('/register', data=dict(
-            email=u'foo@example.org'
-        ))
-        assert ('foo@example.org is already '
-                'associated with an account') in res.data
-
-    def test_registration_works(self):
-        self.register_and_login('foo@example.org', 'test123')
-        self.logout()
-        self.login('foo@example.org', 'test123')
 
     def test_existing_user_profile_is_ok(self):
         u = self.create_user(email=u'u@example.org', password='t')
