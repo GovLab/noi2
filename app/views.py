@@ -292,6 +292,10 @@ def register_step_3_area_question(areaid, questionid):
         max_questionid=max_questionid,
     )
 
+@views.route('/register/step/1.5')
+def register_step_1_point_5():
+    return render_template('register-step-1.5.html')
+
 @views.route('/register/step/2', methods=['GET', 'POST'])
 @login_required
 def register_step_2():
@@ -314,10 +318,12 @@ def register_step_2():
 
 
 @views.route('/confirm/success')
-@login_required
+@full_registration_required
 def confirmation_success():
-    # In the future, we can make this view redirect the user to
-    # whatever they wanted to do that required confirmation.
+    # If the user is new and hasn't fully registered yet, our
+    # full_registration_required decorator will take care of them.
+    # Otherwise, this is likely a legacy user who just confirmed their
+    # email address, so take them to the activity feed.
     return redirect(url_for('views.activity'))
 
 

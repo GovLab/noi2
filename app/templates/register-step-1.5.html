@@ -1,0 +1,24 @@
+{% extends "__base_new__.html" %}
+
+{% block title %}{{ gettext('Register') }}{% endblock %}
+
+{% block content %}
+    <div class="b-onboarding m-signup">
+        <header>
+            <div class="b-logo"></div>
+        </header>
+
+        <section>
+            <p class="e-onboarding-message">{{ gettext('Please check your inbox to confirm your e-mail address.') }}</p>
+        </section>
+        {% include "security/_menu_new.html" %}
+        <footer>
+            <div class="e-signup-progress">
+                <span class="m-current"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </footer>
+
+    </div>
+{% endblock %}
