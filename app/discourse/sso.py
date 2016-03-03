@@ -80,6 +80,8 @@ def user_info_payload(user, nonce, avatar_force_update):
     return payload
 
 def user_info_qs(user, nonce, avatar_force_update=False, secret=None):
+    if not user.username:
+        raise ValueError('user must have a username')
     payload = user_info_payload(user, nonce, avatar_force_update)
     return urllib.urlencode(pack_and_sign_payload(payload, secret=secret))
 
@@ -102,6 +104,8 @@ def logout_user(user):
     return True
 
 def sync_user(user, avatar_force_update=False, secret=None):
+    if not user.username:
+        user.autogenerate_and_commit_username()
     r = api.post(
         '/admin/users/sync_sso',
         data=user_info_qs(user, nonce='does not matter', secret=secret,

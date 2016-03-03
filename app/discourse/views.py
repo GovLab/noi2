@@ -1,7 +1,8 @@
 from flask import Blueprint, request, redirect, abort
-from flask_login import login_required, current_user
+from flask_login import current_user
 
 from .. import csrf
+from ..views import full_registration_required
 from . import sso, models
 from .config import config
 
@@ -16,7 +17,7 @@ def webhook(event_name):
     return "Thanks!"
 
 @views.route('/discourse/sso')
-@login_required
+@full_registration_required
 def sso_endpoint():
     # TODO: If the current user doesn't have a username, they can't
     # actually log into Discourse yet. We may want to prompt them to
@@ -30,6 +31,9 @@ def sso_endpoint():
         nonce = sso.unpack_and_verify_payload(request.args)['nonce']
     except sso.InvalidSignatureError:
         return abort(400)
+
+    if not current_user.username:
+        current_user.autogenerate_and_commit_username()
 
     qs = sso.user_info_qs(current_user, nonce)
 

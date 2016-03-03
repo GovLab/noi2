@@ -86,7 +86,27 @@ class UserInfoPayloadTests(TestCase):
 
 @mock.patch('app.discourse.api.post')
 @mock.patch('app.discourse.sso.get_user_avatar_url')
-class SyncUserTests(TestCase):
+class SyncUserTests(DbTestCase):
+    def test_it_autogenerates_username(self, get_user_avatar_url, post):
+        user = User(
+            first_name='John',
+            last_name='Doe',
+            email='boop@example.com',
+            password='blop',
+            active=True,
+            confirmed_at=datetime.datetime.now(),
+            id=321
+        )
+        db.session.add(user)
+
+        self.assertIsNone(user.username)
+
+        get_user_avatar_url.return_value = 'http://blarg/avatar.png'
+        post.return_value.status_code = 200
+        sso.sync_user(user, avatar_force_update=True, secret='blarg')
+
+        self.assertEqual(user.username, 'john')
+
     def test_it_works(self, get_user_avatar_url, post):
         get_user_avatar_url.return_value = 'http://blarg/avatar.png'
         post.return_value.status_code = 200
@@ -339,17 +359,9 @@ class ViewTests(ViewTestCase):
         self.assertEqual(response.data, 'Thanks!')
         update.assert_called_once_with()
 
-    def test_discourse_sso_redirects_to_discourse(self):
-        user = self.create_user(
-            email='boop@example.com',
-            password='passwd',
-            username='boopmaster',
-            first_name='Boop',
-            last_name='Jones',
-        )
-        self.login('boop@example.com', 'passwd')
-
-        payload = sso.pack_and_sign_payload({'nonce': '1'}, secret='hi')
+    def sso_request(self, payload=None):
+        if payload is None: payload = {'nonce': '1'}
+        payload = sso.pack_and_sign_payload(payload, secret='hi')
         response = self.client.get('/discourse/sso', query_string=payload)
 
         self.assertEqual(response.status_code, 302)
@@ -362,6 +374,36 @@ class ViewTests(ViewTestCase):
 
         query_dict = dict(urlparse.parse_qsl(loc.query))
         payload = sso.unpack_and_verify_payload(query_dict)
+
+        return payload
+
+    def test_discourse_sso_autogenerates_username(self):
+        user = self.create_user(
+            email='boop@example.com',
+            password='passwd',
+            first_name='Boop',
+            last_name='Jones',
+        )
+        self.login('boop@example.com', 'passwd')
+
+        self.assertIsNone(user.username)
+
+        payload = self.sso_request()
+
+        self.assertEqual(user.username, 'boop')
+        self.assertEqual(payload['username'], 'boop')
+
+    def test_discourse_sso_redirects_to_discourse(self):
+        user = self.create_user(
+            email='boop@example.com',
+            password='passwd',
+            username='boopmaster',
+            first_name='Boop',
+            last_name='Jones',
+        )
+        self.login('boop@example.com', 'passwd')
+
+        payload = self.sso_request(payload={'nonce': '1'})
 
         self.assertStartsWith(
             payload['avatar_url'],

@@ -101,7 +101,6 @@ class EmailTestCase(ViewTestCase):
             next='/__blank',
             first_name=u'John',
             last_name=u'Doe',
-            username='johndoe',
             email=username,
             password=password,
             submit='Register'

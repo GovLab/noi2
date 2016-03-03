@@ -268,6 +268,18 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,
                         onupdate=datetime.datetime.now)
 
+    def generate_username_candidate(self):
+        for username in Username.generate_candidates(self.first_name,
+                                                     self.last_name):
+            if not self.__class__.is_username_taken(username):
+                return username
+
+    def autogenerate_and_commit_username(self):
+        if self.username:
+            raise AssertionError('user already has a username')
+        self.username = self.generate_username_candidate()
+        db.session.commit()
+
     def is_admin(self):
         return self.email in current_app.config.get('ADMIN_UI_USERS', [])
 
