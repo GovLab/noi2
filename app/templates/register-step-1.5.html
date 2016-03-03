@@ -1,0 +1,38 @@
+{% extends "__base_new__.html" %}
+
+{% block title %}{{ gettext('Register') }}{% endblock %}
+
+{% block content %}
+    <div class="b-onboarding m-signup">
+        <header>
+            <div class="b-logo"></div>
+        </header>
+
+        <section>
+          {% if is_legacy_user %}
+            <p class="e-onboarding-message">{{ gettext('To improve security, we now require you to confirm your e-mail address.') }}</p>
+            {% set button_label = gettext('Send confirmation e-mail to %(email)s', email=current_user.email) %}
+          {% else %}
+            <p class="e-onboarding-message">{{ gettext('Please check your inbox to confirm your e-mail address.') }}</p>
+            {% set button_label = gettext('Re-send confirmation e-mail') %}
+          {% endif %}
+          <form class="e-onboarding-form" method="post">
+            {{ form.csrf_token }}
+            <input class="b-button" type="submit" value="{{ button_label }}">
+          </form>
+        </section>
+
+        <ul class="list-unstyled">
+          <li><a href="/logout">{{ gettext('Logout') }}</a></li>
+        </ul>
+
+        <footer>
+            <div class="e-signup-progress">
+                <span class="m-current"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </footer>
+
+    </div>
+{% endblock %}

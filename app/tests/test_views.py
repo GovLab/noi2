@@ -1,4 +1,5 @@
 import re
+import datetime
 from StringIO import StringIO
 from urllib import urlencode
 from moto import mock_s3
@@ -41,19 +42,6 @@ class ViewTestCase(DbTestCase):
 
     def create_app(self):
         return create_app(config=self.BASE_APP_CONFIG.copy())
-
-    def register_and_login(self, username, password):
-        res = self.client.post('/register', data=dict(
-            next='/__blank',
-            first_name=u'John',
-            last_name=u'Doe',
-            email=username,
-            password=password,
-            submit='Register'
-        ), follow_redirects=True)
-        self.assert200(res)
-        assert LOGGED_IN_SENTINEL in res.data
-        return res
 
     def logout(self):
         res = self.client.get('/logout', follow_redirects=True)
@@ -108,6 +96,19 @@ class EmailTestCase(ViewTestCase):
         MAIL_SUPPRESS_SEND=True,
     )
 
+    def register_and_login(self, username, password):
+        res = self.client.post('/register', data=dict(
+            next='/__blank',
+            first_name=u'John',
+            last_name=u'Doe',
+            email=username,
+            password=password,
+            submit='Register'
+        ), follow_redirects=True)
+        self.assert200(res)
+        assert LOGGED_IN_SENTINEL in res.data
+        return res
+
 
 class InviteTests(EmailTestCase):
     def setUp(self):
@@ -141,12 +142,77 @@ class InviteTests(EmailTestCase):
         assert 'Your form submission was invalid' in res.data
 
 
-class MultiStepRegistrationTests(ViewTestCase):
+class RegistrationStepOneTests(EmailTestCase):
+    def test_registration_complains_if_email_is_taken(self):
+        self.register_and_login('foo@example.org', 'test123')
+        self.logout()
+
+        with mail.record_messages() as outbox:
+            res = self.client.post('/register', data=dict(
+                email=u'foo@example.org'
+            ))
+            self.assertEqual(len(outbox), 0)
+
+        assert ('foo@example.org is already '
+                'associated with an account') in res.data
+
+    def test_registration_sends_email(self):
+        with mail.record_messages() as outbox:
+            self.register_and_login('foo@example.org', 'test123')
+
+            self.assertEqual(len(outbox), 1)
+            msg = outbox[0]
+            self.assertEqual(msg.sender, 'noreply@networkofinnovators.org')
+            self.assertEqual(msg.recipients, ['foo@example.org'])
+            assert 'http://localhost/confirm/' in msg.body
+
+    def test_registration_works(self):
+        self.register_and_login('foo@example.org', 'test123')
+        self.logout()
+        self.login('foo@example.org', 'test123')
+
+
+class RegistrationStepOnePointFiveTests(EmailTestCase):
+    def setUp(self):
+        super(EmailTestCase, self).setUp()
+        self.login(fully_register=False, confirmed_at=None)
+        self.user = self.last_created_user
+
+    def test_redirects_to_activity_page_if_already_confirmed(self):
+        self.user.confirmed_at = datetime.datetime.now()
+        res = self.client.get('/register/step/1.5')
+        self.assertRedirects(res, '/activity')
+
+    def test_renders_ok_for_new_users(self):
+        res = self.client.get('/register/step/1.5')
+        self.assert200(res)
+        self.assertContext('is_legacy_user', False)
+
+    def test_renders_ok_for_legacy_users(self):
+        self.user.position = 'Hamburger Salesperson'
+
+        res = self.client.get('/register/step/1.5')
+        self.assert200(res)
+        assert 'Send confirmation e-mail to test@example.org' in res.data
+        self.assertContext('is_legacy_user', True)
+
+    def test_sends_confirmation_email_on_post(self):
+        with mail.record_messages() as outbox:
+            res = self.client.post('/register/step/1.5')
+
+            self.assertEqual(len(outbox), 1)
+            msg = outbox[0]
+            self.assertEqual(msg.sender, 'noreply@networkofinnovators.org')
+            self.assertEqual(msg.recipients, ['test@example.org'])
+            assert 'http://localhost/confirm/' in msg.body
+
+
+class RegistrationStepsTwoAndThreeTests(ViewTestCase):
     OPENDATA_QUESTIONNAIRE = QUESTIONNAIRES_BY_ID['opendata']
     NUM_OPENDATA_QUESTIONS = len(OPENDATA_QUESTIONNAIRE['questions'])
 
     def setUp(self):
-        super(MultiStepRegistrationTests, self).setUp()
+        super(RegistrationStepsTwoAndThreeTests, self).setUp()
         self.login(fully_register=False)
 
     def _get_best_step_url(self):
@@ -232,8 +298,18 @@ class MultiStepRegistrationTests(ViewTestCase):
         self.assert404(self.client.get('/register/step/3/blah/1'))
 
 class ActivityFeedTests(ViewTestCase):
-    def test_get_is_ok(self):
+    def test_anonymous_get_is_ok(self):
         self.assert200(self.client.get('/activity'))
+
+    def test_authenticated_but_not_confirmed_get_is_redirected(self):
+        self.login(confirmed_at=None)
+        self.assertRedirects(self.client.get('/activity'),
+                             '/register/step/1.5')
+
+    def test_authenticated_but_not_fully_registered_get_is_redirected(self):
+        self.login(fully_register=False)
+        self.assertRedirects(self.client.get('/activity'),
+                             '/register/step/2')
 
     def test_posting_activity_requires_login(self):
         res = self.client.post('/activity', data=dict(
@@ -300,7 +376,11 @@ class ActivityFeedTests(ViewTestCase):
         self.assert404(self.client.get('/activity/page/9999999'))
 
 class MyProfileTests(ViewTestCase):
-    def test_get_requires_full_registration(self):
+    def test_get_redirects_to_register_step_1_point_5_if_needed(self):
+        self.login(fully_register=False, confirmed_at=None)
+        self.assertRedirects(self.client.get('/me'), '/register/step/1.5')
+
+    def test_get_redirects_to_register_step_2_if_needed(self):
         self.login(fully_register=False)
         self.assertRedirects(self.client.get('/me'), '/register/step/2')
 
@@ -658,13 +738,14 @@ class EmailConfirmationTests(EmailTestCase):
         ).group(1)
 
         res = self.client.get('/confirm/%s' % token)
-        self.assertRedirects(res, '/confirm/success')
-
-        res = self.client.get('/confirm/success')
         self.assertRedirects(res, '/activity')
 
         res = self.client.get('/activity')
+        self.assertRedirects(res, '/register/step/2')
+
+        res = self.client.get('/register/step/2')
         self.assert200(res)
+
         assert 'Your email has been confirmed' in res.data
 
 class ViewTests(ViewTestCase):
@@ -707,20 +788,6 @@ class ViewTests(ViewTestCase):
 
     def test_nonexistent_page_is_not_found(self):
         self.assert404(self.client.get('/nonexistent'))
-
-    def test_registration_complains_if_email_is_taken(self):
-        self.register_and_login('foo@example.org', 'test123')
-        self.logout()
-        res = self.client.post('/register', data=dict(
-            email=u'foo@example.org'
-        ))
-        assert ('foo@example.org is already '
-                'associated with an account') in res.data
-
-    def test_registration_works(self):
-        self.register_and_login('foo@example.org', 'test123')
-        self.logout()
-        self.login('foo@example.org', 'test123')
 
     def test_existing_user_profile_is_ok(self):
         u = self.create_user(email=u'u@example.org', password='t')

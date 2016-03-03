@@ -8,6 +8,7 @@ from flask import (Blueprint, render_template, request, flash,
                    redirect, url_for, current_app, abort)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
+from flask_security import confirmable
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
                  LEVELS_BY_SCORE, mail, stats, cache, blog_posts)
@@ -16,7 +17,8 @@ from app.models import (db, User, UserLanguage, UserExpertiseDomain,
                         skills_to_percentages)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
-                       RegisterStep2Form, ChangeLocaleForm, InviteForm)
+                       RegisterStep2Form, ChangeLocaleForm, InviteForm,
+                       Form)
 
 from sqlalchemy import func, desc, or_
 
@@ -36,6 +38,14 @@ def json_blob(**kwargs):
 
     return json.dumps(kwargs)
 
+def has_user_done_register_step_2(user):
+    '''
+    Returns whether or not, to the best of our knowledge, the user
+    has completed step 2 (or a later step) of registration yet.
+    '''
+
+    return len(user.skills) > 0 or RegisterStep2Form.is_not_empty(user)
+
 def get_best_registration_step_url(user):
     '''
     Assuming the user is not yet fully registered, returns the URL
@@ -43,7 +53,10 @@ def get_best_registration_step_url(user):
     them to complete.
     '''
 
-    if len(user.skills) > 0 or RegisterStep2Form.is_not_empty(user):
+    if user.requires_confirmation:
+        return url_for('views.register_step_1_point_5')
+
+    if has_user_done_register_step_2(user):
         return url_for('views.register_step_3')
     return url_for('views.register_step_2')
 
@@ -274,6 +287,34 @@ def register_step_3_area_question(areaid, questionid):
         max_questionid=max_questionid,
     )
 
+@views.route('/register/step/1.5', methods=['GET', 'POST'])
+@login_required
+def register_step_1_point_5():
+    '''
+    Tell the user to confirm their email address, with a button to
+    send/re-send confirmation instructions.
+
+    Note that users may have arrived here in one of two ways:
+
+      1. They're a brand-new user, in which case flask-security
+         has already sent them confirmation instructions.
+      2. They're a legacy user, in which case they've already
+         completed the subsequent registration steps, and need
+         to be informed that the site now requires e-mail confirmation.
+
+    If they user has already confirmed their address, move on.
+    '''
+
+    if not current_user.requires_confirmation:
+        return redirect(url_for('views.activity'))
+    if request.method == 'POST':
+        confirmable.send_confirmation_instructions(current_user)
+        flash(gettext(u'Confirmation instructions sent.'))
+    return render_template('register-step-1.5.html',
+        is_legacy_user=has_user_done_register_step_2(current_user),
+        form=Form()
+    )
+
 @views.route('/register/step/2', methods=['GET', 'POST'])
 @login_required
 def register_step_2():
@@ -293,15 +334,6 @@ def register_step_2():
             flash(gettext(u'Could not save, please correct errors below'))
 
     return render_template('register-step-2.html', form=form)
-
-
-@views.route('/confirm/success')
-@login_required
-def confirmation_success():
-    # In the future, we can make this view redirect the user to
-    # whatever they wanted to do that required confirmation.
-    return redirect(url_for('views.activity'))
-
 
 def render_user_profile(userid=None, **kwargs):
     if userid is None:
@@ -652,7 +684,16 @@ def activity_page(pageid):
 def activity():
     '''
     View for the activity feed of recent events.
+
+    Note that we want anonymous users to be able to get a "sneak peek" at
+    this page, so we allow them in; however, if the user has
+    logged in but hasn't yet completed the registration process,
+    we want them to finish it first.
     '''
+
+    if (current_user.is_authenticated()
+        and not current_user.has_fully_registered):
+        return redirect(get_best_registration_step_url(current_user))
 
     events = get_latest_events()
     shared_message_form = SharedMessageForm()
