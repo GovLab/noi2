@@ -11,7 +11,7 @@
       <p>{{ event.message }}</p>
       {% if current_user.is_authenticated() %}
       <div class="e-actions">
-        {% call render_user_mailto_link(event.user) %}<span class="material-icons">reply</span> <span class="e-action-label">{{ gettext("Reply") }}</span>{% endcall %}
+        {% call render_user_mailto_link(event.user) %}<span class="material-icons">reply</span> <span class="e-action-label">{{ gettext("Reply via e-mail") }}</span>{% endcall %}
       </div>
       {% endif %}
     </div>
