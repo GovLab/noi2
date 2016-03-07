@@ -34,7 +34,7 @@
 {% if LINKEDIN_ENABLED and not current_user.linkedin %}
 <p>
   <a class="b-button" href="{{ url_for('linkedin.authorize') }}">
-    {{ gettext('Connect to <img alt="LinkedIn" %(img_attrs)s>', img_attrs='src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" width="16" style="vertical-align: bottom; margin-bottom: 4px;"'|safe) }}
+    {{ gettext('Connect to <img alt="LinkedIn" %(img_attrs)s>', img_attrs=('src="' + url_for('static', filename='img/LinkedIn_logo_initials.png') + '" width="16" style="vertical-align: bottom; margin-bottom: 4px;"')|safe) }}
   </a>
 </p>
 
