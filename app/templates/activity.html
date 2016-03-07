@@ -114,28 +114,48 @@
 </div> <!-- End of tab panel container -->
 
 {% if current_user.is_authenticated() %}
-<div class="b-tutorial-box" id="tutorial-1">
+
+{% macro render_tutorial_step(step, max_step, extra_classes='') %}
+<div class="b-tutorial-box {{ extra_classes }}" id="tutorial-{{ step }}">
       <div class="e-top-arrow"></div>
+      {{ caller() }}
+      <button class="b-button" data-tutorial-step="{{ step + 1 }}">
+        {% if step == max_step %}
+          {{ gettext('OK') }}
+        {% else %}
+          {{ gettext('Next') }}
+        {% endif %}
+      </button>
+      <div class="e-counter">{{ step }}/{{ max_step }}</div>
+</div>
+{% endmacro %}
+
+{% if DISCOURSE_ENABLED %}
+  {% set max_step = 4 %}
+{% else %}
+  {% set max_step = 3 %}
+{% endif %}
+
+{% call render_tutorial_step(1, max_step) %}
       <p>{{ gettext('Welcome <strong>%(first_name)s</strong>!', first_name=current_user.first_name) }}</p>
       <p>{{ gettext('You can <strong>meet your top matches</strong> based on your skills and interests.') }}</p>
-      <button class="b-button" data-tutorial-step="2">{{ gettext('Next') }}</button>
-      <div class="e-counter">1/3</div>
-</div>
+{% endcall %}
 
-<div class="b-tutorial-box" id="tutorial-2">
-      <div class="e-top-arrow"></div>
+{% call render_tutorial_step(2, max_step) %}
       <p>{{ gettext('You can also <strong>browse innovators</strong>!') }}</p>
-      <button class="b-button" data-tutorial-step="3">{{ gettext('Next') }}</button>
-      <div class="e-counter">2/3</div>
-</div>
+{% endcall %}
 
-<div class="b-tutorial-box on-right-side" id="tutorial-3">
-      <div class="e-top-arrow"></div>
+{% call render_tutorial_step(3, max_step, extra_classes="on-right-side") %}
       <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
       <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
-      <button class="b-button" data-tutorial-step="4">{{ gettext("OK") }}</button>
-      <div class="e-counter">3/3</div>
-</div>
+{% endcall %}
+
+{% if DISCOURSE_ENABLED %}
+{% call render_tutorial_step(4, max_step, extra_classes="on-right-side") %}
+      <p>{{ gettext("You can now participate in our <strong>Discourse</strong> forum! Check it out.") }}</p>
+{% endcall %}
+{% endif %}
+
 {% endif %}
 
 {% endblock %}
