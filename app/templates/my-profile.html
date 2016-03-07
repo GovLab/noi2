@@ -50,6 +50,7 @@
 {{ input("picture") }}
 {{ input("first_name") }}
 {{ input("last_name") }}
+{% if 'username' in form %}{{ input("username") }}{% endif %}
 {{ input("position") }}
 {{ input("organization") }}
 {{ input("organization_type") }}

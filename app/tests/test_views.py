@@ -397,6 +397,21 @@ class MyProfileTests(ViewTestCase):
         self.assertEqual(self.last_created_user.expertise_domain_names, [])
         assert "please correct errors" in res.data
 
+    def test_updating_profile_with_username_works(self):
+        self.login(username='bop')
+        user = self.last_created_user
+        res = self.client.post('/me', data={
+            'first_name': 'John2',
+            'last_name': 'Doe2',
+            # Since the user has a username, there should be a username
+            # field in the profile form, so providing a value for the
+            # username should work.
+            'username': 'blah',
+        }, follow_redirects=True)
+        assert 'Your profile has been saved' in res.data
+        self.assert200(res)
+        self.assertEqual(user.username, 'blah')
+
     def test_updating_profile_works(self):
         self.login()
         user = self.last_created_user
@@ -404,10 +419,14 @@ class MyProfileTests(ViewTestCase):
             'first_name': 'John2',
             'last_name': 'Doe2',
             'expertise_domain_names': 'Agriculture',
-            'locales': 'af'
+            'locales': 'af',
+            # The user doesn't have a username, so this shouldn't do
+            # anything, as the profile field shouldn't have a username field.
+            'username': 'blah',
         }, follow_redirects=True)
         assert 'Your profile has been saved' in res.data
         self.assert200(res)
+        self.assertIsNone(user.username)
         self.assertEqual(user.first_name, 'John2')
         self.assertEqual(user.last_name, 'Doe2')
         self.assertEqual(user.expertise_domain_names, ['Agriculture'])

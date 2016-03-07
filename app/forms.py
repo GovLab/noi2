@@ -30,6 +30,21 @@ from wtforms.validators import ValidationError, Required
 import re
 
 
+# The following validators can be added to any field that checks
+# usernames.
+
+# TODO: Validation error messages are tricky to translate with
+# lazy_gettext; see https://github.com/flask-admin/flask-admin/issues/1042.
+
+USERNAME_VALIDATORS = [
+    validators.Length(min=Username.MIN_LENGTH, max=Username.MAX_LENGTH),
+    validators.Regexp(
+        Username.REGEXP,
+        message='Usernames must consist of only numbers and letters.'
+    ),
+]
+
+
 # The variable db here is a SQLAlchemy object instance from
 # Flask-SQLAlchemy package
 #from app.models import db
@@ -138,6 +153,18 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         choices=lambda: [(v, lazy_gettext(v)) for v in current_app.config['DOMAINS']])
 
 
+class UserFormWithUsername(UserForm):
+    '''
+    Like UserForm, but also contains a username field, which is required.
+    '''
+
+    class Meta:
+        only = UserForm.Meta.only + ['username']
+        field_args = UserForm.Meta.field_args.copy()
+        field_args['username'] = {
+            'validators': [Required()] + USERNAME_VALIDATORS
+        }
+
 class InviteForm(Form):
     '''
     Form for inviting a human to join the site.
@@ -241,19 +268,6 @@ class NOILoginForm(LoginForm):
     remember = BooleanField(lazy_gettext('Remember Me'))
     submit = SubmitField(lazy_gettext('Log in'))
 
-# The following validators can be added to any field that checks
-# usernames.
-
-# TODO: Validation error messages are tricky to translate with
-# lazy_gettext; see https://github.com/flask-admin/flask-admin/issues/1042.
-
-USERNAME_VALIDATORS = [
-    validators.Length(min=Username.MIN_LENGTH, max=Username.MAX_LENGTH),
-    validators.Regexp(
-        Username.REGEXP,
-        message='Usernames must consist of only numbers and letters.'
-    ),
-]
 
 class NOIConfirmRegisterForm(ConfirmRegisterForm):
     '''

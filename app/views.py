@@ -18,7 +18,7 @@ from app.models import (db, User, UserLanguage, UserExpertiseDomain,
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
                        RegisterStep2Form, ChangeLocaleForm, InviteForm,
-                       Form)
+                       Form, UserFormWithUsername)
 
 from sqlalchemy import func, desc, or_
 
@@ -157,7 +157,13 @@ def my_profile():
     '''
     Show user their profile, let them edit it
     '''
-    form = UserForm(obj=current_user)
+    form_class = UserForm
+
+    if current_user.username:
+        # The user already has a username, so allow them to change it.
+        form_class = UserFormWithUsername
+
+    form = form_class(obj=current_user)
     if 'X-Upload-Too-Big' in request.headers:
         form.picture.errors = ('Sorry, the picture you tried to upload was too large',)
     if request.method == 'POST':
