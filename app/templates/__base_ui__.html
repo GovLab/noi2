@@ -8,7 +8,9 @@
         <h1 class="e-logo">{{ gettext('Network of Innovators') }}</h1>
         <div class="e-user-utils">
           {% if current_user.is_authenticated() %}
+            {% if not DISCOURSE_ENABLED %}
             <a href="#post-a-message" data-toggle="modal"><span class="e-post material-icons">chat</span></a>
+            {% endif %}
             <a href="#profile-summary" data-toggle="modal"><img class="e-user-picture" data-tutorial-target="3" src="{{ get_user_avatar_url(current_user) }}"></a>
           {% else %}
             <a href="{{ url_for('views.about_page') }}"><span class="e-post material-icons">info</span></a>
