@@ -193,7 +193,7 @@ class RegistrationStepOnePointFiveTests(EmailTestCase):
 
         res = self.client.get('/register/step/1.5')
         self.assert200(res)
-        assert 'Send confirmation e-mail to test@example.org' in res.data
+        assert 'confirm your e-mail address at test@example.org' in res.data
         self.assertContext('is_legacy_user', True)
 
     def test_sends_confirmation_email_on_post(self):
