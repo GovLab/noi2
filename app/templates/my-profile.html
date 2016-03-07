@@ -34,15 +34,13 @@
 {% if LINKEDIN_ENABLED and not current_user.linkedin %}
 <p>
   <a class="b-button" href="{{ url_for('linkedin.authorize') }}">
-    Connect to <img alt="LinkedIn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" width="16" style="vertical-align: bottom; margin-bottom: 4px;">
+    {{ gettext('Connect to <img alt="LinkedIn" %(img_attrs)s>', img_attrs='src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/768px-LinkedIn_logo_initials.png" width="16" style="vertical-align: bottom; margin-bottom: 4px;"'|safe) }}
   </a>
 </p>
 
 <p>
   <small>
-  Connecting your account to LinkedIn&trade; will allow you to pre-fill some of
-  the form fields below. It will also allow others to see your LinkedIn&trade;
-  profile.
+  {{ gettext('Filling out your profile is easier than ever! Connect your account to LinkedIn&trade; to pre-fill some of the form fields below. Connecting to LinkedIn&trade; will also allow others to see your LinkedIn&trade; profile.') }}
   </small>
 </p>
 {% endif %}
@@ -69,7 +67,7 @@
 {% if LINKEDIN_ENABLED and current_user.linkedin %}
 <div class="b-temporary-styling">
   <small>
-  Your account is currently connected to LinkedIn&trade;, which allows others to see your LinkedIn&trade; profile. You can <a style="text-decoration: underline" href="{{ url_for('linkedin.deauthorize') }}">disconnect from LinkedIn&trade;</a> at any time to disable this.
+  {{ gettext('Your account is currently connected to LinkedIn&trade;, which allows others to see your LinkedIn&trade; profile. You can <a %(a_attrs)s>disconnect from LinkedIn&trade;</a> at any time to disable this.', a_attrs=('style="text-decoration: underline" href="' + url_for('linkedin.deauthorize') + '"')|safe) }}
   </small>
 </div>
 {% endif %}
