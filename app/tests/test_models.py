@@ -743,6 +743,8 @@ class UserRegistrationDbTests(DbTestCase):
     def create_app(self):
         app = super(UserRegistrationDbTests, self).create_app()
 
+        app.config['NOI_CAN_UNCONFIRMED_USERS_FULLY_REGISTER'] = False
+
         security = Security()
         security.init_app(app, datastore=DeploySQLAlchemyUserDatastore(
             db, User, Role
@@ -756,6 +758,13 @@ class UserRegistrationDbTests(DbTestCase):
         db.session.add(user)
         db.session.commit()
         self.user = user
+
+    def test_user_requires_confirmation_by_default(self):
+        eq_(self.user.requires_confirmation, True)
+
+    def test_user_does_not_require_confirmation_if_app_is_configured(self):
+        self.app.config['NOI_CAN_UNCONFIRMED_USERS_FULLY_REGISTER'] = True
+        eq_(self.user.requires_confirmation, False)
 
     def test_user_is_not_fully_registered_by_default(self):
         eq_(self.user.has_fully_registered, False)

@@ -12,6 +12,10 @@ def init_app(app):
     app.jinja_env.globals['discourse_url'] = config.url
     app.register_blueprint(views.views)
 
+    if app.config['NOI_CAN_UNCONFIRMED_USERS_FULLY_REGISTER']:
+        raise Exception('Discourse support is incompatible with '
+                        'NOI_CAN_UNCONFIRMED_USERS_FULLY_REGISTER')
+
     @user_changed_profile.connect_via(app)
     def when_user_changed_profile(sender, user, avatar_changed=False,
                                   **extra):

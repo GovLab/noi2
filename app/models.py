@@ -407,8 +407,11 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     @property
     def requires_confirmation(self):
         '''
-        Returns whether or not the user has confirmed their e-mail yet.
+        Returns whether or not the user needs to confirm their e-mail.
         '''
+
+        if current_app.config['NOI_CAN_UNCONFIRMED_USERS_FULLY_REGISTER']:
+            return False
 
         return self.confirmed_at is None
 
