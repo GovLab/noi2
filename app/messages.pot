@@ -1,93 +1,113 @@
 # Translations template for PROJECT.
-# Copyright (C) 2015 ORGANIZATION
+# Copyright (C) 2016 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-10-28 14:00+0000\n"
+"POT-Creation-Date: 2016-03-08 16:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.1.1\n"
+"Generated-By: Babel 2.2.0\n"
 
-#: /noi/app/forms.py:57
+#: /noi/app/forms.py:86
 msgid "Choose your country"
 msgstr ""
 
-#: /noi/app/forms.py:80 /noi/app/forms.py:118
+#: /noi/app/forms.py:109 /noi/app/forms.py:151
 msgid "Fields of Work"
 msgstr ""
 
-#: /noi/app/forms.py:105
-msgid "User Picture"
-msgstr ""
-
-#: /noi/app/forms.py:109
+#: /noi/app/forms.py:115
 msgid "Only jpeg, jpg, and png images are allowed."
 msgstr ""
 
-#: /noi/app/forms.py:113
+#: /noi/app/forms.py:140
+msgid "User Picture"
+msgstr ""
+
+#: /noi/app/forms.py:146
 msgid "Languages"
 msgstr ""
 
-#: /noi/app/forms.py:128 /noi/app/forms.py:174 /noi/app/forms.py:183
-#: /noi/app/forms.py:205 /noi/app/models.py:68
+#: /noi/app/forms.py:173 /noi/app/forms.py:257 /noi/app/forms.py:266
+#: /noi/app/forms.py:288 /noi/app/models.py:220
 msgid "Email"
 msgstr ""
 
-#: /noi/app/forms.py:160
+#: /noi/app/forms.py:192
+msgid "Choose an expertise area"
+msgstr ""
+
+#: /noi/app/forms.py:194
+msgid "name"
+msgstr ""
+
+#: /noi/app/forms.py:203
+msgid "Choose a language"
+msgstr ""
+
+#: /noi/app/forms.py:212
+msgid "Choose a field of work"
+msgstr ""
+
+#: /noi/app/forms.py:236
 msgid "Language"
 msgstr ""
 
-#: /noi/app/forms.py:173
+#: /noi/app/forms.py:249
+msgid "Resend Confirmation Instructions"
+msgstr ""
+
+#: /noi/app/forms.py:256
 msgid "Recover Password"
 msgstr ""
 
-#: /noi/app/forms.py:184 /noi/app/forms.py:208 /noi/app/forms.py:221
-#: /noi/app/forms.py:233 /noi/app/models.py:72
+#: /noi/app/forms.py:267 /noi/app/forms.py:291 /noi/app/forms.py:303
+#: /noi/app/forms.py:315 /noi/app/models.py:224
 msgid "Password"
 msgstr ""
 
-#: /noi/app/forms.py:185
+#: /noi/app/forms.py:268
 msgid "Remember Me"
 msgstr ""
 
-#: /noi/app/forms.py:186 /noi/app/templates/main.html:19
+#: /noi/app/forms.py:269 /noi/app/templates/main.html:19
 msgid "Log in"
 msgstr ""
 
-#: /noi/app/forms.py:199 /noi/app/models.py:61
+#: /noi/app/forms.py:282 /noi/app/models.py:213
 msgid "First Name"
 msgstr ""
 
-#: /noi/app/forms.py:201 /noi/app/models.py:64
+#: /noi/app/forms.py:284 /noi/app/models.py:216
 msgid "Last Name"
 msgstr ""
 
-#: /noi/app/forms.py:211 /noi/app/templates/security/login_user.html:30
+#: /noi/app/forms.py:293 /noi/app/templates/security/login_user.html:30
 msgid "Sign up"
 msgstr ""
 
-#: /noi/app/forms.py:219
+#: /noi/app/forms.py:301
 msgid "Reset Password"
 msgstr ""
 
-#: /noi/app/forms.py:224 /noi/app/forms.py:241
+#: /noi/app/forms.py:306 /noi/app/forms.py:323
 msgid "Retype Password"
 msgstr ""
 
-#: /noi/app/forms.py:237
+#: /noi/app/forms.py:319
 msgid "New Password"
 msgstr ""
 
-#: /noi/app/forms.py:244 /noi/app/templates/settings.html:8
+#: /noi/app/forms.py:326 /noi/app/templates/settings.html:9
 msgid "Change Password"
 msgstr ""
 
@@ -96,202 +116,270 @@ msgid "You do not have permission to view this resource."
 msgstr ""
 
 #: /noi/app/l10n.py:34
+msgid "Thank you. Your email has been confirmed."
+msgstr ""
+
+#: /noi/app/l10n.py:36
+msgid "Your email has already been confirmed."
+msgstr ""
+
+#: /noi/app/l10n.py:38
+msgid "Invalid confirmation token."
+msgstr ""
+
+#: /noi/app/l10n.py:40
 #, python-format
 msgid "%(email)s is already associated with an account."
 msgstr ""
 
-#: /noi/app/l10n.py:36
+#: /noi/app/l10n.py:42
 msgid "Password does not match"
 msgstr ""
 
-#: /noi/app/l10n.py:38
+#: /noi/app/l10n.py:44
 msgid "Passwords do not match"
 msgstr ""
 
-#: /noi/app/l10n.py:40
+#: /noi/app/l10n.py:46
 msgid "Redirections outside the domain are forbidden"
 msgstr ""
 
-#: /noi/app/l10n.py:42
+#: /noi/app/l10n.py:48
 #, python-format
 msgid "Instructions to reset your password have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/l10n.py:44
+#: /noi/app/l10n.py:50
 #, python-format
 msgid ""
 "You did not reset your password within %(within)s. New instructions have "
 "been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/l10n.py:47
+#: /noi/app/l10n.py:53
 msgid "Invalid reset password token."
 msgstr ""
 
-#: /noi/app/l10n.py:49
+#: /noi/app/l10n.py:55
+msgid "Email requires confirmation."
+msgstr ""
+
+#: /noi/app/l10n.py:57
+#, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/l10n.py:59
+#, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr ""
+
+#: /noi/app/l10n.py:63
 #, python-format
 msgid ""
 "You did not login within %(within)s. New instructions to login have been "
 "sent to %(email)s."
 msgstr ""
 
-#: /noi/app/l10n.py:52
+#: /noi/app/l10n.py:66
 #, python-format
 msgid "Instructions to login have been sent to %(email)s."
 msgstr ""
 
-#: /noi/app/l10n.py:54
+#: /noi/app/l10n.py:68
 msgid "Invalid login token."
 msgstr ""
 
-#: /noi/app/l10n.py:56
+#: /noi/app/l10n.py:70
 msgid "Account is disabled."
 msgstr ""
 
-#: /noi/app/l10n.py:58
+#: /noi/app/l10n.py:72
 msgid "Email not provided"
 msgstr ""
 
-#: /noi/app/l10n.py:60
+#: /noi/app/l10n.py:74
 msgid "Invalid email address"
 msgstr ""
 
-#: /noi/app/l10n.py:62
+#: /noi/app/l10n.py:76
 msgid "Password not provided"
 msgstr ""
 
-#: /noi/app/l10n.py:64
+#: /noi/app/l10n.py:78
 msgid "No password is set for this user"
 msgstr ""
 
-#: /noi/app/l10n.py:66
+#: /noi/app/l10n.py:80
 msgid "Password must be at least 6 characters"
 msgstr ""
 
-#: /noi/app/l10n.py:68
+#: /noi/app/l10n.py:82
 msgid "Specified user does not exist"
 msgstr ""
 
-#: /noi/app/l10n.py:70
+#: /noi/app/l10n.py:84
 msgid "Invalid password"
 msgstr ""
 
-#: /noi/app/l10n.py:72
+#: /noi/app/l10n.py:86
 msgid "You have successfuly logged in."
 msgstr ""
 
-#: /noi/app/l10n.py:74
+#: /noi/app/l10n.py:88
 msgid ""
 "You successfully reset your password and you have been logged in "
 "automatically."
 msgstr ""
 
-#: /noi/app/l10n.py:77
+#: /noi/app/l10n.py:91
 msgid "Your new password must be different than your previous password."
 msgstr ""
 
-#: /noi/app/l10n.py:79
+#: /noi/app/l10n.py:93
 msgid "You successfully changed your password."
 msgstr ""
 
-#: /noi/app/l10n.py:81
+#: /noi/app/l10n.py:95
 msgid "Please log in to access this page."
 msgstr ""
 
-#: /noi/app/l10n.py:83
+#: /noi/app/l10n.py:97
 msgid "Please reauthenticate to access this page."
 msgstr ""
 
-#: /noi/app/models.py:84
+#: /noi/app/linkedin.py:147
+msgid "Disconnected from LinkedIn."
+msgstr ""
+
+#: /noi/app/linkedin.py:168
+msgid "Connection with LinkedIn canceled."
+msgstr ""
+
+#: /noi/app/linkedin.py:177
+msgid "Connection to LinkedIn established."
+msgstr ""
+
+#: /noi/app/models.py:204
+msgid "Username"
+msgstr ""
+
+#: /noi/app/models.py:236
 msgid "Position"
 msgstr ""
 
-#: /noi/app/models.py:87
+#: /noi/app/models.py:239
 msgid "Organization"
 msgstr ""
 
-#: /noi/app/models.py:90
+#: /noi/app/models.py:242
 msgid "Type of Organization"
 msgstr ""
 
-#: /noi/app/models.py:91
+#: /noi/app/models.py:243
 msgid "The type of organization you work for"
 msgstr ""
 
-#: /noi/app/models.py:95
+#: /noi/app/models.py:247
 msgid "Country"
 msgstr ""
 
-#: /noi/app/models.py:99
+#: /noi/app/models.py:251
 msgid "City"
 msgstr ""
 
-#: /noi/app/models.py:103
+#: /noi/app/models.py:255
 msgid "Location"
 msgstr ""
 
-#: /noi/app/models.py:104
+#: /noi/app/models.py:256
 msgid "Enter your location"
 msgstr ""
 
-#: /noi/app/models.py:108
+#: /noi/app/models.py:260
 msgid "Projects"
 msgstr ""
 
-#: /noi/app/models.py:109
+#: /noi/app/models.py:261
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 
-#: /noi/app/views.py:128
+#: /noi/app/views.py:187
 msgid "Your profile has been saved."
 msgstr ""
 
-#: /noi/app/views.py:131
+#: /noi/app/views.py:190
 msgid "Could not save, please correct errors."
 msgstr ""
 
-#: /noi/app/views.py:253
+#: /noi/app/views.py:197
+msgid "Your user picture has been changed."
+msgstr ""
+
+#: /noi/app/views.py:198
+msgid "An error occurred when uploading your user picture."
+msgstr ""
+
+#: /noi/app/views.py:200
+msgid "Do you really want to remove your profile picture?"
+msgstr ""
+
+#: /noi/app/views.py:201
+msgid "Your profile picture has been removed."
+msgstr ""
+
+#: /noi/app/views.py:202
+msgid "An error occurred when removing your profile picture."
+msgstr ""
+
+#: /noi/app/views.py:336
+msgid "Confirmation instructions sent."
+msgstr ""
+
+#: /noi/app/views.py:358
 msgid "Could not save, please correct errors below"
 msgstr ""
 
-#: /noi/app/views.py:265
-msgid "Peer"
+#: /noi/app/views.py:598
+msgid "Practitioners"
 msgstr ""
 
-#: /noi/app/views.py:266
-msgid "Connector"
+#: /noi/app/views.py:599
+msgid "Explainers"
 msgstr ""
 
-#: /noi/app/views.py:267
-msgid "Explainer"
+#: /noi/app/views.py:600
+msgid "Connectors"
 msgstr ""
 
-#: /noi/app/views.py:268
-msgid "Practitioner"
+#: /noi/app/views.py:601
+msgid "Peers"
 msgstr ""
 
-#: /noi/app/views.py:273
-msgid "name"
-msgstr ""
-
-#: /noi/app/views.py:547
+#: /noi/app/views.py:727
 msgid "You must log in to post a message."
 msgstr ""
 
-#: /noi/app/views.py:549
+#: /noi/app/views.py:729
 msgid "We need your name before you can post a message."
 msgstr ""
 
-#: /noi/app/views.py:558
+#: /noi/app/views.py:738
 msgid "Message posted!"
 msgstr ""
 
-#: /noi/app/views.py:623
+#: /noi/app/views.py:746
+msgid "Loading..."
+msgstr ""
+
+#: /noi/app/views.py:830
 #, python-format
 msgid "%(user)s would like you to join the Network of Innovators!"
 msgstr ""
 
-#: /noi/app/views.py:628
+#: /noi/app/views.py:835
 #, python-format
 msgid ""
 "%(user)s has invited you to join the Network of Innovators -- a new "
@@ -303,118 +391,141 @@ msgid ""
 "Build your network now at %(url)s."
 msgstr ""
 
-#: /noi/app/views.py:642
+#: /noi/app/views.py:849
 msgid "Invitation sent!"
 msgstr ""
 
-#: /noi/app/views.py:645
+#: /noi/app/views.py:852
 msgid "Your form submission was invalid."
 msgstr ""
 
-#: /noi/app/templates/__base_new__.html:13
+#: /noi/app/templates/__base_new__.html:17
 #: /noi/app/templates/__base_ui__.html:8 /noi/app/templates/main.html:3
+#: /noi/app/templates/admin/master.html:4
 #: /noi/app/templates/security/send_login.html:3
 msgid "Network of Innovators"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:22
+#: /noi/app/templates/__base_ui__.html:24
 msgid "Home"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:26
+#: /noi/app/templates/__base_ui__.html:28
 msgid "Match Me"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:30 /noi/app/templates/search.html:3
-#: /noi/app/templates/search.html:39
+#: /noi/app/templates/__base_ui__.html:32 /noi/app/templates/search.html:3
+#: /noi/app/templates/search.html:45
 msgid "Find Innovators"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:34
+#: /noi/app/templates/__base_ui__.html:36
 msgid "View Network"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:38
-#: /noi/app/templates/__base_ui__.html:74
+#: /noi/app/templates/__base_ui__.html:41
+msgid "Discourse"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:46
+#: /noi/app/templates/__base_ui__.html:85
 msgid "Share Feedback"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:48
+#: /noi/app/templates/__base_ui__.html:57
 msgid "Post an update"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:52
+#: /noi/app/templates/__base_ui__.html:62
 msgid ""
 "Have a question to pose to the whole community? Need help with a task? "
 "Ask the Network!"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:53
+#: /noi/app/templates/__base_ui__.html:63
 msgid ""
 "Does anyone have experience with prize-backed challenges relating to "
 "increasing literacy?"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:54
+#: /noi/app/templates/__base_ui__.html:64
 msgid "Send"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:69 /noi/app/templates/my-profile.html:5
-#: /noi/app/templates/my-profile.html:28
+#: /noi/app/templates/__base_ui__.html:80 /noi/app/templates/my-profile.html:5
+#: /noi/app/templates/my-profile.html:8
 msgid "My Profile"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:73 /noi/app/templates/settings.html:6
+#: /noi/app/templates/__base_ui__.html:84 /noi/app/templates/settings.html:5
 msgid "Settings"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:76 /noi/app/templates/invite.html:3
-#: /noi/app/templates/invite.html:37
+#: /noi/app/templates/__base_ui__.html:87 /noi/app/templates/invite.html:3
+#: /noi/app/templates/invite.html:18
 msgid "Invite Someone"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:77 /noi/app/templates/faq.html:9
+#: /noi/app/templates/__base_ui__.html:88 /noi/app/templates/faq.html:9
 msgid "FAQ"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:78 /noi/app/templates/about.html:3
+#: /noi/app/templates/__base_ui__.html:89 /noi/app/templates/about.html:3
 #: /noi/app/templates/about.html:7
 msgid "About"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:79 /noi/app/templates/faq.html:30
+#: /noi/app/templates/__base_ui__.html:90 /noi/app/templates/faq.html:30
 #: /noi/app/templates/main.html:95
 msgid "Terms of Service"
 msgstr ""
 
-#: /noi/app/templates/__base_ui__.html:80
+#: /noi/app/templates/__base_ui__.html:92
+msgid "Admin Panel"
+msgstr ""
+
+#: /noi/app/templates/__base_ui__.html:94
 msgid "Sign Out"
 msgstr ""
 
-#: /noi/app/templates/_activity_events.html:11
+#: /noi/app/templates/_activity_events.html:10
 #, python-format
 msgid "%(user)s shared:"
 msgstr ""
 
-#: /noi/app/templates/_activity_events.html:15
+#: /noi/app/templates/_activity_events.html:14
 msgid "Reply via e-mail"
 msgstr ""
 
-#: /noi/app/templates/_activity_events.html:22
+#: /noi/app/templates/_activity_events.html:21
 #, python-format
 msgid "%(user)s joined NOI."
 msgstr ""
 
-#: /noi/app/templates/_activity_events.html:26
+#: /noi/app/templates/_activity_events.html:25
 #, python-format
 msgid "+%(num)d new connection made in NOI."
 msgid_plural "+%(num)d new connections made in NOI."
 msgstr[0] ""
 msgstr[1] ""
 
-#: /noi/app/templates/_activity_events.html:27
+#: /noi/app/templates/_activity_events.html:26
 #, python-format
 msgid "%(total)s connections!"
+msgstr ""
+
+#: /noi/app/templates/_activity_events.html:34
+#, python-format
+msgid "%(user)s posted in Discourse."
+msgstr ""
+
+#: /noi/app/templates/_activity_events.html:44
+#, python-format
+msgid "Read %(posts_count)s replies on Discourse"
+msgstr ""
+
+#: /noi/app/templates/_activity_events.html:46
+msgid "Read more on Discourse"
 msgstr ""
 
 #: /noi/app/templates/_complete_profile_cta.html:3
@@ -427,10 +538,16 @@ msgid ""
 "matches!"
 msgstr ""
 
-#: /noi/app/templates/_macros.html:10
+#: /noi/app/templates/_macros.html:8
 msgid ""
 "To select multiple items, hold down the <strong>CTRL</strong> key (or the"
 " Command key on Macs)."
+msgstr ""
+
+#: /noi/app/templates/_network-viz.html:10
+#: /noi/app/templates/user-profile.html:119
+#, python-format
+msgid "%(count)d questions answered"
 msgstr ""
 
 #: /noi/app/templates/_profile-expertise-match-area.html:20
@@ -472,7 +589,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: /noi/app/templates/_profile-questionnaire.html:22
-#: /noi/app/templates/activity.html:85 /noi/app/templates/activity.html:92
+#: /noi/app/templates/activity.html:126
 #: /noi/app/templates/register-step-2.html:23
 #: /noi/app/templates/register-step-3.html:57
 msgid "Next"
@@ -597,42 +714,44 @@ msgstr ""
 msgid "My Profile Progress"
 msgstr ""
 
-#: /noi/app/templates/activity.html:43
+#: /noi/app/templates/activity.html:79
 #, python-format
 msgid "%(num)d Connection"
 msgid_plural "%(num)d Connections"
 msgstr[0] ""
 msgstr[1] ""
 
-#: /noi/app/templates/activity.html:83
+#: /noi/app/templates/activity.html:124
+msgid "OK"
+msgstr ""
+
+#: /noi/app/templates/activity.html:140
 #, python-format
 msgid "Welcome <strong>%(first_name)s</strong>!"
 msgstr ""
 
-#: /noi/app/templates/activity.html:84
+#: /noi/app/templates/activity.html:141
 msgid ""
 "You can <strong>meet your top matches</strong> based on your skills and "
 "interests."
 msgstr ""
 
-#: /noi/app/templates/activity.html:91
+#: /noi/app/templates/activity.html:145
 msgid "You can also <strong>browse innovators</strong>!"
 msgstr ""
 
-#: /noi/app/templates/activity.html:98
+#: /noi/app/templates/activity.html:149
 msgid "Don't forget to <strong>update your profile</strong>."
 msgstr ""
 
-#: /noi/app/templates/activity.html:99
+#: /noi/app/templates/activity.html:150
 msgid "The more questions you answer, the more relevant your matches."
 msgstr ""
 
-#: /noi/app/templates/activity.html:100
-msgid "OK"
-msgstr ""
-
-#: /noi/app/templates/activity.html:114
-msgid "Loading..."
+#: /noi/app/templates/activity.html:155
+msgid ""
+"You can now participate in our <strong>Discourse</strong> forum! Check it"
+" out."
 msgstr ""
 
 #: /noi/app/templates/faq.html:3
@@ -837,23 +956,23 @@ msgid ""
 "form</a>."
 msgstr ""
 
-#: /noi/app/templates/feedback.html:3
+#: /noi/app/templates/feedback.html:13
 msgid "Feedback"
 msgstr ""
 
-#: /noi/app/templates/feedback.html:8
+#: /noi/app/templates/feedback.html:18
 msgid "Share your feedback about the Network of Innovators"
 msgstr ""
 
-#: /noi/app/templates/invite.html:39
+#: /noi/app/templates/invite.html:21
 msgid "Suggest someone to join the network"
 msgstr ""
 
-#: /noi/app/templates/invite.html:47
+#: /noi/app/templates/invite.html:29
 msgid "Invite"
 msgstr ""
 
-#: /noi/app/templates/main.html:16 /noi/app/templates/settings.html:22
+#: /noi/app/templates/main.html:16 /noi/app/templates/settings.html:24
 msgid "Change Language"
 msgstr ""
 
@@ -987,16 +1106,59 @@ msgid ""
 "questions in areas you want to learn about."
 msgstr ""
 
-#: /noi/app/templates/my-profile.html:67
+#: /noi/app/templates/my-profile.html:37
+#, python-format
+msgid "Connect to <img alt=\"LinkedIn\" %(img_attrs)s>"
+msgstr ""
+
+#: /noi/app/templates/my-profile.html:43
+msgid ""
+"Filling out your profile is easier than ever! Connect your account to "
+"LinkedIn&trade; to pre-fill some of the form fields below. Connecting to "
+"LinkedIn&trade; will also allow others to see your LinkedIn&trade; "
+"profile."
+msgstr ""
+
+#: /noi/app/templates/my-profile.html:63
 msgid "Save"
 msgstr ""
 
-#: /noi/app/templates/my-profile.html:102
-msgid "Sorry, that file is too big.  Please choose a smaller one."
+#: /noi/app/templates/my-profile.html:70
+#, python-format
+msgid ""
+"Your account is currently connected to LinkedIn&trade;, which allows "
+"others to see your LinkedIn&trade; profile. You can <a "
+"%(a_attrs)s>disconnect from LinkedIn&trade;</a> at any time to disable "
+"this."
 msgstr ""
 
-#: /noi/app/templates/network.html:5
-msgid "Sorry, this feature of the site is not yet available."
+#: /noi/app/templates/register-step-1.5.html:3
+#: /noi/app/templates/security/register_user.html:3
+msgid "Register"
+msgstr ""
+
+#: /noi/app/templates/register-step-1.5.html:13
+#, python-format
+msgid ""
+"To improve security, we now require you to confirm your e-mail address at"
+" %(email)s."
+msgstr ""
+
+#: /noi/app/templates/register-step-1.5.html:14
+msgid "Send confirmation e-mail"
+msgstr ""
+
+#: /noi/app/templates/register-step-1.5.html:16
+msgid "Please check your inbox to confirm your e-mail address."
+msgstr ""
+
+#: /noi/app/templates/register-step-1.5.html:17
+msgid "Re-send confirmation e-mail"
+msgstr ""
+
+#: /noi/app/templates/register-step-1.5.html:26
+#: /noi/app/templates/register-step-2.html:29
+msgid "Logout"
 msgstr ""
 
 #: /noi/app/templates/register-step-2.html:3
@@ -1007,10 +1169,6 @@ msgstr ""
 msgid ""
 "Now please share some basic info about yourself, so others can know who "
 "you are."
-msgstr ""
-
-#: /noi/app/templates/register-step-2.html:29
-msgid "Logout"
 msgstr ""
 
 #: /noi/app/templates/register-step-3.html:4
@@ -1042,19 +1200,31 @@ msgstr ""
 msgid "Choose another area"
 msgstr ""
 
-#: /noi/app/templates/search.html:25
+#: /noi/app/templates/search.html:27
+msgid "By expertise area"
+msgstr ""
+
+#: /noi/app/templates/search.html:31
 msgid "By country"
 msgstr ""
 
-#: /noi/app/templates/search.html:29
-msgid "By language(s)"
+#: /noi/app/templates/search.html:35
+msgid "By language"
 msgstr ""
 
-#: /noi/app/templates/search.html:34
-msgid "By field(s) of work"
+#: /noi/app/templates/search.html:39
+msgid "By field of work"
 msgstr ""
 
-#: /noi/app/templates/settings.html:12
+#: /noi/app/templates/search.html:43
+msgid "Search terms"
+msgstr ""
+
+#: /noi/app/templates/search.html:44
+msgid "Enter organization, name, or keywords here"
+msgstr ""
+
+#: /noi/app/templates/settings.html:13
 msgid "Reset Tutorial"
 msgstr ""
 
@@ -2619,47 +2789,47 @@ msgstr ""
 msgid "Expertise"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:72
+#: /noi/app/templates/user-profile.html:76
 msgid "You are an <strong>explainer</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:74
+#: /noi/app/templates/user-profile.html:78
 msgid "You are a <strong>practitioner</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:76
+#: /noi/app/templates/user-profile.html:80
 msgid "You are a <strong>connector</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:78
-msgid "You are a <strong>peer</strong> of:"
-msgstr ""
-
 #: /noi/app/templates/user-profile.html:82
-#, python-format
-msgid "Ask %(user)s to <strong>explain</strong>:"
-msgstr ""
-
-#: /noi/app/templates/user-profile.html:84
-#, python-format
-msgid "Ask %(user)s to <strong>share experiences</strong> in:"
+msgid "You are a <strong>peer</strong> of:"
 msgstr ""
 
 #: /noi/app/templates/user-profile.html:86
 #, python-format
-msgid "Ask %(user)s to <strong>connect you</strong> in:"
+msgid "Ask %(user)s to <strong>explain</strong>:"
 msgstr ""
 
 #: /noi/app/templates/user-profile.html:88
 #, python-format
+msgid "Ask %(user)s to <strong>share experiences</strong> in:"
+msgstr ""
+
+#: /noi/app/templates/user-profile.html:90
+#, python-format
+msgid "Ask %(user)s to <strong>connect you</strong> in:"
+msgstr ""
+
+#: /noi/app/templates/user-profile.html:92
+#, python-format
 msgid "Ask %(user)s to <strong>learn with you</strong> in:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:98
+#: /noi/app/templates/user-profile.html:126
 msgid "Projects I have done"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:102
+#: /noi/app/templates/user-profile.html:130
 msgid "No project information provided."
 msgstr ""
 
@@ -2676,10 +2846,6 @@ msgstr ""
 #: /noi/app/templates/security/_menu_new.html:6
 #: /noi/app/templates/security/forgot_password.html:3
 msgid "Forgot password"
-msgstr ""
-
-#: /noi/app/templates/security/_menu_new.html:9
-msgid "Confirm account"
 msgstr ""
 
 #: /noi/app/templates/security/change_password.html:3
@@ -2703,10 +2869,6 @@ msgstr ""
 msgid "Don't have an account?"
 msgstr ""
 
-#: /noi/app/templates/security/register_user.html:3
-msgid "Register"
-msgstr ""
-
 #: /noi/app/templates/security/register_user.html:14
 msgid "Sign up with your email address"
 msgstr ""
@@ -2714,5 +2876,10 @@ msgstr ""
 #: /noi/app/templates/security/reset_password.html:3
 #: /noi/app/templates/security/reset_password.html:14
 msgid "Reset password"
+msgstr ""
+
+#: /noi/app/templates/security/send_confirmation.html:3
+#: /noi/app/templates/security/send_confirmation.html:14
+msgid "Send confirmation instructions"
 msgstr ""
 
