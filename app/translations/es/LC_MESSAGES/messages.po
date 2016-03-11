@@ -278,11 +278,11 @@ msgstr "Por favor auntentifique nuevamente su cuenta para acceder esta página."
 
 #: /noi/app/linkedin.py:147
 msgid "Disconnected from LinkedIn."
-msgstr ""
+msgstr "Tu cuenta ha sido desconectada de LinkedIn"
 
 #: /noi/app/linkedin.py:168
 msgid "Connection with LinkedIn canceled."
-msgstr ""
+msgstr "Tu conexión con LinkedIn ha sido cancelada"
 
 #: /noi/app/linkedin.py:177
 msgid "Connection to LinkedIn established."
@@ -1336,7 +1336,7 @@ msgstr ""
 #: /noi/app/templates/my-profile.html:37
 #, python-format
 msgid "Connect to <img alt=\"LinkedIn\" %(img_attrs)s>"
-msgstr ""
+msgstr "Conéctate a <img alt=\"LinkedIn\" %(img_attrs)s>"
 
 #: /noi/app/templates/my-profile.html:43
 msgid ""
