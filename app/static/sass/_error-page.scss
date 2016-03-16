@@ -1,0 +1,20 @@
+.e-error-display {
+  background-color: $blue;
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 4em;
+  h2,h3,h4 {
+    color: $white-80;;
+    padding: .5em;
+  }
+}
+
+.error-page-icon { 
+  color: $white-80;;
+  font-size: 4em;
+   }
+
+.e-error-display a {
+  color: $white-90;
+  font-weight: bold;
+}
