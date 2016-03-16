@@ -101,6 +101,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     l10n.configure_app(app)
 
+    app.register_blueprint(error_handlers.blueprint)
     app.register_blueprint(views)
     if app.config['DEBUG']:
         app.register_blueprint(style_guide.views)
