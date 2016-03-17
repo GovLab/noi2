@@ -12,7 +12,7 @@ from werkzeug.contrib.fixers import ProxyFix
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
                  babel, alchemydumps, sass, email_errors, csp, oauth,
-                 linkedin, discourse,
+                 linkedin, discourse, slack,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.forms import (NOIForgotPasswordForm, NOILoginForm,
@@ -109,6 +109,8 @@ def create_app(config=None): #pylint: disable=too-many-statements
         app.register_blueprint(linkedin.views)
     if 'DISCOURSE' in app.config:
         discourse.init_app(app)
+    if 'SLACK_WEBHOOK_URL' in app.config:
+        slack.init_app(app)
 
     cache.init_app(app)
     csrf.init_app(app)

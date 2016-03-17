@@ -14,7 +14,7 @@ if os.environ.get('RUNNING_IN_DOCKER') != 'yup':
     ] + sys.argv)
 
 from app import (mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats,
-                 questionnaires, blog_posts, linkedin)
+                 questionnaires, blog_posts, linkedin, slack)
 from app.factory import create_app
 from app.models import db, User
 from app.utils import csv_reader
@@ -50,6 +50,7 @@ manager = Manager(app) #pylint: disable=invalid-name
 manager.add_command('discourse', DiscourseCommand)
 manager.add_command('noi1', Noi1Command)
 manager.add_command('db', MigrateCommand)
+manager.add_command('slack', slack.SlackCommand)
 #manager.add_command("assets", ManageAssets)
 
 alchemydumps = AlchemyDumps(app, db)

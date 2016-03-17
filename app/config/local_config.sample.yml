@@ -127,3 +127,13 @@ SECRET_KEY: i_am_insecure
 #   api_key: PUT_YOUR_DISCOURSE_API_KEY_HERE
 #   origin: http://discourse-dev.networkofinnovators.org
 #   sso_secret: PUT_YOUR_SSO_SECRET_HERE
+
+# Slack Integration
+# -----------------
+
+# Events that occur in NoI can automatically be posted to Slack via a
+# Slack Incoming Webhook. For more information, see:
+#
+#   https://api.slack.com/incoming-webhooks
+#
+# SLACK_WEBHOOK_URL: https://hooks.slack.com/services/T00000000/B00000000/XXXX
