@@ -41,6 +41,18 @@ EXPOSED_APP_CONFIG_VARS = [
   'GA_TRACKING_CODE'
 ]
 
+CONFIG_YML_FILENAME = '/noi/app/config/config.yml'
+
+LOCAL_CONFIG_YML_FILENAME = '/noi/app/config/local_config.yml'
+
+DEPLOYMENTS_YML_FILENAME = '/noi/app/data/deployments.yaml'
+
+YML_FILENAMES = [
+    CONFIG_YML_FILENAME,
+    LOCAL_CONFIG_YML_FILENAME,
+    DEPLOYMENTS_YML_FILENAME
+]
+
 class DeploySQLAlchemyUserDatastore(SQLAlchemyUserDatastore):
     '''
     Subclass of SQLAlchemyUserDatastore that overrides `get_user` to take app
@@ -71,12 +83,12 @@ def create_app(config=None): #pylint: disable=too-many-statements
     '''
     app = Flask(__name__)
 
-    with open('/noi/app/config/config.yml', 'r') as config_file:
+    with open(CONFIG_YML_FILENAME, 'r') as config_file:
         app.config.update(yaml.load(config_file))
 
     if config is None:
         try:
-            with open('/noi/app/config/local_config.yml', 'r') as config_file:
+            with open(LOCAL_CONFIG_YML_FILENAME, 'r') as config_file:
                 app.config.update(yaml.load(config_file))
         except IOError:
             app.logger.warn("No local_config.yml file")
@@ -84,7 +96,7 @@ def create_app(config=None): #pylint: disable=too-many-statements
     else:
         app.config.update(config)
 
-    with open('/noi/app/data/deployments.yaml') as deployments_yaml:
+    with open(DEPLOYMENTS_YML_FILENAME) as deployments_yaml:
         deployments = yaml.load(deployments_yaml)
 
     l10n.configure_app(app)

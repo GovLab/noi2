@@ -15,7 +15,7 @@ if os.environ.get('RUNNING_IN_DOCKER') != 'yup':
 
 from app import (mail, models, sass, email_errors, LEVELS, ORG_TYPES, stats,
                  questionnaires, blog_posts, linkedin, slack)
-from app.factory import create_app
+from app.factory import create_app, YML_FILENAMES
 from app.models import db, User
 from app.utils import csv_reader
 from app.tests.factories import UserFactory
@@ -28,7 +28,7 @@ from flask_script import Manager, prompt_bool
 from flask_mail import Message
 from flask_security.recoverable import send_reset_password_instructions
 from flask.ext.script import Command
-from flask.ext.script.commands import InvalidCommand
+from flask.ext.script.commands import InvalidCommand, Server, Shell
 
 from random import choice
 from sqlalchemy.exc import IntegrityError
@@ -45,7 +45,10 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 app = create_app() #pylint: disable=invalid-name
 migrate = Migrate(app, db) #pylint: disable=invalid-name
 
-manager = Manager(app) #pylint: disable=invalid-name
+manager = Manager(app, with_default_commands=False)
+
+manager.add_command('shell', Shell())
+manager.add_command('runserver', Server(extra_files=YML_FILENAMES))
 
 manager.add_command('discourse', DiscourseCommand)
 manager.add_command('noi1', Noi1Command)
