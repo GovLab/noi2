@@ -1,5 +1,5 @@
 import datetime
-from sqlalchemy import types, Column, ForeignKey
+from sqlalchemy import types, Column, ForeignKey, UniqueConstraint
 
 from ..models import db, User
 from .. import models
@@ -20,7 +20,9 @@ class DiscourseTopicEvent(models.UserEvent):
 
     id = Column(types.Integer, ForeignKey('user_events.id'), primary_key=True)
 
-    discourse_id = Column(types.Integer, unique=True)
+    discourse_id = Column(types.Integer)
+
+    post_number = Column(types.Integer)
 
     slug = Column(types.Text)
 
@@ -34,51 +36,67 @@ class DiscourseTopicEvent(models.UserEvent):
 
     category_slug = Column(types.Text)
 
+    __table_args__ = (UniqueConstraint('discourse_id', 'post_number'),)
+
     __mapper_args__ = {
         'polymorphic_identity': 'discourse_topic_event'
     }
 
     @property
     def url(self):
-        return config.url('/t/%s/%d' % (self.slug, self.discourse_id))
+        return config.url('/t/%s/%d/%d' % (self.slug, self.discourse_id,
+                                           self.post_number or 0))
 
     @property
     def category_url(self):
         return config.url('/c/%s' % self.category_slug)
 
     @classmethod
-    def _get_or_create(cls, discourse_id):
+    def _get_or_create(cls, discourse_id, post_number=None):
         msg = db.session.query(cls).\
-              filter_by(discourse_id=discourse_id).first()
+              filter_by(discourse_id=discourse_id,
+                        post_number=post_number).first()
         if msg is None:
-            msg = cls(discourse_id=discourse_id)
+            msg = cls(discourse_id=discourse_id, post_number=post_number)
         return msg
+
+    @classmethod
+    def _update_topic(cls, category, topic):
+        req = api.get('/t/%d/last.json' % topic['id'])
+
+        if req.status_code != 200:
+            return req.raise_for_status()
+
+        topic_detail = req.json()
+
+        for post in topic_detail['post_stream']['posts']:
+            if post['hidden'] or not post['cooked']: continue
+
+            msg = cls._get_or_create(discourse_id=topic['id'],
+                                     post_number=post['post_number'])
+            msg.created_at = parse_iso_datetime(post['created_at'])
+            msg.updated_at = parse_iso_datetime(post['updated_at'])
+            msg.slug = topic['slug']
+
+            msg.category_name = category['name']
+            msg.category_slug = category['slug']
+
+            user = User.find_by_username(post['username'])
+            msg.user = user
+
+            msg.excerpt = post['cooked']
+
+            msg.title = topic['title']
+            msg.posts_count = topic['posts_count']
+            db.session.add(msg)
 
     @classmethod
     def _update_category(cls, category):
         topics = category.get('topics', [])
         for topic in topics:
             if not topic['visible']: continue
-            msg = cls._get_or_create(discourse_id=topic['id'])
-            msg.created_at = parse_iso_datetime(topic['created_at'])
-            msg.updated_at = parse_iso_datetime(topic['bumped_at'])
-            msg.slug = topic['slug']
 
-            msg.category_name = category['name']
-            msg.category_slug = category['slug']
-
-            user = User.find_by_username(topic['last_poster']['username'])
-            msg.user = user
-
-            # Argh, it looks like only pinned topics have excerpts
-            # for now:
-            #
-            # https://meta.discourse.org/t/get-excerpt-for-regular-topics/33482
-            msg.excerpt = topic.get('excerpt')
-
-            msg.title = topic['title']
-            msg.posts_count = topic['posts_count']
-            db.session.add(msg)
+            cls._update_topic(category, topic)
 
     @classmethod
     def update(cls):

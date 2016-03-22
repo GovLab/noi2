@@ -193,8 +193,13 @@ class DiscourseTopicEventTests(DbTestCase):
     BASE_APP_CONFIG.update(DISCOURSE=FAKE_DISCOURSE_CONFIG)
 
     def test_url_works(self):
+        evt = DiscourseTopicEvent(discourse_id=5, post_number=1,
+                                  slug='beep-boop')
+        self.assertEqual(evt.url, 'http://discourse/t/beep-boop/5/1')
+
+    def test_url_works_with_no_post_number(self):
         evt = DiscourseTopicEvent(discourse_id=5, slug='beep-boop')
-        self.assertEqual(evt.url, 'http://discourse/t/beep-boop/5')
+        self.assertEqual(evt.url, 'http://discourse/t/beep-boop/5/0')
 
     def test_category_url_works(self):
         evt = DiscourseTopicEvent(category_slug='beep-boop')
@@ -210,12 +215,7 @@ class DiscourseTopicEventTests(DbTestCase):
             {
                 'visible': True,
                 'id': 14,
-                'bumped_at': '2016-02-18T14:27:48.103Z',
-                'created_at': '2016-02-15T14:27:48.062Z',
                 'posts_count': 6,
-                'last_poster': {
-                    'username': 'system'
-                },
                 'title': 'Hello There',
                 'slug': 'hello-there',
             }
@@ -236,14 +236,39 @@ class DiscourseTopicEventTests(DbTestCase):
                 ]
             }
         }
+        fake_post = {
+            'hidden': False,
+            'cooked': '<p>Hello</p>',
+            'post_number': 1,
+            'created_at': '2016-02-15T14:27:48.062Z',
+            'updated_at': '2016-02-18T14:27:48.103Z',
+            'username': 'system',
+        }
+        fake_topic_detail = {
+            'post_stream': {
+                'posts': [fake_post]
+            }
+        }
 
-        get.return_value.status_code = 200
-        get.return_value.json.return_value = fake_categories
+        def get_url(url):
+            retval = mock.MagicMock()
+            retval.raise_for_status.side_effect = Exception('kaboom')
+            if url == '/categories.json':
+                retval.status_code = 200
+                retval.json.return_value = fake_categories
+            else:
+                retval.status_code = 200
+                retval.json.return_value = fake_topic_detail
+            return retval
+
+        get.side_effect = get_url
 
         DiscourseTopicEvent.update()
 
-        get.assert_called_once_with('/categories.json')
-        get.return_value.raise_for_status.assert_not_called()
+        get.assert_has_calls([
+            mock.call('/categories.json'),
+            mock.call('/t/14/last.json')
+        ])
 
         events = db.session.query(Event).all()
         self.assertEqual(len(events), 1)
@@ -257,23 +282,23 @@ class DiscourseTopicEventTests(DbTestCase):
                          datetime.datetime(2016, 2, 18, 14, 27, 48, 103000))
         self.assertEqual(event.slug, 'hello-there')
         self.assertIsNone(event.user)
-        self.assertIsNone(event.excerpt)
+        self.assertEqual(event.excerpt, '<p>Hello</p>')
         self.assertEqual(event.title, 'Hello There')
         self.assertEqual(event.category_name, 'Funky Things')
         self.assertEqual(event.category_slug, 'funky-things')
         self.assertEqual(event.posts_count, 6)
 
-        # Now simulate a new reply.
+        # Now simulate an edited post.
 
-        fake_topics[1]['bumped_at'] = '2016-02-20T14:27:48.103Z'
-        fake_topics[1]['posts_count'] += 1
+        fake_post['updated_at'] = '2016-02-20T14:27:48.103Z'
+        fake_post['cooked'] = '<p>Blah</p>'
 
         DiscourseTopicEvent.update()
 
         self.assertEqual(db.session.query(Event).all(), [event])
         self.assertEqual(event.updated_at,
                          datetime.datetime(2016, 2, 20, 14, 27, 48, 103000))
-        self.assertEqual(event.posts_count, 7)
+        self.assertEqual(event.excerpt, '<p>Blah</p>')
 
     def test_get_or_create_can_get_existing(self):
         evt = DiscourseTopicEvent(discourse_id=15)
