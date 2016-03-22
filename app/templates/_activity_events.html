@@ -35,13 +35,13 @@
       {% endif %}
       <p>
         <strong>{{ event.title }}</strong>
-        {% if event.category_name %}<a href="{{ event.category_url }}" target="_blank" class="e-discourse-category">{{ event.category_name }}</a>{% endif %}
+        {% if event.category_name %}<a href="{{ event.category_url }}" class="e-discourse-category">{{ event.category_name }}</a>{% endif %}
       </p>
       {% if event.excerpt %}
       <p>{{ event.excerpt|safe }}</p>
       {% endif %}
       <div class="e-actions">
-        <a href="{{ event.url }}" target="_blank"><span class="material-icons">open_in_new</span>
+        <a href="{{ event.url }}"><span class="material-icons">open_in_new</span>
         <span class="e-action-label">
           {% if event.posts_count > 1 %}
             {{ gettext("Read %(posts_count)s replies on Discourse", posts_count=event.posts_count) }}
