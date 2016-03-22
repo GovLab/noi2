@@ -34,7 +34,7 @@
             {% if DISCOURSE_ENABLED %}
             <a href="{{ discourse_url('/') }}" class="e-nav-item" data-tutorial-target="4">
                 <span class="material-icons">feedback</span>
-                {{ gettext('Discourse') }}
+                {{ gettext('Discuss') }}
             </a>
             {% else %}
             <a href="{{ url_for('views.feedback') }}" class="e-nav-item">
