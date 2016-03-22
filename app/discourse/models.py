@@ -30,6 +30,10 @@ class DiscourseTopicEvent(models.UserEvent):
 
     posts_count = Column(types.Integer)
 
+    category_name = Column(types.Text)
+
+    category_slug = Column(types.Text)
+
     __mapper_args__ = {
         'polymorphic_identity': 'discourse_topic_event'
     }
@@ -37,6 +41,10 @@ class DiscourseTopicEvent(models.UserEvent):
     @property
     def url(self):
         return config.url('/t/%s/%d' % (self.slug, self.discourse_id))
+
+    @property
+    def category_url(self):
+        return config.url('/c/%s' % self.category_slug)
 
     @classmethod
     def _get_or_create(cls, discourse_id):
@@ -55,6 +63,9 @@ class DiscourseTopicEvent(models.UserEvent):
             msg.created_at = parse_iso_datetime(topic['created_at'])
             msg.updated_at = parse_iso_datetime(topic['bumped_at'])
             msg.slug = topic['slug']
+
+            msg.category_name = category['name']
+            msg.category_slug = category['slug']
 
             user = User.find_by_username(topic['last_poster']['username'])
             msg.user = user

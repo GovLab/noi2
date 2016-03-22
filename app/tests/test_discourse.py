@@ -196,6 +196,10 @@ class DiscourseTopicEventTests(DbTestCase):
         evt = DiscourseTopicEvent(discourse_id=5, slug='beep-boop')
         self.assertEqual(evt.url, 'http://discourse/t/beep-boop/5')
 
+    def test_category_url_works(self):
+        evt = DiscourseTopicEvent(category_slug='beep-boop')
+        self.assertEqual(evt.category_url, 'http://discourse/c/beep-boop')
+
     @mock.patch('app.discourse.api.get')
     def test_update_works(self, get):
         fake_topics = [
@@ -225,6 +229,8 @@ class DiscourseTopicEventTests(DbTestCase):
                     },
                     {
                         'read_restricted': False,
+                        'name': 'Funky Things',
+                        'slug': 'funky-things',
                         'topics': fake_topics
                     }
                 ]
@@ -253,6 +259,8 @@ class DiscourseTopicEventTests(DbTestCase):
         self.assertIsNone(event.user)
         self.assertIsNone(event.excerpt)
         self.assertEqual(event.title, 'Hello There')
+        self.assertEqual(event.category_name, 'Funky Things')
+        self.assertEqual(event.category_slug, 'funky-things')
         self.assertEqual(event.posts_count, 6)
 
         # Now simulate a new reply.
