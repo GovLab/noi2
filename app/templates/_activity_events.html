@@ -33,7 +33,7 @@
       {% if event.user %}
       <p>{{ gettext('%(user)s posted in Discourse.', user=user_link(event.user)) }}</p>
       {% endif %}
-      <p><strong>{{ event.title }}</strong></p>
+      <p><strong>{{ event.title }}</strong> <a href="{{ event.category_url }}" target="_blank" class="e-discourse-category">{{ event.category_name }}</a></p>
       {% if event.excerpt %}
       <p>{{ event.excerpt|safe }}</p>
       {% endif %}
