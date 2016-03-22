@@ -31,10 +31,6 @@
                 <span class="material-icons">search</span>
                 {{ gettext('Find Innovators') }}
             </a>
-            <a href="{{ url_for('views.network') }}" class="e-nav-item">
-                <span class="material-icons">language</span>
-                {{ gettext('View Network') }}
-            </a>
             {% if DISCOURSE_ENABLED %}
             <a href="{{ discourse_url('/') }}" class="e-nav-item" data-tutorial-target="4">
                 <span class="material-icons">feedback</span>
@@ -46,6 +42,10 @@
                 {{ gettext('Share Feedback') }}
             </a>
             {% endif %}
+            <a href="{{ url_for('views.network') }}" class="e-nav-item">
+                <span class="material-icons">language</span>
+                {{ gettext('View Network') }}
+            </a>
     </nav>
 </header>
 
