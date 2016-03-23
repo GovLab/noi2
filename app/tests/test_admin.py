@@ -11,6 +11,12 @@ class AdminTestCase(ViewTestCase):
 
     BASE_APP_CONFIG['ADMIN_UI_USERS'] = ['admin@example.org']
 
+    def login_as_normal_user(self):
+        self.login('normal@example.org', 'password')
+
+    def login_as_admin_user(self):
+        self.login('admin@example.org', 'password')
+
     def setUp(self):
         super(AdminTestCase, self).setUp()
         self.admin_user = self.create_user(u'admin@example.org', 'password')
@@ -23,11 +29,11 @@ class UserModelViewTests(AdminTestCase):
                              '/login?next=%2Fadmin%2Fuser%2F')
 
     def test_non_admin_users_receive_403(self):
-        self.login('normal@example.org', 'password')
+        self.login_as_normal_user()
         self.assert403(self.client.get('/admin/user/'))
 
     def test_admin_users_are_not_redirected_to_login(self):
-        self.login('admin@example.org', 'password')
+        self.login_as_admin_user()
         self.assert200(self.client.get('/admin/user/'))
 
 
@@ -37,11 +43,11 @@ class StatsViewTests(AdminTestCase):
                              '/login?next=%2Fadmin%2Fstats%2F')
 
     def test_non_admin_users_receive_403(self):
-        self.login('normal@example.org', 'password')
+        self.login_as_normal_user()
         self.assert403(self.client.get('/admin/stats/'))
 
     def test_admin_users_are_not_redirected_to_login(self):
-        self.login('admin@example.org', 'password')
+        self.login_as_admin_user()
         self.assert200(self.client.get('/admin/stats/'))
 
 
