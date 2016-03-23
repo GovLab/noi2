@@ -205,6 +205,11 @@ class DiscourseTopicEventTests(DbTestCase):
         evt = DiscourseTopicEvent(category_slug='beep-boop')
         self.assertEqual(evt.category_url, 'http://discourse/c/beep-boop')
 
+    def test_cleaned_excerpt_works(self):
+        evt = DiscourseTopicEvent(excerpt='<a href="/blah">hi</a>')
+        self.assertEqual(evt.cleaned_excerpt,
+                         '<a href="http://discourse/blah">hi</a>')
+
     @mock.patch('app.discourse.api.get')
     def test_update_works(self, get):
         fake_topics = [

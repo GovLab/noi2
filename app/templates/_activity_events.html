@@ -38,7 +38,7 @@
         {% if event.category_name %}<a href="{{ event.category_url }}" class="e-discourse-category">{{ event.category_name }}</a>{% endif %}
       </p>
       {% if event.excerpt %}
-      <p>{{ event.excerpt|safe }}</p>
+      <p>{{ event.cleaned_excerpt|safe }}</p>
       {% endif %}
       <div class="e-actions">
         <a href="{{ event.url }}"><span class="material-icons">open_in_new</span>

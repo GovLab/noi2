@@ -15,6 +15,17 @@ def parse_iso_datetime(text):
 
     return datetime.datetime.strptime(text, "%Y-%m-%dT%H:%M:%S.%fZ")
 
+def rebase_hrefs(html, origin=None):
+    '''
+    >>> rebase_hrefs(u'<a href="/blarg">hi</a>', 'http://bop')
+    u'<a href="http://bop/blarg">hi</a>'
+    '''
+
+    if origin is None:
+        origin = config.origin
+
+    return html.replace(u'href="/', u'href="%s/' % unicode(origin))
+
 class DiscourseTopicEvent(models.UserEvent):
     __tablename__ = 'discourse_topics'
 
@@ -41,6 +52,10 @@ class DiscourseTopicEvent(models.UserEvent):
     __mapper_args__ = {
         'polymorphic_identity': 'discourse_topic_event'
     }
+
+    @property
+    def cleaned_excerpt(self):
+        return rebase_hrefs(self.excerpt or '')
 
     @property
     def url(self):
