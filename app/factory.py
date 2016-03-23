@@ -115,6 +115,8 @@ def create_app(config=None): #pylint: disable=too-many-statements
     if not app.config['DEBUG'] and app.config.get('ADMINS'):
         email_errors.init_app(app)
 
+    admin.init_app(app)
+
     oauth.init_app(app)
     if 'LINKEDIN' in app.config:
         app.jinja_env.globals['LINKEDIN_ENABLED'] = True
@@ -160,7 +162,6 @@ def create_app(config=None): #pylint: disable=too-many-statements
     app.config['SEARCH_DEPLOYMENTS'].append(noi_deploy)
     babel.init_app(app)
     l10n.init_app(app)
-    admin.init_app(app)
 
     app.config['DOMAINS'] = this_deployment.get('domains',
                                                 default_deployment['domains'])

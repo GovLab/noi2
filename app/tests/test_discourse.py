@@ -9,6 +9,7 @@ from flask.ext.login import user_logged_out
 
 from .test_views import ViewTestCase
 from .test_models import DbTestCase
+from .test_admin import AdminTestCase
 from ..models import User,  Event, db
 from ..signals import user_changed_profile
 from ..discourse import sso, api
@@ -338,6 +339,25 @@ class DiscourseTopicEventTests(DbTestCase):
         db.session.commit()
 
         self.assertEqual(db.session.query(Event).count(), 0)
+
+
+class AdminViewTests(AdminTestCase):
+    BASE_APP_CONFIG = AdminTestCase.BASE_APP_CONFIG.copy()
+
+    BASE_APP_CONFIG.update(DISCOURSE=FAKE_DISCOURSE_CONFIG)
+
+    def test_index_works(self):
+        self.login_as_admin_user()
+        self.assert200(self.client.get('/admin/discourse_admin/'))
+
+    @mock.patch('app.discourse.models.DiscourseTopicEvent.update')
+    def test_recache_topics_works(self, update):
+        self.login_as_admin_user()
+        self.assertRedirects(
+            self.client.post('/admin/discourse_admin/topics/recache'),
+            '/admin/discourse_admin/'
+        )
+        update.assert_called_once_with()
 
 class ViewTests(ViewTestCase):
     BASE_APP_CONFIG = ViewTestCase.BASE_APP_CONFIG.copy()

@@ -119,6 +119,14 @@ class UserModelView(NoiModelView):
         return form_class
 
 
+def add_admin_view(app, view):
+    if not (hasattr(app, 'extensions') and
+            len(app.extensions.get('admin', [])) == 1):
+        return
+
+    app.extensions['admin'][0].add_view(view)
+
+
 def init_app(app):
     admin = Admin(app, name=NAME, template_mode='bootstrap3')
     admin.add_view(UserModelView(User, db.session))
