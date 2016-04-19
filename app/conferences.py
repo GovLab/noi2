@@ -1,11 +1,33 @@
 import os
 import datetime
-from flask import url_for
+from flask import url_for, current_app
+import six
+from sqlalchemy import types
 
 STATIC_LOGO_PATH = 'img/conferences'
 FILESYSTEM_LOGO_PATH = '/noi/app/static/' + STATIC_LOGO_PATH
 
+class ConferenceType(types.TypeDecorator):
+    impl = types.Unicode(50)
+
+    def process_bind_param(self, value, dialect):
+        if isinstance(value, Conference):
+            return six.text_type(value.id)
+
+        if isinstance(value, six.string_types):
+            return value
+
+    def process_result_value(self, value, dialect):
+        if value is not None:
+            return current_app.config['CONFERENCES'].from_id(value)
+
 class Conferences(list):
+    def from_id(self, id):
+        ids = [c for c in self if c.id == id]
+        if len(ids) != 1:
+            raise ValueError('Conference w/ unique id %s not found' % id)
+        return ids[0]
+
     @property
     def featured(self):
         return [c for c in self if c.is_featured]

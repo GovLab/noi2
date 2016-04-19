@@ -5,7 +5,7 @@ SQLAlchemy models for the app
 '''
 
 from app import (ORG_TYPES, VALID_SKILL_LEVELS, LEVELS, QUESTIONNAIRES,
-                 QUESTIONNAIRES_BY_ID, QUESTIONS_BY_ID)
+                 QUESTIONNAIRES_BY_ID, QUESTIONS_BY_ID, conferences)
 from app.utils import UserSkillMatch
 
 from flask import current_app
@@ -655,6 +655,7 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
 
+    conferences = orm.relationship('UserConference', cascade='all,delete-orphan', backref='user')
     expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan', backref='user')
     languages = orm.relationship('UserLanguage', cascade='all,delete-orphan', backref='user')
     skills = orm.relationship('UserSkill', cascade='all,delete-orphan', backref='user')
@@ -780,6 +781,24 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             self.languages.remove(lan)
 
     __table_args__ = (UniqueConstraint('deployment', 'email'),)
+
+
+class UserConference(db.Model):
+    '''
+    Represents a conference (or similar event) that the user is
+    attending.
+
+    List is read from YAML.
+    '''
+
+    __tablename__ = 'user_conferences'
+
+    id = Column(types.Integer, autoincrement=True, primary_key=True)
+    conference = Column(conferences.ConferenceType, nullable=False)
+
+    user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
+
+    __table_args__ = (UniqueConstraint('user_id', 'conference'),)
 
 
 class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-methods
