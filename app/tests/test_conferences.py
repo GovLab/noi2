@@ -27,17 +27,28 @@ class UserConferenceTests(DbTestCase):
 
     def setUp(self):
         super(UserConferenceTests, self).setUp()
+        self.mycon = self.app.config['CONFERENCES'].from_id('mycon')
         self.user = User(email=u'a@example.org', password='foo', active=True)
         db.session.add(self.user)
         db.session.commit()
 
-    def test_it_works(self):
+    def test_setting_user_conference_ids_adds_conferences(self):
+        self.user.conference_ids = ['mycon']
+        db.session.commit()
+        self.assertEqual(self.user.conference_objects, [self.mycon])
+
+    def test_setting_user_conference_ids_removes_conferences(self):
+        self.user.conference_ids = ['mycon']
+        db.session.commit()
+        self.user.conference_ids = []
+        db.session.commit()
+        self.assertEqual(self.user.conference_objects, [])
+
+    def test_adding_user_conferences_works(self):
         con = UserConference(conference=u'mycon', user_id=self.user.id)
         db.session.add(con)
         db.session.commit()
-        self.assertEqual(len(self.user.conferences), 1)
-        user_con = self.user.conferences[0]
-        self.assertEqual(user_con.conference.name, 'My Conference')
+        self.assertEqual(self.user.conference_objects, [self.mycon])
 
 class ConferencesTests(TestCase):
     def test_from_id_raises_error(self):
@@ -49,6 +60,11 @@ class ConferencesTests(TestCase):
         foo = conference_from_yaml(id='foo')
         c = Conferences([foo])
         self.assertEqual(c.from_id('foo'), foo)
+
+    def test_choices(self):
+        c = Conferences([conference_from_yaml(id='foo', name='Foo'),
+                         conference_from_yaml(id='bar', name='Bar')])
+        self.assertEqual(c.choices(), [('foo', 'Foo'), ('bar', 'Bar')])
 
     def test_featured(self):
         bar = conference_from_yaml(is_featured=False)

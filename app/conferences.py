@@ -8,6 +8,12 @@ STATIC_LOGO_PATH = 'img/conferences'
 FILESYSTEM_LOGO_PATH = '/noi/app/static/' + STATIC_LOGO_PATH
 
 class ConferenceType(types.TypeDecorator):
+    '''
+    SQLAlchemy type decorator that stores the id of a conference in
+    the database, but converts it to a Conference object upon
+    retrieval.
+    '''
+
     impl = types.Unicode(50)
 
     def process_bind_param(self, value, dialect):
@@ -22,7 +28,18 @@ class ConferenceType(types.TypeDecorator):
             return current_app.config['CONFERENCES'].from_id(value)
 
 class Conferences(list):
+    def choices(self):
+        '''
+        Get available choices for use in e.g. a <select> form field.
+        '''
+
+        return [(c.id, c.name) for c in self]
+
     def from_id(self, id):
+        '''
+        Return the Conference with the given id.
+        '''
+
         ids = [c for c in self if c.id == id]
         if len(ids) != 1:
             raise ValueError('Conference w/ unique id %s not found' % id)
@@ -30,10 +47,18 @@ class Conferences(list):
 
     @property
     def featured(self):
+        '''
+        Return only the conferences which are featured.
+        '''
+
         return [c for c in self if c.is_featured]
 
     @classmethod
     def from_yaml(cls, obj):
+        '''
+        Convert a list from YAML into a Conferences object.
+        '''
+
         return cls(map(Conference.from_yaml, obj))
 
 class Conference(object):

@@ -142,6 +142,12 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
         validators=[image_validator]
     )
 
+    conference_ids = CallableChoicesSelectMultipleField(
+        label=lazy_gettext('Conferences'),
+        widget=Select(multiple=True),
+        choices=lambda: current_app.config['CONFERENCES'].choices()
+    )
+
     locales = CallableChoicesSelectMultipleField(
         label=lazy_gettext('Languages'),
         widget=Select(multiple=True),
