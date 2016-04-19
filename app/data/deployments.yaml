@@ -43,6 +43,13 @@ _default:
     - lab-design
     - datascience
 
+  conferences:
+    - id: iodc2016
+      name: International Open Data Conference 2016
+      url: http://opendatacon.org/
+      start_date: 2016-10-06
+      is_featured: true
+
 sa.networkofinnovators.org:
   about: >
     <p><b>Network of Innovators (NoI)</b> is an application designed and
