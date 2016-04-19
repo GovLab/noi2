@@ -3,6 +3,8 @@ import bleach
 from flask import Markup
 import feedparser
 
+ALLOWED_TAGS = ['p']
+
 def truncate(text, max_words):
     '''
     Truncates the given text with an ellipsis if it's more than the given
@@ -28,7 +30,7 @@ def summarize(feed, max_entries=3, max_words_per_entry=20):
         desc = truncate(entry.description, max_words_per_entry)
         post = dict(
             title=entry.title,
-            description=Markup(bleach.clean(desc)),
+            description=Markup(bleach.clean(desc, tags=ALLOWED_TAGS)),
             link=entry.link,
             domain=urlparse.urlparse(entry.link).netloc
         )
