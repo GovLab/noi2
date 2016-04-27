@@ -33,7 +33,7 @@ class Conferences(list):
         Get available choices for use in e.g. a <select> form field.
         '''
 
-        return self.__class__([(c.id, c.name) for c in self])
+        return [(c.id, c.name) for c in self]
 
     def from_id(self, id):
         '''
