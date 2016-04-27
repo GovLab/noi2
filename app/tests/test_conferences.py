@@ -65,6 +65,7 @@ class ConferencesTests(TestCase):
         c = Conferences([conference_from_yaml(id='foo', name='Foo'),
                          conference_from_yaml(id='bar', name='Bar')])
         self.assertEqual(c.choices(), [('foo', 'Foo'), ('bar', 'Bar')])
+        self.assertTrue(isinstance(c.choices(), Conferences))
 
     def test_featured(self):
         bar = conference_from_yaml(is_featured=False)
@@ -72,6 +73,7 @@ class ConferencesTests(TestCase):
 
         c = Conferences([bar, foo])
         self.assertEqual(c.featured, [foo])
+        self.assertTrue(isinstance(c.featured, Conferences))
 
 class ConferenceTests(TestCase):
     def test_parses_start_date(self):

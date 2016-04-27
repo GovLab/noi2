@@ -33,7 +33,7 @@ class Conferences(list):
         Get available choices for use in e.g. a <select> form field.
         '''
 
-        return [(c.id, c.name) for c in self]
+        return self.__class__([(c.id, c.name) for c in self])
 
     def from_id(self, id):
         '''
@@ -51,7 +51,7 @@ class Conferences(list):
         Return only the conferences which are featured.
         '''
 
-        return [c for c in self if c.is_featured]
+        return self.__class__([c for c in self if c.is_featured])
 
     @classmethod
     def from_yaml(cls, obj):
