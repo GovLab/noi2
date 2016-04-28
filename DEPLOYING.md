@@ -17,9 +17,9 @@
 
   * If SSH keys are set up correctly, you should be able to log in with `ssh root@the.domain.com`.
 
-4. Move to the `stable` version
+4. Move to the `master` branch
 
-  * `git checkout stable`
+  * `git checkout master`
 
 4. Configure the site
 
