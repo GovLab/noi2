@@ -31,7 +31,7 @@
     unguessable `SECRET_KEY`, and set `NOI_DEPLOY`. You'll probably also
     want to configure mail and S3.
   * Some credentials can be obtained from prior installations.
-  * Other customizations (about text, questionnaire ordering, language, etc.) should be made in [deployments.yaml](https://github.com/GovLab/noi2/blob/master/app/data/deployments.yaml).  You'll need to branch these changes off of `stable`, and make sure to re-tag the new commit as `stable`.
+  * Other customizations (about text, questionnaire ordering, language, etc.) should be made in [deployments.yaml](https://github.com/GovLab/noi2/blob/master/app/data/deployments.yaml).  Make sure the changes are made to the `master` branch.
 
 5. Set up https
 
