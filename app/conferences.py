@@ -82,6 +82,12 @@ class Conference(object):
             if not os.path.exists(abspath):
                 raise ValueError('Logo does not exist: %s' % abspath)
 
+    @property
+    def logo_url(self):
+        if self.logo_filename:
+            return url_for('static', filename=self.logo_filename)
+        return 'http://placehold.it/32x32'
+
     @classmethod
     def from_yaml(cls, obj):
         if isinstance(obj['start_date'], basestring):

@@ -9,6 +9,19 @@ from .test_models import DbTestCase
 if not os.path.exists(FILESYSTEM_LOGO_PATH):
     os.mkdir(FILESYSTEM_LOGO_PATH)
 
+class temporary_logo(object):
+    def __init__(self, filename):
+        self.filename = filename
+        self.abs_filename = FILESYSTEM_LOGO_PATH + '/' + self.filename
+
+    def __enter__(self):
+        f = open(self.abs_filename, 'w')
+        f.close()
+
+    def __exit__(self, type, value, tb):
+        os.unlink(self.abs_filename)
+
+
 def conference_from_yaml(**kwargs):
     c = {
         'id': 'bar',
@@ -31,6 +44,11 @@ class UserConferenceTests(DbTestCase):
         self.user = User(email=u'a@example.org', password='foo', active=True)
         db.session.add(self.user)
         db.session.commit()
+
+    def test_logo_url_works(self):
+        with temporary_logo('_TEST_logo.png'):
+            c = conference_from_yaml(logo_filename='_TEST_logo.png')
+            self.assertEqual(c.logo_url, '/static/_TEST_logo.png')
 
     def test_setting_user_conference_ids_adds_conferences(self):
         self.user.conference_ids = ['mycon']
@@ -55,6 +73,10 @@ class ConferencesTests(TestCase):
         c = Conferences([])
         with self.assertRaises(ValueError):
             c.from_id('foo')
+
+    def test_logo_url_falls_back_to_placeholder(self):
+        c = conference_from_yaml(id='boop', name='boop')
+        self.assertEqual(c.logo_url, 'http://placehold.it/32x32')
 
     def test_from_id(self):
         foo = conference_from_yaml(id='foo')
@@ -84,12 +106,5 @@ class ConferenceTests(TestCase):
             c = conference_from_yaml(logo_filename='_TEST_nonexistent.png')
 
     def test_valid_logo_filename_raises_no_error(self):
-        filename = '_TEST_logo.png'
-        abs_filename = FILESYSTEM_LOGO_PATH + '/' + filename
-        f = open(abs_filename, 'w')
-        f.close()
-
-        try:
-            c = conference_from_yaml(logo_filename=filename)
-        finally:
-            os.unlink(abs_filename)
+        with temporary_logo('_TEST_logo.png'):
+            conference_from_yaml(logo_filename='_TEST_logo.png')
