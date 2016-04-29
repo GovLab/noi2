@@ -85,7 +85,9 @@ class Conference(object):
     @property
     def logo_url(self):
         if self.logo_filename:
-            return url_for('static', filename=self.logo_filename)
+            return url_for('static',
+                           filename=STATIC_LOGO_PATH + '/' +
+                                    self.logo_filename)
         return 'http://placehold.it/32x32'
 
     @classmethod

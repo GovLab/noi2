@@ -48,7 +48,8 @@ class UserConferenceTests(DbTestCase):
     def test_logo_url_works(self):
         with temporary_logo('_TEST_logo.png'):
             c = conference_from_yaml(logo_filename='_TEST_logo.png')
-            self.assertEqual(c.logo_url, '/static/_TEST_logo.png')
+            self.assertEqual(c.logo_url,
+                             '/static/img/conferences/_TEST_logo.png')
 
     def test_setting_user_conference_ids_adds_conferences(self):
         self.user.conference_ids = ['mycon']

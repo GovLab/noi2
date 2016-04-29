@@ -38,7 +38,7 @@ b-public-profile
 
         <div>
           {% for conference in user.conference_objects %}
-            <a href="{{ conference.url }}" target="_blank" title="{{ conference.name }}"><img src="{{ conference.logo_url }}" alt="{{ conference.name }}"></a>
+            <a href="{{ conference.url }}" target="_blank" title="{{ conference.name }}"><img src="{{ conference.logo_url }}" alt="{{ conference.name }}" class="conference-logo"></a>
           {% endfor %}
         </div>
     </div>
