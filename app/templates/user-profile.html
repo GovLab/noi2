@@ -36,6 +36,11 @@ b-public-profile
         <a href="{{ user.linkedin.profile_url }}" target="_blank" class="e-edit"><img src="{{ url_for('static', filename='img/LinkedIn_logo_initials.png') }}" alt="LinkedIn" width="24"></a>
         {% endif %}
 
+        <div>
+          {% for conference in user.conference_objects %}
+            <a href="{{ conference.url }}" target="_blank" title="{{ conference.name }}"><img src="{{ conference.logo_url }}" alt="{{ conference.name }}" class="conference-logo"></a>
+          {% endfor %}
+        </div>
     </div>
     <div class="e-right">
         <h2 class="e-name">{{ user.full_name }}</h2>

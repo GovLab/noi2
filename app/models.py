@@ -5,7 +5,7 @@ SQLAlchemy models for the app
 '''
 
 from app import (ORG_TYPES, VALID_SKILL_LEVELS, LEVELS, QUESTIONNAIRES,
-                 QUESTIONNAIRES_BY_ID, QUESTIONS_BY_ID)
+                 QUESTIONNAIRES_BY_ID, QUESTIONS_BY_ID, conferences)
 from app.utils import UserSkillMatch
 
 from flask import current_app
@@ -655,6 +655,7 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     roles = orm.relationship('Role', secondary='role_users',
                              backref=orm.backref('users', lazy='dynamic'))
 
+    conferences = orm.relationship('UserConference', cascade='all,delete-orphan', backref='user')
     expertise_domains = orm.relationship('UserExpertiseDomain', cascade='all,delete-orphan', backref='user')
     languages = orm.relationship('UserLanguage', cascade='all,delete-orphan', backref='user')
     skills = orm.relationship('UserSkill', cascade='all,delete-orphan', backref='user')
@@ -693,6 +694,44 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
                 group_by(User).\
                 order_by(count_of_unique_emails.desc()).\
                 limit(limit)
+
+    @hybrid_property
+    def conference_objects(self):
+        '''
+        Convenient list of Conference objects representing the conferences
+        this user is attending (or has attended).
+        '''
+
+        return [c.conference for c in self.conferences]
+
+    @hybrid_property
+    def conference_ids(self):
+        '''
+        Convenient list of Conference IDs representing the conferences
+        this user is attending (or has attended).
+        '''
+
+        return [c.conference.id for c in self.conferences]
+
+    @conference_ids.setter
+    def _conference_ids_setter(self, values):
+        '''
+        Update conferences in bulk. Values are array of conference IDs.
+        '''
+
+        # Only add new conferences
+        for val in values:
+            if val not in self.conference_ids:
+                db.session.add(UserConference(conference=val,
+                                              user_id=self.id))
+        # delete expertise no longer found
+        confs_to_remove = []
+        for conf in self.conferences:
+            if conf.conference.id not in values:
+                confs_to_remove.append(conf)
+
+        for conf in confs_to_remove:
+            self.conferences.remove(conf)
 
     @hybrid_property
     def expertise_domain_names(self):
@@ -780,6 +819,24 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
             self.languages.remove(lan)
 
     __table_args__ = (UniqueConstraint('deployment', 'email'),)
+
+
+class UserConference(db.Model):
+    '''
+    Represents a conference (or similar event) that the user is
+    attending.
+
+    List is read from YAML.
+    '''
+
+    __tablename__ = 'user_conferences'
+
+    id = Column(types.Integer, autoincrement=True, primary_key=True)
+    conference = Column(conferences.ConferenceType, nullable=False)
+
+    user_id = Column(types.Integer(), ForeignKey('users.id'), nullable=False)
+
+    __table_args__ = (UniqueConstraint('user_id', 'conference'),)
 
 
 class UserExpertiseDomain(db.Model):  #pylint: disable=no-init,too-few-public-methods

@@ -12,7 +12,7 @@ from werkzeug.contrib.fixers import ProxyFix
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
                  babel, alchemydumps, sass, email_errors, csp, oauth,
-                 linkedin, discourse, slack,
+                 linkedin, discourse, slack, conferences,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
 from app.forms import (NOIForgotPasswordForm, NOILoginForm,
@@ -168,6 +168,11 @@ def create_app(config=None): #pylint: disable=too-many-statements
 
     app.config['CONTACT_FORM_ID'] = this_deployment.get('contact_form_id',
                                                 default_deployment['contact_form_id'])
+
+    app.config['CONFERENCES'] = conferences.from_yaml(this_deployment.get(
+        'conferences',
+        default_deployment.get('conferences', [])
+    ))
 
     # Constants that should be available for all templates.
 
