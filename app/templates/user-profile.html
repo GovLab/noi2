@@ -22,7 +22,7 @@ b-public-profile
 {% block content %}
 
 <section class="b-profile-header">
-    <div class="e-bg" style="background-image: url('{{ get_user_avatar_url(user) }}')"></div> 
+    <div class="e-bg" style="background-image: url('{{ get_user_avatar_url(user) }}')"></div>
     <div class="e-left">
         {% if is_current_user_profile %}
         <a href="{{ url_for('views.my_profile') }}"><img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture"></a>
@@ -38,7 +38,9 @@ b-public-profile
 
         <div>
           {% for conference in user.conference_objects %}
-            <a href="{{ conference.url }}" target="_blank" title="{{ conference.name }}"><img src="{{ conference.logo_url }}" alt="{{ conference.name }}" class="conference-logo"></a>
+            {% if loop.index <= 3 %}
+              <a href="{{ conference.url }}" target="_blank" title="{{ conference.name }}"><img src="{{ conference.logo_url }}" alt="{{ conference.name }}" class="conference-logo"></a>
+            {% endif %}
           {% endfor %}
         </div>
     </div>
@@ -48,7 +50,7 @@ b-public-profile
 
         <ul class="e-info">
            {% if user.organization %}
-             <li><span class="material-icons">business</span>{{ user.organization }}</li> 
+             <li><span class="material-icons">business</span>{{ user.organization }}</li>
            {% endif %}
 
            {% if user.expertise_domain_names %}
@@ -58,7 +60,7 @@ b-public-profile
            {% endif %}
 
            {% if user.full_location %}
-           <li><span class="material-icons">location_on</span>{{ user.full_location }}</li> 
+           <li><span class="material-icons">location_on</span>{{ user.full_location }}</li>
            {% endif %}
 
            {% if user.locales %}
