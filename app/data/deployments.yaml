@@ -58,6 +58,27 @@ _default:
       is_featured: true
       logo_filename: 2016-odrs.png
 
+    - id: test1
+      name: Test Conference 1
+      url: http://odresearch.org/
+      start_date: 2016-10-05
+      is_featured: true
+      logo_filename: testpika.jpg
+
+    - id: test2
+      name: Test Conference 2
+      url: http://odresearch.org/
+      start_date: 2016-10-05
+      is_featured: true
+      logo_filename: testpika.jpg
+
+    - id: test3
+      name: Test Conference 3
+      url: http://odresearch.org/
+      start_date: 2016-10-05
+      is_featured: true
+      logo_filename: testpika.jpg
+
 sa.networkofinnovators.org:
   about: >
     <p><b>Network of Innovators (NoI)</b> is an application designed and
