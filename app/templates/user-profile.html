@@ -37,7 +37,7 @@ b-public-profile
         {% endif %}
 
         <div>
-          {% for conference in user.conference_objects %}
+          {% for conference in user.conference_objects|sort(attribute='start_date') %}
             {% if loop.index <= 3 %}
               <a href="{{ conference.url }}" target="_blank" title="{{ conference.name }}"><img src="{{ conference.logo_url }}" alt="{{ conference.name }}" class="conference-logo"></a>
             {% endif %}
