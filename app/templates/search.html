@@ -40,6 +40,10 @@
     <div class="b-dropdown">
       {{ form.expertise_domain_name() }}
     </div>
+    <label for="conference">{{ gettext('By conference') }}</label>
+    <div class="b-dropdown">
+      {{ form.conference() }}
+    </div>
     <label for="fulltext">{{ gettext('Search terms') }}</label>
     {{ form.fulltext(class="b-textfield", placeholder=gettext("Enter organization, name, or keywords here")) }}
   <input class="b-button" type="submit" value="{{ gettext('Find Innovators') }}">

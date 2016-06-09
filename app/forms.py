@@ -221,6 +221,15 @@ class SearchForm(Form):
         ],
         default='ZZ'
     )
+    conference = CallableChoicesSelectField(
+        choices=lambda: [
+            ('ZZ', lazy_gettext('Choose a conference'))
+        ] + [
+            (v.id, lazy_gettext(v.name)) for v in current_app.config['CONFERENCES']
+        ],
+        default='ZZ'
+    )
+
 
     # This doesn't actually appear as a field in a form, but as a tab
     # in a result set, so it's a bit unusual.

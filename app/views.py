@@ -12,7 +12,7 @@ from flask_security import confirmable
 
 from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
                  LEVELS_BY_SCORE, mail, stats, cache, blog_posts, signals)
-from app.models import (db, User, UserLanguage, UserExpertiseDomain,
+from app.models import (db, User, UserLanguage, UserExpertiseDomain, UserConference,
                         UserSkill, Event, SharedMessageEvent, Email,
                         skills_to_percentages)
 
@@ -627,6 +627,14 @@ def search():
             query = query.join(User.expertise_domains).filter(
                 UserExpertiseDomain.name.in_(
                     [form.expertise_domain_name.data]
+                )
+            )
+
+        if (form.conference.data and
+            form.conference.data != 'ZZ'):
+            query = query.join(User.conferences).filter(
+                UserConference.conference.in_(
+                    [form.conference.data]
                 )
             )
 
