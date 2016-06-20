@@ -18,3 +18,4 @@ gen/
 docker-compose.override.yml
 .cache
 *_dump
+development.yml

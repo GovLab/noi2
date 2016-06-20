@@ -10,3 +10,8 @@ maildump:
   extends:
     file: maildump/maildump.yml
     service: maildump
+
+db:
+    image: postgres:9.4
+    ports:
+      - "5432:5432"
