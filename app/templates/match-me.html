@@ -28,7 +28,9 @@
       <div class="e-match-item">
         <header>
           <div class="e-picture">
-            <img src="{{ get_user_avatar_url(match.user) }}" alt="">
+            <a href="{{ url_for('views.get_user_expertise', userid=match.user.id) }}">
+              <img src="{{ get_user_avatar_url(match.user) }}" alt="">
+            </a>
             {% call render_user_mailto_link(match.user, class="e-send-mail") %}<i class="material-icons">send</i>{% endcall %}
           </div>
           <div class="e-info">
