@@ -30,6 +30,7 @@ _default:
     - Trade and Investment
     - Transportation
     - Water and Electricity
+    - Other
 
   questions:
     - opendata
