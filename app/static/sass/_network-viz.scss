@@ -66,29 +66,23 @@
       vertical-align: middle;
       color: $white;
       font-size: 13px;
-      // &:first-child {
-      //   padding-left: 0;
-      // }
-      // &:last-child {
-      //   padding-right: 0;
-      // }
       span {
         &::before {
           @include material;
-          display: inline-block;
           vertical-align: middle;
           content: 'lens';
-          margin: 0 10px 0 0;
+          margin: 0 8px 0 0;
         }
+      }
+      &:hover {
+        background-color: $white-10;
       }
       &.m-explain span::before { color: $purple; }
       &.m-do span::before { color: $teal; }
       &.m-connect span::before { color: $yellow; }
       &.m-learn span::before { color: $orange; }
       &.m-explain, &.m-do, &.m-connect, &.m-learn { background-color: transparent; }
-      &:hover {
-        background-color: $white-10;
-      }
     }
   }
+
 }
