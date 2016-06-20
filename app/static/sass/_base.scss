@@ -6,14 +6,20 @@ body {
 
 p { color: $gray-80; }
 
-a { 
-    text-decoration: none; 
+a {
+    text-decoration: none;
     color: inherit;
 }
 
-.b-logo { 
+.b-logo {
     color: $white-40;
     font-size: 60px;
     font-weight: 600;
     letter-spacing: 10px;
+}
+
+@mixin material {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
 }
