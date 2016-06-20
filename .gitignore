@@ -17,3 +17,4 @@ gen/
 .DS_Store
 docker-compose.override.yml
 .cache
+*_dump
