@@ -33,12 +33,12 @@
             </a>
             {% if DISCOURSE_ENABLED %}
             <a href="{{ discourse_url('/') }}" class="e-nav-item" data-tutorial-target="4">
-                <span class="material-icons">feedback</span>
+                <span class="material-icons">chat</span>
                 {{ gettext('Discuss') }}
             </a>
             {% else %}
             <a href="{{ url_for('views.feedback') }}" class="e-nav-item">
-                <span class="material-icons">feedback</span>
+                <span class="material-icons">chat</span>
                 {{ gettext('Share Feedback') }}
             </a>
             {% endif %}
@@ -82,7 +82,7 @@
 
     <section class="e-menu">
         <a href="{{ url_for('views.settings') }}">{{ gettext('Settings') }}</a>
-        <a href="{{ url_for('views.feedback') }}">{{ gettext('Share Feedback') 
+        <a href="{{ url_for('views.feedback') }}">{{ gettext('Share Feedback')
 }}</a>
         <a href="{{ url_for('views.invite') }}">{{ gettext('Invite Someone') }}</a>
         <a href="{{ url_for('views.faq') }}">{{ gettext('FAQ') }}</a>
