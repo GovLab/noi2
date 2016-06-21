@@ -58,6 +58,32 @@
     }
 }
 
+.b-scroll {
+    position: relative;
+    .js-scroll-btn {
+        z-index: 100;
+        color: $white;
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        &.js-left {
+            left: 10px;
+        }
+        &.js-right {
+            right: 10px;
+        }
+        i {
+            font-size: 40px;
+        }
+        visibility: hidden;
+        pointer-events: none;
+    }
+    &:hover .js-scroll-btn {
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
 // The content of contextual nav "tabs" should be contained in
 // elements with role="tabpanel"; only one of them should have .active,
 // which is managed by Bootstrap's tab plugin.
