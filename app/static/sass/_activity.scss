@@ -109,7 +109,7 @@
     }
 
     .e-blog-items-container {
-       $blogItemBg: lighten($teal, 35%);
+       $blogItemBg: transparentize($teal, 35%);
        $blogItemFg: #000000;
 
         > ul {
