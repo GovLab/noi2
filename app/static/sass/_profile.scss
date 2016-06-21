@@ -35,7 +35,21 @@
         }
 
         .e-edit {
-            margin: 20px;
+            vertical-align: middle;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 12px 9px 10px;
+            font-size: 16px;
+            @include transition;
+            .material-icons {
+                font-size: 20px;
+                vertical-align: middle;
+                padding-bottom: 4px;
+            }
+            &:hover {
+                background-color: $white-10;
+                @include transition;
+            }
         }
 
         .conference-logo {

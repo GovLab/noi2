@@ -20,7 +20,7 @@
       color: rgba(255, 255, 255, 0.75);
       top: auto;
       margin: 0;
-      font-size: 12px;  
+      font-size: 12px;
     }
 
     .e-skill-level, .e-screen {
@@ -54,4 +54,39 @@
   .m-learn {
     background-color: $orange;
   }
+
+  .e-legend {
+    background-color: lighten($gray-60, 0);
+    text-align: center;
+    display: flex;
+
+    .e-legend-item {
+      flex: auto;
+      padding: 10px 8px 12px 8px;
+      display: inline-block;
+      vertical-align: middle;
+      color: $white;
+      font-size: 13px;
+
+      span {
+        &::before {
+          @include material;
+          vertical-align: middle;
+          content: 'lens';
+          margin: 0 8px 0 0;
+        }
+      }
+
+      &.m-explain span::before { color: $purple; }
+      &.m-do span::before { color: $teal; }
+      &.m-connect span::before { color: $yellow; }
+      &.m-learn span::before { color: $orange; }
+      &.m-explain, &.m-do, &.m-connect, &.m-learn { background-color: transparent; }
+
+      &:hover {
+        background-color: $white-10;
+      }
+    }
+  }
+
 }
