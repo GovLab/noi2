@@ -83,7 +83,7 @@ def _get_choices(self):
     Customization of Country field to allow selection of `None`.
     '''
     choices = self._get_choices_old()
-    choices.insert(0, ('ZZ', lazy_gettext('Choose your country'),))
+    choices.insert(0, ('ZZ', lazy_gettext('Choose a country'),))
     return choices
 CountryField._get_choices = _get_choices
 
@@ -143,7 +143,7 @@ class UserForm(ModelForm):  #pylint: disable=no-init,too-few-public-methods
     )
 
     conference_ids = CallableChoicesSelectMultipleField(
-        label=lazy_gettext('Conferences'),
+        label=lazy_gettext('Events'),
         widget=Select(multiple=True),
         choices=lambda: current_app.config['CONFERENCES'].choices()
     )
@@ -223,7 +223,7 @@ class SearchForm(Form):
     )
     conference = CallableChoicesSelectField(
         choices=lambda: [
-            ('ZZ', lazy_gettext('Choose a conference'))
+            ('ZZ', lazy_gettext('Choose an event'))
         ] + [
             (v.id, lazy_gettext(v.name)) for v in current_app.config['CONFERENCES']
         ],
