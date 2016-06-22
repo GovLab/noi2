@@ -83,7 +83,7 @@ def _get_choices(self):
     Customization of Country field to allow selection of `None`.
     '''
     choices = self._get_choices_old()
-    choices.insert(0, ('ZZ', lazy_gettext('Choose your country'),))
+    choices.insert(0, ('ZZ', lazy_gettext('Choose a country'),))
     return choices
 CountryField._get_choices = _get_choices
 
