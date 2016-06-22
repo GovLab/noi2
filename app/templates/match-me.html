@@ -34,7 +34,7 @@
             {% call render_user_mailto_link(match.user, class="e-send-mail") %}<i class="material-icons">send</i>{% endcall %}
           </div>
           <div class="e-info">
-            <h3 class="e-name">{{ match.user.full_name }}</h3>
+            <h3 class="e-name"><a href="{{ url_for('views.get_user_expertise', userid=match.user.id) }}">{{ match.user.full_name }}</a></h3>
             <h4 class="e-job">{{ match.user.position }}</h4>
             <h5 class="e-institution">{{ match.user.organization }}</h5>
           </div>
