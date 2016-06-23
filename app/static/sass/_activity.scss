@@ -59,28 +59,49 @@
 }
 
 .b-scroll {
+    $buttonBg: #4F4F4F;
     position: relative;
     .js-scroll-btn {
         z-index: 100;
-        color: $white;
+        color: $white-60;
         display: inline-block;
         position: absolute;
+        opacity: 0;
+        pointer-events: none;
         top: 10px;
+        width: 36px;
+        height: 36px;
+        background-color: $buttonBg;
+        border-radius: 100%;
+        text-align: center;
         &.js-left {
-            left: 10px;
+            left: 4px;
         }
         &.js-right {
-            right: 10px;
+            right: 4px;
         }
         i {
-            font-size: 40px;
+            padding-top: 4px;
+            font-size: 30px;
         }
-        visibility: hidden;
-        pointer-events: none;
+        @include transition;
+        &:hover {
+            background-color: lighten($buttonBg, 10%);
+        }
     }
     &:hover .js-scroll-btn {
-        visibility: visible;
+        opacity: 1;
         pointer-events: auto;
+        @include transition;
+    }
+    .b-contextual-nav::-webkit-scrollbar {
+        display: none;
+    }
+    .e-item:first-child {
+        padding-left: 80px;
+    }
+    .e-item:last-child {
+        padding-right: 80px;
     }
 }
 
