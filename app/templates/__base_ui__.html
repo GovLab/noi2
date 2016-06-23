@@ -19,7 +19,6 @@
         </div>
     </section>
     <nav class="e-main-nav">
-        {{request.endpoint}}
             <a href="{{ url_for('views.activity') }}" class="e-nav-item {% if 'views.activity' in request.endpoint  %}m-active{% endif %}">
                 <span class="material-icons">home</span>
                 {{ gettext('Home') }}
