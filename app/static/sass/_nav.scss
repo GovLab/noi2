@@ -55,6 +55,9 @@
             text-align: center;
             font-size: 14px;
             flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+            &.m-active {
+                background-color: $gray-05;
+            }
         }
 
         .e-nav-item:hover {

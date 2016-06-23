@@ -45,6 +45,11 @@ $(function() {
     }
   });
 
+  // Reset tutorial steps
+  $(".js-reset-tutorial").click(function (evt) {
+    postTutorialStep(1);
+  });
+
   // For debugging only.
   window._resetTutorial = function() {
     postTutorialStep(1);
