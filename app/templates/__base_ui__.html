@@ -87,6 +87,7 @@
 }}</a>
         <a href="{{ url_for('views.invite') }}">{{ gettext('Invite Someone') }}</a>
         <a href="{{ url_for('views.faq') }}">{{ gettext('FAQ') }}</a>
+        <a href="{{ url_for('views.activity') }}" class="js-reset-tutorial"><i class="material-icons">info</i> {{ gettext('View Tutorials') }}</a>
         <a href="{{ url_for('views.about_page') }}">{{ gettext('About') }}</a>
         <a href="{{ url_for('views.terms_and_conditions') }}">{{ gettext("Terms of Service") }}</a>
         {% if current_user.is_admin() -%}
