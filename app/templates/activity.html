@@ -1,6 +1,6 @@
 {% extends "__base_ui__.html" %}
 
-{% from "_macros.html" import render_tab_bar, render_tab_panel %}
+{% from "_macros.html" import render_scrolling_tab_bar, render_tab_bar, render_tab_panel %}
 {% from "_activity_macros.html" import user_link, user_avatar %}
 
 {% block page_style_pre %}
@@ -25,7 +25,7 @@
 
 {% block content %}
 
-{{ render_tab_bar(tabs, active_tab) }}
+{{ render_scrolling_tab_bar(tabs, active_tab) }}
 
 <div> <!-- Start of tab panel container -->
 

@@ -36,7 +36,7 @@
 </section>
 {% endmacro %}
 
-{% macro render_tab_bar(tabs, active_tab) %}
+{% macro render_scrolling_tab_bar(tabs, active_tab) %}
 <div class="b-scroll">
   <nav class="b-contextual-nav" id="tabs">
     <a class="b-arrow-button js-scroll-btn js-left" href="#" data-target="#tabs"><i class="material-icons">keyboard_arrow_left</i></a>
@@ -46,6 +46,17 @@
       {% endfor %}
     </ul>
     <a class="b-arrow-button js-scroll-btn js-right" href="#" data-target="#tabs"><i class="material-icons">keyboard_arrow_right</i></a>
+  </nav>
+</div>
+{% endmacro %}
+
+{% macro render_tab_bar(tabs, active_tab) %}
+  <nav class="b-contextual-nav" id="tabs">
+    <ul class="e-menu-items" role="tablist">
+      {% for tabid, tablabel in tabs %}
+      <li role="presentation" class="e-item {% if tabid == active_tab %}active{% endif %}"><a href="#{{ tabid }}" aria-controls="{{ tabid }}" role="tab" data-toggle="tab">{{ tablabel }}</a></li>
+      {% endfor %}
+    </ul>
   </nav>
 </div>
 {% endmacro %}
