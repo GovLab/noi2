@@ -26,7 +26,7 @@
     }
 
     .e-name {
-        font-weight: 400;    
+        font-weight: 400;
         color: $white-70;
         font-size: 18px;
     }
@@ -58,6 +58,12 @@
         opacity: .2;
 
 
+    }
+
+    .material-icons {
+        color: $white-30;
+        vertical-align: middle;
+        padding-bottom: 4px;
     }
 
 
