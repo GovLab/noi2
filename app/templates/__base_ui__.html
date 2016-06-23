@@ -19,15 +19,15 @@
         </div>
     </section>
     <nav class="e-main-nav">
-            <a href="{{ url_for('views.activity') }}" class="e-nav-item">
+            <a href="{{ url_for('views.activity') }}" class="e-nav-item {% if request.endpoint == 'views.activity' %}m-active{% endif %}">
                 <span class="material-icons">home</span>
                 {{ gettext('Home') }}
             </a>
-            <a href="{{ url_for('views.match') }}" class="e-nav-item" data-tutorial-target="1">
+            <a href="{{ url_for('views.match') }}" class="e-nav-item {% if request.endpoint == 'views.match' %}m-active{% endif %}" data-tutorial-target="1">
                 <span class="material-icons">group</span>
                 {{ gettext('Match Me') }}
             </a>
-            <a href="{{ url_for('views.search') }}" class="e-nav-item" data-tutorial-target="2">
+            <a href="{{ url_for('views.search') }}" class="e-nav-item {% if request.endpoint == 'views.search' %}m-active{% endif %}" data-tutorial-target="2">
                 <span class="material-icons">search</span>
                 {{ gettext('Find Innovators') }}
             </a>
@@ -37,12 +37,12 @@
                 {{ gettext('Discuss') }}
             </a>
             {% else %}
-            <a href="{{ url_for('views.feedback') }}" class="e-nav-item">
+            <a href="{{ url_for('views.feedback') }}" class="e-nav-item {% if request.endpoint == 'views.feedback' %}m-active{% endif %}">
                 <span class="material-icons">chat</span>
                 {{ gettext('Share Feedback') }}
             </a>
             {% endif %}
-            <a href="{{ url_for('views.network') }}" class="e-nav-item">
+            <a href="{{ url_for('views.network') }}" class="e-nav-item {% if request.endpoint == 'views.network' %}m-active{% endif %}">
                 <span class="material-icons">language</span>
                 {{ gettext('View Network') }}
             </a>
