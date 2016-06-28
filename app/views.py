@@ -83,6 +83,8 @@ def test_template():
     '''
     Uncomment this to test various templates
     '''
+    current_app.logger.debug('___________________________ TEST VALUES ___________________________')
+    current_app.logger.debug('current_user.repeat_tutorials: %s %s', current_user.repeat_tutorials, type(current_user.repeat_tutorials))
     return render_template('down.html')
 
 @views.route('/')
