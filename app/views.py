@@ -78,6 +78,13 @@ def full_registration_required(func):
 
     return decorated_view
 
+@views.route('/test')
+def test_template():
+    '''
+    Uncomment this to test various templates
+    '''
+    return render_template('down.html')
+
 @views.route('/')
 def main_page():
     '''
