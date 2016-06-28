@@ -9,6 +9,13 @@ p { color: $gray-80; }
 a {
     text-decoration: none;
     color: inherit;
+    &.m-text-link {
+      color: lighten($blue, 20%);
+      font-weight: 700;
+      &:hover {
+        color: lighten($blue, 40%);
+      }
+    }
 }
 
 .b-logo {
