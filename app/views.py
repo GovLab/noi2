@@ -83,7 +83,6 @@ def test_template():
     '''
     Uncomment this to test various templates
     '''
-    current_app.logger.debug('___________________________ TEST VALUES ___________________________')
     current_app.logger.debug('current_user.repeat_tutorials: %s %s', current_user.repeat_tutorials, type(current_user.repeat_tutorials))
     return render_template('down.html')
 
@@ -569,7 +568,14 @@ def tutorial():
     '''
     Save in the DB that user has seen a tutorial step.
     '''
-    current_user.tutorial_step = int(request.form.get('step'))
+    if 'step' in request.form:
+        current_user.tutorial_step = int(request.form.get('step'))
+    if 'repeat' in request.form:
+        current_user.repeat_tutorials = request.form.get('repeat') == 'true'
+
+    current_app.logger.debug('repeat is in request %s', 'repeat' in request.form)
+    current_app.logger.debug('repeat is %s', request.form.get('repeat') == 'true')
+
     db.session.add(current_user)
     db.session.commit()
     return ('', 204)
@@ -732,6 +738,11 @@ def activity():
     we want them to finish it first.
     '''
 
+    num_tutorials = 3
+    if ('DISCOURSE_ENABLED' in current_app.jinja_env.globals):
+        if (current_app.jinja_env.globals['DISCOURSE_ENABLED']):
+            num_tutorials = 4
+
     if (current_user.is_authenticated()
         and not current_user.has_fully_registered):
         return redirect(get_best_registration_step_url(current_user))
@@ -754,6 +765,9 @@ def activity():
             db.session.commit()
             flash(gettext(u'Message posted!'))
             return redirect(url_for('views.activity'))
+
+    if current_user.repeat_tutorials and current_user.tutorial_step > num_tutorials:
+        current_user.tutorial_step = 1
 
     return render_template('activity.html', **{
         'user': current_user,

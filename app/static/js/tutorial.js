@@ -29,11 +29,20 @@ $(function() {
     $(window).off('resize.tutorial.popup');
   }
 
+  // Set tutorial step
   function postTutorialStep(step) {
     $.post('/tutorial', {
       'step': step
     });
   }
+
+  // Set flag to determine if tutorials should repeat on next login
+  function setTutorialRepeatFlag(truefalse) {
+    $.post('/tutorial', {
+      'repeat': truefalse
+    });
+  }
+
 
   // Advance tutorial steps
   $("[data-tutorial-step]").click(function (evt) {
@@ -48,6 +57,16 @@ $(function() {
   // Reset tutorial steps
   $(".js-reset-tutorial").click(function (evt) {
     postTutorialStep(1);
+  });
+
+  // Turn tutorial repeating on login on/off
+  $(".js-reset-tutorial-on-login").click(function (evt) {
+    setTutorialRepeatFlag(true);
+    console.log('repeat to true');
+  });
+  $(".js-dont-reset-tutorial-on-login").click(function (evt) {
+    setTutorialRepeatFlag(false);
+    console.log('repeat to false');
   });
 
   // For debugging only.

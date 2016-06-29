@@ -29,6 +29,8 @@
 
 <div> <!-- Start of tab panel container -->
 
+<a class="b-button js-reset-tutorial-on-login" href="#">SET RESET BACK TO TRUE</a>
+
 {% macro render_blog_post(blog_post) %}
 <li class="e-feed-item m-blog-item">
   <div class="e-feed-message">
@@ -119,13 +121,18 @@
 <div class="b-tutorial-box {{ extra_classes }}" id="tutorial-{{ step }}">
       <div class="e-top-arrow"></div>
       {{ caller() }}
+      {% if step == max_step %}
       <button class="b-button" data-tutorial-step="{{ step + 1 }}">
-        {% if step == max_step %}
-          {{ gettext('OK') }}
-        {% else %}
-          {{ gettext('Next') }}
-        {% endif %}
+        {{ gettext('OK') }}
       </button>
+      <button class="b-button m-naked js-dont-reset-tutorial-on-login" data-tutorial-step="{{ step + 1 }}">
+        {{ gettext('Dismiss Forever') }}
+      </button>
+      {% else %}
+      <button class="b-button" data-tutorial-step="{{ step + 1 }}">
+          {{ gettext('Next') }}
+      </button>
+      {% endif %}
       <div class="e-counter">{{ step }}/{{ max_step }}</div>
 </div>
 {% endmacro %}
