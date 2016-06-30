@@ -359,16 +359,20 @@ Styleguide 1.2
 @media (min-width: 800px) and (max-width: 1000px) {
   .b-sg-landing-page #wp-slider .b-slide {
     min-height: 380px;
-    padding: 20px 40px; } }
+    padding: 60px 40px 20px 40px; } }
 @media (min-width: 1000px) {
   .b-sg-landing-page #wp-slider .b-slide {
     min-height: 410px;
-    padding: 20px 80px; } }
+    padding: 80px 80px 20px 80px; } }
 @media (min-width: 0px) and (max-width: 640px) {
   .b-sg-landing-page .slick .slick-arrow {
     visibility: hidden; } }
 @media (min-width: 640px) {
   .b-sg-landing-page .slick .slick-arrow {
     visibility: visible; } }
+
+    #wp-slider .slick-track {
+      background-color: #523080;
+    }
 
 /*# sourceMappingURL=landing.css.map */
