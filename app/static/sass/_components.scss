@@ -168,9 +168,10 @@ input { outline: none; }
 
 .b-sticky {
     display: block;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: inherit;
     padding: 20px;
     background-color: $purple;
     text-align: center;
