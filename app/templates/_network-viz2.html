@@ -1,0 +1,72 @@
+<style>
+/* line 58, /noi/app/static/sass/_network-viz.scss */
+.b-network-viz .e-legend {
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  display: flex; }
+  /* line 63, /noi/app/static/sass/_network-viz.scss */
+  .b-network-viz .e-legend .e-legend-item {
+    flex: auto;
+    padding: 10px 8px 12px 8px;
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+    font-size: 13px; }
+    /* line 72, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item span::before {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      vertical-align: middle;
+      content: 'lens';
+      margin: 0 8px 0 0; }
+    /* line 80, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-explain span::before {
+      color: #523080; }
+    /* line 81, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-do span::before {
+      color: #008793; }
+    /* line 82, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-connect span::before {
+      color: #d9b549; }
+    /* line 83, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-learn span::before {
+      color: #ed5c42; }
+    /* line 84, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-explain, .b-network-viz .e-legend .e-legend-item.m-do, .b-network-viz .e-legend .e-legend-item.m-connect, .b-network-viz .e-legend .e-legend-item.m-learn {
+      background-color: transparent; }
+    /* line 86, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item:hover {
+      background-color: rgba(255, 255, 255, 0.1); }
+
+      .e-screen {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.25);
+        width: 100%;
+        height: 100%;
+      }
+</style>
+
+<div class="b-network-viz">
+<div class="e-legend">
+    <div class="e-legend-item m-learn"><span>Wants to Learn</span></div><!--
+    --><div class="e-legend-item m-explain"><span>Can Explain</span></div><!--
+    --><div class="e-legend-item m-connect"><span>Can Connect Others</span></div><!--
+  --><div class="e-legend-item m-do"><span>Can Do It</span></div>
+</div>
+</div>
+<div class="b-overview-graph">
+{% for area_info in viz_data %}
+<div class="e-graph-item">
+  <h3>{{ gettext(area_info.name) }}</h3>
+  <span>{{ gettext('%(count)d questions answered', count=area_info.total) }}</span>
+  <div class="e-bars">
+    <div class="e-bar m-orange" style="width: {{ area_info.learn }}%"></div>
+    <div class="e-bar m-purple" style="width: {{ area_info.explain }}%"></div>
+    <div class="e-bar m-yellow" style="width: {{ area_info.connect }}%"></div>
+    <div class="e-bar m-green" style="width: {{ 100 - area_info.learn - area_info.explain - area_info.connect }}%"></div>
+    <div class="e-screen">&nbsp;</div>
+  </div>
+</div>
+{% endfor %}
+</div>

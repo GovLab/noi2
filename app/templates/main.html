@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon" />
   <!-- Pulls our Typekit Fonts -->
   {# <script src="//use.typekit.net/zez3buj.js"></script> #}
-{#   <script>try{Typekit.load();}catch(e){}</script> #}
+  {#   <script>try{Typekit.load();}catch(e){}</script> #}
 
   <!-- Pulls the material design icon font -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,7 +23,7 @@
 
   <!-- Main Menu (Off Canvas) -->
   <nav class="b-main-menu">
-    <a href="./">Home</a>
+    <a href="./">{{ gettext('Home') }}</a>
   </nav>
 
   <main role="main">
@@ -32,15 +32,18 @@
     <div class="b-above-header m-blue">
       <div class="row">
         <div class="medium-2 column">
-          <form action="" class="b-form m-negative">
-            <select name="" id="">
-              <option value="">English</option>
-              <option value="">Spanish</option>
-            </select>
+          <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form b-form m-negative" data-submit-on-change style="display: inline;">
+            {{ change_locale_form.hidden_tag() }}
+            <div class="b-dropdown" style="margin-top: 8px;">
+              {{ change_locale_form.locale() }}
+            </div>
+            <noscript>
+              <input class="b-button" type="submit" value="{{ gettext('Change Language') }}">
+            </noscript>
           </form>
         </div>
         <div class="medium-2 medium-offset-8 column">
-          <a href="#" class="b-button m-naked">Login</a>
+          <a href="./login" class="b-button m-naked">{{ gettext('Log in') }}</a>
         </div>
 
       </div>
@@ -53,9 +56,9 @@
           <div class="b-main-logo">
             <img src="static/img/noi-logo-white.png" alt="">
           </div>
-          <h1>The skill-sharing network for government & civic innovators worldwide</h1>
+          <h1>{{ gettext('The skill-sharing network for government &amp; civic innovators worldwide') }}</h1>
 
-          <a href="#" class="b-button m-large">Get Started</a>
+          <a href="./register" class="b-button m-large">{{ gettext('Get Started') }}</a>
         </div>
       </div>
 
@@ -69,62 +72,62 @@
     </div>
 
     <section class="b-divider m-large">
-      <h3>Build your own network of innovators and find the right collaborators for your project!</h3>
+      <h3>{{ gettext('Build your own network of innovators and find the right collaborators for your project!') }}</h3>
     </section>
 
     <div class="b-page-section b-noi-categories">
       <div class="row">
         <div class="large-12 column">
-          <h2>Answer questions about what you know and can share with others. Telling us about your innovation skills enables you to get matched to those with complementary expertise.</h2>
+          <h2>{{ gettext('Answer questions about what you know and can share with others. Telling us about your innovation skills enables you to get matched to those with complementary expertise.') }}</h2>
         </div>
       </div>
       <div class="row small-collapse expanded">
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-open-data">
             <img src="static/img/category-open-data.png" alt="Open Data">
-            <h3>Open Data</h3>
+            <h3>{{ gettext('Open Data') }}</h3>
           </div>
         </div>
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-community-engagement">
             <img src="static/img/category-community-engagement.png" alt="Community Engagement">
-            <h3>Community Engagement</h3>
+            <h3>{{ gettext('Community Engagement') }}</h3>
           </div>
         </div>
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-citizen-science">
             <img src="static/img/category-citizen-science.png" alt="Citizen Science">
-            <h3>Citizen Science</h3>
+            <h3>{{ gettext('Citizen Science') }}</h3>
           </div>
         </div>
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-crowdsourcing">
             <img src="static/img/category-crowdsourcing.png" alt="Crowdsourcing">
-            <h3>Crowdsourcing</h3>
+            <h3>{{ gettext('Crowdsourcing') }}</h3>
           </div>
         </div>
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-lab-design">
             <img src="static/img/category-lab-design.png" alt="Lab Design">
-            <h3>Lab Design</h3>
+            <h3>{{ gettext('Lab Design') }}</h3>
           </div>
         </div>
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-prizes">
             <img src="static/img/category-prizes.png" alt="Prizes">
-            <h3>Prizes</h3>
+            <h3>{{ gettext('Prizes') }}</h3>
           </div>
         </div>
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-data-science">
             <img src="static/img/category-data-science.png" alt="Data Science">
-            <h3>Data Science</h3>
+            <h3>{{ gettext('Data Science') }}</h3>
           </div>
         </div>
         <div class="small-6 medium-6 large-3 column">
           <div class="e-category m-randomized-controlled-trials">
             <img src="static/img/category-rct.png" alt="Randomized Controlled Trials">
-            <h3>Randomized Controlled Trials</h3>
+            <h3>{{ gettext('Randomized Controlled Trials') }}</h3>
           </div>
         </div>
       </div>
@@ -132,59 +135,18 @@
     <div class="b-divider">
       <div class="row">
         <div class="columns large-12">
-          <h1>Visualize your knowledge</h1>
-          <h2>Visualize your knowledge of innovative problem solving practices <br> to see what you know, compare to others, and see the</h2>
+          <h1>{{ gettext('Visualize your knowledge') }}</h1>
+          <h2>{{ gettext('Visualize your knowledge of innovative problem solving practices <br> to see what you know, compare to others, and see the') }}</h2>
         </div>
       </div>
     </div>
-    <div class="b-overview-graph">
-      <div class="e-graph-item">
-        <h3>Open Data</h3>
-        <span>3447 questions answered</span>
-        <div class="e-bars">
-          <div class="e-bar m-orange" style="width: 22%;"></div>
-          <div class="e-bar m-purple" style="width: 12%;"></div>
-          <div class="e-bar m-yellow" style="width: 32%;"></div>
-          <div class="e-bar m-green" style="width: 34%;"></div>
-        </div>
-      </div>
 
-      <div class="e-graph-item">
-        <h3>Community Engagement</h3>
-        <span>2813 questions answered</span>
-        <div class="e-bars">
-          <div class="e-bar m-orange" style="width: 32%;"></div>
-          <div class="e-bar m-purple" style="width: 12%;"></div>
-          <div class="e-bar m-yellow" style="width: 34%;"></div>
-          <div class="e-bar m-green" style="width: 22%;"></div>
-        </div>
-      </div>
-
-      <div class="e-graph-item">
-        <h3>Citizen Science</h3>
-        <span>1692 questions answered</span>
-        <div class="e-bars">
-          <div class="e-bar m-orange" style="width: 12%;"></div>
-          <div class="e-bar m-purple" style="width: 18%;"></div>
-          <div class="e-bar m-yellow" style="width: 52%;"></div>
-          <div class="e-bar m-green" style="width: 18%;"></div>
-        </div>
-      </div>
-
-      <div class="e-graph-item">
-        <h3>Crowdsourcing</h3>
-        <span>1346 questions answered</span>
-        <div class="e-bars">
-          <div class="e-bar m-orange" style="width: 27%;"></div>
-          <div class="e-bar m-purple" style="width: 8%;"></div>
-          <div class="e-bar m-yellow" style="width: 40%;"></div>
-          <div class="e-bar m-green" style="width: 25%;"></div>
-        </div>
-      </div>
-    </div>
+    <section>
+      {% include "_network-viz2.html" %}
+    </section>
 
     <section class="b-divider m-large">
-      <h3>News</h3>
+      <h3>{{ gettext('News') }}</h3>
     </section>
     <div class="b-slider js-template">
       <div class="js-wp-slide">
@@ -215,8 +177,8 @@
     <div class="b-slider slick" id="wp-slider">
     </div>
     <div class="b-divider">
-      <h1>Find innovators</h1>
-      <h2>Find innovators who know what you don’t and who want to learn what you can share.</h2>
+      <h1>{{ gettext('Find innovators') }}</h1>
+      <h2>{{ gettext('Find innovators who know what you don’t and who want to learn what you can share.') }}</h2>
     </div>
     <div class="b-gallery-section">
       <!-- @gmattar Make this gallery with this scaling effect and multiple images showing - http://www.thegovlab.org/project-the-govlab-academy.html -->
@@ -282,7 +244,7 @@
   </div>
   <div class="row">
     <div class="column large-12">
-      <p>In collaboration with innovation teams from governments of</p>
+      <p>{{ gettext('In collaboration with innovation teams from governments of') }}</p>
       <div class="b-flags">
         <a href="#" class="e-flag m-argentina"></a>
         <a href="#" class="e-flag m-chile"></a>
@@ -296,9 +258,9 @@
   </div>
   <div class="row">
     <div class="column small-10 small-offset-1">
-      <div class="e-utilities"><a href="#" class="b-button">Get Started</a></div>
-      <div class="e-utilities"><a href="#" class="b-button m-naked">Learn More</a></div>
-      <div class="e-utilities"><a href="#" class="b-button m-naked">Terms of Service</a></div>
+      <div class="e-utilities"><a href="./login" class="b-button">{{ gettext('Get Started') }}</a></div>
+      <div class="e-utilities"><a href="./about" class="b-button m-naked">{{ gettext('Learn More') }}</a></div>
+      <div class="e-utilities"><a href="./terms" class="b-button m-naked">{{ gettext('Terms of Service') }}</a></div>
     </div>
   </div>
 </footer>
@@ -307,7 +269,7 @@
   <div class="row">
     <div class="large-10 large-centered columns">
       <a class="e-cc-badge" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-      This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a> <br> <a href="#">Copyright Infringement Information</a>.
+      {{ gettext('This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a> <br> <a href="#">Copyright Infringement Information</a>.') }}
     </div>
   </div>
 </div>
@@ -316,9 +278,10 @@
 
 <script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
 <script src="//use.typekit.net/zez3buj.js"></script>
-<script src="static/js/slick-1.6.0/slick/slick.min.js"></script>
-<script src="static/js/pages/landing.js"></script>
-<script src="static/js/wp.js"></script>
+<script src="{{ url_for('static', filename='js/slick-1.6.0/slick/slick.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/landing.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wp.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>
