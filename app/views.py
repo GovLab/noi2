@@ -83,9 +83,9 @@ def test_template():
     '''
     Uncomment this to test various templates
     '''
-    current_app.logger.debug('current_user.repeat_tutorials: %s %s', current_user.repeat_tutorials, type(current_user.repeat_tutorials))
-    current_app.logger.debug('activity_route_visited in session: %s', 'activity_route_visited' in session)
-    return render_template('down.html')
+    # current_app.logger.debug('current_user.repeat_tutorials: %s %s', current_user.repeat_tutorials, type(current_user.repeat_tutorials))
+    # current_app.logger.debug('activity_route_visited in session: %s', 'activity_route_visited' in session)
+    return render_template('downflat.html')
 
 @views.route('/')
 def main_page():
