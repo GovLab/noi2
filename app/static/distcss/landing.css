@@ -1,0 +1,373 @@
+/*
+Colors
+
+The following colors are supported in sass out of the box:
+
+Markup:
+<div class="b-palette">
+  <div class="gray-025">$gray-025</div>
+  <div class="gray-05">$gray-025</div>
+  <div class="gray-10">$gray-10</div>
+  <div class="gray-15">$gray-15</div>
+  <div class="gray-20">$gray-20</div>
+  <div class="gray-30">$gray-30</div>
+  <div class="gray-40">$gray-40</div>
+  <div class="gray-50">$gray-50</div>
+  <div class="gray-60">$gray-60</div>
+  <div class="gray-70">$gray-70</div>
+  <div class="gray-80">$gray-80</div>
+  <div class="gray-90">$gray-90</div>
+  <div class="black">$black</div>
+</div>
+<div class="b-palette m-black">
+  <div class="white">$white</div>
+  <div class="white-10">$white-10</div>
+  <div class="white-20">$white-20</div>
+  <div class="white-30">$white-30</div>
+  <div class="white-40">$white-40</div>
+  <div class="white-50">$white-50</div>
+  <div class="white-60">$white-60</div>
+  <div class="white-70">$white-70</div>
+  <div class="white-80">$white-80</div>
+  <div class="white-90">$white-90</div>
+</div>
+<div class="b-palette">
+  <div class="purple">$purple</div>
+  <div class="purple-20k">$purple-20k</div>
+  <div class="purple-40k">$purple-40k</div>
+  <div class="orange">$orange</div>
+  <div class="orange-20k">$orange-20k</div>
+  <div class="teal">$teal</div>
+  <div class="teal-20k">$teal-20k</div>
+  <div class="blue">$blue</div>
+  <div class="blue-20k">$blue-20k</div>
+  <div class="red">$red</div>
+  <div class="green">$green</div>
+</div>
+
+Styleguide 1.2
+*/
+.b-palette div {
+  display: inline-block;
+  padding: 5px;
+  margin: 0 -4px -8px 0;
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 0 1px #333; }
+.b-palette.m-black {
+  background-color: #333; }
+
+.gray-025 {
+  background-color: rgba(0, 0, 0, 0.025); }
+
+.gray-05 {
+  background-color: rgba(0, 0, 0, 0.05); }
+
+.gray-10 {
+  background-color: rgba(0, 0, 0, 0.1); }
+
+.gray-15 {
+  background-color: rgba(0, 0, 0, 0.15); }
+
+.gray-20 {
+  background-color: rgba(0, 0, 0, 0.2); }
+
+.gray-30 {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.gray-40 {
+  background-color: rgba(0, 0, 0, 0.4); }
+
+.gray-50 {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.gray-60 {
+  background-color: rgba(0, 0, 0, 0.6); }
+
+.gray-70 {
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.gray-80 {
+  background-color: rgba(0, 0, 0, 0.8); }
+
+.gray-90 {
+  background-color: rgba(0, 0, 0, 0.9); }
+
+.black {
+  background-color: #333; }
+
+.white-10 {
+  background-color: rgba(255, 255, 255, 0.1); }
+
+.white-20 {
+  background-color: rgba(255, 255, 255, 0.2); }
+
+.white-30 {
+  background-color: rgba(255, 255, 255, 0.3); }
+
+.white-40 {
+  background-color: rgba(255, 255, 255, 0.4); }
+
+.white-50 {
+  background-color: rgba(255, 255, 255, 0.5); }
+
+.white-60 {
+  background-color: rgba(255, 255, 255, 0.6); }
+
+.white-70 {
+  background-color: rgba(255, 255, 255, 0.7); }
+
+.white-80 {
+  background-color: rgba(255, 255, 255, 0.8); }
+
+.white-90 {
+  background-color: rgba(255, 255, 255, 0.9); }
+
+.purple {
+  background-color: #523080; }
+
+.purple-20k {
+  background-color: #47266f; }
+
+.purple-40k {
+  background-color: #381759; }
+
+.orange {
+  background-color: #ee5b43; }
+
+.orange-20k {
+  background-color: #be4936; }
+
+.teal {
+  background-color: #008895; }
+
+.teal-20k {
+  background-color: #00616b; }
+
+.blue {
+  background-color: #008ab3; }
+
+.blue-20k {
+  background-color: #006e8f; }
+
+.green {
+  background-color: #197d32; }
+
+.red {
+  background-color: #c30014; }
+
+.b-sg-landing-page .b-above-header {
+  padding: 5px; }
+  .b-sg-landing-page .b-above-header.m-blue {
+    background-color: #0082a9; }
+.b-sg-landing-page .b-form.m-negative select {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  margin: 0; }
+.b-sg-landing-page .b-landing-section {
+  padding: 60px 0 0;
+  text-align: center; }
+  .b-sg-landing-page .b-landing-section.m-blue {
+    background-color: #008ab3; }
+  .b-sg-landing-page .b-landing-section h1 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: white;
+    margin: 30px 0; }
+  .b-sg-landing-page .b-landing-section .b-main-logo > img {
+    max-width: 460px; }
+  .b-sg-landing-page .b-landing-section .b-button {
+    margin: 40px 0 60px;
+    color: white; }
+  .b-sg-landing-page .b-landing-section footer {
+    background-color: rgba(51, 51, 51, 0.1);
+    padding: 15px 0; }
+.b-sg-landing-page .b-divider.m-large {
+  padding: 40px 0; }
+.b-sg-landing-page .b-divider h3 {
+  text-align: center; }
+.b-sg-landing-page .b-noi-categories {
+  background-color: #008ab3;
+  padding-bottom: 0; }
+  .b-sg-landing-page .b-noi-categories .large-3:nth-child(2) .e-category,
+  .b-sg-landing-page .b-noi-categories .large-3:nth-child(4) .e-category,
+  .b-sg-landing-page .b-noi-categories .large-3:nth-child(5) .e-category,
+  .b-sg-landing-page .b-noi-categories .large-3:nth-child(7) .e-category {
+    background-color: rgba(51, 51, 51, 0.05); }
+  .b-sg-landing-page .b-noi-categories h2 {
+    font-size: 1.1rem;
+    padding: 15px 40px;
+    text-align: center;
+    color: white;
+    text-transform: none; }
+  .b-sg-landing-page .b-noi-categories .e-category {
+    width: 100%;
+    padding: 35% 0 45%;
+    height: 0;
+    text-align: center;
+    background-color: transparent;
+    color: white;
+    position: relative; }
+    .b-sg-landing-page .b-noi-categories .e-category img {
+      opacity: .1;
+      position: absolute;
+      max-width: 80%;
+      max-height: 80%;
+      top: 10%;
+      left: 20%;
+      transition: all 1s ease; }
+      .b-sg-landing-page .b-noi-categories .e-category img:hover {
+        transform: rotate(360deg);
+        transition: all 1s ease; }
+    .b-sg-landing-page .b-noi-categories .e-category h3 {
+      font-size: 1.1rem; }
+.b-sg-landing-page .b-overview-graph .e-graph-item {
+  position: relative;
+  padding: 20px;
+  height: 120px; }
+  .b-sg-landing-page .b-overview-graph .e-graph-item h3 {
+    color: white; }
+  .b-sg-landing-page .b-overview-graph .e-graph-item span {
+    color: white;
+    float: right; }
+  .b-sg-landing-page .b-overview-graph .e-graph-item:nth-of-type(even) {
+    background-color: rgba(51, 51, 51, 0.1); }
+.b-sg-landing-page .b-overview-graph .e-bars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+  overflow: hidden; }
+.b-sg-landing-page .b-overview-graph .e-bar {
+  height: 150px;
+  float: left;
+  display: inline-block; }
+  .b-sg-landing-page .b-overview-graph .e-bar.m-yellow {
+    background-color: #d9b549; }
+  .b-sg-landing-page .b-overview-graph .e-bar.m-orange {
+    background-color: #ed5c42; }
+  .b-sg-landing-page .b-overview-graph .e-bar.m-green {
+    background-color: #008793; }
+  .b-sg-landing-page .b-overview-graph .e-bar.m-purple {
+    background-color: #523080; }
+.b-sg-landing-page .b-gallery-section {
+  margin-top: 0; }
+.b-sg-landing-page .b-slider.m-news .b-slide {
+  width: 100vw;
+  padding: 0; }
+  .b-sg-landing-page .b-slider.m-news .b-slide h4 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    opacity: .4; }
+  .b-sg-landing-page .b-slider.m-news .b-slide p {
+    font-size: 1.1rem; }
+  .b-sg-landing-page .b-slider.m-news .b-slide .e-band {
+    padding: 24px 0;
+    background-color: rgba(51, 51, 51, 0.2); }
+  .b-sg-landing-page .b-slider.m-news .b-slide .e-slide-content {
+    padding: 40px 0 24px; }
+.b-sg-landing-page .b-slider.m-mobile-screens {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  background-color: #333; }
+  @media (min-width: 1025px) {
+    .b-sg-landing-page .b-slider.m-mobile-screens {
+      margin-bottom: -95px;
+      padding-top: 40px; } }
+  @media (min-width: 1025px) {
+    .b-sg-landing-page .b-slider.m-mobile-screens .slick-list {
+      padding-bottom: 15px !important; } }
+  .b-sg-landing-page .b-slider.m-mobile-screens .b-slide {
+    display: inline-block;
+    outline: none;
+    text-align: center;
+    width: 400px;
+    transition: all 0.5s ease; }
+    .b-sg-landing-page .b-slider.m-mobile-screens .b-slide header {
+      transition: all 0.5s ease; }
+      .b-sg-landing-page .b-slider.m-mobile-screens .b-slide header h4 {
+        padding: 0 10px; }
+    .b-sg-landing-page .b-slider.m-mobile-screens .b-slide img {
+      max-width: 300px;
+      margin: 0 auto;
+      transition: all 0.5s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+      @media (max-width: 767px) {
+        .b-sg-landing-page .b-slider.m-mobile-screens .b-slide img {
+          max-height: 240px; } }
+      @media (min-width: 768px) {
+        .b-sg-landing-page .b-slider.m-mobile-screens .b-slide img {
+          max-height: 360px; } }
+      @media (min-width: 1025px) {
+        .b-sg-landing-page .b-slider.m-mobile-screens .b-slide img {
+          max-height: 500px; } }
+    .b-sg-landing-page .b-slider.m-mobile-screens .b-slide:not(.slick-current) {
+      transform: scale(0.8);
+      transform-origin: 10%;
+      transition: all 0.5s ease-in; }
+.b-sg-landing-page .b-footer {
+  text-align: center; }
+  .b-sg-landing-page .b-footer p {
+    padding-top: 20px; }
+  .b-sg-landing-page .b-footer .e-utilities {
+    margin: 10px; }
+    .b-sg-landing-page .b-footer .e-utilities .b-button.m-naked {
+      margin: 0; }
+.b-sg-landing-page .b-flags {
+  text-align: center; }
+  .b-sg-landing-page .b-flags .e-flag {
+    width: 60px;
+    height: 60px;
+    background-color: #FFF;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 15px; }
+  .b-sg-landing-page .b-flags .m-uk {
+    background-image: url("../img/flags/united-kingdom-flag.png"); }
+  .b-sg-landing-page .b-flags .m-us {
+    background-image: url("../img/flags/united-states-flag.png"); }
+  .b-sg-landing-page .b-flags .m-chile {
+    background-image: url("../img/flags/chile-flag.png"); }
+  .b-sg-landing-page .b-flags .m-spain {
+    background-image: url("../img/flags/spain-flag.png"); }
+  .b-sg-landing-page .b-flags .m-mexico {
+    background-image: url("../img/flags/mexico-flag.png"); }
+  .b-sg-landing-page .b-flags .m-argentina {
+    background-image: url("../img/flags/argentina-flag.png"); }
+  .b-sg-landing-page .b-flags .m-south-australia {
+    background-image: url("../img/flags/south-australia-flag.png"); }
+@media (min-width: 0px) and (max-width: 550px) {
+  .b-sg-landing-page #wp-slider .b-slide {
+    min-height: 490px;
+    padding: 20px 0; } }
+@media (min-width: 550px) and (max-width: 640px) {
+  .b-sg-landing-page #wp-slider .b-slide {
+    min-height: 420px;
+    padding: 20px 0; } }
+@media (min-width: 640px) and (max-width: 800px) {
+  .b-sg-landing-page #wp-slider .b-slide {
+    min-height: 400px;
+    padding: 20px 30px; } }
+@media (min-width: 800px) and (max-width: 1000px) {
+  .b-sg-landing-page #wp-slider .b-slide {
+    min-height: 380px;
+    padding: 20px 40px; } }
+@media (min-width: 1000px) {
+  .b-sg-landing-page #wp-slider .b-slide {
+    min-height: 410px;
+    padding: 20px 80px; } }
+@media (min-width: 0px) and (max-width: 640px) {
+  .b-sg-landing-page .slick .slick-arrow {
+    visibility: hidden; } }
+@media (min-width: 640px) {
+  .b-sg-landing-page .slick .slick-arrow {
+    visibility: visible; } }
+
+/*# sourceMappingURL=landing.css.map */
