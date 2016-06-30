@@ -1,248 +1,264 @@
-{% extends '__base_new__.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Network of Innovators</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon" />
+  <!-- Pulls our Typekit Fonts -->
+  {# <script src="//use.typekit.net/zez3buj.js"></script> #}
+{#   <script>try{Typekit.load();}catch(e){}</script> #}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/govlab-styleguide.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
-{% endblock %}
+  <!-- Pulls the material design icon font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-{% block title %}{{ gettext('Network of Innovators') }}{% endblock %}
-{% block body_class %}b-sg-landing-page{% endblock %}
+  <!-- Pulls Slick CSS for sliders -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
-{% block content %}
-<nav class="b-main-menu">
-  <a href="./">Home</a>
-</nav>
-<main role="main">
-  <div class="b-above-header m-blue">
-    <div class="row">
-      <div class="medium-2 column">
-        <form action="" class="b-form m-negative">
-          <select name="" id="">
-            <option value="">English</option>
-            <option value="">Spanish</option>
-          </select>
-        </form>
-      </div>
-      <div class="medium-2 medium-offset-8 column">
-        <a href="#" class="b-button m-naked">Login</a>
-      </div>
+  <!-- Pulls the main styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/govlab-styleguide.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body id="" class="b-sg-landing-page">
 
-    </div>
-  </div>
+  <!-- Main Menu (Off Canvas) -->
+  <nav class="b-main-menu">
+    <a href="./">Home</a>
+  </nav>
 
-  <div class="b-landing-section m-blue">
+  <main role="main">
 
-    <div class="row">
-      <div class="large-10 large-centered column">
-        <div class="b-main-logo">
-          <img src="./img/noi-logo-white.png" alt="">
-        </div>
-        <h1>The skill-sharing network for government & civic innovators worldwide</h1>
 
-        <a href="#" class="b-button m-large">Get Started</a>
-      </div>
-    </div>
-
-    <footer>
+    <div class="b-above-header m-blue">
       <div class="row">
-        <div class="small-6 medium-2 large-2 column small-centered">
-          <img src="./img/govlab-logo-white.png" alt="Built by The GovLab">
+        <div class="medium-2 column">
+          <form action="" class="b-form m-negative">
+            <select name="" id="">
+              <option value="">English</option>
+              <option value="">Spanish</option>
+            </select>
+          </form>
         </div>
-      </div>
-    </footer>
-  </div>
+        <div class="medium-2 medium-offset-8 column">
+          <a href="#" class="b-button m-naked">Login</a>
+        </div>
 
-  <section class="b-divider m-large">
-    <h3>Build your own network of innovators and find the right collaborators for your project!</h3>
-  </section>
-
-  <div class="b-page-section b-noi-categories">
-    <div class="row">
-      <div class="large-12 column">
-        <h2>Answer questions about what you know and can share with others. Telling us about your innovation skills enables you to get matched to those with complementary expertise.</h2>
-      </div>
-    </div>
-    <div class="row small-collapse expanded">
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-open-data">
-          <img src="./img/category-open-data.png" alt="Open Data">
-          <h3>Open Data</h3>
-        </div>
-      </div>
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-community-engagement">
-          <img src="./img/category-community-engagement.png" alt="Community Engagement">
-          <h3>Community Engagement</h3>
-        </div>
-      </div>
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-citizen-science">
-          <img src="./img/category-citizen-science.png" alt="Citizen Science">
-          <h3>Citizen Science</h3>
-        </div>
-      </div>
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-crowdsourcing">
-          <img src="./img/category-crowdsourcing.png" alt="Crowdsourcing">
-          <h3>Crowdsourcing</h3>
-        </div>
-      </div>
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-lab-design">
-          <img src="./img/category-lab-design.png" alt="Lab Design">
-          <h3>Lab Design</h3>
-        </div>
-      </div>
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-prizes">
-          <img src="./img/category-prizes.png" alt="Prizes">
-          <h3>Prizes</h3>
-        </div>
-      </div>
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-data-science">
-          <img src="./img/category-data-science.png" alt="Data Science">
-          <h3>Data Science</h3>
-        </div>
-      </div>
-      <div class="small-6 medium-6 large-3 column">
-        <div class="e-category m-randomized-controlled-trials">
-          <img src="./img/category-rct.png" alt="Randomized Controlled Trials">
-          <h3>Randomized Controlled Trials</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="b-divider">
-    <div class="row">
-      <div class="columns large-12">
-        <h1>Visualize your knowledge</h1>
-        <h2>Visualize your knowledge of innovative problem solving practices <br> to see what you know, compare to others, and see the</h2>
-      </div>
-    </div>
-  </div>
-  <div class="b-overview-graph">
-    <div class="e-graph-item">
-      <h3>Open Data</h3>
-      <span>3447 questions answered</span>
-      <div class="e-bars">
-        <div class="e-bar m-orange" style="width: 22%;"></div>
-        <div class="e-bar m-purple" style="width: 12%;"></div>
-        <div class="e-bar m-yellow" style="width: 32%;"></div>
-        <div class="e-bar m-green" style="width: 34%;"></div>
       </div>
     </div>
 
-    <div class="e-graph-item">
-      <h3>Community Engagement</h3>
-      <span>2813 questions answered</span>
-      <div class="e-bars">
-        <div class="e-bar m-orange" style="width: 32%;"></div>
-        <div class="e-bar m-purple" style="width: 12%;"></div>
-        <div class="e-bar m-yellow" style="width: 34%;"></div>
-        <div class="e-bar m-green" style="width: 22%;"></div>
-      </div>
-    </div>
+    <div class="b-landing-section m-blue">
 
-    <div class="e-graph-item">
-      <h3>Citizen Science</h3>
-      <span>1692 questions answered</span>
-      <div class="e-bars">
-        <div class="e-bar m-orange" style="width: 12%;"></div>
-        <div class="e-bar m-purple" style="width: 18%;"></div>
-        <div class="e-bar m-yellow" style="width: 52%;"></div>
-        <div class="e-bar m-green" style="width: 18%;"></div>
-      </div>
-    </div>
+      <div class="row">
+        <div class="large-10 large-centered column">
+          <div class="b-main-logo">
+            <img src="static/img/noi-logo-white.png" alt="">
+          </div>
+          <h1>The skill-sharing network for government & civic innovators worldwide</h1>
 
-    <div class="e-graph-item">
-      <h3>Crowdsourcing</h3>
-      <span>1346 questions answered</span>
-      <div class="e-bars">
-        <div class="e-bar m-orange" style="width: 27%;"></div>
-        <div class="e-bar m-purple" style="width: 8%;"></div>
-        <div class="e-bar m-yellow" style="width: 40%;"></div>
-        <div class="e-bar m-green" style="width: 25%;"></div>
+          <a href="#" class="b-button m-large">Get Started</a>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <section class="b-divider m-large">
-    <h3>News</h3>
-  </section>
-  <div class="b-slider js-template">
-    <div class="js-wp-slide">
-      <section id="" class="b-slide m-purple">
-        <div class="e-slide-content">
-          <div class="row">
-            <div class="columns large-12">
-              <h3 class="e-post-name">Post Title with a fair amount of characters</h3>
-            </div>
-            <div class="column large-6">
-              <p class="e-date">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt autem blanditiis ullam laboriosam perferendis commodi facilis fuga eligendi tempore, placeat fugiat sint hic sequi voluptatum et nam, dolore corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            </div>
-            <div class="column large-6">
-              <p class="e-post">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt autem blanditiis ullam laboriosam perferendis commodi facilis fuga eligendi tempore, placeat fugiat sint hic sequi voluptatum et nam, dolore corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            </div>
+      <footer>
+        <div class="row">
+          <div class="small-6 medium-2 large-2 column small-centered">
+            <img src="static/img/govlab-logo-white.png" alt="Built by The GovLab">
           </div>
         </div>
-        <div class="e-band">
-          <div class="row">
-            <div class="columns large-12">
-              <a class="b-button">Sign Up to Read More</a>
-            </div>
+      </footer>
+    </div>
+
+    <section class="b-divider m-large">
+      <h3>Build your own network of innovators and find the right collaborators for your project!</h3>
+    </section>
+
+    <div class="b-page-section b-noi-categories">
+      <div class="row">
+        <div class="large-12 column">
+          <h2>Answer questions about what you know and can share with others. Telling us about your innovation skills enables you to get matched to those with complementary expertise.</h2>
+        </div>
+      </div>
+      <div class="row small-collapse expanded">
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-open-data">
+            <img src="static/img/category-open-data.png" alt="Open Data">
+            <h3>Open Data</h3>
           </div>
         </div>
-      </section>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-community-engagement">
+            <img src="static/img/category-community-engagement.png" alt="Community Engagement">
+            <h3>Community Engagement</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-citizen-science">
+            <img src="static/img/category-citizen-science.png" alt="Citizen Science">
+            <h3>Citizen Science</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-crowdsourcing">
+            <img src="static/img/category-crowdsourcing.png" alt="Crowdsourcing">
+            <h3>Crowdsourcing</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-lab-design">
+            <img src="static/img/category-lab-design.png" alt="Lab Design">
+            <h3>Lab Design</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-prizes">
+            <img src="static/img/category-prizes.png" alt="Prizes">
+            <h3>Prizes</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-data-science">
+            <img src="static/img/category-data-science.png" alt="Data Science">
+            <h3>Data Science</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-randomized-controlled-trials">
+            <img src="static/img/category-rct.png" alt="Randomized Controlled Trials">
+            <h3>Randomized Controlled Trials</h3>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="b-slider slick" id="wp-slider">
-  </div>
-  <div class="b-divider">
-    <h1>Find innovators</h1>
-    <h2>Find innovators who know what you don’t and who want to learn what you can share.</h2>
-  </div>
-  <div class="b-gallery-section">
-    <!-- @gmattar Make this gallery with this scaling effect and multiple images showing - http://www.thegovlab.org/project-the-govlab-academy.html -->
-    <div class="b-slider m-mobile-screens">
-      <section id="slide-id" class="b-slide">
-        <img src="./img/screenshots/noi-screenshot-1.jpg" alt="">
+    <div class="b-divider">
+      <div class="row">
+        <div class="columns large-12">
+          <h1>Visualize your knowledge</h1>
+          <h2>Visualize your knowledge of innovative problem solving practices <br> to see what you know, compare to others, and see the</h2>
+        </div>
+      </div>
+    </div>
+    <div class="b-overview-graph">
+      <div class="e-graph-item">
+        <h3>Open Data</h3>
+        <span>3447 questions answered</span>
+        <div class="e-bars">
+          <div class="e-bar m-orange" style="width: 22%;"></div>
+          <div class="e-bar m-purple" style="width: 12%;"></div>
+          <div class="e-bar m-yellow" style="width: 32%;"></div>
+          <div class="e-bar m-green" style="width: 34%;"></div>
+        </div>
+      </div>
+
+      <div class="e-graph-item">
+        <h3>Community Engagement</h3>
+        <span>2813 questions answered</span>
+        <div class="e-bars">
+          <div class="e-bar m-orange" style="width: 32%;"></div>
+          <div class="e-bar m-purple" style="width: 12%;"></div>
+          <div class="e-bar m-yellow" style="width: 34%;"></div>
+          <div class="e-bar m-green" style="width: 22%;"></div>
+        </div>
+      </div>
+
+      <div class="e-graph-item">
+        <h3>Citizen Science</h3>
+        <span>1692 questions answered</span>
+        <div class="e-bars">
+          <div class="e-bar m-orange" style="width: 12%;"></div>
+          <div class="e-bar m-purple" style="width: 18%;"></div>
+          <div class="e-bar m-yellow" style="width: 52%;"></div>
+          <div class="e-bar m-green" style="width: 18%;"></div>
+        </div>
+      </div>
+
+      <div class="e-graph-item">
+        <h3>Crowdsourcing</h3>
+        <span>1346 questions answered</span>
+        <div class="e-bars">
+          <div class="e-bar m-orange" style="width: 27%;"></div>
+          <div class="e-bar m-purple" style="width: 8%;"></div>
+          <div class="e-bar m-yellow" style="width: 40%;"></div>
+          <div class="e-bar m-green" style="width: 25%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="b-divider m-large">
+      <h3>News</h3>
+    </section>
+    <div class="b-slider js-template">
+      <div class="js-wp-slide">
+        <section id="" class="b-slide m-purple">
+          <div class="e-slide-content">
+            <div class="row">
+              <div class="columns large-12">
+                <h3 class="e-post-name">Post Title with a fair amount of characters</h3>
+              </div>
+              <div class="column large-6">
+                <p class="e-date">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt autem blanditiis ullam laboriosam perferendis commodi facilis fuga eligendi tempore, placeat fugiat sint hic sequi voluptatum et nam, dolore corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </div>
+              <div class="column large-6">
+                <p class="e-post">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt autem blanditiis ullam laboriosam perferendis commodi facilis fuga eligendi tempore, placeat fugiat sint hic sequi voluptatum et nam, dolore corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </div>
+            </div>
+          </div>
+          <div class="e-band">
+            <div class="row">
+              <div class="columns large-12">
+                <a class="b-button">Sign Up to Read More</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="b-slider slick" id="wp-slider">
+    </div>
+    <div class="b-divider">
+      <h1>Find innovators</h1>
+      <h2>Find innovators who know what you don’t and who want to learn what you can share.</h2>
+    </div>
+    <div class="b-gallery-section">
+      <!-- @gmattar Make this gallery with this scaling effect and multiple images showing - http://www.thegovlab.org/project-the-govlab-academy.html -->
+      <div class="b-slider m-mobile-screens" id="gallery-slider">
+        <section id="slide-id" class="b-slide">
+          <img src="static/img/screenshots/noi-screenshot-1.jpg" alt="">
       {# <header>
           <h4>Screenshot Message</h4>
         </header> #}
       </section>
       <section id="slide-id" class="b-slide">
-        <img src="./img/screenshots/noi-screenshot-2.jpg" alt="">
+        <img src="static/img/screenshots/noi-screenshot-2.jpg" alt="">
       {# <header>
           <h4>Screenshot Message</h4>
         </header> #}
       </section>
       <section id="slide-id" class="b-slide">
-        <img src="./img/screenshots/noi-screenshot-3.jpg" alt="">
+        <img src="static/img/screenshots/noi-screenshot-3.jpg" alt="">
       {# <header>
           <h4>Find innovators who know what you don’t and who want to learn what you can share.</h4>
         </header> #}
       </section>
       <section id="slide-id" class="b-slide">
-        <img src="./img/screenshots/noi-screenshot-4.jpg" alt="">
+        <img src="static/img/screenshots/noi-screenshot-4.jpg" alt="">
       {# <header>
           <h4>Screenshot Message</h4>
         </header> #}
       </section>
       <section id="slide-id" class="b-slide">
-        <img src="./img/screenshots/noi-screenshot-5.jpg" alt="">
+        <img src="static/img/screenshots/noi-screenshot-5.jpg" alt="">
       {# <header>
           <h4>Screenshot Message</h4>
         </header> #}
       </section>
       <section id="slide-id" class="b-slide">
-        <img src="./img/screenshots/noi-screenshot-6.jpg" alt="">
+        <img src="static/img/screenshots/noi-screenshot-6.jpg" alt="">
       {# <header>
           <h4>Screenshot Message</h4>
         </header> #}
       </section>
       <section id="slide-id" class="b-slide">
-        <img src="./img/screenshots/noi-screenshot-7.jpg" alt="">
+        <img src="static/img/screenshots/noi-screenshot-7.jpg" alt="">
       {# <header>
           <h4>Screenshot Message</h4>
         </header> #}
@@ -257,10 +273,11 @@
   </section>
 
 </main>
+
 <footer class="b-footer m-purple">
   <div class="row">
     <div class="medium-2 column medium-offset-5">
-      <img src="./img/govlab-logo-white.png" alt="Built by The GovLab" class="e-partner-logo m-govlab"/>
+      <img src="static/img/govlab-logo-white.png" alt="Built by The GovLab" class="e-partner-logo m-govlab"/>
     </div>
   </div>
   <div class="row">
@@ -297,7 +314,11 @@
 
 <div id="overlay"></div>
 
-{# <script src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script> #}
-{# <script src="js/wp.js"></script> #}
+<script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
+<script src="//use.typekit.net/zez3buj.js"></script>
+<script src="static/js/slick-1.6.0/slick/slick.min.js"></script>
+<script src="static/js/pages/landing.js"></script>
+<script src="static/js/wp.js"></script>
 
-{% endblock %}
+</body>
+</html>
