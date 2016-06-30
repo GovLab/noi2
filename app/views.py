@@ -575,8 +575,18 @@ def tutorial():
     if 'repeat' in request.form:
         current_user.repeat_tutorials = request.form.get('repeat') == 'true'
 
-    current_app.logger.debug('repeat is in request %s', 'repeat' in request.form)
-    current_app.logger.debug('repeat is %s', request.form.get('repeat') == 'true')
+    db.session.add(current_user)
+    db.session.commit()
+    return ('', 204)
+
+@views.route('/sticky', methods=['POST'])
+@full_registration_required
+def sticky():
+    '''
+    Save in the DB if user has dismissed sticky
+    '''
+    if 'show' in request.form:
+        current_user.show_sticky = request.form.get('show') == 'true'
 
     db.session.add(current_user)
     db.session.commit()
@@ -744,8 +754,8 @@ def activity():
         and not current_user.has_fully_registered):
         return redirect(get_best_registration_step_url(current_user))
 
-    # on first hit, reset tutorials if repeat_tutorials flag is set
     if not session.get('activity_route_visited'):
+        # reset tutorials if repeat_tutorials flag is set
         num_tutorials = 3
         if ('DISCOURSE_ENABLED' in current_app.jinja_env.globals):
             if (current_app.jinja_env.globals['DISCOURSE_ENABLED']):

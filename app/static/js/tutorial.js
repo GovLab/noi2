@@ -62,11 +62,9 @@ $(function() {
   // Turn tutorial repeating on login on/off
   $(".js-reset-tutorial-on-login").click(function (evt) {
     setTutorialRepeatFlag(true);
-    console.log('repeat to true');
   });
   $(".js-dont-reset-tutorial-on-login").click(function (evt) {
     setTutorialRepeatFlag(false);
-    console.log('repeat to false');
   });
 
   // For debugging only.
