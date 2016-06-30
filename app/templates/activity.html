@@ -29,7 +29,7 @@
 
 <div> <!-- Start of tab panel container -->
 
-<a class="b-button js-reset-tutorial-on-login" href="#">SET RESET BACK TO TRUE</a>
+  {{ current_user.tutorial_step }}
 
 {% macro render_blog_post(blog_post) %}
 <li class="e-feed-item m-blog-item">
@@ -122,7 +122,7 @@
       <div class="e-top-arrow"></div>
       {{ caller() }}
       {% if step == max_step %}
-      <button class="b-button" data-tutorial-step="{{ step + 1 }}">
+      <button class="b-button js-reset-tutorial-on-login" data-tutorial-step="{{ step + 1 }}">
         {{ gettext('OK') }}
       </button>
       <button class="b-button m-naked js-dont-reset-tutorial-on-login" data-tutorial-step="{{ step + 1 }}">
