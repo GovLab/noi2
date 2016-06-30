@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="/static/vendor/normalize.css">
-    <link rel="stylesheet" href="/sass-middleware/styles.scss.css">
 
     <link rel="shortcut icon" href="/static/favicon.ico">
     <title>Network of Innovators</title>
@@ -24,6 +23,2149 @@
 <!-- Display the Flash alerts. -->
 
 
+<style>
+/* line 62, /noi/app/static/sass/styles.scss */
+* {
+  box-sizing: border-box; }
+
+/* line 64, /noi/app/static/sass/styles.scss */
+body {
+  padding: 0;
+  margin: 0; }
+
+/* line 1, /noi/app/static/sass/_base.scss */
+body {
+  font-family: "proxima-nova", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased; }
+
+/* line 7, /noi/app/static/sass/_base.scss */
+p {
+  color: rgba(0, 0, 0, 0.8); }
+
+/* line 9, /noi/app/static/sass/_base.scss */
+a {
+  text-decoration: none;
+  color: inherit; }
+  /* line 12, /noi/app/static/sass/_base.scss */
+  a.m-text-link {
+    color: #23c8fa;
+    font-weight: 700; }
+    /* line 15, /noi/app/static/sass/_base.scss */
+    a.m-text-link:hover {
+      color: #87e1fc; }
+
+/* line 21, /noi/app/static/sass/_base.scss */
+.b-logo {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 60px;
+  font-weight: 600;
+  letter-spacing: 10px; }
+
+/* line 9, /noi/app/static/sass/_bootstrap-type.scss */
+.list-unstyled {
+  padding-left: 0;
+  list-style: none; }
+
+/* line 14, /noi/app/static/sass/_bootstrap-type.scss */
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+  margin-left: -5px; }
+  /* line 18, /noi/app/static/sass/_bootstrap-type.scss */
+  .list-inline > li {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px; }
+
+/* line 9, /noi/app/static/sass/_bootstrap-modal.scss */
+.modal-open {
+  overflow: hidden; }
+
+/* line 13, /noi/app/static/sass/_bootstrap-modal.scss */
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+/* line 18, /noi/app/static/sass/_bootstrap-modal.scss */
+.modal {
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+  outline: 0; }
+
+/* line 4, /noi/app/static/sass/_components.scss */
+textarea,
+input {
+  outline: none; }
+
+/* line 8, /noi/app/static/sass/_components.scss */
+.b-textfield {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 0;
+  width: 100%;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: white;
+  transition: all 0.4s ease;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1); }
+  /* line 18, /noi/app/static/sass/_components.scss */
+  .b-textfield:focus {
+    outline: none;
+    background-color: white;
+    transition: all 0.4s ease;
+    color: rgba(0, 0, 0, 0.8); }
+  @media (max-width: 600px) {
+    /* line 8, /noi/app/static/sass/_components.scss */
+    .b-textfield {
+      display: block; } }
+
+/* line 30, /noi/app/static/sass/_components.scss */
+.b-textfield::-webkit-input-placeholder {
+  color: white; }
+
+/* line 31, /noi/app/static/sass/_components.scss */
+.b-textfield:-moz-placeholder {
+  color: white; }
+
+/* line 32, /noi/app/static/sass/_components.scss */
+.b-textfield::-moz-placeholder {
+  color: white; }
+
+/* line 33, /noi/app/static/sass/_components.scss */
+.b-textfield:-ms-input-placeholder {
+  color: white; }
+
+/* line 35, /noi/app/static/sass/_components.scss */
+.b-textfield:focus::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.8); }
+
+/* line 36, /noi/app/static/sass/_components.scss */
+.b-textfield:focus:-moz-placeholder {
+  color: rgba(0, 0, 0, 0.8); }
+
+/* line 37, /noi/app/static/sass/_components.scss */
+.b-textfield:focus::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.8); }
+
+/* line 38, /noi/app/static/sass/_components.scss */
+.b-textfield:focus:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.8); }
+
+/* line 40, /noi/app/static/sass/_components.scss */
+.b-textfield.m-invalid::-webkit-input-placeholder {
+  color: #9d3838; }
+
+/* line 41, /noi/app/static/sass/_components.scss */
+.b-textfield.m-invalid:-moz-placeholder {
+  color: #9d3838; }
+
+/* line 42, /noi/app/static/sass/_components.scss */
+.b-textfield.m-invalid::-moz-placeholder {
+  color: #9d3838; }
+
+/* line 43, /noi/app/static/sass/_components.scss */
+.b-textfield.m-invalid:-ms-input-placeholder {
+  color: #9d3838; }
+
+/* line 45, /noi/app/static/sass/_components.scss */
+.b-textfield.m-valid::-webkit-input-placeholder {
+  color: #497f49; }
+
+/* line 46, /noi/app/static/sass/_components.scss */
+.b-textfield.m-valid:-moz-placeholder {
+  color: #497f49; }
+
+/* line 47, /noi/app/static/sass/_components.scss */
+.b-textfield.m-valid::-moz-placeholder {
+  color: #497f49; }
+
+/* line 48, /noi/app/static/sass/_components.scss */
+.b-textfield.m-valid:-ms-input-placeholder {
+  color: #497f49; }
+
+/* line 51, /noi/app/static/sass/_components.scss */
+.b-textfield.m-invalid,
+.b-textfield.m-valid {
+  background-color: rgba(255, 255, 255, 0.8); }
+
+/* line 55, /noi/app/static/sass/_components.scss */
+.b-button {
+  width: 100%;
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: block; }
+  @media (max-width: 600px) {
+    /* line 55, /noi/app/static/sass/_components.scss */
+    .b-button {
+      display: block; } }
+
+/* line 70, /noi/app/static/sass/_components.scss */
+.b-button.m-naked {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.3) !important;
+  box-shadow: none; }
+
+/* line 81, /noi/app/static/sass/_components.scss */
+.b-button.m-explain,
+.b-button.m-do,
+.b-button.m-connect,
+.b-button.m-learn {
+  color: white;
+  margin-bottom: 10px; }
+
+/* line 86, /noi/app/static/sass/_components.scss */
+.b-button.m-explain {
+  background-color: #523080; }
+
+/* line 87, /noi/app/static/sass/_components.scss */
+.b-button.m-do {
+  background-color: #008793; }
+
+/* line 88, /noi/app/static/sass/_components.scss */
+.b-button.m-connect {
+  background-color: #d9b549; }
+
+/* line 89, /noi/app/static/sass/_components.scss */
+.b-button.m-learn {
+  background-color: #ed5c42; }
+
+/* line 90, /noi/app/static/sass/_components.scss */
+.b-button.m-skip {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.3) !important;
+  box-shadow: none; }
+
+/* line 96, /noi/app/static/sass/_components.scss */
+.b-checkbox {
+  margin-top: 30px;
+  text-transform: uppercase;
+  letter-spacing: .5px; }
+  /* line 101, /noi/app/static/sass/_components.scss */
+  .b-checkbox input[type="checkbox"] {
+    margin-right: 10px; }
+
+/* line 111, /noi/app/static/sass/_components.scss */
+.b-dropdown {
+  width: 100%;
+  display: block;
+  position: relative; }
+  /* line 116, /noi/app/static/sass/_components.scss */
+  .b-dropdown select {
+    padding: 10px 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+    width: inherit;
+    border: 0;
+    font-weight: 600;
+    background-color: #808285;
+    color: white;
+    letter-spacing: 1px; }
+  /* line 129, /noi/app/static/sass/_components.scss */
+  .b-dropdown:after {
+    width: 0;
+    height: 0;
+    border-top: 10px solid rgba(255, 255, 255, 0.3);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    content: "";
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    pointer-events: none; }
+
+/* line 144, /noi/app/static/sass/_components.scss */
+.b-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6); }
+  /* line 153, /noi/app/static/sass/_components.scss */
+  .b-overlay.m-active {
+    display: block; }
+
+/* line 156, /noi/app/static/sass/_components.scss */
+.b-header {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: inherit;
+  letter-spacing: 1px; }
+
+/* line 169, /noi/app/static/sass/_components.scss */
+.b-sticky {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: inherit;
+  padding: 20px;
+  background-color: #523080;
+  text-align: center; }
+  /* line 179, /noi/app/static/sass/_components.scss */
+  .b-sticky p {
+    color: white;
+    font-size: 18px;
+    max-width: 80%;
+    margin: 0 auto; }
+  /* line 186, /noi/app/static/sass/_components.scss */
+  .b-sticky .b-button {
+    max-width: 80%;
+    margin: 0 auto; }
+  /* line 191, /noi/app/static/sass/_components.scss */
+  .b-sticky .e-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px; }
+    /* line 195, /noi/app/static/sass/_components.scss */
+    .b-sticky .e-close-button i {
+      font-size: 30px;
+      color: #8356c0; }
+  /* line 201, /noi/app/static/sass/_components.scss */
+  .b-sticky .m-hide {
+    display: none; }
+
+/* line 1, /noi/app/static/sass/_form.scss */
+.b-form {
+  padding: 20px; }
+  /* line 4, /noi/app/static/sass/_form.scss */
+  .b-form .e-form-section {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 30px 0; }
+  /* line 9, /noi/app/static/sass/_form.scss */
+  .b-form h3 {
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.8); }
+  /* line 21, /noi/app/static/sass/_form.scss */
+  .b-form input[type="text"],
+  .b-form input[type="email"],
+  .b-form input[type="password"],
+  .b-form input[type="submit"],
+  .b-form textarea,
+  .b-form label,
+  .b-form button,
+  .b-form select {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border: 1px solid transparent; }
+  /* line 31, /noi/app/static/sass/_form.scss */
+  .b-form label {
+    margin: 0;
+    text-transform: uppercase; }
+  /* line 40, /noi/app/static/sass/_form.scss */
+  .b-form input[type="text"],
+  .b-form input[type="email"],
+  .b-form input[type="password"],
+  .b-form textarea,
+  .b-form select {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 15px 15px; }
+    /* line 44, /noi/app/static/sass/_form.scss */
+    .b-form input[type="text"]:focus,
+    .b-form input[type="email"]:focus,
+    .b-form input[type="password"]:focus,
+    .b-form textarea:focus,
+    .b-form select:focus {
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      border-color: #048ab3;
+      border-radius: 0; }
+  /* line 51, /noi/app/static/sass/_form.scss */
+  .b-form .e-dropdown {
+    position: relative; }
+    /* line 54, /noi/app/static/sass/_form.scss */
+    .b-form .e-dropdown select {
+      border: 0;
+      -webkit-appearance: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none; }
+    /* line 63, /noi/app/static/sass/_form.scss */
+    .b-form .e-dropdown:not(.m-multiple):after {
+      content: '';
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 0;
+      height: 0;
+      border-top: 11px solid rgba(0, 0, 0, 0.2);
+      border-left: 11px solid transparent;
+      border-right: 11px solid transparent;
+      pointer-events: none; }
+  /* line 78, /noi/app/static/sass/_form.scss */
+  .b-form .e-dropdown.m-multiple select {
+    padding: 0; }
+  /* line 80, /noi/app/static/sass/_form.scss */
+  .b-form .e-dropdown.m-multiple option {
+    padding: 10px 20px; }
+  /* line 105, /noi/app/static/sass/_form.scss */
+  .b-form textarea {
+    min-height: 150px;
+    max-height: 150px; }
+    /* line 109, /noi/app/static/sass/_form.scss */
+    .b-form textarea:focus {
+      background-color: rgba(0, 0, 0, 0.1); }
+  /* line 112, /noi/app/static/sass/_form.scss */
+  .b-form .e-checkbox {
+    position: relative; }
+    /* line 115, /noi/app/static/sass/_form.scss */
+    .b-form .e-checkbox > label {
+      text-transform: none;
+      border-radius: 3px;
+      padding: 20px 20px 20px 60px;
+      transition: all 0.5s ease; }
+    /* line 122, /noi/app/static/sass/_form.scss */
+    .b-form .e-checkbox input[type="checkbox"] {
+      margin: 30px 20px 20px 20px;
+      position: absolute;
+      top: 0; }
+  /* line 130, /noi/app/static/sass/_form.scss */
+  .b-form .e-checkbox.m-accept input[type="checkbox"]:checked {
+    opacity: 0; }
+  /* line 132, /noi/app/static/sass/_form.scss */
+  .b-form .e-checkbox.m-accept input[type="checkbox"]:checked + label:before {
+    content: '\E5CA';
+    font-family: 'Material Icons';
+    color: white;
+    position: absolute;
+    left: 15px;
+    font-size: 30px;
+    pointer-events: none; }
+  /* line 143, /noi/app/static/sass/_form.scss */
+  .b-form .e-checkbox.m-accept input[type="checkbox"]:checked + label {
+    background-color: #497f49;
+    color: white;
+    transition: all 0.5s ease; }
+  /* line 152, /noi/app/static/sass/_form.scss */
+  .b-form input[type="submit"],
+  .b-form button,
+  .b-form .e-button {
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    clear: both; }
+    /* line 161, /noi/app/static/sass/_form.scss */
+    .b-form input[type="submit"]:focus,
+    .b-form input[type="submit"]:hover,
+    .b-form button:focus,
+    .b-form button:hover,
+    .b-form .e-button:focus,
+    .b-form .e-button:hover {
+      background-color: #048ab3;
+      color: white; }
+
+/* line 1, /noi/app/static/sass/_nav.scss */
+.b-close-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  opacity: 0.2;
+  font-size: 32px; }
+
+/* line 9, /noi/app/static/sass/_nav.scss */
+.b-navigation {
+  background-color: #048ab3; }
+  /* line 12, /noi/app/static/sass/_nav.scss */
+  .b-navigation .e-top-bar {
+    padding: 0 10px;
+    background-color: #036f8f;
+    align-items: center;
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */ }
+    /* line 18, /noi/app/static/sass/_nav.scss */
+    .b-navigation .e-top-bar .e-logo {
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: transparent;
+      letter-spacing: 1px;
+      background-image: url(/static/img/noi-logo-ok.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 24px;
+      flex: 1;
+      /* NEW, Spec - Firefox, Chrome, Opera */ }
+    /* line 31, /noi/app/static/sass/_nav.scss */
+    .b-navigation .e-top-bar .e-user-utils {
+      padding: 10px 0; }
+    /* line 35, /noi/app/static/sass/_nav.scss */
+    .b-navigation .e-top-bar .e-post {
+      color: white;
+      padding: 10px;
+      opacity: .6;
+      vertical-align: top; }
+    /* line 42, /noi/app/static/sass/_nav.scss */
+    .b-navigation .e-top-bar .e-user-picture {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden; }
+  /* line 49, /noi/app/static/sass/_nav.scss */
+  .b-navigation .e-main-nav {
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */ }
+    /* line 52, /noi/app/static/sass/_nav.scss */
+    .b-navigation .e-main-nav .e-nav-item {
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 14px;
+      flex: 1;
+      /* NEW, Spec - Firefox, Chrome, Opera */ }
+      /* line 58, /noi/app/static/sass/_nav.scss */
+      .b-navigation .e-main-nav .e-nav-item.m-active {
+        background-color: rgba(0, 0, 0, 0.05); }
+    /* line 63, /noi/app/static/sass/_nav.scss */
+    .b-navigation .e-main-nav .e-nav-item:hover {
+      background-color: rgba(0, 0, 0, 0.1); }
+    /* line 67, /noi/app/static/sass/_nav.scss */
+    .b-navigation .e-main-nav .material-icons {
+      font-size: 30px;
+      display: block;
+      margin-bottom: 6px;
+      opacity: .4; }
+
+/* line 76, /noi/app/static/sass/_nav.scss */
+.b-post-update-wrapper {
+  background-color: #036f8f;
+  position: static;
+  left: 0;
+  right: 0;
+  z-index: 1000; }
+  /* line 83, /noi/app/static/sass/_nav.scss */
+  .b-post-update-wrapper .e-post-update {
+    overflow: hidden;
+    padding: 0 20px;
+    color: white;
+    text-align: center;
+    max-height: 0; }
+    /* line 90, /noi/app/static/sass/_nav.scss */
+    .b-post-update-wrapper .e-post-update h3 {
+      margin: 20px 0 0;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 1px; }
+    /* line 98, /noi/app/static/sass/_nav.scss */
+    .b-post-update-wrapper .e-post-update p {
+      color: currentColor;
+      font-size: 18px; }
+    /* line 103, /noi/app/static/sass/_nav.scss */
+    .b-post-update-wrapper .e-post-update textarea {
+      width: 100%;
+      border: none;
+      padding: 10px;
+      height: 20vh;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px;
+      /* Firefox 18- */
+      /* Firefox 19+ */ }
+      /* line 111, /noi/app/static/sass/_nav.scss */
+      .b-post-update-wrapper .e-post-update textarea::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.7); }
+      /* line 112, /noi/app/static/sass/_nav.scss */
+      .b-post-update-wrapper .e-post-update textarea:-moz-placeholder {
+        color: rgba(255, 255, 255, 0.7); }
+      /* line 113, /noi/app/static/sass/_nav.scss */
+      .b-post-update-wrapper .e-post-update textarea::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.7); }
+      /* line 114, /noi/app/static/sass/_nav.scss */
+      .b-post-update-wrapper .e-post-update textarea:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.7); }
+    /* line 117, /noi/app/static/sass/_nav.scss */
+    .b-post-update-wrapper .e-post-update .b-button {
+      background-color: #048ab3;
+      position: relative;
+      margin-bottom: 20px; }
+      /* line 122, /noi/app/static/sass/_nav.scss */
+      .b-post-update-wrapper .e-post-update .b-button > i {
+        position: absolute;
+        right: 20px;
+        margin-top: -2px; }
+
+/* line 131, /noi/app/static/sass/_nav.scss */
+.b-post-update-wrapper.m-update-active {
+  position: fixed;
+  box-shadow: 0 15px 15px -15px rgba(0, 0, 0, 0.5); }
+  /* line 135, /noi/app/static/sass/_nav.scss */
+  .b-post-update-wrapper.m-update-active .e-post-update {
+    margin-top: 0;
+    max-height: 1000px; }
+
+/* line 1, /noi/app/static/sass/_off-canvas.scss */
+.b-profile-summary {
+  position: absolute;
+  right: 100%;
+  min-height: 100vh;
+  top: 0; }
+
+/* line 8, /noi/app/static/sass/_off-canvas.scss */
+.b-profile-summary.m-active {
+  width: 70%;
+  background-color: #333;
+  right: 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  letter-spacing: .6px; }
+  /* line 21, /noi/app/static/sass/_off-canvas.scss */
+  .b-profile-summary.m-active .e-user-picture {
+    width: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+  /* line 28, /noi/app/static/sass/_off-canvas.scss */
+  .b-profile-summary.m-active .e-name {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px; }
+  /* line 34, /noi/app/static/sass/_off-canvas.scss */
+  .b-profile-summary.m-active .e-edit-profile {
+    color: white; }
+  /* line 36, /noi/app/static/sass/_off-canvas.scss */
+  .b-profile-summary.m-active .e-menu {
+    margin: 50px 0 80px; }
+    /* line 39, /noi/app/static/sass/_off-canvas.scss */
+    .b-profile-summary.m-active .e-menu a {
+      display: block;
+      padding: 10px 0;
+      color: white; }
+      /* line 44, /noi/app/static/sass/_off-canvas.scss */
+      .b-profile-summary.m-active .e-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.2); }
+  /* line 52, /noi/app/static/sass/_off-canvas.scss */
+  .b-profile-summary.m-active .e-govlab-logo {
+    background-image: url(/static/img/govlab-logo-white.png);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+    height: 40px;
+    opacity: .2; }
+  /* line 63, /noi/app/static/sass/_off-canvas.scss */
+  .b-profile-summary.m-active .material-icons {
+    color: rgba(255, 255, 255, 0.3);
+    vertical-align: middle;
+    padding-bottom: 4px; }
+
+/* line 3, /noi/app/static/sass/_progress.scss */
+.b-profile-progress .e-progress-container {
+  margin: 0;
+  padding: 0; }
+
+/* line 8, /noi/app/static/sass/_progress.scss */
+.b-profile-progress .e-progress-item {
+  list-style: none;
+  position: relative; }
+  /* line 12, /noi/app/static/sass/_progress.scss */
+  .b-profile-progress .e-progress-item a {
+    padding: 15px 20px;
+    display: block; }
+    /* line 16, /noi/app/static/sass/_progress.scss */
+    .b-profile-progress .e-progress-item a:after {
+      color: rgba(0, 0, 0, 0.2);
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      content: '\E5C8';
+      font-size: 24px;
+      position: absolute;
+      right: 10px; }
+  /* line 28, /noi/app/static/sass/_progress.scss */
+  .b-profile-progress .e-progress-item:nth-of-type(even) a {
+    background-color: rgba(0, 0, 0, 0.05); }
+  /* line 30, /noi/app/static/sass/_progress.scss */
+  .b-profile-progress .e-progress-item .e-questions-left {
+    position: absolute;
+    right: 46px;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.4);
+    padding: 17px 0;
+    top: 0; }
+  /* line 40, /noi/app/static/sass/_progress.scss */
+  .b-profile-progress .e-progress-item:not([data-questions-left='0']) {
+    background-color: rgba(4, 138, 179, 0.2); }
+    /* line 43, /noi/app/static/sass/_progress.scss */
+    .b-profile-progress .e-progress-item:not([data-questions-left='0']) a:after {
+      color: #048ab3; }
+    /* line 45, /noi/app/static/sass/_progress.scss */
+    .b-profile-progress .e-progress-item:not([data-questions-left='0']) .e-bar {
+      position: absolute;
+      background-color: #048ab3;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: -1; }
+  /* line 56, /noi/app/static/sass/_progress.scss */
+  .b-profile-progress .e-progress-item.m-completed,
+  .b-profile-progress .e-progress-item[data-questions-left='0'] {
+    color: white;
+    background-color: #497f49 !important; }
+    /* line 60, /noi/app/static/sass/_progress.scss */
+    .b-profile-progress .e-progress-item.m-completed .e-bar,
+    .b-profile-progress .e-progress-item[data-questions-left='0'] .e-bar {
+      display: none; }
+    /* line 62, /noi/app/static/sass/_progress.scss */
+    .b-profile-progress .e-progress-item.m-completed .e-questions-left,
+    .b-profile-progress .e-progress-item[data-questions-left='0'] .e-questions-left {
+      display: none; }
+    /* line 64, /noi/app/static/sass/_progress.scss */
+    .b-profile-progress .e-progress-item.m-completed a:after,
+    .b-profile-progress .e-progress-item[data-questions-left='0'] a:after {
+      color: currentColor;
+      content: '\E876'; }
+  /* line 70, /noi/app/static/sass/_progress.scss */
+  .b-profile-progress .e-progress-item:not([data-questions-left]) {
+    background-color: white;
+    color: inherit; }
+    /* line 74, /noi/app/static/sass/_progress.scss */
+    .b-profile-progress .e-progress-item:not([data-questions-left]) a:after {
+      color: rgba(0, 0, 0, 0.2); }
+
+/* line 1, /noi/app/static/sass/_tutorial.scss */
+.b-tutorial-box {
+  display: none;
+  position: absolute;
+  width: 86vw;
+  margin-left: 7vw;
+  margin-right: 7vw;
+  background-color: #008793;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5); }
+  /* line 12, /noi/app/static/sass/_tutorial.scss */
+  .b-tutorial-box.m-active {
+    display: block; }
+  /* line 14, /noi/app/static/sass/_tutorial.scss */
+  .b-tutorial-box.on-right-side {
+    margin-left: 14vw;
+    margin-right: 0; }
+  /* line 19, /noi/app/static/sass/_tutorial.scss */
+  .b-tutorial-box .e-top-arrow {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #008793;
+    position: absolute;
+    top: -19px; }
+  /* line 33, /noi/app/static/sass/_tutorial.scss */
+  .b-tutorial-box p {
+    color: currentColor;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 0 10px 0; }
+    /* line 39, /noi/app/static/sass/_tutorial.scss */
+    .b-tutorial-box p:last-of-type {
+      margin-bottom: 20px; }
+  /* line 44, /noi/app/static/sass/_tutorial.scss */
+  .b-tutorial-box .e-counter {
+    text-align: center;
+    font-style: italic;
+    opacity: .6;
+    margin-top: 10px;
+    letter-spacing: 2px; }
+
+/* line 1, /noi/app/static/sass/_alert-messages.scss */
+.b-alert-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1150; }
+  /* line 12, /noi/app/static/sass/_alert-messages.scss */
+  .b-alert-message .b-close-button {
+    opacity: 1.0; }
+  /* line 14, /noi/app/static/sass/_alert-messages.scss */
+  .b-alert-message p {
+    color: white; }
+
+/* line 17, /noi/app/static/sass/_alert-messages.scss */
+.b-alert-message.m-error {
+  background-color: #9d3838; }
+
+/* line 18, /noi/app/static/sass/_alert-messages.scss */
+.b-alert-message.m-success {
+  background-color: #497f49; }
+
+/* line 19, /noi/app/static/sass/_alert-messages.scss */
+.b-alert-message.m-warning {
+  background-color: #d9b549; }
+
+/* line 20, /noi/app/static/sass/_alert-messages.scss */
+.m-hide {
+  display: none; }
+
+/* line 1, /noi/app/static/sass/_footer-message.scss */
+.b-footer-message {
+  padding: 20px 40px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8); }
+  /* line 6, /noi/app/static/sass/_footer-message.scss */
+  .b-footer-message h3 {
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    font-size: 16px; }
+  /* line 13, /noi/app/static/sass/_footer-message.scss */
+  .b-footer-message p {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 200;
+    line-height: 1.6; }
+
+/* line 8, /noi/app/static/sass/_a11y.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0; }
+
+/* line 25, /noi/app/static/sass/_a11y.scss */
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto; }
+
+/* line 1, /noi/app/static/sass/_onboarding.scss */
+.b-onboarding {
+  text-align: center;
+  color: white;
+  background-color: #048ab3;
+  flex-flow: column;
+  min-height: 100vh;
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */ }
+  /* line 9, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding header {
+    height: 30vh; }
+  /* line 10, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding section {
+    flex: 1;
+    /* NEW, Spec - Firefox, Chrome, Opera */ }
+  /* line 14, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .b-logo {
+    background-image: url("/static/img/noi-logo-white.png");
+    height: 30vh;
+    width: 80vw;
+    margin: 0 10vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center; }
+    @media (min-width: 1080px) {
+      /* line 14, /noi/app/static/sass/_onboarding.scss */
+      .b-onboarding .b-logo {
+        width: 60%;
+        margin: 0 auto; } }
+  /* line 30, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-tagline p {
+    color: white;
+    margin: 5px;
+    font-size: 18px; }
+    /* line 35, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-tagline p:last-child {
+      margin-top: 20px; }
+  /* line 40, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-tagline > .b-button {
+    margin: 50px 30px;
+    width: calc(100% - 60px); }
+  /* line 46, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-onboarding-message {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin: 20px 30px;
+    color: white; }
+  /* line 55, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-onboarding-form {
+    padding: 0 30px; }
+    /* line 58, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-onboarding-form .b-button {
+      margin-top: 20px;
+      margin-bottom: 10px; }
+    /* line 64, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-onboarding-form .b-textfield,
+    .b-onboarding .e-onboarding-form .b-dropdown {
+      margin-bottom: 10px; }
+    /* line 69, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-onboarding-form .b-dropdown select {
+      background-color: rgba(255, 255, 255, 0.2); }
+    /* line 74, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-onboarding-form label {
+      color: black;
+      display: block;
+      padding-bottom: 10px; }
+    /* line 80, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-onboarding-form textarea {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      border: 0;
+      padding: 10px;
+      font-size: 18px; }
+      /* line 88, /noi/app/static/sass/_onboarding.scss */
+      .b-onboarding .e-onboarding-form textarea:focus {
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+        background-color: rgba(255, 255, 255, 0.2) !important; }
+  /* line 95, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-password-reminder {
+    margin-top: 20px;
+    color: white;
+    display: inline-block; }
+  /* line 101, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-signup {
+    padding: 20px 30px;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white; }
+    /* line 107, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-signup a {
+      font-weight: 600;
+      text-decoration: none; }
+  /* line 113, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-confirmed {
+    font-size: 48px;
+    margin: 20px 0 0; }
+  /* line 118, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-category-menu {
+    padding: 20px 30px 0; }
+    /* line 121, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-category-menu .e-category {
+      box-sizing: border-box;
+      display: inline-block;
+      padding: 30px 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: 2px 0;
+      width: calc(50% - 10px);
+      color: white;
+      font-size: 16px;
+      height: 110px;
+      vertical-align: middle; }
+  /* line 136, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding .e-signup-progress {
+    height: 7vh; }
+    /* line 139, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-signup-progress span {
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      display: inline-block;
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      vertical-align: middle; }
+    /* line 149, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding .e-signup-progress .m-current {
+      background-color: white;
+      height: 16px;
+      width: 16px; }
+
+/* line 156, /noi/app/static/sass/_onboarding.scss */
+.ui-bg {
+  width: 100%; }
+
+/* line 158, /noi/app/static/sass/_onboarding.scss */
+.b-onboarding-questions {
+  position: absolute;
+  top: 8vh;
+  left: 7%;
+  width: 82%; }
+  /* line 164, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card {
+    text-align: center;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    padding-bottom: 30px;
+    width: 307px; }
+    /* line 173, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding-questions .e-card .e-card-category {
+      background-color: #048ab3;
+      margin-top: 0;
+      padding: 6px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 16px; }
+    /* line 184, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding-questions .e-card form {
+      margin-left: 20px;
+      margin-right: 20px; }
+    /* line 189, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding-questions .e-card .e-question {
+      font-size: 18px;
+      margin: 30px 20px; }
+    /* line 194, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding-questions .e-card .b-button {
+      margin-bottom: 10px;
+      color: white;
+      padding: 12px; }
+    /* line 200, /noi/app/static/sass/_onboarding.scss */
+    .b-onboarding-questions .e-card .b-button.m-join {
+      background-color: #048ab3;
+      display: block; }
+  /* line 207, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card.m-intro h3 {
+    background-color: #048ab3;
+    margin-bottom: 100px; }
+  /* line 212, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card.m-intro p {
+    margin: 20px; }
+  /* line 216, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card.m-intro .e-text {
+    font-size: 22px; }
+  /* line 220, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card.m-intro .e-aux-text {
+    color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 150px; }
+  /* line 225, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card.m-intro .b-button {
+    display: block;
+    width: auto;
+    margin: 0 20px;
+    background-color: #048ab3; }
+  /* line 233, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-choose-another {
+    font-size: 14px; }
+  /* line 239, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card:first-of-type {
+    z-index: 100;
+    transform: translate(-10px, -20px); }
+  /* line 244, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card:nth-of-type(2) {
+    z-index: 99;
+    transform: translate(0, -10px); }
+  /* line 249, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card:nth-of-type(3) {
+    z-index: 98;
+    transform: translate(10px, 0px); }
+  /* line 254, /noi/app/static/sass/_onboarding.scss */
+  .b-onboarding-questions .e-card:nth-of-type(4) {
+    z-index: 97;
+    transform: translate(20px, 10px); }
+
+/* line 1, /noi/app/static/sass/_activity.scss */
+.b-contextual-nav {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0;
+  margin: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; }
+  /* line 10, /noi/app/static/sass/_activity.scss */
+  .b-contextual-nav .e-menu-items {
+    padding: 0;
+    width: auto;
+    white-space: nowrap;
+    margin: 0; }
+  /* line 17, /noi/app/static/sass/_activity.scss */
+  .b-contextual-nav .e-item {
+    list-style: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+    display: inline-block;
+    margin: 0;
+    padding: 20px 10%;
+    white-space: nowrap;
+    min-width: 50vw;
+    width: auto;
+    text-align: center; }
+    @media (min-width: 601px) {
+      /* line 17, /noi/app/static/sass/_activity.scss */
+      .b-contextual-nav .e-item {
+        min-width: 0;
+        padding: 20px 20px; } }
+    /* line 37, /noi/app/static/sass/_activity.scss */
+    .b-contextual-nav .e-item.m-active, .b-contextual-nav .e-item.active {
+      transform: scale(1.3);
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 600;
+      padding: 13px 10%; }
+    /* line 44, /noi/app/static/sass/_activity.scss */
+    .b-contextual-nav .e-item:first-child {
+      margin-left: 25vw; }
+      @media (min-width: 601px) {
+        /* line 44, /noi/app/static/sass/_activity.scss */
+        .b-contextual-nav .e-item:first-child {
+          margin-left: 0; } }
+    /* line 51, /noi/app/static/sass/_activity.scss */
+    .b-contextual-nav .e-item:last-child {
+      margin-right: 25vw; }
+      @media (min-width: 601px) {
+        /* line 51, /noi/app/static/sass/_activity.scss */
+        .b-contextual-nav .e-item:last-child {
+          margin-right: 0; } }
+
+/* line 61, /noi/app/static/sass/_activity.scss */
+.b-scroll {
+  position: relative; }
+  /* line 64, /noi/app/static/sass/_activity.scss */
+  .b-scroll .js-scroll-btn {
+    z-index: 100;
+    color: rgba(255, 255, 255, 0.6);
+    display: inline-block;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    top: 10px;
+    width: 36px;
+    height: 36px;
+    background-color: #4F4F4F;
+    border-radius: 100%;
+    text-align: center;
+    transition: all 0.5s ease; }
+    /* line 77, /noi/app/static/sass/_activity.scss */
+    .b-scroll .js-scroll-btn.js-left {
+      left: 4px; }
+    /* line 80, /noi/app/static/sass/_activity.scss */
+    .b-scroll .js-scroll-btn.js-right {
+      right: 4px; }
+    /* line 83, /noi/app/static/sass/_activity.scss */
+    .b-scroll .js-scroll-btn i {
+      padding-top: 4px;
+      font-size: 30px; }
+    /* line 88, /noi/app/static/sass/_activity.scss */
+    .b-scroll .js-scroll-btn:hover {
+      background-color: dimgray; }
+  /* line 92, /noi/app/static/sass/_activity.scss */
+  .b-scroll:hover .js-scroll-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.5s ease; }
+  /* line 97, /noi/app/static/sass/_activity.scss */
+  .b-scroll .b-contextual-nav::-webkit-scrollbar {
+    display: none; }
+  /* line 100, /noi/app/static/sass/_activity.scss */
+  .b-scroll .e-item:first-child {
+    padding-left: 80px; }
+  /* line 103, /noi/app/static/sass/_activity.scss */
+  .b-scroll .e-item:last-child {
+    padding-right: 80px; }
+
+/* line 111, /noi/app/static/sass/_activity.scss */
+[role="tabpanel"]:not(.active) {
+  display: none; }
+
+/* line 117, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-activity-feed-container {
+  margin: 0;
+  padding: 0; }
+  /* line 121, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-activity-feed-container .e-feed-item:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, 0.05); }
+
+/* line 124, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-feed-item {
+  list-style: none;
+  margin: 0;
+  padding: 15px 20px;
+  align-items: center;
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */ }
+
+/* line 136, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-blog-items-container > ul {
+  margin: 0;
+  padding: 0; }
+
+/* line 141, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-blog-items-container .m-blog-item {
+  border-left: 5px solid #008793;
+  background-color: rgba(0, 135, 147, 0.1);
+  color: #000000; }
+
+/* line 147, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-blog-items-container .m-blog-item p {
+  color: #000000; }
+
+/* line 151, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-blog-items-container .e-actions {
+  color: rgba(0, 3, 3, 0.73); }
+
+/* line 156, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-blog-items-container li.m-blog-item.m-show-more-blog-items,
+.b-activity-feed .e-blog-items-container li.m-blog-item.m-show-less-blog-items {
+  text-align: center;
+  padding: 0; }
+  /* line 159, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-blog-items-container li.m-blog-item.m-show-more-blog-items a,
+  .b-activity-feed .e-blog-items-container li.m-blog-item.m-show-less-blog-items a {
+    width: 100%; }
+
+/* line 164, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-blog-items-container .e-more-blog-items {
+  display: none; }
+
+/* line 169, /noi/app/static/sass/_activity.scss */
+.b-activity-feed time {
+  text-align: right;
+  max-width: 80px;
+  padding-left: 4px;
+  font-size: 10px;
+  color: gray; }
+
+/* line 177, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-user-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 20px; }
+
+/* line 184, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-load-more {
+  padding: 20px;
+  text-align: center; }
+  /* line 187, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-load-more .material-icons {
+    font-size: 48px; }
+
+/* line 192, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-discourse-category {
+  font-size: 10px;
+  padding: 2px;
+  color: gray;
+  border: 1px dotted lightgray;
+  white-space: pre; }
+
+/* line 200, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-feed-message {
+  flex: 1;
+  /* NEW, Spec - Firefox, Chrome, Opera */ }
+  /* line 203, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-message p {
+    margin: 10px 0; }
+  /* line 205, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-message .e-more {
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+    font-weight: 600; }
+    /* line 211, /noi/app/static/sass/_activity.scss */
+    .b-activity-feed .e-feed-message .e-more:hover {
+      color: #048ab3; }
+
+/* line 215, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-actions {
+  color: rgba(0, 0, 0, 0.4); }
+  /* line 218, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-actions:hover {
+    color: #048ab3; }
+  /* line 220, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-actions .e-action-label {
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 4px; }
+
+/* line 227, /noi/app/static/sass/_activity.scss */
+.b-activity-feed .e-feed-profile {
+  font-weight: 600;
+  flex: 1;
+  /* NEW, Spec - Firefox, Chrome, Opera */ }
+  /* line 232, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-profile p {
+    padding: 0; }
+  /* line 234, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-profile .e-progress-bar:before {
+    content: attr(data-progress);
+    font-weight: 300;
+    font-size: 14px;
+    font-style: italic;
+    position: absolute;
+    right: 0;
+    top: -22px; }
+  /* line 244, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-profile .e-progress-bar {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 2px;
+    position: relative;
+    top: -11px; }
+  /* line 252, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-profile .e-bar {
+    background-color: #048ab3;
+    position: absolute;
+    left: 0;
+    height: 2px; }
+  /* line 260, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-profile.m-completed .e-bar {
+    background-color: #497f49; }
+  /* line 261, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-profile.m-completed .e-progress-bar {
+    margin-right: 30px;
+    width: auto; }
+  /* line 265, /noi/app/static/sass/_activity.scss */
+  .b-activity-feed .e-feed-profile.m-completed .e-progress-bar:before {
+    color: #497f49;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    content: '\E876';
+    font-size: 24px;
+    top: -18px;
+    right: -30px; }
+
+/* line 1, /noi/app/static/sass/_profile.scss */
+.b-profile-header {
+  position: relative;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  background-color: rgba(0, 0, 0, 0.7); }
+  /* line 8, /noi/app/static/sass/_profile.scss */
+  .b-profile-header .e-send {
+    display: none; }
+  /* line 10, /noi/app/static/sass/_profile.scss */
+  .b-profile-header .e-bg {
+    position: absolute;
+    z-index: -1;
+    top: -30px;
+    right: -30px;
+    left: -30px;
+    bottom: -30px;
+    background-size: cover;
+    background-position: center center;
+    -webkit-filter: blur(20px) brightness(40%);
+    -moz-filter: blur(20px) brightness(40%);
+    -o-filter: blur(20px) brightness(40%);
+    -ms-filter: blur(20px) brightness(40%);
+    filter: blur(20px) brightness(40%); }
+  /* line 26, /noi/app/static/sass/_profile.scss */
+  .b-profile-header .e-left {
+    flex: 2;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    text-align: center;
+    padding: 20px 10px; }
+    /* line 32, /noi/app/static/sass/_profile.scss */
+    .b-profile-header .e-left .e-picture {
+      width: 100%;
+      border-radius: 50%;
+      overflow: hidden; }
+    /* line 37, /noi/app/static/sass/_profile.scss */
+    .b-profile-header .e-left .e-edit {
+      vertical-align: middle;
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 12px 9px 10px;
+      font-size: 16px;
+      transition: all 0.5s ease; }
+      /* line 44, /noi/app/static/sass/_profile.scss */
+      .b-profile-header .e-left .e-edit .material-icons {
+        font-size: 20px;
+        vertical-align: middle;
+        padding-bottom: 4px; }
+      /* line 49, /noi/app/static/sass/_profile.scss */
+      .b-profile-header .e-left .e-edit:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.5s ease; }
+    /* line 55, /noi/app/static/sass/_profile.scss */
+    .b-profile-header .e-left .conference-logo {
+      height: 75px;
+      max-width: 100px;
+      margin: 0 auto;
+      display: block; }
+  /* line 63, /noi/app/static/sass/_profile.scss */
+  .b-profile-header .e-right {
+    padding: 30px 10px 10px;
+    flex: 3;
+    /* NEW, Spec - Firefox, Chrome, Opera */ }
+    /* line 67, /noi/app/static/sass/_profile.scss */
+    .b-profile-header .e-right .e-name {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      margin: 0 0 5px 0; }
+    /* line 74, /noi/app/static/sass/_profile.scss */
+    .b-profile-header .e-right .e-job {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-weight: 400;
+      margin: 0 0 20px 0; }
+    /* line 82, /noi/app/static/sass/_profile.scss */
+    .b-profile-header .e-right .e-info {
+      padding: 0; }
+      /* line 85, /noi/app/static/sass/_profile.scss */
+      .b-profile-header .e-right .e-info > li {
+        list-style: none;
+        padding-left: 36px;
+        margin: 12px 0; }
+        /* line 90, /noi/app/static/sass/_profile.scss */
+        .b-profile-header .e-right .e-info > li > span {
+          display: inline-block;
+          margin-left: -36px;
+          margin-right: 12px;
+          vertical-align: -6px;
+          opacity: .5; }
+
+/* line 102, /noi/app/static/sass/_profile.scss */
+.b-profile-questionnaire {
+  padding: 30px 0; }
+  /* line 105, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .e-questions-container {
+    white-space: nowrap;
+    width: auto; }
+  /* line 110, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .e-question {
+    width: calc(100% - 60px);
+    white-space: normal;
+    display: inline-block;
+    margin: 0 30px; }
+  /* line 118, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .e-prev,
+  .b-profile-questionnaire .e-next {
+    color: rgba(0, 0, 0, 0.1);
+    font-size: 42px;
+    margin-top: 3px; }
+  /* line 124, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .e-prev {
+    float: left; }
+  /* line 125, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .e-next {
+    float: right; }
+  /* line 127, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .e-question-text {
+    font-size: 22px;
+    text-align: center;
+    margin: 0 30px 40px;
+    padding: 0 20px; }
+  /* line 134, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .e-questionnaire-answers {
+    padding: 0 20px; }
+  /* line 138, /noi/app/static/sass/_profile.scss */
+  .b-profile-questionnaire .m-start {
+    display: block;
+    width: auto;
+    margin: 0 20px;
+    color: white;
+    background-color: #048ab3; }
+
+/* line 149, /noi/app/static/sass/_profile.scss */
+.b-public-profile .e-send {
+  display: block; }
+
+/* line 150, /noi/app/static/sass/_profile.scss */
+.b-public-profile .e-edit {
+  display: none; }
+
+/* line 152, /noi/app/static/sass/_profile.scss */
+.b-public-profile .e-category {
+  background-color: #048ab3;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  text-align: center; }
+  /* line 161, /noi/app/static/sass/_profile.scss */
+  .b-public-profile .e-category .e-back {
+    position: absolute;
+    left: 20px; }
+
+/* line 167, /noi/app/static/sass/_profile.scss */
+.b-public-profile .b-contextual-nav.m-roles {
+  background-color: rgba(0, 0, 0, 0.2); }
+  /* line 170, /noi/app/static/sass/_profile.scss */
+  .b-public-profile .b-contextual-nav.m-roles .e-item {
+    color: rgba(0, 0, 0, 0.8); }
+
+/* line 173, /noi/app/static/sass/_profile.scss */
+.b-public-profile .e-intro {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600; }
+
+/* line 180, /noi/app/static/sass/_profile.scss */
+.b-public-profile .e-send {
+  padding: 10px 8px 10px 12px;
+  background-color: #048ab3;
+  width: auto;
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  top: -25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); }
+
+/* line 192, /noi/app/static/sass/_profile.scss */
+.b-matching-questions {
+  margin: 0;
+  padding: 0; }
+  /* line 197, /noi/app/static/sass/_profile.scss */
+  .b-matching-questions .e-question-item {
+    list-style-type: none;
+    padding: 10px 20px 20px; }
+  /* line 201, /noi/app/static/sass/_profile.scss */
+  .b-matching-questions .e-question-item:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05); }
+  /* line 203, /noi/app/static/sass/_profile.scss */
+  .b-matching-questions .e-question-text {
+    font-size: 18px;
+    text-align: center; }
+  /* line 208, /noi/app/static/sass/_profile.scss */
+  .b-matching-questions .e-user-answer {
+    position: relative;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    left: 25px; }
+    /* line 215, /noi/app/static/sass/_profile.scss */
+    .b-matching-questions .e-user-answer img {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 50px;
+      position: absolute;
+      left: 0; }
+    /* line 223, /noi/app/static/sass/_profile.scss */
+    .b-matching-questions .e-user-answer .e-user-answer-text {
+      padding: 6px 20px 6px 30px;
+      margin: 8px 0 10px -35px;
+      vertical-align: top;
+      display: inline-block;
+      color: white;
+      font-size: 18px; }
+      /* line 231, /noi/app/static/sass/_profile.scss */
+      .b-matching-questions .e-user-answer .e-user-answer-text .material-icons {
+        padding-left: 0.5em;
+        font-size: inherit;
+        vertical-align: middle; }
+    /* line 238, /noi/app/static/sass/_profile.scss */
+    .b-matching-questions .e-user-answer.m-learn .e-user-answer-text {
+      background-color: #ed5c42; }
+    /* line 239, /noi/app/static/sass/_profile.scss */
+    .b-matching-questions .e-user-answer.m-do .e-user-answer-text {
+      background-color: #008793; }
+    /* line 240, /noi/app/static/sass/_profile.scss */
+    .b-matching-questions .e-user-answer.m-explain .e-user-answer-text {
+      background-color: #523080; }
+    /* line 241, /noi/app/static/sass/_profile.scss */
+    .b-matching-questions .e-user-answer.m-connect .e-user-answer-text {
+      background-color: #d9b549; }
+
+/* line 247, /noi/app/static/sass/_profile.scss */
+#overview .e-user-projects {
+  white-space: pre-wrap; }
+
+/* line 3, /noi/app/static/sass/_find-innovator.scss */
+.b-filters {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px; }
+  /* line 7, /noi/app/static/sass/_find-innovator.scss */
+  .b-filters .b-dropdown {
+    margin-bottom: 20px; }
+  /* line 8, /noi/app/static/sass/_find-innovator.scss */
+  .b-filters .b-dropdown:last-child {
+    margin-bottom: 0; }
+
+/* line 11, /noi/app/static/sass/_find-innovator.scss */
+.b-innovator-results {
+  padding: 0 20px; }
+  /* line 14, /noi/app/static/sass/_find-innovator.scss */
+  .b-innovator-results .e-intro-message {
+    margin: 20px 0; }
+  /* line 16, /noi/app/static/sass/_find-innovator.scss */
+  .b-innovator-results .e-result-item {
+    width: 50%;
+    display: inline-block;
+    margin: 20px -4px;
+    text-align: center;
+    vertical-align: top; }
+    /* line 24, /noi/app/static/sass/_find-innovator.scss */
+    .b-innovator-results .e-result-item .e-picture {
+      max-width: 60%;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 20%; }
+    /* line 30, /noi/app/static/sass/_find-innovator.scss */
+    .b-innovator-results .e-result-item .e-name {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1;
+      margin: 10px 0;
+      padding: 0;
+      text-transform: uppercase; }
+    /* line 39, /noi/app/static/sass/_find-innovator.scss */
+    .b-innovator-results .e-result-item .e-job {
+      margin: 0;
+      padding: 0; }
+
+/* line 3, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-intro {
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 15px 0; }
+
+/* line 13, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-match-item header {
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  align-items: center; }
+
+/* line 18, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-picture {
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  padding: 20px;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  text-align: center; }
+  /* line 26, /noi/app/static/sass/_match-me.scss */
+  .b-match-me .e-picture img {
+    max-width: 100%;
+    border-radius: 50%;
+    overflow: hidden; }
+  /* line 31, /noi/app/static/sass/_match-me.scss */
+  .b-match-me .e-picture .e-send-mail {
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 18px);
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #048ab3;
+    height: 36px;
+    width: 36px;
+    display: inline-block;
+    text-align: center;
+    display: flex;
+    /* NEW, Spec - Firefox, Chrome, Opera */
+    text-indent: 1px;
+    align-items: center;
+    justify-content: center; }
+    /* line 46, /noi/app/static/sass/_match-me.scss */
+    .b-match-me .e-picture .e-send-mail i {
+      color: white;
+      font-size: 20px; }
+
+/* line 53, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-info {
+  flex: 3;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  text-align: left; }
+
+/* line 60, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-name,
+.b-match-me .e-job,
+.b-match-me .e-institution {
+  margin: 6px 0;
+  font-weight: 600; }
+
+/* line 65, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-name {
+  text-transform: uppercase;
+  font-size: 18px; }
+
+/* line 70, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-job {
+  font-size: 15px; }
+
+/* line 74, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-institution {
+  font-weight: 400;
+  font-size: 14px; }
+
+/* line 79, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-match-question-group {
+  padding: 0; }
+  /* line 82, /noi/app/static/sass/_match-me.scss */
+  .b-match-me .e-match-question-group li {
+    list-style-type: none;
+    margin: 0; }
+
+/* line 89, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-match-questionnaire a {
+  padding: 10px 20px;
+  align-items: center;
+  display: flex;
+  /* NEW, Spec - Firefox, Chrome, Opera */ }
+
+/* line 95, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-match-questionnaire:nth-of-type(odd) a {
+  background-color: rgba(0, 0, 0, 0.05); }
+
+/* line 99, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-subject {
+  flex: 1;
+  /* NEW, Spec - Firefox, Chrome, Opera */
+  text-transform: uppercase;
+  font-weight: 600; }
+
+/* line 106, /noi/app/static/sass/_match-me.scss */
+.b-match-me .e-question-number {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0 10px;
+  font-size: 12px;
+  font-style: italic; }
+
+/* line 114, /noi/app/static/sass/_match-me.scss */
+.b-match-me .material-icons {
+  color: rgba(0, 0, 0, 0.4); }
+
+/* line 2, /noi/app/static/sass/_faq.scss */
+.b-faq a {
+  color: #048ab3;
+  text-decoration: underline; }
+
+/* line 7, /noi/app/static/sass/_faq.scss */
+.b-faq .e-faq-list {
+  padding: 0; }
+
+/* line 10, /noi/app/static/sass/_faq.scss */
+.b-faq .e-faq-item {
+  list-style-type: none;
+  padding: 15px 20px;
+  line-height: 1.5; }
+  /* line 15, /noi/app/static/sass/_faq.scss */
+  .b-faq .e-faq-item:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, 0.05); }
+
+/* line 19, /noi/app/static/sass/_faq.scss */
+.b-faq .e-question {
+  font-weight: bold; }
+
+/* line 1, /noi/app/static/sass/_homepage.scss */
+.b-homepage-panel {
+  height: 90vh;
+  background-color: rgba(0, 0, 0, 0.6); }
+  /* line 5, /noi/app/static/sass/_homepage.scss */
+  .b-homepage-panel .e-govlab-logo {
+    width: 160px; }
+  /* line 9, /noi/app/static/sass/_homepage.scss */
+  .b-homepage-panel h1, .b-homepage-panel h2, .b-homepage-panel h3, .b-homepage-panel p {
+    margin: 0; }
+
+/* line 14, /noi/app/static/sass/_homepage.scss */
+.b-branding-section {
+  background-color: #048ab3; }
+  /* line 17, /noi/app/static/sass/_homepage.scss */
+  .b-branding-section .e-top-links {
+    height: 8vh; }
+    /* line 20, /noi/app/static/sass/_homepage.scss */
+    .b-branding-section .e-top-links .b-dropdown {
+      width: 130px;
+      background-color: transparent;
+      display: inline-block; }
+      /* line 25, /noi/app/static/sass/_homepage.scss */
+      .b-branding-section .e-top-links .b-dropdown select {
+        background-color: transparent; }
+    /* line 28, /noi/app/static/sass/_homepage.scss */
+    .b-branding-section .e-top-links .e-login {
+      float: right;
+      padding: 10px 15px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: white; }
+  /* line 37, /noi/app/static/sass/_homepage.scss */
+  .b-branding-section .e-noi-logo {
+    text-align: center;
+    height: 25.4vh;
+    margin-top: 3vh; }
+    /* line 42, /noi/app/static/sass/_homepage.scss */
+    .b-branding-section .e-noi-logo img {
+      width: 80%;
+      max-width: 300px; }
+  /* line 48, /noi/app/static/sass/_homepage.scss */
+  .b-branding-section .e-tagline {
+    font-weight: 400;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.3;
+    color: white;
+    margin: 40px 20px;
+    height: 13vh; }
+  /* line 58, /noi/app/static/sass/_homepage.scss */
+  .b-branding-section .e-header-icon {
+    text-align: center;
+    color: white; }
+    /* line 62, /noi/app/static/sass/_homepage.scss */
+    .b-branding-section .e-header-icon i {
+      font-size: 50px; }
+  /* line 67, /noi/app/static/sass/_homepage.scss */
+  .b-branding-section .b-button {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    color: white; }
+  /* line 73, /noi/app/static/sass/_homepage.scss */
+  .b-branding-section footer {
+    background-color: rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+    height: 13vh;
+    margin-top: 6.5vh; }
+
+/* line 82, /noi/app/static/sass/_homepage.scss */
+.b-categories {
+  background-color: #048ab3; }
+  /* line 86, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-intro {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 20px;
+    padding: 5vh 20px 0;
+    height: 30vh; }
+  /* line 95, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-slider {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: hidden;
+    height: 60vh; }
+  /* line 105, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-wrapper {
+    white-space: nowrap;
+    width: auto; }
+  /* line 110, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel {
+    display: inline-block;
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    height: 60vh;
+    position: relative; }
+    /* line 121, /noi/app/static/sass/_homepage.scss */
+    .b-categories .e-category-panel p {
+      color: white;
+      margin-top: 15vh;
+      vertical-align: middle; }
+  /* line 129, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel:after {
+    content: "";
+    opacity: 0.1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; }
+  /* line 143, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-crowdsourcing:after {
+    background-image: url("/static/img/category-crowdsourcing.png");
+    background-position: center -12vh; }
+  /* line 147, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-data-science:after {
+    background-image: url("/static/img/category-data-science.png");
+    background-position: center -12vh; }
+  /* line 151, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-community-engagement:after {
+    background-image: url("/static/img/category-community-engagement.png"); }
+  /* line 154, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-lab-design:after {
+    background-image: url("/static/img/category-lab-design.png");
+    background-position: center -12vh; }
+  /* line 158, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-citizen-science:after {
+    background-image: url("/static/img/category-citizen-science.png");
+    background-position: center -19vh;
+    background-size: 120%; }
+  /* line 163, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-open-data:after {
+    background-image: url("/static/img/category-open-data.png");
+    background-position: center -13vh;
+    background-size: 120%; }
+  /* line 168, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-prizes:after {
+    background-image: url("/static/img/category-prizes.png");
+    background-position: center -19vh;
+    background-size: 120%; }
+  /* line 173, /noi/app/static/sass/_homepage.scss */
+  .b-categories .e-category-panel.m-rct:after {
+    background-image: url("/static/img/category-rct.png");
+    background-position: center -3vh; }
+
+/* line 180, /noi/app/static/sass/_homepage.scss */
+.b-screenshots {
+  position: relative;
+  overflow: hidden;
+  height: 98vh;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#048ab3+0,048ab3+50,333333+50,4c4c4c+100 */
+  background: #048ab3;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #048ab3 0%, #048ab3 50%, #333333 50%, #4c4c4c 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #048ab3), color-stop(50%, #048ab3), color-stop(50%, #333333), color-stop(100%, #4c4c4c));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #048ab3 0%, #048ab3 50%, #333333 50%, #4c4c4c 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #048ab3 0%, #048ab3 50%, #333333 50%, #4c4c4c 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #048ab3 0%, #048ab3 50%, #333333 50%, #4c4c4c 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #048ab3 0%, #048ab3 50%, #333333 50%, #4c4c4c 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#048ab3', endColorstr='#4c4c4c',GradientType=0 );
+  /* IE6-9 */ }
+  /* line 195, /noi/app/static/sass/_homepage.scss */
+  .b-screenshots .e-screenshot {
+    height: 90vh;
+    position: absolute;
+    transform: rotate(-17deg); }
+    /* line 201, /noi/app/static/sass/_homepage.scss */
+    .b-screenshots .e-screenshot.m-left {
+      left: -200px;
+      top: -50px; }
+  /* line 209, /noi/app/static/sass/_homepage.scss */
+  .b-screenshots .e-blurb {
+    width: 50%;
+    font-size: 16px;
+    color: white;
+    padding: 20px;
+    position: absolute;
+    text-align: right;
+    right: 20px; }
+    /* line 218, /noi/app/static/sass/_homepage.scss */
+    .b-screenshots .e-blurb.m-top {
+      top: 20px; }
+    /* line 219, /noi/app/static/sass/_homepage.scss */
+    .b-screenshots .e-blurb.m-bottom {
+      top: 400px;
+      width: 56%; }
+      @media (min-width: 1080px) {
+        /* line 219, /noi/app/static/sass/_homepage.scss */
+        .b-screenshots .e-blurb.m-bottom {
+          top: 500px; } }
+
+/* line 232, /noi/app/static/sass/_homepage.scss */
+.b-final-message {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 50px 20px;
+  height: 30vh; }
+  /* line 237, /noi/app/static/sass/_homepage.scss */
+  .b-final-message .e-message {
+    font-size: 22px;
+    color: white;
+    text-align: center; }
+
+/* line 244, /noi/app/static/sass/_homepage.scss */
+.b-partners {
+  text-align: center;
+  background-color: #523080;
+  padding: 20px;
+  height: 80vh; }
+  /* line 250, /noi/app/static/sass/_homepage.scss */
+  .b-partners p {
+    color: white;
+    margin: 30px;
+    font-size: 18px; }
+  /* line 256, /noi/app/static/sass/_homepage.scss */
+  .b-partners .e-flags {
+    margin: 30px 0; }
+  /* line 260, /noi/app/static/sass/_homepage.scss */
+  .b-partners .e-flag {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    background-color: white;
+    display: inline-block;
+    background-size: cover;
+    background-position: center; }
+  /* line 270, /noi/app/static/sass/_homepage.scss */
+  .b-partners .b-button {
+    margin-bottom: 20px;
+    color: white; }
+
+/* line 2, /noi/app/static/sass/_network-viz.scss */
+.b-network-viz .e-questionnaire-area {
+  height: 5em;
+  position: relative;
+  color: white; }
+  /* line 7, /noi/app/static/sass/_network-viz.scss */
+  .b-network-viz .e-questionnaire-area h2 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0; }
+  /* line 16, /noi/app/static/sass/_network-viz.scss */
+  .b-network-viz .e-questionnaire-area p {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: rgba(255, 255, 255, 0.75);
+    top: auto;
+    margin: 0;
+    font-size: 12px; }
+  /* line 26, /noi/app/static/sass/_network-viz.scss */
+  .b-network-viz .e-questionnaire-area .e-skill-level, .b-network-viz .e-questionnaire-area .e-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0; }
+  /* line 33, /noi/app/static/sass/_network-viz.scss */
+  .b-network-viz .e-questionnaire-area .e-screen {
+    background: rgba(255, 255, 255, 0.25);
+    width: 100%; }
+  /* line 39, /noi/app/static/sass/_network-viz.scss */
+  .b-network-viz .e-questionnaire-area:nth-child(even) .e-screen {
+    background: rgba(255, 255, 255, 0.2); }
+
+/* line 45, /noi/app/static/sass/_network-viz.scss */
+.b-network-viz .m-explain {
+  background-color: #523080; }
+
+/* line 48, /noi/app/static/sass/_network-viz.scss */
+.b-network-viz .m-do {
+  background-color: #008793; }
+
+/* line 51, /noi/app/static/sass/_network-viz.scss */
+.b-network-viz .m-connect {
+  background-color: #d9b549; }
+
+/* line 54, /noi/app/static/sass/_network-viz.scss */
+.b-network-viz .m-learn {
+  background-color: #ed5c42; }
+
+/* line 58, /noi/app/static/sass/_network-viz.scss */
+.b-network-viz .e-legend {
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  display: flex; }
+  /* line 63, /noi/app/static/sass/_network-viz.scss */
+  .b-network-viz .e-legend .e-legend-item {
+    flex: auto;
+    padding: 10px 8px 12px 8px;
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+    font-size: 13px; }
+    /* line 72, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item span::before {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      vertical-align: middle;
+      content: 'lens';
+      margin: 0 8px 0 0; }
+    /* line 80, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-explain span::before {
+      color: #523080; }
+    /* line 81, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-do span::before {
+      color: #008793; }
+    /* line 82, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-connect span::before {
+      color: #d9b549; }
+    /* line 83, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-learn span::before {
+      color: #ed5c42; }
+    /* line 84, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item.m-explain, .b-network-viz .e-legend .e-legend-item.m-do, .b-network-viz .e-legend .e-legend-item.m-connect, .b-network-viz .e-legend .e-legend-item.m-learn {
+      background-color: transparent; }
+    /* line 86, /noi/app/static/sass/_network-viz.scss */
+    .b-network-viz .e-legend .e-legend-item:hover {
+      background-color: rgba(255, 255, 255, 0.1); }
+
+@media (min-width: 1080px) {
+  /* line 1, /noi/app/static/sass/_desktop-hack.scss */
+  body {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); } }
+
+@media (min-width: 1080px) {
+  /* line 13, /noi/app/static/sass/_desktop-hack.scss */
+  html {
+    background-color: rgba(0, 0, 0, 0.8); } }
+
+@media (min-width: 1080px) {
+  /* line 20, /noi/app/static/sass/_desktop-hack.scss */
+  .b-tutorial-box {
+    width: 76%; } }
+
+@media (min-width: 1080px) {
+  /* line 26, /noi/app/static/sass/_desktop-hack.scss */
+  .modal {
+    position: absolute; } }
+
+@media (min-width: 1080px) {
+  /* line 32, /noi/app/static/sass/_desktop-hack.scss */
+  .b-post-update-wrapper.m-update-active {
+    position: absolute; } }
+
+@media (min-width: 1080px) {
+  /* line 38, /noi/app/static/sass/_desktop-hack.scss */
+  #overview .radarChart {
+    max-height: 500px;
+    overflow: hidden; } }
+
+@media (min-width: 1080px) {
+  /* line 45, /noi/app/static/sass/_desktop-hack.scss */
+  #overview .radarChart svg {
+    transform: scale(0.7) translate(-165px, -160px); } }
+
+/* Useful for making blocks of content that we don't have time to style
+ * not look utterly unstyled and horrible. */
+/* line 101, /noi/app/static/sass/styles.scss */
+.b-temporary-styling {
+  padding: 20px; }
+  /* line 103, /noi/app/static/sass/styles.scss */
+  .b-temporary-styling a {
+    color: #048ab3;
+    text-decoration: underline; }
+
+/*# sourceMappingURL=../css/styles.scss.css.map */
+</style>
 
 
 
