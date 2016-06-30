@@ -22,7 +22,7 @@
             background-color: transparent;
             display: inline-block;
 
-            select { background-color: transparent; }   
+            select { background-color: transparent; }
         }
 
         .e-login {
@@ -38,9 +38,9 @@
         text-align: center;
         height: 25.4vh;
         margin-top: 3vh;
-        
-        img { 
-            width: 80%; 
+
+        img {
+            width: 80%;
             max-width: 300px;
         }
     }
@@ -53,6 +53,15 @@
         color: $white;
         margin: 40px 20px;
         height: 13vh;
+    }
+
+    .e-header-icon {
+        // margin-top: 20px;
+        text-align: center;
+        color: $white;
+        i {
+            font-size: 50px;
+        }
     }
 
     .b-button {
@@ -72,7 +81,7 @@
 
 .b-categories {
     background-color: $blue;
-    
+
 
     .e-category-intro {
         text-align: center;
@@ -108,7 +117,7 @@
         font-weight: 600;
         height: 60vh;
         position: relative;
-        
+
         p {
             color: $white;
             margin-top: 15vh;
@@ -125,7 +134,7 @@
             bottom: 0;
             right: 0;
             position: absolute;
-            z-index: 1;   
+            z-index: 1;
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -194,7 +203,7 @@
             top: -50px;
 
         }
-        
+
     }
 
     .e-blurb {
@@ -207,8 +216,8 @@
         right: 20px;
 
         &.m-top { top: 20px; }
-        &.m-bottom { 
-            top: 400px; 
+        &.m-bottom {
+            top: 400px;
             width: 56%;
             @include breakpoint($desktop) {
                 top: 500px;
@@ -217,7 +226,7 @@
         }
     }
 
-    
+
 }
 
 .b-final-message {
@@ -228,7 +237,7 @@
     .e-message {
         font-size: 22px;
         color: $white;
-        text-align: center;  
+        text-align: center;
     }
 }
 
@@ -237,9 +246,9 @@
     background-color: $purple;
     padding: 20px;
     height: 80vh;
-   
-    p { 
-        color: $white; 
+
+    p {
+        color: $white;
         margin: 30px;
         font-size: 18px;
     }

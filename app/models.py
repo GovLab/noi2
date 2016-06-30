@@ -263,6 +263,9 @@ class User(db.Model, UserMixin, DeploymentMixin): #pylint: disable=no-init,too-f
     })
 
     tutorial_step = Column(types.Integer())
+    repeat_tutorials = Column(types.Boolean, nullable=False)
+
+    show_sticky = Column(types.Boolean, nullable=False)
 
     created_at = Column(types.DateTime(), default=datetime.datetime.now)
     updated_at = Column(types.DateTime(), default=datetime.datetime.now,

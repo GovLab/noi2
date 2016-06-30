@@ -1,0 +1,95 @@
+{% extends '__base_new__.html' %}
+
+{% block title %}{{ gettext('Network of Innovators') }}{% endblock %}
+{% block body_class %}b-landing-page{% endblock %}
+
+{% block content %}
+<section class="b-branding-section b-homepage-panel">
+    <div class="e-top-links">
+{#         <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form" data-submit-on-change style="display: inline;">
+        {{ change_locale_form.hidden_tag() }}
+        <div class="b-dropdown">
+            {{ change_locale_form.locale.label(class="sr-only") }}
+            {{ change_locale_form.locale() }}
+        </div>
+        <noscript>
+          <input class="b-button" type="submit" value="{{ gettext('Change Language') }}">
+        </noscript>
+        </form> #}
+    </div>
+    <h1 class="e-noi-logo"><img src="static/img/noi-logo-white.png" alt=""></h1>
+    <h3 class="e-header-icon"><i class="material-icons">error_outline</i></h3>
+    <h2 class="e-tagline">{{ gettext('Network of Innovators is down for scheduled maintenance and upgrade. Please check back again soon, or visit <a href="http://www.thegovlab.org/project-network-of-innovators.html" class="m-text-link">thegovlab.org</a> to learn more.') }}</h2>
+{#     <footer>
+        <img src="static/img/govlab-logo-white.png" alt="" class="e-govlab-logo">
+    </footer> #}
+</section>
+{#
+<section class="b-homepage-panel b-categories">
+    <p class="e-category-intro">{{ gettext("<strong>Select an innovation area</strong> to answer questions about what you know and can share with others. Telling us about your innovation skills enables you to get matched to those with complementary expertise.") }}</p>
+
+    <div class="e-category-slider">
+        <div class="e-category-wrapper">
+            <div class="e-category-panel m-crowdsourcing">
+                <p>{{ gettext("Crowdsourcing") }}</p>
+            </div>
+            <div class="e-category-panel m-data-science">
+                <p>{{ gettext("Data Science") }}</p>
+            </div>
+            <div class="e-category-panel m-community-engagement">
+                <p>{{ gettext("Community Engagement") }}</p>
+            </div>
+            <div class="e-category-panel m-lab-design">
+                <p>{{ gettext("Lab Design") }}</p>
+            </div>
+            <div class="e-category-panel m-citizen-science">
+                <p>{{ gettext("Citizen Science") }}</p>
+            </div>
+            <div class="e-category-panel m-open-data">
+                <p>{{ gettext("Open Data") }}</p>
+            </div>
+            <div class="e-category-panel m-prizes">
+                <p>{{ gettext("Prizes") }}</p>
+            </div>
+            <div class="e-category-panel m-rct">
+                <p>{{ gettext("Randomized Controlled Trials") }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="b-homepage-panel b-screenshots">
+    <div class="e-screenshots-wrapper">
+        <p class="e-blurb m-top">{{ gettext("<strong>Find Innovators</strong> who know what you don’t and who want to learn what you can share.") }}</p>
+        <img class="e-screenshot m-left" src="static/img/screenshot-1.png" alt="">
+        <p class="e-blurb m-bottom">{{ gettext("<strong>Visualize your knowledge</strong> of innovative problem solving practices to see what you know, compare to others, and see the skillset of a 21st century innovator.") }}</p>
+    </div>
+</section>
+
+<section class="b-homepage-panel b-final-message">
+    <p class="e-message">{{ gettext("<strong>Build your own network of innovators</strong> and find the right collaborators for your project!") }}</p>
+</section> #}
+
+<section class="b-homepage-panel b-partners">
+    <img src="static/img/govlab-logo-white.png" alt="" class="e-govlab-logo">
+    <p>{{ gettext("in collaboration with innovation teams from governments of") }}</p>
+    <div class="e-flags">
+        {% macro flag(filename, country) -%}
+          <div style="background-image: url({{ url_for('static', filename='img/flags/' + filename) }})" class="e-flag" title="{{ country }}"><span class="sr-only">{{ country }}</span></div>
+        {%- endmacro %}
+        {{ flag('argentina-flag.png', 'Argentina') }}
+        {{ flag('chile-flag.png', 'Chile') }}
+        {{ flag('united-kingdom-flag.png', 'United Kingdom') }}
+        {{ flag('mexico-flag.png', 'Mexico') }}
+        {{ flag('south-australia-flag.png', 'South Australia') }}
+        {{ flag('spain-flag.png', 'Spain') }}
+        {{ flag('united-states-flag.png', 'United States') }}
+    </div>
+</section>
+{% endblock %}
+
+{% block page_script %}
+<script src="{{ url_for('static', filename='vendor/slick.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/main.js') }}"></script>
+{% endblock %}
+

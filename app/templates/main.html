@@ -1,102 +1,287 @@
-{% extends '__base_new__.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Network of Innovators</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon" />
+  <!-- Pulls our Typekit Fonts -->
+  {# <script src="//use.typekit.net/zez3buj.js"></script> #}
+  {#   <script>try{Typekit.load();}catch(e){}</script> #}
 
-{% block title %}{{ gettext('Network of Innovators') }}{% endblock %}
-{% block body_class %}b-landing-page{% endblock %}
+  <!-- Pulls the material design icon font -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-{% block content %}
-<section class="b-branding-section b-homepage-panel">
-    <div class="e-top-links">
-        <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form" data-submit-on-change style="display: inline;">
-        {{ change_locale_form.hidden_tag() }}
-        <div class="b-dropdown">
-            {{ change_locale_form.locale.label(class="sr-only") }}
-            {{ change_locale_form.locale() }}
+  <!-- Pulls Slick CSS for sliders -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+
+  <!-- Pulls the main styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/govlab-styleguide.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body id="" class="b-sg-landing-page">
+
+  <!-- Main Menu (Off Canvas) -->
+  <nav class="b-main-menu">
+    <a href="./">{{ gettext('Home') }}</a>
+  </nav>
+
+  <main role="main">
+
+
+    <div class="b-above-header m-blue">
+      <div class="row">
+        <div class="medium-2 column">
+          <form method="POST" action="{{ url_for('views.change_locale') }}" class="e-onboarding-form b-form m-negative" data-submit-on-change style="display: inline;">
+            {{ change_locale_form.hidden_tag() }}
+            <div class="b-dropdown" style="margin-top: 8px;">
+              {{ change_locale_form.locale() }}
+            </div>
+            <noscript>
+              <input class="b-button" type="submit" value="{{ gettext('Change Language') }}">
+            </noscript>
+          </form>
         </div>
-        <noscript>
-          <input class="b-button" type="submit" value="{{ gettext('Change Language') }}">
-        </noscript>
-        </form>
-        <a class="e-login" href="{{ url_for_security('login') }}">{{ gettext('Log in') }}</a>
-    </div>
-    <h1 class="e-noi-logo"><img src="static/img/noi-logo-white.png" alt=""></h1>
-    <h2 class="e-tagline">{{ gettext('The skill-sharing network for government & civic innovators worldwide') }}</h2>
-    <a href="{{ url_for_security('register') }}" class="b-button">{{ gettext('Get Started') }}</a>
-    <footer>
-        <img src="static/img/govlab-logo-white.png" alt="" class="e-govlab-logo">
-    </footer>
-</section>
-
-<section>
-  {% include "_network-viz.html" %}
-</section>
-
-<section class="b-homepage-panel b-categories">
-    <p class="e-category-intro">{{ gettext("<strong>Select an innovation area</strong> to answer questions about what you know and can share with others. Telling us about your innovation skills enables you to get matched to those with complementary expertise.") }}</p>
-
-    <div class="e-category-slider">
-        <div class="e-category-wrapper">
-            <div class="e-category-panel m-crowdsourcing">
-                <p>{{ gettext("Crowdsourcing") }}</p>
-            </div>
-            <div class="e-category-panel m-data-science">
-                <p>{{ gettext("Data Science") }}</p>
-            </div>
-            <div class="e-category-panel m-community-engagement">
-                <p>{{ gettext("Community Engagement") }}</p>
-            </div>
-            <div class="e-category-panel m-lab-design">
-                <p>{{ gettext("Lab Design") }}</p>
-            </div>
-            <div class="e-category-panel m-citizen-science">
-                <p>{{ gettext("Citizen Science") }}</p>
-            </div>
-            <div class="e-category-panel m-open-data">
-                <p>{{ gettext("Open Data") }}</p>
-            </div>
-            <div class="e-category-panel m-prizes">
-                <p>{{ gettext("Prizes") }}</p>
-            </div>
-            <div class="e-category-panel m-rct">
-                <p>{{ gettext("Randomized Controlled Trials") }}</p>
-            </div>
+        <div class="medium-2 medium-offset-8 column">
+          <a href="./login" class="b-button m-naked">{{ gettext('Log in') }}</a>
         </div>
+
+      </div>
     </div>
-</section>
 
-<section class="b-homepage-panel b-screenshots">
-    <div class="e-screenshots-wrapper">
-        <p class="e-blurb m-top">{{ gettext("<strong>Find Innovators</strong> who know what you don’t and who want to learn what you can share.") }}</p>
-        <img class="e-screenshot m-left" src="static/img/screenshot-1.png" alt="">
-        <p class="e-blurb m-bottom">{{ gettext("<strong>Visualize your knowledge</strong> of innovative problem solving practices to see what you know, compare to others, and see the skillset of a 21st century innovator.") }}</p>
+    <div class="b-landing-section m-blue">
+
+      <div class="row">
+        <div class="large-10 large-centered column">
+          <div class="b-main-logo">
+            <img src="static/img/noi-logo-white.png" alt="">
+          </div>
+          <h1>{{ gettext('The skill-sharing network for government &amp; civic innovators worldwide') }}</h1>
+
+          <a href="./register" class="b-button m-large">{{ gettext('Get Started') }}</a>
+        </div>
+      </div>
+
+      <footer>
+        <div class="row">
+          <div class="small-6 medium-2 large-2 column small-centered">
+            <img src="static/img/govlab-logo-white.png" alt="Built by The GovLab">
+          </div>
+        </div>
+      </footer>
     </div>
-</section>
 
-<section class="b-homepage-panel b-final-message">
-    <p class="e-message">{{ gettext("<strong>Build your own network of innovators</strong> and find the right collaborators for your project!") }}</p>
-</section>
+    <section class="b-divider m-large">
+      <h3>{{ gettext('Build your own network of innovators and find the right collaborators for your project!') }}</h3>
+    </section>
 
-<section class="b-homepage-panel b-partners">
-    <img src="static/img/govlab-logo-white.png" alt="" class="e-govlab-logo">
-    <p>{{ gettext("in collaboration with innovation teams from governments of") }}</p>
-    <div class="e-flags">
-        {% macro flag(filename, country) -%}
-          <div style="background-image: url({{ url_for('static', filename='img/flags/' + filename) }})" class="e-flag" title="{{ country }}"><span class="sr-only">{{ country }}</span></div>
-        {%- endmacro %}
-        {{ flag('argentina-flag.png', 'Argentina') }}
-        {{ flag('chile-flag.png', 'Chile') }}
-        {{ flag('united-kingdom-flag.png', 'United Kingdom') }}
-        {{ flag('mexico-flag.png', 'Mexico') }}
-        {{ flag('south-australia-flag.png', 'South Australia') }}
-        {{ flag('spain-flag.png', 'Spain') }}
-        {{ flag('united-states-flag.png', 'United States') }}
+    <div class="b-page-section b-noi-categories">
+      <div class="row">
+        <div class="large-12 column">
+          <h2>{{ gettext('Answer questions about what you know and can share with others. Telling us about your innovation skills enables you to get matched to those with complementary expertise.') }}</h2>
+        </div>
+      </div>
+      <div class="row small-collapse expanded">
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-open-data">
+            <img src="static/img/category-open-data.png" alt="Open Data">
+            <h3>{{ gettext('Open Data') }}</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-community-engagement">
+            <img src="static/img/category-community-engagement.png" alt="Community Engagement">
+            <h3>{{ gettext('Community Engagement') }}</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-citizen-science">
+            <img src="static/img/category-citizen-science.png" alt="Citizen Science">
+            <h3>{{ gettext('Citizen Science') }}</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-crowdsourcing">
+            <img src="static/img/category-crowdsourcing.png" alt="Crowdsourcing">
+            <h3>{{ gettext('Crowdsourcing') }}</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-lab-design">
+            <img src="static/img/category-lab-design.png" alt="Lab Design">
+            <h3>{{ gettext('Lab Design') }}</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-prizes">
+            <img src="static/img/category-prizes.png" alt="Prizes">
+            <h3>{{ gettext('Prizes') }}</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-data-science">
+            <img src="static/img/category-data-science.png" alt="Data Science">
+            <h3>{{ gettext('Data Science') }}</h3>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-3 column">
+          <div class="e-category m-randomized-controlled-trials">
+            <img src="static/img/category-rct.png" alt="Randomized Controlled Trials">
+            <h3>{{ gettext('Randomized Controlled Trials') }}</h3>
+          </div>
+        </div>
+      </div>
     </div>
-    <a href="{{ url_for_security('login') }}" class="b-button">{{ gettext("Get Started") }}</a>
-    <a href="{{ url_for('views.about_page') }}" class="b-button">{{ gettext("Learn more") }}</a>
-    <a href="{{ url_for('views.terms_and_conditions') }}" class="b-button">{{ gettext("Terms of Service") }}</a>
-</section>
-{% endblock %}
+    <div class="b-divider">
+      <div class="row">
+        <div class="columns large-12">
+          <h1>{{ gettext('Visualize your knowledge') }}</h1>
+          <h2>{{ gettext('Visualize your knowledge of innovative problem solving practices <br> to see what you know, compare to others, and see the') }}</h2>
+        </div>
+      </div>
+    </div>
 
-{% block page_script %}
-<script src="{{ url_for('static', filename='vendor/slick.js') }}"></script>
-<script src="{{ url_for('static', filename='js/pages/main.js') }}"></script>
-{% endblock %}
+    <section>
+      {% include "_network-viz2.html" %}
+    </section>
+
+    <section class="b-divider m-large">
+      <h3>{{ gettext('News') }}</h3>
+    </section>
+    <div class="b-slider js-template">
+      <div class="js-wp-slide">
+        <section id="" class="b-slide m-purple">
+          <div class="e-slide-content">
+            <div class="row">
+              <div class="columns large-12">
+                <h3 class="e-post-name">Post Title with a fair amount of characters</h3>
+              </div>
+              <div class="column large-6">
+                <p class="e-date">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt autem blanditiis ullam laboriosam perferendis commodi facilis fuga eligendi tempore, placeat fugiat sint hic sequi voluptatum et nam, dolore corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </div>
+              <div class="column large-6">
+                <p class="e-post">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem nesciunt autem blanditiis ullam laboriosam perferendis commodi facilis fuga eligendi tempore, placeat fugiat sint hic sequi voluptatum et nam, dolore corporis! Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </div>
+            </div>
+          </div>
+          <div class="e-band">
+            <div class="row">
+              <div class="columns large-12">
+                <a class="b-button">Sign Up to Read More</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="b-slider slick" id="wp-slider">
+    </div>
+    <div class="b-divider">
+      <h1>{{ gettext('Find innovators') }}</h1>
+      <h2>{{ gettext('Find innovators who know what you don’t and who want to learn what you can share.') }}</h2>
+    </div>
+    <div class="b-gallery-section">
+      <!-- @gmattar Make this gallery with this scaling effect and multiple images showing - http://www.thegovlab.org/project-the-govlab-academy.html -->
+      <div class="b-slider m-mobile-screens" id="gallery-slider">
+        <section id="slide-id" class="b-slide">
+          <img src="static/img/screenshots/noi-screenshot-1.jpg" alt="">
+      {# <header>
+          <h4>Screenshot Message</h4>
+        </header> #}
+      </section>
+      <section id="slide-id" class="b-slide">
+        <img src="static/img/screenshots/noi-screenshot-2.jpg" alt="">
+      {# <header>
+          <h4>Screenshot Message</h4>
+        </header> #}
+      </section>
+      <section id="slide-id" class="b-slide">
+        <img src="static/img/screenshots/noi-screenshot-3.jpg" alt="">
+      {# <header>
+          <h4>Find innovators who know what you don’t and who want to learn what you can share.</h4>
+        </header> #}
+      </section>
+      <section id="slide-id" class="b-slide">
+        <img src="static/img/screenshots/noi-screenshot-4.jpg" alt="">
+      {# <header>
+          <h4>Screenshot Message</h4>
+        </header> #}
+      </section>
+      <section id="slide-id" class="b-slide">
+        <img src="static/img/screenshots/noi-screenshot-5.jpg" alt="">
+      {# <header>
+          <h4>Screenshot Message</h4>
+        </header> #}
+      </section>
+      <section id="slide-id" class="b-slide">
+        <img src="static/img/screenshots/noi-screenshot-6.jpg" alt="">
+      {# <header>
+          <h4>Screenshot Message</h4>
+        </header> #}
+      </section>
+      <section id="slide-id" class="b-slide">
+        <img src="static/img/screenshots/noi-screenshot-7.jpg" alt="">
+      {# <header>
+          <h4>Screenshot Message</h4>
+        </header> #}
+      </section>
+    </div>
+  </div>
+  <section class="b-slider">
+    <div class="b-slide m-quote">
+      The Problem With Evidence-Based Policies
+      Ricardo Hausmann at Project Syndicate: “Many organizations, from government agencies to philanthropic institutions and aid organizations, now require that programs...
+    </div>
+  </section>
+
+</main>
+
+<footer class="b-footer m-purple">
+  <div class="row">
+    <div class="medium-2 column medium-offset-5">
+      <img src="static/img/govlab-logo-white.png" alt="Built by The GovLab" class="e-partner-logo m-govlab"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column large-12">
+      <p>{{ gettext('In collaboration with innovation teams from governments of') }}</p>
+      <div class="b-flags">
+        <a href="#" class="e-flag m-argentina"></a>
+        <a href="#" class="e-flag m-chile"></a>
+        <a href="#" class="e-flag m-uk"></a>
+        <a href="#" class="e-flag m-mexico"></a>
+        <a href="#" class="e-flag m-south-australia"></a>
+        <a href="#" class="e-flag m-spain"></a>
+        <a href="#" class="e-flag m-us"></a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column small-10 small-offset-1">
+      <div class="e-utilities"><a href="./login" class="b-button">{{ gettext('Get Started') }}</a></div>
+      <div class="e-utilities"><a href="./about" class="b-button m-naked">{{ gettext('Learn More') }}</a></div>
+      <div class="e-utilities"><a href="./terms" class="b-button m-naked">{{ gettext('Terms of Service') }}</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="b-copyright">
+  <div class="row">
+    <div class="large-10 large-centered columns">
+      <a class="e-cc-badge" rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+      {{ gettext('This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a> <br> <a href="#">Copyright Infringement Information</a>.') }}
+    </div>
+  </div>
+</div>
+
+<div id="overlay"></div>
+
+<script src="{{ url_for('static', filename='vendor/jquery-1.11.3.min.js') }}"></script>
+<script src="//use.typekit.net/zez3buj.js"></script>
+<script src="{{ url_for('static', filename='js/slick-1.6.0/slick/slick.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pages/landing.js') }}"></script>
+<script src="{{ url_for('static', filename='js/wp.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

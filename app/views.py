@@ -5,7 +5,7 @@ All views in the app, as a blueprint
 '''
 
 from flask import (Blueprint, render_template, request, flash,
-                   redirect, url_for, current_app, abort)
+                   redirect, url_for, current_app, abort, session)
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 from flask_security import confirmable
@@ -78,6 +78,15 @@ def full_registration_required(func):
 
     return decorated_view
 
+@views.route('/test')
+def test_template():
+    '''
+    Uncomment this to test various templates
+    '''
+    current_app.logger.debug('current_user.repeat_tutorials: %s %s', current_user.repeat_tutorials, type(current_user.repeat_tutorials))
+    current_app.logger.debug('activity_route_visited in session: %s', 'activity_route_visited' in session)
+    return render_template('down.html')
+
 @views.route('/')
 def main_page():
     '''
@@ -85,6 +94,7 @@ def main_page():
     '''
     if current_user.is_authenticated():
         return redirect(url_for('views.activity'))
+
     else:
         return render_template('main.html',
                                viz_data=get_network_viz_data(),
@@ -560,7 +570,24 @@ def tutorial():
     '''
     Save in the DB that user has seen a tutorial step.
     '''
-    current_user.tutorial_step = int(request.form.get('step'))
+    if 'step' in request.form:
+        current_user.tutorial_step = int(request.form.get('step'))
+    if 'repeat' in request.form:
+        current_user.repeat_tutorials = request.form.get('repeat') == 'true'
+
+    db.session.add(current_user)
+    db.session.commit()
+    return ('', 204)
+
+@views.route('/sticky', methods=['POST'])
+@full_registration_required
+def sticky():
+    '''
+    Save in the DB if user has dismissed sticky
+    '''
+    if 'show' in request.form:
+        current_user.show_sticky = request.form.get('show') == 'true'
+
     db.session.add(current_user)
     db.session.commit()
     return ('', 204)
@@ -727,8 +754,22 @@ def activity():
         and not current_user.has_fully_registered):
         return redirect(get_best_registration_step_url(current_user))
 
+    if not session.get('activity_route_visited'):
+        # reset tutorials if repeat_tutorials flag is set
+        num_tutorials = 3
+        if ('DISCOURSE_ENABLED' in current_app.jinja_env.globals):
+            if (current_app.jinja_env.globals['DISCOURSE_ENABLED']):
+                num_tutorials = 4
+        if current_user.repeat_tutorials and current_user.tutorial_step > num_tutorials:
+            current_app.logger.debug('RESETTING TUTORIAL')
+            current_user.tutorial_step = 1
+            db.session.add(current_user)
+            db.session.commit()
+
+
     events = get_latest_events()
     shared_message_form = SharedMessageForm()
+
 
     if request.method == 'POST':
         if not current_user.is_authenticated():
@@ -745,6 +786,8 @@ def activity():
             db.session.commit()
             flash(gettext(u'Message posted!'))
             return redirect(url_for('views.activity'))
+
+    session['activity_route_visited'] = True;
 
     return render_template('activity.html', **{
         'user': current_user,

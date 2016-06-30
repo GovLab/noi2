@@ -119,13 +119,18 @@
 <div class="b-tutorial-box {{ extra_classes }}" id="tutorial-{{ step }}">
       <div class="e-top-arrow"></div>
       {{ caller() }}
-      <button class="b-button" data-tutorial-step="{{ step + 1 }}">
-        {% if step == max_step %}
-          {{ gettext('OK') }}
-        {% else %}
-          {{ gettext('Next') }}
-        {% endif %}
+      {% if step == max_step %}
+      <button class="b-button js-reset-tutorial-on-login" data-tutorial-step="{{ step + 1 }}">
+        {{ gettext('OK') }}
       </button>
+      <button class="b-button m-naked js-dont-reset-tutorial-on-login" data-tutorial-step="{{ step + 1 }}">
+        {{ gettext('Dismiss Forever') }}
+      </button>
+      {% else %}
+      <button class="b-button" data-tutorial-step="{{ step + 1 }}">
+          {{ gettext('Next') }}
+      </button>
+      {% endif %}
       <div class="e-counter">{{ step }}/{{ max_step }}</div>
 </div>
 {% endmacro %}
@@ -156,6 +161,14 @@
 {% endcall %}
 {% endif %}
 
+{# <a class="b-button js-sticky-on" href="#">on</a> #}
+{% if current_user.show_sticky %}
+  <div class="b-sticky" id="announcement-sticky">
+    <p>This is a sticky with some announcement, here is the text look at me i am great</p>
+    <p><a class="e-close-button js-sticky-off" href="#" data-target="#announcement-sticky"><i class="material-icons">close</i></a></p>
+  </div>
+{% endif %}
+
 {% endif %}
 
 {% endblock %}
@@ -165,4 +178,5 @@
 <script src="{{ url_for('static', filename='vendor/jquery.timeago.js') }}"></script>
 <script src="{{ url_for('static', filename='js/pages/activity.js') }}"></script>
 <script src="{{ url_for('static', filename='js/pages/scroller.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
 {% endblock %}
