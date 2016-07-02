@@ -188,6 +188,13 @@ input { outline: none; }
         margin: 0 auto;
     }
 
+    a:not(.e-close-button) {
+        color: lighten($purple, 40%);
+        font-weight: 700;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
     .e-close-button {
         position: absolute;
         top: 10px;
