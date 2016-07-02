@@ -8,7 +8,7 @@
     {{ user_avatar(event.user) }}
     <div class="e-feed-message">
       <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
-      <p>{{ event.message }}</p>
+      <p>{{ event.message|truncate(700) }}</p>
       {% if current_user.is_authenticated() %}
       <div class="e-actions">
         {% call render_user_mailto_link(event.user) %}<span class="material-icons">reply</span> <span class="e-action-label">{{ gettext("Reply via e-mail") }}</span>{% endcall %}
@@ -38,7 +38,7 @@
         {% if event.category_name %}<a href="{{ event.category_url }}" class="e-discourse-category">{{ event.category_name }}</a>{% endif %}
       </p>
       {% if event.excerpt %}
-      <p>{{ event.cleaned_excerpt|safe }}</p>
+      <p>{{ event.cleaned_excerpt|safe|truncate(700) }}</p>
       {% endif %}
       <div class="e-actions">
         <a href="{{ event.url }}"><span class="material-icons">open_in_new</span>
