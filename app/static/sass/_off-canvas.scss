@@ -6,6 +6,7 @@
 }
 
 .b-profile-summary.m-active {
+    overflow-y: scroll;
     width: 70%;
     background-color: $gray-80-matte;
     right: 0;
