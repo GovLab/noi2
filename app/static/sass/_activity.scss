@@ -199,8 +199,12 @@
 
     .e-feed-message {
         flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+        max-width: 80%;
 
-        p { margin: 10px 0; }
+        p {
+            margin: 10px 0;
+            word-wrap: break-word;
+        }
 
         .e-more {
             text-transform: uppercase;
