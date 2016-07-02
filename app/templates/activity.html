@@ -150,14 +150,19 @@
       <p>{{ gettext('You can also <strong>browse innovators</strong>!') }}</p>
 {% endcall %}
 
-{% call render_tutorial_step(3, max_step, extra_classes="on-right-side") %}
+{% if DISCOURSE_ENABLED %}
+{% call render_tutorial_step(3, max_step) %}
+      <p>{{ gettext("Have a question or something to share with the network? Discuss it with like-minded innovators in one of our channels!") }}</p>
+{% endcall %}
+
+{% call render_tutorial_step(4, max_step, extra_classes="on-right-side") %}
       <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
       <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
 {% endcall %}
-
-{% if DISCOURSE_ENABLED %}
-{% call render_tutorial_step(4, max_step) %}
-      <p>{{ gettext("Have a question or something to share with the network? Discuss it with like-minded innovators in one of our channels!") }}</p>
+{% else %}
+{% call render_tutorial_step(3, max_step, extra_classes="on-right-side") %}
+      <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
+      <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
 {% endcall %}
 {% endif %}
 
