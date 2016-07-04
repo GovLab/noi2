@@ -152,11 +152,11 @@
 
 {% if DISCOURSE_ENABLED %}
 
-{% call render_tutorial_step(3, max_step, extra_classes="on-right-side") %}
+{% call render_tutorial_step(3, max_step) %}
       <p>{{ gettext("Have a question or something to share with the network? <strong>Discuss it</strong> with like-minded innovators in one of our channels!<br/><br/>You can change your discussion username in <a href='./me'>Edit Profile.</a>") }}</p>
 {% endcall %}
 
-{% call render_tutorial_step(4, max_step) %}
+{% call render_tutorial_step(4, max_step, extra_classes="on-right-side") %}
       <p>{{ gettext("Don't forget to <strong>update your profile</strong>.") }}</p>
       <p>{{ gettext("The more questions you answer, the more relevant your matches.") }}</p>
 {% endcall %}
