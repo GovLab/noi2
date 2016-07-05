@@ -66,6 +66,7 @@
         <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
         <p class="e-name">{{ user.full_name }}</p>
         <p class="e-job">{{ user.position }}</p>
+        <p class="e-institution">{{ user.organization }}</p>
       </a>
     {% endif %}
     {% endfor %}
