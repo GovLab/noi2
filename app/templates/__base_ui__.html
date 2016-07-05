@@ -11,7 +11,7 @@
             {% if not DISCOURSE_ENABLED %}
             <a href="#post-a-message" data-toggle="modal"><span class="e-post material-icons">chat</span></a>
             {% endif %}
-            <a href="#profile-summary" data-toggle="modal"><img class="e-user-picture" data-tutorial-target="3" src="{{ get_user_avatar_url(current_user) }}"></a>
+            <a href="#profile-summary" data-toggle="modal"><img class="e-user-picture" data-tutorial-target="4" src="{{ get_user_avatar_url(current_user) }}"></a>
           {% else %}
             <a href="{{ url_for('views.about_page') }}"><span class="e-post material-icons">info</span></a>
             <a href="{{ url_for_security('login') }}"><span class="e-post material-icons">account_circle</span></a>
@@ -32,7 +32,7 @@
                 {{ gettext('Find Innovators') }}
             </a>
             {% if DISCOURSE_ENABLED %}
-            <a href="{{ discourse_url('/') }}" class="e-nav-item" data-tutorial-target="4">
+            <a href="{{ discourse_url('/') }}" class="e-nav-item" data-tutorial-target="3">
                 <span class="material-icons">chat</span>
                 {{ gettext('Discuss') }}
             </a>
