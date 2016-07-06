@@ -210,19 +210,27 @@
         text-align: center;
         width: 80%;
         margin: 0 auto;
-        left: 25px;
+        // left: 25px;
 
         img {
             @include circle;
             width: 50px;
-            position: absolute;
-            left: 0;
+            display: block;
+            margin: 0 auto;
+            // position: absolute;
+            // left: 0;
 
         }
 
+        a {
+            display: inline-block;
+        }
+
         .e-user-answer-text {
-            padding: 6px 20px 6px 30px;
-            margin: 8px 0 10px -35px;
+            // padding: 6px 20px 6px 30px;
+            // margin: 8px 0 10px -35px;
+            padding: 10px;
+            margin: 10px;
             vertical-align: top;
             display: inline-block;
             color: $white;
