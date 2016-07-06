@@ -1522,44 +1522,40 @@ msgstr ""
 "obtener conexiones nuevas y más relevantes."
 
 #: templates/register-step-3.html:89
-#, fuzzy
-msgid "Join"
+om
 msgstr "Iniciar sesión"
 
 #: templates/register-step-3.html:95
 msgid "Choose another area"
-msgstr "Escoge otra area"
+msgstr "Por evento"
 
 #: templates/search.html:27
-#, fuzzy
 msgid "By expertise area"
-msgstr "Mis Competencias"
+msgstr "Mis competencias"
 
 #: templates/search.html:31
 msgid "By country"
 msgstr "Por país"
 
 #: templates/search.html:35
-#, fuzzy
 msgid "By language"
 msgstr "Por idioma(s)"
 
 #: templates/search.html:39
-#, fuzzy
 msgid "By field of work"
 msgstr "Por área de trabajo"
 
 #: templates/search.html:43
 msgid "By event"
-msgstr ""
+msgstr "Por evento"
 
 #: templates/search.html:47
 msgid "By Keyword"
-msgstr ""
+msgstr "Por palabra clave"
 
 #: templates/search.html:48
 msgid "Enter organization, name, or keywords here"
-msgstr ""
+msgstr "Organizaciones, nombre o palabra clave"
 
 #: templates/settings.html:13
 msgid "Reset Tutorial"
