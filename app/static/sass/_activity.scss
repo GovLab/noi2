@@ -62,7 +62,7 @@
     $buttonBg: #4F4F4F;
     position: relative;
     .js-scroll-btn {
-        z-index: 100;
+        z-index: 999;
         color: $white-60;
         display: inline-block;
         position: absolute;
@@ -98,10 +98,10 @@
         display: none;
     }
     .e-item:first-child {
-        padding-left: 80px;
+        padding-left: 10%;
     }
     .e-item:last-child {
-        padding-right: 80px;
+        padding-right: 10%;
     }
 }
 
