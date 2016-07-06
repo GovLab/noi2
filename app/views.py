@@ -761,7 +761,6 @@ def activity():
             if (current_app.jinja_env.globals['DISCOURSE_ENABLED']):
                 num_tutorials = 4
         if current_user.repeat_tutorials and current_user.tutorial_step > num_tutorials:
-            current_app.logger.debug('RESETTING TUTORIAL')
             current_user.tutorial_step = 1
             db.session.add(current_user)
             db.session.commit()
