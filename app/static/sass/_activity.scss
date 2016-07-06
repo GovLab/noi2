@@ -172,12 +172,6 @@
         padding-left: 4px;
         font-size: 10px;
         color: gray;
-        @include breakpoint($desktop) {
-            display: inherit;
-        }
-        @include breakpoint($mobile) {
-            display: block;
-        }
     }
 
     .e-user-picture {
@@ -185,12 +179,6 @@
         height: 40px;
         border-radius: 50%;
         margin-right: 20px;
-        @include breakpoint($desktop) {
-            display: inherit;
-        }
-        @include breakpoint($mobile) {
-            display: block;
-        }
     }
 
     .e-load-more {
@@ -215,11 +203,11 @@
     //     }
     // }
 
-    .e-feed-item.m-blog-item {
-        .e-feed-message {
-            max-width: 100%
-        }
-    }
+    // .e-feed-item.m-blog-item {
+    //     .e-feed-message {
+    //         max-width: 100%
+    //     }
+    // }
 
     .e-feed-message {
         flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
