@@ -5,5 +5,5 @@
 {%- endmacro %}
 
 {% macro user_avatar(user) -%}
-<div class="e-feed-side-item"><a href="{{ url_for('views.get_user', userid=user.id) }}"><img class="e-user-picture" src="{{ get_user_avatar_url(user) }}" alt=""></a></div>
+<a href="{{ url_for('views.get_user', userid=user.id) }}" class="e-avatar"><img class="e-user-picture" src="{{ get_user_avatar_url(user) }}" alt=""></a>
 {%- endmacro %}
