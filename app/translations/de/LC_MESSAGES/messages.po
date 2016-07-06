@@ -1,1480 +1,2737 @@
 # German translations for PROJECT.
-# Copyright (C) 2015 ORGANIZATION
+# Copyright (C) 2016 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-09-11 15:04+0000\n"
+"POT-Creation-Date: 2016-07-06 05:07+0000\n"
 "PO-Revision-Date: 2015-09-11 11:17-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.0\n"
+"Generated-By: Babel 2.2.0\n"
 
-#: /noi/app/forms.py:78
+#: forms.py:86
+msgid "Choose a country"
+msgstr ""
+
+#: forms.py:109 forms.py:157
+msgid "Fields of Work"
+msgstr ""
+
+#: forms.py:115
 msgid "Only jpeg, jpg, and png images are allowed."
 msgstr "foo bar baz"
 
-#: /noi/app/forms.py:81 /noi/app/forms.py:97
+#: forms.py:140
+msgid "User Picture"
+msgstr ""
+
+#: forms.py:146
+msgid "Events"
+msgstr ""
+
+#: forms.py:152
 msgid "Languages"
 msgstr ""
 
-#: /noi/app/forms.py:87 /noi/app/forms.py:101
-msgid "Domains of Expertise"
-msgstr ""
-
-#: /noi/app/models.py:41
-msgid "First Name"
-msgstr ""
-
-#: /noi/app/models.py:44
-msgid "Last Name"
-msgstr ""
-
-#: /noi/app/models.py:48
+#: forms.py:179 forms.py:272 forms.py:281 forms.py:303 models.py:220
 msgid "Email"
 msgstr ""
 
-#: /noi/app/models.py:52
+#: forms.py:198
+msgid "Choose an expertise area"
+msgstr ""
+
+#: forms.py:200
+msgid "name"
+msgstr ""
+
+#: forms.py:209
+msgid "Choose a language"
+msgstr ""
+
+#: forms.py:218
+msgid "Choose a field of work"
+msgstr ""
+
+#: forms.py:226
+msgid "Choose an event"
+msgstr ""
+
+#: forms.py:251
+msgid "Language"
+msgstr ""
+
+#: forms.py:264
+msgid "Resend Confirmation Instructions"
+msgstr ""
+
+#: forms.py:271
+msgid "Recover Password"
+msgstr ""
+
+#: forms.py:282 forms.py:306 forms.py:318 forms.py:330 models.py:224
 msgid "Password"
 msgstr ""
 
-#: /noi/app/models.py:64
+#: forms.py:283
+msgid "Remember Me"
+msgstr ""
+
+#: forms.py:284 templates/main-old.html:19 templates/main.html:46
+msgid "Log in"
+msgstr ""
+
+#: forms.py:297 models.py:213
+msgid "First Name"
+msgstr ""
+
+#: forms.py:299 models.py:216
+msgid "Last Name"
+msgstr ""
+
+#: forms.py:308 templates/security/login_user.html:30
+msgid "Sign up"
+msgstr ""
+
+#: forms.py:316
+msgid "Reset Password"
+msgstr ""
+
+#: forms.py:321 forms.py:338
+msgid "Retype Password"
+msgstr ""
+
+#: forms.py:334
+msgid "New Password"
+msgstr ""
+
+#: forms.py:341 templates/settings.html:9
+msgid "Change Password"
+msgstr ""
+
+#: l10n.py:32
+msgid "You do not have permission to view this resource."
+msgstr ""
+
+#: l10n.py:34
+msgid "Thank you. Your email has been confirmed."
+msgstr ""
+
+#: l10n.py:36
+msgid "Your email has already been confirmed."
+msgstr ""
+
+#: l10n.py:38
+msgid "Invalid confirmation token."
+msgstr ""
+
+#: l10n.py:40
+#, python-format
+msgid "%(email)s is already associated with an account."
+msgstr ""
+
+#: l10n.py:42
+msgid "Password does not match"
+msgstr ""
+
+#: l10n.py:44
+msgid "Passwords do not match"
+msgstr ""
+
+#: l10n.py:46
+msgid "Redirections outside the domain are forbidden"
+msgstr ""
+
+#: l10n.py:48
+#, python-format
+msgid "Instructions to reset your password have been sent to %(email)s."
+msgstr ""
+
+#: l10n.py:50
+#, python-format
+msgid ""
+"You did not reset your password within %(within)s. New instructions have "
+"been sent to %(email)s."
+msgstr ""
+
+#: l10n.py:53
+msgid "Invalid reset password token."
+msgstr ""
+
+#: l10n.py:55
+msgid "Email requires confirmation."
+msgstr ""
+
+#: l10n.py:57
+#, python-format
+msgid "Confirmation instructions have been sent to %(email)s."
+msgstr ""
+
+#: l10n.py:59
+#, python-format
+msgid ""
+"You did not confirm your email within %(within)s. New instructions to "
+"confirm your email have been sent to %(email)s."
+msgstr ""
+
+#: l10n.py:63
+#, python-format
+msgid ""
+"You did not login within %(within)s. New instructions to login have been "
+"sent to %(email)s."
+msgstr ""
+
+#: l10n.py:66
+#, python-format
+msgid "Instructions to login have been sent to %(email)s."
+msgstr ""
+
+#: l10n.py:68
+msgid "Invalid login token."
+msgstr ""
+
+#: l10n.py:70
+msgid "Account is disabled."
+msgstr ""
+
+#: l10n.py:72
+msgid "Email not provided"
+msgstr ""
+
+#: l10n.py:74
+msgid "Invalid email address"
+msgstr ""
+
+#: l10n.py:76
+msgid "Password not provided"
+msgstr ""
+
+#: l10n.py:78
+msgid "No password is set for this user"
+msgstr ""
+
+#: l10n.py:80
+msgid "Password must be at least 6 characters"
+msgstr ""
+
+#: l10n.py:82
+msgid "Specified user does not exist"
+msgstr ""
+
+#: l10n.py:84
+msgid "Invalid password"
+msgstr ""
+
+#: l10n.py:86
+msgid "You have successfuly logged in."
+msgstr ""
+
+#: l10n.py:88
+msgid ""
+"You successfully reset your password and you have been logged in "
+"automatically."
+msgstr ""
+
+#: l10n.py:91
+msgid "Your new password must be different than your previous password."
+msgstr ""
+
+#: l10n.py:93
+msgid "You successfully changed your password."
+msgstr ""
+
+#: l10n.py:95
+msgid "Please log in to access this page."
+msgstr ""
+
+#: l10n.py:97
+msgid "Please reauthenticate to access this page."
+msgstr ""
+
+#: linkedin.py:147
+msgid "Disconnected from LinkedIn."
+msgstr ""
+
+#: linkedin.py:168
+msgid "Connection with LinkedIn canceled."
+msgstr ""
+
+#: linkedin.py:177
+msgid "Connection to LinkedIn established."
+msgstr ""
+
+#: models.py:204
+msgid "Username"
+msgstr ""
+
+#: models.py:236
 msgid "Position"
 msgstr ""
 
-#: /noi/app/models.py:67
+#: models.py:239
 msgid "Organization"
 msgstr ""
 
-#: /noi/app/models.py:70
+#: models.py:242
 msgid "Type of Organization"
 msgstr ""
 
-#: /noi/app/models.py:71
+#: models.py:243
 msgid "The type of organization you work for"
 msgstr ""
 
-#: /noi/app/models.py:75
+#: models.py:247
 msgid "Country"
 msgstr ""
 
-#: /noi/app/models.py:79
+#: models.py:251
 msgid "City"
 msgstr ""
 
-#: /noi/app/models.py:83
+#: models.py:255
 msgid "Location"
 msgstr ""
 
-#: /noi/app/models.py:84
+#: models.py:256
 msgid "Enter your location"
 msgstr ""
 
-#: /noi/app/models.py:88
+#: models.py:260
 msgid "Projects"
 msgstr ""
 
-#: /noi/app/models.py:89
+#: models.py:261
 msgid "Add name and url or short description of any current work projects."
 msgstr ""
 
-#: /noi/app/views.py:87
+#: views.py:197
+msgid "Your profile has been saved."
+msgstr ""
+
+#: views.py:200
+msgid "Could not save, please correct errors."
+msgstr ""
+
+#: views.py:207
+msgid "Your user picture has been changed."
+msgstr ""
+
+#: views.py:208
+msgid "An error occurred when uploading your user picture."
+msgstr ""
+
+#: views.py:210
+msgid "Do you really want to remove your profile picture?"
+msgstr ""
+
+#: views.py:211
+msgid "Your profile picture has been removed."
+msgstr ""
+
+#: views.py:212
+msgid "An error occurred when removing your profile picture."
+msgstr ""
+
+#: views.py:346
+msgid "Confirmation instructions sent."
+msgstr ""
+
+#: views.py:368
 msgid "Could not save, please correct errors below"
 msgstr ""
 
-#: /noi/app/views.py:110
-msgid ""
-"Your expertise has been updated.<br/>\n"
-"        What you can do next:\n"
-"        <ul>\n"
-"        <li><a href=\"/search\">Search for innovators</a></li>\n"
-"        <li>Fill another expertise questionnaire below</li>\n"
-"        <li>View your <a href=\"/user/{}\">public profile</a></li>\n"
-"        "
-msgstr ""
-
-#: /noi/app/views.py:211
-msgid ""
-"Before we can match you with fellow innovators, you need to enter your "
-"expertise below first."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:1
-msgid ""
-"<p><b>Network of Innovators (NoI)</b> is an application designed and "
-"developed by The GovLab in collaboration with governance innovation "
-"leaders across seven countries. The tool makes searchable the know-how of"
-" government innovators on topics integral to governing more effectively "
-"and legitimately, such as citizen engagement, opening data and prize-"
-"backed challenges. By answering questions about governance innovation "
-"skills and experiences, the participant creates a profile, enabling her "
-"to be matched to those with complementary knowledge—either those who are "
-"similar or different—to enable mutual support and learning.</p> "
-"<p><b>NoI</b> adopts a more nuanced way of sharing and finding expertise "
-"– one that looks beyond traditional credentials to focus on real world "
-"know how. Instead of rigid categories or open-ended tags, NoI attempts to"
-" get at what people know by asking the kinds of questions they could "
-"answer. In response to those questions, they can specify the expertise "
-"they have and want to share: whether they have the ability to do "
-"something, to tell someone about it, or to refer them to others "
-"knowledgeable about the topic.</p> <p><b>NoI</b> is an experiment "
-"intended to help the community learn if expert networking is an effective"
-" means to:</p> <ul> <li>Find who else has experience trying an "
-"innovation. <li>Identify who has worked on a particular type of policy or"
-" problem. <li>Find collaborators to develop new ideas for tackling a "
-"shared problem together. <li>Form alliances and networks of supporters. "
-"<li>Create a visual map of your own and other people’s expertise and the "
-"ability to compare skills across countries. <li>Describe the job profile "
-"of the 21st century public servant. </ul> <p>We want to hear from "
-"you.</p> <p>Please email us at <a "
-"href=\"mailto:smarterstate@thegovlab.org\"> "
-"smarterstate@thegovlab.org</a> with your suggestions.</p>\n"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:3
-msgid "Agriculture"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:4
-msgid "Arts and culture"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:5
-msgid "Business Licensing and Regulation"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:6
-msgid "Consumer rights and issues"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:7
-msgid "Defense and Armed Forces"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:8
-msgid "Education"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:9
-msgid "Energy"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:10
-msgid "Environment"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:11
-msgid "Foreign affairs"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:12
-msgid "Government efficiency, transparency and accountability"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:13
-msgid "Health"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:14
-msgid "Housing - Human Rights - Immigration and Citizenship Services"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:15
-msgid "International Aid and Development"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:16
-msgid "Labor"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:17
-msgid "Law and Justice System"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:18
-msgid "Media and Communications"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:19
-msgid "National Security"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:20
-msgid "Public safety and Emergencies"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:21
-msgid "Sanitation"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:22
-msgid "Science and Innovation"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:23
-msgid "Social care"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:24
-msgid "Tax and Revenue"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:25
-msgid "Trade and Investment"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:26
-msgid "Transportation"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:27
-msgid "Water and Electricity"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:28
-msgid "TODO\n"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:30
-msgid "Mental Health"
+#: views.py:625
+msgid "Practitioners"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:31
-msgid "Primary Care"
+#: views.py:626
+msgid "Explainers"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:32
-msgid "Community Care"
+#: views.py:627
+msgid "Connectors"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:33
-msgid "Public Health and Population Health"
+#: views.py:628
+msgid "Peers"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:34
-msgid "Acute Health"
+#: views.py:776
+msgid "You must log in to post a message."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:35
-msgid "Health Policy"
+#: views.py:778
+msgid "We need your name before you can post a message."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:36
-msgid "Commissioning"
+#: views.py:787
+msgid "Message posted!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:37
-msgid ""
-"<h3>NHS - GovLab Collaboration</h3> <p>Innovation is critical to enabling"
-" NHS England to achieve its ambitions to ramp up the pace and scale of "
-"change, and deliver better outcomes for patients. With the Five Year "
-"Forward Plan NHS England has clearly articulated the fundamental role of "
-"data and innovation in achieving these ambitions at all levels of the "
-"organization.</p> <p>The NHS Health and Care Innovation Expo presents a "
-"unique opportunity to map and tap into the collective mindset of a broad "
-"cross-section of those who work in and around the NHS in real time about "
-"the demand for collecting, sharing and using data to improve "
-"outcomes.</p> <p>From September 2-3, you are invited to participate in "
-"Network of Innovators, an experiment of The GovLab.</p> <ul>\n"
-"  <li>How can we make innovation actionable?\n"
-"  <li>How can we make manifest the expertise and capacity for innovation "
-"that already exists within and across NHS England?\n"
-"  <li>How can we connect innovators across domains and disciplines\n"
-"</ul> <h3>The GovLab Experiment</h3> <p>Network of Innovators (NoI) is a "
-"collaborative platform to connect and search for people across "
-"organizations, institutions, sectors and communities. By answering "
-"questionnaires across a range of topics related to your innovation skills"
-" and experiences, NoI will match you to others with complementary "
-"knowledge to enable learning and support.</p> <p>Network of Innovators "
-"(NoI) Experiment has been developed by The GovLab in partnership with "
-"governance innovation leaders across seven countries.  This is an "
-"experiment. We want to understand whether the approach works, how people "
-"use such a tool, and how they might want to use it in the future. The aim"
-" is both to enhance the conference experience by matching people for "
-"mutual benefit but also to improve the design of the platform. "
-"Questionnaires Answer questions to understand your own expertise, find "
-"allies and collaborators & learn from others.</p>\n"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:43
-msgid ""
-"<p>What makes open data a powerful tool for governing better is that the "
-"ability of people inside and  outside of institutions to use the same "
-"data to create useful policies, tools, visualizations, maps, and apps.  "
-"Open data can provide the raw material to convene informed conversations "
-"about what’s broken and the  empirical foundation for developing "
-"solutions.</p> <p><b>These twenty questions help you describe what you "
-"know and can share about open data and what you want to learn from "
-"others.  Click on a link below to create an expertise profile.</b></p>\n"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:45
-msgid "Open Data"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:46
-msgid "creating an open data plan and strategy to achieve key goals"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:47
-msgid ""
-"How to identify what data will help my organization achieve its core "
-"mission"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:48
-msgid ""
-"How to distinguish between potentially sensitive data and non-sensitive "
-"data"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:49
-msgid "How to craft a clear policy explaining what data to open and how"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:50
-msgid "How to do public consultation on an open data policy"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:51
-msgid "How to get organizational approval for opening data"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:52
-msgid "operationalizing an open data program in practice"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:53
-msgid "How to scrape data from my domain"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:54
-msgid "How to make data machine-readable"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:55
-msgid "what formats to publish data in"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:56
-msgid "how to license my data"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:57
-msgid "what data standards to publish data in"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:58
-msgid "how to use the right infrastructure for making data available"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:59
-msgid "good management for an open data project"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:60
-msgid "how to determine how often datasets should be released and updated"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:61
-msgid "how to ensure continued data quality and integrity"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:62
-msgid "responding to what users need and want"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:63
-msgid ""
-"how to create incentives for users or the public to make productive use "
-"of the data"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:64
-msgid "how to identify and combine other sources of open data to achieve a goal"
+#: views.py:797
+msgid "Loading..."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:65
-msgid "how to design a data collaborative"
+#: views.py:881
+#, python-format
+msgid "%(user)s would like you to join the Network of Innovators!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:66
+#: views.py:886
+#, python-format
 msgid ""
-"how to express the value proposition of the open data datasets, including"
-" what problems can be solved with this data"
+"%(user)s has invited you to join the Network of Innovators -- a new "
+"skill-sharing network for government and civic innovators worldwide.\n"
+"\n"
+"Join today. It's FREE. And in just a few minutes, you can get matched "
+"with innovators from around the world.\n"
+"\n"
+"Build your network now at %(url)s."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:67
-msgid "assessing effectiveness"
+#: views.py:900
+msgid "Invitation sent!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:68
-msgid "how to monitor how my data is being used"
+#: views.py:903
+msgid "Your form submission was invalid."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:69
-msgid "how to measure the economic and/or social impact of opening up data"
+#: templates/__base_new__.html:19 templates/__base_ui__.html:8
+#: templates/down.html:3 templates/main-old.html:3 templates/main-old2.html:8
+#: templates/admin/master.html:4 templates/security/send_login.html:3
+msgid "Network of Innovators"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:70
-msgid ""
-"<p>Governments — and other entities — are increasing seeking to solve big"
-"  problems using new technologies and innovative approaches. One of the "
-"most  common approaches involves prize-backed contests as well as "
-"challenges and  grand challenges. These competitions offer a range of "
-"advantages for  government agencies, especially in an era of tightening "
-"budgets.</p> <p><b>These twenty questions help you describe what you know"
-" and can share about prize-backed challenges\n"
-" and what you want to learn from others. \n"
-"Click on a link below to create an expertise profile.</b></p>\n"
+#: templates/__base_ui__.html:24 templates/main.html:26
+msgid "Home"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:74
-msgid "Prizes"
+#: templates/__base_ui__.html:28
+msgid "Match Me"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:75
-msgid "defining the problem"
+#: templates/__base_ui__.html:32 templates/search.html:3
+#: templates/search.html:49
+msgid "Find Innovators"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:76
-msgid "how to define and express the problem addressed by the prize."
+#: templates/__base_ui__.html:37
+msgid "Discuss"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:77
-msgid ""
-"how to do rapid research to test the assumptions behind my problem "
-"definition"
+#: templates/__base_ui__.html:42 templates/__base_ui__.html:86
+msgid "Share Feedback"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:78
-msgid "how to develop metrics to use to measure progress"
+#: templates/__base_ui__.html:47
+msgid "View Network"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:79
-msgid "deciding if a prize is the right tool"
+#: templates/__base_ui__.html:57
+msgid "Post an update"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:80
+#: templates/__base_ui__.html:62
 msgid ""
-"how to decide when to use a prize-backed challenge rather than other "
-"options like conventional crowdsourcing"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:81
-msgid "how to determine whether a prize or a grand challenge is optimal"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:82
-msgid "how to decide whether to use financial or non-financial incentives"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:83
-msgid "how to set the value of a prize"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:84
-msgid "targeting the right participants"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:85
-msgid "how to identify would-be participating innovators"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:86
-msgid "how to assess the the potential costs involved for them in participating"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:87
-msgid "rinning a prize-backed challenge"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:88
-msgid "how to fund a prize-backed challenge"
+"Have a question to pose to the whole community? Need help with a task? "
+"Ask the Network!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:89
-msgid "how to create a plan for running the prize with defined milestones"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:90
+#: templates/__base_ui__.html:63
 msgid ""
-"how to access outside contractors to support the design and "
-"implementation of the prizes"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:91
-msgid "how to decide how long the prize should run"
+"Does anyone have experience with prize-backed challenges relating to "
+"increasing literacy?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:92
-msgid "how to develop a communication strategy to get the word out"
+#: templates/__base_ui__.html:64
+msgid "Send"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:93
-msgid "how to choose from the tools available to run a prize-backed challenge"
+#: templates/__base_ui__.html:80 templates/my-profile.html:5
+#: templates/my-profile.html:8
+msgid "My Profile"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:94
-msgid "judging a prize"
+#: templates/__base_ui__.html:84
+msgid "Add Expertise"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:95
-msgid "how to design assessment criteria"
+#: templates/__base_ui__.html:85 templates/settings.html:5
+msgid "Settings"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:96
-msgid "how to select judges"
+#: templates/__base_ui__.html:88 templates/invite.html:3
+#: templates/invite.html:18
+msgid "Invite Someone"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:97
-msgid "overcoming legal concerns"
+#: templates/__base_ui__.html:89 templates/faq.html:9
+msgid "FAQ"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:98
-msgid "how to determine ownership and copyright"
+#: templates/__base_ui__.html:90
+msgid "View Tutorials"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:99
-msgid "how to navigate governmental endorsement and privacy concerns"
+#: templates/__base_ui__.html:91 templates/about.html:3 templates/about.html:7
+msgid "About"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:100
-msgid "what to do after a challenge"
+#: templates/__base_ui__.html:92 templates/faq.html:30
+#: templates/main-old.html:95 templates/main.html:259
+msgid "Terms of Service"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:101
-msgid "how to translate winning entries into well-developed solutions"
+#: templates/__base_ui__.html:94
+msgid "Admin Panel"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:102
-#: /noi/app/templates/totranslate.html:159
-#: /noi/app/templates/totranslate.html:161
-msgid "Coming soon"
+#: templates/__base_ui__.html:96
+msgid "Sign Out"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:103
-msgid "Agile"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:104
-msgid ""
-"<p>Citizen science projects – task-based initiatives in which citizens of"
-" any  background can help contribute to scientific research – like Galaxy"
-" Zoo and  Zooniverse are demonstrating the ability of lay and expert "
-"citizens alike to  make small, useful contributions to aid large, complex"
-" undertakings. As governing  institutions seek to do more with less, "
-"looking to the success of citizen science  initiatives could provide a "
-"blueprint for engaging citizens to help accomplish difficult, time-"
-"consuming objectives at little cost.</p> <p><b>These forty four questions"
-" help you describe what you know and can share  about open data and what "
-"you want to learn from others.  Click on a link below to create an "
-"expertise profile.</b></p>\n"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:106
-msgid "Citizen Science"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:107
-msgid ""
-"defining the goals of a citizen science initiative and the tasks to be "
-"completed in order to achieve them"
+#: templates/_activity_events.html:10
+#, python-format
+msgid "%(user)s shared:"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:108
-msgid "How to identify a compelling goal for a citizen science project"
+#: templates/_activity_events.html:14
+msgid "Reply via e-mail"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:109
-msgid "How to identify and define the tasks for participants to do"
+#: templates/_activity_events.html:21
+#, python-format
+msgid "%(user)s joined NOI."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:110
-msgid ""
-"How to decide the types of tasks to be considered when developing a "
-"citizen science project"
-msgstr ""
+#: templates/_activity_events.html:25
+#, python-format
+msgid "+%(num)d new connection made in NOI."
+msgid_plural "+%(num)d new connections made in NOI."
+msgstr[0] ""
+msgstr[1] ""
 
-#: /noi/app/templates/totranslate.html:111
-msgid "How to articulate intended outcomes of a project"
+#: templates/_activity_events.html:26
+#, python-format
+msgid "%(total)s connections!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:112
-msgid "How to articulate how the tasks will advance a research field"
+#: templates/_activity_events.html:34
+#, python-format
+msgid "%(user)s posted in Discuss."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:113
-msgid "How to define the success of a project"
+#: templates/_activity_events.html:46
+msgid "Reply in Discuss"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:114
-msgid "How to measure and evaluate the success of a project"
+#: templates/_complete_profile_cta.html:3
+msgid "Complete Your Profile"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:115
+#: templates/_complete_profile_cta.html:6
 msgid ""
-"How to define and validate a protocol for an experiment and required data"
-" collection"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:116
-msgid "How to define a project in terms of time required and geographic range"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:117
-msgid "How to identify funding opportunities for a project"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:118
-msgid "developing incentives to motivate participation"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:119
-msgid "How to engage with and/or create a community for participants."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:120
-msgid "How to retain participants"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:121
-msgid "How to address variations and skew in participation"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:122
-msgid "How to scale up participation"
+"Let others know your skills & expertise and also get more relevant "
+"matches!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:123
-msgid "How to identify collaborators around the project"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:124
-msgid "How to define and develop gamification in projects"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:125
+#: templates/_macros.html:8
 msgid ""
-"How to identify what people are competing to do (e.g. quantity, "
-"frequency, quality of participation)"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:126
-msgid "How to attribute contributions to the relevant parties"
+"To select multiple items, hold down the <strong>CTRL</strong> key (or the"
+" Command key on Macs)."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:127
-msgid "giving participants the skills and information needed to participate well"
+#: templates/_network-viz.html:16 templates/_network-viz2.html:62
+#: templates/user-profile.html:126
+#, python-format
+msgid "%(count)d questions answered"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:128
-msgid "How to prepare individuals to participate in a project"
+#: templates/_profile-expertise-match-area.html:20
+msgid "You want to learn this!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:129
-msgid "How to develop an FAQ for participants to reference throughout the process"
+#: templates/_profile-expertise-match-area.html:25
+#, python-format
+msgid "%(user)s can <strong>explain</strong>"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:130
-msgid ""
-"How to prepare people within my institution to make use of citizen "
-"scientists’ input"
+#: templates/_profile-expertise-match-area.html:29
+#, python-format
+msgid "%(user)s can <strong>do it</strong>"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:131
-msgid "How to assess data quality"
+#: templates/_profile-expertise-match-area.html:33
+#, python-format
+msgid "%(user)s can <strong>connect you</strong>"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:132
-msgid "How to design/adapt protocols to assure high quality data"
+#: templates/_profile-expertise-match-area.html:37
+#, python-format
+msgid "%(user)s wants to <strong>learn</strong>"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:133
-msgid ""
-"How to identify, choose and recruit participants capable of contributing "
-"high quality data"
-msgstr ""
+#: templates/_profile-expertise-match.html:7
+#, python-format
+msgid "You match on %(num)d question"
+msgid_plural "You match on %(num)d questions"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /noi/app/templates/totranslate.html:134
-msgid "deciding upon and using citizen science platforms and tools"
-msgstr ""
+#: templates/_profile-progress-item.html:10
+#, python-format
+msgid "%(num)d question left"
+msgid_plural "%(num)d questions left"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /noi/app/templates/totranslate.html:135
-msgid ""
-"How to identify and decide on the optimal platform for sharing data "
-"submitted by participants, in a way that helps them interpret the data"
+#: templates/_profile-questionnaire.html:22 templates/activity.html:131
+#: templates/register-step-2.html:23 templates/register-step-3.html:57
+msgid "Next"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:136
-msgid ""
-"How to identify and decide on the optimal platform for sharing data "
-"submitted by participants, with other researchers or data hubs"
+#: templates/_profile-questionnaire.html:53 templates/register-step-3.html:81
+msgid "Skip this question"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:137
-msgid ""
-"How to evaluate and implement the appropriate use of technology for "
-"collecting and reporting data given the task I am asking people to do"
+#: templates/about.html:12 templates/faq.html:14
+msgid "What is Network of Innovators?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:138
+#: templates/about.html:13
 msgid ""
-"How to interpret data being collected before the project has been "
-"completed"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:139
-msgid "How to interpret data collected when the project has been completed"
+"Network of Innovators (NoI) is an expert network designed and developed "
+"by The GovLab in collaboration with governance innovation leaders across "
+"eight countries. It makes searchable the know-how of government "
+"innovators on topics integral to governing more effectively and "
+"legitimately, such as open data, citizen engagement and prize-backed "
+"challenges. By answering questions about your governance innovation "
+"skills and experiences, you can be matched to those with complementary "
+"knowledge to enable mutual support and learning."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:140
-msgid "How to archive data"
+#: templates/about.html:16
+msgid "Who is NoI designed for?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:141
-msgid "using input gained through citizen science to drive decision making"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:142
-msgid "How to identify the societal relevance of your project"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:143
+#: templates/about.html:17
 msgid ""
-"How to translate the outcomes of the project into desired changes: "
-"(government, institutional, societal)"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:144
-msgid "legal concerns and barriers related to citizen science initiatives"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:145
-msgid "How to identify and mitigate privacy concerns relating to data collected"
+"NoI is an expert network for government and civic innovators worldwide "
+"who want to find and collaborate with others who can help them better "
+"solve public problems."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:146
-msgid "How to ensure COPPA compliance in projects featuring minors"
+#: templates/about.html:20
+msgid "What problem does NoI aim to solve?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:147
+#: templates/about.html:21
 msgid ""
-"How to identify considerations related to participants sharing their "
-"locations"
+"In large institutions, there is no good way to target opportunities for "
+"collaboration. Professionals working in a variety of contexts - from "
+"regulatory agencies to social innovation labs - have a hard time "
+"identifying who among their colleagues and peers has the experience and "
+"expertise to better solve problems. There are a number of factors feeding"
+" into this reality:"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:148
-msgid "How to ask people to license their contributions"
+#: templates/about.html:23
+msgid "Titles and credentials don’t capture real world know-how."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:149
-msgid "How to license data that is going to be published"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:150
-msgid "How to draft a data policy"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:151
-msgid "How to draft a privacy policy"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:152
+#: templates/about.html:24
 msgid ""
-"How to draft other liability policies and educate potential participants "
-"about privacy issues"
+"Government projects or public-private partnerships are typically branded "
+"as institutional achievements."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:153
+#: templates/about.html:25
 msgid ""
-"communicating project results to participants and the public, and "
-"ensuring that projects continue after initial the engagement"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:154
-msgid "How to communicate results and milestones to participants"
+"There is a lack of well developed taxonomies of  skills for new domain "
+"areas of government, like open data or prize-backed challenges."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:155
-msgid "How to identify avenues for publishing results"
+#: templates/about.html:29
+msgid "What is the goal of NoI?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:156
-msgid "How to determine when to publish results"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:157
-msgid "How to ensure sustainability of project management"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:158
-msgid "How to identify funding opportunities to sustain a project"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:160
-msgid "Nudges"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:162
-msgid "Partnerships"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:163
-msgid "TODO"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:164
-msgid "Data Science"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:165
-msgid "data collection"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:166
-msgid "How to create incentives for people to provide data."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:167
+#: templates/about.html:30
 msgid ""
-"How to use new methods (e.g. crowdsourcing) for collecting data from new "
-"sources."
+"NoI aims to organize and develop the taxonomy of innovation practices. "
+"Through ongoing engagement with governance innovation practitioners from "
+"around the world, we are continuing to refine NoI with a focus on "
+"capturing the most impactful and desirable innovation skills for public "
+"servants today."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:168
-msgid ""
-"How to make sure that data is accurate, timely, and clean. (Data "
-"processing and conditioning)"
+#: templates/about.html:31
+msgid "21st Century Innovation Skillsets:"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:169
-msgid "data governance"
+#: templates/about.html:54
+msgid "Randomized Control Trials"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:170
-msgid "How to store data securely."
+#: templates/about.html:58
+msgid "Prize-Backed Challenges"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:171
-msgid ""
-"How to transmit data securely so that when data is shared, the quality "
-"and integrity of the data is maintained."
+#: templates/about.html:68
+msgid "About The GovLab"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:172
+#: templates/about.html:69
 msgid ""
-"How to share data appropriately within my institution and with third "
-"parties in a way that does not violate privacy and confidentiality.    "
-"(Information Governance)"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:173
-msgid "How to craft an information governance policy."
+"The GovLab is an action research institute at New York University. Our "
+"goal is to strengthen the ability of institutions, governments and people"
+" to work more openly, collaboratively, and legitimately to solve public "
+"problems. We believe that increased use of data, new ways to leverage the"
+" skills and expertise of individuals, combined with advances in science "
+"and technology can transform governance. We approach each challenge in an"
+" interdisciplinary and collaborative way, irrespective of the problem, "
+"sector or geography."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:174
-msgid "drawing insights from data"
+#: templates/activity.html:13
+msgid "Activity"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:175
-msgid ""
-"How to spot patterns and predict trends from existing data (predictive "
-"analytics)."
+#: templates/activity.html:14
+msgid "Most Connected"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:176
-msgid "How to formulate and test a hypothesis using data."
+#: templates/activity.html:15
+msgid "Most Complete Profiles"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:177
-msgid "How to design an experiment to test a data-driven hypothesis."
+#: templates/activity.html:19
+msgid "My Profile Progress"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:178
-msgid "How to plot and visualize data in order to derive and communicate insight."
-msgstr ""
+#: templates/activity.html:79
+#, python-format
+msgid "%(num)d Connection"
+msgid_plural "%(num)d Connections"
+msgstr[0] ""
+msgstr[1] ""
 
-#: /noi/app/templates/totranslate.html:179
-msgid "How to interpret and communicate what data says."
+#: templates/activity.html:124
+msgid "OK"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:180
-msgid ""
-"<p>Institutions often work best when their stakeholders -- whether "
-"citizens, customers, parents, patients, or other members of a community "
-"-- are directly engaged in decision-making and service delivery. "
-"Engagement can build trust and increase the legitimacy of decision-"
-"making. It can also help institutions solve problems more effectively by "
-"developing solutions that are designed in consultation with their "
-"stakeholders. But knowing when and how to engage members of a community "
-"and under what conditions is hard. </p> <p>Share what you know and what "
-"you would like to learn about how to formulate, implement and measure a "
-"community engagement strategy.</p>\n"
+#: templates/activity.html:127
+msgid "Dismiss Forever"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:182
-msgid "Community Engagement"
+#: templates/activity.html:145
+#, python-format
+msgid "Welcome <strong>%(first_name)s</strong>!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:183
+#: templates/activity.html:146
 msgid ""
-"What you can share about setting the stage for a community engagement "
-"program."
+"You can <strong>meet your top matches</strong> based on your skills and "
+"interests."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:184
+#: templates/activity.html:150
 msgid ""
-"Clearly identify the rationale, purpose and objectives for community "
-"engagement."
+"<strong>Find innovators</strong> by expertise area, location, event or "
+"other search term."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:185
+#: templates/activity.html:156
 msgid ""
-"Find and interpret relevant legislative and/or policy requirements "
-"driving the need for engagement."
+"Have a question or something to share with the network? <strong>Discuss "
+"it</strong> with like-minded innovators in one of our channels! You can "
+"change your discussion username in <a href='./me'>Edit Profile.</a>"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:186
-msgid ""
-"Identify who needs to be involved, including all stakeholders affected, "
-"impacted or interested in the engagement."
+#: templates/activity.html:160 templates/activity.html:166
+msgid "Don't forget to <strong>update your profile</strong>."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:187
-msgid "What you can share about operationalizing a community engagement program."
+#: templates/activity.html:161 templates/activity.html:167
+msgid "The more questions you answer, the more relevant your matches."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:188
+#: templates/down.html:22
 msgid ""
-"Identify and communicate incentives to participate, including anticipated"
-" outcomes."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:189
-msgid "Develop briefing materials and information to inform engagement."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:190
-msgid "Use multiple dialog methods to engage stakeholders."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:191
-msgid "Plan and deliver face-to-face deliberation."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:192
-msgid "Plan and deliver a deliberative poll."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:193
-msgid "Plan and deliver a citizen jury."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:194
-msgid "Plan and deliver a participatory budgeting process."
+"Network of Innovators is down for scheduled maintenance and upgrade. "
+"Please check back again soon, or visit <a href=\"http://www.thegovlab.org"
+"/project-network-of-innovators.html\" class=\"m-text-"
+"link\">thegovlab.org</a> to learn more."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:195
-msgid "Plan and deliver a charrette or scenario-planning exercise."
+#: templates/down.html:75 templates/main-old.html:80
+msgid "in collaboration with innovation teams from governments of"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:196
-msgid "Develop an action/project plan with timeline to implement the engagement."
+#: templates/faq.html:3
+msgid "Frequently Asked Questions"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:197
-msgid "Ensure accessibility of the engagement activity."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:198
+#: templates/faq.html:15
 msgid ""
-"What you can share about effectively using tools to gain input from "
-"diverse stakeholders"
+"Network of Innovators (NOI) is an expert network designed and developed "
+"by The GovLab in collaboration with governance innovation leaders across "
+"eight countries. It makes searchable the know-how of government "
+"innovators on topics integral to governing more effectively and "
+"legitimately, such as open data, citizen engagement and prize-backed "
+"challenges. By answering questions about your governance innovation "
+"skills and experiences, you can be matched to those with complementary "
+"knowledge to enable mutual support and learning."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:199
+#: templates/faq.html:16
 msgid ""
-"Use social media, digital and online tools to engage stakeholders as a "
-"group."
+"NOI attempts to get at what you know by asking the kinds of questions you"
+" can answer. You can specify the expertise you have and want to share: "
+"whether you have the ability to do something, to tell someone about it, "
+"or to connect someone to others knowledgeable about a topic."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:200
-msgid "Use social media, digital and online tools to conduct surveys."
+#: templates/faq.html:19
+msgid "Who is Network of Innovators for?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:201
+#: templates/faq.html:20
 msgid ""
-"Plan and deliver an e-deliberation process like a 21st century town "
-"meeting."
+"NoI is an expert network for government and civic innovators worldwide "
+"who want to find and collaborate with others who can help them better "
+"solve public problems. NoI is especially targeted at internal government "
+"innovators looking to connect with like-minded experts and practitioners."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:202
-msgid "Plan and deliver open space technology."
+#: templates/faq.html:23
+msgid "Why not just use LinkedIn?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:203
+#: templates/faq.html:24
 msgid ""
-"Use digital and online tools to amplify engagement efforts and increase "
-"reach."
+"LinkedIn, among other networks, are built to help people share their "
+"expertise. Such networks, however, focus largely on traditional means of "
+"measuring expertise – namely academic credentials and job titles. The "
+"Network of Innovators project, in addition to giving individuals the "
+"ability to articulate and search for more specific expertise within topic"
+" areas, defines expertise more broadly and aims to make skills, "
+"experiences, and know how searchable."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:204
-msgid "Use digital and online tools to provide feedback to stakeholders."
+#: templates/faq.html:28
+msgid "Who can see my information?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:205
+#: templates/faq.html:32
+#, python-format
 msgid ""
-"What you can share about assessing effectiveness and sharing targeted "
-"feedback"
+"Your NoI profile is visible to all other users of NoI – including "
+"innovators across governments and governance innovators outside in public"
+" sector. You can read more in the NoI %(toc_link)s. If you have received "
+"abusive, solicitous or otherwise irrelevant messages from other members "
+"of NoI, please report your issue to %(contact_link)s."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:206
-msgid "Capture and utilise relevant data related to all aspects of engagement."
+#: templates/faq.html:36
+msgid "How will my data be used?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:207
+#: templates/faq.html:37
+#, python-format
 msgid ""
-"Create tools for providing clear feedback to participants and decision "
-"makers."
+"The information you share on NoI will be used solely for the platform’s "
+"purpose – enabling connections between government innovators – and "
+"anonymous NoI usage analysis. Your data will not be shared with any third"
+" parties, and no information will remain in the NoI database should you "
+"chose to delete your account. For more information on NoI’s data usage "
+"and control, please contact %(contact_link)s."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:208
-msgid "Clearly and regularly report outcomes to participants and stakeholders."
+#: templates/faq.html:41
+msgid "How will you build and improve Network of Innovators?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:209
+#: templates/faq.html:42
 msgid ""
-"What you can share about increasing the organizational use of citizen "
-"engagement"
+"An expert network focused on enabling the exchange of knowledge requires "
+"participation from both people looking to find expertise and those ready "
+"to share what they know. To ensure that NoI reaches this optimal level of"
+" engagement – and continues to grow and evolve – the GovLab is conducting"
+" ongoing outreach to governance innovators at relevant conferences and "
+"events, through online media channels, and through direct outreach to "
+"innovation champions in institutions throughout the world."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:210
+#: templates/faq.html:43
+#, python-format
 msgid ""
-"Ensure that the learnings from a community engagement exercise get used "
-"to support continuous improvement within my organisation."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:211
-msgid "Increase organisational awareness of the value of community engagement."
+"You can <a href='%(invite_url)s'>invite an innovator</a> you know to join"
+" NoI."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:212
-msgid "Develop and deliver appropriate training for staff across my organisation."
+#: templates/faq.html:47
+msgid "Why do I need to answer questions about what I know?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:213
+#: templates/faq.html:48
 msgid ""
-"<p>Across the world, governments are seeking to become more experimental"
-"  and evidence-based through the creation of internal innovation labs. "
-"The growing  movement of labs – which often focus on innovative tools and"
-" strategies, human-centered design, or both – is helping to uncover what "
-"works in practice in addressing public problems. </p> <p><b>Click on a "
-"link below to create an expertise profile.</b></p>\n"
+"NoI is premised on the belief that simple tags (e.g., my skills are “open"
+" data” and “crowdsourcing”) do not adequately capture the full gamut of "
+"experience and know how possessed by governance innovators. To help move "
+"beyond free-form tags, NoI asks you to note if and how you could answer a"
+" specific innovation question from someone looking to access your "
+"expertise. This approach, we believe, will help you to better describe "
+"the range and nuance of your innovation expertise, and enable more "
+"fruitful connections with others on NoI."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:215
-msgid "Lab Design"
+#: templates/faq.html:52
+msgid "How does your matching algorithm work?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:216
-msgid "What you can share about launching a government innovation lab."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:217
+#: templates/faq.html:53
 msgid ""
-"how to articulate the value proposition of my Lab and the need for "
-"experimentation."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:218
-msgid "how to develop a plan for my Lab"
+"NOI uses the answers you give to the innovation skill questions to match "
+"you with others from whom you can learn the most. Based on all innovation"
+" skills that you answer “I want to learn”, NOI’s algorithm ranks the "
+"innovators in the network who can do, explain or connect you on most of "
+"them. This is also how others who can learn the most from your expertise "
+"will be able to find and consult with you."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:219
+#: templates/faq.html:57
 msgid ""
-"how to clearly articulate the problems that my Lab is supposed to solve, "
-"and the assumptions it is going to test"
+"Why were these governance innovation topics chosen, and will more "
+"innovation areas be added to NoI?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:220
-msgid "how to define the service lines for my Lab"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:221
-msgid "how to articulate a clear theory of change for my Lab"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:222
+#: templates/faq.html:58
 msgid ""
-"What you can share about the organizational mechanics of running a "
-"government innovation lab."
+"The innovation topic questionnaires found on NoI were identified and "
+"developed by the GovLab and its governance innovation partners across "
+"eight countries. The innovation areas and the profile-creation questions "
+"included for each topic were carefully crafted and iterated upon through "
+"detailed research into the current state of governance innovation around "
+"the world and, importantly, ongoing outreach and discussion with "
+"governance innovation practitioners around the world."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:223
+#: templates/faq.html:59
+#, python-format
 msgid ""
-"how to define an engagement model for my Lab vis a vis other parts of my "
-"organisation"
+"To suggest the addition of another innovation topic, contact us at "
+"%(contact_link)s."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:224
-msgid ""
-"how to define a handover protocol between my Lab and other parts of the "
-"organisation"
+#: templates/faq.html:63
+msgid "Who created NoI?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:225
+#: templates/faq.html:64
 msgid ""
-"how to define the roles and Terms of Reference staff need for the success"
-" of my Lab"
+"NoI was developed by The Governance Lab @ NYU (GovLab), in partnership "
+"with governance innovation leaders across eight countries."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:226
+#: templates/faq.html:65
 msgid ""
-"how to cost the services for my Lab and define a business model that "
-"guarantees long term sustainability"
+"The GovLab’s mission is « to improve people’s lives by changing the way "
+"we govern »."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:227
+#: templates/faq.html:66
 msgid ""
-"how to effectively argue for the most effective reporting lines and "
-"organisational placement for my Lab"
+"Our goal is to strengthen the ability of institutions – including but not"
+" limited to governments – and people to work more openly, "
+"collaboratively, effectively and legitimately to make better decisions "
+"and solve public problems."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:228
+#: templates/faq.html:67
 msgid ""
-"What you can share about developing and implementing an experimental "
-"methodology for lab work."
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:229
-msgid "how to define metrics for my Lab to demonstrate its impact"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:230
-msgid "how to select and implement the methodologies that my Lab will promote"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:231
-msgid "how to train others in Lab methodologies and tools"
+"We believe that increased availability and use of data, new ways to "
+"leverage the capacity, intelligence, and expertise of people in the "
+"problem-solving process, combined with new advances in technology and "
+"science can transform governance. Learn more at <a "
+"href='http://thegovlab.org'>thegovlab.org</a>."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:232
-msgid "how to manage a Lab project using an agile development approach"
+#: templates/faq.html:71
+msgid "How can I contact you?"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:233
+#: templates/faq.html:72
+#, python-format
 msgid ""
-"how to track, evidence and iterate our programmes to ensure relevance and"
-" generate timely results"
+"Suggestions for improving NoI? Found a bug? Questions on how to make the "
+"most of the network? We’d love to hear from you! Contact us at "
+"%(contact_link)s and/or fill out our <a href='%(feedback_url)s'>feedback "
+"form</a>."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:234
-msgid "What you can share about managing lab staff and budgets"
+#: templates/feedback.html:13
+msgid "Feedback"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:235
-msgid "how to effectively recruit a group of early champions to support the Lab"
+#: templates/feedback.html:18
+msgid "Share your feedback about the Network of Innovators"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:236
-msgid ""
-"how to manage resources, including people, time and budget to ensure "
-"value for money"
+#: templates/invite.html:21
+msgid "Suggest someone to join the network"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:237
-msgid ""
-"What you can share about making use of lab results internally and "
-"communicating impacts externally."
+#: templates/invite.html:29
+msgid "Invite"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:238
-msgid ""
-"how to develop a portfolio of demonstration projects that can demonstrate"
-" tangible results even in the face of skepticism"
+#: templates/main-old.html:16 templates/main.html:41 templates/settings.html:24
+msgid "Change Language"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:239
-msgid ""
-"how to research, pilot and test new programmes based on the insights and "
-"knowhow gathered from previous ones"
+#: templates/main-old.html:22
+msgid "The skill-sharing network for government & civic innovators worldwide"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:240
-msgid ""
-"how to capture, articulate and share the narrative around the impact and "
-"outcomes of lab programmes, i.e. through case studies"
+#: templates/main-old.html:23 templates/main-old.html:93 templates/main.html:61
+#: templates/main.html:257
+msgid "Get Started"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:241
+#: templates/main-old.html:34
 msgid ""
-"<p>Crowdsourcing uses communications technologies to enable institutions"
-"  to leverage the wisdom of the crowd. With crowdsourcing, organizations "
-"can get help, for example, with performing tasks, obtaining ideas and "
-"opinions,  gathering data, soliciting funds, or administering programs. "
-"By enabling institutions to get more distributed and diverse "
-"collaboration in ways never before possible,  they can improve a "
-"project’s efficiency, legitimacy and diversity. </p> <p><b>These "
-"questions help you describe what you know and can share about "
-"crowdsourcing and what you want to learn from others. Click on a link "
-"below to create an expertise  profile.</b></p>\n"
+"<strong>Select an innovation area</strong> to answer questions about what"
+" you know and can share with others. Telling us about your innovation "
+"skills enables you to get matched to those with complementary expertise."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:243
+#: templates/main-old.html:39 templates/main.html:106
 msgid "Crowdsourcing"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:244
-msgid "What can you share about identifying, enrolling, and developing a crowd"
+#: templates/main-old.html:42 templates/main.html:124
+msgid "Data Science"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:245
+#: templates/main-old.html:45 templates/main.html:94
+msgid "Community Engagement"
+msgstr ""
+
+#: templates/main-old.html:48 templates/main.html:112
+msgid "Lab Design"
+msgstr ""
+
+#: templates/main-old.html:51 templates/main.html:100
+msgid "Citizen Science"
+msgstr ""
+
+#: templates/main-old.html:54 templates/main.html:88
+msgid "Open Data"
+msgstr ""
+
+#: templates/main-old.html:57 templates/main.html:118
+msgid "Prizes"
+msgstr ""
+
+#: templates/main-old.html:60 templates/main.html:130
+msgid "Randomized Controlled Trials"
+msgstr ""
+
+#: templates/main-old.html:68
 msgid ""
-"How to identify the crowd I want to participate (e.g. general public, "
-"informed experts, participants with a particular skill)"
+"<strong>Find Innovators</strong> who know what you don’t and who want to "
+"learn what you can share."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:246
+#: templates/main-old.html:70
 msgid ""
-"How to enable members of the crowd to participate (e.g. creating "
-"profiles, defining roles, sharing supporting materials)"
+"<strong>Visualize your knowledge</strong> of innovative problem solving "
+"practices to see what you know, compare to others, and see the skillset "
+"of a 21st century innovator."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:247
-msgid "How to encourage ongoing participation"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:248
-msgid "What can you share about the type of activities the crowd could perform"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:249
+#: templates/main-old.html:75
 msgid ""
-"How to ask the crowd to perform a specific task (e.g. design a product, "
-"tag photos, classify information, analyse information)"
+"<strong>Build your own network of innovators</strong> and find the right "
+"collaborators for your project!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:250
+#: templates/main-old.html:94
+msgid "Learn more"
+msgstr ""
+
+#: templates/main.html:59
+msgid "The skill-sharing network for government &amp; civic innovators worldwide"
+msgstr ""
+
+#: templates/main.html:75
 msgid ""
-"How to ask the crowd to collect and share data (e.g. report a water leak,"
-" a case of corruption, quality of the air in their city)"
+"Build your own network of innovators and find the right collaborators for"
+" your project!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:251
+#: templates/main.html:81
 msgid ""
-"How to ask the crowd for their opinion (e.g. vote on a design contest, "
-"opine on a policy recommendation)"
+"Answer questions about what you know and can share with others. Telling "
+"us about your innovation skills enables you to get matched to those with "
+"complementary expertise."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:252
+#: templates/main.html:138
+msgid "Visualize your knowledge"
+msgstr "Visualiza tu conocimiento"
+
+#: templates/main.html:139
 msgid ""
-"How to ask the crowd for new ideas (e.g. solve a public problem, generate"
-" ideas to reduce unnecessary government spending)"
+"Visualize your knowledge of innovative problem solving practices to see "
+"what you know, compare to others, and see the skillset of a 21st century "
+"innovator."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:253
+#: templates/main.html:149
+msgid "News"
+msgstr "Noticias"
+
+#: templates/main.html:150
 msgid ""
-"How to ask the crowd for funds (e.g. donate money to help build a park, "
-"funding a municipal bond)"
+"Get access to stories written and curated specifically for Network of "
+"Innovators users."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:254
+#: templates/main.html:181
+msgid "Find innovators"
+msgstr ""
+
+#: templates/main.html:182
 msgid ""
-"How to ask the crowd for referrals (e.g. share information with their "
-"personal or professional networks, provide recommendations of other "
-"members of the crowd to include in an initiative)"
+"Find innovators who know what you don’t and who want to learn what you "
+"can share."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:255
+#: templates/main.html:243
+msgid "In collaboration with innovation teams from governments of"
+msgstr ""
+
+#: templates/main.html:258
+msgid "Learn More"
+msgstr ""
+
+#: templates/main.html:268
 msgid ""
-"What can you share about defining if crowdsourcing is the right process "
-"for a given situation"
+"This work is licensed under a <a rel=\"license\" "
+"href=\"http://creativecommons.org/licenses/by-sa/4.0/\">Creative Commons "
+"Attribution-ShareAlike 4.0 International License</a> <br> <a "
+"href=\"#\">Copyright Infringement Information</a>."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:256
+#: templates/match-me.html:6
+msgid "Your Practitioners"
+msgstr ""
+
+#: templates/match-me.html:7
+msgid "Your Explainers"
+msgstr ""
+
+#: templates/match-me.html:8
+msgid "Your Connectors"
+msgstr ""
+
+#: templates/match-me.html:9
+msgid "Your Peers"
+msgstr ""
+
+#: templates/match-me.html:18
 msgid ""
-"How to decide when to use crowdsourcing rather than other options like "
-"the conventional top-down process of decision-making"
+"Connectors know others who can answer your questions. Ask them to "
+"introduce you!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:257
+#: templates/match-me.html:20
+msgid "Peers want to learn the same things as you. Why don't you join forces?"
+msgstr ""
+
+#: templates/match-me.html:22
+msgid "Explainers know what you want to learn. Ask them to guide you!"
+msgstr ""
+
+#: templates/match-me.html:24
 msgid ""
-"How to identify the gaps in expertise that can be minimised through the "
-"participation of the crowd"
+"Practitioners have experience in what you want to learn. Ask them to "
+"share their experiences!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:258
+#: templates/match-me.html:47
+#, python-format
+msgid "%(num)d Skill Match"
+msgid_plural "%(num)d Skill Matches"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/match-me.html:56
+msgid "You currently have no matches."
+msgstr ""
+
+#: templates/match-me.html:57
+#, python-format
 msgid ""
-"How to design a crowdsourcing strategy that provides value to the "
-"participants either through the outcome or the participation itself"
+"Matches are created between users that want to learn and users that can "
+"do, explain, or connect. To get matched, go to the <a "
+"href=\"%(expertise_url)s\">Expertise</a> area of your profile and answer "
+"questions in areas you want to learn about."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:259
+#: templates/my-profile.html:37
+#, python-format
+msgid "Connect to <img alt=\"LinkedIn\" %(img_attrs)s>"
+msgstr ""
+
+#: templates/my-profile.html:43
 msgid ""
-"How to connect the efforts of the crowd to enable them to aggregate and "
-"build off each other’s work"
+"Filling out your profile is easier than ever! Connect your account to "
+"LinkedIn&trade; to pre-fill some of the form fields below. Connecting to "
+"LinkedIn&trade; will also allow others to see your LinkedIn&trade; "
+"profile."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:260
+#: templates/my-profile.html:65
+msgid "Save"
+msgstr ""
+
+#: templates/my-profile.html:72
+#, python-format
 msgid ""
-"How to determine the institutional resources required to implement a "
-"successful crowdsourcing initiative"
+"Your account is currently connected to LinkedIn&trade;, which allows "
+"others to see your LinkedIn&trade; profile. You can <a "
+"%(a_attrs)s>disconnect from LinkedIn&trade;</a> at any time to disable "
+"this."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:261
+#: templates/register-step-1.5.html:3 templates/security/register_user.html:3
+msgid "Register"
+msgstr ""
+
+#: templates/register-step-1.5.html:13
+#, python-format
 msgid ""
-"How to assess the potential time and resources required from the crowd in"
-" order to participate"
+"To improve security, we now require you to confirm your e-mail address at"
+" %(email)s."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:262
-msgid "How to assess the effectiveness of using crowdsourcing"
+#: templates/register-step-1.5.html:14
+msgid "Send confirmation e-mail"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:263
-msgid "What can you share about providing the right incentives for participation"
+#: templates/register-step-1.5.html:16
+msgid "Please check your inbox to confirm your e-mail address."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:264
-msgid "How to define the scope of the crowd’s participation"
+#: templates/register-step-1.5.html:17
+msgid "Re-send confirmation e-mail"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:265
-msgid "How to provide feedback for participation"
+#: templates/register-step-1.5.html:26 templates/register-step-2.html:29
+msgid "Logout"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:266
+#: templates/register-step-2.html:3
+msgid "Register - Basic Information"
+msgstr ""
+
+#: templates/register-step-2.html:12
 msgid ""
-"How to decide whether to use financial or non-financial incentives (or a "
-"mix of incentives)"
+"Now please share some basic info about yourself, so others can know who "
+"you are."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:267
-msgid "How to determine whether the use of a competition is beneficial"
+#: templates/register-step-3.html:4
+msgid "My Expertise"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:268
-msgid "How to determine whether the use of reputation systems is beneficial"
+#: templates/register-step-3.html:32
+msgid "Pick an innovation area that you're interested in:"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:269
-msgid "How to use altruistic or community building incentives"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:270
-msgid "How to design recreational incentives (i.e. gamification)"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:271
-msgid "How to identify which particular incentive is working and why"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:272
-msgid "How to monitor and adapt the incentives at the individual or crowd levels"
-msgstr ""
-
-#: /noi/app/templates/totranslate.html:273
+#: templates/register-step-3.html:55
+#, python-format
 msgid ""
-"How to tackle the possible credibility and authenticity issues involved "
-"in the input received from the crowd"
+"Now answer %(num)s questions about your experience in this area to join "
+"the network and get matched with other innovators!"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:274
+#: templates/register-step-3.html:56
 msgid ""
-"What can you share about setting up, running and managing a crowdsourcing"
-" effort"
+"You can always answer more questions by going to your profile page to get"
+" new and more relevant matches."
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:275
-msgid ""
-"How to create a plan for running the crowdsourcing project with defined "
-"milestones"
+#: templates/register-step-3.html:89
+msgid "Join"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:276
-msgid ""
-"How to target the right audience to attract the desired crowd and "
-"participation"
+#: templates/register-step-3.html:95
+msgid "Choose another area"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:277
-msgid "How to choose a platform to do the crowdsourcing project"
+#: templates/search.html:27
+msgid "By expertise area"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:278
-msgid ""
-"How to access outside contractors and/or intermediaries to support the "
-"design and implementation of the desired crowdsourcing platform"
+#: templates/search.html:31
+msgid "By country"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:279
-msgid ""
-"How to build a team within an institution that supports the project from "
-"initial idea through implementation"
+#: templates/search.html:35
+msgid "By language"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:280
-msgid "How to develop a communication strategy to target the right audience"
+#: templates/search.html:39
+msgid "By field of work"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:281
-msgid "How to connect members of the crowd to each other when appropriate"
+#: templates/search.html:43
+msgid "By event"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:282
-msgid "How to prepare to utilize or implement the output of the crowd"
+#: templates/search.html:47
+msgid "By Keyword"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:283
-msgid "What can you share about defining the right mechanism of quality control"
+#: templates/search.html:48
+msgid "Enter organization, name, or keywords here"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:284
-msgid "How to ensure high-quality and accurate participation from the crowd"
+#: templates/settings.html:13
+msgid "Reset Tutorial"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:285
-msgid ""
-"How to leverage crowd participants to evaluate crowd contributions "
-"(through voting, rating or peer-review)"
+#: templates/user-profile.html:3
+#, python-format
+msgid "%(user)s's Profile"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:286
-msgid "What can you share about addressing potential legal and ethical tensions"
+#: templates/user-profile.html:10
+msgid "Overview"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:287
-msgid "How to determine ownership and copyright of crowd contributions"
+#: templates/user-profile.html:11
+msgid "Expertise"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:288
-msgid "How to navigate governmental endorsement and privacy concerns"
+#: templates/user-profile.html:83
+msgid "You are an <strong>explainer</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/totranslate.html:289
-msgid ""
-"How to navigate potential tensions regarding free speech and public "
-"record laws"
+#: templates/user-profile.html:85
+msgid "You are a <strong>practitioner</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:105
-msgid "Domain(s) of expertise:"
+#: templates/user-profile.html:87
+msgid "You are a <strong>connector</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:113
-msgid "No domain information available."
+#: templates/user-profile.html:89
+msgid "You are a <strong>peer</strong> of:"
 msgstr ""
 
-#: /noi/app/templates/user-profile.html:121
+#: templates/user-profile.html:93
+#, python-format
+msgid "Ask %(user)s to <strong>explain</strong>:"
+msgstr ""
+
+#: templates/user-profile.html:95
+#, python-format
+msgid "Ask %(user)s to <strong>share experiences</strong> in:"
+msgstr ""
+
+#: templates/user-profile.html:97
+#, python-format
+msgid "Ask %(user)s to <strong>connect you</strong> in:"
+msgstr ""
+
+#: templates/user-profile.html:99
+#, python-format
+msgid "Ask %(user)s to <strong>learn with you</strong> in:"
+msgstr ""
+
+#: templates/user-profile.html:133
+msgid "Projects I have done"
+msgstr ""
+
+#: templates/user-profile.html:137
 msgid "No project information provided."
 msgstr ""
+
+#: templates/security/_menu_new.html:2
+msgid "Menu"
+msgstr ""
+
+#: templates/security/_menu_new.html:4 templates/security/login_user.html:3
+#: templates/security/send_login.html:13
+msgid "Login"
+msgstr ""
+
+#: templates/security/_menu_new.html:6
+#: templates/security/forgot_password.html:3
+msgid "Forgot password"
+msgstr ""
+
+#: templates/security/change_password.html:3
+#: templates/security/change_password.html:14
+msgid "Change password"
+msgstr ""
+
+#: templates/security/forgot_password.html:14
+msgid "Send password reset instructions"
+msgstr ""
+
+#: templates/security/login_user.html:14
+msgid "Log in with your email address"
+msgstr ""
+
+#: templates/security/login_user.html:27
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/security/login_user.html:30
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/security/register_user.html:14
+msgid "Sign up with your email address"
+msgstr ""
+
+#: templates/security/reset_password.html:3
+#: templates/security/reset_password.html:14
+msgid "Reset password"
+msgstr ""
+
+#: templates/security/send_confirmation.html:3
+#: templates/security/send_confirmation.html:14
+msgid "Send confirmation instructions"
+msgstr ""
+
+#~ msgid "Domains of Expertise"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Your expertise has been updated.<br/>\n"
+#~ "        What you can do next:\n"
+#~ "        <ul>\n"
+#~ "        <li><a href=\"/search\">Search for innovators</a></li>\n"
+#~ "        <li>Fill another expertise questionnaire below</li>\n"
+#~ "        <li>View your <a href=\"/user/{}\">public profile</a></li>\n"
+#~ "        "
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Before we can match you with "
+#~ "fellow innovators, you need to enter "
+#~ "your expertise below first."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<p><b>Network of Innovators (NoI)</b> is "
+#~ "an application designed and developed by"
+#~ " The GovLab in collaboration with "
+#~ "governance innovation leaders across seven "
+#~ "countries. The tool makes searchable the"
+#~ " know-how of government innovators on"
+#~ " topics integral to governing more "
+#~ "effectively and legitimately, such as "
+#~ "citizen engagement, opening data and "
+#~ "prize-backed challenges. By answering "
+#~ "questions about governance innovation skills"
+#~ " and experiences, the participant creates"
+#~ " a profile, enabling her to be "
+#~ "matched to those with complementary "
+#~ "knowledge—either those who are similar "
+#~ "or different—to enable mutual support "
+#~ "and learning.</p> <p><b>NoI</b> adopts a "
+#~ "more nuanced way of sharing and "
+#~ "finding expertise – one that looks "
+#~ "beyond traditional credentials to focus "
+#~ "on real world know how. Instead of"
+#~ " rigid categories or open-ended tags,"
+#~ " NoI attempts to get at what "
+#~ "people know by asking the kinds of"
+#~ " questions they could answer. In "
+#~ "response to those questions, they can"
+#~ " specify the expertise they have and"
+#~ " want to share: whether they have "
+#~ "the ability to do something, to "
+#~ "tell someone about it, or to refer"
+#~ " them to others knowledgeable about "
+#~ "the topic.</p> <p><b>NoI</b> is an "
+#~ "experiment intended to help the "
+#~ "community learn if expert networking is"
+#~ " an effective means to:</p> <ul> "
+#~ "<li>Find who else has experience trying"
+#~ " an innovation. <li>Identify who has "
+#~ "worked on a particular type of "
+#~ "policy or problem. <li>Find collaborators "
+#~ "to develop new ideas for tackling "
+#~ "a shared problem together. <li>Form "
+#~ "alliances and networks of supporters. "
+#~ "<li>Create a visual map of your "
+#~ "own and other people’s expertise and "
+#~ "the ability to compare skills across "
+#~ "countries. <li>Describe the job profile "
+#~ "of the 21st century public servant. "
+#~ "</ul> <p>We want to hear from "
+#~ "you.</p> <p>Please email us at <a "
+#~ "href=\"mailto:smarterstate@thegovlab.org\"> "
+#~ "smarterstate@thegovlab.org</a> with your "
+#~ "suggestions.</p>\n"
+#~ msgstr ""
+
+#~ msgid "Agriculture"
+#~ msgstr ""
+
+#~ msgid "Arts and culture"
+#~ msgstr ""
+
+#~ msgid "Business Licensing and Regulation"
+#~ msgstr ""
+
+#~ msgid "Consumer rights and issues"
+#~ msgstr ""
+
+#~ msgid "Defense and Armed Forces"
+#~ msgstr ""
+
+#~ msgid "Education"
+#~ msgstr ""
+
+#~ msgid "Energy"
+#~ msgstr ""
+
+#~ msgid "Environment"
+#~ msgstr ""
+
+#~ msgid "Foreign affairs"
+#~ msgstr ""
+
+#~ msgid "Government efficiency, transparency and accountability"
+#~ msgstr ""
+
+#~ msgid "Health"
+#~ msgstr ""
+
+#~ msgid "Housing - Human Rights - Immigration and Citizenship Services"
+#~ msgstr ""
+
+#~ msgid "International Aid and Development"
+#~ msgstr ""
+
+#~ msgid "Labor"
+#~ msgstr ""
+
+#~ msgid "Law and Justice System"
+#~ msgstr ""
+
+#~ msgid "Media and Communications"
+#~ msgstr ""
+
+#~ msgid "National Security"
+#~ msgstr ""
+
+#~ msgid "Public safety and Emergencies"
+#~ msgstr ""
+
+#~ msgid "Sanitation"
+#~ msgstr ""
+
+#~ msgid "Science and Innovation"
+#~ msgstr ""
+
+#~ msgid "Social care"
+#~ msgstr ""
+
+#~ msgid "Tax and Revenue"
+#~ msgstr ""
+
+#~ msgid "Trade and Investment"
+#~ msgstr ""
+
+#~ msgid "Transportation"
+#~ msgstr ""
+
+#~ msgid "Water and Electricity"
+#~ msgstr ""
+
+#~ msgid "TODO\n"
+#~ msgstr ""
+
+#~ msgid "Mental Health"
+#~ msgstr ""
+
+#~ msgid "Primary Care"
+#~ msgstr ""
+
+#~ msgid "Community Care"
+#~ msgstr ""
+
+#~ msgid "Public Health and Population Health"
+#~ msgstr ""
+
+#~ msgid "Acute Health"
+#~ msgstr ""
+
+#~ msgid "Health Policy"
+#~ msgstr ""
+
+#~ msgid "Commissioning"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<h3>NHS - GovLab Collaboration</h3> "
+#~ "<p>Innovation is critical to enabling "
+#~ "NHS England to achieve its ambitions "
+#~ "to ramp up the pace and scale "
+#~ "of change, and deliver better outcomes"
+#~ " for patients. With the Five Year "
+#~ "Forward Plan NHS England has clearly "
+#~ "articulated the fundamental role of data"
+#~ " and innovation in achieving these "
+#~ "ambitions at all levels of the "
+#~ "organization.</p> <p>The NHS Health and "
+#~ "Care Innovation Expo presents a unique"
+#~ " opportunity to map and tap into "
+#~ "the collective mindset of a broad "
+#~ "cross-section of those who work in"
+#~ " and around the NHS in real "
+#~ "time about the demand for collecting,"
+#~ " sharing and using data to improve"
+#~ " outcomes.</p> <p>From September 2-3, you"
+#~ " are invited to participate in "
+#~ "Network of Innovators, an experiment of"
+#~ " The GovLab.</p> <ul>\n"
+#~ "  <li>How can we make innovation actionable?\n"
+#~ "  <li>How can we make manifest the"
+#~ " expertise and capacity for innovation "
+#~ "that already exists within and across"
+#~ " NHS England?\n"
+#~ "  <li>How can we connect innovators across domains and disciplines\n"
+#~ "</ul> <h3>The GovLab Experiment</h3> "
+#~ "<p>Network of Innovators (NoI) is a "
+#~ "collaborative platform to connect and "
+#~ "search for people across organizations, "
+#~ "institutions, sectors and communities. By "
+#~ "answering questionnaires across a range "
+#~ "of topics related to your innovation "
+#~ "skills and experiences, NoI will match"
+#~ " you to others with complementary "
+#~ "knowledge to enable learning and "
+#~ "support.</p> <p>Network of Innovators (NoI)"
+#~ " Experiment has been developed by The"
+#~ " GovLab in partnership with governance "
+#~ "innovation leaders across seven countries."
+#~ "  This is an experiment. We want "
+#~ "to understand whether the approach "
+#~ "works, how people use such a tool,"
+#~ " and how they might want to use"
+#~ " it in the future. The aim is"
+#~ " both to enhance the conference "
+#~ "experience by matching people for mutual"
+#~ " benefit but also to improve the "
+#~ "design of the platform. Questionnaires "
+#~ "Answer questions to understand your own"
+#~ " expertise, find allies and collaborators"
+#~ " & learn from others.</p>\n"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<p>What makes open data a powerful "
+#~ "tool for governing better is that "
+#~ "the ability of people inside and  "
+#~ "outside of institutions to use the "
+#~ "same data to create useful policies, "
+#~ "tools, visualizations, maps, and apps.  "
+#~ "Open data can provide the raw "
+#~ "material to convene informed conversations "
+#~ "about what’s broken and the  empirical"
+#~ " foundation for developing solutions.</p> "
+#~ "<p><b>These twenty questions help you "
+#~ "describe what you know and can "
+#~ "share about open data and what you"
+#~ " want to learn from others.  Click"
+#~ " on a link below to create an"
+#~ " expertise profile.</b></p>\n"
+#~ msgstr ""
+
+#~ msgid "creating an open data plan and strategy to achieve key goals"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify what data will "
+#~ "help my organization achieve its core"
+#~ " mission"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to distinguish between potentially "
+#~ "sensitive data and non-sensitive data"
+#~ msgstr ""
+
+#~ msgid "How to craft a clear policy explaining what data to open and how"
+#~ msgstr ""
+
+#~ msgid "How to do public consultation on an open data policy"
+#~ msgstr ""
+
+#~ msgid "How to get organizational approval for opening data"
+#~ msgstr ""
+
+#~ msgid "operationalizing an open data program in practice"
+#~ msgstr ""
+
+#~ msgid "How to scrape data from my domain"
+#~ msgstr ""
+
+#~ msgid "How to make data machine-readable"
+#~ msgstr ""
+
+#~ msgid "what formats to publish data in"
+#~ msgstr ""
+
+#~ msgid "how to license my data"
+#~ msgstr ""
+
+#~ msgid "what data standards to publish data in"
+#~ msgstr ""
+
+#~ msgid "how to use the right infrastructure for making data available"
+#~ msgstr ""
+
+#~ msgid "good management for an open data project"
+#~ msgstr ""
+
+#~ msgid "how to determine how often datasets should be released and updated"
+#~ msgstr ""
+
+#~ msgid "how to ensure continued data quality and integrity"
+#~ msgstr ""
+
+#~ msgid "responding to what users need and want"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to create incentives for users "
+#~ "or the public to make productive "
+#~ "use of the data"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to identify and combine other "
+#~ "sources of open data to achieve a"
+#~ " goal"
+#~ msgstr ""
+
+#~ msgid "how to design a data collaborative"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to express the value proposition "
+#~ "of the open data datasets, including "
+#~ "what problems can be solved with "
+#~ "this data"
+#~ msgstr ""
+
+#~ msgid "assessing effectiveness"
+#~ msgstr ""
+
+#~ msgid "how to monitor how my data is being used"
+#~ msgstr ""
+
+#~ msgid "how to measure the economic and/or social impact of opening up data"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<p>Governments — and other entities — are increasing"
+#~ " seeking to solve big  problems using"
+#~ " new technologies and innovative "
+#~ "approaches. One of the most  common "
+#~ "approaches involves prize-backed contests "
+#~ "as well as challenges and  grand "
+#~ "challenges. These competitions offer a "
+#~ "range of advantages for  government "
+#~ "agencies, especially in an era of "
+#~ "tightening budgets.</p> <p><b>These twenty "
+#~ "questions help you describe what you "
+#~ "know and can share about prize-"
+#~ "backed challenges\n"
+#~ " and what you want to learn from others. \n"
+#~ "Click on a link below to create an expertise profile.</b></p>\n"
+#~ msgstr ""
+
+#~ msgid "defining the problem"
+#~ msgstr ""
+
+#~ msgid "how to define and express the problem addressed by the prize."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to do rapid research to test"
+#~ " the assumptions behind my problem "
+#~ "definition"
+#~ msgstr ""
+
+#~ msgid "how to develop metrics to use to measure progress"
+#~ msgstr ""
+
+#~ msgid "deciding if a prize is the right tool"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to decide when to use a "
+#~ "prize-backed challenge rather than other"
+#~ " options like conventional crowdsourcing"
+#~ msgstr ""
+
+#~ msgid "how to determine whether a prize or a grand challenge is optimal"
+#~ msgstr ""
+
+#~ msgid "how to decide whether to use financial or non-financial incentives"
+#~ msgstr ""
+
+#~ msgid "how to set the value of a prize"
+#~ msgstr ""
+
+#~ msgid "targeting the right participants"
+#~ msgstr ""
+
+#~ msgid "how to identify would-be participating innovators"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to assess the the potential "
+#~ "costs involved for them in participating"
+#~ msgstr ""
+
+#~ msgid "rinning a prize-backed challenge"
+#~ msgstr ""
+
+#~ msgid "how to fund a prize-backed challenge"
+#~ msgstr ""
+
+#~ msgid "how to create a plan for running the prize with defined milestones"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to access outside contractors to "
+#~ "support the design and implementation of"
+#~ " the prizes"
+#~ msgstr ""
+
+#~ msgid "how to decide how long the prize should run"
+#~ msgstr ""
+
+#~ msgid "how to develop a communication strategy to get the word out"
+#~ msgstr ""
+
+#~ msgid "how to choose from the tools available to run a prize-backed challenge"
+#~ msgstr ""
+
+#~ msgid "judging a prize"
+#~ msgstr ""
+
+#~ msgid "how to design assessment criteria"
+#~ msgstr ""
+
+#~ msgid "how to select judges"
+#~ msgstr ""
+
+#~ msgid "overcoming legal concerns"
+#~ msgstr ""
+
+#~ msgid "how to determine ownership and copyright"
+#~ msgstr ""
+
+#~ msgid "how to navigate governmental endorsement and privacy concerns"
+#~ msgstr ""
+
+#~ msgid "what to do after a challenge"
+#~ msgstr ""
+
+#~ msgid "how to translate winning entries into well-developed solutions"
+#~ msgstr ""
+
+#~ msgid "Coming soon"
+#~ msgstr ""
+
+#~ msgid "Agile"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<p>Citizen science projects – task-based"
+#~ " initiatives in which citizens of any"
+#~ "  background can help contribute to "
+#~ "scientific research – like Galaxy Zoo"
+#~ " and  Zooniverse are demonstrating the "
+#~ "ability of lay and expert citizens "
+#~ "alike to  make small, useful "
+#~ "contributions to aid large, complex "
+#~ "undertakings. As governing  institutions seek"
+#~ " to do more with less, looking "
+#~ "to the success of citizen science  "
+#~ "initiatives could provide a blueprint "
+#~ "for engaging citizens to help accomplish"
+#~ " difficult, time-consuming objectives at"
+#~ " little cost.</p> <p><b>These forty four"
+#~ " questions help you describe what you"
+#~ " know and can share  about open "
+#~ "data and what you want to learn"
+#~ " from others.  Click on a link "
+#~ "below to create an expertise "
+#~ "profile.</b></p>\n"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "defining the goals of a citizen "
+#~ "science initiative and the tasks to "
+#~ "be completed in order to achieve "
+#~ "them"
+#~ msgstr ""
+
+#~ msgid "How to identify a compelling goal for a citizen science project"
+#~ msgstr ""
+
+#~ msgid "How to identify and define the tasks for participants to do"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to decide the types of tasks"
+#~ " to be considered when developing a"
+#~ " citizen science project"
+#~ msgstr ""
+
+#~ msgid "How to articulate intended outcomes of a project"
+#~ msgstr ""
+
+#~ msgid "How to articulate how the tasks will advance a research field"
+#~ msgstr ""
+
+#~ msgid "How to define the success of a project"
+#~ msgstr ""
+
+#~ msgid "How to measure and evaluate the success of a project"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to define and validate a "
+#~ "protocol for an experiment and required"
+#~ " data collection"
+#~ msgstr ""
+
+#~ msgid "How to define a project in terms of time required and geographic range"
+#~ msgstr ""
+
+#~ msgid "How to identify funding opportunities for a project"
+#~ msgstr ""
+
+#~ msgid "developing incentives to motivate participation"
+#~ msgstr ""
+
+#~ msgid "How to engage with and/or create a community for participants."
+#~ msgstr ""
+
+#~ msgid "How to retain participants"
+#~ msgstr ""
+
+#~ msgid "How to address variations and skew in participation"
+#~ msgstr ""
+
+#~ msgid "How to scale up participation"
+#~ msgstr ""
+
+#~ msgid "How to identify collaborators around the project"
+#~ msgstr ""
+
+#~ msgid "How to define and develop gamification in projects"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify what people are "
+#~ "competing to do (e.g. quantity, "
+#~ "frequency, quality of participation)"
+#~ msgstr ""
+
+#~ msgid "How to attribute contributions to the relevant parties"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "giving participants the skills and "
+#~ "information needed to participate well"
+#~ msgstr ""
+
+#~ msgid "How to prepare individuals to participate in a project"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to develop an FAQ for "
+#~ "participants to reference throughout the "
+#~ "process"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to prepare people within my "
+#~ "institution to make use of citizen "
+#~ "scientists’ input"
+#~ msgstr ""
+
+#~ msgid "How to assess data quality"
+#~ msgstr ""
+
+#~ msgid "How to design/adapt protocols to assure high quality data"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify, choose and recruit "
+#~ "participants capable of contributing high "
+#~ "quality data"
+#~ msgstr ""
+
+#~ msgid "deciding upon and using citizen science platforms and tools"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify and decide on the"
+#~ " optimal platform for sharing data "
+#~ "submitted by participants, in a way "
+#~ "that helps them interpret the data"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify and decide on the"
+#~ " optimal platform for sharing data "
+#~ "submitted by participants, with other "
+#~ "researchers or data hubs"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to evaluate and implement the "
+#~ "appropriate use of technology for "
+#~ "collecting and reporting data given the"
+#~ " task I am asking people to do"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to interpret data being collected"
+#~ " before the project has been "
+#~ "completed"
+#~ msgstr ""
+
+#~ msgid "How to interpret data collected when the project has been completed"
+#~ msgstr ""
+
+#~ msgid "How to archive data"
+#~ msgstr ""
+
+#~ msgid "using input gained through citizen science to drive decision making"
+#~ msgstr ""
+
+#~ msgid "How to identify the societal relevance of your project"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to translate the outcomes of "
+#~ "the project into desired changes: "
+#~ "(government, institutional, societal)"
+#~ msgstr ""
+
+#~ msgid "legal concerns and barriers related to citizen science initiatives"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify and mitigate privacy "
+#~ "concerns relating to data collected"
+#~ msgstr ""
+
+#~ msgid "How to ensure COPPA compliance in projects featuring minors"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify considerations related "
+#~ "to participants sharing their locations"
+#~ msgstr ""
+
+#~ msgid "How to ask people to license their contributions"
+#~ msgstr ""
+
+#~ msgid "How to license data that is going to be published"
+#~ msgstr ""
+
+#~ msgid "How to draft a data policy"
+#~ msgstr ""
+
+#~ msgid "How to draft a privacy policy"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to draft other liability policies"
+#~ " and educate potential participants about"
+#~ " privacy issues"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "communicating project results to participants"
+#~ " and the public, and ensuring that"
+#~ " projects continue after initial the "
+#~ "engagement"
+#~ msgstr ""
+
+#~ msgid "How to communicate results and milestones to participants"
+#~ msgstr ""
+
+#~ msgid "How to identify avenues for publishing results"
+#~ msgstr ""
+
+#~ msgid "How to determine when to publish results"
+#~ msgstr ""
+
+#~ msgid "How to ensure sustainability of project management"
+#~ msgstr ""
+
+#~ msgid "How to identify funding opportunities to sustain a project"
+#~ msgstr ""
+
+#~ msgid "Nudges"
+#~ msgstr ""
+
+#~ msgid "Partnerships"
+#~ msgstr ""
+
+#~ msgid "TODO"
+#~ msgstr ""
+
+#~ msgid "data collection"
+#~ msgstr ""
+
+#~ msgid "How to create incentives for people to provide data."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to use new methods (e.g. "
+#~ "crowdsourcing) for collecting data from "
+#~ "new sources."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to make sure that data is "
+#~ "accurate, timely, and clean. (Data "
+#~ "processing and conditioning)"
+#~ msgstr ""
+
+#~ msgid "data governance"
+#~ msgstr ""
+
+#~ msgid "How to store data securely."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to transmit data securely so "
+#~ "that when data is shared, the "
+#~ "quality and integrity of the data "
+#~ "is maintained."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to share data appropriately within"
+#~ " my institution and with third "
+#~ "parties in a way that does not "
+#~ "violate privacy and confidentiality.    "
+#~ "(Information Governance)"
+#~ msgstr ""
+
+#~ msgid "How to craft an information governance policy."
+#~ msgstr ""
+
+#~ msgid "drawing insights from data"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to spot patterns and predict "
+#~ "trends from existing data (predictive "
+#~ "analytics)."
+#~ msgstr ""
+
+#~ msgid "How to formulate and test a hypothesis using data."
+#~ msgstr ""
+
+#~ msgid "How to design an experiment to test a data-driven hypothesis."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to plot and visualize data in"
+#~ " order to derive and communicate "
+#~ "insight."
+#~ msgstr ""
+
+#~ msgid "How to interpret and communicate what data says."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<p>Institutions often work best when "
+#~ "their stakeholders -- whether citizens, "
+#~ "customers, parents, patients, or other "
+#~ "members of a community -- are "
+#~ "directly engaged in decision-making and"
+#~ " service delivery. Engagement can build "
+#~ "trust and increase the legitimacy of "
+#~ "decision-making. It can also help "
+#~ "institutions solve problems more effectively"
+#~ " by developing solutions that are "
+#~ "designed in consultation with their "
+#~ "stakeholders. But knowing when and how"
+#~ " to engage members of a community "
+#~ "and under what conditions is hard. "
+#~ "</p> <p>Share what you know and "
+#~ "what you would like to learn about"
+#~ " how to formulate, implement and "
+#~ "measure a community engagement strategy.</p>"
+#~ "\n"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about setting "
+#~ "the stage for a community engagement "
+#~ "program."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Clearly identify the rationale, purpose "
+#~ "and objectives for community engagement."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Find and interpret relevant legislative "
+#~ "and/or policy requirements driving the "
+#~ "need for engagement."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Identify who needs to be involved, "
+#~ "including all stakeholders affected, impacted"
+#~ " or interested in the engagement."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about "
+#~ "operationalizing a community engagement "
+#~ "program."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Identify and communicate incentives to "
+#~ "participate, including anticipated outcomes."
+#~ msgstr ""
+
+#~ msgid "Develop briefing materials and information to inform engagement."
+#~ msgstr ""
+
+#~ msgid "Use multiple dialog methods to engage stakeholders."
+#~ msgstr ""
+
+#~ msgid "Plan and deliver face-to-face deliberation."
+#~ msgstr ""
+
+#~ msgid "Plan and deliver a deliberative poll."
+#~ msgstr ""
+
+#~ msgid "Plan and deliver a citizen jury."
+#~ msgstr ""
+
+#~ msgid "Plan and deliver a participatory budgeting process."
+#~ msgstr ""
+
+#~ msgid "Plan and deliver a charrette or scenario-planning exercise."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Develop an action/project plan with "
+#~ "timeline to implement the engagement."
+#~ msgstr ""
+
+#~ msgid "Ensure accessibility of the engagement activity."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about effectively "
+#~ "using tools to gain input from "
+#~ "diverse stakeholders"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use social media, digital and online "
+#~ "tools to engage stakeholders as a "
+#~ "group."
+#~ msgstr ""
+
+#~ msgid "Use social media, digital and online tools to conduct surveys."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Plan and deliver an e-deliberation "
+#~ "process like a 21st century town "
+#~ "meeting."
+#~ msgstr ""
+
+#~ msgid "Plan and deliver open space technology."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Use digital and online tools to "
+#~ "amplify engagement efforts and increase "
+#~ "reach."
+#~ msgstr ""
+
+#~ msgid "Use digital and online tools to provide feedback to stakeholders."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about assessing "
+#~ "effectiveness and sharing targeted feedback"
+#~ msgstr ""
+
+#~ msgid "Capture and utilise relevant data related to all aspects of engagement."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Create tools for providing clear "
+#~ "feedback to participants and decision "
+#~ "makers."
+#~ msgstr ""
+
+#~ msgid "Clearly and regularly report outcomes to participants and stakeholders."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about increasing "
+#~ "the organizational use of citizen "
+#~ "engagement"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Ensure that the learnings from a "
+#~ "community engagement exercise get used "
+#~ "to support continuous improvement within "
+#~ "my organisation."
+#~ msgstr ""
+
+#~ msgid "Increase organisational awareness of the value of community engagement."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Develop and deliver appropriate training "
+#~ "for staff across my organisation."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<p>Across the world, governments are "
+#~ "seeking to become more experimental  and"
+#~ " evidence-based through the creation "
+#~ "of internal innovation labs. The growing"
+#~ "  movement of labs – which often "
+#~ "focus on innovative tools and "
+#~ "strategies, human-centered design, or "
+#~ "both – is helping to uncover what"
+#~ " works in practice in addressing "
+#~ "public problems. </p> <p><b>Click on a"
+#~ " link below to create an expertise"
+#~ " profile.</b></p>\n"
+#~ msgstr ""
+
+#~ msgid "What you can share about launching a government innovation lab."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to articulate the value proposition"
+#~ " of my Lab and the need for "
+#~ "experimentation."
+#~ msgstr ""
+
+#~ msgid "how to develop a plan for my Lab"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to clearly articulate the problems"
+#~ " that my Lab is supposed to "
+#~ "solve, and the assumptions it is "
+#~ "going to test"
+#~ msgstr ""
+
+#~ msgid "how to define the service lines for my Lab"
+#~ msgstr ""
+
+#~ msgid "how to articulate a clear theory of change for my Lab"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about the "
+#~ "organizational mechanics of running a "
+#~ "government innovation lab."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to define an engagement model "
+#~ "for my Lab vis a vis other "
+#~ "parts of my organisation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to define a handover protocol "
+#~ "between my Lab and other parts of"
+#~ " the organisation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to define the roles and Terms"
+#~ " of Reference staff need for the "
+#~ "success of my Lab"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to cost the services for my"
+#~ " Lab and define a business model "
+#~ "that guarantees long term sustainability"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to effectively argue for the "
+#~ "most effective reporting lines and "
+#~ "organisational placement for my Lab"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about developing "
+#~ "and implementing an experimental methodology"
+#~ " for lab work."
+#~ msgstr ""
+
+#~ msgid "how to define metrics for my Lab to demonstrate its impact"
+#~ msgstr ""
+
+#~ msgid "how to select and implement the methodologies that my Lab will promote"
+#~ msgstr ""
+
+#~ msgid "how to train others in Lab methodologies and tools"
+#~ msgstr ""
+
+#~ msgid "how to manage a Lab project using an agile development approach"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to track, evidence and iterate "
+#~ "our programmes to ensure relevance and"
+#~ " generate timely results"
+#~ msgstr ""
+
+#~ msgid "What you can share about managing lab staff and budgets"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to effectively recruit a group "
+#~ "of early champions to support the "
+#~ "Lab"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to manage resources, including "
+#~ "people, time and budget to ensure "
+#~ "value for money"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What you can share about making "
+#~ "use of lab results internally and "
+#~ "communicating impacts externally."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to develop a portfolio of "
+#~ "demonstration projects that can demonstrate"
+#~ " tangible results even in the face"
+#~ " of skepticism"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to research, pilot and test "
+#~ "new programmes based on the insights "
+#~ "and knowhow gathered from previous ones"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "how to capture, articulate and share "
+#~ "the narrative around the impact and "
+#~ "outcomes of lab programmes, i.e. through"
+#~ " case studies"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<p>Crowdsourcing uses communications technologies"
+#~ " to enable institutions  to leverage "
+#~ "the wisdom of the crowd. With "
+#~ "crowdsourcing, organizations can get help, "
+#~ "for example, with performing tasks, "
+#~ "obtaining ideas and opinions,  gathering "
+#~ "data, soliciting funds, or administering "
+#~ "programs. By enabling institutions to "
+#~ "get more distributed and diverse "
+#~ "collaboration in ways never before "
+#~ "possible,  they can improve a project’s"
+#~ " efficiency, legitimacy and diversity. </p>"
+#~ " <p><b>These questions help you describe"
+#~ " what you know and can share "
+#~ "about crowdsourcing and what you want"
+#~ " to learn from others. Click on "
+#~ "a link below to create an "
+#~ "expertise  profile.</b></p>\n"
+#~ msgstr ""
+
+#~ msgid "What can you share about identifying, enrolling, and developing a crowd"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify the crowd I want"
+#~ " to participate (e.g. general public, "
+#~ "informed experts, participants with a "
+#~ "particular skill)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to enable members of the crowd"
+#~ " to participate (e.g. creating profiles,"
+#~ " defining roles, sharing supporting "
+#~ "materials)"
+#~ msgstr ""
+
+#~ msgid "How to encourage ongoing participation"
+#~ msgstr ""
+
+#~ msgid "What can you share about the type of activities the crowd could perform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to ask the crowd to perform"
+#~ " a specific task (e.g. design a "
+#~ "product, tag photos, classify information, "
+#~ "analyse information)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to ask the crowd to collect"
+#~ " and share data (e.g. report a "
+#~ "water leak, a case of corruption, "
+#~ "quality of the air in their city)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to ask the crowd for their "
+#~ "opinion (e.g. vote on a design "
+#~ "contest, opine on a policy "
+#~ "recommendation)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to ask the crowd for new "
+#~ "ideas (e.g. solve a public problem, "
+#~ "generate ideas to reduce unnecessary "
+#~ "government spending)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to ask the crowd for funds "
+#~ "(e.g. donate money to help build a"
+#~ " park, funding a municipal bond)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to ask the crowd for referrals"
+#~ " (e.g. share information with their "
+#~ "personal or professional networks, provide "
+#~ "recommendations of other members of the"
+#~ " crowd to include in an initiative)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What can you share about defining "
+#~ "if crowdsourcing is the right process"
+#~ " for a given situation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to decide when to use "
+#~ "crowdsourcing rather than other options "
+#~ "like the conventional top-down process"
+#~ " of decision-making"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to identify the gaps in "
+#~ "expertise that can be minimised through"
+#~ " the participation of the crowd"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to design a crowdsourcing strategy"
+#~ " that provides value to the "
+#~ "participants either through the outcome "
+#~ "or the participation itself"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to connect the efforts of the"
+#~ " crowd to enable them to aggregate"
+#~ " and build off each other’s work"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to determine the institutional "
+#~ "resources required to implement a "
+#~ "successful crowdsourcing initiative"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to assess the potential time "
+#~ "and resources required from the crowd"
+#~ " in order to participate"
+#~ msgstr ""
+
+#~ msgid "How to assess the effectiveness of using crowdsourcing"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What can you share about providing "
+#~ "the right incentives for participation"
+#~ msgstr ""
+
+#~ msgid "How to define the scope of the crowd’s participation"
+#~ msgstr ""
+
+#~ msgid "How to provide feedback for participation"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to decide whether to use "
+#~ "financial or non-financial incentives "
+#~ "(or a mix of incentives)"
+#~ msgstr ""
+
+#~ msgid "How to determine whether the use of a competition is beneficial"
+#~ msgstr ""
+
+#~ msgid "How to determine whether the use of reputation systems is beneficial"
+#~ msgstr ""
+
+#~ msgid "How to use altruistic or community building incentives"
+#~ msgstr ""
+
+#~ msgid "How to design recreational incentives (i.e. gamification)"
+#~ msgstr ""
+
+#~ msgid "How to identify which particular incentive is working and why"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to monitor and adapt the "
+#~ "incentives at the individual or crowd"
+#~ " levels"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to tackle the possible credibility"
+#~ " and authenticity issues involved in "
+#~ "the input received from the crowd"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What can you share about setting "
+#~ "up, running and managing a crowdsourcing"
+#~ " effort"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to create a plan for running"
+#~ " the crowdsourcing project with defined "
+#~ "milestones"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to target the right audience "
+#~ "to attract the desired crowd and "
+#~ "participation"
+#~ msgstr ""
+
+#~ msgid "How to choose a platform to do the crowdsourcing project"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to access outside contractors and/or"
+#~ " intermediaries to support the design "
+#~ "and implementation of the desired "
+#~ "crowdsourcing platform"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to build a team within an "
+#~ "institution that supports the project "
+#~ "from initial idea through implementation"
+#~ msgstr ""
+
+#~ msgid "How to develop a communication strategy to target the right audience"
+#~ msgstr ""
+
+#~ msgid "How to connect members of the crowd to each other when appropriate"
+#~ msgstr ""
+
+#~ msgid "How to prepare to utilize or implement the output of the crowd"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What can you share about defining "
+#~ "the right mechanism of quality control"
+#~ msgstr ""
+
+#~ msgid "How to ensure high-quality and accurate participation from the crowd"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to leverage crowd participants to"
+#~ " evaluate crowd contributions (through "
+#~ "voting, rating or peer-review)"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "What can you share about addressing "
+#~ "potential legal and ethical tensions"
+#~ msgstr ""
+
+#~ msgid "How to determine ownership and copyright of crowd contributions"
+#~ msgstr ""
+
+#~ msgid "How to navigate governmental endorsement and privacy concerns"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "How to navigate potential tensions "
+#~ "regarding free speech and public record"
+#~ " laws"
+#~ msgstr ""
+
+#~ msgid "Domain(s) of expertise:"
+#~ msgstr ""
+
+#~ msgid "No domain information available."
+#~ msgstr ""
 
