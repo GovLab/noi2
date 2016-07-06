@@ -838,7 +838,7 @@ msgstr "OK"
 
 #: templates/activity.html:127
 msgid "Dismiss Forever"
-msgstr ""
+msgstr "Descartar para Siempre"
 
 #: templates/activity.html:145
 #, python-format
@@ -2418,3 +2418,7 @@ msgid ""
 "<a href=\"./my-expertise\">Answer more questions</a> about your expertise"
 " to get matched with innovators you can learn the most from!"
 msgstr "<a href=\"./my-expertise\">Responde más preguntas</a> sobre tus conocimientos y habilidades para conectarte con las y los innovadores de los cuales puedes aprender más."
+
+#: templates/user-profile.html:29
+msgid "Edit Profile"
+msgstr "Editar Perfil"

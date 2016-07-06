@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-06 05:45+0000\n"
+"POT-Creation-Date: 2016-07-06 16:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -364,28 +364,28 @@ msgstr ""
 msgid "Peers"
 msgstr ""
 
-#: views.py:776
+#: views.py:775
 msgid "You must log in to post a message."
 msgstr ""
 
-#: views.py:778
+#: views.py:777
 msgid "We need your name before you can post a message."
 msgstr ""
 
-#: views.py:787
+#: views.py:786
 msgid "Message posted!"
 msgstr ""
 
-#: views.py:797
+#: views.py:796
 msgid "Loading..."
 msgstr ""
 
-#: views.py:881
+#: views.py:880
 #, python-format
 msgid "%(user)s would like you to join the Network of Innovators!"
 msgstr ""
 
-#: views.py:886
+#: views.py:885
 #, python-format
 msgid ""
 "%(user)s has invited you to join the Network of Innovators -- a new "
@@ -397,11 +397,11 @@ msgid ""
 "Build your network now at %(url)s."
 msgstr ""
 
-#: views.py:900
+#: views.py:899
 msgid "Invitation sent!"
 msgstr ""
 
-#: views.py:903
+#: views.py:902
 msgid "Your form submission was invalid."
 msgstr ""
 
@@ -1346,6 +1346,10 @@ msgstr ""
 
 #: templates/user-profile.html:11
 msgid "Expertise"
+msgstr ""
+
+#: templates/user-profile.html:29
+msgid "Edit Profile"
 msgstr ""
 
 #: templates/user-profile.html:83
