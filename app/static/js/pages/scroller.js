@@ -5,6 +5,6 @@ $(function () {
 
     $($(this).attr('data-target')).animate({
         scrollLeft: $($(this).attr('data-target')).scrollLeft() + scrollPixels
-    }, 200, 'swing' );
+    }, 100, 'swing' );
   });
 });
