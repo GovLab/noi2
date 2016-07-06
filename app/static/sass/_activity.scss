@@ -172,8 +172,11 @@
         padding-left: 4px;
         font-size: 10px;
         color: gray;
+    }
+
+    .e-feed-side-item {
         @include breakpoint($desktop) {
-            display: inherit;
+            display: inline;
         }
         @include breakpoint($mobile) {
             display: block;

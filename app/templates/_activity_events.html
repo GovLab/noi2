@@ -52,7 +52,7 @@
       UNKNOWN EVENT TYPE: {{ event.type }}
     </div>
   {% endif %}
-  <time datetime="{{ event.updated_at.isoformat() }}Z"></time>
+  <div class="e-feed-side-item"><time datetime="{{ event.updated_at.isoformat() }}Z"></time></div>
   </li>
 {% endfor %}
 </ul>
