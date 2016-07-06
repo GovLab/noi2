@@ -51,18 +51,17 @@
 {% endmacro %}
 
 {% macro render_scrolling_static_tab_bar(tabs, active_tab) %}
-{# <div class="b-scroll"> #}
-
-<nav class="b-contextual-nav" id="tabs-static">
-    {# <a class="b-arrow-button js-scroll-btn js-left" href="#" data-target="#tabs-static"><i class="material-icons">keyboard_arrow_left</i></a> #}
+<div class="b-scroll">
+  <a class="b-arrow-button js-scroll-btn js-left" href="#" data-target="#tabs-static"><i class="material-icons">keyboard_arrow_left</i></a>
+  <nav class="b-contextual-nav" id="tabs-static">
     <ul class="e-menu-items" role="tablist">
-        {% for tabid, tablabel, taburl in tabs %}
-        <li role="presentation" class="e-item {% if tabid == active_tab %}active{% endif %}"><a href="{{ taburl }}" role="tab">{{ tablabel }}</a></li>
-        {% endfor %}
+      {% for tabid, tablabel, taburl in tabs %}
+      <li role="presentation" class="e-item {% if tabid == active_tab %}active{% endif %}"><a href="{{ taburl }}" role="tab">{{ tablabel }}</a></li>
+      {% endfor %}
     </ul>
-    {# <a class="b-arrow-button js-scroll-btn js-right" href="#" data-target="#tabs-static"><i class="material-icons">keyboard_arrow_right</i></a> #}
-</nav>
-{# </div> #}
+  </nav>
+  <a class="b-arrow-button js-scroll-btn js-right" href="#" data-target="#tabs-static"><i class="material-icons">keyboard_arrow_right</i></a>
+</div>
 {% endmacro %}
 
 {% macro render_tab_bar(tabs, active_tab) %}
