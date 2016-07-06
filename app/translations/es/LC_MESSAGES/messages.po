@@ -474,7 +474,7 @@ msgstr "Encuentra innovadores"
 
 #: templates/__base_ui__.html:37
 msgid "Discuss"
-msgstr ""
+msgstr "FORO"
 
 #: templates/__base_ui__.html:42 templates/__base_ui__.html:86
 #, fuzzy
@@ -857,14 +857,14 @@ msgstr ""
 msgid ""
 "<strong>Find innovators</strong> by expertise area, location, event or "
 "other search term."
-msgstr ""
+msgstr "Encuentra innovadores/as por área de conocimiento, ubicación geográfica, evento u otro término de búsqueda."
 
 #: templates/activity.html:156
 msgid ""
 "Have a question or something to share with the network? <strong>Discuss "
 "it</strong> with like-minded innovators in one of our channels! You can "
 "change your discussion username in <a href='./me'>Edit Profile.</a>"
-msgstr ""
+msgstr "¿Tienes una pregunta o algo que compartir con la comunidad? ¡Interactúa con personas innovadoras como tú en alguno de nuestros canales! Puedes cambiar tu nombre de usuario/a del foro en Editar Perfil."
 
 #: templates/activity.html:160 templates/activity.html:166
 msgid "Don't forget to <strong>update your profile</strong>."
@@ -2412,3 +2412,9 @@ msgstr "Te puede referir a otros"
 #: templates/_network-viz2.html:55
 msgid "Can Do It"
 msgstr "Lo puede hacer"
+
+#: templates/activity.html:174
+msgid ""
+"<a href=\"./my-expertise\">Answer more questions</a> about your expertise"
+" to get matched with innovators you can learn the most from!"
+msgstr "<a href=\"./my-expertise\">Responde más preguntas</a> sobre tus conocimientos y habilidades para conectarte con las y los innovadores de los cuales puedes aprender más."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-06 05:30+0000\n"
+"POT-Creation-Date: 2016-07-06 05:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -778,6 +778,12 @@ msgstr ""
 
 #: templates/activity.html:161 templates/activity.html:167
 msgid "The more questions you answer, the more relevant your matches."
+msgstr ""
+
+#: templates/activity.html:174
+msgid ""
+"<a href=\"./my-expertise\">Answer more questions</a> about your expertise"
+" to get matched with innovators you can learn the most from!"
 msgstr ""
 
 #: templates/down.html:22
