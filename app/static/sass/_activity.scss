@@ -212,7 +212,7 @@
     .e-feed-message {
         flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
 
-        p {
+        p, ul, ol {
             margin: 10px 0;
             word-wrap: break-word;
         }
