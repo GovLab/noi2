@@ -26,7 +26,7 @@ b-public-profile
     <div class="e-left">
         {% if is_current_user_profile %}
         <a href="{{ url_for('views.my_profile') }}"><img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture"></a>
-        <a href="{{ url_for('views.my_profile') }}" class="e-edit"><i class="material-icons">edit</i> Edit Profile</a>
+        <a href="{{ url_for('views.my_profile') }}" class="e-edit"><i class="material-icons">edit</i>{{ gettext('Edit Profile') }}</a>
         {% else %}
         <img src="{{ get_user_avatar_url(user) }}" alt="" class="e-picture">
         {% call render_user_mailto_link(user) %}<span class="e-send material-icons">send</span>{% endcall %}
