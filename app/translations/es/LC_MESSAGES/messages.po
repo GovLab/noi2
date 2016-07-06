@@ -474,7 +474,7 @@ msgstr "Encuentra innovadores"
 
 #: templates/__base_ui__.html:37
 msgid "Discuss"
-msgstr "FORO"
+msgstr "Foro"
 
 #: templates/__base_ui__.html:42 templates/__base_ui__.html:86
 #, fuzzy
@@ -857,14 +857,14 @@ msgstr ""
 msgid ""
 "<strong>Find innovators</strong> by expertise area, location, event or "
 "other search term."
-msgstr "Encuentra innovadores/as por área de conocimiento, ubicación geográfica, evento u otro término de búsqueda."
+msgstr "Encuentra a personas innovadoras por área de conocimiento, ubicación geográfica, evento u otro término de búsqueda."
 
 #: templates/activity.html:156
 msgid ""
 "Have a question or something to share with the network? <strong>Discuss "
 "it</strong> with like-minded innovators in one of our channels! You can "
 "change your discussion username in <a href='./me'>Edit Profile.</a>"
-msgstr "¿Tienes una pregunta o algo que compartir con la comunidad? ¡Interactúa con personas innovadoras como tú en alguno de nuestros canales! Puedes cambiar tu nombre de usuario/a del foro en Editar Perfil."
+msgstr "¿Tienes una pregunta o algo que compartir con la comunidad? ¡Interactúa con personas innovadoras como tú en nuestro foro de discusión! Puedes cambiar tu nombre de usuario/a del foro en <a href='./me'>Editar Perfil.</a>"
 
 #: templates/activity.html:160 templates/activity.html:166
 msgid "Don't forget to <strong>update your profile</strong>."
@@ -1304,7 +1304,7 @@ msgid ""
 "us about your innovation skills enables you to get matched to those with "
 "complementary expertise."
 msgstr ""
-"Responde las preguntas sobre lo que sabes y lo puedes compartir con la comunidad. El compartirnos sobre tus habilidades en temas de innovación, nos permite conectarte con otras personas que tienen conocimientos complementarios a los tuyos."
+"Responde las preguntas sobre lo que sabes y compártelo con la comunidad. Compartirnos cuáles son tus habilidades en temas de innovación, nos permite conectarte con otras personas que tienen conocimientos complementarios a los tuyos."
 
 #: templates/main.html:138
 msgid "Visualize your knowledge"
@@ -1337,7 +1337,7 @@ msgid ""
 "Find innovators who know what you don’t and who want to learn what you "
 "can share."
 msgstr ""
-"Encuentra innovadores/as que saben lo que tú no sabes y que quieren aprender de lo que tú les puedes compartir"
+"Encuentra a personas innovadoras que saben lo que tú no sabes y que quieren aprender de lo que tú les puedes compartir"
 
 #: templates/main.html:243
 msgid "In collaboration with innovation teams from governments of"
