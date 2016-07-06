@@ -64,6 +64,11 @@ input { outline: none; }
     text-align: center;
     display: block;
 
+    i {
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+
     @include breakpoint($mobile) { display: block; }
 }
 

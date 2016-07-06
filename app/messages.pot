@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-06 16:50+0000\n"
+"POT-Creation-Date: 2016-07-06 18:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -420,7 +420,7 @@ msgid "Match Me"
 msgstr ""
 
 #: templates/__base_ui__.html:32 templates/search.html:3
-#: templates/search.html:49
+#: templates/search.html:50
 msgid "Find Innovators"
 msgstr ""
 

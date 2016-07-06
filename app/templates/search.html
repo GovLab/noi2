@@ -46,7 +46,8 @@
     </div>
     <label for="fulltext">{{ gettext('By Keyword') }}</label>
     {{ form.fulltext(class="b-textfield", placeholder=gettext("Enter organization, name, or keywords here")) }}
-  <input class="b-button" type="submit" value="{{ gettext('Find Innovators') }}">
+  {# <input class="b-button m-search" type="submit" value="{{ gettext('Find Innovators') }}"> #}
+  <button class="b-button m-search" type="submit"><i class="material-icons">search</i> {{ gettext('Find Innovators') }}</button>
   </form>
 </section>
 

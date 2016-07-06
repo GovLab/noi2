@@ -466,13 +466,10 @@ msgstr "Inicio"
 msgid "Match Me"
 msgstr "Conéctame"
 
-#: templates/__base_ui__.html:32
-msgid "Find Innovators"
-msgstr "Personas Innovadoras"
-
+#: templates/__base_ui__.html:32 templates/search.html:3
 #: templates/search.html:49
 msgid "Find Innovators"
-msgstr "<i class='material-icons'>search</i> Encuentra a innovadores e innovadoras"
+msgstr "Personas Innovadoras"
 
 #: templates/__base_ui__.html:37
 msgid "Discuss"
