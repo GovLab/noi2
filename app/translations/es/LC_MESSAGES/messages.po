@@ -49,9 +49,8 @@ msgid "Email"
 msgstr "Correo electrónico"
 
 #: forms.py:198
-#, fuzzy
 msgid "Choose an expertise area"
-msgstr "Escoge otra area"
+msgstr "Escoge otra área"
 
 #: forms.py:200
 msgid "name"
