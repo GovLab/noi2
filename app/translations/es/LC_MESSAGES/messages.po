@@ -68,9 +68,8 @@ msgid "Choose a field of work"
 msgstr "Por área de trabajo"
 
 #: forms.py:226
-#, fuzzy
 msgid "Choose an event"
-msgstr "Escoge otra area"
+msgstr "Por evento"
 
 #: forms.py:251
 #, fuzzy
