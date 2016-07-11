@@ -205,10 +205,10 @@
         &.m-discourse-topic {
             display: block;
         }
-    }
 
-    .e-feed-message:not(.m-discourse-topic) {
-        flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+        &:not(.m-discourse-topic) .e-feed-message {
+            flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+        }
     }
 
     .e-feed-message {
