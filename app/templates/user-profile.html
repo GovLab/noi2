@@ -110,6 +110,13 @@ b-public-profile
   <div class="b-network-viz">
     {# TODO: This is very similar to the treemap code in network.html,
        consider refactoring. #}
+    <div class="e-legend">
+    <div class="e-legend">
+      <div class="e-legend-item m-learn"><span>{{ gettext('Wants to Learn') }}</span></div><!--
+      --><div class="e-legend-item m-explain"><span>{{ gettext('Can Explain') }}</span></div><!--
+      --><div class="e-legend-item m-connect"><span>{{ gettext('Can Connect Others') }}</span></div><!--
+      --><div class="e-legend-item m-do"><span>{{ gettext('Can Do It') }}</span></div>
+    </div>
     {% for area_info in viz_data %}
         <div class="e-questionnaire-area">
           {% if is_current_user_profile %}
