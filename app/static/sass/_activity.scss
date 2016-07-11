@@ -229,15 +229,15 @@
 
         @include breakpoint($desktop) {
             max-width: 100%;
-            // & * {
-            //     max-width: 80%;
-            // }
+            & * {
+                max-width: 100%;
+            }
         }
         @include breakpoint($mobile) {
             max-width: 100%;
-            // & * {
-            //     max-width: 100%;
-            // }
+            & * {
+                max-width: 100%;
+            }
         }
 
         p, ul, ol, a {
