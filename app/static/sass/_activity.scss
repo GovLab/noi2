@@ -228,16 +228,10 @@
     .e-feed-message {
 
         @include breakpoint($desktop) {
-            max-width: 100%;
-            & * {
-                max-width: 100%;
-            }
+            max-width: 90%;
         }
         @include breakpoint($mobile) {
             max-width: 100%;
-            & * {
-                max-width: 100%;
-            }
         }
 
         p, ul, ol, a {
