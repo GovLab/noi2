@@ -198,20 +198,36 @@
     }
 
     .e-feed-item {
-        .e-feed-message {
-            max-width: 100%
-        }
-
-        &.m-discourse-topic {
-            display: block;
-        }
 
         &:not(.m-discourse-topic) .e-feed-message {
-            flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
+            flex: 1;
         }
+
+        .m-discourse-topic .e-feed-message {
+            @include breakpoint($desktop) {
+                flex: 1;
+            }
+            @include breakpoint($mobile) {
+                flex: unset;
+            }
+        }
+
+        @include breakpoint($desktop) {
+            &.m-discourse-topic {
+                display: flex;
+            }
+        }
+        @include breakpoint($mobile) {
+            &.m-discourse-topic {
+                display: block;
+            }
+        }
+
     }
 
     .e-feed-message {
+        max-width: 100%
+
         p, ul, ol {
             margin: 10px 0;
             word-wrap: break-word;
