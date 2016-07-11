@@ -226,12 +226,21 @@
     }
 
     .e-feed-message {
-        max-width: 100%
-        & * {
-            max-width: 100%;
+
+        @include breakpoint($desktop) {
+            max-width: 80%
+            & * {
+                max-width: 80%;
+            }
+        }
+        @include breakpoint($mobile) {
+            max-width: 100%
+            & * {
+                max-width: 100%;
+            }
         }
 
-        p, ul, ol {
+        p, ul, ol, a {
             margin: 10px 0;
             word-wrap: break-word;
         }
