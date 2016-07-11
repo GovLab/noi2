@@ -227,6 +227,9 @@
 
     .e-feed-message {
         max-width: 100%
+        * {
+            max-width: 100%;
+        }
 
         p, ul, ol {
             margin: 10px 0;
