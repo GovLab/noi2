@@ -197,21 +197,21 @@
         white-space: pre;
     }
 
-    .e-feed-item:not(.m-blog-item) {
-        .e-feed-message {
-            max-width: 80%
-        }
-    }
-
-    .e-feed-item.m-blog-item {
+    .e-feed-item {
         .e-feed-message {
             max-width: 100%
         }
+
+        &.m-discourse-topic {
+            display: block;
+        }
+    }
+
+    .e-feed-message:not(.m-discourse-topic) {
+        flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
     }
 
     .e-feed-message {
-        flex: 1;               /* NEW, Spec - Firefox, Chrome, Opera */
-
         p, ul, ol {
             margin: 10px 0;
             word-wrap: break-word;

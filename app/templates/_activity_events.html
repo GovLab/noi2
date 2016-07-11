@@ -6,7 +6,7 @@
   <li class="e-feed-item">
   {% if event.type == 'shared_message' %}
     {{ user_avatar(event.user) }}
-    <div class="e-feed-message">
+    <div class="e-feed-message m-shared-message">
       <p>{{ gettext('%(user)s shared:', user=user_link(event.user)) }}</p>
       <p>{{ event.message|truncate(700) }}</p>
       {% if current_user.is_authenticated() %}
@@ -17,7 +17,7 @@
     </div>
   {% elif event.type == 'user_joined_event' %}
     {{ user_avatar(event.user) }}
-    <div class="e-feed-message">
+    <div class="e-feed-message m-user-joined">
       <p>{{ gettext('%(user)s joined NOI.', user=user_link(event.user)) }}</p>
     </div>
   {% elif event.type == 'connection_event' %}
@@ -29,7 +29,7 @@
     {% if event.user %}
     {{ user_avatar(event.user) }}
     {% endif %}
-    <div class="e-feed-message">
+    <div class="e-feed-message m-discourse-topic">
       {% if event.user %}
       <p>{{ gettext('%(user)s posted in Discuss.', user=user_link(event.user)) }}</p>
       {% endif %}
