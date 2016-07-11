@@ -228,7 +228,7 @@
     .e-feed-message {
 
         @include breakpoint($desktop) {
-            max-width: 90%;
+            max-width: 80%;
         }
         @include breakpoint($mobile) {
             max-width: 100%;
