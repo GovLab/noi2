@@ -228,7 +228,6 @@
     .e-feed-message {
 
         @include breakpoint($desktop) {
-            max-width: unset;
             // & * {
             //     max-width: 80%;
             // }
