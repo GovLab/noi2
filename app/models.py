@@ -45,6 +45,17 @@ def skills_to_percentages(s):
         percentages[skill_level] = int(percentage * 100)
     return percentages
 
+def skill_counts(s):
+    '''
+    >>> skills_to_percentages(dict(learn=5, explain=5, connect=0, do=0))
+    {'do': 0, 'explain': 50, 'connect': 0, 'learn': 50}
+    '''
+
+    counts = {}
+    for skill_level in ['learn', 'explain', 'connect', 'do']:
+        counts[skill_level] = int(s[skill_level])
+    return counts
+
 
 def scores_to_skills(score_dict):
     '''

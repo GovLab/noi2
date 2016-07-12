@@ -133,10 +133,11 @@ b-public-profile
           {% else %}
           <a href="{{ url_for('views.get_user_expertise_area', userid=user.id, areaid=area_info.questionnaire_id, _anchor='expertise') }}">
           {% endif %}
-          <div class="e-skill-level m-do" style="width: 100%"></div>
-          <div class="e-skill-level m-connect" style="width: {{ area_info.learn + area_info.explain + area_info.connect }}%"></div>
-          <div class="e-skill-level m-explain" style="width: {{ area_info.learn + area_info.explain }}%"></div>
-          <div class="e-skill-level m-learn" style="width: {{ area_info.learn }}%"></div>
+          <div class="e-skill-level m-remaining" style="width: 100%"></div>
+          <div class="e-skill-level m-do" style="width: {{ ((area_info.learn + area_info.explain + area_info.connect + area_info.do) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
+          <div class="e-skill-level m-connect" style="width: {{ ((area_info.learn + area_info.explain + area_info.connect) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
+          <div class="e-skill-level m-explain" style="width: {{ ((area_info.learn + area_info.explain) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
+          <div class="e-skill-level m-learn" style="width: {{ ((area_info.learn) / user.questionnaire_progress[area_info.questionnaire_id].total) * 100 }}%"></div>
           <div class="e-screen"></div>
           <h2>{{ gettext(area_info.name) }}</h2>
           <p>{{ gettext('%(count)d questions answered', count=area_info.total) }}</p>

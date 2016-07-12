@@ -14,7 +14,7 @@ from app import (QUESTIONNAIRES_BY_ID, MIN_QUESTIONS_TO_JOIN, LEVELS, l10n,
                  LEVELS_BY_SCORE, mail, stats, cache, blog_posts, signals)
 from app.models import (db, User, UserLanguage, UserExpertiseDomain, UserConference,
                         UserSkill, Event, SharedMessageEvent, Email,
-                        skills_to_percentages)
+                        skills_to_percentages, skill_counts)
 
 from app.forms import (UserForm, SearchForm, SharedMessageForm, PictureForm,
                        RegisterStep2Form, ChangeLocaleForm, InviteForm,
@@ -400,7 +400,7 @@ def render_user_profile(userid=None, **kwargs):
                 'questionnaire_id': qid,
                 'total': s['learn'] + s['explain'] + s['connect'] + s['do']
             }
-            area_info.update(skills_to_percentages(s))
+            area_info.update(skill_counts(s))
             viz_data.append(area_info)
     kwargs['viz_data'] = sorted(
         viz_data,
