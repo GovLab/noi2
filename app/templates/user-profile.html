@@ -76,30 +76,40 @@ b-public-profile
 
 {% call render_tab_panel('overview', active_tab) %}
 
-<div class="b-temporary-styling">
+<div class="b-roles-list">
 {% for skill_level, questionnaires in overview_data.items() %}
   {% if is_current_user_profile %}
     {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
-      <p>{{ gettext("You are an <strong>explainer</strong> of:") }}</p>
+      <p>{{ gettext("You are an <strong class='m-explainer'>explainer</strong> of:") }}</p>
     {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
-      <p>{{ gettext("You are a <strong>practitioner</strong> of:") }}</p>
+      <p>{{ gettext("You are a <strong class='m-practitioner'>practitioner</strong> of:") }}</p>
     {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
-      <p>{{ gettext("You are a <strong>connector</strong> of:") }}</p>
+      <p>{{ gettext("You are a <strong class='m-connector'>connector</strong> of:") }}</p>
     {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
-      <p>{{ gettext("You are a <strong>peer</strong> of:") }}</p>
+      <p>{{ gettext("You are a <strong class='m-peer'>peer</strong> of:") }}</p>
     {% endif %}
   {% else %}
     {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
-      <p>{{ gettext("Ask %(user)s to <strong>explain</strong>:", user=user.full_name) }}</p>
+      <p>{{ gettext("Ask %(user)s to <strong class='m-explainer'>explain</strong>:", user=user.full_name) }}</p>
     {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
-      <p>{{ gettext("Ask %(user)s to <strong>share experiences</strong> in:", user=user.full_name) }}</p>
+      <p>{{ gettext("Ask %(user)s to <strong class='m-practitioner'>share experiences</strong> in:", user=user.full_name) }}</p>
     {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
-      <p>{{ gettext("Ask %(user)s to <strong>connect you</strong> in:", user=user.full_name) }}</p>
+      <p>{{ gettext("Ask %(user)s to <strong class='m-connector'>connect you</strong> in:", user=user.full_name) }}</p>
     {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
-      <p>{{ gettext("Ask %(user)s to <strong>learn with you</strong> in:", user=user.full_name) }}</p>
+      <p>{{ gettext("Ask %(user)s to <strong class='m-peer'>learn with you</strong> in:", user=user.full_name) }}</p>
     {% endif %}
   {% endif %}
-  <ul>
+  <ul class="
+    {% if skill_level == LEVELS['LEVEL_I_CAN_EXPLAIN'].score %}
+    m-explainer
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_DO_IT'].score %}
+    m-practitioner
+    {% elif skill_level == LEVELS['LEVEL_I_CAN_REFER'].score %}
+    m-connector
+    {% elif skill_level == LEVELS['LEVEL_I_WANT_TO_LEARN'].score %}
+    m-peer
+    {% endif %}
+  ">
     {% for questionnaire in questionnaires %}
       <li>{{ gettext(questionnaire.name) }}</li>
     {% endfor %}

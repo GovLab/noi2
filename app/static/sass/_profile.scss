@@ -251,6 +251,47 @@
     }
 }
 
+.b-roles-list {
+    padding: 10px;
+
+    p {
+        .m-explainer { color: $purple; }
+        .m-practitioner { color: $teal; }
+        .m-connector { color: $yellow; }
+        .m-peer { color: $orange; }
+    }
+
+    ul {
+        padding-left: 0px;
+        li {
+            font-weight: 500;
+            text-transform: uppercase;
+            list-style: none;
+            display: inline-block;
+            margin: 0 6px;
+            padding: 6px 10px;
+            color: $white;
+        }
+
+        &.m-explainer li {
+            background-color: transparentize($purple, 0.4);
+            box-shadow: 2px 2px transparentize($purple, 0.1);
+        }
+        &.m-practitioner li {
+            background-color: transparentize($teal, 0.4);
+            box-shadow: 2px 2px transparentize($teal, 0.1);
+        }
+        &.m-connector li {
+            background-color: transparentize($yellow, 0.3);
+            box-shadow: 2px 2px transparentize($yellow, 0.0);
+        }
+        &.m-peer li {
+            background-color: transparentize($orange, 0.4);
+            box-shadow: 2px 2px transparentize($orange, 0.1);
+        }
+    }
+}
+
 #overview {
   .e-user-projects {
     white-space: pre-wrap;
