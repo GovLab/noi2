@@ -274,20 +274,16 @@
         }
 
         &.m-explainer li {
-            background-color: transparentize($purple, 0.4);
-            box-shadow: 2px 2px transparentize($purple, 0.1);
+            background-color: transparentize($purple, 0.3);
         }
         &.m-practitioner li {
-            background-color: transparentize($teal, 0.4);
-            box-shadow: 2px 2px transparentize($teal, 0.1);
+            background-color: transparentize($teal, 0.3);
         }
         &.m-connector li {
-            background-color: transparentize($yellow, 0.3);
-            box-shadow: 2px 2px transparentize($yellow, 0.0);
+            background-color: transparentize($yellow, 0.2);
         }
         &.m-peer li {
-            background-color: transparentize($orange, 0.4);
-            box-shadow: 2px 2px transparentize($orange, 0.1);
+            background-color: transparentize($orange, 0.3);
         }
     }
 }
