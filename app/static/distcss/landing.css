@@ -178,7 +178,6 @@ Styleguide 1.2
     color: white;
     margin: 30px 0; }
   .b-sg-landing-page .b-landing-section .b-main-logo > img {
-    width: 100%;
     max-width: 460px; }
   .b-sg-landing-page .b-landing-section .b-button {
     margin: 40px 0 60px;
@@ -287,14 +286,16 @@ Styleguide 1.2
     display: inline-block;
     outline: none;
     text-align: center;
-    width: 400px;
-    transition: all 0.5s ease; }
+    max-width: 90vw;
+    transition: all 0.5s ease;
+    margin-left: 5vw;
+    margin-right: 5vw; }
     .b-sg-landing-page .b-slider.m-mobile-screens .b-slide header {
       transition: all 0.5s ease; }
       .b-sg-landing-page .b-slider.m-mobile-screens .b-slide header h4 {
         padding: 0 10px; }
     .b-sg-landing-page .b-slider.m-mobile-screens .b-slide img {
-      max-width: 300px;
+      max-width: 90vw;
       margin: 0 auto;
       transition: all 0.5s ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
@@ -309,7 +310,7 @@ Styleguide 1.2
           max-height: 500px; } }
     .b-sg-landing-page .b-slider.m-mobile-screens .b-slide:not(.slick-current) {
       transform: scale(0.8);
-      transform-origin: 10%;
+      max-width: 100vw;
       transition: all 0.5s ease-in; }
 .b-sg-landing-page .b-footer {
   text-align: center; }
@@ -359,20 +360,16 @@ Styleguide 1.2
 @media (min-width: 800px) and (max-width: 1000px) {
   .b-sg-landing-page #wp-slider .b-slide {
     min-height: 380px;
-    padding: 60px 40px 20px 40px; } }
+    padding: 20px 40px; } }
 @media (min-width: 1000px) {
   .b-sg-landing-page #wp-slider .b-slide {
     min-height: 410px;
-    padding: 80px 80px 20px 80px; } }
+    padding: 20px 80px; } }
 @media (min-width: 0px) and (max-width: 640px) {
   .b-sg-landing-page .slick .slick-arrow {
     visibility: hidden; } }
 @media (min-width: 640px) {
   .b-sg-landing-page .slick .slick-arrow {
     visibility: visible; } }
-
-    #wp-slider .slick-track {
-      background-color: #523080;
-    }
 
 /*# sourceMappingURL=landing.css.map */
