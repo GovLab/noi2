@@ -3,7 +3,7 @@ from flask import current_app, url_for
 from flask_script import Manager
 from flask_security.signals import user_registered
 
-from signals import user_changed_profile
+from signals import user_changed_profile, user_completed_registration
 
 def init_app(app):
     assert 'SLACK_WEBHOOK_URL' in app.config
@@ -18,6 +18,10 @@ def init_app(app):
         if avatar_changed:
             text = 'changed their avatar.'
         post_user_message(user, text)
+
+    @user_completed_registration.connect_via(app)
+    def when_user_completed_registration(sender, user, **extra):
+        post_user_message(user, ', ' + user.position + ' of ' + user.organization + ' just completed a new profile.')
 
 def post_user_message(user, text):
     url = url_for('views.get_user', userid=user.id, _external=True)

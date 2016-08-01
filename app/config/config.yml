@@ -44,3 +44,5 @@ S3_BUCKET_NAME: 'network-of-innovators'
 USE_S3: False
 
 NOI_DEPLOY: '_default'
+
+SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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

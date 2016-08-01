@@ -363,6 +363,10 @@ def register_step_2():
             form.populate_obj(current_user)
             db.session.add(current_user)
             db.session.commit()
+            signals.user_completed_registration.send(
+                current_app._get_current_object(),
+                user=current_user._get_current_object()
+            )
             return redirect(url_for('views.register_step_3'))
         else:
             flash(gettext(u'Could not save, please correct errors below'))
