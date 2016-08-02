@@ -11,7 +11,7 @@ from flask_security.utils import get_identity_attributes
 from werkzeug.contrib.fixers import ProxyFix
 
 from app import (csrf, cache, mail, bcrypt, s3, assets, security, admin,
-                 babel, alchemydumps, sass, email_errors, csp, oauth,
+                 babel, alchemydumps, sass, email_errors, email_notifications, csp, oauth,
                  linkedin, discourse, slack, conferences,
                  QUESTIONNAIRES, NOI_COLORS, LEVELS, ORG_TYPES,
                  QUESTIONS_BY_ID, LEVELS_BY_SCORE, QUESTIONNAIRES_BY_ID)
@@ -116,6 +116,8 @@ def create_app(config=None): #pylint: disable=too-many-statements
         email_errors.init_app(app)
 
     admin.init_app(app)
+
+    email_notifications.init_app(app)
 
     oauth.init_app(app)
     if 'LINKEDIN' in app.config:
