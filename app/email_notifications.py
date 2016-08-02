@@ -25,14 +25,14 @@ def init_app(app):
                 ),
             body=gettext(
                 "%(user)s Created a new profile: "
-                "<br><br><ul>"
-                "<li>Name: %(user)s</li>"
-                "<li>Position: %(position)s</li>"
-                "<li>Organization: %(organization)s</li>"
-                "<li>Organization Type: %(organization_type)s</li>"
-                "<li>Country: %(country)s</li>"
-                "<li>City: %(city)s</li>"
-                "</ul><br><br>",
+                "\n\n"
+                "\nName: %(user)s"
+                "\nPosition: %(position)s"
+                "\nOrganization: %(organization)s"
+                "\nOrganization Type: %(organization_type)s"
+                "\nCountry: %(country)s"
+                "\nCity: %(city)s"
+                "\n\n",
                 user=user.full_name,
                 position=user.position,
                 organization=user.organization,
