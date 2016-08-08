@@ -69,6 +69,21 @@ def get_questionnaire_counts():
         counts[qid].update(models.scores_to_skills(raw_counts))
     return counts
 
+def get_questionnaire_counts_by_country(country):
+    counts = {}
+    for questionnaire in QUESTIONNAIRES:
+        if not questionnaire['questions']: continue
+        qid = questionnaire['id']
+        counts[qid] = {}
+        query = db.session.query(
+            models.UserSkill.level,
+            func.count(models.UserSkill.id)
+        ).filter(models.UserSkill.name.like(qid + "_%")).\
+          group_by(models.UserSkill.level)
+        raw_counts = dict(query.all())
+        counts[qid].update(models.scores_to_skills(raw_counts))
+    return counts
+
 def generate():
     return {
         "users": db.session.query(func.count(models.User.id)).scalar(),
