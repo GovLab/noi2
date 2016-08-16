@@ -152,7 +152,7 @@
     - topic: Tasks and Goals
       description: defining the goals of a citizen science initiative and the tasks to be completed in order to achieve them
       questions:
-        - quesetion: Defining the intended participants
+        - question: Defining the intended participants
           label: defining intended participants
         - question: Identifying a compelling goal for a citizen science project
           label: compelling goal
