@@ -41,5 +41,5 @@ def init_app(app):
                 city=user.city
                 ),
             sender=sender,
-            recipients=["admins@thegovlab.org"]
+            recipients=["admins@thegovlab.org", "noveck@thegovlab.org"]
             )
