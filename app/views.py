@@ -415,6 +415,17 @@ def render_user_profile(userid=None, **kwargs):
     return render_template('user-profile.html', **kwargs)
 
 
+@views.route('/profile')
+@full_registration_required
+def get_current_user():
+    '''
+    Public-facing profile view of current user
+    (using render_user_profile()'s default to current user behavior)
+    eg. for external linking / discourse usage
+    '''
+
+    return render_user_profile()
+
 @views.route('/user/<userid>')
 @full_registration_required
 def get_user(userid):
