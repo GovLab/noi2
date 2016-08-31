@@ -27,6 +27,7 @@ def init_app(app):
                 "%(user)s Created a new profile: "
                 "\n\n"
                 "\nName: %(user)s"
+                "\nEmail: %(email)s"
                 "\nPosition: %(position)s"
                 "\nOrganization: %(organization)s"
                 "\nOrganization Type: %(organization_type)s"
@@ -34,6 +35,7 @@ def init_app(app):
                 "\nCity: %(city)s"
                 "\n\n",
                 user=user.full_name,
+                email=user.email,
                 position=user.position,
                 organization=user.organization,
                 organization_type=user.organization_type,
